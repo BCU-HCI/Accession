@@ -1,67 +1,135 @@
 // Copyright F-Dudley. All Rights Reserved.
 
 #include "SocketCommunicationServer.h"
+#include "OpenAccessibilityComLogging.h"
 
-FSocketReqServer::FSocketReqServer(const std::string address = "tcp://127.0.0.1:5555")
+FSocketCommunicationServer::FSocketCommunicationServer(const std::string Address = "tcp://127.0.0.1:5555", const int PollTimeout = 10) 
+	: Address(Address), PollTimeout(PollTimeout)
 {
+	Context = new zmq::context_t();
+	if (Context == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("Failed to create ZMQ context"));
+		return;
+	}
+
+	Socket = new zmq::socket_t(*Context, ZMQ_REQ);
+	if (Socket == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("Failed to create ZMQ socket"));
+		return;
+	}
+	
+	Poller = new zmq::poller_t<int>();
+	if (Poller == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("Failed to create ZMQ poller"));
+		return;
+	}
+
+	Socket->connect(Address);
+	Poller->add(*Socket, zmq::event_flags::pollin);
 }
 
-FSocketReqServer::~FSocketReqServer()
+FSocketCommunicationServer::~FSocketCommunicationServer()
 {
-	/*
-	Socket->close();
+	Poller->remove(*Socket);
+	delete Poller; Poller = nullptr;
 
-	delete Socket;
+	Socket->disconnect(Address);
+	Socket->close();
+	delete Socket; Socket = nullptr;
 
 	Context->shutdown();
 	Context->close();
-
-	zmq_ctx_destroy(Context);
-
-	delete Context;
-	*/
+	delete Context; Context = nullptr;
 }
-/*
-bool FSocketReqServer::Send(const std::string Message)
-{
 
-	if (Message.empty())
+bool FSocketCommunicationServer::EventOccured()
+{
+	std::vector<zmq::poller_event<int>> PollEvents;
+	if (Poller->wait_all(PollEvents, std::chrono::milliseconds(PollTimeout)) > 0)
 	{
-		return false;
+		PollEvents.clear();
+		return true;
 	}
 
-	zmq::const_buffer ReqMessage = zmq::buffer(Message);
+	PollEvents.clear();
+	return false;
+}
 
-	auto SendRes = Socket->send(ReqMessage, zmq::send_flags::none);
-	if (SendRes.has_value())
+bool FSocketCommunicationServer::SendArray(const float* MessageData, size_t Size, zmq::send_flags SendFlags)
+{
+	auto Result = Socket->send(zmq::const_buffer(MessageData, Size * sizeof(float)), SendFlags);
+	if (Result.has_value())
 	{
-
-		// Wait for a response
-		zmq::message_t Reply;
-		auto RecvRes = Socket->recv(Reply, zmq::recv_flags::none);
-		if (RecvRes.has_value())
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Received: %s"), *FString(static_cast<char*>(Reply.data()), Reply.size()));
-
-			return true;
-		}
-
-		return false;
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), Size * sizeof(float));
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		return true;
 	}
 
 	return false;
 }
 
-bool FSocketReqServer::Send(const float* Message, size_t Size)
+bool FSocketCommunicationServer::SendArray(const float MessageData[], zmq::send_flags SendFlags)
 {
-	if (Message == nullptr)
-		return false;
+	auto Result = Socket->send(zmq::const_buffer(MessageData, sizeof MessageData), zmq::send_flags::dontwait);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(sizeof MessageData));
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		return true;
+	}
 
 	return false;
 }
 
-void FSocketReqServer::Tick(float DeltaTime)
+bool FSocketCommunicationServer::SendArray(const TArray<float>& ArrayMessage, zmq::send_flags SendFlag)
 {
+	auto Result = Socket->send(zmq::const_buffer(ArrayMessage.GetData(), ArrayMessage.Num() * sizeof(float)), SendFlag);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(ArrayMessage.Num() * sizeof(float)));
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		return true;
+	}
 
+	return false;
 }
-*/
+
+bool FSocketCommunicationServer::SendString(const std::string StringMessage, zmq::send_flags SendFlags)
+{
+	return false;
+}
+
+bool FSocketCommunicationServer::SendJson(const std::string JsonMessage, zmq::send_flags SendFlags)
+{
+	return false;
+}
+
+bool FSocketCommunicationServer::RecvArray(float* MessageData, size_t Size)
+{
+	return false;
+}
+
+bool FSocketCommunicationServer::RecvString(std::string& StringMessage)
+{
+	return false;
+}
+
+bool FSocketCommunicationServer::RecvJson(std::string& JsonMessage)
+{
+	return false;
+}

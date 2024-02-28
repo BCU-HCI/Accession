@@ -24,6 +24,7 @@ public class ZeroMQ : ModuleRules
             LibraryDir = Path.Combine("Windows", "x64", LibraryName);
 
             PublicDefinitions.Add("WITH_ZEROMQ=1");
+            PublicDefinitions.Add("ZMQ_BUILD_DRAFT_API=1");
         }
         else if (Target.Platform == UnrealTargetPlatform.Linux)
         {
@@ -31,6 +32,7 @@ public class ZeroMQ : ModuleRules
             LibraryDir = Path.Combine("Linux", LibraryName);
 
             PublicDefinitions.Add("WITH_ZEROMQ=1");
+            PublicDefinitions.Add("ZMQ_BUILD_DRAFT_API=1");
         }
         else if (Target.Platform == UnrealTargetPlatform.Mac)
         {
@@ -38,6 +40,7 @@ public class ZeroMQ : ModuleRules
             LibraryDir = Path.Combine("Mac", LibraryName);
 
             PublicDefinitions.Add("WITH_ZEROMQ=1");
+            PublicDefinitions.Add("ZMQ_BUILD_DRAFT_API=1");
         }
         else
         {

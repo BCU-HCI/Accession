@@ -4,38 +4,38 @@
 
 #include "CoreMinimal.h"
 
-#if WITH_ZEROMQ
 #include "zmq.hpp"
 #include "zmq_addon.hpp"
-#endif
-
-
-UENUM(BlueprintType)
-enum class MessageBodyType : uint8
-{
-	OA_Undefined = 0,
-	OA_Transcription = 1,
-};
 
 /**
  * 
  */
-class OPENACCESSIBILITYCOMMUNICATION_API FSocketReqServer
+class OPENACCESSIBILITYCOMMUNICATION_API FSocketCommunicationServer
 {
 public:
-	FSocketReqServer(std::string Address);
-	~FSocketReqServer();
+	FSocketCommunicationServer(const std::string Address, const int Timeout);
+	~FSocketCommunicationServer();
 
-	/*
-	bool Send(const std::string Message);
-	bool Send(const float* MessageData, size_t Size);
+	bool EventOccured();
 
-protected:
-	void Tick(float DeltaTime);
+	bool SendArray(const float* MessageData, size_t Size, zmq::send_flags SendFlags);
+	bool SendArray(const float MessageData[], zmq::send_flags SendFlags);
+	bool SendArray(const TArray<float>& ArrayMessage, zmq::send_flags SendFlags);
+
+	bool SendString(const std::string StringMessage, zmq::send_flags SendFlags);
+	bool SendJson(const std::string JsonMessage, zmq::send_flags SendFlags);
+
+	
+	bool RecvArray(float* MessageData, size_t Size);
+	bool RecvString(std::string& StringMessage);
+	bool RecvJson(std::string& JsonMessage);
 
 protected:
 	zmq::context_t* Context;
-
 	zmq::socket_t* Socket;
-	*/
+	
+	zmq::poller_t<int>* Poller;
+
+	std::string Address;
+	int PollTimeout;
 };
