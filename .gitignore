@@ -1,0 +1,16 @@
+# Editor Specific Files
+.vs/
+
+# Unreal-specific files
+Binaries/*
+Intermediate/*
+Saved/*
+Build/*
+
+# Python Specific files
+__pycache__/
+eggs/
+.eggs/
+env/
+.env/
+dist/
