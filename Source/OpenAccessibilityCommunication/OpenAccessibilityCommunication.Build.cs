@@ -2,6 +2,7 @@
 
 using System.IO;
 using UnrealBuildTool;
+using UnrealBuildTool.Rules;
 
 public class OpenAccessibilityCommunication : ModuleRules
 {
@@ -43,8 +44,9 @@ public class OpenAccessibilityCommunication : ModuleRules
 				"CoreUObject",
 				"Engine",
 				"UnrealEd",
+                "Projects",
 
-				"Slate",
+                "Slate",
 				"SlateCore",
 
 				"AudioMixer",

@@ -42,8 +42,8 @@ public:
 };
 
 
-UDELEGATE()
-DECLARE_DYNAMIC_DELEGATE_RetVal_OneParam(TArray<FString>, FOnAudioReadyForTranscriptionDelegate, TArray<float>, AudioBuffer);
+//UDELEGATE()
+//DECLARE_DELEGATE_OneParam(FOnAudioReadyForTranscriptionDelegate, TArray<float>);
 
 /**
  * 
@@ -67,14 +67,14 @@ public:
     bool IsCapturingAudio() const { return bIsCapturingAudio; }
 
 private:
-    void ProcessBufferForTranscription();
+    void SendBufferForTranscription();
 
 public:
     UPROPERTY(Config, EditAnywhere, Category = "OpenAccessibility/Audio Manager")
     FAudioManagerSettings Settings;
 
-    UPROPERTY(EditAnywhere, Category = "OpenAccessibility/Audio Manager")
-    FOnAudioReadyForTranscriptionDelegate OnAudioReadyForTranscription;
+    //UPROPERTY(EditAnywhere, Category = "OpenAccessibility/Audio Manager")
+    //FOnAudioReadyForTranscriptionDelegate OnAudioReadyForTranscription;
 
 private:
     

@@ -3,8 +3,6 @@ import unreal
 import subprocess
 import pkg_resources
 
-from os import getcwd
-
 unreal.log(f"|| Saved Location || {unreal.Paths.project_saved_dir()}")
 
 unreal.log("|| OpenAccessibility Python || Initializing")

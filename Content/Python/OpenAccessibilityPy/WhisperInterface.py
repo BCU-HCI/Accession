@@ -5,6 +5,9 @@ from faster_whisper import WhisperModel
 from faster_whisper.transcribe import Segment
 
 
+from .Logging import Log, LogLevel
+
+
 @unreal.uclass()
 class WhisperInterface(unreal.Class):
 
@@ -19,7 +22,6 @@ class WhisperInterface(unreal.Class):
             model_name, device=device, compute_type=compute_type
         )
         self.beam_size = 5
-        self.audio_buffer = unreal.Array(float)
 
     def process_file_from_dir(self, filepath: str):
 
@@ -27,30 +29,32 @@ class WhisperInterface(unreal.Class):
             filepath, beam_size=self.beam_size
         )
 
-        unreal.log(
-            f"|| WhisperInterface || Detected Language: {info.language} | Probability: {info.language_probability} | Duration: {info.duration} ||"
+        Log(
+            f"WhisperInterface | Detected Language: {info.language} | Probability: {info.language_probability} | Duration: {info.duration}"
         )
 
         for segment in segments:
-            unreal.log(
-                f"|| WhisperInterface || Segment: {segment.text} | Start: {segment.start} | End: {segment.end} ||"
+            Log(
+                f"WhisperInterface | Segment : {segment.text} | Start: {segment.start} | End: {segment.end}"
             )
 
         return list(segments)
 
     def process_audio_buffer(self, audio_buffer: list[float]) -> list[str]:
 
+        audio_buffer: np.ndarray = np.array(audio_buffer, dtype=np.float32)
+
         segments, info = self.whisper_model.transcribe(
             audio_buffer, beam_size=self.beam_size
         )
 
-        unreal.log(
-            f"|| WhisperInterface || Detected Language: {info.language} | Probability: {info.probability} | Duration: {info.duration} ||"
+        Log(
+            f"WhisperInterface | Detected Language: {info.language} | Probability: {info.probability} | Duration: {info.duration}"
         )
 
         for segment in segments:
-            unreal.log(
-                f"|| WhisperInterface || Segment: {segment.text} | Start: {segment.start} | End: {segment.end} ||"
+            Log(
+                "WhisperInterface || Segment: {segment.text} | Start: {segment.start} | End: {segment.end}"
             )
 
         return list(segments)
@@ -61,8 +65,8 @@ class WhisperInterface(unreal.Class):
             audio_buffer, beam_size=self.beam_size
         )
 
-        unreal.log(
-            f"|| WhisperInterface || Detected Language: {info.language} | Probability: {info.probability} | Duration: {info.duration} ||"
+        Log(
+            f"WhisperInterface || Detected Language: {info.language} | Probability: {info.language_probability} | Duration: {info.duration}"
         )
 
         return list(segments)
