@@ -26,9 +26,9 @@ public:
 	bool SendJson(const std::string JsonMessage, zmq::send_flags SendFlags);
 
 	
-	bool RecvArray(float* MessageData, size_t Size);
-	bool RecvString(std::string& StringMessage);
-	bool RecvJson(std::string& JsonMessage);
+	bool RecvArray(float* MessageData, size_t Size, zmq::recv_flags RecvFlags);
+	bool RecvString(std::string& StringMessage, zmq::recv_flags RecvFlags);
+	bool RecvJson(std::string& JsonMessage, zmq::recv_flags RecvFlags);
 
 protected:
 	zmq::context_t* Context;

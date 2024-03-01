@@ -2,7 +2,7 @@
 
 
 #include "AudioManager.h"
-#include "OpenAccessibilityLogging.h"
+#include "OpenAccessibilityComLogging.h"
 
 #include "Templates/Function.h"
 
@@ -69,12 +69,12 @@ void UAudioManager::PRIVATE_OnAudioGenerate(const float* InAudio, int32 NumSampl
 
 void UAudioManager::SaveAudioBufferToWAV(const FString& FilePath)
 {
-	UE_LOG(LogOpenAccessibility, Log, TEXT("Starting to Save Audio Buffer to WAV"));
+	UE_LOG(LogOpenAccessibilityCom, Log, TEXT("Starting to Save Audio Buffer to WAV"));
 
 	Audio::FSampleBuffer SampleBuffer = Audio::FSampleBuffer(AudioBuffer.GetData(), AudioBuffer.Num(), AudioCapture->GetNumChannels(), AudioCapture->GetSampleRate());
 
 	FileWriter->BeginWriteToWavFile(SampleBuffer, Settings.SaveName, const_cast<FString&>(FilePath), []() {
-		UE_LOG(LogOpenAccessibility, Log, TEXT("Audio Buffer Saved to WAV"));
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("Audio Buffer Saved to WAV"));
 	});
 }
 
@@ -82,14 +82,14 @@ void UAudioManager::ProcessBufferForTranscription()
 {
 	if (OnAudioReadyForTranscription.IsBound())
 	{
-		UE_LOG(LogOpenAccessibility, Log, TEXT("Sending Buffer for Transcription"));
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("Sending Buffer for Transcription"));
 
 		TArray<FString> transcription = OnAudioReadyForTranscription.Execute(AudioBuffer);
 
-		UE_LOG(LogOpenAccessibility, Log, TEXT("Returned Transcription: %s"), *transcription[0]);
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("Returned Transcription: %s"), *transcription[0]);
 	}
 	else
 	{
-		UE_LOG(LogOpenAccessibility, Warning, TEXT("No Bound Delegates for OnAudioReadyForTranscription"));
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("No Bound Delegates for OnAudioReadyForTranscription"));
 	}
 }

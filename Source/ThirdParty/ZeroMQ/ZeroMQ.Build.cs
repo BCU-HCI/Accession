@@ -31,35 +31,31 @@ public class ZeroMQ : ModuleRules
 
     private void AddZeroMQLib(ReadOnlyTargetRules Target)
     {
-        string StaticLib = "";
+        string ConfigurationLibDir = "";
+        string LibName = "";
 
         if (Target.Platform == UnrealTargetPlatform.Win64)
         {
-            StaticLib = (Target.Configuration == UnrealTargetConfiguration.Debug || Target.Configuration == UnrealTargetConfiguration.Development)
-                ? "libzmq-mt-sgd-4_3_5.lib" // Debug or Development Configuration Lib
-                : "libzmq-mt-s-4_3_5.lib";  // Shipping Configuration Lib
+            ConfigurationLibDir = Path.Combine(ZeroMQLibDir, "Windows", "x64");
 
-            string WindowsLibDir = Path.Combine(ZeroMQLibDir, "Windows", "x64");
-
-            Console.WriteLine("|| ZeroMQ: For Windows x64, Using Path: " + Path.Combine(WindowsLibDir, StaticLib) + " ||");
-            PublicAdditionalLibraries.Add(Path.Combine(WindowsLibDir, StaticLib));
+            LibName = (Target.Configuration == UnrealTargetConfiguration.Debug || Target.Configuration == UnrealTargetConfiguration.Development)
+                ? "libzmq-mt-sgd-4_3_5.lib" // Debug or Development Configuration
+                : "libzmq-mt-s-4_3_5.lib";  // Shipping Configuration
         }
         else if (Target.Platform == UnrealTargetPlatform.Linux)
         {
-            StaticLib = "libzmq.so";
-
-            PublicAdditionalLibraries.Add(Path.Combine(ZeroMQLibDir, "Linux", StaticLib));
+            ConfigurationLibDir = Path.Combine(ZeroMQLibDir, "Linux");
+            LibName = "libzmq.so";
         }
         else if (Target.Platform == UnrealTargetPlatform.Mac)
         {
-            StaticLib = "libzmq.a";
-
-            PublicAdditionalLibraries.Add(Path.Combine(ZeroMQLibDir, "MacOS", StaticLib));
+            ConfigurationLibDir = Path.Combine(ZeroMQLibDir, "MacOS");
+            LibName = "libzmq.a";
         }
         
-        if (!string.IsNullOrEmpty(StaticLib))
+        if (!string.IsNullOrEmpty(LibName))
         {
-            PublicAdditionalLibraries.Add(StaticLib);
+            PublicAdditionalLibraries.Add(Path.Combine(ConfigurationLibDir, LibName));
 
             // Internal ZeroMQ Definitions,
             // required for ZeroMQ to work.

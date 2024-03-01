@@ -111,25 +111,61 @@ bool FSocketCommunicationServer::SendArray(const TArray<float>& ArrayMessage, zm
 
 bool FSocketCommunicationServer::SendString(const std::string StringMessage, zmq::send_flags SendFlags)
 {
+	auto Result = Socket->send(zmq::const_buffer(StringMessage.c_str(), StringMessage.size()), SendFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent String || Sent %d of %d bytes"), Result.value(), StringMessage.size());
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent String || EAGAIN Error Occured ||"));
+		return true;
+	}
+
 	return false;
 }
 
 bool FSocketCommunicationServer::SendJson(const std::string JsonMessage, zmq::send_flags SendFlags)
 {
+	auto Result = Socket->send(zmq::const_buffer(JsonMessage.c_str(), JsonMessage.size()), SendFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent JSON || Sent %d of %d bytes"), Result.value(), JsonMessage.size());
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent JSON || EAGAIN Error Occured ||"));
+		return true;
+	}
+
 	return false;
 }
 
-bool FSocketCommunicationServer::RecvArray(float* MessageData, size_t Size)
+bool FSocketCommunicationServer::RecvArray(float* MessageData, size_t Size, zmq::recv_flags RecvFlags = zmq::recv_flags::none)
+{
+	auto Result = Socket->recv(zmq::buffer(MessageData, Size * sizeof(float)), RecvFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv Array || Recv %d of %d bytes"), Result.value().size, Result.value().untruncated_size);
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Recv Array || EAGAIN Error Occured ||"));
+		return true;
+	}
+
+	return false;
+}
+
+bool FSocketCommunicationServer::RecvString(std::string& StringMessage, zmq::recv_flags RecvFlags = zmq::recv_flags::none)
 {
 	return false;
 }
 
-bool FSocketCommunicationServer::RecvString(std::string& StringMessage)
-{
-	return false;
-}
-
-bool FSocketCommunicationServer::RecvJson(std::string& JsonMessage)
+bool FSocketCommunicationServer::RecvJson(std::string& JsonMessage, zmq::recv_flags RecvFlags = zmq::recv_flags::none)
 {
 	return false;
 }
