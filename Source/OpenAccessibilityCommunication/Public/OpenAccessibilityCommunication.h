@@ -27,6 +27,8 @@ public:
 		return FModuleManager::GetModulePtr<FOpenAccessibilityCommunicationModule>(ModuleName);
 	}
 
+	bool Tick(const float DeltaTime);
+
 	void HandleKeyDownEvent(const FKeyEvent& InKeyEvent);
 
 	void OnTranscriptionReady(TArray<float> AudioBufferToTranscribe);
@@ -40,6 +42,9 @@ public:
 	TSharedPtr<class FSocketCommunicationServer> SocketServer;
 
 private:
+	FTickerDelegate TickDelegate;
+	FTSTicker::FDelegateHandle TickDelegateHandle;
+
 	FDelegateHandle KeyDownEventHandle;
 
 	void* ZMQDllHandle;

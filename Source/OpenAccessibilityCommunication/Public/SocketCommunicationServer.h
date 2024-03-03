@@ -13,22 +13,27 @@
 class OPENACCESSIBILITYCOMMUNICATION_API FSocketCommunicationServer
 {
 public:
+	using ComSendFlags = zmq::send_flags;
+	using ComRecvFlags = zmq::recv_flags;
+
 	FSocketCommunicationServer(const std::string Address, const int Timeout);
 	~FSocketCommunicationServer();
 
 	bool EventOccured();
 
-	bool SendArray(const float* MessageData, size_t Size, zmq::send_flags SendFlags);
-	bool SendArray(const float MessageData[], zmq::send_flags SendFlags);
-	bool SendArray(const TArray<float>& ArrayMessage, zmq::send_flags SendFlags);
+	bool SendArray(const float* MessageData, size_t Size, ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendArray(const float MessageData[], ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendArray(const TArray<float>& ArrayMessage, ComSendFlags SendFlags = ComSendFlags::none);
 
-	bool SendString(const std::string StringMessage, zmq::send_flags SendFlags);
-	bool SendJson(const std::string JsonMessage, zmq::send_flags SendFlags);
+	bool SendString(const std::string StringMessage, ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendJson(const std::string JsonMessage, ComSendFlags SendFlags = ComSendFlags::none);
 
-	
-	bool RecvArray(float* MessageData, size_t Size, zmq::recv_flags RecvFlags);
-	bool RecvString(std::string& StringMessage, zmq::recv_flags RecvFlags);
-	bool RecvJson(std::string& JsonMessage, zmq::recv_flags RecvFlags);
+	template <typename T>
+	bool RecvArray(TArray<T>& OutArrayData, size_t Size, ComRecvFlags RecvFlag = ComRecvFlags::none);
+	bool RecvString(FString& OutStringMessage, ComRecvFlags RecvFlag = ComRecvFlags::none);
+	bool RecvJson(FString& OutJsonMessage, ComRecvFlags RecvFlag = ComRecvFlags::none);
+
+	bool RecvStringMultipart(std::vector<FString>& OutMessages, ComRecvFlags RecvFlag = ComRecvFlags::none);
 
 protected:
 	zmq::context_t* Context;

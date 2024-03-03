@@ -6,6 +6,7 @@
 #include "AudioManager.h"
 #include "SocketCommunicationServer.h"
 
+#include "Containers/Ticker.h"
 #include "Interfaces/IPluginManager.h"
 #include "HAL/PlatformProcess.h"
 
@@ -26,8 +27,12 @@ void FOpenAccessibilityCommunicationModule::StartupModule()
 	SocketServer = MakeShared<FSocketCommunicationServer>();
 	// SocketServer->AddToRoot();
 
-	//AudioManager->OnAudioReadyForTranscription.BindSP(this, &FOpenAccessibilityCommunicationModule::OnTranscriptionReady);
 
+	// Bind Tick Event
+	TickDelegate = FTickerDelegate::CreateRaw(this, &FOpenAccessibilityCommunicationModule::Tick);
+	TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);
+
+	// Bind Input Events
 	KeyDownEventHandle = FSlateApplication::Get().OnApplicationPreInputKeyDownListener().AddRaw(this, &FOpenAccessibilityCommunicationModule::HandleKeyDownEvent);
 }
 
@@ -42,6 +47,26 @@ void FOpenAccessibilityCommunicationModule::ShutdownModule()
 	FSlateApplication::Get().OnApplicationPreInputKeyDownListener().Remove(KeyDownEventHandle);
 
 	UnloadZMQDLL();
+}
+
+bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
+{
+	if (SocketServer->EventOccured())
+	{
+		std::vector<FString> RecvStrings;
+
+		if (SocketServer->RecvStringMultipart(RecvStrings))
+		{
+			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Tick || Received Multipart | Message Count: %d ||"), RecvStrings.size());
+
+			for (int i = 0; i < RecvStrings.size(); i++)
+			{
+				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Received Multipart Part: %d | Message: %s ||"), i, *RecvStrings[i]);
+			}
+		}
+	}
+
+	return true;
 }
 
 void FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(const FKeyEvent& InKeyEvent)

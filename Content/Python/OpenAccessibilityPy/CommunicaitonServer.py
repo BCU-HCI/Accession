@@ -37,7 +37,7 @@ class CommunicationServer:
         else:
             return False
 
-    def SendString(self, message: str) -> bool:
+    def SendString(self, message: str, flags=0) -> bool:
         try:
             self.socket.send_string(message)
             return True

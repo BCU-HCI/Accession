@@ -47,7 +47,7 @@ FSocketCommunicationServer::~FSocketCommunicationServer()
 
 bool FSocketCommunicationServer::EventOccured()
 {
-	std::vector<zmq::poller_event<int>> PollEvents;
+	std::vector<zmq::poller_event<int>> PollEvents(1);
 	if (Poller->wait_all(PollEvents, std::chrono::milliseconds(PollTimeout)) > 0)
 	{
 		PollEvents.clear();
@@ -58,7 +58,7 @@ bool FSocketCommunicationServer::EventOccured()
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArray(const float* MessageData, size_t Size, zmq::send_flags SendFlags)
+bool FSocketCommunicationServer::SendArray(const float* MessageData, size_t Size, ComSendFlags SendFlags)
 {
 	auto Result = Socket->send(zmq::const_buffer(MessageData, Size * sizeof(float)), SendFlags);
 	if (Result.has_value())
@@ -75,9 +75,9 @@ bool FSocketCommunicationServer::SendArray(const float* MessageData, size_t Size
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArray(const float MessageData[], zmq::send_flags SendFlags)
+bool FSocketCommunicationServer::SendArray(const float MessageData[], ComSendFlags SendFlags)
 {
-	auto Result = Socket->send(zmq::const_buffer(MessageData, sizeof MessageData), zmq::send_flags::dontwait);
+	auto Result = Socket->send(zmq::const_buffer(MessageData, sizeof MessageData), SendFlags);
 	if (Result.has_value())
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(sizeof MessageData));
@@ -92,7 +92,7 @@ bool FSocketCommunicationServer::SendArray(const float MessageData[], zmq::send_
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArray(const TArray<float>& ArrayMessage, zmq::send_flags SendFlag)
+bool FSocketCommunicationServer::SendArray(const TArray<float>& ArrayMessage, ComSendFlags SendFlag)
 {
 	auto Result = Socket->send(zmq::const_buffer(ArrayMessage.GetData(), ArrayMessage.Num() * sizeof(float)), SendFlag);
 	if (Result.has_value())
@@ -109,7 +109,7 @@ bool FSocketCommunicationServer::SendArray(const TArray<float>& ArrayMessage, zm
 	return false;
 }
 
-bool FSocketCommunicationServer::SendString(const std::string StringMessage, zmq::send_flags SendFlags)
+bool FSocketCommunicationServer::SendString(const std::string StringMessage, ComSendFlags SendFlags)
 {
 	auto Result = Socket->send(zmq::const_buffer(StringMessage.c_str(), StringMessage.size()), SendFlags);
 	if (Result.has_value())
@@ -126,7 +126,7 @@ bool FSocketCommunicationServer::SendString(const std::string StringMessage, zmq
 	return false;
 }
 
-bool FSocketCommunicationServer::SendJson(const std::string JsonMessage, zmq::send_flags SendFlags)
+bool FSocketCommunicationServer::SendJson(const std::string JsonMessage, ComSendFlags SendFlags)
 {
 	auto Result = Socket->send(zmq::const_buffer(JsonMessage.c_str(), JsonMessage.size()), SendFlags);
 	if (Result.has_value())
@@ -143,12 +143,18 @@ bool FSocketCommunicationServer::SendJson(const std::string JsonMessage, zmq::se
 	return false;
 }
 
-bool FSocketCommunicationServer::RecvArray(float* MessageData, size_t Size, zmq::recv_flags RecvFlags = zmq::recv_flags::none)
+template <typename T> 
+bool FSocketCommunicationServer::RecvArray(TArray<T>& OutArrayData, size_t Size, ComRecvFlags RecvFlags)
 {
-	auto Result = Socket->recv(zmq::buffer(MessageData, Size * sizeof(float)), RecvFlags);
+	zmq::message_t RecvMessage;
+
+	auto Result = Socket->recv(RecvMessage, RecvFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv Array || Recv %d of %d bytes"), Result.value().size, Result.value().untruncated_size);
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv Array || Recv %d bytes"), Result.value());
+		
+		OutArrayData.Append(RecvMessage.data<T>(), Result.value());
+		
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
@@ -160,12 +166,72 @@ bool FSocketCommunicationServer::RecvArray(float* MessageData, size_t Size, zmq:
 	return false;
 }
 
-bool FSocketCommunicationServer::RecvString(std::string& StringMessage, zmq::recv_flags RecvFlags = zmq::recv_flags::none)
+bool FSocketCommunicationServer::RecvString(FString& OutStringMessage, ComRecvFlags RecvFlags)
 {
+	zmq::message_t RecvMessage;
+
+	auto Result = Socket->recv(RecvMessage, RecvFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv String || Recv %d bytes"), Result.value());
+
+		OutStringMessage = FString(Result.value(), UTF8_TO_TCHAR(RecvMessage.data()));
+
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Recv String || EAGAIN Error Occured ||"));
+		return true;
+	}
+
 	return false;
 }
 
-bool FSocketCommunicationServer::RecvJson(std::string& JsonMessage, zmq::recv_flags RecvFlags = zmq::recv_flags::none)
+bool FSocketCommunicationServer::RecvJson(FString& OutJsonMessage, ComRecvFlags RecvFlags)
 {
+	zmq::message_t RecvMessage;
+
+	auto Result = Socket->recv(RecvMessage, RecvFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv JSON || Recv %d bytes"), Result.value());
+
+		OutJsonMessage = FString(Result.value(), UTF8_TO_TCHAR(RecvMessage.data()));
+
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Recv JSON || EAGAIN Error Occured ||"));
+		return true;
+	}
+
+	return false;
+}
+
+bool FSocketCommunicationServer::RecvStringMultipart(std::vector<FString>& OutMessages, ComRecvFlags RecvFlags)
+{
+	std::vector<zmq::message_t> RecvMessages;
+
+	auto Result = zmq::recv_multipart(*Socket, std::back_inserter(RecvMessages), RecvFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv Multipart || Recv %d messages"), Result.value());
+
+		for (auto& Message : RecvMessages)
+		{
+			OutMessages.push_back(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));
+		}
+
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Recv Multipart || EAGAIN Error Occured ||"));
+		return true;
+	}
+
 	return false;
 }
