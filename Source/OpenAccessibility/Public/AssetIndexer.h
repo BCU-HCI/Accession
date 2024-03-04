@@ -12,7 +12,7 @@
 /// <typeparam name="TKey">The Type used for Indexing Assets</typeparam>
 /// <typeparam name="TValue">The Type of the Indexed Asset</typeparam>
 template < typename TKey, typename TValue >
-class OPENACCESSIBILITY_API FAssetIndexer : protected TMap< int, FString >
+class OPENACCESSIBILITY_API FAssetIndexer : protected TMap< TKey, TValue >
 {
 
 public:
@@ -23,7 +23,6 @@ public:
 
 	~FAssetIndexer()
 	{
-		this.Contains();
 	}
 
 	bool Contains(const TKey& InKey) const
