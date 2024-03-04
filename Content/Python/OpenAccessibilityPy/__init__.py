@@ -30,14 +30,13 @@ class OpenAccessibilityPy:
                 f"Recieved Message: {message_ndarray} | Size: {message_ndarray.size} | Shape: {message_ndarray.shape}"
             )
 
-            transcribed_audio = [
-                segment.text.encode()
-                for segment in self.whisper_interface.process_audio_buffer(
-                    message_ndarray
-                )
-            ]
+            trans_segments = self.whisper_interface.process_audio_buffer(
+                message_ndarray
+            )
 
-            self.com_server.SendMultipart(transcribed_audio)
+            transcription_bytes = [segment.text.encode() for segment in trans_segments]
+
+            self.com_server.SendMultipart(transcription_bytes)
 
     def Shutdown(self):
         if self.tick_handle:
