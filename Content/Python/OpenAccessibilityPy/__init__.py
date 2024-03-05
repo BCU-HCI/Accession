@@ -37,8 +37,8 @@ class OpenAccessibilityPy:
             # transcription_bytes = [segment.text.encode() for segment in trans_segments]
 
             mock_transcription = [
-                "Hello From Python",
-                "Hello Again",
+                "VIEW NODE 0",
+                "NODE 0 MOVE UP 10",
             ]
 
             self.com_server.SendMultipart(

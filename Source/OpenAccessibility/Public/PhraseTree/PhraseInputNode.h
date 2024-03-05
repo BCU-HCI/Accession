@@ -3,13 +3,14 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PhraseTree/PhraseNode.h"
 
 /**
  * 
  */
-class OPENACCESSIBILITY_API PhraseInputNode
+class OPENACCESSIBILITY_API FPhraseInputNode
 {
 public:
-	PhraseInputNode();
-	~PhraseInputNode();
+	FPhraseInputNode();
+	~FPhraseInputNode();
 };

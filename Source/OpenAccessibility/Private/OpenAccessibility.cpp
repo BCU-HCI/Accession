@@ -2,14 +2,10 @@
 
 #include "OpenAccessibility.h"
 #include "AssetAccessibilityRegistry.h"
+#include "PhraseTree.h"
 #include "OpenAccessibilityLogging.h"
 
-#include "SGraphNode.h"
-#include "EdGraphUtilities.h"
-#include "Containers/Ticker.h"
 #include "Logging/StructuredLog.h"
-#include "InputCoreTypes.h"
-
 
 #define LOCTEXT_NAMESPACE "FOpenAccessibilityModule"
 

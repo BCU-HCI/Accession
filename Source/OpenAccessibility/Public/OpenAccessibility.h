@@ -28,6 +28,12 @@ public:
 	}
 
 public:
+
+	// Phrase Components
+	TUniquePtr<class FPhraseTree> PhraseTree;
+
+	// Accessibility Components
+
 	TSharedPtr<class FAccessibilityNodeFactory> AccessibilityNodeFactory;
 	TSharedPtr<class FAssetAccessibilityRegistry> AssetAccessibilityRegistry;
 

@@ -1,12 +1,11 @@
 // Copyright F-Dudley. All Rights Reserved.
 
-
 #include "PhraseTree/PhraseInputNode.h"
 
-PhraseInputNode::PhraseInputNode()
+FPhraseInputNode::FPhraseInputNode()
 {
 }
 
-PhraseInputNode::~PhraseInputNode()
+FPhraseInputNode::~FPhraseInputNode()
 {
 }
