@@ -17,8 +17,6 @@ public:
 	virtual void ShutdownModule() override;
 	/** End IModuleInterface Implementation */
 
-	bool Tick(float DeltaTime);
-
 	static FOpenAccessibilityModule& Get()
 	{
 		return FModuleManager::LoadModuleChecked<FOpenAccessibilityModule>("OpenAccessibility");
@@ -31,9 +29,6 @@ public:
 
 public:
 	TSharedPtr<class FAccessibilityNodeFactory> AccessibilityNodeFactory;
-
-private:
-	FTickerDelegate TickDelegate;
-	FTSTicker::FDelegateHandle TickDelegateHandle;
+	TSharedPtr<class FAssetAccessibilityRegistry> AssetAccessibilityRegistry;
 
 };

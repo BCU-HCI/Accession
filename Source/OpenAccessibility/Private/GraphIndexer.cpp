@@ -3,10 +3,13 @@
 
 #include "GraphIndexer.h"
 
+#include "EdGraph/EdGraph.h"
+#include "EdGraph/EdGraphNode.h"
+#include "EdGraph/EdGraphPin.h"
 #include "GraphEditAction.h"
 #include "OpenAccessibilityLogging.h"
 
-FGraphIndexer::FGraphIndexer(UEdGraph* GraphToIndex)
+FGraphIndexer::FGraphIndexer(const UEdGraph* GraphToIndex)
 {
 	check(GraphToIndex != nullptr);
 
@@ -15,7 +18,7 @@ FGraphIndexer::FGraphIndexer(UEdGraph* GraphToIndex)
         UE_LOG(LogOpenAccessibilityWarning, Warning, TEXT("Provided Graph To Index is not valid."))
     }
 
-	LinkedGraph = GraphToIndex;
+	LinkedGraph = const_cast<UEdGraph*>(GraphToIndex);
 
 	BuildGraphIndex();
 

@@ -3,7 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "EdGraph/EdGraphNode.h"
+
+class UEdGraph;
+class UEdGraphNode;
+struct FEdGraphEditAction;
 
 /**
  * 
@@ -11,7 +14,7 @@
 class OPENACCESSIBILITY_API FGraphIndexer 
 {
 public:
-	FGraphIndexer(UEdGraph* GraphToIndex);
+	FGraphIndexer(const UEdGraph* GraphToIndex);
 	~FGraphIndexer();
 
 	bool ContainsKey(const int& InKey);
