@@ -33,7 +33,7 @@ public:
 	bool RecvString(FString& OutStringMessage, ComRecvFlags RecvFlag = ComRecvFlags::none);
 	bool RecvJson(FString& OutJsonMessage, ComRecvFlags RecvFlag = ComRecvFlags::none);
 
-	bool RecvStringMultipart(std::vector<FString>& OutMessages, ComRecvFlags RecvFlag = ComRecvFlags::none);
+	bool RecvStringMultipart(TArray<FString>& OutMessages, ComRecvFlags RecvFlag = ComRecvFlags::none);
 
 protected:
 	zmq::context_t* Context;

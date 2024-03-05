@@ -81,23 +81,12 @@ void UAudioManager::SaveAudioBufferToWAV(const FString& FilePath)
 
 void UAudioManager::SendBufferForTranscription()
 {
-	/*
-	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer))
+	if (FOpenAccessibilityCommunicationModule::Get()->TranscribeWaveForm(AudioBuffer))
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Sending Buffer for Transcription | Using Bound Transcriber ||"));
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Sending Buffer for Transcription | Using Communication Module ||"));
 	}
 	else
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("No Bound Delegates for OnAudioReadyForTranscription"));
-	}
-	*/
-
-	if (FOpenAccessibilityCommunicationModule::Get()->SocketServer->SendArray(AudioBuffer.GetData(), AudioBuffer.Num(), zmq::send_flags::dontwait))
-	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Sending Buffer for Transcription | Using Socket Server ||"));
-	}
-	else
-	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Sending Buffer for Transcription | Failed to Send using Socket Server ||"));
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Sending Buffer for Transcription | Failed to Send Communication ||"));
 	}
 }

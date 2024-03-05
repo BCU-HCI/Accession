@@ -10,7 +10,7 @@
 #include "Interfaces/IPluginManager.h"
 #include "HAL/PlatformProcess.h"
 
-#define LOCTEXT_NAMESPACE "FOpenAccessibilityPythonModule"
+#define LOCTEXT_NAMESPACE "UOpenAccessibilityCommunicationModule"
 
 void FOpenAccessibilityCommunicationModule::StartupModule()
 {
@@ -47,22 +47,25 @@ void FOpenAccessibilityCommunicationModule::ShutdownModule()
 	FSlateApplication::Get().OnApplicationPreInputKeyDownListener().Remove(KeyDownEventHandle);
 
 	UnloadZMQDLL();
+
 }
 
 bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 {
 	if (SocketServer->EventOccured())
 	{
-		std::vector<FString> RecvStrings;
+		TArray<FString> RecvStrings;
 
 		if (SocketServer->RecvStringMultipart(RecvStrings))
 		{
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Tick || Received Multipart | Message Count: %d ||"), RecvStrings.size());
+			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Tick || Received Multipart | Message Count: %d ||"), RecvStrings.Num());
 
-			for (int i = 0; i < RecvStrings.size(); i++)
+			for (int i = 0; i < RecvStrings.Num(); i++)
 			{
 				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Received Multipart Part: %d | Message: %s ||"), i, *RecvStrings[i]);
 			}
+
+			//OnTranscriptionRecieved.ExecuteIfBound(RecvStrings);
 		}
 	}
 
@@ -87,12 +90,16 @@ void FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(const FKeyEvent& 
 	}
 }
 
-void FOpenAccessibilityCommunicationModule::OnTranscriptionReady(TArray<float> AudioBufferToTranscribe)
+bool FOpenAccessibilityCommunicationModule::TranscribeWaveForm(TArray<float> AudioBufferToTranscribe)
 {
-	if (SocketServer->SendArray(AudioBufferToTranscribe.GetData(), AudioBufferToTranscribe.Num(), zmq::send_flags::dontwait))
+	if (SocketServer->SendArray(AudioBufferToTranscribe, zmq::send_flags::dontwait))
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Transcription Ready || Sent Audio Buffer ||"));
+
+		return true;
 	}
+
+	return false;
 }
 
 void FOpenAccessibilityCommunicationModule::LoadZMQDLL()

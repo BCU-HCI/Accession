@@ -5,8 +5,12 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 #include "Modules/ModuleInterface.h"
+#include "Delegates/DelegateCombinations.h"
 
-class FOpenAccessibilityCommunicationModule : public IModuleInterface
+//UDELEGATE()
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTranscriptionRecievedSignature, const TArray<FString>, InTranscription);
+
+class FOpenAccessibilityCommunicationModule : IModuleInterface
 {
 
 public:
@@ -31,13 +35,16 @@ public:
 
 	void HandleKeyDownEvent(const FKeyEvent& InKeyEvent);
 
-	void OnTranscriptionReady(TArray<float> AudioBufferToTranscribe);
+	bool TranscribeWaveForm(TArray<float> AudioBufferToTranscribe);
 private:
 
 	void LoadZMQDLL();
 
 	void UnloadZMQDLL();
 public:
+
+	//FTranscriptionRecievedSignature OnTranscriptionRecieved;
+
 	class UAudioManager* AudioManager;
 	TSharedPtr<class FSocketCommunicationServer> SocketServer;
 

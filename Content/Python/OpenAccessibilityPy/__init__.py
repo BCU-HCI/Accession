@@ -2,7 +2,7 @@ import unreal as ue
 import zmq
 import numpy as np
 
-from .CommunicaitonServer import CommunicationServer
+from .CommunicationServer import CommunicationServer
 from .WhisperInterface import WhisperInterface
 from .Logging import Log, LogLevel
 
@@ -30,13 +30,20 @@ class OpenAccessibilityPy:
                 f"Recieved Message: {message_ndarray} | Size: {message_ndarray.size} | Shape: {message_ndarray.shape}"
             )
 
-            trans_segments = self.whisper_interface.process_audio_buffer(
-                message_ndarray
+            # trans_segments = self.whisper_interface.process_audio_buffer(
+            #     message_ndarray
+            # )
+
+            # transcription_bytes = [segment.text.encode() for segment in trans_segments]
+
+            mock_transcription = [
+                "Hello From Python",
+                "Hello Again",
+            ]
+
+            self.com_server.SendMultipart(
+                [transcription.encode() for transcription in mock_transcription]
             )
-
-            transcription_bytes = [segment.text.encode() for segment in trans_segments]
-
-            self.com_server.SendMultipart(transcription_bytes)
 
     def Shutdown(self):
         if self.tick_handle:

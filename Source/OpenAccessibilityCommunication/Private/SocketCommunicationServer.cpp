@@ -211,7 +211,7 @@ bool FSocketCommunicationServer::RecvJson(FString& OutJsonMessage, ComRecvFlags 
 	return false;
 }
 
-bool FSocketCommunicationServer::RecvStringMultipart(std::vector<FString>& OutMessages, ComRecvFlags RecvFlags)
+bool FSocketCommunicationServer::RecvStringMultipart(TArray<FString>& OutMessages, ComRecvFlags RecvFlags)
 {
 	std::vector<zmq::message_t> RecvMessages;
 
@@ -222,7 +222,7 @@ bool FSocketCommunicationServer::RecvStringMultipart(std::vector<FString>& OutMe
 
 		for (auto& Message : RecvMessages)
 		{
-			OutMessages.push_back(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));
+			OutMessages.Add(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));
 		}
 
 		return true;
