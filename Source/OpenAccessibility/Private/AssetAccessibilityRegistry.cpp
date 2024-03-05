@@ -1,6 +1,5 @@
 // Copyright F-Dudley. All Rights Reserved.
 
-
 #include "AssetAccessibilityRegistry.h"
 #include "OpenAccessibilityLogging.h"
 
@@ -14,7 +13,7 @@ FAssetAccessibilityRegistry::FAssetAccessibilityRegistry()
 	//GameWorldAssetIndex = TMap<FGuid, FGameWorldIndexer*>();
 
 	AssetOpenedInEditorHandle = GEditor->GetEditorSubsystem<UAssetEditorSubsystem>()->OnAssetOpenedInEditor()
-		.AddSP(this, &FAssetAccessibilityRegistry::OnAssetOpenedInEditor);
+		.AddRaw(this, &FAssetAccessibilityRegistry::OnAssetOpenedInEditor);
 }
 
 FAssetAccessibilityRegistry::~FAssetAccessibilityRegistry()
@@ -116,4 +115,19 @@ void FAssetAccessibilityRegistry::RegisterBlueprintAsset(UBlueprint* InBlueprint
 	{
 		RegisterGraphAsset(Graph);
 	}
+
+	// Register the Blueprint's World
+	// Some Blueprints have no connected World / GameObjects, 
+	// so we need to check if the World is valid
+
+	UWorld* BlueprintDebugWorld = InBlueprint->GetWorldBeingDebugged();
+	if (BlueprintDebugWorld != nullptr)
+	{
+		RegisterUWorldAsset(BlueprintDebugWorld);
+	}
 }
+
+void FAssetAccessibilityRegistry::RegisterUWorldAsset(UWorld* InWorld)
+{
+	throw std::exception("The method or operation is not implemented.");
+} 
