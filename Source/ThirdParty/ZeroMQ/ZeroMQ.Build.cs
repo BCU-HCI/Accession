@@ -1,50 +1,88 @@
 // Copyright F-Dudley. All Rights Reserved.
 
+using System;
 using System.IO;
 using UnrealBuildTool;
 
 public class ZeroMQ : ModuleRules
 {
-    protected virtual string ZeroMQThidPartyDir { get {  return "$(ModuleDir)"; } }
+    protected virtual string ZeroMQThidPartyDir { get { return ModuleDirectory; } }
     protected virtual string ZeroMQIncludeDir { get { return Path.Combine(ZeroMQThidPartyDir, "include"); } }
     protected virtual string ZeroMQLibDir { get { return Path.Combine(ZeroMQThidPartyDir, "lib"); } }
+
 
     public ZeroMQ(ReadOnlyTargetRules Target) : base(Target)
     {
         Type = ModuleType.External;
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        string LibraryDir = "";
-
-        if (Target.Platform == UnrealTargetPlatform.Win64)
+        if (Target.Platform == UnrealTargetPlatform.Win64 || 
+            Target.Platform == UnrealTargetPlatform.Linux || 
+            Target.Platform == UnrealTargetPlatform.Mac)
         {
-            string LibraryName = (Target.Configuration == UnrealTargetConfiguration.Debug && Target.bDebugBuildsActuallyUseDebugCRT)
-                ? "libzmq-mt-sgd-4_3_5.lib"
-                : "libzmq-mt-s-4_3_5.lib";
-
-            LibraryDir = Path.Combine("Windows", "x64", LibraryName);
-
-            PublicDefinitions.Add("WITH_ZEROMQ=1");
-        }
-        else if (Target.Platform == UnrealTargetPlatform.Linux)
-        {
-            string LibraryName = "libzmq.so";
-            LibraryDir = Path.Combine("Linux", LibraryName);
-
-            PublicDefinitions.Add("WITH_ZEROMQ=1");
-        }
-        else if (Target.Platform == UnrealTargetPlatform.Mac)
-        {
-            string LibraryName = "libzmq.a";
-            LibraryDir = Path.Combine("Mac", LibraryName);
-
-            PublicDefinitions.Add("WITH_ZEROMQ=1");
+            PublicIncludePaths.Add(ZeroMQIncludeDir);
+            AddZeroMQLib(Target);
         }
         else
         {
             PublicDefinitions.Add("WITH_ZEROMQ=0");
         }
+    }
 
-        PublicIncludePaths.Add(ZeroMQIncludeDir);
-        PublicAdditionalLibraries.Add(Path.Combine(ZeroMQLibDir, LibraryDir));
+    private void AddZeroMQLib(ReadOnlyTargetRules Target)
+    {
+        string ConfigurationLibDir = "";
+        string LibName = "";
+        string DllName = "";
+
+        if (Target.Platform == UnrealTargetPlatform.Win64)
+        {
+            ConfigurationLibDir = Path.Combine(ZeroMQLibDir, "Windows", "x64");
+
+            if (Target.Configuration == UnrealTargetConfiguration.Debug)
+                ConfigurationLibDir += "\\debug";
+
+            string FileName = (Target.Configuration == UnrealTargetConfiguration.Debug)
+                ? "libzmq-mt-gd-4_3_5" // Debug or Development Configuration
+                : "libzmq-mt-4_3_5";  // Shipping Configuration
+        
+            LibName = FileName + ".lib";
+            DllName = FileName + ".dll";
+        }
+        else if (Target.Platform == UnrealTargetPlatform.Linux)
+        {
+            ConfigurationLibDir = Path.Combine(ZeroMQLibDir, "Linux");
+            LibName = "libzmq.so";
+        }
+        else if (Target.Platform == UnrealTargetPlatform.Mac)
+        {
+            ConfigurationLibDir = Path.Combine(ZeroMQLibDir, "MacOS");
+            LibName = "libzmq.a";
+        }
+        
+        if (!string.IsNullOrEmpty(LibName))
+        {
+            PublicAdditionalLibraries.Add(Path.Combine(ConfigurationLibDir, LibName));
+
+            PublicDelayLoadDLLs.Add(DllName);
+            RuntimeDependencies.Add(
+                Path.Combine(PluginDirectory, 
+                             "Binaries\\ThirdParty\\ZeroMQ", 
+                             Target.Platform.ToString(), 
+                             DllName
+            ));
+
+            // Internal ZeroMQ Definitions,
+            // required for ZeroMQ to work.
+            PublicDefinitions.Add("ZMQ_BUILD_DRAFT_API=1");
+
+            // External ZeroMQ Definitions
+            PublicDefinitions.Add("WITH_ZEROMQ=1"); // Can be used to check if ZeroMQ is enabled,
+                                                    // in unreal scripts.
+        }
+        else
+        {
+            PublicDefinitions.Add("WITH_ZEROMQ=0");
+        }
     }
 }

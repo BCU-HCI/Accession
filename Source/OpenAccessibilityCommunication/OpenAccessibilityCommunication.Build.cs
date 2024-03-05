@@ -2,6 +2,7 @@
 
 using System.IO;
 using UnrealBuildTool;
+using UnrealBuildTool.Rules;
 
 public class OpenAccessibilityCommunication : ModuleRules
 {
@@ -34,7 +35,7 @@ public class OpenAccessibilityCommunication : ModuleRules
 			new string[]
 			{
 				// Internal Plugin Dependencies
-				"OpenAccessibility",
+				//"OpenAccessibility",
 
 				// Internal ThirdParty Dependencies
 				"ZeroMQ",
@@ -43,8 +44,9 @@ public class OpenAccessibilityCommunication : ModuleRules
 				"CoreUObject",
 				"Engine",
 				"UnrealEd",
+                "Projects",
 
-				"Slate",
+                "Slate",
 				"SlateCore",
 
 				"AudioMixer",

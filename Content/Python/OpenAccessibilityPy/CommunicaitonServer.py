@@ -3,6 +3,8 @@ import numpy as np
 import json
 import zmq
 
+from .Logging import Log, LogLevel
+
 
 class CommunicationServer:
 
@@ -35,14 +37,12 @@ class CommunicationServer:
         else:
             return False
 
-    def SendString(self, message: str) -> bool:
+    def SendString(self, message: str, flags=0) -> bool:
         try:
             self.socket.send_string(message)
             return True
         except:
-            unreal.log_warning(
-                "|| CommunicationServer || Error Sending String Message ||"
-            )
+            Log("CommunicationServer | Error Sending String Message", LogLevel.WARNING)
             return False
 
     def SendJSON(self, message: dict) -> bool:
@@ -50,8 +50,9 @@ class CommunicationServer:
             self.socket.send_json(message)
             return True
         except:
-            unreal.log_warning(
-                "|| CommunicationServer || Error Sending JSON Message ||"
+            Log(
+                "CommunicationServer | Error Sending JSON Message",
+                LogLevel.WARNING,
             )
             return False
 
@@ -60,8 +61,9 @@ class CommunicationServer:
             self.socket.send(message)
             return True
         except:
-            unreal.log_warning(
-                "|| CommunicationServer || Error Sending NDArray Message ||"
+            Log(
+                "CommunicationServer | Error Sending NDArray Message",
+                LogLevel.WARNING,
             )
             return False
 
@@ -71,7 +73,8 @@ class CommunicationServer:
             return True
         except:
             unreal.log_warning(
-                "|| CommunicationServer || Error Sending Multipart Message ||"
+                "CommunicationServer | Error Sending Multipart Message",
+                LogLevel.WARNING,
             )
             return False
 

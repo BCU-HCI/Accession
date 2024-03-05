@@ -1,8 +1,10 @@
 import unreal as ue
 import zmq
+import numpy as np
 
 from .CommunicaitonServer import CommunicationServer
 from .WhisperInterface import WhisperInterface
+from .Logging import Log, LogLevel
 
 
 class OpenAccessibilityPy:
@@ -18,18 +20,23 @@ class OpenAccessibilityPy:
     def Tick(self, delta_time: float):
 
         if self.com_server.EventOccured():
-            ue.log("|| Event Occurred ||")
+            Log("Event Occured")
 
-            message_ndarray = self.com_server.ReceiveNDArray()
+            recv_message = self.com_server.ReceiveNDArray()
 
-            transcribed_audio = [
-                segment.text.encode()
-                for segment in self.whisper_interface.process_audio_buffer(
-                    message_ndarray
-                )
-            ]
+            message_ndarray: np.ndarray = np.frombuffer(recv_message, dtype=np.float32)
 
-            self.com_server.SendMultipart(transcribed_audio)
+            Log(
+                f"Recieved Message: {message_ndarray} | Size: {message_ndarray.size} | Shape: {message_ndarray.shape}"
+            )
+
+            trans_segments = self.whisper_interface.process_audio_buffer(
+                message_ndarray
+            )
+
+            transcription_bytes = [segment.text.encode() for segment in trans_segments]
+
+            self.com_server.SendMultipart(transcription_bytes)
 
     def Shutdown(self):
         if self.tick_handle:

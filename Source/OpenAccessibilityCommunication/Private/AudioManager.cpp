@@ -1,8 +1,9 @@
 // Copyright F-Dudley. All Rights Reserved.
 
-
 #include "AudioManager.h"
-#include "OpenAccessibilityLogging.h"
+#include "OpenAccessibilityCommunication.h"
+#include "OpenAccessibilityComLogging.h"
+#include "SocketCommunicationServer.h"
 
 #include "Templates/Function.h"
 
@@ -52,7 +53,7 @@ void UAudioManager::StopCapturingAudio()
 
 	SaveAudioBufferToWAV(Settings.SavePath);
 	
-	ProcessBufferForTranscription();
+	SendBufferForTranscription();
 
 	AudioBuffer.Reset();
 }
@@ -69,27 +70,34 @@ void UAudioManager::PRIVATE_OnAudioGenerate(const float* InAudio, int32 NumSampl
 
 void UAudioManager::SaveAudioBufferToWAV(const FString& FilePath)
 {
-	UE_LOG(LogOpenAccessibility, Log, TEXT("Starting to Save Audio Buffer to WAV"));
+	UE_LOG(LogOpenAccessibilityCom, Log, TEXT("Starting to Save Audio Buffer to WAV"));
 
 	Audio::FSampleBuffer SampleBuffer = Audio::FSampleBuffer(AudioBuffer.GetData(), AudioBuffer.Num(), AudioCapture->GetNumChannels(), AudioCapture->GetSampleRate());
 
 	FileWriter->BeginWriteToWavFile(SampleBuffer, Settings.SaveName, const_cast<FString&>(FilePath), []() {
-		UE_LOG(LogOpenAccessibility, Log, TEXT("Audio Buffer Saved to WAV"));
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("Audio Buffer Saved to WAV"));
 	});
 }
 
-void UAudioManager::ProcessBufferForTranscription()
+void UAudioManager::SendBufferForTranscription()
 {
-	if (OnAudioReadyForTranscription.IsBound())
+	/*
+	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer))
 	{
-		UE_LOG(LogOpenAccessibility, Log, TEXT("Sending Buffer for Transcription"));
-
-		TArray<FString> transcription = OnAudioReadyForTranscription.Execute(AudioBuffer);
-
-		UE_LOG(LogOpenAccessibility, Log, TEXT("Returned Transcription: %s"), *transcription[0]);
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Sending Buffer for Transcription | Using Bound Transcriber ||"));
 	}
 	else
 	{
-		UE_LOG(LogOpenAccessibility, Warning, TEXT("No Bound Delegates for OnAudioReadyForTranscription"));
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("No Bound Delegates for OnAudioReadyForTranscription"));
+	}
+	*/
+
+	if (FOpenAccessibilityCommunicationModule::Get()->SocketServer->SendArray(AudioBuffer.GetData(), AudioBuffer.Num(), zmq::send_flags::dontwait))
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Sending Buffer for Transcription | Using Socket Server ||"));
+	}
+	else
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Sending Buffer for Transcription | Failed to Send using Socket Server ||"));
 	}
 }

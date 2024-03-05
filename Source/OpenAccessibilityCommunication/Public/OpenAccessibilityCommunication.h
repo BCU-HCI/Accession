@@ -4,8 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
-
-class UAudioManager;
+#include "Modules/ModuleInterface.h"
 
 class FOpenAccessibilityCommunicationModule : public IModuleInterface
 {
@@ -22,16 +21,31 @@ public:
 	}
 	/** End IModuleInterface Implementation */
 
-	static FOpenAccessibilityCommunicationModule& Get()
+	static FOpenAccessibilityCommunicationModule* Get()
 	{
-		return FModuleManager::LoadModuleChecked<FOpenAccessibilityCommunicationModule>("OpenAccessibilityCommunication");
+		static const FName ModuleName = FName("OpenAccessibilityCommunication");
+		return FModuleManager::GetModulePtr<FOpenAccessibilityCommunicationModule>(ModuleName);
 	}
+
+	bool Tick(const float DeltaTime);
 
 	void HandleKeyDownEvent(const FKeyEvent& InKeyEvent);
 
+	void OnTranscriptionReady(TArray<float> AudioBufferToTranscribe);
+private:
+
+	void LoadZMQDLL();
+
+	void UnloadZMQDLL();
 public:
-	UAudioManager* AudioManager;
+	class UAudioManager* AudioManager;
+	TSharedPtr<class FSocketCommunicationServer> SocketServer;
 
 private:
+	FTickerDelegate TickDelegate;
+	FTSTicker::FDelegateHandle TickDelegateHandle;
+
 	FDelegateHandle KeyDownEventHandle;
+
+	void* ZMQDllHandle;
 };

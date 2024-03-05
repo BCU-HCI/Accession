@@ -4,38 +4,43 @@
 
 #include "CoreMinimal.h"
 
-#if WITH_ZEROMQ
 #include "zmq.hpp"
 #include "zmq_addon.hpp"
-#endif
-
-
-UENUM(BlueprintType)
-enum class MessageBodyType : uint8
-{
-	OA_Undefined = 0,
-	OA_Transcription = 1,
-};
 
 /**
  * 
  */
-class OPENACCESSIBILITYCOMMUNICATION_API FSocketReqServer
+class OPENACCESSIBILITYCOMMUNICATION_API FSocketCommunicationServer
 {
 public:
-	FSocketReqServer(std::string Address);
-	~FSocketReqServer();
+	using ComSendFlags = zmq::send_flags;
+	using ComRecvFlags = zmq::recv_flags;
 
-	/*
-	bool Send(const std::string Message);
-	bool Send(const float* MessageData, size_t Size);
+	FSocketCommunicationServer(const std::string Address, const int Timeout);
+	~FSocketCommunicationServer();
 
-protected:
-	void Tick(float DeltaTime);
+	bool EventOccured();
+
+	bool SendArray(const float* MessageData, size_t Size, ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendArray(const float MessageData[], ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendArray(const TArray<float>& ArrayMessage, ComSendFlags SendFlags = ComSendFlags::none);
+
+	bool SendString(const std::string StringMessage, ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendJson(const std::string JsonMessage, ComSendFlags SendFlags = ComSendFlags::none);
+
+	template <typename T>
+	bool RecvArray(TArray<T>& OutArrayData, size_t Size, ComRecvFlags RecvFlag = ComRecvFlags::none);
+	bool RecvString(FString& OutStringMessage, ComRecvFlags RecvFlag = ComRecvFlags::none);
+	bool RecvJson(FString& OutJsonMessage, ComRecvFlags RecvFlag = ComRecvFlags::none);
+
+	bool RecvStringMultipart(std::vector<FString>& OutMessages, ComRecvFlags RecvFlag = ComRecvFlags::none);
 
 protected:
 	zmq::context_t* Context;
-
 	zmq::socket_t* Socket;
-	*/
+	
+	zmq::poller_t<int>* Poller;
+
+	std::string Address;
+	int PollTimeout;
 };
