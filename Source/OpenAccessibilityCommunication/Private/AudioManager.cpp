@@ -81,7 +81,7 @@ void UAudioManager::SaveAudioBufferToWAV(const FString& FilePath)
 
 void UAudioManager::SendBufferForTranscription()
 {
-	if (FOpenAccessibilityCommunicationModule::Get()->TranscribeWaveForm(AudioBuffer))
+	if (FOpenAccessibilityCommunicationModule::Get().TranscribeWaveForm(AudioBuffer))
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Sending Buffer for Transcription | Using Communication Module ||"));
 	}

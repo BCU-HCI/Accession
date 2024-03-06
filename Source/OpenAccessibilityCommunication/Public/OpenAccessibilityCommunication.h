@@ -10,7 +10,7 @@
 //UDELEGATE()
 //DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTranscriptionRecievedSignature, const TArray<FString>, InTranscription);
 
-class FOpenAccessibilityCommunicationModule : IModuleInterface
+class FOpenAccessibilityCommunicationModule : public IModuleInterface
 {
 
 public:
@@ -25,10 +25,9 @@ public:
 	}
 	/** End IModuleInterface Implementation */
 
-	static FOpenAccessibilityCommunicationModule* Get()
+	static FOpenAccessibilityCommunicationModule& Get()
 	{
-		static const FName ModuleName = FName("OpenAccessibilityCommunication");
-		return FModuleManager::GetModulePtr<FOpenAccessibilityCommunicationModule>(ModuleName);
+		return FModuleManager::GetModuleChecked<FOpenAccessibilityCommunicationModule>("OpenAccessibilityCommunication");
 	}
 
 	bool Tick(const float DeltaTime);

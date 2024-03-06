@@ -6,7 +6,7 @@
 
 FPhraseNode::FPhraseNode()
 {
-
+    ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
 }
 
 FPhraseNode::~FPhraseNode()
@@ -19,27 +19,20 @@ bool FPhraseNode::RequiresPhrase(FString InPhrase)
     return InPhrase.Equals(BoundPhrase, ESearchCase::IgnoreCase);
 }
 
-FPhrasePropogationResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray)
+FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
 {
     if (InPhraseArray.IsEmpty())
     {
         UE_LOG(LogOpenAccessibility, Log, TEXT("|| Emptied Phrase Array ||"))
 
-        return FPhrasePropogationResult(PHRASE_CANNOT_BE_PARSED, MakeShared<FPhraseNode>(this).ToWeakPtr());
+        return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
     }
+
+    // Pop the Phrase Linked to this Node.
+    FString PhraseToParse = InPhraseArray.Pop();
     
-    // Loop through the Child Nodes to see if any require the next Phrase.
-    for (auto& ChildNode : ChildNodes)
-    {
-        // Cannot have any duplicate Phrases.
-        if (ChildNode->RequiresPhrase(InPhraseArray[0]))
-        {
-			return ChildNode->ParsePhrase(InPhraseArray);
-		}
-	}
-    
-    // Return if no Child Nodes require the next Phrase.
-    return FPhrasePropogationResult(PHRASE_CANNOT_BE_PARSED);
+    // Pass 
+    return ParseChildren(InPhraseArray, InParseRecord);
 }
 
 bool FPhraseNode::BindChildNode(TSharedPtr<FPhraseNode> InNode)
@@ -82,4 +75,18 @@ bool FPhraseNode::BindChildrenNodes(TArray<TSharedPtr<FPhraseNode>> InNodes)
     }
 
     return false;
+}
+
+FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
+{
+    for (auto& ChildNode : ChildNodes)
+    {
+        // Cannot have any duplicate Phrases.
+        if (ChildNode->RequiresPhrase(InPhraseArray[0]))
+        {
+            return ChildNode->ParsePhrase(InPhraseArray, InParseRecord);
+        }
+    }
+
+	return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
 }

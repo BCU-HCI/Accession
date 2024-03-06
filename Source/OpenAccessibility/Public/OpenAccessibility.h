@@ -19,7 +19,7 @@ public:
 
 	static FOpenAccessibilityModule& Get()
 	{
-		return FModuleManager::LoadModuleChecked<FOpenAccessibilityModule>("OpenAccessibility");
+		return FModuleManager::GetModuleChecked<FOpenAccessibilityModule>("OpenAccessibility");
 	}
 
 	virtual bool SupportsDynamicReloading() override

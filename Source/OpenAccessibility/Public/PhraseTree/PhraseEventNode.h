@@ -8,9 +8,19 @@
 /**
  * 
  */
-class OPENACCESSIBILITY_API PhraseEventNode
+class OPENACCESSIBILITY_API FPhraseEventNode : public FPhraseNode
 {
 public:
-	PhraseEventNode();
-	~PhraseEventNode();
+	FPhraseEventNode();
+	~FPhraseEventNode();
+
+	// FPhraseNode Implementation
+	virtual bool IsLeafNode() const override { return true; }
+	virtual bool RequiresPhrase(const FString InPhrase) override;
+
+	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord) override;
+	// End FPhraseNode Implementation
+
+
+	TDelegate<void(const FParseRecord&)> OnPhraseEvent;
 };

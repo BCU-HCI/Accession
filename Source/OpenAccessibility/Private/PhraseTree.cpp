@@ -13,18 +13,17 @@ FPhraseTree::FPhraseTree()
 
 FPhraseTree::~FPhraseTree()
 {
-	LastVistedNode.Reset();
 	RootNode.Reset();
 	NodeCount = NULL;
 }
 
-FPhrasePropogationResult FPhraseTree::ParsePhrase(const FString InPhrase)
+FParseResult FPhraseTree::ParsePhrase(const FString InPhrase)
 {
 	if (InPhrase.IsEmpty())
 	{
 		UE_LOG(LogOpenAccessibility, Log, TEXT("|| Phrase Tree || Provided Phrase is Empty ||"))
 
-		return FPhrasePropogationResult(PHRASE_CANNOT_BE_PARSED);
+		return FParseResult(PHRASE_NOT_PARSED);
 	}
 
 	TArray<FString> SegmentedPhraseArray;
@@ -34,10 +33,40 @@ FPhrasePropogationResult FPhraseTree::ParsePhrase(const FString InPhrase)
 	{
 		UE_LOG(LogOpenAccessibility, Log, TEXT("|| Phrase Tree || Provided Phrase After Segmenting is Empty ||"))
 
-		return FPhrasePropogationResult(PHRASE_CANNOT_BE_PARSED);
+		return FParseResult(PHRASE_NOT_PARSED);
 	}
 
-	return RootNode->ParsePhrase(SegmentedPhraseArray);
+	FParseResult ParseResult;
+	FParseRecord ParseRecord = FParseRecord();
+
+	// First Check any previous Node that was reached,
+	// as it may be a continuation of the previous phrase.
+	if (LastVistedNode != nullptr)
+	{
+		ParseResult = LastVistedNode->ParsePhrase(SegmentedPhraseArray, ParseRecord);
+
+		if (ParseResult.Result == PHRASE_PARSED)
+		{
+			UE_LOG(LogOpenAccessibility, Log, TEXT("|| Phrase Tree || Phrase Parsed from Previous Phrase ||"))
+
+			LastVistedNode = nullptr;
+			return ParseResult;
+		}
+	}
+
+	// If the Last Visted Node is not valid, then we will start from the Root Node.
+	ParseResult = RootNode->ParsePhrase(SegmentedPhraseArray, ParseRecord);
+	if (ParseResult.Result == PHRASE_UNABLE_TO_PARSE || ParseResult.Result == PHRASE_NOT_PARSED)
+	{
+		UE_LOG(LogOpenAccessibility, Log, TEXT("|| Phrase Tree || Phrase Cannot be Parsed ||"))
+	}
+	else
+	{
+		LastVistedNode = ParseResult.ReachedNode;
+	}
+
+	return ParseResult;
+
 }
 
 void FPhraseTree::BindBranch(const TSharedPtr<FPhraseNode> InNode)

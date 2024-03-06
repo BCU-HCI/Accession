@@ -3,21 +3,28 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PhraseTree/Containers.h"
 
 /**
  * 
  */
-class OPENACCESSIBILITY_API FPhraseNode
+class OPENACCESSIBILITY_API FPhraseNode : public TSharedFromThis<FPhraseNode>
 {
 public:
 	FPhraseNode();
-	~FPhraseNode();
+	virtual ~FPhraseNode();
+
+	virtual bool IsLeafNode() const { return false; }
 
 	virtual bool RequiresPhrase(const FString InPhrase);
-	virtual FPhrasePropogationResult ParsePhrase(TArray<FString>& InPhraseArray);
+	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord);
 
 	virtual bool BindChildNode(TSharedPtr<FPhraseNode> InNode);
 	virtual bool BindChildrenNodes(TArray<TSharedPtr<FPhraseNode>> InNodes);
+
+protected:
+
+	virtual FParseResult ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord);
 
 public:
 
