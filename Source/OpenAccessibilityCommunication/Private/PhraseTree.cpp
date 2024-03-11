@@ -4,25 +4,31 @@
 #include "PhraseTree.h"
 #include "PhraseTree/PhraseNode.h"
 
-#include "OpenAccessibilityLogging.h"
+#include "OpenAccessibilityComLogging.h"
 
 FPhraseTree::FPhraseTree()
 {
-	RootNode = MakeShared<FPhraseNode>();
+	//RootNode = MakeShared<FPhraseNode>();
 }
 
 FPhraseTree::~FPhraseTree()
 {
-	RootNode.Reset();
+	//RootNode.Reset();
 	NodeCount = NULL;
 }
 
-FParseResult FPhraseTree::ParsePhrase(const FString InPhrase)
+FParseResult FPhraseTree::ParseTranscription(const FString InPhrase)
 {
 	if (InPhrase.IsEmpty())
 	{
-		UE_LOG(LogOpenAccessibility, Log, TEXT("|| Phrase Tree || Provided Phrase is Empty ||"))
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Provided Phrase is Empty ||"))
 
+		return FParseResult(PHRASE_NOT_PARSED);
+	}
+
+	if (ChildNodes.Num() == 0)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Phrase Tree || Current Phrase Tree has no nodes. ||"))
 		return FParseResult(PHRASE_NOT_PARSED);
 	}
 
@@ -31,7 +37,7 @@ FParseResult FPhraseTree::ParsePhrase(const FString InPhrase)
 
 	if (SegmentedPhraseArray.Num() == 0)
 	{
-		UE_LOG(LogOpenAccessibility, Log, TEXT("|| Phrase Tree || Provided Phrase After Segmenting is Empty ||"))
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Provided Phrase After Segmenting is Empty ||"))
 
 		return FParseResult(PHRASE_NOT_PARSED);
 	}
@@ -47,7 +53,7 @@ FParseResult FPhraseTree::ParsePhrase(const FString InPhrase)
 
 		if (ParseResult.Result == PHRASE_PARSED)
 		{
-			UE_LOG(LogOpenAccessibility, Log, TEXT("|| Phrase Tree || Phrase Parsed from Previous Phrase ||"))
+			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Phrase Parsed from Previous Phrase ||"))
 
 			LastVistedNode = nullptr;
 			return ParseResult;
@@ -55,10 +61,10 @@ FParseResult FPhraseTree::ParsePhrase(const FString InPhrase)
 	}
 
 	// If the Last Visted Node is not valid, then we will start from the Root Node.
-	ParseResult = RootNode->ParsePhrase(SegmentedPhraseArray, ParseRecord);
+	ParseResult = ParsePhrase(SegmentedPhraseArray, ParseRecord);
 	if (ParseResult.Result == PHRASE_UNABLE_TO_PARSE || ParseResult.Result == PHRASE_NOT_PARSED)
 	{
-		UE_LOG(LogOpenAccessibility, Log, TEXT("|| Phrase Tree || Phrase Cannot be Parsed ||"))
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Phrase Cannot be Parsed ||"))
 	}
 	else
 	{
@@ -71,7 +77,7 @@ FParseResult FPhraseTree::ParsePhrase(const FString InPhrase)
 
 void FPhraseTree::BindBranch(const TSharedPtr<FPhraseNode> InNode)
 {
-	RootNode->BindChildNode(InNode);
+	ChildNodes.Add(InNode);
 }
 
 void FPhraseTree::ConstructPhraseTree()

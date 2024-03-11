@@ -34,18 +34,19 @@ public:
 
 	void HandleKeyDownEvent(const FKeyEvent& InKeyEvent);
 
-	bool TranscribeWaveForm(TArray<float> AudioBufferToTranscribe);
-private:
+	void TranscribeWaveForm(TArray<float> AudioBufferToTranscribe);
+
+private: 
 
 	void LoadZMQDLL();
 
 	void UnloadZMQDLL();
 public:
 
-	//FTranscriptionRecievedSignature OnTranscriptionRecieved;
-
 	class UAudioManager* AudioManager;
 	TSharedPtr<class FSocketCommunicationServer> SocketServer;
+
+	TUniquePtr<class FPhraseTree> PhraseTree;
 
 private:
 	FTickerDelegate TickDelegate;

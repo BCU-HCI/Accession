@@ -2,7 +2,7 @@
 
 #include "PhraseTree/PhraseNode.h"
 #include "PhraseTree.h"
-#include "OpenAccessibilityLogging.h"
+#include "OpenAccessibilityComLogging.h"
 
 FPhraseNode::FPhraseNode()
 {
@@ -23,7 +23,7 @@ FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseReco
 {
     if (InPhraseArray.IsEmpty())
     {
-        UE_LOG(LogOpenAccessibility, Log, TEXT("|| Emptied Phrase Array ||"))
+        UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
 
         return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
     }

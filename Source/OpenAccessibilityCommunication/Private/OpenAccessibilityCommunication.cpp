@@ -5,6 +5,7 @@
 
 #include "AudioManager.h"
 #include "SocketCommunicationServer.h"
+#include "PhraseTree.h"
 
 #include "Containers/Ticker.h"
 #include "Interfaces/IPluginManager.h"
@@ -23,9 +24,15 @@ void FOpenAccessibilityCommunicationModule::StartupModule()
 	AudioManager = NewObject<UAudioManager>();
 	AudioManager->AddToRoot();
 
+	AudioManager->OnAudioReadyForTranscription
+		.BindRaw(this, &FOpenAccessibilityCommunicationModule::TranscribeWaveForm);
+
 	// Initialize Socket Server
 	SocketServer = MakeShared<FSocketCommunicationServer>();
-	// SocketServer->AddToRoot();
+
+	// Initialize PhraseTree
+	PhraseTree = MakeUnique<FPhraseTree>();
+
 
 
 	// Bind Tick Event
@@ -63,9 +70,9 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 			for (int i = 0; i < RecvStrings.Num(); i++)
 			{
 				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Received Multipart Part: %d | Message: %s ||"), i, *RecvStrings[i]);
+			
+				PhraseTree->ParseTranscription(RecvStrings[i]);
 			}
-
-			//OnTranscriptionRecieved.ExecuteIfBound(RecvStrings);
 		}
 	}
 
@@ -90,12 +97,12 @@ void FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(const FKeyEvent& 
 	}
 }
 
-bool FOpenAccessibilityCommunicationModule::TranscribeWaveForm(TArray<float> AudioBufferToTranscribe)
+void FOpenAccessibilityCommunicationModule::TranscribeWaveForm(const TArray<float> AudioBufferToTranscribe)
 {
 	if (AudioBufferToTranscribe.Num() == 0)
 	{
 		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Transcription Ready || Audio Buffer is Empty ||"));
-		return false;
+		return;
 	}
 
 	UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||"), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * sizeof(float)));
@@ -103,11 +110,11 @@ bool FOpenAccessibilityCommunicationModule::TranscribeWaveForm(TArray<float> Aud
 	if (SocketServer->SendArrayMessage(AudioBufferToTranscribe, ComSendFlags::none))
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Transcription Ready || Sent Audio Buffer ||"));
-
-		return true;
 	}
-
-	return false;
+	else
+	{
+		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Transcription Ready || Failed to Send Audio Buffer ||"));
+	}
 }
 
 void FOpenAccessibilityCommunicationModule::LoadZMQDLL()

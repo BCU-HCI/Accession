@@ -9,7 +9,7 @@ class FPhraseNode;
 /// <summary>
 /// The Collected Information from the Propogation of the Phrase through the tree.
 /// </summary>
-struct OPENACCESSIBILITY_API FParseRecord
+struct OPENACCESSIBILITYCOMMUNICATION_API FParseRecord
 {
 	FParseRecord()
 	{
@@ -24,7 +24,7 @@ struct OPENACCESSIBILITY_API FParseRecord
 	TMap<FString, int> PhraseInputs;
 };
 
-enum PhrasePropogationType : uint8_t
+enum OPENACCESSIBILITYCOMMUNICATION_API PhrasePropogationType : uint8_t
 {
 	/// <summary>
 	/// When the given phrase was not attempted to be parsed.
@@ -53,9 +53,9 @@ enum PhrasePropogationType : uint8_t
 };
 
 /// <summary>
-/// Contained for the Result of Propogating the Phrase through the Tree.
+/// Contains the Result of Propogating the Phrase through the Tree.
 /// </summary>
-struct OPENACCESSIBILITY_API FParseResult
+struct OPENACCESSIBILITYCOMMUNICATION_API FParseResult
 {
 	FParseResult()
 	{
@@ -67,7 +67,7 @@ struct OPENACCESSIBILITY_API FParseResult
 		Result = InResult;
 	}
 
-	FParseResult(PhrasePropogationType InResult, TSharedRef<FPhraseNode> InReachedNode)
+	FParseResult(PhrasePropogationType InResult, TSharedPtr<FPhraseNode> InReachedNode)
 	{
 		Result = InResult;
 		ReachedNode = InReachedNode;
@@ -83,5 +83,5 @@ public:
 	/// <summary>
 	/// The Node that was reached in the tree.
 	/// </summary>
-	TSharedRef<FPhraseNode> ReachedNode;
+	TSharedPtr<FPhraseNode> ReachedNode;
 };

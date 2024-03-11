@@ -8,7 +8,7 @@
 /**
  * 
  */
-class OPENACCESSIBILITY_API FPhraseNode : public TSharedFromThis<FPhraseNode>
+class OPENACCESSIBILITYCOMMUNICATION_API FPhraseNode : public TSharedFromThis<FPhraseNode>
 {
 public:
 	FPhraseNode();

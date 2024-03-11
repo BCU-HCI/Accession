@@ -3,20 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PhraseTree/PhraseNode.h"
 #include "PhraseTree/Containers.h"
-
-class FPhraseNode;
 
 /**
  * 
  */
-class OPENACCESSIBILITY_API FPhraseTree
+class OPENACCESSIBILITYCOMMUNICATION_API FPhraseTree
 {
 public:
 	FPhraseTree();
 	~FPhraseTree();
 
-	FParseResult ParsePhrase(const FString InPhrase);
+	FParseResult ParseTranscription(const FString InPhrase);
 
 	/// <summary>
 	/// Bind a branch to the tree.
@@ -39,7 +38,9 @@ private:
 	/// <summary>
 	/// The Root Node of the Current Constructed Tree.
 	/// </summary>
-	TSharedPtr<FPhraseNode> RootNode;
+	//TSharedPtr<FPhraseNode> RootNode;
+
+	TArray<TSharedPtr<FPhraseNode>> ChildNodes;
 
 	/// <summary>
 	/// The Node that was last visited in the tree.

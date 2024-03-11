@@ -42,9 +42,6 @@ public:
 };
 
 
-//UDELEGATE()
-//DECLARE_DELEGATE_OneParam(FOnAudioReadyForTranscriptionDelegate, TArray<float>);
-
 /**
  * 
  */
@@ -66,15 +63,11 @@ public:
 
     bool IsCapturingAudio() const { return bIsCapturingAudio; }
 
-private:
-    void SendBufferForTranscription();
-
 public:
     UPROPERTY(Config, EditAnywhere, Category = "OpenAccessibility/Audio Manager")
     FAudioManagerSettings Settings;
 
-    //UPROPERTY(EditAnywhere, Category = "OpenAccessibility/Audio Manager")
-    //FOnAudioReadyForTranscriptionDelegate OnAudioReadyForTranscription;
+    TDelegate<void(const TArray<float>)> OnAudioReadyForTranscription;
 
 private:
     

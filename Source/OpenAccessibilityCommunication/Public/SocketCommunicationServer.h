@@ -7,8 +7,8 @@
 #include "zmq.hpp"
 #include "zmq_addon.hpp"
 
-using ComSendFlags = zmq::send_flags;
-using ComRecvFlags = zmq::recv_flags;
+typedef zmq::send_flags ComSendFlags;
+typedef zmq::recv_flags ComRecvFlags;
 
 /**
  * 

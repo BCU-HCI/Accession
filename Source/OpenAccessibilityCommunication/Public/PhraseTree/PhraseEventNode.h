@@ -8,7 +8,7 @@
 /**
  * 
  */
-class OPENACCESSIBILITY_API FPhraseEventNode : public FPhraseNode
+class OPENACCESSIBILITYCOMMUNICATION_API FPhraseEventNode : public FPhraseNode
 {
 public:
 	FPhraseEventNode();

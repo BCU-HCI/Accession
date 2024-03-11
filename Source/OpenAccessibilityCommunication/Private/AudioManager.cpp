@@ -51,8 +51,17 @@ void UAudioManager::StopCapturingAudio()
 	if (AudioBuffer.Num() == 0)
 		return;
 
-	SendBufferForTranscription();
+	// SendBufferForTranscription();
 	SaveAudioBufferToWAV(Settings.SavePath);
+
+	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer))
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Executing Audio Ready For Transcription Delegate. ||"));
+	}
+	else
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| No Delegates Bound to Audio Ready For Transcription Delegate. ||"));
+	}
 
 	AudioBuffer.Reset();
 }
@@ -76,16 +85,4 @@ void UAudioManager::SaveAudioBufferToWAV(const FString& FilePath)
 	FileWriter->BeginWriteToWavFile(SampleBuffer, Settings.SaveName, const_cast<FString&>(FilePath), []() {
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("Audio Buffer Saved to WAV"));
 	});
-}
-
-void UAudioManager::SendBufferForTranscription()
-{
-	if (FOpenAccessibilityCommunicationModule::Get().TranscribeWaveForm(AudioBuffer))
-	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Sending Buffer for Transcription | Using Communication Module ||"));
-	}
-	else
-	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Sending Buffer for Transcription | Failed to Send Communication ||"));
-	}
 }
