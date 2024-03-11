@@ -72,7 +72,7 @@ class CommunicationServer:
             self.socket.send_multipart(message)
             return True
         except:
-            unreal.log_warning(
+            Log(
                 "CommunicationServer | Error Sending Multipart Message",
                 LogLevel.WARNING,
             )

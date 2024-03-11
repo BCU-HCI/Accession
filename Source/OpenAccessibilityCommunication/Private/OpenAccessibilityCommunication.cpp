@@ -92,7 +92,15 @@ void FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(const FKeyEvent& 
 
 bool FOpenAccessibilityCommunicationModule::TranscribeWaveForm(TArray<float> AudioBufferToTranscribe)
 {
-	if (SocketServer->SendArray(AudioBufferToTranscribe, zmq::send_flags::dontwait))
+	if (AudioBufferToTranscribe.Num() == 0)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Transcription Ready || Audio Buffer is Empty ||"));
+		return false;
+	}
+
+	UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||"), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * sizeof(float)));
+
+	if (SocketServer->SendArray(AudioBufferToTranscribe.GetData(), AudioBufferToTranscribe.Num(), zmq::send_flags::dontwait))
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Transcription Ready || Sent Audio Buffer ||"));
 

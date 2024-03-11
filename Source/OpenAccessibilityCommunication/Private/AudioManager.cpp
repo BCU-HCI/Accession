@@ -51,9 +51,8 @@ void UAudioManager::StopCapturingAudio()
 	if (AudioBuffer.Num() == 0)
 		return;
 
-	SaveAudioBufferToWAV(Settings.SavePath);
-	
 	SendBufferForTranscription();
+	SaveAudioBufferToWAV(Settings.SavePath);
 
 	AudioBuffer.Reset();
 }

@@ -30,20 +30,33 @@ class OpenAccessibilityPy:
                 f"Recieved Message: {message_ndarray} | Size: {message_ndarray.size} | Shape: {message_ndarray.shape}"
             )
 
-            # trans_segments = self.whisper_interface.process_audio_buffer(
-            #     message_ndarray
-            # )
+            transcription_segments = self.whisper_interface.process_audio_buffer(
+                message_ndarray
+            )
 
-            # transcription_bytes = [segment.text.encode() for segment in trans_segments]
+            encoded_segments = [
+                transcription.text.encode() for transcription in transcription_segments
+            ]
 
             mock_transcription = [
                 "VIEW NODE 0",
                 "NODE 0 MOVE UP 10",
             ]
 
-            self.com_server.SendMultipart(
-                [transcription.encode() for transcription in mock_transcription]
-            )
+            mock_encoded_segments = [
+                transcription.encode() for transcription in mock_transcription
+            ]
+
+            Log(f"Encoded Segments: {encoded_segments}")
+            Log(f"Encoded Mock Segments: {mock_encoded_segments}")
+
+            if len(encoded_segments) > 0:
+                try:
+                    self.com_server.SendMultipart(encoded_segments)
+                except:
+                    Log("Error Sending Encoded Transcription Segments", LogLevel.ERROR)
+            else:
+                Log("No Transcription Segments Returned", LogLevel.WARNING)
 
     def Shutdown(self):
         if self.tick_handle:

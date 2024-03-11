@@ -13,17 +13,18 @@ class WhisperInterface(unreal.Class):
 
     def __init__(
         self,
-        model_name: str = "base",
-        device: str = "cuda",
+        model_name: str = "Systran/faster-distil-whisper-small.en",
+        device: str = "auto",
         compute_type: str = "default",
     ):
         # Whisper Focused Variables
         self.whisper_model = WhisperModel(
             model_name,
-            device=device,
+            device="cpu",
             compute_type=compute_type,
-            num_workers=1,
-            device_index=0,
+            num_workers=2,
+            cpu_threads=4,
+            local_files_only=True,
         )
         self.beam_size = 5
 
@@ -68,7 +69,7 @@ class WhisperInterface(unreal.Class):
     def process_audio_buffer(self, audio_buffer: np.ndarray) -> list[Segment]:
 
         segments, info = self.whisper_model.transcribe(
-            audio_buffer, beam_size=self.beam_size, vad_filter=True, suppress_blank=True
+            audio_buffer, beam_size=self.beam_size
         )
 
         Log(

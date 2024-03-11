@@ -26,7 +26,7 @@ FAssetAccessibilityRegistry::~FAssetAccessibilityRegistry()
 
 void FAssetAccessibilityRegistry::OnAssetOpenedInEditor(UObject* OpenedAsset, IAssetEditorInstance* EditorInstance)
 {
-	UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Opened In Editor: { %s } ||"), *OpenedAsset->GetName(), EditorInstance->GetEditorName());
+	UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Opened In Editor: { %s } ||"), *OpenedAsset->GetName(), *EditorInstance->GetEditorName().ToString());
 
 	if (UBlueprint* OpenedBlueprint = Cast<UBlueprint>(OpenedAsset))
 	{
