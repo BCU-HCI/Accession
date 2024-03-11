@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
+#include "AssetAccessibilityRegistry.h"
+#include "PhraseTree.h"
 #include "OAccessibilityNodeFactory.h"
 
 class FOpenAccessibilityModule : public IModuleInterface

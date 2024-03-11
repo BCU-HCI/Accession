@@ -86,9 +86,21 @@ TSharedPtr<class SGraphNode> FAccessibilityNodeFactory::CreateNode(UEdGraphNode*
 
     check(InNode);
 
+    // Hack to get around the possible infinite loop of using 
+    // this factory to create the node from the factory itself.
     FEdGraphUtilities::UnregisterVisualNodeFactory(FOpenAccessibilityModule::Get().AccessibilityNodeFactory);
     TSharedPtr<SGraphNode> OutNode = FNodeFactory::CreateNodeWidget(InNode);
     FEdGraphUtilities::RegisterVisualNodeFactory(FOpenAccessibilityModule::Get().AccessibilityNodeFactory);
+
+    // Get Node Accessibility Index, from registry
+    TSharedRef<FGraphIndexer> GraphIndexer = FOpenAccessibilityModule::Get()
+        .AssetAccessibilityRegistry->GetGraphIndexer(InNode->GetGraph());
+
+    int NodeIndex = GraphIndexer->ContainsNode(InNode);
+    if (NodeIndex == -1)
+    {
+        UE_LOG(LogOpenAccessibility, Error, TEXT("Node Not Found In Graph Indexer"));
+    }
 
     // Build Accessibility Widget. - Can Be Replaced with a Custom GraphNode Class
 	TSharedPtr<SWidget> NodeNumBlock = SNullWidget::NullWidget;
@@ -103,9 +115,8 @@ TSharedPtr<class SGraphNode> FAccessibilityNodeFactory::CreateNode(UEdGraphNode*
 				.HAlign( HAlign_Fill )
 				.Padding( 0.5f )
                 [
-					SNew(STextBlock)
-						.Text( FText::FromString("[0]") ) // Can Add Node ID Here once retrieved 
-														  // from Graph Accessibility Manager.
+                    SNew(STextBlock)
+                        .Text( FText::FromString("[" + FString::FromInt(NodeIndex) + "]") )
 				]
 
                 /*

@@ -1,8 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "OpenAccessibility.h"
-#include "AssetAccessibilityRegistry.h"
-#include "PhraseTree.h"
 #include "OpenAccessibilityLogging.h"
 
 #include "Logging/StructuredLog.h"

@@ -15,15 +15,15 @@ public:
 	FAssetAccessibilityRegistry();
 	~FAssetAccessibilityRegistry();
 
-	// Asset Register Events
-
-	void OnAssetOpenedInEditor(UObject* OpenedAsset, IAssetEditorInstance* EditorInstance);
-
 	// Graph Indexing
 
 	bool IsGraphAssetRegistered(const UEdGraph* InGraph) const;
 	bool RegisterGraphAsset(const UEdGraph* InGraph);
 	bool UnregisterGraphAsset(const UEdGraph* InGraph);
+
+	TSharedRef<FGraphIndexer> GetGraphIndexer(const UEdGraph* InGraph) const {
+		return GraphAssetIndex[InGraph->GraphGuid].ToSharedRef();
+	}
 
 	// Game World Indexing
 
@@ -32,6 +32,10 @@ public:
 	bool UnregisterGameWorldAsset(const UWorld* InWorld);
 
 private:
+
+	// Asset Register Events
+
+	void OnAssetOpenedInEditor(UObject* OpenedAsset, IAssetEditorInstance* EditorInstance);
 
 	void EmptyGraphAssetIndex();
 	void EmptyGameWorldAssetIndex();
