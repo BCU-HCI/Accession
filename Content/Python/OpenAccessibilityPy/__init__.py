@@ -52,7 +52,10 @@ class OpenAccessibilityPy:
 
             if len(encoded_segments) > 0:
                 try:
-                    self.com_server.SendMultipart(encoded_segments)
+                    # USING THE MOCK SEGMENT DATA FOR DEBUGGING PURPOSES,
+                    # WILL SWAP TO THE REAL DATA ONCE CUDA ERROR IS RESOLVED.
+                    self.com_server.SendMultipart(mock_encoded_segments)
+
                 except:
                     Log("Error Sending Encoded Transcription Segments", LogLevel.ERROR)
             else:

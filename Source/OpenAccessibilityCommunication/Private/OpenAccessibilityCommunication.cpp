@@ -100,7 +100,7 @@ bool FOpenAccessibilityCommunicationModule::TranscribeWaveForm(TArray<float> Aud
 
 	UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||"), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * sizeof(float)));
 
-	if (SocketServer->SendArray(AudioBufferToTranscribe.GetData(), AudioBufferToTranscribe.Num(), zmq::send_flags::dontwait))
+	if (SocketServer->SendArrayMessage(AudioBufferToTranscribe, ComSendFlags::none))
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Transcription Ready || Sent Audio Buffer ||"));
 
