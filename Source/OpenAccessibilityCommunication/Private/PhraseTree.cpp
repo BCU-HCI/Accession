@@ -17,7 +17,7 @@ FPhraseTree::~FPhraseTree()
 	NodeCount = NULL;
 }
 
-FParseResult FPhraseTree::ParseTranscription(const FString InPhrase)
+FParseResult FPhraseTree::ParsePhrase(const FString InPhrase)
 {
 	if (InPhrase.IsEmpty())
 	{
@@ -26,7 +26,7 @@ FParseResult FPhraseTree::ParseTranscription(const FString InPhrase)
 		return FParseResult(PHRASE_NOT_PARSED);
 	}
 
-	if (ChildNodes.Num() == 0)
+	if (RootNode->ChildNodes.Num() == 0)
 	{
 		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Phrase Tree || Current Phrase Tree has no nodes. ||"))
 		return FParseResult(PHRASE_NOT_PARSED);
@@ -61,7 +61,7 @@ FParseResult FPhraseTree::ParseTranscription(const FString InPhrase)
 	}
 
 	// If the Last Visted Node is not valid, then we will start from the Root Node.
-	ParseResult = ParsePhrase(SegmentedPhraseArray, ParseRecord);
+	ParseResult = RootNode->ParsePhrase(SegmentedPhraseArray, ParseRecord);
 	if (ParseResult.Result == PHRASE_UNABLE_TO_PARSE || ParseResult.Result == PHRASE_NOT_PARSED)
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Phrase Cannot be Parsed ||"))
@@ -77,7 +77,7 @@ FParseResult FPhraseTree::ParseTranscription(const FString InPhrase)
 
 void FPhraseTree::BindBranch(const TSharedPtr<FPhraseNode> InNode)
 {
-	ChildNodes.Add(InNode);
+	RootNode->BindChildNode(InNode);
 }
 
 void FPhraseTree::ConstructPhraseTree()

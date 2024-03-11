@@ -75,6 +75,33 @@ bool FAssetAccessibilityRegistry::UnregisterGraphAsset(const UEdGraph* UEdGraph)
 	return true;
 }
 
+void FAssetAccessibilityRegistry::GetAllGraphKeyIndexes(TArray<FGuid>& OutGraphKeys) const
+{
+	GraphAssetIndex.GetKeys(OutGraphKeys);
+}
+
+TArray<FGuid> FAssetAccessibilityRegistry::GetAllGraphKeyIndexes() const
+{
+	TArray<FGuid> GraphKeys;
+	GraphAssetIndex.GetKeys(GraphKeys);
+
+	return GraphKeys;
+}
+
+void FAssetAccessibilityRegistry::GetAllGraphIndexes(TArray<TSharedPtr<FGraphIndexer>>& OutGraphIndexes) const
+{
+	return GraphAssetIndex.GenerateValueArray(OutGraphIndexes);
+}
+
+TArray<TSharedPtr<FGraphIndexer>> FAssetAccessibilityRegistry::GetAllGraphIndexes()
+{
+	TArray<TSharedPtr<FGraphIndexer>> GraphIndexArray;
+	
+	GraphAssetIndex.GenerateValueArray(GraphIndexArray);
+
+	return GraphIndexArray;
+}
+
 bool FAssetAccessibilityRegistry::IsGameWorldAssetRegistered(const UWorld* UWorld) const
 {
 	throw std::exception("The method or operation is not implemented.");

@@ -43,6 +43,8 @@ private:
 	void UnloadZMQDLL();
 public:
 
+	TMulticastDelegate<void(const TArray<FString>)> OnTranscriptionRecieved;
+
 	class UAudioManager* AudioManager;
 	TSharedPtr<class FSocketCommunicationServer> SocketServer;
 

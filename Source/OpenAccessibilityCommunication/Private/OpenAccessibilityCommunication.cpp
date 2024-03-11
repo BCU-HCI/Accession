@@ -71,8 +71,11 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 			{
 				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Received Multipart Part: %d | Message: %s ||"), i, *RecvStrings[i]);
 			
-				PhraseTree->ParseTranscription(RecvStrings[i]);
+				//PhraseTree->ParseTranscription(RecvStrings[i]);
+
 			}
+
+			OnTranscriptionRecieved.Broadcast(RecvStrings);
 		}
 	}
 

@@ -25,6 +25,12 @@ public:
 		return GraphAssetIndex[InGraph->GraphGuid].ToSharedRef();
 	}
 
+	void GetAllGraphKeyIndexes(TArray<FGuid>& OutGraphKeys) const;
+	TArray<FGuid> GetAllGraphKeyIndexes() const;
+
+	void GetAllGraphIndexes(TArray<TSharedPtr<FGraphIndexer>>& OutGraphIndexes) const;
+	TArray<TSharedPtr<FGraphIndexer>> GetAllGraphIndexes();
+
 	// Game World Indexing
 
 	bool IsGameWorldAssetRegistered(const UWorld* InWorld) const;
@@ -45,9 +51,11 @@ private:
 	void RegisterBlueprintAsset(UBlueprint* InBlueprint);
 	void RegisterUWorldAsset(UWorld* InWorld);
 
-private:
+public:
 	TMap<FGuid, TSharedPtr<FGraphIndexer>> GraphAssetIndex;
 	//TMap<UWorld, FWorldIndexer*> GameWorldAssetIndex;
+
+private:
 
 	FDelegateHandle AssetOpenedInEditorHandle;
 };

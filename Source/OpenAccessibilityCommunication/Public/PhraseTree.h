@@ -3,8 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PhraseTree/PhraseNode.h"
 #include "PhraseTree/Containers.h"
+
+class FPhraseNode;
 
 /**
  * 
@@ -15,7 +16,7 @@ public:
 	FPhraseTree();
 	~FPhraseTree();
 
-	FParseResult ParseTranscription(const FString InPhrase);
+	FParseResult ParsePhrase(const FString InPhrase);
 
 	/// <summary>
 	/// Bind a branch to the tree.
@@ -38,9 +39,7 @@ private:
 	/// <summary>
 	/// The Root Node of the Current Constructed Tree.
 	/// </summary>
-	//TSharedPtr<FPhraseNode> RootNode;
-
-	TArray<TSharedPtr<FPhraseNode>> ChildNodes;
+	TSharedPtr<FPhraseNode> RootNode;
 
 	/// <summary>
 	/// The Node that was last visited in the tree.
