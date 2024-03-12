@@ -5,19 +5,24 @@
 #include "CoreMinimal.h"
 #include "PhraseTree/Containers.h"
 
+typedef TArray<TSharedPtr<FPhraseNode>> FPhraseNodeChildren;
+
 /**
  * 
  */
 class OPENACCESSIBILITYCOMMUNICATION_API FPhraseNode : public TSharedFromThis<FPhraseNode>
 {
 public:
-	FPhraseNode();
+
+	FPhraseNode(const TCHAR* InBoundPhrase);
+	FPhraseNode(const TCHAR* InBoundPhrase, FPhraseNodeChildren InChildNodes);
+
 	virtual ~FPhraseNode();
 
 	virtual bool IsLeafNode() const { return false; }
 
 	virtual bool RequiresPhrase(const FString InPhrase);
-	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord);
+	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord);
 
 	virtual bool BindChildNode(TSharedPtr<FPhraseNode> InNode);
 	virtual bool BindChildrenNodes(TArray<TSharedPtr<FPhraseNode>> InNodes);
@@ -31,12 +36,12 @@ public:
 	/// <summary>
 	/// The Child Nodes of the Node.
 	/// </summary>
-	TArray<TSharedPtr<FPhraseNode>> ChildNodes;
+	FPhraseNodeChildren ChildNodes;
 
 protected:
 
 	/// <summary>
 	/// The Phrase Bound to this
 	/// </summary>
-	const FString BoundPhrase;
+	FString BoundPhrase;
 };

@@ -11,17 +11,16 @@
 class OPENACCESSIBILITYCOMMUNICATION_API FPhraseInputNode : public FPhraseNode
 {
 public:
-	FPhraseInputNode();
+	FPhraseInputNode(const TCHAR* InInputString);
+	FPhraseInputNode(const TCHAR* InInputString, FPhraseNodeChildren InChildNodes);
+
 	~FPhraseInputNode();
 
 	// FPhraseNode Implementation
+	
+	virtual bool RequiresPhrase(const FString InPhrase) override;
 
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord) override;
 
-protected:
-
-	/// <summary>
-	/// The Phrase that be used to index the input into the record.
-	/// </summary>
-	FString InputPhrase;
+	// End FPhraseNode Implementation
 };

@@ -4,9 +4,16 @@
 #include "PhraseTree.h"
 #include "OpenAccessibilityComLogging.h"
 
-FPhraseNode::FPhraseNode()
+FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase)
 {
-    ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
+	BoundPhrase = InBoundPhrase;
+	ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
+}
+
+FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, FPhraseNodeChildren InChildNodes)
+{
+	BoundPhrase = InBoundPhrase;
+	ChildNodes = InChildNodes;
 }
 
 FPhraseNode::~FPhraseNode()
@@ -81,8 +88,8 @@ FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRe
 {
     for (auto& ChildNode : ChildNodes)
     {
-        // Cannot have any duplicate Phrases.
-        if (ChildNode->RequiresPhrase(InPhraseArray[0]))
+        // ChildNodes cannot have duplicate bound phrases.
+        if (ChildNode->RequiresPhrase(InPhraseArray.Last()) || ChildNode->IsLeafNode())
         {
             return ChildNode->ParsePhrase(InPhraseArray, InParseRecord);
         }

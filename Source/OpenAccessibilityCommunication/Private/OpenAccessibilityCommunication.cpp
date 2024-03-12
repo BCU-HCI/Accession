@@ -5,7 +5,11 @@
 
 #include "AudioManager.h"
 #include "SocketCommunicationServer.h"
+
 #include "PhraseTree.h"
+#include "PhraseTree/PhraseNode.h"
+#include "PhraseTree/PhraseInputNode.h"
+#include "PhraseTree/PhraseEventNode.h"
 
 #include "Containers/Ticker.h"
 #include "Interfaces/IPluginManager.h"
@@ -30,10 +34,8 @@ void FOpenAccessibilityCommunicationModule::StartupModule()
 	// Initialize Socket Server
 	SocketServer = MakeShared<FSocketCommunicationServer>();
 
-	// Initialize PhraseTree
-	PhraseTree = MakeUnique<FPhraseTree>();
-
-
+	// Build The Phrase Tree
+	BuildPhraseTree();
 
 	// Bind Tick Event
 	TickDelegate = FTickerDelegate::CreateRaw(this, &FOpenAccessibilityCommunicationModule::Tick);
@@ -118,6 +120,33 @@ void FOpenAccessibilityCommunicationModule::TranscribeWaveForm(const TArray<floa
 	{
 		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Transcription Ready || Failed to Send Audio Buffer ||"));
 	}
+}
+
+void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
+{
+	// Initialize the Phrase Tree
+	PhraseTree = MakeUnique<FPhraseTree>();
+	PhraseTreePhraseRecievedHandle = OnTranscriptionRecieved
+		.AddRaw(PhraseTree.Get(), &FPhraseTree::ParseTranscription);
+
+	TSharedPtr<FPhraseEventNode> EventNode = MakeShared<FPhraseEventNode>();
+	EventNode->OnPhraseEvent.BindLambda([](const FParseRecord& InParseRecord)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Event Node Hit || INDEX_0 Val: %d"), InParseRecord.PhraseInputs["INDEX_0"]);
+	});
+
+	PhraseTree->BindBranch(
+		MakeShared<FPhraseNode>(
+			TEXT("NODE"),
+			FPhraseNodeChildren{
+				MakeShared<FPhraseInputNode>(TEXT("INDEX_0"),
+					FPhraseNodeChildren {
+						EventNode
+					}
+				)
+			}
+		)
+	);
 }
 
 void FOpenAccessibilityCommunicationModule::LoadZMQDLL()

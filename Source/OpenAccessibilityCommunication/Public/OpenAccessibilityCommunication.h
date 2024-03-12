@@ -38,12 +38,14 @@ public:
 
 private: 
 
+	void BuildPhraseTree();
+
 	void LoadZMQDLL();
 
 	void UnloadZMQDLL();
 public:
 
-	TMulticastDelegate<void(const TArray<FString>)> OnTranscriptionRecieved;
+	TMulticastDelegate<void(TArray<FString>)> OnTranscriptionRecieved;
 
 	class UAudioManager* AudioManager;
 	TSharedPtr<class FSocketCommunicationServer> SocketServer;
@@ -53,6 +55,8 @@ public:
 private:
 	FTickerDelegate TickDelegate;
 	FTSTicker::FDelegateHandle TickDelegateHandle;
+
+	FDelegateHandle PhraseTreePhraseRecievedHandle;
 
 	FDelegateHandle KeyDownEventHandle;
 

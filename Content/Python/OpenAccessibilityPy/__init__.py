@@ -38,10 +38,7 @@ class OpenAccessibilityPy:
                 transcription.text.encode() for transcription in transcription_segments
             ]
 
-            mock_transcription = [
-                "VIEW NODE 0",
-                "NODE 0 MOVE UP 10",
-            ]
+            mock_transcription = ["VIEW NODE 0", "NODE 0 MOVE UP 10"]
 
             mock_encoded_segments = [
                 transcription.encode() for transcription in mock_transcription
@@ -50,7 +47,7 @@ class OpenAccessibilityPy:
             Log(f"Encoded Segments: {encoded_segments}")
             Log(f"Encoded Mock Segments: {mock_encoded_segments}")
 
-            if len(encoded_segments) > 0:
+            if len(mock_encoded_segments) > 0:
                 try:
                     # USING THE MOCK SEGMENT DATA FOR DEBUGGING PURPOSES,
                     # WILL SWAP TO THE REAL DATA ONCE CUDA ERROR IS RESOLVED.

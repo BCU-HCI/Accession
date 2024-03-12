@@ -3,20 +3,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "PhraseTree/PhraseNode.h"
 #include "PhraseTree/Containers.h"
 
-class FPhraseNode;
 
 /**
  * 
  */
-class OPENACCESSIBILITYCOMMUNICATION_API FPhraseTree
+class OPENACCESSIBILITYCOMMUNICATION_API FPhraseTree : public FPhraseNode
 {
 public:
 	FPhraseTree();
 	~FPhraseTree();
 
-	FParseResult ParsePhrase(const FString InPhrase);
+	// FPhaseNode Implementation
+	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord) override;
+	// End FPhaseNode Implementation
 
 	/// <summary>
 	/// Bind a branch to the tree.
@@ -30,6 +32,9 @@ public:
 	/// </summary>
 	void BindBranches(const TArray<TSharedPtr<FPhraseNode>> InNodes);
 
+	void ParseTranscription(TArray<FString> InTranscriptionSegments);
+
+
 private:
 
 	void ConstructPhraseTree();
@@ -37,15 +42,8 @@ private:
 private:
 
 	/// <summary>
-	/// The Root Node of the Current Constructed Tree.
-	/// </summary>
-	TSharedPtr<FPhraseNode> RootNode;
-
-	/// <summary>
 	/// The Node that was last visited in the tree.
 	/// Allowing for quick entry, due to split phrases.
 	/// </summary>
 	TSharedPtr<FPhraseNode> LastVistedNode;
-
-	size_t NodeCount = 0;
 };
