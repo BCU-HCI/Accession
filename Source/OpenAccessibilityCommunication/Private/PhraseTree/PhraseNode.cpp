@@ -10,7 +10,7 @@ FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase)
 	ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
 }
 
-FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, FPhraseNodeChildren InChildNodes)
+FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TPhraseNodeArray InChildNodes)
 {
 	BoundPhrase = InBoundPhrase;
 	ChildNodes = InChildNodes;
@@ -42,7 +42,30 @@ FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseReco
     return ParseChildren(InPhraseArray, InParseRecord);
 }
 
-bool FPhraseNode::BindChildNode(TSharedPtr<FPhraseNode> InNode)
+FParseResult FPhraseNode::ParsePhraseIfRequired(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord)
+{
+    if (RequiresPhrase(InPhraseWordArray.Last()))
+    {
+		return ParsePhrase(InPhraseWordArray, InParseRecord);
+	}
+
+    return FParseResult(PHRASE_UNABLE_TO_PARSE);
+}
+
+bool FPhraseNode::CanBindChild(TPhraseNode& InNode)
+{
+    for (auto& ChildNode : ChildNodes)
+    {
+        if (ChildNode->RequiresPhrase(InNode->BoundPhrase) || ChildNode->IsLeafNode())
+        {
+			return false;
+		}
+	}
+
+    return true;
+}
+
+bool FPhraseNode::BindChildNode(TPhraseNode InNode)
 {
     if (!InNode.IsValid())
         return false;
@@ -63,7 +86,14 @@ bool FPhraseNode::BindChildNode(TSharedPtr<FPhraseNode> InNode)
     return false;
 }
 
-bool FPhraseNode::BindChildrenNodes(TArray<TSharedPtr<FPhraseNode>> InNodes)
+bool FPhraseNode::BindChildNodeForce(TPhraseNode InNode)
+{
+    ChildNodes.AddUnique(InNode);
+
+    return true;
+}
+
+bool FPhraseNode::BindChildrenNodes(TPhraseNodeArray InNodes)
 {
     for (auto& InNode : InNodes)
     {
@@ -82,6 +112,16 @@ bool FPhraseNode::BindChildrenNodes(TArray<TSharedPtr<FPhraseNode>> InNodes)
     }
 
     return false;
+}
+
+bool FPhraseNode::BindChildrenNodesForce(TPhraseNodeArray InNodes)
+{
+    for (auto& InNode : InNodes)
+    {
+		ChildNodes.AddUnique(InNode);
+	}
+
+    return true;
 }
 
 FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)

@@ -18,10 +18,6 @@ FPhraseTree::~FPhraseTree()
 
 }
 
-void FPhraseTree::BindBranch(const TSharedPtr<FPhraseNode> InNode)
-{
-	ChildNodes.Add(InNode);
-}
 
 void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 {
@@ -134,7 +130,43 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 	return FParseResult(PHRASE_NOT_PARSED);
 }
 
-void FPhraseTree::ConstructPhraseTree()
-{
 
+void FPhraseTree::BindBranch(const TPhraseNode& InNode)
+{
+	TArray<FPhraseTreeBranchBind> ToBindArray = TArray<FPhraseTreeBranchBind>();
+
+	ToBindArray.Add(FPhraseTreeBranchBind(AsShared(), InNode));
+
+	while (!ToBindArray.IsEmpty())
+	{
+		FPhraseTreeBranchBind BranchToBind = ToBindArray.Pop();
+
+		// Check all ChildNodes to see if they are similar in purpose.
+		for (auto& ChildNode : BranchToBind.StartNode->ChildNodes)
+		{
+			// If a ChildNode meets the same requirements as the BranchRoot,
+			// then Split Bind Process to the ChildNodes.
+			if (ChildNode->RequiresPhrase(BranchToBind.BranchRoot->BoundPhrase))
+			{
+				for (auto& BranchChildNode : BranchToBind.BranchRoot->ChildNodes)
+				{
+					ToBindArray.Add(FPhraseTreeBranchBind(ChildNode, BranchChildNode));
+				}
+
+				continue;
+			}
+		}
+
+		// If the Start Node has no similar chilren, then bind the branch to the start node.
+		// Can force bind, as previous checks show no child is similar.
+		BranchToBind.StartNode->BindChildNodeForce(BranchToBind.BranchRoot);
+	}
+}
+
+void FPhraseTree::BindBranches(const TPhraseNodeArray& InNodes)
+{
+	for (const TSharedPtr<FPhraseNode>& Node : InNodes)
+	{
+		BindBranch(Node);
+	}
 }

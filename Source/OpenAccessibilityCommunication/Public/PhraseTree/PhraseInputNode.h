@@ -12,7 +12,7 @@ class OPENACCESSIBILITYCOMMUNICATION_API FPhraseInputNode : public FPhraseNode
 {
 public:
 	FPhraseInputNode(const TCHAR* InInputString);
-	FPhraseInputNode(const TCHAR* InInputString, FPhraseNodeChildren InChildNodes);
+	FPhraseInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes);
 
 	~FPhraseInputNode();
 

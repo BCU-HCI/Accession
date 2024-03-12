@@ -7,6 +7,50 @@
 #include "PhraseTree/Containers.h"
 
 
+enum EPhraseTreeBranchBindResult : uint8_t
+{
+	/// <summary>
+	/// test
+	/// </summary>
+	BRANCH_NOT_BOUND,
+
+	/// <summary>
+	/// test
+	/// </summary>
+	BRANCH_BOUND,
+	BRANCH_SPLIT
+};
+
+struct OPENACCESSIBILITYCOMMUNICATION_API FPhraseTreeBranchBind
+{
+	FPhraseTreeBranchBind()
+	{
+
+	}
+
+	FPhraseTreeBranchBind(TPhraseNode InRootNode, TPhraseNode InBranchRoot)
+	{
+		StartNode = InRootNode;
+		BranchRoot = InBranchRoot;
+	}
+
+	~FPhraseTreeBranchBind()
+	{
+		StartNode.Reset();
+		BranchRoot.Reset();
+	}
+
+	/// <summary>
+	/// The Node to start the binding of this branch root.
+	/// </summary>
+	TPhraseNode StartNode;
+
+	/// <summary>
+	/// The Root Node of the Branch that needs to be bound.
+	/// </summary>
+	TPhraseNode BranchRoot;
+};
+
 /**
  * 
  */
@@ -25,19 +69,14 @@ public:
 	/// Attaching to any overlapping nodes.
 	/// </summary>
 	/// <param name="InNode">The constructed branch to attach to the tree.</param>
-	void BindBranch(const TSharedPtr<FPhraseNode> InNode);
+	void BindBranch(const TPhraseNode& InNode);
 	
 	/// <summary>
 	/// Bind Multiple Branches to the Tree, that are not connected.
 	/// </summary>
-	void BindBranches(const TArray<TSharedPtr<FPhraseNode>> InNodes);
+	void BindBranches(const TPhraseNodeArray& InNodes);
 
 	void ParseTranscription(TArray<FString> InTranscriptionSegments);
-
-
-private:
-
-	void ConstructPhraseTree();
 
 private:
 

@@ -6,6 +6,10 @@
 
 class FPhraseNode;
 
+typedef TSharedPtr<FPhraseNode> TPhraseNode;
+
+typedef TArray<TPhraseNode> TPhraseNodeArray;
+
 /// <summary>
 /// The Collected Information from the Propogation of the Phrase through the tree.
 /// </summary>

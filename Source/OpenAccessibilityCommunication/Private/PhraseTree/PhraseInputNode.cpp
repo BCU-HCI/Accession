@@ -8,7 +8,7 @@ FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString) : FPhraseNode(InI
 
 }
 
-FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, FPhraseNodeChildren InChildNodes) : FPhraseNode(InInputString, InChildNodes)
+FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes) : FPhraseNode(InInputString, InChildNodes)
 {
 
 }

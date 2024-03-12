@@ -132,15 +132,15 @@ void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
 	TSharedPtr<FPhraseEventNode> EventNode = MakeShared<FPhraseEventNode>();
 	EventNode->OnPhraseEvent.BindLambda([](const FParseRecord& InParseRecord)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Event Node Hit || INDEX_0 Val: %d"), InParseRecord.PhraseInputs["INDEX_0"]);
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Event Node Hit || INDEX_0 Val: %d ||"), InParseRecord.PhraseInputs["INDEX_0"]);
 	});
 
 	PhraseTree->BindBranch(
 		MakeShared<FPhraseNode>(
 			TEXT("NODE"),
-			FPhraseNodeChildren{
+			TPhraseNodeArray {
 				MakeShared<FPhraseInputNode>(TEXT("INDEX_0"),
-					FPhraseNodeChildren {
+					TPhraseNodeArray {
 						EventNode
 					}
 				)
