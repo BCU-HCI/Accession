@@ -38,7 +38,7 @@ class OpenAccessibilityPy:
                 transcription.text.encode() for transcription in transcription_segments
             ]
 
-            mock_transcription = ["VIEW NODE 0", "NODE 0 MOVE UP 10"]
+            mock_transcription = ["VIEW NODE 0", "NODE 0 MOVE UP 50"]
 
             mock_encoded_segments = [
                 transcription.encode() for transcription in mock_transcription

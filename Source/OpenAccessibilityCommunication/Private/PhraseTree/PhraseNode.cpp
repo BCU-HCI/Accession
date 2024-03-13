@@ -129,7 +129,7 @@ FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRe
     for (auto& ChildNode : ChildNodes)
     {
         // ChildNodes cannot have duplicate bound phrases.
-        if (ChildNode->RequiresPhrase(InPhraseArray.Last()) || ChildNode->IsLeafNode())
+        if (ChildNode->IsLeafNode() || ChildNode->RequiresPhrase(InPhraseArray.Last()))
         {
             return ChildNode->ParsePhrase(InPhraseArray, InParseRecord);
         }

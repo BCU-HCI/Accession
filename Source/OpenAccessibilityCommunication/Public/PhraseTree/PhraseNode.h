@@ -24,8 +24,6 @@ public:
 
 	virtual FParseResult ParsePhraseIfRequired(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord);
 
-	virtual EPhraseTreeBranchBindResult BindChildBranch(TPhraseNode InNode);
-
 	bool CanBindChild(TPhraseNode& InNode);
 
 	bool BindChildNode(TPhraseNode InNode);

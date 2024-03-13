@@ -20,7 +20,7 @@ FPhraseInputNode::~FPhraseInputNode()
 
 bool FPhraseInputNode::RequiresPhrase(const FString InPhrase)
 {
-    return InPhrase.IsNumeric();
+    return MeetsInputRequirements(InPhrase);
 }
 
 FParseResult FPhraseInputNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
@@ -32,14 +32,31 @@ FParseResult FPhraseInputNode::ParsePhrase(TArray<FString>& InPhraseArray, FPars
 		return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
 	}
 
-    if (InPhraseArray.Last().IsNumeric())
+    if (MeetsInputRequirements(InPhraseArray.Last()))
     {
         FString InputToRecord = InPhraseArray.Pop();
 
-        InParseRecord.PhraseInputs.Add(BoundPhrase, FCString::Atoi(*InputToRecord));
+        if (!RecordInput(InputToRecord, InParseRecord))
+        {
+            UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Unable to Record Input ||"))
+
+			return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
+		}
 
         return ParseChildren(InPhraseArray, InParseRecord);
     }
 
     return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
+}
+
+bool FPhraseInputNode::MeetsInputRequirements(const FString& InPhrase)
+{
+	return InPhrase.IsNumeric();
+}
+
+bool FPhraseInputNode::RecordInput(const FString& InInput, FParseRecord& OutParseRecord)
+{
+	OutParseRecord.PhraseInputs.Add(BoundPhrase, FCString::Atoi(*InInput));
+
+	return true;
 }

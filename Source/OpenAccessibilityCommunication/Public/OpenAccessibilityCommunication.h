@@ -7,6 +7,8 @@
 #include "Modules/ModuleInterface.h"
 #include "Delegates/DelegateCombinations.h"
 
+#include "PhraseTree.h"
+
 //UDELEGATE()
 //DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTranscriptionRecievedSignature, const TArray<FString>, InTranscription);
 
@@ -50,7 +52,7 @@ public:
 	class UAudioManager* AudioManager;
 	TSharedPtr<class FSocketCommunicationServer> SocketServer;
 
-	TUniquePtr<class FPhraseTree> PhraseTree;
+	TSharedPtr<FPhraseTree> PhraseTree;
 
 private:
 	FTickerDelegate TickDelegate;

@@ -6,9 +6,9 @@
 #include "AudioManager.h"
 #include "SocketCommunicationServer.h"
 
-#include "PhraseTree.h"
 #include "PhraseTree/PhraseNode.h"
 #include "PhraseTree/PhraseInputNode.h"
+#include "PhraseTree/PhraseDirectionalInputNode.h"
 #include "PhraseTree/PhraseEventNode.h"
 
 #include "Containers/Ticker.h"
@@ -125,11 +125,11 @@ void FOpenAccessibilityCommunicationModule::TranscribeWaveForm(const TArray<floa
 void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
 {
 	// Initialize the Phrase Tree
-	PhraseTree = MakeUnique<FPhraseTree>();
+	PhraseTree = MakeShared<FPhraseTree>();
 	PhraseTreePhraseRecievedHandle = OnTranscriptionRecieved
 		.AddRaw(PhraseTree.Get(), &FPhraseTree::ParseTranscription);
 
-	TSharedPtr<FPhraseEventNode> EventNode = MakeShared<FPhraseEventNode>();
+	/*TSharedPtr<FPhraseEventNode> EventNode = MakeShared<FPhraseEventNode>();
 	EventNode->OnPhraseEvent.BindLambda([](const FParseRecord& InParseRecord)
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Event Node Hit || INDEX_0 Val: %d ||"), InParseRecord.PhraseInputs["INDEX_0"]);
@@ -146,7 +146,7 @@ void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
 				)
 			}
 		)
-	);
+	);*/
 }
 
 void FOpenAccessibilityCommunicationModule::LoadZMQDLL()

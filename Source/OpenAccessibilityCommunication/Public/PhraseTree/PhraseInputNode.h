@@ -23,4 +23,10 @@ public:
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord) override;
 
 	// End FPhraseNode Implementation
+
+protected:
+
+	virtual bool MeetsInputRequirements(const FString& InPhrase);
+
+	virtual bool RecordInput(const FString& InInput, FParseRecord& OutParseRecord);
 };
