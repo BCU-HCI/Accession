@@ -64,7 +64,7 @@ def test_whisper_model(model_name: str, audiobuffer) -> ModelInfo:
 # Testing Here
 # ---------------------------------
 
-filepath = "Saved\BouncedWavFiles\OpenAccessibility\Audioclips\Captured_User_Audio.wav"
+filepath = "D:\dev\Unreal Engine\AccessibilityProject\Plugins\OpenAccessibility\Saved\BouncedWavFiles\OpenAccessibility\Audioclips\Captured_User_Audio.wav"
 
 models_to_test = ["tiny", "base", "small", "Systran/faster-distil-whisper-small.en"]
 

@@ -41,6 +41,8 @@ UAudioManager::~UAudioManager()
 
 void UAudioManager::StartCapturingAudio()
 {
+	AudioBuffer.Empty();
+
 	bIsCapturingAudio = true;
 }
 
@@ -51,7 +53,6 @@ void UAudioManager::StopCapturingAudio()
 	if (AudioBuffer.Num() == 0)
 		return;
 
-	// SendBufferForTranscription();
 	SaveAudioBufferToWAV(Settings.SavePath);
 
 	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer))
