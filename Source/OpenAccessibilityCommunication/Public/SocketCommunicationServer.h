@@ -17,7 +17,7 @@ class OPENACCESSIBILITYCOMMUNICATION_API FSocketCommunicationServer
 {
 public:
 
-	FSocketCommunicationServer(const std::string Address, const int Timeout);
+	FSocketCommunicationServer(const std::string SendAddress, const std::string RecvAddress, const int Timeout);
 	~FSocketCommunicationServer();
 
 	bool EventOccured();
@@ -42,7 +42,8 @@ public:
 
 protected:
 	zmq::context_t* Context;
-	zmq::socket_t* Socket;
+	zmq::socket_t* SendSocket;
+	zmq::socket_t* RecvSocket;
 	
 	zmq::poller_t<int>* Poller;
 

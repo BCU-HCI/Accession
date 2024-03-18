@@ -3,8 +3,6 @@ import unreal
 import subprocess
 import pkg_resources
 
-unreal.log(f"|| Saved Location || {unreal.Paths.project_saved_dir()}")
-
 unreal.log("|| OpenAccessibility Python || Initializing")
 
 # Dependencies of the Project
@@ -27,8 +25,8 @@ if missing_dependencies:
 
         for depNum, depName in enumerate(missing_dependencies):
             slow_task.enter_progress_frame(
-                1,
-                f"Installing Dependency {depNum} / {missing_dependencies.__len__()}: {depName}",
+                0.5,
+                f"Installing Dependency {depNum} / {len(missing_dependencies)}: {depName}",
             )
             unreal.log_warning(
                 f"|| OpenAccessibility Python || Installing {depName} ||"
@@ -43,6 +41,11 @@ if missing_dependencies:
                     depName,
                 ],
             )
+
+            slow_task.enter_progress_frame(
+                0.5,
+                f"Installed Dependency {depNum} / {len(missing_dependencies)}: {depName}",
+            )
 else:
     unreal.log(
         "|| OpenAccessibility Python || All Dependencies are already installed ||"
@@ -54,11 +57,3 @@ unreal.log("|| OpenAccessibility Python || Initializing Python Runtime ||")
 
 # Initialize the Python Runtime
 OpenAccessibilityPy = OAPy.OpenAccessibilityPy()
-
-
-def OnPythonShutdown():
-    unreal.log("|| OpenAccessibility Python || Python Runtime Shutdown ||")
-    del OpenAccessibilityPy
-
-
-unreal.register_python_shutdown_callback(OnPythonShutdown)

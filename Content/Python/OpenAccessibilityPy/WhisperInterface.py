@@ -1,15 +1,15 @@
-import unreal
 import numpy as np
 
 from faster_whisper import WhisperModel
 from faster_whisper.transcribe import Segment
 
+try:
+    from .Logging import Log, LogLevel
+except ImportError:
+    from Logging import Log, LogLevel
 
-from .Logging import Log, LogLevel
 
-
-@unreal.uclass()
-class WhisperInterface(unreal.Class):
+class WhisperInterface:
 
     def __init__(
         self,
@@ -20,7 +20,7 @@ class WhisperInterface(unreal.Class):
         # Whisper Focused Variables
         self.whisper_model = WhisperModel(
             model_name,
-            device="cpu",
+            device=device,
             compute_type=compute_type,
             num_workers=2,
             cpu_threads=4,
@@ -33,6 +33,10 @@ class WhisperInterface(unreal.Class):
         segments, info = self.whisper_model.transcribe(
             filepath,
             beam_size=self.beam_size,
+            language="en",
+            prepend_punctuations="",
+            append_punctuations="",
+            vad_filter=True,
         )
 
         Log(
@@ -69,7 +73,10 @@ class WhisperInterface(unreal.Class):
     def process_audio_buffer(self, audio_buffer: np.ndarray) -> list[Segment]:
 
         segments, info = self.whisper_model.transcribe(
-            audio_buffer, beam_size=self.beam_size
+            audio_buffer,
+            beam_size=self.beam_size,
+            language="en",
+            vad_filter=True,
         )
 
         Log(

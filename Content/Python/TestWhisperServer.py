@@ -2,38 +2,54 @@ from typing import Iterable
 import zmq
 import time
 import numpy as np
+import threading
 
 from faster_whisper import WhisperModel
-from faster_whisper.transcribe import Segment
+from faster_whisper.transcribe import decode_audio
 
+import OpenAccessibilityPy as OAPy
+
+## DEBUGGING VARIABLES
 POST_STATUS = False
 POST_DEBUG = True
 
+COMPARE_DEBUG = True
 
-context = zmq.Context()
+## CORE VARIABLES
+com_server = OAPy.CommunicationServer()
+whisper_interface = OAPy.WhisperInterface()
 
-socket = context.socket(zmq.REP)
-socket_context = socket.bind("tcp://127.0.0.1:5555")
-print(
-    f"|| Socket Context Info: | addr: {socket_context.addr} | kind: {socket_context.kind} ||"
-)
+# ----- Debug Functions -----
 
-poller = zmq.Poller()
-poller.register(socket, zmq.POLLIN)
 
-base_model_name = "small"
-better_whisper_model_name = "Systran/faster-distil-whisper-small.en"
+def get_wav_audio(file_path: str) -> np.ndarray:
+    return decode_audio(file_path)
 
-whisper_model = WhisperModel(
-    better_whisper_model_name, device="cuda", local_files_only=False
-)
+
+def perform_debug_compares(wav_audio: np.ndarray, recv_message: np.ndarray):
+    print("|| Performing Debug Compares ||")
+
+    isSame: bool = np.array_equal(wav_audio, recv_message)
+    isClose: bool = np.allclose(wav_audio, recv_message)
+
+    print(f"|| Size Comparisons | Is Same: {isSame} | Is Close: {isClose} ||")
+
+    try:
+        difference = np.subtract(wav_audio, recv_message)
+
+        print(f"|| Val Difference: {difference} ||")
+    except:
+        print("|| ERROR PERFORMING DIFFERENCE ||")
+
+
+# ------ Log Functions ------
 
 
 def transcribe_audio(audio: np.ndarray):
 
     start_time = time.perf_counter()
 
-    segments, _ = whisper_model.transcribe(audio, beam_size=5)
+    segments, _ = whisper_interface.transcribe(audio, beam_size=5)
 
     if POST_DEBUG:
         print(f"|| Transcription Time: {time.perf_counter() - start_time}s ||")
@@ -41,29 +57,71 @@ def transcribe_audio(audio: np.ndarray):
     return [segment.text.encode() for segment in segments]
 
 
+def handle_audio_event():
+    if POST_STATUS:
+        print("|| Socket Event Occurred ||")
+
+    # Debug Components
+    wav_audio = get_wav_audio(
+        "D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/CAPTURED_USER_AUDIO.wav"
+    )
+
+    # ----- #
+
+    event_handle_time = time.perf_counter()
+
+    recv_message = com_server.ReceiveNDArray()
+
+    print(f"|| Received Message: {recv_message} ||")
+
+    trans_audio = transcribe_audio(recv_message)
+
+    if len(trans_audio) > 0:
+        try:
+            com_server.SendMultipart(trans_audio)
+        except:
+            print("|| ERROR SENDING AUDIO ||")
+    else:
+        print("|| SENDING REPLACEMENT AUDIO ||")
+
+        com_server.SendMultipart(
+            [
+                "VIEW NODE 0".encode(),
+                "NODE 0 MOVE UP 50".encode(),
+            ]
+        )
+
+    # ------------------------------------------------
+    if POST_DEBUG:
+        print(
+            f"|| Event Handle Time: {time.perf_counter() - event_handle_time}s ||\n\n"
+        )
+
+    if COMPARE_DEBUG:
+        perform_debug_compares(wav_audio, recv_message)
+
+
+def get_wav_audio(file_path: str) -> np.ndarray:
+    return decode_audio(file_path)
+
+
+print("|| Starting Whisper Server ||")
 while True:
 
     if POST_STATUS:
         print("|| Waiting for Message ||")
-    polled_events = dict(poller.poll(10))
 
-    if len(polled_events) > 0 and polled_events.get(socket) == zmq.POLLIN:
-        if POST_STATUS:
-            print("|| Socket Event Occurred ||")
+    if com_server.EventOccured():
 
-        event_handle_time = time.perf_counter()
-        recv_message = np.frombuffer(socket.recv(zmq.DONTWAIT), dtype=np.float32)
+        test_thread = threading.Thread(
+            name="Whisper_Transcription_Event",
+            target=handle_audio_event,
+            daemon=True,
+        )
 
-        print(f"|| Received Message: {recv_message} ||")
+        test_thread.start()
 
-        trans_audio = transcribe_audio(recv_message)
-
-        socket.send_multipart(trans_audio)
-
-        if POST_DEBUG:
-            print(
-                f"|| Event Handle Time: {time.perf_counter() - event_handle_time}s ||"
-            )
+        test_thread.join()
 
     else:
         if POST_STATUS:

@@ -41,6 +41,8 @@ UAudioManager::~UAudioManager()
 
 void UAudioManager::StartCapturingAudio()
 {
+	AudioBuffer.Empty();
+
 	bIsCapturingAudio = true;
 }
 
@@ -51,7 +53,6 @@ void UAudioManager::StopCapturingAudio()
 	if (AudioBuffer.Num() == 0)
 		return;
 
-	// SendBufferForTranscription();
 	SaveAudioBufferToWAV(Settings.SavePath);
 
 	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer))
@@ -63,7 +64,7 @@ void UAudioManager::StopCapturingAudio()
 		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| No Delegates Bound to Audio Ready For Transcription Delegate. ||"));
 	}
 
-	AudioBuffer.Reset();
+	AudioBuffer.Empty();
 }
 
 void UAudioManager::PRIVATE_OnAudioGenerate(const float* InAudio, int32 NumSamples)
