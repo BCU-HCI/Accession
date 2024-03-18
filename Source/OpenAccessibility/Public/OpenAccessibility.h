@@ -28,6 +28,14 @@ public:
 		return false;
 	}
 
+private:
+
+	// Console Commands
+
+	void RegisterConsoleCommands();
+
+	void UnregisterConsoleCommands();
+
 public:
 
 	// Accessibility Components
@@ -35,4 +43,8 @@ public:
 	TSharedPtr<class FAccessibilityNodeFactory> AccessibilityNodeFactory;
 	TSharedPtr<class FAssetAccessibilityRegistry> AssetAccessibilityRegistry;
 
+private:
+
+	// Console Comman Variables
+	TArray<IConsoleCommand*> ConsoleVariables;
 };

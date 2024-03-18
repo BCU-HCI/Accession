@@ -1,29 +1,29 @@
-// Copyright F-Dudley. All Rights Reserved.
-
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PhraseInputNode.h"
+#include "PhraseEnumInputNode.h"
+#include "InputContainers.h"
 
-/**
- * 
- */
-class OPENACCESSIBILITYCOMMUNICATION_API FPhraseDirectionalInputNode : public FPhraseInputNode
+class OPENACCESSIBILITYCOMMUNICATION_API FPhraseDirectionalInputNode : public FPhraseEnumInputNode<EPhraseDirectionalInput>
 {
 public:
-	FPhraseDirectionalInputNode(const TCHAR* InInputString);
-	FPhraseDirectionalInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes);
+	FPhraseDirectionalInputNode(const TCHAR* NodeName)
+		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName)
+	{}
 
-	~FPhraseDirectionalInputNode();
+	FPhraseDirectionalInputNode(const TCHAR* NodeName, TPhraseNodeArray InChildNodes)
+		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InChildNodes)
+	{}
+};
 
-protected:
+class OPENACCESSIBILITYCOMMUNICATION_API FPhrase2DDirectionalInputNode : public FPhraseEnumInputNode<EPhrase2DDirectionalInput>
+{
+public:
+	FPhrase2DDirectionalInputNode(const TCHAR* NodeName)
+		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName)
+	{}
 
-	// FPhraseInputNode Implementation
-
-	virtual bool MeetsInputRequirements(const FString& InPhrase) override;
-
-	virtual bool RecordInput(const FString& InInput, FParseRecord& OutParseRecord) override;
-
-	// End FPhraseInputNode Implementation
-
+	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TPhraseNodeArray InChildNodes)
+		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InChildNodes)
+	{}
 };
