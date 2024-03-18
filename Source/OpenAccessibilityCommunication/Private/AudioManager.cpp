@@ -64,7 +64,7 @@ void UAudioManager::StopCapturingAudio()
 		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| No Delegates Bound to Audio Ready For Transcription Delegate. ||"));
 	}
 
-	AudioBuffer.Reset();
+	AudioBuffer.Empty();
 }
 
 void UAudioManager::PRIVATE_OnAudioGenerate(const float* InAudio, int32 NumSamples)
