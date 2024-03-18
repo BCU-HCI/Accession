@@ -28,7 +28,7 @@ def main():
             message_ndarray: np.ndarray = np.frombuffer(recv_message, dtype=np.float32)
 
             decoded_ndarray = decode_audio(
-                "D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/Captured_User_Audio.wav"
+                "D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/TEST_AUDIO.mp3"
             )
 
             isSame = np.array_equal(message_ndarray, decoded_ndarray)

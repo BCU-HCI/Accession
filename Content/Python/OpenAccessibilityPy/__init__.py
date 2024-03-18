@@ -57,15 +57,15 @@ class OpenAccessibilityPy:
         if self.com_server.EventOccured():
             Log("Event Occured")
 
-            test_thread = Thread(
+            transcription_thread = Thread(
                 name="TranscriptionHandlerThread",
                 target=self.HandleTranscriptionRequest,
                 daemon=True,
             )
 
-            test_thread.start()
+            transcription_thread.start()
 
-            test_thread.join()
+            transcription_thread.join()
 
             # recv_message = self.com_server.ReceiveNDArray()
 
