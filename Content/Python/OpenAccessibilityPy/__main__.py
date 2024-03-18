@@ -1,5 +1,5 @@
 import numpy as np
-from zmq import REP as zmq_REP
+from zmq import PUSH as zmq_PUSH, PULL as zmq_PULL
 
 from faster_whisper.transcribe import decode_audio
 
@@ -12,7 +12,9 @@ from Logging import Log, LogLevel
 def main():
 
     whisper_interface = WhisperInterface("Systran/faster-distil-whisper-small.en")
-    com_server = CommunicationServer(socket_type=zmq_REP, poll_timeout=10)
+    com_server = CommunicationServer(
+        send_socket_type=zmq_PUSH, recv_socket_type=zmq_PULL, poll_timeout=10
+    )
 
     should_run = True
 

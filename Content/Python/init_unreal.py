@@ -3,7 +3,6 @@ import unreal
 import subprocess
 import pkg_resources
 
-unreal.log(f"|| Saved Location || {unreal.Paths.project_saved_dir()}")
 unreal.log("|| OpenAccessibility Python || Initializing")
 
 # Dependencies of the Project
