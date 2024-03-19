@@ -40,15 +40,19 @@ public class OpenAccessibilityCommunication : ModuleRules
 				// Internal ThirdParty Dependencies
 				"ZeroMQ",
 
-				// Unreal Dependencies
+				// Core Modules
 				"CoreUObject",
 				"Engine",
+
+				// Editor Modules
 				"UnrealEd",
                 "Projects",
 
+				// Slate UI Modules
                 "Slate",
 				"SlateCore",
 
+				// Audio Modules
 				"AudioMixer",
 				"AudioCapture",
 				"InputCore",

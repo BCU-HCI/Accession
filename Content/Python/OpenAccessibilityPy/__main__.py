@@ -9,6 +9,33 @@ from WhisperInterface import WhisperInterface
 from Logging import Log, LogLevel
 
 
+def PlotAudioBuffers(recv_audio_buffer: np.ndarray, decoded_audio_buffer: np.ndarray):
+    """
+    Plots the received audio buffer and the decoded audio buffer to compare the two.
+    """
+
+    try:
+        import matplotlib.pyplot as plt
+
+        fig, axs = plt.subplots(3)
+
+        axs[0].plot(recv_audio_buffer)
+
+        axs[1].plot(decoded_audio_buffer)
+
+        axs[2].plot(recv_audio_buffer)
+        axs[2].plot(decoded_audio_buffer)
+        axs[2].set_title("Buffer Comparison")
+
+        fig.savefig(
+            "D:/dev/Unreal Engine/AccessibilityProject/Saved/Debug/OpenAccessibility/BufferComparison.png",
+            dpi=300,
+        )
+
+    except Exception as e:
+        Log(f"Error Plotting Audio Buffers: {e}", LogLevel.ERROR)
+
+
 def main():
 
     whisper_interface = WhisperInterface("Systran/faster-distil-whisper-small.en")
@@ -28,8 +55,10 @@ def main():
             message_ndarray: np.ndarray = np.frombuffer(recv_message, dtype=np.float32)
 
             decoded_ndarray = decode_audio(
-                "D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/TEST_AUDIO.mp3"
+                "D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/CAPTURED_USER_AUDIO.wav"
             )
+
+            PlotAudioBuffers(message_ndarray, decoded_ndarray)
 
             isSame = np.array_equal(message_ndarray, decoded_ndarray)
 

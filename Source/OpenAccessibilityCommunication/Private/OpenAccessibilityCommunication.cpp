@@ -13,6 +13,7 @@
 
 #include "Containers/Ticker.h"
 #include "Interfaces/IPluginManager.h"
+#include "Sound/SampleBufferIO.h"
 #include "HAL/PlatformProcess.h"
 
 #define LOCTEXT_NAMESPACE "UOpenAccessibilityCommunicationModule"
@@ -43,6 +44,9 @@ void FOpenAccessibilityCommunicationModule::StartupModule()
 
 	// Bind Input Events
 	KeyDownEventHandle = FSlateApplication::Get().OnApplicationPreInputKeyDownListener().AddRaw(this, &FOpenAccessibilityCommunicationModule::HandleKeyDownEvent);
+
+	// Register Console Commands
+	RegisterConsoleCommands();
 }
 
 void FOpenAccessibilityCommunicationModule::ShutdownModule()
@@ -57,6 +61,7 @@ void FOpenAccessibilityCommunicationModule::ShutdownModule()
 
 	UnloadZMQDLL();
 
+	UnregisterConsoleCommands();
 }
 
 bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
@@ -110,6 +115,8 @@ void FOpenAccessibilityCommunicationModule::TranscribeWaveForm(const TArray<floa
 		return;
 	}
 
+	PrevAudioBuffer = TArray(AudioBufferToTranscribe);
+
 	UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||"), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * sizeof(float)));
 
 	if (SocketServer->SendArrayMessage(AudioBufferToTranscribe, ComSendFlags::none))
@@ -147,6 +154,31 @@ void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
 			}
 		)
 	);*/
+}
+
+void FOpenAccessibilityCommunicationModule::RegisterConsoleCommands()
+{
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibilityCom.Debug.SendLastBuffer"),
+		TEXT("Sends the last saved audio buffer to the transcription service."),
+
+		FConsoleCommandDelegate::CreateLambda([this]() {
+			UE_LOG(LogOpenAccessibilityCom, Display, TEXT("OpenAccessibilityCom.Debug.SendLastBuffer"));
+
+			TranscribeWaveForm(PrevAudioBuffer);
+		})
+	));
+}
+
+void FOpenAccessibilityCommunicationModule::UnregisterConsoleCommands()
+{
+	IConsoleCommand* ConsoleCommand = nullptr;
+	while (ConsoleCommands.Num() > 0)
+	{
+		ConsoleCommand = ConsoleCommands.Pop();
+
+		IConsoleManager::Get().UnregisterConsoleObject(ConsoleCommand);
+	}
 }
 
 void FOpenAccessibilityCommunicationModule::LoadZMQDLL()

@@ -42,6 +42,10 @@ private:
 
 	void BuildPhraseTree();
 
+	void RegisterConsoleCommands();
+
+	void UnregisterConsoleCommands();
+
 	void LoadZMQDLL();
 
 	void UnloadZMQDLL();
@@ -55,6 +59,8 @@ public:
 	TSharedPtr<FPhraseTree> PhraseTree;
 
 private:
+	TArray<float> PrevAudioBuffer;
+
 	FTickerDelegate TickDelegate;
 	FTSTicker::FDelegateHandle TickDelegateHandle;
 
@@ -63,4 +69,6 @@ private:
 	FDelegateHandle KeyDownEventHandle;
 
 	void* ZMQDllHandle;
+
+	TArray<IConsoleCommand*> ConsoleCommands;
 };

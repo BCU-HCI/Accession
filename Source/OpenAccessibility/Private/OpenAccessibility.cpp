@@ -78,7 +78,7 @@ void FOpenAccessibilityModule::ShutdownModule()
 
 void FOpenAccessibilityModule::RegisterConsoleCommands()
 {
-	ConsoleVariables.Add(IConsoleManager::Get().RegisterConsoleCommand(
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
 		TEXT("OpenAccessibility.Debug.FlashActiveTab"),
 		TEXT("Flashes the active tab in the editor."),
 
@@ -104,15 +104,15 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 
 void FOpenAccessibilityModule::UnregisterConsoleCommands()
 {
-	IConsoleCommand* ConsoleVariable = nullptr;
-	while (ConsoleVariables.Num() > 0)
+	IConsoleCommand* ConsoleCommand = nullptr;
+	while (ConsoleCommands.Num() > 0)
 	{
-		ConsoleVariable = ConsoleVariables.Pop();
+		ConsoleCommand = ConsoleCommands.Pop();
 
-		IConsoleManager::Get().UnregisterConsoleObject(ConsoleVariable);
+		IConsoleManager::Get().UnregisterConsoleObject(ConsoleCommand);
 
-		delete ConsoleVariable;
-		ConsoleVariable = nullptr;
+		delete ConsoleCommand;
+		ConsoleCommand = nullptr;
 	}
 }
 

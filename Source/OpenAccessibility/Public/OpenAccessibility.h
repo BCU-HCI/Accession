@@ -45,6 +45,5 @@ public:
 
 private:
 
-	// Console Comman Variables
-	TArray<IConsoleCommand*> ConsoleVariables;
+	TArray<IConsoleCommand*> ConsoleCommands;
 };

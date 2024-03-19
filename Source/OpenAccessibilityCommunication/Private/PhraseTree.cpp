@@ -39,8 +39,11 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 		}
 
 		// Filter the Transcription Segment, to remove any unwanted characters.
-		TranscriptionSegment.ReplaceInline(TEXT("."), TEXT(" "), ESearchCase::IgnoreCase);
+		TranscriptionSegment.ReplaceInline(TEXT("."), TEXT(""), ESearchCase::IgnoreCase);
+		TranscriptionSegment.ReplaceInline(TEXT(","), TEXT(""), ESearchCase::IgnoreCase);
 		TranscriptionSegment.TrimStartAndEndInline();
+
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Filtered Transcription Segment: { %s } ||"), *TranscriptionSegment)
 
 		// Parse the Transcription Segment into an Array of Words, removing any white space.
 		TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray, TEXT(","), true);

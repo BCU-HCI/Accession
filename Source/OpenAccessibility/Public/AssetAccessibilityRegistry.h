@@ -49,6 +49,7 @@ private:
 	// Asset Editor Registers
 
 	void RegisterBlueprintAsset(UBlueprint* InBlueprint);
+	void RegisterMaterialAsset(UMaterial* InMaterial);
 	void RegisterUWorldAsset(UWorld* InWorld);
 
 public:
