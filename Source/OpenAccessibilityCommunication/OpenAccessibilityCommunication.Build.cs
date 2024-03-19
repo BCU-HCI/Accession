@@ -54,6 +54,7 @@ public class OpenAccessibilityCommunication : ModuleRules
 
 				// Audio Modules
 				"AudioMixer",
+				"AudioCaptureCore",
 				"AudioCapture",
 				"InputCore",
 			}

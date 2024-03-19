@@ -5,6 +5,7 @@
 #include "OpenAccessibilityComLogging.h"
 #include "SocketCommunicationServer.h"
 
+#include "AudioCaptureCore.h"
 #include "Templates/Function.h"
 
 UAudioManager::UAudioManager()
@@ -13,9 +14,9 @@ UAudioManager::UAudioManager()
 
 	// Create Audio Capture Object and Initialize Audio Stream
 	bIsCapturingAudio = false;
-    AudioCapture = NewObject<UAudioCapture>();
+    AudioCapture = NewObject<UBAudioCapture>();
 	AudioCapture->AddToRoot();
-	AudioCapture->OpenDefaultAudioStream();
+	AudioCapture->OpenDefaultAudioStream(16000, NULL);
 	AudioCapture->StartCapturingAudio();
 
 	// Create FileIO Objects

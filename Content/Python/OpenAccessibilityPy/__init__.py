@@ -14,6 +14,7 @@ def HandleTranscriptionNewWhisper(com_server: CommunicationServer):
 
     recv_message = com_server.ReceiveNDArray()
 
+    # Get the message as a numpy array, reshaped for a stereo audio buffer.
     message_ndarray: np.ndarray = np.frombuffer(recv_message, dtype=np.float32)
 
     Log(
@@ -132,14 +133,6 @@ class OpenAccessibilityPy:
                 Log("No Transcription Segments Returned", LogLevel.WARNING)
         else:
             Log("No Transcription Segments Returned", LogLevel.WARNING)
-            Log("Sending Mock Segments", LogLevel.WARNING)
-
-            self.com_server.SendMultipart(
-                [
-                    "VIEW NODE 0".encode(),
-                    "NODE 0 MOVE UP 50".encode(),
-                ]
-            )
 
     def Shutdown(self):
         if self.tick_handle:

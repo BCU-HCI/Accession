@@ -1,3 +1,4 @@
+from ctypes import Union
 import numpy as np
 
 from faster_whisper import WhisperModel
@@ -76,7 +77,6 @@ class WhisperInterface:
             audio_buffer,
             beam_size=self.beam_size,
             language="en",
-            vad_filter=True,
         )
 
         Log(

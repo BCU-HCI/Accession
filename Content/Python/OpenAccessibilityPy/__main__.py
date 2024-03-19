@@ -36,6 +36,17 @@ def PlotAudioBuffers(recv_audio_buffer: np.ndarray, decoded_audio_buffer: np.nda
         Log(f"Error Plotting Audio Buffers: {e}", LogLevel.ERROR)
 
 
+def SplitAudioToStereo(audio_buffer: np.ndarray):
+    """
+    Splits the audio buffer into two separate audio buffers for the left and right channels.
+    """
+
+    left_channel = audio_buffer[0::2]
+    right_channel = audio_buffer[1::2]
+
+    return left_channel, right_channel
+
+
 def main():
 
     whisper_interface = WhisperInterface("Systran/faster-distil-whisper-small.en")
@@ -54,8 +65,11 @@ def main():
 
             message_ndarray: np.ndarray = np.frombuffer(recv_message, dtype=np.float32)
 
+            message_ndarray = message_ndarray.reshape(2, -1)
+
             decoded_ndarray = decode_audio(
-                "D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/CAPTURED_USER_AUDIO.wav"
+                "D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/CAPTURED_USER_AUDIO.wav",
+                sampling_rate=16000,
             )
 
             PlotAudioBuffers(message_ndarray, decoded_ndarray)
@@ -65,7 +79,7 @@ def main():
             # difference = np.subtract(message_ndarray, decoded_ndarray)
 
             Log(
-                f"Buffer Comparisons:\n    Original: {message_ndarray} | Shape: {message_ndarray.shape}\n    Decoded: {decoded_ndarray} | Shape: {message_ndarray.shape}\n   Is Same: {isSame}"
+                f"Buffer Comparisons:\n    Original: {message_ndarray} | Shape: {message_ndarray.shape}\n    Decoded: {decoded_ndarray} | Shape: {decoded_ndarray.shape}\n   Is Same: {isSame}"
             )
 
             Log(
@@ -73,7 +87,7 @@ def main():
             )
 
             transcription_segments = whisper_interface.process_audio_buffer(
-                decoded_ndarray
+                message_ndarray
             )
 
             encoded_segments = [

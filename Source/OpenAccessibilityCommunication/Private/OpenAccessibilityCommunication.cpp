@@ -158,6 +158,17 @@ void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
 
 void FOpenAccessibilityCommunicationModule::RegisterConsoleCommands()
 {
+	// Audio Commands
+
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibilityCom.Debug.ShowAudioSampleRate"),
+		TEXT("Starts capturing audio from the default audio capture device."), 
+
+		FConsoleCommandDelegate::CreateLambda([this]() {
+			UE_LOG(LogOpenAccessibilityCom, Display, TEXT("OpenAccessibilityCom.Debug.ShowAudioSampleRate | Sample Rate: %d"), this->AudioManager->GetAudioCaptureSampleRate());
+		})
+	));
+
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
 		TEXT("OpenAccessibilityCom.Debug.SendLastBuffer"),
 		TEXT("Sends the last saved audio buffer to the transcription service."),
@@ -168,6 +179,8 @@ void FOpenAccessibilityCommunicationModule::RegisterConsoleCommands()
 			TranscribeWaveForm(PrevAudioBuffer);
 		})
 	));
+
+
 }
 
 void FOpenAccessibilityCommunicationModule::UnregisterConsoleCommands()

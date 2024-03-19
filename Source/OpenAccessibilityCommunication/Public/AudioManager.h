@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "AudioCapture.h"
+#include "UBAudioCapture.h"
 #include "Sound/SampleBufferIO.h"
 #include "Delegates/DelegateCombinations.h"
 
@@ -63,6 +63,9 @@ public:
 
     bool IsCapturingAudio() const { return bIsCapturingAudio; }
 
+    int32 GetAudioCaptureSampleRate() const { return AudioCapture->GetSampleRate(); }
+    int32 GetAudioCaptureNumChannels() const { return AudioCapture->GetNumChannels(); }
+
 public:
     UPROPERTY(Config, EditAnywhere, Category = "OpenAccessibility/Audio Manager")
     FAudioManagerSettings Settings;
@@ -73,7 +76,7 @@ private:
     
     // Audio Capture
     bool bIsCapturingAudio = false;
-    UAudioCapture* AudioCapture;
+    class UBAudioCapture* AudioCapture;
     TArray<float> AudioBuffer;
 
     FAudioGeneratorHandle OnAudioGenerateHandle;
