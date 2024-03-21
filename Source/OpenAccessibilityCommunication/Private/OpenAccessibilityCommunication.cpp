@@ -162,10 +162,19 @@ void FOpenAccessibilityCommunicationModule::RegisterConsoleCommands()
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
 		TEXT("OpenAccessibilityCom.Debug.ShowAudioSampleRate"),
-		TEXT("Starts capturing audio from the default audio capture device."), 
+		TEXT("Logs the Number of Samples being captured, from user input."), 
 
 		FConsoleCommandDelegate::CreateLambda([this]() {
 			UE_LOG(LogOpenAccessibilityCom, Display, TEXT("OpenAccessibilityCom.Debug.ShowAudioSampleRate | Sample Rate: %d"), this->AudioManager->GetAudioCaptureSampleRate());
+		})
+	));
+
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibilityCom.Debug.ShowAudioNumChannels"),
+		TEXT("Logs the Number of Audio Channels being captured, from user input."),
+
+		FConsoleCommandDelegate::CreateLambda([this]() {
+			UE_LOG(LogOpenAccessibilityCom, Display, TEXT("OpenAccessibilityCom.Debug.ShowAudioNumChannels | Num Channels: %d"), this->AudioManager->GetAudioCaptureNumChannels());
 		})
 	));
 

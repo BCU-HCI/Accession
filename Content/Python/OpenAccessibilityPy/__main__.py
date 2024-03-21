@@ -61,25 +61,26 @@ def main():
     while should_run:
 
         if com_server.EventOccured():
+            Log("Event Occured")
+
             recv_message = com_server.ReceiveNDArray()
 
             message_ndarray: np.ndarray = np.frombuffer(recv_message, dtype=np.float32)
 
-            message_ndarray = message_ndarray.reshape(2, -1)
-
             decoded_ndarray = decode_audio(
-                "D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/CAPTURED_USER_AUDIO.wav",
+                "D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/Captured_User_Audio.wav",
                 sampling_rate=16000,
             )
 
             PlotAudioBuffers(message_ndarray, decoded_ndarray)
 
             isSame = np.array_equal(message_ndarray, decoded_ndarray)
+            # isClose = np.allclose(message_ndarray, decoded_ndarray)
 
             # difference = np.subtract(message_ndarray, decoded_ndarray)
 
             Log(
-                f"Buffer Comparisons:\n    Original: {message_ndarray} | Shape: {message_ndarray.shape}\n    Decoded: {decoded_ndarray} | Shape: {decoded_ndarray.shape}\n   Is Same: {isSame}"
+                f"Buffer Comparisons | Original: {message_ndarray} | Shape: {message_ndarray.shape} | Decoded: {decoded_ndarray} | Shape: {decoded_ndarray.shape}||\n|| Is Same: {isSame} ||"
             )
 
             Log(

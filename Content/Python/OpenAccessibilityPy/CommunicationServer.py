@@ -98,7 +98,10 @@ class CommunicationServer:
 
     def ReceiveNDArray(self):
 
-        return np.frombuffer(self.recv_socket.recv(zmq.DONTWAIT), dtype=np.float32)
+        return np.frombuffer(
+            self.recv_socket.recv(zmq.DONTWAIT),
+            dtype=np.float32,
+        )
 
     def ReceiveMultipart(self):
 

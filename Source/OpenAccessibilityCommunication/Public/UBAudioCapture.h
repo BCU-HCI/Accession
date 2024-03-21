@@ -15,5 +15,5 @@ public:
 	UBAudioCapture();
 	~UBAudioCapture();
 
-	bool OpenDefaultAudioStream(int32 OverrideSampleRate = NULL, int32 OverrideInputChannels = NULL);
+	bool OpenDefaultAudioStream(int32 OverrideSampleRate, int32 OverrideInputChannels);
 };

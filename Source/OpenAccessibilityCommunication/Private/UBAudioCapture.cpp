@@ -25,6 +25,12 @@ bool UBAudioCapture::OpenDefaultAudioStream(int32 OverrideSampleRate, int32 Over
 
 			// Start the stream here to avoid hitching the audio render thread. 
 			Audio::FAudioCaptureDeviceParams Params;
+			if (OverrideSampleRate != NULL)
+				Params.SampleRate = OverrideSampleRate;
+			if (OverrideInputChannels != NULL)
+				Params.NumInputChannels = OverrideInputChannels;
+
+
 			if (AudioCapture.OpenAudioCaptureStream(Params, MoveTemp(OnCapture), 1024))
 			{
 				// If we opened the capture stream succesfully, get the capture device info and initialize the UAudioGenerator
@@ -32,9 +38,10 @@ bool UBAudioCapture::OpenDefaultAudioStream(int32 OverrideSampleRate, int32 Over
 				if (AudioCapture.GetCaptureDeviceInfo(Info))
 				{
 					Init(
-						OverrideSampleRate != NULL ? OverrideSampleRate : Info.PreferredSampleRate, 
+						OverrideSampleRate != NULL ? OverrideSampleRate : Info.PreferredSampleRate , 
 						OverrideInputChannels != NULL ? OverrideInputChannels : Info.InputChannels
 					);
+
 					return true;
 				}
 			}

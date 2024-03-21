@@ -16,7 +16,7 @@ UAudioManager::UAudioManager()
 	bIsCapturingAudio = false;
     AudioCapture = NewObject<UBAudioCapture>();
 	AudioCapture->AddToRoot();
-	AudioCapture->OpenDefaultAudioStream(16000, NULL);
+	AudioCapture->OpenDefaultAudioStream(NULL, NULL);
 	AudioCapture->StartCapturingAudio();
 
 	// Create FileIO Objects
