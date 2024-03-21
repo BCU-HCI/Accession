@@ -6,6 +6,7 @@ from multiprocessing.pool import ThreadPool
 
 from .CommunicationServer import CommunicationServer
 from .WhisperInterface import WhisperInterface
+from .Audio import AudioResampler
 from .Logging import Log, LogLevel
 
 
@@ -52,6 +53,7 @@ class OpenAccessibilityPy:
         self.com_server = CommunicationServer(
             send_socket_type=zmq.PUSH, recv_socket_type=zmq.PULL, poll_timeout=10
         )
+        self.audio_resampler = AudioResampler(sample_rate=16000)
 
         self.tick_handle = None
         self.tick_handle = ue.register_slate_post_tick_callback(self.Tick)
@@ -86,6 +88,8 @@ class OpenAccessibilityPy:
             f"Recieved Message: {message_ndarray} | Size: {message_ndarray.size} | Shape: {message_ndarray.shape}"
         )
 
+        message_ndarray = self.audio_resampler.resample(message_ndarray)
+
         transcription_segments = self.whisper_interface.process_audio_buffer(
             message_ndarray
         )
@@ -114,6 +118,9 @@ class OpenAccessibilityPy:
         if self.worker_pool:
             self.worker_pool.close()
             self.worker_pool.terminate()
+
+        if self.audio_resampler:
+            del self.audio_resampler
 
         if self.com_server:
             del self.com_server

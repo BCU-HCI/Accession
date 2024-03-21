@@ -5,17 +5,25 @@ from faster_whisper.transcribe import decode_audio
 
 from CommunicationServer import CommunicationServer
 from WhisperInterface import WhisperInterface
+from Audio import AudioResampler
 
 from Logging import Log, LogLevel
 
 
-def PlotAudioBuffers(recv_audio_buffer: np.ndarray, decoded_audio_buffer: np.ndarray):
+def PlotAudioBuffers(
+    recv_audio_buffer: np.ndarray,
+    decoded_audio_buffer: np.ndarray,
+    name: str = "BufferComparison",
+):
     """
     Plots the received audio buffer and the decoded audio buffer to compare the two.
     """
 
     try:
-        import matplotlib.pyplot as plt
+        import matplotlib as mpl
+        from matplotlib import pyplot as plt
+
+        mpl.interactive(False)
 
         fig, axs = plt.subplots(3)
 
@@ -28,23 +36,14 @@ def PlotAudioBuffers(recv_audio_buffer: np.ndarray, decoded_audio_buffer: np.nda
         axs[2].set_title("Buffer Comparison")
 
         fig.savefig(
-            "D:/dev/Unreal Engine/AccessibilityProject/Saved/Debug/OpenAccessibility/BufferComparison.png",
+            f"D:/dev/Unreal Engine/AccessibilityProject/Saved/Debug/OpenAccessibility/{name}.png",
             dpi=300,
         )
 
+        fig.clear()
+
     except Exception as e:
         Log(f"Error Plotting Audio Buffers: {e}", LogLevel.ERROR)
-
-
-def SplitAudioToStereo(audio_buffer: np.ndarray):
-    """
-    Splits the audio buffer into two separate audio buffers for the left and right channels.
-    """
-
-    left_channel = audio_buffer[0::2]
-    right_channel = audio_buffer[1::2]
-
-    return left_channel, right_channel
 
 
 def main():
@@ -53,6 +52,7 @@ def main():
     com_server = CommunicationServer(
         send_socket_type=zmq_PUSH, recv_socket_type=zmq_PULL, poll_timeout=10
     )
+    audio_resampler = AudioResampler(sample_rate=16000)
 
     should_run = True
 
@@ -79,12 +79,16 @@ def main():
 
             # difference = np.subtract(message_ndarray, decoded_ndarray)
 
-            Log(
-                f"Buffer Comparisons | Original: {message_ndarray} | Shape: {message_ndarray.shape} | Decoded: {decoded_ndarray} | Shape: {decoded_ndarray.shape}||\n|| Is Same: {isSame} ||"
-            )
+            Log(f"Recieved Buffer | {message_ndarray} | Shape: {message_ndarray.shape}")
 
-            Log(
-                f"Recieved Message: {message_ndarray} | Size: {message_ndarray.size} | Shape: {message_ndarray.shape}"
+            Log(f"Decoded Buffer | {decoded_ndarray} | Shape: {decoded_ndarray.shape}")
+            Log(f"Comparisons | Is Same: {isSame}")
+
+            # Apply Resampling to the Audio Buffer, to match samplerate of 16000Hz
+            message_ndarray = audio_resampler.resample(message_ndarray)
+
+            PlotAudioBuffers(
+                message_ndarray, decoded_ndarray, name="ResampledBufferComparison"
             )
 
             transcription_segments = whisper_interface.process_audio_buffer(

@@ -7,7 +7,8 @@ import threading
 from faster_whisper import WhisperModel
 from faster_whisper.transcribe import decode_audio
 
-import OpenAccessibilityPy as OAPy
+from OpenAccessibilityPy.CommunicationServer import CommunicationServer
+from OpenAccessibilityPy.WhisperInterface import WhisperInterface
 
 ## DEBUGGING VARIABLES
 POST_STATUS = False
@@ -16,8 +17,8 @@ POST_DEBUG = True
 COMPARE_DEBUG = True
 
 ## CORE VARIABLES
-com_server = OAPy.CommunicationServer()
-whisper_interface = OAPy.WhisperInterface()
+com_server = CommunicationServer()
+whisper_interface = WhisperInterface()
 
 # ----- Debug Functions -----
 

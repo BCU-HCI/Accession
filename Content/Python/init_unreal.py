@@ -56,4 +56,4 @@ import OpenAccessibilityPy as OAPy
 unreal.log("|| OpenAccessibility Python || Initializing Python Runtime ||")
 
 # Initialize the Python Runtime
-OpenAccessibilityPy = OAPy.OpenAccessibilityPy()
+# OpenAccessibilityPy = OAPy.OpenAccessibilityPy()

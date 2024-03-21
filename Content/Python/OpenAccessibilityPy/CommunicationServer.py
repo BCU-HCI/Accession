@@ -88,6 +88,9 @@ class CommunicationServer:
             )
             return False
 
+    def RecieveRaw(self):
+        return self.recv_socket.recv(zmq.DONTWAIT)
+
     def ReceiveString(self) -> str:
 
         return self.recv_socket.recv_string(zmq.DONTWAIT)
