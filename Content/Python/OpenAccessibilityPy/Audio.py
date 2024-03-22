@@ -25,7 +25,7 @@ class AudioResampler:
             del self._audio_resampler
             gc.collect()
 
-    def resample(self, audio_data: np.ndarray) -> np.ndarray:
+    def resample(self, audio_data: np.ndarray, sample_rate: int = 48000) -> np.ndarray:
 
         audio_data = self._convert_to_s16(audio_data).reshape(-1, 1)
 
@@ -35,11 +35,9 @@ class AudioResampler:
             layout="stereo",
         )
 
-        # Will require modification to support other sample rates, due to variance with input devices.
-        frame.sample_rate = 48000
+        frame.sample_rate = sample_rate
 
         resampled_frames = self._audio_resampler.resample(frame)
-        resampled_frame = resampled_frames[0]
 
         return self._convert_to_float32(resampled_frames[0].to_ndarray()).reshape(
             -1,
@@ -56,6 +54,9 @@ class AudioResampler:
 
         elif audio_data.dtype == np.int16:
             return audio_data.astype(np.float32) / 32768.0
+
+        else:
+            raise ValueError("Unsupported data type")
 
     def _convert_to_s16(self, audio_data: np.ndarray) -> np.ndarray:
 

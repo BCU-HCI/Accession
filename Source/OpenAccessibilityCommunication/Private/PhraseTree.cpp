@@ -28,6 +28,23 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 	}
 
 	TArray<FString> SegmentWordArray = TArray<FString>();
+	const TCHAR* ParseDelimsArray[11] = {
+		// Whitespace Delims
+		TEXT(" "),
+		TEXT("\t"),
+		TEXT("\r"),
+		TEXT("\n"),
+		TEXT(""),
+
+		// Punctuation Delims
+		TEXT("."),
+		TEXT(","),
+		TEXT("!"),
+		TEXT("?"),
+		TEXT(":"),
+		TEXT(";"),
+	};
+	int ParseDelimsCount = UE_ARRAY_COUNT(ParseDelimsArray);
 
 	int SegmentCount = 0;
 	for (FString& TranscriptionSegment : InTranscriptionSegments)
@@ -39,14 +56,13 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 		}
 
 		// Filter the Transcription Segment, to remove any unwanted characters.
-		TranscriptionSegment.ReplaceInline(TEXT("."), TEXT(""), ESearchCase::IgnoreCase);
-		TranscriptionSegment.ReplaceInline(TEXT(","), TEXT(""), ESearchCase::IgnoreCase);
 		TranscriptionSegment.TrimStartAndEndInline();
+		TranscriptionSegment.ReplaceInline(TEXT(","), TEXT(""), ESearchCase::IgnoreCase);
 
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Filtered Transcription Segment: { %s } ||"), *TranscriptionSegment)
 
 		// Parse the Transcription Segment into an Array of Words, removing any white space.
-		TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray, TEXT(","), true);
+		TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray, TEXT("."), true);
 		if (SegmentWordArray.Num() == 0)
 		{
 			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment has no Word Content ||"))

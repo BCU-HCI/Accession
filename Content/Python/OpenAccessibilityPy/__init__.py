@@ -2,7 +2,7 @@ import unreal as ue
 import zmq
 import numpy as np
 
-from multiprocessing.pool import ThreadPool
+from concurrent.futures import ThreadPoolExecutor as ThreadPool
 
 from .CommunicationServer import CommunicationServer
 from .WhisperInterface import WhisperInterface
@@ -47,7 +47,9 @@ class OpenAccessibilityPy:
         whisper_model: str = "Systran/faster-distil-whisper-small.en",
         worker_count: int = 2,
     ):
-        self.worker_pool = ThreadPool(processes=worker_count)
+        self.worker_pool = ThreadPool(
+            max_workers=worker_count, thread_name_prefix="TranscriptionWorker"
+        )
 
         self.whisper_interface = WhisperInterface(whisper_model)
         self.com_server = CommunicationServer(
@@ -66,18 +68,8 @@ class OpenAccessibilityPy:
         if self.com_server.EventOccured():
             Log("Event Occured")
 
-            result = self.worker_pool.apply_async(self.HandleTranscriptionRequest)
+            self.worker_pool.submit(self.HandleTranscriptionRequest)
             Log("|| Transcription Work Requested ||")
-
-            # transcription_thread = Thread(
-            #     name="TranscriptionHandlerThread",
-            #     target=self.HandleTranscriptionRequest,
-            #     daemon=True,
-            # )
-
-            # transcription_thread.start()
-
-            # transcription_thread.join()
 
     def HandleTranscriptionRequest(self):
         recv_message = self.com_server.ReceiveNDArray()
@@ -88,6 +80,8 @@ class OpenAccessibilityPy:
             f"Recieved Message: {message_ndarray} | Size: {message_ndarray.size} | Shape: {message_ndarray.shape}"
         )
 
+        # Require Extension to handle sample_rates other than 48000Hz
+        # possibly by first passing metadata as JSON, then the audio buffer.
         message_ndarray = self.audio_resampler.resample(message_ndarray)
 
         transcription_segments = self.whisper_interface.process_audio_buffer(
@@ -116,8 +110,8 @@ class OpenAccessibilityPy:
             del self.tick_handle
 
         if self.worker_pool:
-            self.worker_pool.close()
-            self.worker_pool.terminate()
+            self.worker_pool.shutdown(wait=False, cancel_futures=True)
+            del self.worker_pool
 
         if self.audio_resampler:
             del self.audio_resampler
