@@ -13,10 +13,12 @@ except ImportError:
 
 class AudioResampler:
 
-    def __init__(self, sample_rate: int = 16000):
+    def __init__(self, in_sample_rate: int = 48000, out_sample_rate: int = 16000):
         self._audio_resampler = av.AudioResampler(
-            format="s16", layout="mono", rate=sample_rate
+            format="s16", layout="mono", rate=out_sample_rate
         )
+
+        self.input_sample_rate = in_sample_rate
 
     def __del__(self):
         if self._audio_resampler:
@@ -25,7 +27,7 @@ class AudioResampler:
             del self._audio_resampler
             gc.collect()
 
-    def resample(self, audio_data: np.ndarray, sample_rate: int = 48000) -> np.ndarray:
+    def resample(self, audio_data: np.ndarray) -> np.ndarray:
 
         audio_data = self._convert_to_s16(audio_data).reshape(-1, 1)
 
@@ -35,7 +37,7 @@ class AudioResampler:
             layout="stereo",
         )
 
-        frame.sample_rate = sample_rate
+        frame.sample_rate = self.input_sample_rate
 
         resampled_frames = self._audio_resampler.resample(frame)
 
