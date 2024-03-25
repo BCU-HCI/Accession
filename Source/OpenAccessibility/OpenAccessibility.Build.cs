@@ -54,6 +54,7 @@ public class OpenAccessibility : ModuleRules
 				// Slate UI
                 "Slate",
 				"SlateCore",
+				"EditorStyle",
             }
 			);
 		
