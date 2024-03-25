@@ -68,16 +68,15 @@ class OpenAccessibilityPy:
         if self.com_server.EventOccured():
             Log("Event Occured")
 
-            self.worker_pool.submit(self.HandleTranscriptionRequest)
+            recv_message = self.com_server.ReceiveNDArray(dtype=np.float32)
+
+            self.worker_pool.submit(self.HandleTranscriptionRequest, (recv_message,))
             Log("|| Transcription Work Requested ||")
 
-    def HandleTranscriptionRequest(self):
-        recv_message = self.com_server.ReceiveNDArray()
-
-        message_ndarray: np.ndarray = np.frombuffer(recv_message, dtype=np.float32)
+    def HandleTranscriptionRequest(self, recv_message: np.ndarray):
 
         Log(
-            f"Recieved Message: {message_ndarray} | Size: {message_ndarray.size} | Shape: {message_ndarray.shape}"
+            f"Handling Transcription Request | Message: {recv_message} | Size: {recv_message.size} | Shape: {recv_message.shape}"
         )
 
         # Require Extension to handle sample_rates other than 48000Hz

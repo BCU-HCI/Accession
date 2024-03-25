@@ -99,11 +99,11 @@ class CommunicationServer:
 
         return json.loads(self.recv_socket.recv_json(zmq.DONTWAIT))
 
-    def ReceiveNDArray(self):
+    def ReceiveNDArray(self, dtype=np.float32):
 
         return np.frombuffer(
             self.recv_socket.recv(zmq.DONTWAIT),
-            dtype=np.float32,
+            dtype=dtype,
         )
 
     def ReceiveMultipart(self):
