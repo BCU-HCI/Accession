@@ -15,15 +15,21 @@ public:
 	FAssetAccessibilityRegistry();
 	~FAssetAccessibilityRegistry();
 
-	// Asset Register Events
-
-	void OnAssetOpenedInEditor(UObject* OpenedAsset, IAssetEditorInstance* EditorInstance);
-
 	// Graph Indexing
 
 	bool IsGraphAssetRegistered(const UEdGraph* InGraph) const;
 	bool RegisterGraphAsset(const UEdGraph* InGraph);
 	bool UnregisterGraphAsset(const UEdGraph* InGraph);
+
+	TSharedRef<FGraphIndexer> GetGraphIndexer(const UEdGraph* InGraph) const {
+		return GraphAssetIndex[InGraph->GraphGuid].ToSharedRef();
+	}
+
+	void GetAllGraphKeyIndexes(TArray<FGuid>& OutGraphKeys) const;
+	TArray<FGuid> GetAllGraphKeyIndexes() const;
+
+	void GetAllGraphIndexes(TArray<TSharedPtr<FGraphIndexer>>& OutGraphIndexes) const;
+	TArray<TSharedPtr<FGraphIndexer>> GetAllGraphIndexes();
 
 	// Game World Indexing
 
@@ -33,17 +39,24 @@ public:
 
 private:
 
+	// Asset Register Events
+
+	void OnAssetOpenedInEditor(UObject* OpenedAsset, IAssetEditorInstance* EditorInstance);
+
 	void EmptyGraphAssetIndex();
 	void EmptyGameWorldAssetIndex();
 
 	// Asset Editor Registers
 
 	void RegisterBlueprintAsset(UBlueprint* InBlueprint);
+	void RegisterMaterialAsset(UMaterial* InMaterial);
 	void RegisterUWorldAsset(UWorld* InWorld);
 
-private:
+public:
 	TMap<FGuid, TSharedPtr<FGraphIndexer>> GraphAssetIndex;
 	//TMap<UWorld, FWorldIndexer*> GameWorldAssetIndex;
+
+private:
 
 	FDelegateHandle AssetOpenedInEditorHandle;
 };

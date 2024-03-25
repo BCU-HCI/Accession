@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "AudioCapture.h"
+#include "UBAudioCapture.h"
 #include "Sound/SampleBufferIO.h"
 #include "Delegates/DelegateCombinations.h"
 
@@ -42,9 +42,6 @@ public:
 };
 
 
-//UDELEGATE()
-//DECLARE_DELEGATE_OneParam(FOnAudioReadyForTranscriptionDelegate, TArray<float>);
-
 /**
  * 
  */
@@ -66,21 +63,20 @@ public:
 
     bool IsCapturingAudio() const { return bIsCapturingAudio; }
 
-private:
-    void SendBufferForTranscription();
+    int32 GetAudioCaptureSampleRate() const { return AudioCapture->GetSampleRate(); }
+    int32 GetAudioCaptureNumChannels() const { return AudioCapture->GetNumChannels(); }
 
 public:
     UPROPERTY(Config, EditAnywhere, Category = "OpenAccessibility/Audio Manager")
     FAudioManagerSettings Settings;
 
-    //UPROPERTY(EditAnywhere, Category = "OpenAccessibility/Audio Manager")
-    //FOnAudioReadyForTranscriptionDelegate OnAudioReadyForTranscription;
+    TDelegate<void(const TArray<float>)> OnAudioReadyForTranscription;
 
 private:
     
     // Audio Capture
     bool bIsCapturingAudio = false;
-    UAudioCapture* AudioCapture;
+    class UBAudioCapture* AudioCapture;
     TArray<float> AudioBuffer;
 
     FAudioGeneratorHandle OnAudioGenerateHandle;

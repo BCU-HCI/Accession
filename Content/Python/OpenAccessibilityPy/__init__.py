@@ -2,17 +2,73 @@ import unreal as ue
 import zmq
 import numpy as np
 
-from .CommunicaitonServer import CommunicationServer
+from concurrent.futures import ThreadPoolExecutor as ThreadPool
+
+from .CommunicationServer import CommunicationServer
 from .WhisperInterface import WhisperInterface
+from .Audio import AudioResampler
 from .Logging import Log, LogLevel
 
 
-class OpenAccessibilityPy:
-    def __init__(self, whisper_model: str = "base"):
-        self.whisper_interface = WhisperInterface(whisper_model)
-        self.com_server = CommunicationServer(zmq.REP)
+# def HandleTranscriptionNewWhisper(com_server: CommunicationServer):
+#     whisper_interface = WhisperInterface("Systran/faster-distil-whisper-small.en")
 
+#     recv_message = com_server.ReceiveNDArray()
+
+#     # Get the message as a numpy array, reshaped for a stereo audio buffer.
+#     message_ndarray: np.ndarray = np.frombuffer(recv_message, dtype=np.float32)
+
+#     Log(
+#         f"Recieved Message: {message_ndarray} | Size: {message_ndarray.size} | Shape: {message_ndarray.shape}"
+#     )
+
+#     transcription_segments = whisper_interface.process_audio_buffer(message_ndarray)
+
+#     if len(transcription_segments) > 0:
+
+#         encoded_segments = [
+#             transcription.text.encode() for transcription in transcription_segments
+#         ]
+
+#         Log(f"Encoded Segments: {encoded_segments}")
+#         try:
+#             com_server.SendMultipart(encoded_segments)
+
+#         except:
+#             Log("Error Sending Encoded Transcription Segments", LogLevel.ERROR)
+
+#     else:
+#         Log("No Transcription Segments Returned", LogLevel.WARNING)
+
+
+class OpenAccessibilityPy:
+    def __init__(
+        self,
+        whisper_model: str = "Systran/faster-distil-whisper-small.en",
+        worker_count: int = 2,
+    ):
+        self.worker_pool = ThreadPool(
+            max_workers=worker_count, thread_name_prefix="TranscriptionWorker"
+        )
+
+        self.whisper_interface = WhisperInterface(whisper_model)
+        self.com_server = CommunicationServer(
+            send_socket_type=zmq.PUSH, recv_socket_type=zmq.PULL, poll_timeout=10
+        )
+        self.audio_resampler = AudioResampler(
+            in_sample_rate=48000, out_sample_rate=16000
+        )
+
+        self.tick_handle = None
         self.tick_handle = ue.register_slate_post_tick_callback(self.Tick)
+
+        audio_device_subsystem: ue.AudioDeviceNotificationSubsystem = (
+            ue.get_engine_subsystem(ue.AudioDeviceNotificationSubsystem)
+        )
+
+        audio_device_subsystem.default_capture_device_changed.add_callable(
+            self._OnDefaultAudioDeviceChanged
+        )
 
     def __del__(self):
         self.Shutdown()
@@ -22,26 +78,72 @@ class OpenAccessibilityPy:
         if self.com_server.EventOccured():
             Log("Event Occured")
 
-            recv_message = self.com_server.ReceiveNDArray()
+            recv_message = self.com_server.ReceiveNDArray(dtype=np.float32)
 
-            message_ndarray: np.ndarray = np.frombuffer(recv_message, dtype=np.float32)
+            self.worker_pool.submit(self.HandleTranscriptionRequest, (recv_message,))
+            Log("|| Transcription Work Requested ||")
 
-            Log(
-                f"Recieved Message: {message_ndarray} | Size: {message_ndarray.size} | Shape: {message_ndarray.shape}"
-            )
+    def HandleTranscriptionRequest(self, recv_message: np.ndarray):
 
-            trans_segments = self.whisper_interface.process_audio_buffer(
-                message_ndarray
-            )
+        Log(
+            f"Handling Transcription Request | Message: {recv_message} | Size: {recv_message.size} | Shape: {recv_message.shape}"
+        )
 
-            transcription_bytes = [segment.text.encode() for segment in trans_segments]
+        # Require Extension to handle sample_rates other than 48000Hz
+        # possibly by first passing metadata as JSON, then the audio buffer.
+        message_ndarray = self.audio_resampler.resample(message_ndarray)
 
-            self.com_server.SendMultipart(transcription_bytes)
+        transcription_segments = self.whisper_interface.process_audio_buffer(
+            message_ndarray
+        )
+
+        encoded_segments = [
+            transcription.text.encode() for transcription in transcription_segments
+        ]
+
+        Log(f"Encoded Segments: {encoded_segments}")
+
+        if len(encoded_segments) > 0:
+            try:
+                self.com_server.SendMultipart(encoded_segments)
+
+            except:
+                Log("Error Sending Encoded Transcription Segments", LogLevel.ERROR)
+
+        else:
+            Log("No Transcription Segments Returned", LogLevel.WARNING)
+
+        # Args:
+        #    audio_device_role (AudioDeviceChangedRole):
+        #    device_id (str):
+
+    def _OnDefaultAudioDeviceChanged(
+        self, audio_device_role: ue.AudioDeviceChangedRole, device_id: str
+    ):
+        Log(f"Audio Device Switched to: {device_id} | Role: {audio_device_role}")
+
+        # get the new default audio device's sample rate
+        device_info = ue.AudioInputDeviceInfo(device_id=device_id)
+
+        Log(
+            f"New Default Audio Device Sample Rate: {device_info.preferred_sample_rate}"
+        )
+        Log(f"New Default Audio Device Channels: {device_info.input_channels}")
+
+        if device_info.preferred_sample_rate != 0:
+            self.audio_resampler.sample_rate = device_info.preferred_sample_rate
 
     def Shutdown(self):
         if self.tick_handle:
             ue.unregister_slate_post_tick_callback(self.tick_handle)
             del self.tick_handle
+
+        if self.worker_pool:
+            self.worker_pool.shutdown(wait=False, cancel_futures=True)
+            del self.worker_pool
+
+        if self.audio_resampler:
+            del self.audio_resampler
 
         if self.com_server:
             del self.com_server

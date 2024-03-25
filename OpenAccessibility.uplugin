@@ -23,7 +23,7 @@
 		{
 			"Name": "OpenAccessibilityCommunication",
 			"Type": "Editor",
-			"LoadingPhase": "PostEngineInit"
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [

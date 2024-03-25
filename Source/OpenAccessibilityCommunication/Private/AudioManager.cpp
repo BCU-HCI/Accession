@@ -5,6 +5,7 @@
 #include "OpenAccessibilityComLogging.h"
 #include "SocketCommunicationServer.h"
 
+#include "AudioCaptureCore.h"
 #include "Templates/Function.h"
 
 UAudioManager::UAudioManager()
@@ -13,9 +14,9 @@ UAudioManager::UAudioManager()
 
 	// Create Audio Capture Object and Initialize Audio Stream
 	bIsCapturingAudio = false;
-    AudioCapture = NewObject<UAudioCapture>();
+    AudioCapture = NewObject<UBAudioCapture>();
 	AudioCapture->AddToRoot();
-	AudioCapture->OpenDefaultAudioStream();
+	AudioCapture->OpenDefaultAudioStream(NULL, NULL);
 	AudioCapture->StartCapturingAudio();
 
 	// Create FileIO Objects
@@ -41,6 +42,8 @@ UAudioManager::~UAudioManager()
 
 void UAudioManager::StartCapturingAudio()
 {
+	AudioBuffer.Empty();
+
 	bIsCapturingAudio = true;
 }
 
@@ -52,10 +55,17 @@ void UAudioManager::StopCapturingAudio()
 		return;
 
 	SaveAudioBufferToWAV(Settings.SavePath);
-	
-	SendBufferForTranscription();
 
-	AudioBuffer.Reset();
+	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer))
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Executing Audio Ready For Transcription Delegate. ||"));
+	}
+	else
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| No Delegates Bound to Audio Ready For Transcription Delegate. ||"));
+	}
+
+	AudioBuffer.Empty();
 }
 
 void UAudioManager::PRIVATE_OnAudioGenerate(const float* InAudio, int32 NumSamples)
@@ -77,27 +87,4 @@ void UAudioManager::SaveAudioBufferToWAV(const FString& FilePath)
 	FileWriter->BeginWriteToWavFile(SampleBuffer, Settings.SaveName, const_cast<FString&>(FilePath), []() {
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("Audio Buffer Saved to WAV"));
 	});
-}
-
-void UAudioManager::SendBufferForTranscription()
-{
-	/*
-	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer))
-	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Sending Buffer for Transcription | Using Bound Transcriber ||"));
-	}
-	else
-	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("No Bound Delegates for OnAudioReadyForTranscription"));
-	}
-	*/
-
-	if (FOpenAccessibilityCommunicationModule::Get()->SocketServer->SendArray(AudioBuffer.GetData(), AudioBuffer.Num(), zmq::send_flags::dontwait))
-	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Sending Buffer for Transcription | Using Socket Server ||"));
-	}
-	else
-	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Sending Buffer for Transcription | Failed to Send using Socket Server ||"));
-	}
 }

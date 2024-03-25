@@ -1,15 +1,16 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "OpenAccessibility.h"
-#include "AssetAccessibilityRegistry.h"
+#include "OpenAccessibilityCommunication.h"
 #include "OpenAccessibilityLogging.h"
 
-#include "SGraphNode.h"
-#include "EdGraphUtilities.h"
-#include "Containers/Ticker.h"
-#include "Logging/StructuredLog.h"
-#include "InputCoreTypes.h"
+#include "PhraseTree/PhraseNode.h"
+#include "PhraseTree/PhraseInputNode.h"
+#include "PhraseTree/PhraseDirectionalInputNode.h"
+#include "PhraseTree/PhraseEventNode.h"
 
+#include "Framework/Docking/TabManager.h"
+#include "Logging/StructuredLog.h"
 
 #define LOCTEXT_NAMESPACE "FOpenAccessibilityModule"
 
@@ -23,11 +24,96 @@ void FOpenAccessibilityModule::StartupModule()
 	// Register the Accessibility Node Factory
 	AccessibilityNodeFactory = MakeShared<FAccessibilityNodeFactory, ESPMode::ThreadSafe>();
 	FEdGraphUtilities::RegisterVisualNodeFactory(AccessibilityNodeFactory);
+
+	// Register Console Commands
+	RegisterConsoleCommands();
+
+	// Bind Branch to Phrase Tree
+	TSharedPtr<FPhraseEventNode> EventNode = MakeShared<FPhraseEventNode>();
+	EventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
+		UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Executed --"));
+		UE_LOG(LogOpenAccessibility, Display, TEXT(" -- | Vals | Index: %d | Direction: %d | Amount : %d | --"), 
+			Record.PhraseInputs["INDEX"], Record.PhraseInputs["DIRECTION"], Record.PhraseInputs["AMOUNT"]
+		);
+
+		for (auto& Index : AssetAccessibilityRegistry->GetAllGraphKeyIndexes())
+		{
+			AssetAccessibilityRegistry->GraphAssetIndex[Index]->GetNode(
+				Record.PhraseInputs["INDEX"]
+			)->NodePosY -= Record.PhraseInputs["AMOUNT"];
+		}
+	});
+
+	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
+		MakeShared<FPhraseNode>(
+			TEXT("NODE"),
+			TPhraseNodeArray {
+
+				MakeShared<FPhraseInputNode>(TEXT("INDEX"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseNode>(TEXT("MOVE"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+						TPhraseNodeArray {
+
+								MakeShared<FPhraseInputNode>(TEXT("AMOUNT"),
+								TPhraseNodeArray {
+									EventNode
+								})
+						})
+					})
+				})
+			})
+	);
 }
 
 void FOpenAccessibilityModule::ShutdownModule()
 {
 	UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibilityModule::ShutdownModule()"));
+
+	UnregisterConsoleCommands();
+}
+
+void FOpenAccessibilityModule::RegisterConsoleCommands()
+{
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibility.Debug.FlashActiveTab"),
+		TEXT("Flashes the active tab in the editor."),
+
+		FConsoleCommandDelegate::CreateLambda([]() {
+			UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibility.Debug.FlashActiveTab"));
+
+			TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+			if (!ActiveTab.IsValid())
+			{
+				return;
+			}
+			
+			ActiveTab->FlashTab();
+			
+			UE_LOG(LogOpenAccessibility, Log, TEXT("Active Tab Content Type: %s"), *ActiveTab->GetContent()->GetTypeAsString())
+
+		}),
+
+		ECVF_Default
+	));
+
+}
+
+void FOpenAccessibilityModule::UnregisterConsoleCommands()
+{
+	IConsoleCommand* ConsoleCommand = nullptr;
+	while (ConsoleCommands.Num() > 0)
+	{
+		ConsoleCommand = ConsoleCommands.Pop();
+
+		IConsoleManager::Get().UnregisterConsoleObject(ConsoleCommand);
+
+		delete ConsoleCommand;
+		ConsoleCommand = nullptr;
+	}
 }
 
 #undef LOCTEXT_NAMESPACE

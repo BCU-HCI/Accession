@@ -64,19 +64,17 @@ def test_whisper_model(model_name: str, audiobuffer) -> ModelInfo:
 # Testing Here
 # ---------------------------------
 
-filepath = "..\..\..\..\Saved\BouncedWavFiles\OpenAccessibility\Audioclips\Captured_User_Audio.wav"
+filepath = "D:\dev\Unreal Engine\AccessibilityProject\Plugins\OpenAccessibility\Saved\BouncedWavFiles\OpenAccessibility\Audioclips\Captured_User_Audio.wav"
 
-models_to_test = [
-    "tiny",
-    "base",
-    "small",
-]
+models_to_test = ["tiny", "base", "small", "Systran/faster-distil-whisper-small.en"]
 
 audiobuffer = decode_audio(filepath)
 
-user_input = input(
-    "Model To Test:\n 1. Tiny\n 2. Base\n 3. Small\n Leave Empty to Test All:\n"
-).lower()
+input_help = "\n"
+for index, model in enumerate(models_to_test):
+    input_help += f"{index}: {model}\n"
+
+user_input = input(f"Models: {input_help}\nor Leave Empty to Test All:\n").lower()
 
 if user_input == "":
 
@@ -85,6 +83,13 @@ if user_input == "":
     for model in models_to_test:
         info = test_whisper_model(model, audiobuffer)
 
+        print(
+            f"Model: {info.name} | Time To Load: {info.time_to_load} | Time To Transcribe: {info.time_to_transcribe} | Total Time: {info.time_total}"
+        )
+
 else:
     if models_to_test.__contains__(user_input):
         test_whisper_model(user_input, audiobuffer)
+
+    elif user_input.isdigit() and int(user_input) < len(models_to_test):
+        test_whisper_model(models_to_test[int(user_input)], audiobuffer)

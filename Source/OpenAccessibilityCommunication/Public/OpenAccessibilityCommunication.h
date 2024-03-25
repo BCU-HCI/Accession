@@ -5,6 +5,12 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 #include "Modules/ModuleInterface.h"
+#include "Delegates/DelegateCombinations.h"
+
+#include "PhraseTree.h"
+
+//UDELEGATE()
+//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTranscriptionRecievedSignature, const TArray<FString>, InTranscription);
 
 class FOpenAccessibilityCommunicationModule : public IModuleInterface
 {
@@ -21,31 +27,48 @@ public:
 	}
 	/** End IModuleInterface Implementation */
 
-	static FOpenAccessibilityCommunicationModule* Get()
+	static FOpenAccessibilityCommunicationModule& Get()
 	{
-		static const FName ModuleName = FName("OpenAccessibilityCommunication");
-		return FModuleManager::GetModulePtr<FOpenAccessibilityCommunicationModule>(ModuleName);
+		return FModuleManager::GetModuleChecked<FOpenAccessibilityCommunicationModule>("OpenAccessibilityCommunication");
 	}
 
 	bool Tick(const float DeltaTime);
 
 	void HandleKeyDownEvent(const FKeyEvent& InKeyEvent);
 
-	void OnTranscriptionReady(TArray<float> AudioBufferToTranscribe);
-private:
+	void TranscribeWaveForm(TArray<float> AudioBufferToTranscribe);
+
+private: 
+
+	void BuildPhraseTree();
+
+	void RegisterConsoleCommands();
+
+	void UnregisterConsoleCommands();
 
 	void LoadZMQDLL();
 
 	void UnloadZMQDLL();
 public:
+
+	TMulticastDelegate<void(TArray<FString>)> OnTranscriptionRecieved;
+
 	class UAudioManager* AudioManager;
 	TSharedPtr<class FSocketCommunicationServer> SocketServer;
 
+	TSharedPtr<FPhraseTree> PhraseTree;
+
 private:
+	TArray<float> PrevAudioBuffer;
+
 	FTickerDelegate TickDelegate;
 	FTSTicker::FDelegateHandle TickDelegateHandle;
+
+	FDelegateHandle PhraseTreePhraseRecievedHandle;
 
 	FDelegateHandle KeyDownEventHandle;
 
 	void* ZMQDllHandle;
+
+	TArray<IConsoleCommand*> ConsoleCommands;
 };

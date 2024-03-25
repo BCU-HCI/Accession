@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
+#include "AssetAccessibilityRegistry.h"
 #include "OAccessibilityNodeFactory.h"
 
 class FOpenAccessibilityModule : public IModuleInterface
@@ -19,7 +20,7 @@ public:
 
 	static FOpenAccessibilityModule& Get()
 	{
-		return FModuleManager::LoadModuleChecked<FOpenAccessibilityModule>("OpenAccessibility");
+		return FModuleManager::GetModuleChecked<FOpenAccessibilityModule>("OpenAccessibility");
 	}
 
 	virtual bool SupportsDynamicReloading() override
@@ -27,8 +28,22 @@ public:
 		return false;
 	}
 
+private:
+
+	// Console Commands
+
+	void RegisterConsoleCommands();
+
+	void UnregisterConsoleCommands();
+
 public:
+
+	// Accessibility Components
+
 	TSharedPtr<class FAccessibilityNodeFactory> AccessibilityNodeFactory;
 	TSharedPtr<class FAssetAccessibilityRegistry> AssetAccessibilityRegistry;
 
+private:
+
+	TArray<IConsoleCommand*> ConsoleCommands;
 };

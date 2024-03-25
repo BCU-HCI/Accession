@@ -3,7 +3,7 @@
 #include "SocketCommunicationServer.h"
 #include "OpenAccessibilityComLogging.h"
 
-FSocketCommunicationServer::FSocketCommunicationServer(const std::string Address = "tcp://127.0.0.1:5555", const int PollTimeout = 10) 
+FSocketCommunicationServer::FSocketCommunicationServer(const std::string SendAddress = "tcp://127.0.0.1:5555", std::string RecvAddress = "tcp://127.0.0.1:5556", const int PollTimeout = 10)
 	: Address(Address), PollTimeout(PollTimeout)
 {
 	Context = new zmq::context_t();
@@ -13,8 +13,15 @@ FSocketCommunicationServer::FSocketCommunicationServer(const std::string Address
 		return;
 	}
 
-	Socket = new zmq::socket_t(*Context, ZMQ_REQ);
-	if (Socket == nullptr)
+	SendSocket = new zmq::socket_t(*Context, ZMQ_PUSH);
+	if (SendSocket == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("Failed to create ZMQ socket"));
+		return;
+	}
+
+	RecvSocket = new zmq::socket_t(*Context, ZMQ_PULL);
+	if (RecvSocket == nullptr)
 	{
 		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("Failed to create ZMQ socket"));
 		return;
@@ -27,18 +34,24 @@ FSocketCommunicationServer::FSocketCommunicationServer(const std::string Address
 		return;
 	}
 
-	Socket->connect(Address);
-	Poller->add(*Socket, zmq::event_flags::pollin);
+	SendSocket->connect(SendAddress);
+	RecvSocket->bind(RecvAddress);
+
+	Poller->add(*RecvSocket, zmq::event_flags::pollin);
 }
 
 FSocketCommunicationServer::~FSocketCommunicationServer()
 {
-	Poller->remove(*Socket);
+	Poller->remove(*RecvSocket);
 	delete Poller; Poller = nullptr;
 
-	Socket->disconnect(Address);
-	Socket->close();
-	delete Socket; Socket = nullptr;
+	SendSocket->disconnect(Address);
+	SendSocket->close();
+	delete SendSocket; SendSocket = nullptr;
+
+	RecvSocket->unbind(Address);
+	RecvSocket->close();
+	delete RecvSocket; RecvSocket = nullptr;
 
 	Context->shutdown();
 	Context->close();
@@ -58,9 +71,9 @@ bool FSocketCommunicationServer::EventOccured()
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArray(const float* MessageData, size_t Size, ComSendFlags SendFlags)
+bool FSocketCommunicationServer::SendArrayBuffer(const float* MessageData, size_t Size, ComSendFlags SendFlags)
 {
-	auto Result = Socket->send(zmq::const_buffer(MessageData, Size * sizeof(float)), SendFlags);
+	auto Result = SendSocket->send(zmq::const_buffer(MessageData, Size * sizeof(float)), SendFlags);
 	if (Result.has_value())
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), Size * sizeof(float));
@@ -75,9 +88,9 @@ bool FSocketCommunicationServer::SendArray(const float* MessageData, size_t Size
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArray(const float MessageData[], ComSendFlags SendFlags)
+bool FSocketCommunicationServer::SendArrayBuffer(const float MessageData[], ComSendFlags SendFlags)
 {
-	auto Result = Socket->send(zmq::const_buffer(MessageData, sizeof MessageData), SendFlags);
+	auto Result = SendSocket->send(zmq::const_buffer(MessageData, sizeof MessageData), SendFlags);
 	if (Result.has_value())
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(sizeof MessageData));
@@ -92,9 +105,9 @@ bool FSocketCommunicationServer::SendArray(const float MessageData[], ComSendFla
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArray(const TArray<float>& ArrayMessage, ComSendFlags SendFlag)
+bool FSocketCommunicationServer::SendArrayBuffer(const TArray<float>& ArrayMessage, ComSendFlags SendFlag)
 {
-	auto Result = Socket->send(zmq::const_buffer(ArrayMessage.GetData(), ArrayMessage.Num() * sizeof(float)), SendFlag);
+	auto Result = SendSocket->send(zmq::const_buffer(ArrayMessage.GetData(), ArrayMessage.Num() * sizeof(float)), SendFlag);
 	if (Result.has_value())
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(ArrayMessage.Num() * sizeof(float)));
@@ -109,9 +122,60 @@ bool FSocketCommunicationServer::SendArray(const TArray<float>& ArrayMessage, Co
 	return false;
 }
 
-bool FSocketCommunicationServer::SendString(const std::string StringMessage, ComSendFlags SendFlags)
+bool FSocketCommunicationServer::SendArrayMessage(const float* MessageData, size_t Size, ComSendFlags SendFlags)
 {
-	auto Result = Socket->send(zmq::const_buffer(StringMessage.c_str(), StringMessage.size()), SendFlags);
+	auto Result = SendSocket->send(zmq::message_t(MessageData, Size * sizeof(float)), SendFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), Size * sizeof(float));
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		return true;
+	}
+
+	return false;
+}
+
+bool FSocketCommunicationServer::SendArrayMessage(const float MessageData[], ComSendFlags SendFlags)
+{
+	auto Result = SendSocket->send(zmq::message_t(MessageData, sizeof MessageData), SendFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(sizeof MessageData));
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		return true;
+	}
+
+	return false;
+}
+
+bool FSocketCommunicationServer::SendArrayMessage(const TArray<float>& ArrayMessage, ComSendFlags SendFlags)
+{
+	auto Result = SendSocket->send(zmq::message_t(ArrayMessage.GetData(), ArrayMessage.Num() * sizeof(float)), SendFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(ArrayMessage.Num() * sizeof(float)));
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		return true;
+	}
+
+	return false;
+}
+
+bool FSocketCommunicationServer::SendStringBuffer(const std::string StringMessage, ComSendFlags SendFlags)
+{
+	auto Result = SendSocket->send(zmq::const_buffer(StringMessage.c_str(), StringMessage.size()), SendFlags);
 	if (Result.has_value())
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent String || Sent %d of %d bytes"), Result.value(), StringMessage.size());
@@ -126,9 +190,9 @@ bool FSocketCommunicationServer::SendString(const std::string StringMessage, Com
 	return false;
 }
 
-bool FSocketCommunicationServer::SendJson(const std::string JsonMessage, ComSendFlags SendFlags)
+bool FSocketCommunicationServer::SendJsonBuffer(const std::string JsonMessage, ComSendFlags SendFlags)
 {
-	auto Result = Socket->send(zmq::const_buffer(JsonMessage.c_str(), JsonMessage.size()), SendFlags);
+	auto Result = SendSocket->send(zmq::const_buffer(JsonMessage.c_str(), JsonMessage.size()), SendFlags);
 	if (Result.has_value())
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent JSON || Sent %d of %d bytes"), Result.value(), JsonMessage.size());
@@ -143,12 +207,14 @@ bool FSocketCommunicationServer::SendJson(const std::string JsonMessage, ComSend
 	return false;
 }
 
+
+
 template <typename T> 
 bool FSocketCommunicationServer::RecvArray(TArray<T>& OutArrayData, size_t Size, ComRecvFlags RecvFlags)
 {
 	zmq::message_t RecvMessage;
 
-	auto Result = Socket->recv(RecvMessage, RecvFlags);
+	auto Result = RecvSocket->recv(RecvMessage, RecvFlags);
 	if (Result.has_value())
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv Array || Recv %d bytes"), Result.value());
@@ -170,7 +236,7 @@ bool FSocketCommunicationServer::RecvString(FString& OutStringMessage, ComRecvFl
 {
 	zmq::message_t RecvMessage;
 
-	auto Result = Socket->recv(RecvMessage, RecvFlags);
+	auto Result = RecvSocket->recv(RecvMessage, RecvFlags);
 	if (Result.has_value())
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv String || Recv %d bytes"), Result.value());
@@ -193,7 +259,7 @@ bool FSocketCommunicationServer::RecvJson(FString& OutJsonMessage, ComRecvFlags 
 {
 	zmq::message_t RecvMessage;
 
-	auto Result = Socket->recv(RecvMessage, RecvFlags);
+	auto Result = RecvSocket->recv(RecvMessage, RecvFlags);
 	if (Result.has_value())
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv JSON || Recv %d bytes"), Result.value());
@@ -211,18 +277,18 @@ bool FSocketCommunicationServer::RecvJson(FString& OutJsonMessage, ComRecvFlags 
 	return false;
 }
 
-bool FSocketCommunicationServer::RecvStringMultipart(std::vector<FString>& OutMessages, ComRecvFlags RecvFlags)
+bool FSocketCommunicationServer::RecvStringMultipart(TArray<FString>& OutMessages, ComRecvFlags RecvFlags)
 {
 	std::vector<zmq::message_t> RecvMessages;
 
-	auto Result = zmq::recv_multipart(*Socket, std::back_inserter(RecvMessages), RecvFlags);
+	auto Result = zmq::recv_multipart(*RecvSocket, std::back_inserter(RecvMessages), RecvFlags);
 	if (Result.has_value())
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv Multipart || Recv %d messages"), Result.value());
 
 		for (auto& Message : RecvMessages)
 		{
-			OutMessages.push_back(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));
+			OutMessages.Add(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));
 		}
 
 		return true;

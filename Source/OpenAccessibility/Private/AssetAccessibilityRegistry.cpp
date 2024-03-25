@@ -3,8 +3,12 @@
 #include "AssetAccessibilityRegistry.h"
 #include "OpenAccessibilityLogging.h"
 
+#include "Subsystems/AssetEditorSubsystem.h"
 #include "EdGraph/EdGraph.h"
 #include "EdGraph/EdGraphNode.h"
+#include "MaterialGraph/MaterialGraph.h"
+
+#include "UObject/Class.h"
 #include "Misc/Guid.h"
 
 FAssetAccessibilityRegistry::FAssetAccessibilityRegistry()
@@ -14,6 +18,11 @@ FAssetAccessibilityRegistry::FAssetAccessibilityRegistry()
 
 	AssetOpenedInEditorHandle = GEditor->GetEditorSubsystem<UAssetEditorSubsystem>()->OnAssetOpenedInEditor()
 		.AddRaw(this, &FAssetAccessibilityRegistry::OnAssetOpenedInEditor);
+
+	GEditor->GetEditorSubsystem<UAssetEditorSubsystem>()->OnAssetEditorRequestClose()
+		.AddLambda([this](UObject* Object, EAssetEditorCloseReason Reason) {
+			UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Closed | Reason: { %d } ||"), *Object->GetFName().ToString(), int64(Reason));
+		});
 }
 
 FAssetAccessibilityRegistry::~FAssetAccessibilityRegistry()
@@ -26,13 +35,19 @@ FAssetAccessibilityRegistry::~FAssetAccessibilityRegistry()
 
 void FAssetAccessibilityRegistry::OnAssetOpenedInEditor(UObject* OpenedAsset, IAssetEditorInstance* EditorInstance)
 {
-	UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Opened In Editor: { %s } ||"), *OpenedAsset->GetName(), EditorInstance->GetEditorName());
+	UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Opened In Editor: { %s } ||"), *OpenedAsset->GetName(), *EditorInstance->GetEditorName().ToString());
 
 	if (UBlueprint* OpenedBlueprint = Cast<UBlueprint>(OpenedAsset))
 	{
 		UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Is A Blueprint ||"), *OpenedBlueprint->GetName());
 
 		RegisterBlueprintAsset(OpenedBlueprint);
+	}
+	else if (UMaterial* OpenedMaterial = Cast<UMaterial>(OpenedAsset))
+	{
+		UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Is A Material ||"), *OpenedMaterial->GetName());
+	
+		RegisterMaterialAsset(OpenedMaterial);
 	}
 }
 
@@ -73,6 +88,33 @@ bool FAssetAccessibilityRegistry::UnregisterGraphAsset(const UEdGraph* UEdGraph)
 	}
 
 	return true;
+}
+
+void FAssetAccessibilityRegistry::GetAllGraphKeyIndexes(TArray<FGuid>& OutGraphKeys) const
+{
+	GraphAssetIndex.GetKeys(OutGraphKeys);
+}
+
+TArray<FGuid> FAssetAccessibilityRegistry::GetAllGraphKeyIndexes() const
+{
+	TArray<FGuid> GraphKeys;
+	GraphAssetIndex.GetKeys(GraphKeys);
+
+	return GraphKeys;
+}
+
+void FAssetAccessibilityRegistry::GetAllGraphIndexes(TArray<TSharedPtr<FGraphIndexer>>& OutGraphIndexes) const
+{
+	return GraphAssetIndex.GenerateValueArray(OutGraphIndexes);
+}
+
+TArray<TSharedPtr<FGraphIndexer>> FAssetAccessibilityRegistry::GetAllGraphIndexes()
+{
+	TArray<TSharedPtr<FGraphIndexer>> GraphIndexArray;
+	
+	GraphAssetIndex.GenerateValueArray(GraphIndexArray);
+
+	return GraphIndexArray;
 }
 
 bool FAssetAccessibilityRegistry::IsGameWorldAssetRegistered(const UWorld* UWorld) const
@@ -125,6 +167,13 @@ void FAssetAccessibilityRegistry::RegisterBlueprintAsset(UBlueprint* InBlueprint
 	{
 		RegisterUWorldAsset(BlueprintDebugWorld);
 	}
+}
+
+void FAssetAccessibilityRegistry::RegisterMaterialAsset(UMaterial* InMaterial)
+{
+	const UEdGraph* MaterialGraph = dynamic_cast<UMaterialGraph*>(InMaterial->MaterialGraph.Get());
+
+	RegisterGraphAsset(MaterialGraph);
 }
 
 void FAssetAccessibilityRegistry::RegisterUWorldAsset(UWorld* InWorld)
