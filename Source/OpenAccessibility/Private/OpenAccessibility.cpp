@@ -36,11 +36,46 @@ void FOpenAccessibilityModule::StartupModule()
 			Record.PhraseInputs["INDEX"], Record.PhraseInputs["DIRECTION"], Record.PhraseInputs["AMOUNT"]
 		);
 
-		for (auto& Index : AssetAccessibilityRegistry->GetAllGraphKeyIndexes())
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
 		{
-			AssetAccessibilityRegistry->GraphAssetIndex[Index]->GetNode(
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Active Tab --"));
+			return;
+		}
+
+		SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
+
+		if (ActiveGraphEditor != nullptr)
+		{
+			UEdGraphNode* GraphNode = AssetAccessibilityRegistry->GraphAssetIndex[ActiveGraphEditor->GetCurrentGraph()->GraphGuid]->GetNode(
 				Record.PhraseInputs["INDEX"]
-			)->NodePosY -= Record.PhraseInputs["AMOUNT"];
+			);
+
+			switch (EPhraseDirectionalInput(Record.PhraseInputs["DIRECTION"]))
+			{
+				case EPhraseDirectionalInput::UP:
+					GraphNode->NodePosY -= Record.PhraseInputs["AMOUNT"];
+					break;
+
+				case EPhraseDirectionalInput::DOWN:
+					GraphNode->NodePosY += Record.PhraseInputs["AMOUNT"];
+					break;
+
+				case EPhraseDirectionalInput::LEFT:
+					GraphNode->NodePosX -= Record.PhraseInputs["AMOUNT"];
+
+				case EPhraseDirectionalInput::RIGHT:
+					GraphNode->NodePosX += Record.PhraseInputs["AMOUNT"];
+
+				default:
+					UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Direction --"));
+					return;
+			}
+		}
+		else
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
+			return;
 		}
 	});
 

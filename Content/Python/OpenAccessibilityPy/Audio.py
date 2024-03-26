@@ -1,5 +1,6 @@
 import gc
 from itertools import chain as iter_chain
+from multiprocessing import Lock
 
 import numpy as np
 import av
@@ -17,6 +18,7 @@ class AudioResampler:
         self._audio_resampler = av.AudioResampler(
             format="s16", layout="mono", rate=out_sample_rate
         )
+        self._resample_mutex = Lock()
 
         self.input_sample_rate = in_sample_rate
 
@@ -39,7 +41,9 @@ class AudioResampler:
 
         frame.sample_rate = self.input_sample_rate
 
-        resampled_frames = self._audio_resampler.resample(frame)
+        resampled_frames: list[av.AudioFrame] = []
+        with self._resample_mutex:
+            resampled_frames = self._audio_resampler.resample(frame)
 
         return self._convert_to_float32(resampled_frames[0].to_ndarray()).reshape(
             -1,
