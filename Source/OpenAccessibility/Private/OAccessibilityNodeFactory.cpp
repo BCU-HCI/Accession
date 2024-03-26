@@ -12,6 +12,7 @@
 #include "Styling/AppStyle.h"
 #include "SNodePanel.h"
 #include "SGraphNode.h"
+#include "SGraphPin.h"
 #include "Widgets/SBoxPanel.h"
 #include "Widgets/Text/STextBlock.h"
 
@@ -49,38 +50,62 @@ TSharedPtr<class SGraphNode> FAccessibilityNodeFactory::CreateNode(UEdGraphNode*
         UE_LOG(LogOpenAccessibility, Error, TEXT("Node Not Found In Graph Indexer"));
     }
 
-    // Build Accessibility Widget Wrapper.
+    {
+        // Create Accessibility Widgets For Pins
+        TArray<UEdGraphPin*> Pins = InNode->GetAllPins();
 
-    // Get the Slot Outputted from the factory.
-    TSharedRef<SWidget> WidgetToWrap = OutNode->GetSlot(ENodeZone::Center)->GetWidget();
+        for (int i = 0; i < Pins.Num(); i++)
+        {
+            UEdGraphPin* Pin = Pins[i];
+
+            TSharedPtr<SGraphPin> PinWidget = OutNode->FindWidgetForPin(Pin);
+            if (!PinWidget.IsValid())
+            {
+				UE_LOG(LogOpenAccessibility, Warning, TEXT("Pin Widget Not Found"));
+				continue;
+			}
+
+            WrapPinWidget(Pin, PinWidget.ToSharedRef(), i, OutNode.ToSharedRef());
+        }
+    }
+
+    // Wrap The Node Widget
+    WrapNodeWidget(InNode, OutNode.ToSharedRef(), NodeIndex);
+
+    return OutNode;
+}
+
+void FAccessibilityNodeFactory::WrapNodeWidget(UEdGraphNode* Node, TSharedRef<SGraphNode> NodeWidget, int NodeIndex) const
+{
+    TSharedPtr<SWidget> WidgetToWrap = NodeWidget->GetSlot(ENodeZone::Center)->GetWidget();
     check(WidgetToWrap != SNullWidget::NullWidget);
 
-    // Rebuild the Widget with a wrapper containing accessibility information.
-    OutNode->GetOrAddSlot(ENodeZone::Center)
-		.HAlign(HAlign_Fill)
+    NodeWidget->GetOrAddSlot(ENodeZone::Center)
+        .HAlign(HAlign_Fill)
         [
-			SNew(SOverlay)
+            SNew(SVerticalBox)
 
-                + SOverlay::Slot()
+                + SVerticalBox::Slot()
+                .HAlign(HAlign_Fill)
+                .AutoHeight()
+                .Padding(FMargin(1.5f, 0.25f))
                 [
-                    SNew(SImage)
-                        .Image(FAppStyle::GetBrush("Graph.Node.Body"))
-                        .ColorAndOpacity(OutNode.Get(), &SGraphNode::GetNodeBodyColor)
-                ]
+                    SNew(SOverlay)
 
-                + SOverlay::Slot()
-                [
-                    SNew(SVerticalBox)
-
-                        + SVerticalBox::Slot()
-                        .HAlign(HAlign_Fill)
-                        .Padding(FMargin(3.f, 0.5f))
+                        + SOverlay::Slot()
                         [
-                            // Accessibility Content
+                            SNew(SImage)
+                                .Image(FAppStyle::Get().GetBrush("Graph.Node.Body"))
+                        ]
+
+                        + SOverlay::Slot()
+                        .Padding(FMargin(4.0f, 0.0f))
+                        [
                             SNew(SHorizontalBox)
                                 + SHorizontalBox::Slot()
                                 .HAlign(HAlign_Right)
                                 .VAlign(VAlign_Center)
+                                .Padding(1.f)
                                 [
                                     SNew(SOverlay)
                                         + SOverlay::Slot()
@@ -89,16 +114,86 @@ TSharedPtr<class SGraphNode> FAccessibilityNodeFactory::CreateNode(UEdGraphNode*
                                                 .Text(FText::FromString("[" + FString::FromInt(NodeIndex) + "]"))
                                         ]
                                 ]
-						]
+                        ]
+                ]
 
-						+ SVerticalBox::Slot()
-						.HAlign(HAlign_Fill)
-						.AutoHeight()
-                        [
-							WidgetToWrap
-						]
-				]
-		];
+                + SVerticalBox::Slot()
+                .HAlign(HAlign_Fill)
+                .AutoHeight()
+                [
+                    WidgetToWrap.ToSharedRef()
+                ]
+        ];
+}
 
-    return OutNode;
+void FAccessibilityNodeFactory::WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGraphPin> PinWidget, int PinIndex, TSharedRef<SGraphNode> OwnerNode) const
+{
+    TSharedPtr<SWidget> PinWidgetContent = PinWidget->GetContent();
+    check(PinWidgetContent != SNullWidget::NullWidget);
+
+    TSharedPtr<SWidget> AccessibilityWidget = SNew(SOverlay)
+        .Visibility_Lambda([OwnerNode]() -> EVisibility {
+            
+            TOptional<EFocusCause> NodeVisability = OwnerNode->HasAnyUserFocus();
+            if (NodeVisability.IsSet() && NodeVisability.GetValue() != EFocusCause::OtherWidgetLostFocus)
+                return EVisibility::Visible;
+
+            else if (OwnerNode->HasAnyUserFocusOrFocusedDescendants() || OwnerNode->IsHovered())
+                return EVisibility::Visible;
+
+            return EVisibility::Collapsed;
+        })
+        + SOverlay::Slot()
+        [
+            SNew(STextBlock)
+                .Text(FText::FromString("[" + FString::FromInt(PinIndex) + "]"))
+        ];
+
+    TSharedRef<SWidget> WrappedWidget = SNullWidget::NullWidget;
+
+    switch (Pin->Direction)
+    {
+        case EEdGraphPinDirection::EGPD_Input:
+        {
+            PinWidget->SetContent(
+                SNew(SHorizontalBox)
+                    + SHorizontalBox::Slot()
+                    .AutoWidth()
+                    [
+                        PinWidgetContent.ToSharedRef()
+                    ]
+                    + SHorizontalBox::Slot()
+                    .AutoWidth()
+                    [
+                        AccessibilityWidget.ToSharedRef()
+                    ]
+            );
+
+            break;
+        }
+
+        case EEdGraphPinDirection::EGPD_Output:
+        {
+            PinWidget->SetContent(
+                SNew(SHorizontalBox)
+                    + SHorizontalBox::Slot()
+                    .AutoWidth()
+                    [
+                        AccessibilityWidget.ToSharedRef()
+                    ]
+                    + SHorizontalBox::Slot()
+                    .AutoWidth()
+                    [
+                        PinWidgetContent.ToSharedRef()
+                    ]
+            );
+            break;
+		}
+
+        default:
+        {
+            UE_LOG(LogOpenAccessibility, Error, TEXT("Pin Direction Not Recognized"));
+            break;
+        }
+    }
 }
