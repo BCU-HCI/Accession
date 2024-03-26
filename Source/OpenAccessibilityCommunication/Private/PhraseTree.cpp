@@ -58,6 +58,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 		// Filter the Transcription Segment, to remove any unwanted characters.
 		TranscriptionSegment.TrimStartAndEndInline();
 		TranscriptionSegment.ReplaceInline(TEXT(","), TEXT(""), ESearchCase::IgnoreCase);
+		TranscriptionSegment.ToUpperInline();
 
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Filtered Transcription Segment: { %s } ||"), *TranscriptionSegment)
 

@@ -80,8 +80,7 @@ class OpenAccessibilityPy:
 
             recv_message = self.com_server.ReceiveNDArray(dtype=np.float32)
 
-            self.worker_pool.submit(self.HandleTranscriptionRequest, (recv_message,))
-            Log("|| Transcription Work Requested ||")
+            self.worker_pool.submit(self.HandleTranscriptionRequest, recv_message)
 
     def HandleTranscriptionRequest(self, recv_message: np.ndarray):
 
@@ -91,7 +90,7 @@ class OpenAccessibilityPy:
 
         # Require Extension to handle sample_rates other than 48000Hz
         # possibly by first passing metadata as JSON, then the audio buffer.
-        message_ndarray = self.audio_resampler.resample(message_ndarray)
+        message_ndarray = self.audio_resampler.resample(recv_message)
 
         transcription_segments = self.whisper_interface.process_audio_buffer(
             message_ndarray

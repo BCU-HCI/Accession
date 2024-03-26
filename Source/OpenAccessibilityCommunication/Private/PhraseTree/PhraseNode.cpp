@@ -4,6 +4,8 @@
 #include "PhraseTree.h"
 #include "OpenAccessibilityComLogging.h"
 
+#include "Algo/LevenshteinDistance.h"
+
 FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase)
 {
 	BoundPhrase = InBoundPhrase;
@@ -23,7 +25,7 @@ FPhraseNode::~FPhraseNode()
 
 bool FPhraseNode::RequiresPhrase(FString InPhrase)
 {
-    return InPhrase.Equals(BoundPhrase, ESearchCase::IgnoreCase);
+    return InPhrase.Equals(BoundPhrase, ESearchCase::IgnoreCase) || Algo::LevenshteinDistance(BoundPhrase, InPhrase) < 3;
 }
 
 FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
