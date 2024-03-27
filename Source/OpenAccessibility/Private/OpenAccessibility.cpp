@@ -29,9 +29,11 @@ void FOpenAccessibilityModule::StartupModule()
 	RegisterConsoleCommands();
 
 	// Bind Branch to Phrase Tree
-	TSharedPtr<FPhraseEventNode> EventNode = MakeShared<FPhraseEventNode>();
-	EventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
+	TSharedPtr<FPhraseEventNode> MoveEventNode = MakeShared<FPhraseEventNode>();
+	MoveEventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
+
 		UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Executed --"));
+
 		UE_LOG(LogOpenAccessibility, Display, TEXT(" -- | Vals | Index: %d | Direction: %d | Amount : %d | --"), 
 			Record.PhraseInputs["INDEX"], Record.PhraseInputs["DIRECTION"], Record.PhraseInputs["AMOUNT"]
 		);
@@ -79,27 +81,80 @@ void FOpenAccessibilityModule::StartupModule()
 		}
 	});
 
+	TSharedPtr<FPhraseEventNode> PinConnectEventNode = MakeShared<FPhraseEventNode>();
+	PinConnectEventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
+		
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Active Tab --"));
+			return;
+		}
+
+		SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
+		if (ActiveGraphEditor == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
+			return;
+		}
+
+		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+		UEdGraphPin* SourcePin = IndexerForGraph->GetPin(
+			Record.PhraseInputs["NODE_INDEX"],
+			Record.PhraseInputs["PIN_INDEX"]
+		);
+
+		UEdGraphPin* TargetPin = IndexerForGraph->GetPin(
+			Record.PhraseInputs["NODE_INDEX_2"],
+			Record.PhraseInputs["PIN_INDEX_2"]
+		);
+			
+		SourcePin->MakeLinkTo(TargetPin);
+	});
+
 	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
 		MakeShared<FPhraseNode>(
 			TEXT("NODE"),
 			TPhraseNodeArray {
 
-				MakeShared<FPhraseInputNode>(TEXT("INDEX"),
-				TPhraseNodeArray {
-
-					MakeShared<FPhraseNode>(TEXT("MOVE"),
+					MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
 					TPhraseNodeArray {
 
-						MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
-						TPhraseNodeArray {
+							MakeShared<FPhraseNode>(TEXT("MOVE"),
+							TPhraseNodeArray {
 
-								MakeShared<FPhraseInputNode>(TEXT("AMOUNT"),
-								TPhraseNodeArray {
-									EventNode
-								})
-						})
+									MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+									TPhraseNodeArray {
+
+											MakeShared<FPhraseInputNode>(TEXT("AMOUNT"),
+											TPhraseNodeArray {
+												MoveEventNode
+											})
+									})
+							}),
+
+							MakeShared<FPhraseNode>(TEXT("PIN"),
+							TPhraseNodeArray {
+						
+									MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
+									TPhraseNodeArray {
+										
+											MakeShared<FPhraseNode>(TEXT("CONNECT"),
+											TPhraseNodeArray {
+												
+													MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX_2"),
+													TPhraseNodeArray {
+														
+															MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX_2"),
+															TPhraseNodeArray {
+																PinConnectEventNode
+															})
+													})
+											})
+									})
+							}),
 					})
-				})
 			})
 	);
 }
@@ -130,6 +185,27 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 			
 			UE_LOG(LogOpenAccessibility, Log, TEXT("Active Tab Content Type: %s"), *ActiveTab->GetContent()->GetTypeAsString())
 
+		}),
+
+		ECVF_Default
+	));
+
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibility.Debug.LogActiveIndexes"),
+		TEXT("Logs the Active Indexes of the Active Tab"),
+
+		FConsoleCommandDelegate::CreateLambda([this]() {
+
+			TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+			SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
+			if (ActiveGraphEditor == nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
+				return;
+			}
+
+
+			TSharedRef<FGraphIndexer> GraphIndexer = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 		}),
 
 		ECVF_Default

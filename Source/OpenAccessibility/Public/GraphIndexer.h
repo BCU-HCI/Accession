@@ -22,11 +22,20 @@ public:
 	int ContainsNode(UEdGraphNode* InNode);
 	void ContainsNode(UEdGraphNode* InNode, int& OutIndex);
 
+	int GetKey(const UEdGraphNode* InNode);
+	bool GetKey(const UEdGraphNode* InNode, int& OutKey);
+
 	void GetNode(const int& InIndex, UEdGraphNode* OutNode);
 	UEdGraphNode* GetNode(const int& InIndex);
 
+	void GetPin(const int& InNodeIndex, const int& InPinIndex, UEdGraphPin* OutPin);
+	UEdGraphPin* GetPin(const int& InNodeIndex, const int& InPinIndex);
+
 	int AddNode(const UEdGraphNode* Node);
 	void AddNode(int& OutIndex, const UEdGraphNode& InNode);
+
+	int GetOrAddNode(const UEdGraphNode* InNode);
+	void GetOrAddNode(const UEdGraphNode* InNode, int& OutIndex);
 
 	void RemoveNode(const int& InIndex);
 	void RemoveNode(const UEdGraphNode* InNode);
@@ -45,7 +54,7 @@ protected:
 	TMap<int, UEdGraphNode*> IndexMap;
 	TSet<int32> NodeSet;
 
-	TArray<int32> AvailableIndices;
+	TQueue<int32> AvailableIndices;
 
 	UEdGraph* LinkedGraph;
 	FDelegateHandle OnGraphChangedHandle;

@@ -42,6 +42,7 @@ private:
 	// Asset Register Events
 
 	void OnAssetOpenedInEditor(UObject* OpenedAsset, IAssetEditorInstance* EditorInstance);
+	void OnAssetEditorRequestClose(UObject* ClosingAsset, EAssetEditorCloseReason CloseReason);
 
 	void EmptyGraphAssetIndex();
 	void EmptyGameWorldAssetIndex();
@@ -59,4 +60,5 @@ public:
 private:
 
 	FDelegateHandle AssetOpenedInEditorHandle;
+	FDelegateHandle AssetEditorRequestCloseHandle;
 };

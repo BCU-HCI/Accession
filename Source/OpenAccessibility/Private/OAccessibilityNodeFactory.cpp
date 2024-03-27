@@ -44,29 +44,28 @@ TSharedPtr<class SGraphNode> FAccessibilityNodeFactory::CreateNode(UEdGraphNode*
     TSharedRef<FGraphIndexer> GraphIndexer = FOpenAccessibilityModule::Get()
         .AssetAccessibilityRegistry->GetGraphIndexer(InNode->GetGraph());
 
-    int NodeIndex = GraphIndexer->ContainsNode(InNode);
-    if (NodeIndex == -1)
-    {
-        UE_LOG(LogOpenAccessibility, Error, TEXT("Node Not Found In Graph Indexer"));
-    }
+    int NodeIndex = -1;
+    GraphIndexer->GetOrAddNode(InNode, NodeIndex);
 
     {
         // Create Accessibility Widgets For Pins
         TArray<UEdGraphPin*> Pins = InNode->GetAllPins();
+        TSharedPtr<SGraphPin> PinWidget;
 
         for (int i = 0; i < Pins.Num(); i++)
         {
             UEdGraphPin* Pin = Pins[i];
 
-            TSharedPtr<SGraphPin> PinWidget = OutNode->FindWidgetForPin(Pin);
+            PinWidget = OutNode->FindWidgetForPin(Pin);
             if (!PinWidget.IsValid())
             {
-				UE_LOG(LogOpenAccessibility, Warning, TEXT("Pin Widget Not Found"));
 				continue;
 			}
 
             WrapPinWidget(Pin, PinWidget.ToSharedRef(), i, OutNode.ToSharedRef());
         }
+
+        PinWidget.Reset();
     }
 
     // Wrap The Node Widget
@@ -77,7 +76,7 @@ TSharedPtr<class SGraphNode> FAccessibilityNodeFactory::CreateNode(UEdGraphNode*
 
 void FAccessibilityNodeFactory::WrapNodeWidget(UEdGraphNode* Node, TSharedRef<SGraphNode> NodeWidget, int NodeIndex) const
 {
-    TSharedPtr<SWidget> WidgetToWrap = NodeWidget->GetSlot(ENodeZone::Center)->GetWidget();
+    TSharedRef<SWidget> WidgetToWrap = NodeWidget->GetSlot(ENodeZone::Center)->GetWidget();
     check(WidgetToWrap != SNullWidget::NullWidget);
 
     NodeWidget->GetOrAddSlot(ENodeZone::Center)
@@ -121,21 +120,21 @@ void FAccessibilityNodeFactory::WrapNodeWidget(UEdGraphNode* Node, TSharedRef<SG
                 .HAlign(HAlign_Fill)
                 .AutoHeight()
                 [
-                    WidgetToWrap.ToSharedRef()
+                    WidgetToWrap
                 ]
         ];
 }
 
 void FAccessibilityNodeFactory::WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGraphPin> PinWidget, int PinIndex, TSharedRef<SGraphNode> OwnerNode) const
 {
-    TSharedPtr<SWidget> PinWidgetContent = PinWidget->GetContent();
+    TSharedRef<SWidget> PinWidgetContent = PinWidget->GetContent();
     check(PinWidgetContent != SNullWidget::NullWidget);
 
-    TSharedPtr<SWidget> AccessibilityWidget = SNew(SOverlay)
+    TSharedRef<SWidget> AccessibilityWidget = SNew(SOverlay)
         .Visibility_Lambda([OwnerNode]() -> EVisibility {
             
-            TOptional<EFocusCause> NodeVisability = OwnerNode->HasAnyUserFocus();
-            if (NodeVisability.IsSet() && NodeVisability.GetValue() != EFocusCause::OtherWidgetLostFocus)
+            TOptional<EFocusCause> NodeFocus = OwnerNode->HasAnyUserFocus();
+            if (NodeFocus.IsSet() && NodeFocus.GetValue() != EFocusCause::OtherWidgetLostFocus)
                 return EVisibility::Visible;
 
             else if (OwnerNode->HasAnyUserFocusOrFocusedDescendants() || OwnerNode->IsHovered())
@@ -160,12 +159,12 @@ void FAccessibilityNodeFactory::WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGrap
                     + SHorizontalBox::Slot()
                     .AutoWidth()
                     [
-                        PinWidgetContent.ToSharedRef()
+                        PinWidgetContent
                     ]
                     + SHorizontalBox::Slot()
                     .AutoWidth()
                     [
-                        AccessibilityWidget.ToSharedRef()
+                        AccessibilityWidget
                     ]
             );
 
@@ -179,12 +178,12 @@ void FAccessibilityNodeFactory::WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGrap
                     + SHorizontalBox::Slot()
                     .AutoWidth()
                     [
-                        AccessibilityWidget.ToSharedRef()
+                        AccessibilityWidget
                     ]
                     + SHorizontalBox::Slot()
                     .AutoWidth()
                     [
-                        PinWidgetContent.ToSharedRef()
+                        PinWidgetContent
                     ]
             );
             break;

@@ -19,16 +19,17 @@ FAssetAccessibilityRegistry::FAssetAccessibilityRegistry()
 	AssetOpenedInEditorHandle = GEditor->GetEditorSubsystem<UAssetEditorSubsystem>()->OnAssetOpenedInEditor()
 		.AddRaw(this, &FAssetAccessibilityRegistry::OnAssetOpenedInEditor);
 
-	GEditor->GetEditorSubsystem<UAssetEditorSubsystem>()->OnAssetEditorRequestClose()
-		.AddLambda([this](UObject* Object, EAssetEditorCloseReason Reason) {
-			UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Closed | Reason: { %d } ||"), *Object->GetFName().ToString(), int64(Reason));
-		});
+	AssetEditorRequestCloseHandle = GEditor->GetEditorSubsystem<UAssetEditorSubsystem>()->OnAssetEditorRequestClose()
+		.AddRaw(this, &FAssetAccessibilityRegistry::OnAssetEditorRequestClose);
 }
 
 FAssetAccessibilityRegistry::~FAssetAccessibilityRegistry()
 {
 	GEditor->GetEditorSubsystem<UAssetEditorSubsystem>()->OnAssetOpenedInEditor()
 		.Remove(AssetOpenedInEditorHandle);
+
+	GEditor->GetEditorSubsystem<UAssetEditorSubsystem>()->OnAssetEditorRequestClose()
+		.Remove(AssetEditorRequestCloseHandle);
 
 	EmptyGraphAssetIndex();
 }
@@ -49,6 +50,11 @@ void FAssetAccessibilityRegistry::OnAssetOpenedInEditor(UObject* OpenedAsset, IA
 	
 		RegisterMaterialAsset(OpenedMaterial);
 	}
+}
+
+void FAssetAccessibilityRegistry::OnAssetEditorRequestClose(UObject* ClosingAsset, EAssetEditorCloseReason CloseReason)
+{
+	UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Closed | Reason: { %d } ||"), *ClosingAsset->GetFName().ToString(), int64(CloseReason));
 }
 
 bool FAssetAccessibilityRegistry::IsGraphAssetRegistered(const UEdGraph* InUEdGraph) const
