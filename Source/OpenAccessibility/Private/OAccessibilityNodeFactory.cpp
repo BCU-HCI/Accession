@@ -148,8 +148,6 @@ void FAccessibilityNodeFactory::WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGrap
                 .Text(FText::FromString("[" + FString::FromInt(PinIndex) + "]"))
         ];
 
-    TSharedRef<SWidget> WrappedWidget = SNullWidget::NullWidget;
-
     switch (Pin->Direction)
     {
         case EEdGraphPinDirection::EGPD_Input:
