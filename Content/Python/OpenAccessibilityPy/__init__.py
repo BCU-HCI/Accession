@@ -10,37 +10,6 @@ from .Audio import AudioResampler
 from .Logging import Log, LogLevel
 
 
-# def HandleTranscriptionNewWhisper(com_server: CommunicationServer):
-#     whisper_interface = WhisperInterface("Systran/faster-distil-whisper-small.en")
-
-#     recv_message = com_server.ReceiveNDArray()
-
-#     # Get the message as a numpy array, reshaped for a stereo audio buffer.
-#     message_ndarray: np.ndarray = np.frombuffer(recv_message, dtype=np.float32)
-
-#     Log(
-#         f"Recieved Message: {message_ndarray} | Size: {message_ndarray.size} | Shape: {message_ndarray.shape}"
-#     )
-
-#     transcription_segments = whisper_interface.process_audio_buffer(message_ndarray)
-
-#     if len(transcription_segments) > 0:
-
-#         encoded_segments = [
-#             transcription.text.encode() for transcription in transcription_segments
-#         ]
-
-#         Log(f"Encoded Segments: {encoded_segments}")
-#         try:
-#             com_server.SendMultipart(encoded_segments)
-
-#         except:
-#             Log("Error Sending Encoded Transcription Segments", LogLevel.ERROR)
-
-#     else:
-#         Log("No Transcription Segments Returned", LogLevel.WARNING)
-
-
 class OpenAccessibilityPy:
     def __init__(
         self,
