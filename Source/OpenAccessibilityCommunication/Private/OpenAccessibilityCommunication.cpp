@@ -12,6 +12,7 @@
 #include "PhraseTree/PhraseEventNode.h"
 
 #include "Containers/Ticker.h"
+#include "Dom/JsonObject.h"
 #include "Interfaces/IPluginManager.h"
 #include "Sound/SampleBufferIO.h"
 #include "HAL/PlatformProcess.h"
@@ -69,18 +70,19 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 	if (SocketServer->EventOccured())
 	{
 		TArray<FString> RecvStrings;
+		TSharedPtr<FJsonObject> RecvMetadata;
 
-		if (SocketServer->RecvStringMultipart(RecvStrings))
+		if (SocketServer->RecvStringMultipartWithMeta(RecvStrings, RecvMetadata))
 		{
 			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Tick || Received Multipart | Message Count: %d ||"), RecvStrings.Num());
+			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Tick || Received Duration Metadata: %d ||"), RecvMetadata->GetNumberField(TEXT("duration")));
 
+			/*
 			for (int i = 0; i < RecvStrings.Num(); i++)
 			{
 				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Received Multipart Part: %d | Message: %s ||"), i, *RecvStrings[i]);
-			
-				//PhraseTree->ParseTranscription(RecvStrings[i]);
-
 			}
+			*/
 
 			OnTranscriptionRecieved.Broadcast(RecvStrings);
 		}
@@ -119,7 +121,12 @@ void FOpenAccessibilityCommunicationModule::TranscribeWaveForm(const TArray<floa
 
 	UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||"), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * sizeof(float)));
 
-	if (SocketServer->SendArrayMessage(AudioBufferToTranscribe, ComSendFlags::none))
+	TSharedPtr<FJsonObject> AudioBufferMetadata = MakeShared<FJsonObject>();
+
+	AudioBufferMetadata->SetNumberField(TEXT("sample_rate"), AudioManager->GetAudioCaptureSampleRate());
+	AudioBufferMetadata->SetNumberField(TEXT("num_channels"), AudioManager->GetAudioCaptureNumChannels());
+
+	if (SocketServer->SendArrayMessageWithMeta(AudioBufferToTranscribe, AudioBufferMetadata.ToSharedRef(), ComSendFlags::none))
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Transcription Ready || Sent Audio Buffer ||"));
 	}

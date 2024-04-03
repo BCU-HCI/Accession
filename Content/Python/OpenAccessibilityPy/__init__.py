@@ -55,9 +55,7 @@ class OpenAccessibilityPy:
         self.com_server = CommunicationServer(
             send_socket_type=zmq.PUSH, recv_socket_type=zmq.PULL, poll_timeout=10
         )
-        self.audio_resampler = AudioResampler(
-            in_sample_rate=48000, out_sample_rate=16000
-        )
+        self.audio_resampler = AudioResampler(out_sample_rate=16000)
 
         self.tick_handle = None
         self.tick_handle = ue.register_slate_post_tick_callback(self.Tick)
@@ -78,43 +76,44 @@ class OpenAccessibilityPy:
         if self.com_server.EventOccured():
             Log("Event Occured")
 
-            recv_message = self.com_server.ReceiveNDArray(dtype=np.float32)
+            metadata, message = self.com_server.ReceiveNDArrayWithMeta(dtype=np.float32)
 
-            self.worker_pool.submit(self.HandleTranscriptionRequest, recv_message)
+            self.worker_pool.submit(self.HandleTranscriptionRequest, message, metadata)
 
-    def HandleTranscriptionRequest(self, recv_message: np.ndarray):
+    def HandleTranscriptionRequest(
+        self, recv_message: np.ndarray, metadata: dict = None
+    ):
 
         Log(
             f"Handling Transcription Request | Message: {recv_message} | Size: {recv_message.size} | Shape: {recv_message.shape}"
         )
 
-        # Require Extension to handle sample_rates other than 48000Hz
-        # possibly by first passing metadata as JSON, then the audio buffer.
-        message_ndarray = self.audio_resampler.resample(recv_message)
+        sample_rate = metadata.get("sample_rate", 48000)
+        num_channels = metadata.get("num_channels", 1)
 
-        transcription_segments = self.whisper_interface.process_audio_buffer(
+        message_ndarray = self.audio_resampler.resample(recv_message, sample_rate)
+
+        trans_segments, trans_metadata = self.whisper_interface.process_audio_buffer(
             message_ndarray
         )
 
         encoded_segments = [
-            transcription.text.encode() for transcription in transcription_segments
+            transcription.text.encode() for transcription in trans_segments
         ]
 
         Log(f"Encoded Segments: {encoded_segments}")
 
         if len(encoded_segments) > 0:
             try:
-                self.com_server.SendMultipart(encoded_segments)
+                self.com_server.SendMultipartWithMeta(
+                    message=encoded_segments, meta=trans_metadata
+                )
 
             except:
                 Log("Error Sending Encoded Transcription Segments", LogLevel.ERROR)
 
         else:
             Log("No Transcription Segments Returned", LogLevel.WARNING)
-
-        # Args:
-        #    audio_device_role (AudioDeviceChangedRole):
-        #    device_id (str):
 
     def _OnDefaultAudioDeviceChanged(
         self, audio_device_role: ue.AudioDeviceChangedRole, device_id: str

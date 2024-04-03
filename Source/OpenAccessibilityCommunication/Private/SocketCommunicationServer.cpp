@@ -3,6 +3,8 @@
 #include "SocketCommunicationServer.h"
 #include "OpenAccessibilityComLogging.h"
 
+#include "Serialization/JsonSerializer.h"
+
 FSocketCommunicationServer::FSocketCommunicationServer(const std::string SendAddress = "tcp://127.0.0.1:5555", std::string RecvAddress = "tcp://127.0.0.1:5556", const int PollTimeout = 10)
 	: Address(Address), PollTimeout(PollTimeout)
 {
@@ -173,6 +175,94 @@ bool FSocketCommunicationServer::SendArrayMessage(const TArray<float>& ArrayMess
 	return false;
 }
 
+bool FSocketCommunicationServer::SendArrayMessageWithMeta(const float* MessageData, size_t Size, const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags)
+{
+	FString MetaDataString;
+	if (!SerializeJSON(Metadata, MetaDataString))
+	{
+		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Com Server: Sent Array || Failed to serialize metadata ||"));
+		return false;
+	}
+
+	std::vector<zmq::message_t> Messages;
+	Messages.push_back(zmq::message_t(*MetaDataString, MetaDataString.Len() * sizeof(TCHAR)));
+	Messages.push_back(zmq::message_t(MessageData, Size * sizeof(float)));
+
+	auto Result = zmq::send_multipart(*SendSocket, Messages, SendFlags);
+
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), Size * sizeof(float));
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		return true;
+	}
+
+	return false;
+}
+
+bool FSocketCommunicationServer::SendArrayMessageWithMeta(const float MessageData[], const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags)
+{
+	FString MetaDataString;
+	if (!SerializeJSON(Metadata, MetaDataString))
+	{
+		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Com Server: Sent Array || Failed to serialize metadata ||"));
+		return false;
+	}
+
+	std::vector<zmq::message_t> Messages;
+	Messages.push_back(zmq::message_t(*MetaDataString, MetaDataString.Len() * sizeof(TCHAR)));
+	Messages.push_back(zmq::message_t(MessageData, sizeof MessageData));
+
+	auto Result = zmq::send_multipart(*SendSocket, Messages, SendFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(sizeof MessageData));
+
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		return true;
+	}
+
+	return false;
+}
+
+bool FSocketCommunicationServer::SendArrayMessageWithMeta(const TArray<float>& ArrayMessage, const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags)
+{
+	FString MetaDataString;
+	if (!SerializeJSON(Metadata, MetaDataString))
+	{
+		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Com Server: Sent Array || Failed to serialize metadata ||"));
+		return false;
+	}
+
+	std::vector<zmq::message_t> Messages;
+	Messages.push_back(zmq::message_t(*MetaDataString, MetaDataString.Len() * sizeof(TCHAR)));
+	Messages.push_back(zmq::message_t(ArrayMessage.GetData(), ArrayMessage.Num() * sizeof(float)));
+
+	auto Result = zmq::send_multipart(*SendSocket, Messages, SendFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d Messages"), Result.value(), Messages.size());
+
+		return true;
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+
+		return true;
+	}
+
+	return false;
+}
+
 bool FSocketCommunicationServer::SendStringBuffer(const std::string StringMessage, ComSendFlags SendFlags)
 {
 	auto Result = SendSocket->send(zmq::const_buffer(StringMessage.c_str(), StringMessage.size()), SendFlags);
@@ -209,7 +299,7 @@ bool FSocketCommunicationServer::SendJsonBuffer(const std::string JsonMessage, C
 
 
 
-template <typename T> 
+template <typename T>
 bool FSocketCommunicationServer::RecvArray(TArray<T>& OutArrayData, size_t Size, ComRecvFlags RecvFlags)
 {
 	zmq::message_t RecvMessage;
@@ -218,9 +308,9 @@ bool FSocketCommunicationServer::RecvArray(TArray<T>& OutArrayData, size_t Size,
 	if (Result.has_value())
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv Array || Recv %d bytes"), Result.value());
-		
+
 		OutArrayData.Append(RecvMessage.data<T>(), Result.value());
-		
+
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
@@ -300,4 +390,58 @@ bool FSocketCommunicationServer::RecvStringMultipart(TArray<FString>& OutMessage
 	}
 
 	return false;
+}
+
+bool FSocketCommunicationServer::RecvStringMultipartWithMeta(TArray<FString>& OutMessages, TSharedPtr<FJsonObject>& OutMetadata, ComRecvFlags RecvFlag)
+{
+	std::vector<zmq::message_t> RecvMessages;
+	if (!RecvMultipartWithMeta(RecvMessages, OutMetadata, RecvFlag))
+		return false;
+
+	for (auto& Message : RecvMessages)
+	{
+		OutMessages.Add(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));
+	}
+
+	return true;
+}
+
+bool FSocketCommunicationServer::RecvMultipartWithMeta(std::vector<zmq::message_t>& OutMultipartMessages, TSharedPtr<FJsonObject>& OutMetadata, ComRecvFlags RecvFlags)
+{
+	auto Result = zmq::recv_multipart(*RecvSocket, std::back_inserter(OutMultipartMessages), RecvFlags);
+	if (Result.has_value())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv Multipart || Recv %d messages"), Result.value());
+
+		// Pop Metadata Messages from the Front of Array.
+		zmq::message_t MetadataMessage = MoveTempIfPossible(OutMultipartMessages[0]);
+		OutMultipartMessages.erase(OutMultipartMessages.begin());
+
+		if (DeserializeJSON(FString(UTF8_TO_TCHAR(MetadataMessage.data()), MetadataMessage.size()), OutMetadata))
+		{
+			return true;
+		}
+		else
+		{
+			UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Com Server: Recv Multipart || Failed to deserialize metadata ||"));
+			return false;
+		}
+	}
+	else if (zmq_errno() == EAGAIN)
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Recv Multipart || EAGAIN Error Occured ||"));
+		return true;
+	}
+	
+	return false;
+}
+
+bool FSocketCommunicationServer::SerializeJSON(const TSharedRef<FJsonObject>& InJsonObject, FString& OutJsonString)
+{
+	return FJsonSerializer::Serialize(InJsonObject, TJsonWriterFactory<TCHAR>::Create(&OutJsonString));
+}
+
+bool FSocketCommunicationServer::DeserializeJSON(const FString& InJsonString, TSharedPtr<FJsonObject>& OutJsonObject)
+{
+	return FJsonSerializer::Deserialize(TJsonReaderFactory<TCHAR>::Create(InJsonString), OutJsonObject);
 }

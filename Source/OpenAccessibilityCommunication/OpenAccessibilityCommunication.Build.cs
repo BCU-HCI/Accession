@@ -43,6 +43,7 @@ public class OpenAccessibilityCommunication : ModuleRules
 				// Core Modules
 				"CoreUObject",
 				"Engine",
+				"Json",
 
 				// Editor Modules
 				"UnrealEd",

@@ -77,6 +77,18 @@ class CommunicationServer:
             )
             return False
 
+    def SendNDArrayWithMeta(self, message: np.ndarray, meta: dict) -> bool:
+        try:
+            self.send_socket.send_multipart([json.dumps(meta).encode(), message.data])
+
+            return True
+        except:
+            Log(
+                "CommunicationServer | Error Sending NDArray With Meta Message",
+                LogLevel.WARNING,
+            )
+            return False
+
     def SendMultipart(self, message: list) -> bool:
         try:
             self.send_socket.send_multipart(message)
@@ -84,6 +96,17 @@ class CommunicationServer:
         except:
             Log(
                 "CommunicationServer | Error Sending Multipart Message",
+                LogLevel.WARNING,
+            )
+            return False
+
+    def SendMultipartWithMeta(self, message: list, meta: dict) -> bool:
+        try:
+            self.send_socket.send_multipart([json.dumps(meta).encode(), *message])
+            return True
+        except:
+            Log(
+                "CommunicationServer | Error Sending Multipart With Meta Message",
                 LogLevel.WARNING,
             )
             return False
@@ -105,6 +128,24 @@ class CommunicationServer:
             self.recv_socket.recv(zmq.DONTWAIT),
             dtype=dtype,
         )
+
+    def ReceiveNDArrayWithMeta(self, dtype=np.float32) -> tuple[dict, np.ndarray]:
+
+        recv_message = self.recv_socket.recv_multipart(zmq.DONTWAIT)
+
+        if len(recv_message) > 1:
+            return json.loads(recv_message[0]), np.frombuffer(
+                recv_message[1], dtype=dtype
+            )
+
+        elif len(recv_message) == 1:
+            Log(
+                "CommunicationServer | Error Receiving NDArray With Meta. Only Contains One Message, Assumed Data.",
+                LogLevel.WARNING,
+            )
+            return {}, np.frombuffer(recv_message[0], dtype=dtype)
+
+        Log("CommunicationServer | Error Receiving NDArray With Meta", LogLevel.WARNING)
 
     def ReceiveMultipart(self):
 

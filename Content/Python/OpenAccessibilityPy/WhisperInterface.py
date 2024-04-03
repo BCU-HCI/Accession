@@ -51,27 +51,9 @@ class WhisperInterface:
 
         return list(segments)
 
-    # def process_audio_buffer(self, audio_buffer: list[float]) -> list[str]:
-
-    #     audio_buffer: np.ndarray = np.array(audio_buffer, dtype=np.float32)
-
-    #     segments, info = self.whisper_model.transcribe(
-    #         audio_buffer,
-    #         beam_size=self.beam_size,
-    #     )
-
-    #     Log(
-    #         f"WhisperInterface | Detected Language: {info.language} | Probability: {info.language_probability} | Duration: {info.duration}"
-    #     )
-
-    #     for segment in segments:
-    #         Log(
-    #             "WhisperInterface || Segment: {segment.text} | Start: {segment.start} | End: {segment.end}"
-    #         )
-
-    #     return list(segments)
-
-    def process_audio_buffer(self, audio_buffer: np.ndarray) -> list[Segment]:
+    def process_audio_buffer(
+        self, audio_buffer: np.ndarray
+    ) -> tuple[list[Segment], dict]:
 
         segments, info = self.whisper_model.transcribe(
             audio_buffer,
@@ -83,4 +65,10 @@ class WhisperInterface:
             f"WhisperInterface || Detected Language: {info.language} | Probability: {info.language_probability} | Duration: {info.duration}"
         )
 
-        return list(segments)
+        collected_metadata = {
+            "duration": info.duration,
+            "language": info.language,
+            "language_probability": info.language_probability,
+        }
+
+        return list(segments), collected_metadata

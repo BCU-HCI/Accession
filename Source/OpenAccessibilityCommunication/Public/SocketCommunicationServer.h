@@ -4,8 +4,14 @@
 
 #include "CoreMinimal.h"
 
+#ifdef WITH_ZEROMQ
 #include "zmq.hpp"
 #include "zmq_addon.hpp"
+#else
+#error "ZeroMQ Could not be found. Please Make Sure ZEROMQ is Installed Correctly, and the WITH_ZEROMQ Definition is Valid."
+#endif // WITH_ZEROMQ
+
+class FJsonObject;
 
 typedef zmq::send_flags ComSendFlags;
 typedef zmq::recv_flags ComRecvFlags;
@@ -30,6 +36,10 @@ public:
 	bool SendArrayMessage(const float MessageData[], ComSendFlags SendFlags = ComSendFlags::none);
 	bool SendArrayMessage(const TArray<float>& ArrayMessage, ComSendFlags SendFlags = ComSendFlags::none);
 
+	bool SendArrayMessageWithMeta(const float* MessageData, size_t Size, const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendArrayMessageWithMeta(const float MessageData[], const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendArrayMessageWithMeta(const TArray<float>& ArrayMessage, const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags = ComSendFlags::none);
+
 	bool SendStringBuffer(const std::string StringMessage, ComSendFlags SendFlags = ComSendFlags::none);
 	bool SendJsonBuffer(const std::string JsonMessage, ComSendFlags SendFlags = ComSendFlags::none);
 
@@ -39,6 +49,14 @@ public:
 	bool RecvJson(FString& OutJsonMessage, ComRecvFlags RecvFlag = ComRecvFlags::none);
 
 	bool RecvStringMultipart(TArray<FString>& OutMessages, ComRecvFlags RecvFlag = ComRecvFlags::none);
+	bool RecvStringMultipartWithMeta(TArray<FString>& OutMessages, TSharedPtr<FJsonObject>& OutMetadata, ComRecvFlags RecvFlag = ComRecvFlags::none);
+
+protected:
+
+	bool RecvMultipartWithMeta(std::vector<zmq::message_t>& OutMultipartMessages, TSharedPtr<FJsonObject>& OutMetadata, ComRecvFlags RecvFlags);
+
+	bool SerializeJSON(const TSharedRef<FJsonObject>& InJsonObject, FString& OutJsonString);
+	bool DeserializeJSON(const FString& InJsonString, TSharedPtr<FJsonObject>& OutJsonObject);
 
 protected:
 	zmq::context_t* Context;
