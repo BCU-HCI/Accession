@@ -60,14 +60,6 @@ class OpenAccessibilityPy:
         self.tick_handle = None
         self.tick_handle = ue.register_slate_post_tick_callback(self.Tick)
 
-        audio_device_subsystem: ue.AudioDeviceNotificationSubsystem = (
-            ue.get_engine_subsystem(ue.AudioDeviceNotificationSubsystem)
-        )
-
-        audio_device_subsystem.default_capture_device_changed.add_callable(
-            self._OnDefaultAudioDeviceChanged
-        )
-
     def __del__(self):
         self.Shutdown()
 
@@ -114,22 +106,6 @@ class OpenAccessibilityPy:
 
         else:
             Log("No Transcription Segments Returned", LogLevel.WARNING)
-
-    def _OnDefaultAudioDeviceChanged(
-        self, audio_device_role: ue.AudioDeviceChangedRole, device_id: str
-    ):
-        Log(f"Audio Device Switched to: {device_id} | Role: {audio_device_role}")
-
-        # get the new default audio device's sample rate
-        device_info = ue.AudioInputDeviceInfo(device_id=device_id)
-
-        Log(
-            f"New Default Audio Device Sample Rate: {device_info.preferred_sample_rate}"
-        )
-        Log(f"New Default Audio Device Channels: {device_info.input_channels}")
-
-        if device_info.preferred_sample_rate != 0:
-            self.audio_resampler.sample_rate = device_info.preferred_sample_rate
 
     def Shutdown(self):
         if self.tick_handle:
