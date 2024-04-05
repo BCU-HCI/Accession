@@ -14,22 +14,28 @@ except ImportError:
 
 class AudioResampler:
 
-    def __init__(self, in_sample_rate: int = 48000, out_sample_rate: int = 16000):
+    def __init__(self, target_sample_rate: int = 16000):
         self._audio_resampler = av.AudioResampler(
-            format="s16", layout="mono", rate=out_sample_rate
+            format="s16", layout="mono", rate=target_sample_rate
         )
         self._resample_mutex = Lock()
 
-        self.input_sample_rate = in_sample_rate
-
     def __del__(self):
-        if self._audio_resampler:
-            # It appears that some objects related to the resampler are not freed
-            # unless the garbage collector is manually run.
+        # Try Deleting the resampler object to cleanly free up memory
+        try:
             del self._audio_resampler
-            gc.collect()
+        except:
+            pass
 
-    def resample(self, audio_data: np.ndarray) -> np.ndarray:
+        try:  # Delete the mutex
+            del self._resample_mutex
+        except:
+            pass
+
+        # Force Garbage Collection, due to resampler not being properly deleted otherwise.
+        gc.collect()
+
+    def resample(self, audio_data: np.ndarray, buffer_sample_rate: int) -> np.ndarray:
 
         audio_data = self._convert_to_s16(audio_data).reshape(-1, 1)
 
@@ -39,7 +45,7 @@ class AudioResampler:
             layout="stereo",
         )
 
-        frame.sample_rate = self.input_sample_rate
+        frame.sample_rate = buffer_sample_rate
 
         resampled_frames: list[av.AudioFrame] = []
         with self._resample_mutex:
