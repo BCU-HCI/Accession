@@ -21,11 +21,19 @@ class AudioResampler:
         self._resample_mutex = Lock()
 
     def __del__(self):
-        if self._audio_resampler:
-            # It appears that some objects related to the resampler are not freed
-            # unless the garbage collector is manually run.
+        # Try Deleting the resampler object to cleanly free up memory
+        try:
             del self._audio_resampler
-            gc.collect()
+        except:
+            pass
+
+        try:  # Delete the mutex
+            del self._resample_mutex
+        except:
+            pass
+
+        # Force Garbage Collection, due to resampler not being properly deleted otherwise.
+        gc.collect()
 
     def resample(self, audio_data: np.ndarray, buffer_sample_rate: int) -> np.ndarray:
 

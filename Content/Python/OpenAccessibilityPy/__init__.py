@@ -13,18 +13,28 @@ from .Logging import Log, LogLevel
 class OpenAccessibilityPy:
     def __init__(
         self,
-        whisper_model: str = "Systran/faster-distil-whisper-small.en",
+        # General Runtime Specifics
         worker_count: int = 2,
+        # Whisper Specifics
+        whisper_model: str = "Systran/faster-distil-whisper-small.en",
+        device: str = "auto",
+        compute_type: str = "default",
+        # Communication Specifics
+        poll_timeout: int = 10,
     ):
         self.worker_pool = ThreadPool(
             max_workers=worker_count, thread_name_prefix="TranscriptionWorker"
         )
 
-        self.whisper_interface = WhisperInterface(whisper_model)
-        self.com_server = CommunicationServer(
-            send_socket_type=zmq.PUSH, recv_socket_type=zmq.PULL, poll_timeout=10
+        self.whisper_interface = WhisperInterface(
+            model_name=whisper_model, device=device, compute_type=compute_type
         )
-        self.audio_resampler = AudioResampler(out_sample_rate=16000)
+        self.com_server = CommunicationServer(
+            send_socket_type=zmq.PUSH,
+            recv_socket_type=zmq.PULL,
+            poll_timeout=poll_timeout,
+        )
+        self.audio_resampler = AudioResampler(target_sample_rate=16000)
 
         self.tick_handle = None
         self.tick_handle = ue.register_slate_post_tick_callback(self.Tick)
@@ -37,7 +47,7 @@ class OpenAccessibilityPy:
         if self.com_server.EventOccured():
             Log("Event Occured")
 
-            metadata, message = self.com_server.ReceiveNDArrayWithMeta(dtype=np.float32)
+            message, metadata = self.com_server.ReceiveNDArrayWithMeta(dtype=np.float32)
 
             self.worker_pool.submit(self.HandleTranscriptionRequest, message, metadata)
 

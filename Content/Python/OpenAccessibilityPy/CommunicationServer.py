@@ -129,13 +129,14 @@ class CommunicationServer:
             dtype=dtype,
         )
 
-    def ReceiveNDArrayWithMeta(self, dtype=np.float32) -> tuple[dict, np.ndarray]:
+    def ReceiveNDArrayWithMeta(self, dtype=np.float32) -> tuple[np.ndarray, dict]:
 
         recv_message = self.recv_socket.recv_multipart(zmq.DONTWAIT)
 
         if len(recv_message) > 1:
-            return json.loads(recv_message[0]), np.frombuffer(
-                recv_message[1], dtype=dtype
+            return (
+                np.frombuffer(recv_message[1], dtype=dtype),
+                json.loads(recv_message[0]),
             )
 
         elif len(recv_message) == 1:
@@ -143,7 +144,7 @@ class CommunicationServer:
                 "CommunicationServer | Error Receiving NDArray With Meta. Only Contains One Message, Assumed Data.",
                 LogLevel.WARNING,
             )
-            return {}, np.frombuffer(recv_message[0], dtype=dtype)
+            return (np.frombuffer(recv_message[0], dtype=dtype), {})
 
         Log("CommunicationServer | Error Receiving NDArray With Meta", LogLevel.WARNING)
 
