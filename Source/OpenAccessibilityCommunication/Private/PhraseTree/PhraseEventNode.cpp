@@ -6,7 +6,7 @@
 
 FPhraseEventNode::FPhraseEventNode() : FPhraseNode(TEXT("EVENT_NODE"))
 {
-    OnPhraseEvent = TDelegate<void(const FParseRecord&)>();
+    OnPhraseParsed = TDelegate<void(const FParseRecord&)>();
 }
 
 FPhraseEventNode::FPhraseEventNode(TDelegate<void(const FParseRecord&)> InEvent) : FPhraseNode(TEXT("EVENT_NODE"))
