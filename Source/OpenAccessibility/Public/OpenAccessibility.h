@@ -30,8 +30,12 @@ public:
 
 private:
 
-	// Console Commands
+	// Phrase Branch Bindings
+	void BindLocalLocomotionBranch();
+	void BindGraphInteractionBranch();
+	void BindViewportInteractionBranch();
 
+	// Console Commands
 	void RegisterConsoleCommands();
 
 	void UnregisterConsoleCommands();
