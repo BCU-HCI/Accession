@@ -22,7 +22,7 @@ public:
 
 	inline void WrapNodeWidget(UEdGraphNode* Node, TSharedRef<SGraphNode> NodeWidget, int NodeIndex) const;
 
-	inline void WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGraphPin> PinWidget, int PinIndex, TSharedRef<SGraphNode> OwnerNode) const;
+	inline void WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGraphPin> PinWidget, int PinIndex, SGraphNode* OwnerNode) const;
 
 	void SetSharedPtr(TSharedPtr<FAccessibilityNodeFactory> InSharedPtr)
 	{

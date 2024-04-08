@@ -17,7 +17,7 @@ struct OPENACCESSIBILITYCOMMUNICATION_API FParseRecord
 {
 	FParseRecord()
 	{
-		PhraseInputs = TMap<FString, int>();
+		PhraseInputs = TMultiMap<FString, int>();
 	}
 
 	~FParseRecord()
@@ -25,7 +25,7 @@ struct OPENACCESSIBILITYCOMMUNICATION_API FParseRecord
 		PhraseInputs.Empty();
 	}
 
-	TMap<FString, int> PhraseInputs;
+	TMultiMap<FString, int> PhraseInputs;
 };
 
 enum OPENACCESSIBILITYCOMMUNICATION_API PhrasePropogationType : uint8_t

@@ -54,6 +54,9 @@ void FAssetAccessibilityRegistry::OnAssetOpenedInEditor(UObject* OpenedAsset, IA
 
 void FAssetAccessibilityRegistry::OnAssetEditorRequestClose(UObject* ClosingAsset, EAssetEditorCloseReason CloseReason)
 {
+	if (ClosingAsset == nullptr)
+		return;
+
 	UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Closed | Reason: { %d } ||"), *ClosingAsset->GetFName().ToString(), int64(CloseReason));
 }
 
