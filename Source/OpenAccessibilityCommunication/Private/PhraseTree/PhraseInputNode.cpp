@@ -3,14 +3,34 @@
 #include "PhraseTree/PhraseInputNode.h"
 #include "OpenAccessibilityComLogging.h"
 
-FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString) : FPhraseNode(InInputString)
+FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString) 
+    : FPhraseNode(InInputString)
 {
 
 }
 
-FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes) : FPhraseNode(InInputString, InChildNodes)
+FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes) 
+    : FPhraseNode(InInputString, InChildNodes)
 {
 
+}
+
+FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+	: FPhraseNode(InInputString, InOnPhraseParsed, InChildNodes)
+{
+
+}
+
+FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+	: FPhraseNode(InInputString, InChildNodes)
+{
+	OnInputReceived = InOnInputRecieved;
+}
+
+FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+    : FPhraseNode(InInputString, InOnPhraseParsed, InChildNodes)
+{
+	OnInputReceived = InOnInputRecieved;
 }
 
 FPhraseInputNode::~FPhraseInputNode()
@@ -43,6 +63,8 @@ FParseResult FPhraseInputNode::ParsePhrase(TArray<FString>& InPhraseArray, FPars
 			return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
 		}
 
+        OnPhraseParsed.ExecuteIfBound(InParseRecord);
+
         return ParseChildren(InPhraseArray, InParseRecord);
     }
 
@@ -56,7 +78,11 @@ bool FPhraseInputNode::MeetsInputRequirements(const FString& InPhrase)
 
 bool FPhraseInputNode::RecordInput(const FString& InInput, FParseRecord& OutParseRecord)
 {
-	OutParseRecord.PhraseInputs.Add(BoundPhrase, FCString::Atoi(*InInput));
+    int32 Input = FCString::Atoi(*InInput);
+
+	OutParseRecord.PhraseInputs.Add(BoundPhrase, Input);
+
+    OnInputReceived.ExecuteIfBound(Input);
 
 	return true;
 }

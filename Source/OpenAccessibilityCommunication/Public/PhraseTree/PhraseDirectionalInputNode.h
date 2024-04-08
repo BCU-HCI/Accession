@@ -14,6 +14,18 @@ public:
 	FPhraseDirectionalInputNode(const TCHAR* NodeName, TPhraseNodeArray InChildNodes)
 		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InChildNodes)
 	{}
+
+	FPhraseDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes)
+	{}
+
+	FPhraseDirectionalInputNode(const TCHAR* NodeName, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InChildNodes, InOnInputRecieved)
+	{}
+
+	FPhraseDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes, InOnInputRecieved)
+	{}
 };
 
 class OPENACCESSIBILITYCOMMUNICATION_API FPhrase2DDirectionalInputNode : public FPhraseEnumInputNode<EPhrase2DDirectionalInput>
@@ -25,5 +37,17 @@ public:
 
 	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TPhraseNodeArray InChildNodes)
 		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InChildNodes)
+	{}
+
+	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes)
+	{}
+
+	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InChildNodes, InOnInputRecieved)
+	{}
+
+	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TDelegate<void (const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes, InOnInputRecieved)
 	{}
 };

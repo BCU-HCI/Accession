@@ -22,7 +22,4 @@ public:
 
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord) override;
 	// End FPhraseNode Implementation
-
-
-	TDelegate<void(const FParseRecord&)> OnPhraseEvent;
 };

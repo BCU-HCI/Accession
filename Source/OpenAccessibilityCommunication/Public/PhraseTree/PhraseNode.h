@@ -13,7 +13,9 @@ class OPENACCESSIBILITYCOMMUNICATION_API FPhraseNode : public TSharedFromThis<FP
 public:
 
 	FPhraseNode(const TCHAR* InBoundPhrase);
+	FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void (const FParseRecord& Record)> InOnPhraseParsed);
 	FPhraseNode(const TCHAR* InBoundPhrase, TPhraseNodeArray InChildNodes);
+	FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes);
 
 	virtual ~FPhraseNode();
 
@@ -52,6 +54,9 @@ public:
 	/// The Phrase Bound to this
 	/// </summary>
 	FString BoundPhrase;
+
+	// Phrase To Be Executed On the Parse Command
+	TDelegate<void (const FParseRecord& Record)> OnPhraseParsed;
 
 protected:
 };

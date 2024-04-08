@@ -13,8 +13,11 @@ template<typename TEnum>
 class OPENACCESSIBILITYCOMMUNICATION_API FPhraseEnumInputNode : public FPhraseInputNode
 {
 public:
-	FPhraseEnumInputNode(const TCHAR* NodeName);
-	FPhraseEnumInputNode(const TCHAR* NodeName, TPhraseNodeArray InChildNodes);
+	FPhraseEnumInputNode(const TCHAR* InInputString);
+	FPhraseEnumInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes);
+	FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes);
+	FPhraseEnumInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved);
+	FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved);
 
 	~FPhraseEnumInputNode();
 

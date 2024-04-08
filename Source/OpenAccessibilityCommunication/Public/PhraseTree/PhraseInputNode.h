@@ -13,6 +13,9 @@ class OPENACCESSIBILITYCOMMUNICATION_API FPhraseInputNode : public FPhraseNode
 public:
 	FPhraseInputNode(const TCHAR* InInputString);
 	FPhraseInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes);
+	FPhraseInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes);
+	FPhraseInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate<void (int32 Input)> InOnInputRecieved);
+	FPhraseInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved);
 
 	~FPhraseInputNode();
 
@@ -23,6 +26,8 @@ public:
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord) override;
 
 	// End FPhraseNode Implementation
+
+	TDelegate<void(int32 ReceivedInput)> OnInputReceived;
 
 protected:
 

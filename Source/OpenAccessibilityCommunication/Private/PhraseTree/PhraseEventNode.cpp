@@ -11,7 +11,7 @@ FPhraseEventNode::FPhraseEventNode() : FPhraseNode(TEXT("EVENT_NODE"))
 
 FPhraseEventNode::FPhraseEventNode(TDelegate<void(const FParseRecord&)> InEvent) : FPhraseNode(TEXT("EVENT_NODE"))
 {
-    OnPhraseEvent = InEvent;
+    OnPhraseParsed = InEvent;
 }
 
 FPhraseEventNode::~FPhraseEventNode()
@@ -26,7 +26,7 @@ bool FPhraseEventNode::RequiresPhrase(const FString InPhrase)
 
 FParseResult FPhraseEventNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
 {
-    if (OnPhraseEvent.ExecuteIfBound(InParseRecord))
+    if (OnPhraseParsed.ExecuteIfBound(InParseRecord))
     {
         return FParseResult(PHRASE_PARSED_AND_EXECUTED);
     }

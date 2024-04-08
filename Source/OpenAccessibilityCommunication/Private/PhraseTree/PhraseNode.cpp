@@ -12,9 +12,23 @@ FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase)
 	ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
 }
 
+FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed)
+{
+    BoundPhrase = InBoundPhrase;
+    OnPhraseParsed = InOnPhraseParsed;
+    ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
+}
+
 FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TPhraseNodeArray InChildNodes)
 {
 	BoundPhrase = InBoundPhrase;
+	ChildNodes = InChildNodes;
+}
+
+FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+{
+    BoundPhrase = InBoundPhrase;
+    OnPhraseParsed = InOnPhraseParsed;
 	ChildNodes = InChildNodes;
 }
 
@@ -40,6 +54,8 @@ FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseReco
     // Pop the Phrase Linked to this Node.
     FString PhraseToParse = InPhraseArray.Pop();
     
+    OnPhraseParsed.ExecuteIfBound(InParseRecord);
+
     // Pass 
     return ParseChildren(InPhraseArray, InParseRecord);
 }

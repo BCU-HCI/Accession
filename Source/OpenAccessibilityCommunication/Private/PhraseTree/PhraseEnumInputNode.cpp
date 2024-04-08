@@ -19,6 +19,27 @@ FPhraseEnumInputNode<TEnum>::FPhraseEnumInputNode(const TCHAR* NodeName, TPhrase
 }
 
 template<typename TEnum>
+FPhraseEnumInputNode<TEnum>::FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+	: FPhraseInputNode(InInputString, InOnPhraseParsed, InChildNodes)
+{
+	static_assert(TIsEnum<TEnum>::Value, "Passed EnumType Must be an Enum");
+}
+
+template<typename TEnum>
+FPhraseEnumInputNode<TEnum>::FPhraseEnumInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+	: FPhraseInputNode(InInputString, InChildNodes, InOnInputRecieved)
+{
+	static_assert(TIsEnum<TEnum>::Value, "Passed EnumType Must be an Enum");
+}
+
+template<typename TEnum>
+FPhraseEnumInputNode<TEnum>::FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+	: FPhraseInputNode(InInputString, InOnPhraseParsed, InChildNodes, InOnInputRecieved)
+{
+	static_assert(TIsEnum<TEnum>::Value, "Passed EnumType Must be an Enum");
+}
+
+template<typename TEnum>
 FPhraseEnumInputNode<TEnum>::~FPhraseEnumInputNode()
 {
 	

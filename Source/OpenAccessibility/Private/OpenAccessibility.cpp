@@ -30,7 +30,7 @@ void FOpenAccessibilityModule::StartupModule()
 
 	// Bind Branch to Phrase Tree
 	TSharedPtr<FPhraseEventNode> MoveEventNode = MakeShared<FPhraseEventNode>();
-	MoveEventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
+	MoveEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
 		{
@@ -81,8 +81,8 @@ void FOpenAccessibilityModule::StartupModule()
 	});
 
 	TSharedPtr<FPhraseEventNode> PinConnectEventNode = MakeShared<FPhraseEventNode>();
-	PinConnectEventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
-		
+	PinConnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
 		{
@@ -126,7 +126,7 @@ void FOpenAccessibilityModule::StartupModule()
 	});
 
 	TSharedPtr<FPhraseEventNode> PinDisconnectEventNode = MakeShared<FPhraseEventNode>();
-	PinConnectEventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
+	PinConnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
 
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
@@ -170,11 +170,31 @@ void FOpenAccessibilityModule::StartupModule()
 		SourcePin->BreakLinkTo(TargetPin);
 	});
 
+	TDelegate<void(int32 IndexInput)> NodeIndexFocusEvent;
+	NodeIndexFocusEvent.BindLambda([this](int32 NodeIndex) {
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			return;
+		}
+
+		SGraphEditor* ActiveGraphEditor = (SGraphEditor*) ActiveTab->GetContent().ToSharedPtr().Get();
+		if (ActiveGraphEditor == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
+			return;
+		}
+
+		TSharedRef<FGraphIndexer> GraphIndexer = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+		ActiveGraphEditor->ClearSelectionSet();
+		ActiveGraphEditor->SetNodeSelection(GraphIndexer->GetNode(NodeIndex), true);
+	});
 
 	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
 		MakeShared<FPhraseNode>(
 			TEXT("NODE"),
-			TPhraseNodeArray {
+			TPhraseNodeArray{
 
 					MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
 					TPhraseNodeArray {
@@ -194,16 +214,16 @@ void FOpenAccessibilityModule::StartupModule()
 
 							MakeShared<FPhraseNode>(TEXT("PIN"),
 							TPhraseNodeArray {
-						
+
 									MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
 									TPhraseNodeArray {
-										
+
 											MakeShared<FPhraseNode>(TEXT("CONNECT"),
 											TPhraseNodeArray {
-												
+
 													MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
 													TPhraseNodeArray {
-														
+
 															MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
 															TPhraseNodeArray {
 																PinConnectEventNode
@@ -221,11 +241,11 @@ void FOpenAccessibilityModule::StartupModule()
 															TPhraseNodeArray {
 																PinDisconnectEventNode
 															})
-													})
+													}, NodeIndexFocusEvent)
 											})
 									})
 							}),
-					})
+					}, NodeIndexFocusEvent)
 			})
 	);
 
@@ -242,7 +262,7 @@ void FOpenAccessibilityModule::ShutdownModule()
 void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 {
 	TSharedPtr<FPhraseEventNode> MoveViewportEventNode = MakeShared<FPhraseEventNode>();
-	MoveViewportEventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
+	MoveViewportEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
 		{
@@ -299,7 +319,7 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 	});
 
 	TSharedPtr<FPhraseEventNode> ZoomViewportEventNode = MakeShared<FPhraseEventNode>();
-	ZoomViewportEventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
+	ZoomViewportEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
 		{
@@ -349,7 +369,7 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 	});
 
 	TSharedPtr<FPhraseEventNode> IndexFocusEventNode = MakeShared<FPhraseEventNode>();
-	IndexFocusEventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
+	IndexFocusEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
 		{
