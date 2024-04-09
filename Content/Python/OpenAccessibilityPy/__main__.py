@@ -10,6 +10,9 @@ from Audio import AudioResampler
 from Logging import Log, LogLevel
 
 
+PERFORM_COMPARE = False
+
+
 def PlotAudioBuffers(
     recv_audio_buffer: np.ndarray,
     decoded_audio_buffer: np.ndarray,
@@ -52,7 +55,7 @@ def main():
     com_server = CommunicationServer(
         send_socket_type=zmq_PUSH, recv_socket_type=zmq_PULL, poll_timeout=10
     )
-    audio_resampler = AudioResampler(sample_rate=16000)
+    audio_resampler = AudioResampler(target_sample_rate=16000)
 
     should_run = True
 
@@ -63,35 +66,44 @@ def main():
         if com_server.EventOccured():
             Log("Event Occured")
 
-            recv_message = com_server.ReceiveNDArray()
+            recv_message, metadata = com_server.ReceiveNDArrayWithMeta()
 
             message_ndarray: np.ndarray = np.frombuffer(recv_message, dtype=np.float32)
 
-            decoded_ndarray = decode_audio(
-                "D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/Captured_User_Audio.wav",
-                sampling_rate=16000,
-            )
+            sample_rate = metadata.get("sample_rate", 48000)
+            num_channels = metadata.get("num_channels", 1)
 
-            PlotAudioBuffers(message_ndarray, decoded_ndarray)
+            if PERFORM_COMPARE:
+                decoded_ndarray = decode_audio(
+                    "D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/Captured_User_Audio.wav",
+                    sampling_rate=16000,
+                )
 
-            isSame = np.array_equal(message_ndarray, decoded_ndarray)
-            # isClose = np.allclose(message_ndarray, decoded_ndarray)
+                PlotAudioBuffers(message_ndarray, decoded_ndarray)
 
-            # difference = np.subtract(message_ndarray, decoded_ndarray)
+                isSame = np.array_equal(message_ndarray, decoded_ndarray)
+                # isClose = np.allclose(message_ndarray, decoded_ndarray)
 
-            Log(f"Recieved Buffer | {message_ndarray} | Shape: {message_ndarray.shape}")
+                # difference = np.subtract(message_ndarray, decoded_ndarray)
 
-            Log(f"Decoded Buffer | {decoded_ndarray} | Shape: {decoded_ndarray.shape}")
-            Log(f"Comparisons | Is Same: {isSame}")
+                Log(
+                    f"Recieved Buffer | {message_ndarray} | Shape: {message_ndarray.shape}"
+                )
+
+                Log(
+                    f"Decoded Buffer | {decoded_ndarray} | Shape: {decoded_ndarray.shape}"
+                )
+                Log(f"Comparisons | Is Same: {isSame}")
 
             # Apply Resampling to the Audio Buffer, to match samplerate of 16000Hz
-            message_ndarray = audio_resampler.resample(message_ndarray)
+            message_ndarray = audio_resampler.resample(message_ndarray, sample_rate)
 
-            PlotAudioBuffers(
-                message_ndarray, decoded_ndarray, name="ResampledBufferComparison"
-            )
+            if PERFORM_COMPARE:
+                PlotAudioBuffers(
+                    message_ndarray, decoded_ndarray, name="ResampledBufferComparison"
+                )
 
-            transcription_segments = whisper_interface.process_audio_buffer(
+            transcription_segments, metadata = whisper_interface.process_audio_buffer(
                 message_ndarray
             )
 
@@ -109,7 +121,7 @@ def main():
 
             if len(encoded_segments) > 0:
                 try:
-                    com_server.SendMultipart(encoded_segments)
+                    com_server.SendMultipartWithMeta(encoded_segments, metadata)
                 except:
                     Log("Error Sending Encoded Transcription Segments", LogLevel.ERROR)
             else:

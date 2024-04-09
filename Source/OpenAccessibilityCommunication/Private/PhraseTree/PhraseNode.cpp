@@ -144,6 +144,9 @@ bool FPhraseNode::BindChildrenNodesForce(TPhraseNodeArray InNodes)
 
 FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
 {
+    if (InPhraseArray.IsEmpty())
+        return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
+
     for (auto& ChildNode : ChildNodes)
     {
         // ChildNodes cannot have duplicate bound phrases.

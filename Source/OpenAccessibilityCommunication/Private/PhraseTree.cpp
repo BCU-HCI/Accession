@@ -57,13 +57,13 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 
 		// Filter the Transcription Segment, to remove any unwanted characters.
 		TranscriptionSegment.TrimStartAndEndInline();
-		TranscriptionSegment.ReplaceInline(TEXT(","), TEXT(""), ESearchCase::IgnoreCase);
+		TranscriptionSegment.ReplaceInline(TEXT("."), TEXT(""), ESearchCase::IgnoreCase);
 		TranscriptionSegment.ToUpperInline();
 
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Filtered Transcription Segment: { %s } ||"), *TranscriptionSegment)
 
 		// Parse the Transcription Segment into an Array of Words, removing any white space.
-		TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray, TEXT("."), true);
+		TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray, TEXT(","), true);
 		if (SegmentWordArray.Num() == 0)
 		{
 			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment has no Word Content ||"))
@@ -123,8 +123,9 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 	// due to the possibility of connecting phrases over different transcription segments.
 	if (LastVistedNode != nullptr && LastVistedNode.IsValid())
 	{
-		FParseResult ParseResult = LastVistedNode->ParsePhrase(InPhraseWordArray, InParseRecord);
-		if (ParseResult.Result == PHRASE_PARSED || ParseResult.Result == PHRASE_PARSED_AND_EXECUTED)
+		TArray<FString> PhraseWordArrayCopy = TArray<FString>(InPhraseWordArray);
+		FParseResult ParseResult = LastVistedNode->ParsePhrase(PhraseWordArrayCopy, InParseRecord);
+		if (ParseResult.Result == PHRASE_PARSED || ParseResult.Result != PHRASE_UNABLE_TO_PARSE)
 		{
 			LastVistedNode.Reset();
 
@@ -138,10 +139,6 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 		if (!ChildNode->RequiresPhrase(InPhraseWordArray.Last()))
 			continue;
 
-		// Remove reference to Last Visted Node,
-		// due to a new propogation being started.
-		LastVistedNode.Reset();
-
 		return ChildNode->ParsePhrase(InPhraseWordArray, InParseRecord);
 	}
 
@@ -149,7 +146,6 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 
 	return FParseResult(PHRASE_NOT_PARSED);
 }
-
 
 void FPhraseTree::BindBranch(const TPhraseNode& InNode)
 {
