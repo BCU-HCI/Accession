@@ -46,14 +46,20 @@ enum OPENACCESSIBILITYCOMMUNICATION_API PhrasePropogationType : uint8_t
 	PHRASE_REQUIRES_MORE = 2,
 
 	/// <summary>
+	/// When a phrase requires more correct phrase components to propogate down the tree further, 
+	/// as the propogation ran wrong inputs.
+	/// </summary>
+	PHRASE_REQUIRES_MORE_CORRECT_PHRASES = 3,
+
+	/// <summary>
 	/// When the Phrase is Parsed all the way to a leaf node.
 	/// </summary>
-	PHRASE_PARSED = 3,
+	PHRASE_PARSED = 4,
 
 	/// <summary>
 	/// When the Phrase is Parsed all the way to a leaf node, triggering an event.
 	/// </summary>
-	PHRASE_PARSED_AND_EXECUTED = 4,
+	PHRASE_PARSED_AND_EXECUTED = 5,
 };
 
 /// <summary>

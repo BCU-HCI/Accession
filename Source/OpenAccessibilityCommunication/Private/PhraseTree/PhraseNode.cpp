@@ -52,7 +52,7 @@ FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseReco
     }
 
     // Pop the Phrase Linked to this Node.
-    FString PhraseToParse = InPhraseArray.Pop();
+    InPhraseArray.Pop();
     
     OnPhraseParsed.ExecuteIfBound(InParseRecord);
 

@@ -58,12 +58,13 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 		// Filter the Transcription Segment, to remove any unwanted characters.
 		TranscriptionSegment.TrimStartAndEndInline();
 		TranscriptionSegment.ReplaceInline(TEXT("."), TEXT(""), ESearchCase::IgnoreCase);
+		TranscriptionSegment.ReplaceInline(TEXT(","), TEXT(""), ESearchCase::IgnoreCase);
 		TranscriptionSegment.ToUpperInline();
 
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Filtered Transcription Segment: { %s } ||"), *TranscriptionSegment)
 
 		// Parse the Transcription Segment into an Array of Words, removing any white space.
-		TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray, TEXT(","), true);
+		TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray);
 		if (SegmentWordArray.Num() == 0)
 		{
 			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment has no Word Content ||"))
@@ -90,6 +91,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 			}
 
 			case PHRASE_REQUIRES_MORE:
+			case PHRASE_REQUIRES_MORE_CORRECT_PHRASES:
 			{
 				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment Requires More Word Segments ||"))
 
@@ -101,6 +103,8 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 			case PHRASE_UNABLE_TO_PARSE:
 			{
 				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment Unable to be Parsed ||"))
+				
+					
 				break;
 			}
 		}

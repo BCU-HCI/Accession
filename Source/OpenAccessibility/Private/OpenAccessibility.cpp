@@ -50,6 +50,12 @@ void FOpenAccessibilityModule::StartupModule()
 				NodeIndex
 			);
 
+			if (GraphNode == nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Node Index --"));
+				return;
+			}
+
 			switch (EPhraseDirectionalInput(MoveDirection))
 			{
 				case EPhraseDirectionalInput::UP:
@@ -122,6 +128,12 @@ void FOpenAccessibilityModule::StartupModule()
 			PinInputs[1]
 		);
 
+		if (SourcePin == nullptr || TargetPin == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Pins --"));
+			return;
+		}
+
 		SourcePin->MakeLinkTo(TargetPin);
 	});
 
@@ -167,6 +179,12 @@ void FOpenAccessibilityModule::StartupModule()
 			PinInputs[1]
 		);
 
+		if (SourcePin == nullptr || TargetPin == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Pins --"));
+			return;
+		}
+
 		SourcePin->BreakLinkTo(TargetPin);
 	});
 
@@ -187,8 +205,15 @@ void FOpenAccessibilityModule::StartupModule()
 
 		TSharedRef<FGraphIndexer> GraphIndexer = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 
+		UEdGraphNode* Node = GraphIndexer->GetNode(NodeIndex);
+		if (Node == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Node Index --"));
+			return;
+		}
+
 		ActiveGraphEditor->ClearSelectionSet();
-		ActiveGraphEditor->SetNodeSelection(GraphIndexer->GetNode(NodeIndex), true);
+		ActiveGraphEditor->SetNodeSelection(Node, true);
 	});
 
 	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(

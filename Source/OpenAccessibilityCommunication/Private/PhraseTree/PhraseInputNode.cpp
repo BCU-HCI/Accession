@@ -1,6 +1,7 @@
 // Copyright F-Dudley. All Rights Reserved.
 
 #include "PhraseTree/PhraseInputNode.h"
+#include "PhraseTree/Utils.h"
 #include "OpenAccessibilityComLogging.h"
 
 FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString) 
@@ -55,6 +56,10 @@ FParseResult FPhraseInputNode::ParsePhrase(TArray<FString>& InPhraseArray, FPars
     if (MeetsInputRequirements(InPhraseArray.Last()))
     {
         FString InputToRecord = InPhraseArray.Pop();
+        if (!InputToRecord.IsNumeric() && NumericParser::IsValidNumeric(InputToRecord, false))
+        {
+			NumericParser::StringToNumeric(InputToRecord, false);
+		}
 
         if (!RecordInput(InputToRecord, InParseRecord))
         {
@@ -73,7 +78,7 @@ FParseResult FPhraseInputNode::ParsePhrase(TArray<FString>& InPhraseArray, FPars
 
 bool FPhraseInputNode::MeetsInputRequirements(const FString& InPhrase)
 {
-	return InPhrase.IsNumeric();
+	return InPhrase.IsNumeric() || NumericParser::IsValidNumeric(InPhrase, false);
 }
 
 bool FPhraseInputNode::RecordInput(const FString& InInput, FParseRecord& OutParseRecord)

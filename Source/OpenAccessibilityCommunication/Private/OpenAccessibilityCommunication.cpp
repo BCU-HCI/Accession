@@ -77,13 +77,6 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Tick || Received Multipart | Message Count: %d ||"), RecvStrings.Num());
 			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Tick || Received Duration Metadata: %d ||"), RecvMetadata->GetNumberField(TEXT("duration")));
 
-			/*
-			for (int i = 0; i < RecvStrings.Num(); i++)
-			{
-				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Received Multipart Part: %d | Message: %s ||"), i, *RecvStrings[i]);
-			}
-			*/
-
 			OnTranscriptionRecieved.Broadcast(RecvStrings);
 		}
 	}
