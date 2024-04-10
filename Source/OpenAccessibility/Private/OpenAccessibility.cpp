@@ -42,7 +42,7 @@ void FOpenAccessibilityModule::StartupModule()
 		if (ActiveGraphEditor != nullptr)
 		{
 			// Get Inputs
-			const int NodeIndex = *Record.PhraseInputs.Find("INDEX");
+			const int NodeIndex = *Record.PhraseInputs.Find("NODE_INDEX");
 			const int MoveDirection = *Record.PhraseInputs.Find("DIRECTION");
 			const int MoveAmount = *Record.PhraseInputs.Find("AMOUNT");
 
