@@ -102,7 +102,7 @@ class CommunicationServer:
 
     def SendMultipartWithMeta(self, message: list, meta: dict) -> bool:
         try:
-            self.send_socket.send_multipart([json.dumps(meta).encode()].extend(message))
+            self.send_socket.send_multipart([json.dumps(meta).encode(), *message])
             return True
         except:
             Log(
