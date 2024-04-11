@@ -103,6 +103,13 @@ void FOpenAccessibilityModule::StartupModule()
 			return;
 		}
 
+		UEdGraph* CurrentGraph = ActiveGraphEditor->GetCurrentGraph();
+		if (CurrentGraph == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Current Graph --"));
+			return;
+		}
+
 		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 
 		// Get Inputs
@@ -134,11 +141,15 @@ void FOpenAccessibilityModule::StartupModule()
 			return;
 		}
 
-		SourcePin->MakeLinkTo(TargetPin);
+
+		if (CurrentGraph->GetSchema()->TryCreateConnection(SourcePin, TargetPin))
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Success -- Pins Connected --"))
+		}
 	});
 
 	TSharedPtr<FPhraseEventNode> PinDisconnectEventNode = MakeShared<FPhraseEventNode>();
-	PinConnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+	PinDisconnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
 
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
@@ -151,6 +162,12 @@ void FOpenAccessibilityModule::StartupModule()
 		if (ActiveGraphEditor == nullptr)
 		{
 			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
+			return;
+		}
+		UEdGraph* CurrentGraph = ActiveGraphEditor->GetCurrentGraph();
+		if (CurrentGraph == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Current Graph --"));
 			return;
 		}
 
@@ -185,7 +202,7 @@ void FOpenAccessibilityModule::StartupModule()
 			return;
 		}
 
-		SourcePin->BreakLinkTo(TargetPin);
+		CurrentGraph->GetSchema()->BreakSinglePinLink(SourcePin, TargetPin);
 	});
 
 	TDelegate<void(int32 IndexInput)> NodeIndexFocusEvent;

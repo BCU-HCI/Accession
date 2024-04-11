@@ -13,6 +13,7 @@ class OPENACCESSIBILITYCOMMUNICATION_API FPhraseEventNode : public FPhraseNode
 public:
 	FPhraseEventNode();
 	FPhraseEventNode(TDelegate<void(const FParseRecord&)> InEvent);
+	FPhraseEventNode(TFunction<void(const FParseRecord&)> InEventFunction);
 
 	~FPhraseEventNode();
 

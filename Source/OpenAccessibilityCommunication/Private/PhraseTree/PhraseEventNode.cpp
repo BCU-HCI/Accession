@@ -14,6 +14,12 @@ FPhraseEventNode::FPhraseEventNode(TDelegate<void(const FParseRecord&)> InEvent)
     OnPhraseParsed = InEvent;
 }
 
+FPhraseEventNode::FPhraseEventNode(TFunction<void(const FParseRecord&)> InEventFunction) : FPhraseNode(TEXT("EVENT_NODE"))
+{
+    OnPhraseParsed = TDelegate<void(const FParseRecord&)>();
+    OnPhraseParsed.BindLambda(InEventFunction);
+}
+
 FPhraseEventNode::~FPhraseEventNode()
 {
 
