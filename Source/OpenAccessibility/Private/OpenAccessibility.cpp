@@ -30,18 +30,10 @@ void FOpenAccessibilityModule::StartupModule()
 
 	// Bind Branch to Phrase Tree
 	TSharedPtr<FPhraseEventNode> MoveEventNode = MakeShared<FPhraseEventNode>();
-	MoveEventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
-
-		UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Executed --"));
-
-		UE_LOG(LogOpenAccessibility, Display, TEXT(" -- | Vals | Index: %d | Direction: %d | Amount : %d | --"), 
-			Record.PhraseInputs["INDEX"], Record.PhraseInputs["DIRECTION"], Record.PhraseInputs["AMOUNT"]
-		);
-
+	MoveEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
 		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Active Tab --"));
 			return;
 		}
 
@@ -49,25 +41,38 @@ void FOpenAccessibilityModule::StartupModule()
 
 		if (ActiveGraphEditor != nullptr)
 		{
+			// Get Inputs
+			const int NodeIndex = *Record.PhraseInputs.Find("NODE_INDEX");
+			const int MoveDirection = *Record.PhraseInputs.Find("DIRECTION");
+			const int MoveAmount = *Record.PhraseInputs.Find("AMOUNT");
+
 			UEdGraphNode* GraphNode = AssetAccessibilityRegistry->GraphAssetIndex[ActiveGraphEditor->GetCurrentGraph()->GraphGuid]->GetNode(
-				Record.PhraseInputs["INDEX"]
+				NodeIndex
 			);
 
-			switch (EPhraseDirectionalInput(Record.PhraseInputs["DIRECTION"]))
+			if (GraphNode == nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Node Index --"));
+				return;
+			}
+
+			switch (EPhraseDirectionalInput(MoveDirection))
 			{
 				case EPhraseDirectionalInput::UP:
-					GraphNode->NodePosY -= Record.PhraseInputs["AMOUNT"];
+					GraphNode->NodePosY -= MoveAmount;
 					break;
 
 				case EPhraseDirectionalInput::DOWN:
-					GraphNode->NodePosY += Record.PhraseInputs["AMOUNT"];
+					GraphNode->NodePosY += MoveAmount;
 					break;
 
 				case EPhraseDirectionalInput::LEFT:
-					GraphNode->NodePosX -= Record.PhraseInputs["AMOUNT"];
+					GraphNode->NodePosX -= MoveAmount;
+					break;
 
 				case EPhraseDirectionalInput::RIGHT:
-					GraphNode->NodePosX += Record.PhraseInputs["AMOUNT"];
+					GraphNode->NodePosX += MoveAmount;
+					break;
 
 				default:
 					UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Direction --"));
@@ -82,8 +87,8 @@ void FOpenAccessibilityModule::StartupModule()
 	});
 
 	TSharedPtr<FPhraseEventNode> PinConnectEventNode = MakeShared<FPhraseEventNode>();
-	PinConnectEventNode->OnPhraseEvent.BindLambda([this](const FParseRecord& Record) {
-		
+	PinConnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
 		{
@@ -98,25 +103,140 @@ void FOpenAccessibilityModule::StartupModule()
 			return;
 		}
 
+		UEdGraph* CurrentGraph = ActiveGraphEditor->GetCurrentGraph();
+		if (CurrentGraph == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Current Graph --"));
+			return;
+		}
+
 		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 
+		// Get Inputs
+		TArray<int> NodeInputs; 
+		Record.PhraseInputs.MultiFind("NODE_INDEX", NodeInputs, true);
+
+		TArray<int> PinInputs;
+		Record.PhraseInputs.MultiFind("PIN_INDEX", PinInputs, true);
+
+		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Inputs Length --"));
+			return;
+		}
+
 		UEdGraphPin* SourcePin = IndexerForGraph->GetPin(
-			Record.PhraseInputs["NODE_INDEX"],
-			Record.PhraseInputs["PIN_INDEX"]
+			NodeInputs[0],
+			PinInputs[0]
 		);
 
 		UEdGraphPin* TargetPin = IndexerForGraph->GetPin(
-			Record.PhraseInputs["NODE_INDEX_2"],
-			Record.PhraseInputs["PIN_INDEX_2"]
+			NodeInputs[1],
+			PinInputs[1]
 		);
-			
-		SourcePin->MakeLinkTo(TargetPin);
+
+		if (SourcePin == nullptr || TargetPin == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Pins --"));
+			return;
+		}
+
+
+		if (CurrentGraph->GetSchema()->TryCreateConnection(SourcePin, TargetPin))
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Success -- Pins Connected --"))
+		}
+	});
+
+	TSharedPtr<FPhraseEventNode> PinDisconnectEventNode = MakeShared<FPhraseEventNode>();
+	PinDisconnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Active Tab --"));
+			return;
+		}
+
+		SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
+		if (ActiveGraphEditor == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
+			return;
+		}
+		UEdGraph* CurrentGraph = ActiveGraphEditor->GetCurrentGraph();
+		if (CurrentGraph == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Current Graph --"));
+			return;
+		}
+
+		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+		// Get Inputs
+		TArray<int> NodeInputs;
+		Record.PhraseInputs.MultiFind("NODE_INDEX", NodeInputs, true);
+
+		TArray<int> PinInputs;
+		Record.PhraseInputs.MultiFind("PIN_INDEX", PinInputs, true);
+
+		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Inputs Length --"));
+			return;
+		}
+
+		UEdGraphPin* SourcePin = IndexerForGraph->GetPin(
+			NodeInputs[0],
+			PinInputs[0]
+		);
+
+		UEdGraphPin* TargetPin = IndexerForGraph->GetPin(
+			NodeInputs[1],
+			PinInputs[1]
+		);
+
+		if (SourcePin == nullptr || TargetPin == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Pins --"));
+			return;
+		}
+
+		CurrentGraph->GetSchema()->BreakSinglePinLink(SourcePin, TargetPin);
+	});
+
+	TDelegate<void(int32 IndexInput)> NodeIndexFocusEvent;
+	NodeIndexFocusEvent.BindLambda([this](int32 NodeIndex) {
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			return;
+		}
+
+		SGraphEditor* ActiveGraphEditor = (SGraphEditor*) ActiveTab->GetContent().ToSharedPtr().Get();
+		if (ActiveGraphEditor == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
+			return;
+		}
+
+		TSharedRef<FGraphIndexer> GraphIndexer = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+		UEdGraphNode* Node = GraphIndexer->GetNode(NodeIndex);
+		if (Node == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Node Index --"));
+			return;
+		}
+
+		ActiveGraphEditor->ClearSelectionSet();
+		ActiveGraphEditor->SetNodeSelection(Node, true);
 	});
 
 	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
 		MakeShared<FPhraseNode>(
 			TEXT("NODE"),
-			TPhraseNodeArray {
+			TPhraseNodeArray{
 
 					MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
 					TPhraseNodeArray {
@@ -136,27 +256,42 @@ void FOpenAccessibilityModule::StartupModule()
 
 							MakeShared<FPhraseNode>(TEXT("PIN"),
 							TPhraseNodeArray {
-						
+
 									MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
 									TPhraseNodeArray {
-										
+
 											MakeShared<FPhraseNode>(TEXT("CONNECT"),
 											TPhraseNodeArray {
-												
-													MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX_2"),
+
+													MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
 													TPhraseNodeArray {
-														
-															MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX_2"),
+
+															MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
 															TPhraseNodeArray {
 																PinConnectEventNode
 															})
 													})
+											}),
+
+											MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
+											TPhraseNodeArray {
+												
+													MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
+													TPhraseNodeArray {
+														
+															MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
+															TPhraseNodeArray {
+																PinDisconnectEventNode
+															})
+													}, NodeIndexFocusEvent)
 											})
 									})
 							}),
-					})
+					}, NodeIndexFocusEvent)
 			})
 	);
+
+	BindLocalLocomotionBranch();
 }
 
 void FOpenAccessibilityModule::ShutdownModule()
@@ -164,6 +299,186 @@ void FOpenAccessibilityModule::ShutdownModule()
 	UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibilityModule::ShutdownModule()"));
 
 	UnregisterConsoleCommands();
+}
+
+void FOpenAccessibilityModule::BindLocalLocomotionBranch()
+{
+	TSharedPtr<FPhraseEventNode> MoveViewportEventNode = MakeShared<FPhraseEventNode>();
+	MoveViewportEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			return;
+		}
+
+		SWidget* ActiveEditorViewport = ActiveTab->GetContent().ToSharedPtr().Get();
+		if (ActiveEditorViewport == nullptr)
+		{
+			return;
+		}
+		// Get Inputs
+		const int MoveDirection = *Record.PhraseInputs.Find("DIRECTION");
+		const int MoveAmount = *Record.PhraseInputs.Find("AMOUNT");
+
+		const FString ActiveEditorViewportType = ActiveEditorViewport->GetTypeAsString();
+		if (ActiveEditorViewportType == "SGraphEditor")
+		{
+			SGraphEditor* GraphViewport = (SGraphEditor*) ActiveEditorViewport;
+
+			FVector2D CurrViewLocation;
+			float CurrZoomAmount;
+			GraphViewport->GetViewLocation(CurrViewLocation, CurrZoomAmount);
+
+			UE_LOG(LogOpenAccessibility, Display, TEXT("MoveViewportEventNode: Curr Zoom Amount: %d"), CurrZoomAmount);
+		
+			switch (EPhraseDirectionalInput(MoveDirection))
+			{
+				case EPhraseDirectionalInput::UP:
+					CurrViewLocation.Y -= MoveAmount;
+					break;
+
+				case EPhraseDirectionalInput::DOWN:
+					CurrViewLocation.Y += MoveAmount;
+					break;
+
+				case EPhraseDirectionalInput::LEFT:
+					CurrViewLocation.X -= MoveAmount;
+					break;
+
+				case EPhraseDirectionalInput::RIGHT:
+					CurrViewLocation.X += MoveAmount;
+					break;
+
+				default:
+					UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Direction --"));
+					return;
+			}
+
+			GraphViewport->SetViewLocation(CurrViewLocation, CurrZoomAmount);
+		}
+
+		// Add Other Viewport Impl Here...
+	});
+
+	TSharedPtr<FPhraseEventNode> ZoomViewportEventNode = MakeShared<FPhraseEventNode>();
+	ZoomViewportEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			return;
+		}
+
+		SWidget* ActiveEditorViewport = ActiveTab->GetContent().ToSharedPtr().Get();
+		if (ActiveEditorViewport == nullptr)
+		{
+			return;
+		}
+
+		// Get Inputs
+		const int ZoomDirection = *Record.PhraseInputs.Find("DIRECTION");
+		const int ZoomAmount = *Record.PhraseInputs.Find("AMOUNT");
+
+		const FString ActiveEditorViewportType = ActiveEditorViewport->GetTypeAsString();
+		if (ActiveEditorViewportType == "SGraphEditor")
+		{
+			SGraphEditor* GraphViewport = (SGraphEditor*)ActiveEditorViewport;
+
+			FVector2D CurrViewLocation;
+			float CurrZoomAmount;
+			GraphViewport->GetViewLocation(CurrViewLocation, CurrZoomAmount);
+
+			UE_LOG(LogOpenAccessibility, Display, TEXT("ZoomViewportEventNode: Curr Zoom Amount: %d"), CurrZoomAmount);
+
+			switch (EPhraseDirectionalInput(ZoomDirection))
+			{
+				case EPhraseDirectionalInput::UP:
+					CurrZoomAmount += ZoomAmount;
+					break;
+
+				case EPhraseDirectionalInput::DOWN:
+					CurrZoomAmount -= ZoomAmount;
+					break;
+
+				default:
+					UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Direction --"));
+					return;
+			}
+
+			GraphViewport->SetViewLocation(CurrViewLocation, CurrZoomAmount);
+		}
+
+		// Add Other Viewport Impl Here...
+	});
+
+	TSharedPtr<FPhraseEventNode> IndexFocusEventNode = MakeShared<FPhraseEventNode>();
+	IndexFocusEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			return;
+		}
+
+		SWidget* ActiveEditorViewport = ActiveTab->GetContent().ToSharedPtr().Get();
+		if (ActiveEditorViewport == nullptr)
+		{
+			return;
+		}
+
+		// Get Inputs
+		const int IndexToFocus = *Record.PhraseInputs.Find("INDEX");
+
+		const FString ActiveEditorViewportType = ActiveEditorViewport->GetTypeAsString();
+		if (ActiveEditorViewportType == "SGraphEditor")
+		{
+			SGraphEditor* GraphViewport = (SGraphEditor*)ActiveEditorViewport;
+
+			TSharedRef<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(GraphViewport->GetCurrentGraph());
+			UEdGraphNode* GraphNode = IndexerForGraph->GetNode(IndexToFocus);
+			
+			GraphViewport->JumpToNode(GraphNode, false, true);
+		}
+	});
+
+	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
+		MakeShared<FPhraseNode>(TEXT("VIEW"),
+		TPhraseNodeArray{
+			
+			MakeShared<FPhraseNode>(TEXT("MOVE"),
+			TPhraseNodeArray {
+				
+				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+				TPhraseNodeArray {
+					
+					MakeShared<FPhraseInputNode>(TEXT("AMOUNT"),
+					TPhraseNodeArray {
+						MoveViewportEventNode
+					})
+				})
+			}),
+
+			MakeShared<FPhraseNode>(TEXT("ZOOM"),
+			TPhraseNodeArray {
+				
+				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+				TPhraseNodeArray {
+					
+					MakeShared<FPhraseInputNode>(TEXT("AMOUNT"),
+					TPhraseNodeArray {
+						ZoomViewportEventNode
+					})
+				})
+			}),
+
+			MakeShared<FPhraseNode>(TEXT("FOCUS"),
+			TPhraseNodeArray {
+				
+				MakeShared<FPhraseInputNode>(TEXT("INDEX"),
+				TPhraseNodeArray {
+					IndexFocusEventNode
+				})
+			})
+		})
+	);
 }
 
 void FOpenAccessibilityModule::RegisterConsoleCommands()

@@ -13,6 +13,7 @@ class OPENACCESSIBILITYCOMMUNICATION_API FPhraseEventNode : public FPhraseNode
 public:
 	FPhraseEventNode();
 	FPhraseEventNode(TDelegate<void(const FParseRecord&)> InEvent);
+	FPhraseEventNode(TFunction<void(const FParseRecord&)> InEventFunction);
 
 	~FPhraseEventNode();
 
@@ -22,7 +23,4 @@ public:
 
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord) override;
 	// End FPhraseNode Implementation
-
-
-	TDelegate<void(const FParseRecord&)> OnPhraseEvent;
 };

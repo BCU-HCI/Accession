@@ -10,6 +10,7 @@
 #include "EdGraphUtilities.h"
 
 #include "Styling/AppStyle.h"
+#include "SGraphPanel.h"
 #include "SNodePanel.h"
 #include "SGraphNode.h"
 #include "SGraphPin.h"
@@ -62,7 +63,7 @@ TSharedPtr<class SGraphNode> FAccessibilityNodeFactory::CreateNode(UEdGraphNode*
 				continue;
 			}
 
-            WrapPinWidget(Pin, PinWidget.ToSharedRef(), i, OutNode.ToSharedRef());
+            WrapPinWidget(Pin, PinWidget.ToSharedRef(), i, OutNode.Get());
         }
 
         PinWidget.Reset();
@@ -125,19 +126,15 @@ void FAccessibilityNodeFactory::WrapNodeWidget(UEdGraphNode* Node, TSharedRef<SG
         ];
 }
 
-void FAccessibilityNodeFactory::WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGraphPin> PinWidget, int PinIndex, TSharedRef<SGraphNode> OwnerNode) const
+void FAccessibilityNodeFactory::WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGraphPin> PinWidget, int PinIndex, SGraphNode* OwnerNode) const
 {
     TSharedRef<SWidget> PinWidgetContent = PinWidget->GetContent();
     check(PinWidgetContent != SNullWidget::NullWidget);
 
     TSharedRef<SWidget> AccessibilityWidget = SNew(SOverlay)
         .Visibility_Lambda([OwnerNode]() -> EVisibility {
-            
-            TOptional<EFocusCause> NodeFocus = OwnerNode->HasAnyUserFocus();
-            if (NodeFocus.IsSet() && NodeFocus.GetValue() != EFocusCause::OtherWidgetLostFocus)
-                return EVisibility::Visible;
 
-            else if (OwnerNode->HasAnyUserFocusOrFocusedDescendants() || OwnerNode->IsHovered())
+            if (OwnerNode->HasAnyUserFocusOrFocusedDescendants() || OwnerNode->IsHovered() || OwnerNode->GetOwnerPanel()->SelectionManager.IsNodeSelected(OwnerNode->GetNodeObj()))
                 return EVisibility::Visible;
 
             return EVisibility::Collapsed;

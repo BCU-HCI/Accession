@@ -6,12 +6,18 @@
 
 FPhraseEventNode::FPhraseEventNode() : FPhraseNode(TEXT("EVENT_NODE"))
 {
-    OnPhraseEvent = TDelegate<void(const FParseRecord&)>();
+    OnPhraseParsed = TDelegate<void(const FParseRecord&)>();
 }
 
 FPhraseEventNode::FPhraseEventNode(TDelegate<void(const FParseRecord&)> InEvent) : FPhraseNode(TEXT("EVENT_NODE"))
 {
-    OnPhraseEvent = InEvent;
+    OnPhraseParsed = InEvent;
+}
+
+FPhraseEventNode::FPhraseEventNode(TFunction<void(const FParseRecord&)> InEventFunction) : FPhraseNode(TEXT("EVENT_NODE"))
+{
+    OnPhraseParsed = TDelegate<void(const FParseRecord&)>();
+    OnPhraseParsed.BindLambda(InEventFunction);
 }
 
 FPhraseEventNode::~FPhraseEventNode()
@@ -26,7 +32,7 @@ bool FPhraseEventNode::RequiresPhrase(const FString InPhrase)
 
 FParseResult FPhraseEventNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
 {
-    if (OnPhraseEvent.ExecuteIfBound(InParseRecord))
+    if (OnPhraseParsed.ExecuteIfBound(InParseRecord))
     {
         return FParseResult(PHRASE_PARSED_AND_EXECUTED);
     }
