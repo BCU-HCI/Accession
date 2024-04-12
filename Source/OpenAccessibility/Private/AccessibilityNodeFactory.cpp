@@ -104,7 +104,7 @@ TSharedPtr<class SGraphPin> FGraphAccessibilityNodeFactory::CreatePinWidget(UEdG
             if (OutPinPtr->HasAnyUserFocusOrFocusedDescendants() || OutPinPtr->IsHovered())
                 return EVisibility::Visible;
 
-            return EVisibility::Collapsed;
+            return EVisibility::Hidden;
         })
         + SOverlay::Slot()
         [

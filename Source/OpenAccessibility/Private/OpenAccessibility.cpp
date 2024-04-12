@@ -9,6 +9,9 @@
 #include "PhraseTree/PhraseDirectionalInputNode.h"
 #include "PhraseTree/PhraseEventNode.h"
 
+#include "SGraphPanel.h"
+#include "Widgets/Input/SSearchBox.h"
+
 #include "Framework/Docking/TabManager.h"
 #include "Logging/StructuredLog.h"
 
@@ -526,6 +529,46 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 		ECVF_Default
 	));
 
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibility.Debug.OpenAccessibilityGraph_AddNodeMenu"),
+		TEXT("Opens the context menu for adding nodes for the active graph editor."),
+
+		FConsoleCommandDelegate::CreateLambda(
+			[this]() {
+				TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+				if (!ActiveTab.IsValid())
+					return;
+
+				SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
+				if (ActiveGraphEditor == nullptr)
+				{
+					UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
+					return;
+				}
+
+				ActiveGraphEditor->GetGraphPanel()->SummonCreateNodeMenuFromUICommand(0);
+
+				TSharedPtr<SWidget> KeyboardFocusedWidget = FSlateApplication::Get().GetKeyboardFocusedWidget();
+
+				if (!KeyboardFocusedWidget.IsValid())
+				{
+					UE_LOG(LogOpenAccessibility, Display, TEXT("Cannot get Keyboard Focused Widget."));
+					return;
+				}
+
+				SSearchBox* SearchBox = reinterpret_cast<SSearchBox*>(KeyboardFocusedWidget.Get());
+				if (SearchBox != nullptr)
+				{
+					SearchBox->SetSearchText(FText::FromString(TEXT("Get")));
+				}
+
+				TSharedPtr<IMenu> MenuWidget = FSlateApplication::Get().FindMenuInWidgetPath(FWidgetPath().GetPathDownTo(KeyboardFocusedWidget.ToSharedRef()));
+
+				UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibilityGraph_AddNodeMenu"));
+			}),
+
+		ECVF_Default
+	));
 }
 
 void FOpenAccessibilityModule::UnregisterConsoleCommands()

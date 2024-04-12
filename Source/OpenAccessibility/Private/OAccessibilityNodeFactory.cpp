@@ -137,7 +137,7 @@ void FAccessibilityNodeFactory::WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGrap
             if (OwnerNode->HasAnyUserFocusOrFocusedDescendants() || OwnerNode->IsHovered() || OwnerNode->GetOwnerPanel()->SelectionManager.IsNodeSelected(OwnerNode->GetNodeObj()))
                 return EVisibility::Visible;
 
-            return EVisibility::Collapsed;
+            return EVisibility::Hidden;
         })
         + SOverlay::Slot()
         [
