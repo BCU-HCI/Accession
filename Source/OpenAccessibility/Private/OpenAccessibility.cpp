@@ -11,6 +11,7 @@
 
 #include "SGraphPanel.h"
 #include "Widgets/Input/SSearchBox.h"
+#include "GraphActionNode.h"
 
 #include "Framework/Docking/TabManager.h"
 #include "Logging/StructuredLog.h"
@@ -31,269 +32,7 @@ void FOpenAccessibilityModule::StartupModule()
 	// Register Console Commands
 	RegisterConsoleCommands();
 
-	// Bind Branch to Phrase Tree
-	TSharedPtr<FPhraseEventNode> MoveEventNode = MakeShared<FPhraseEventNode>();
-	MoveEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
-		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
-		if (!ActiveTab.IsValid())
-		{
-			return;
-		}
-
-		SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
-
-		if (ActiveGraphEditor != nullptr)
-		{
-			// Get Inputs
-			const int NodeIndex = *Record.PhraseInputs.Find("NODE_INDEX");
-			const int MoveDirection = *Record.PhraseInputs.Find("DIRECTION");
-			const int MoveAmount = *Record.PhraseInputs.Find("AMOUNT");
-
-			UEdGraphNode* GraphNode = AssetAccessibilityRegistry->GraphAssetIndex[ActiveGraphEditor->GetCurrentGraph()->GraphGuid]->GetNode(
-				NodeIndex
-			);
-
-			if (GraphNode == nullptr)
-			{
-				UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Node Index --"));
-				return;
-			}
-
-			switch (EPhraseDirectionalInput(MoveDirection))
-			{
-				case EPhraseDirectionalInput::UP:
-					GraphNode->NodePosY -= MoveAmount;
-					break;
-
-				case EPhraseDirectionalInput::DOWN:
-					GraphNode->NodePosY += MoveAmount;
-					break;
-
-				case EPhraseDirectionalInput::LEFT:
-					GraphNode->NodePosX -= MoveAmount;
-					break;
-
-				case EPhraseDirectionalInput::RIGHT:
-					GraphNode->NodePosX += MoveAmount;
-					break;
-
-				default:
-					UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Direction --"));
-					return;
-			}
-		}
-		else
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
-			return;
-		}
-	});
-
-	TSharedPtr<FPhraseEventNode> PinConnectEventNode = MakeShared<FPhraseEventNode>();
-	PinConnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
-
-		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
-		if (!ActiveTab.IsValid())
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Active Tab --"));
-			return;
-		}
-
-		SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
-		if (ActiveGraphEditor == nullptr)
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
-			return;
-		}
-
-		UEdGraph* CurrentGraph = ActiveGraphEditor->GetCurrentGraph();
-		if (CurrentGraph == nullptr)
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Current Graph --"));
-			return;
-		}
-
-		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
-
-		// Get Inputs
-		TArray<int> NodeInputs; 
-		Record.PhraseInputs.MultiFind("NODE_INDEX", NodeInputs, true);
-
-		TArray<int> PinInputs;
-		Record.PhraseInputs.MultiFind("PIN_INDEX", PinInputs, true);
-
-		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Inputs Length --"));
-			return;
-		}
-
-		UEdGraphPin* SourcePin = IndexerForGraph->GetPin(
-			NodeInputs[0],
-			PinInputs[0]
-		);
-
-		UEdGraphPin* TargetPin = IndexerForGraph->GetPin(
-			NodeInputs[1],
-			PinInputs[1]
-		);
-
-		if (SourcePin == nullptr || TargetPin == nullptr)
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Pins --"));
-			return;
-		}
-
-
-		if (CurrentGraph->GetSchema()->TryCreateConnection(SourcePin, TargetPin))
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Success -- Pins Connected --"))
-		}
-	});
-
-	TSharedPtr<FPhraseEventNode> PinDisconnectEventNode = MakeShared<FPhraseEventNode>();
-	PinDisconnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
-
-		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
-		if (!ActiveTab.IsValid())
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Active Tab --"));
-			return;
-		}
-
-		SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
-		if (ActiveGraphEditor == nullptr)
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
-			return;
-		}
-		UEdGraph* CurrentGraph = ActiveGraphEditor->GetCurrentGraph();
-		if (CurrentGraph == nullptr)
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Current Graph --"));
-			return;
-		}
-
-		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
-
-		// Get Inputs
-		TArray<int> NodeInputs;
-		Record.PhraseInputs.MultiFind("NODE_INDEX", NodeInputs, true);
-
-		TArray<int> PinInputs;
-		Record.PhraseInputs.MultiFind("PIN_INDEX", PinInputs, true);
-
-		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Inputs Length --"));
-			return;
-		}
-
-		UEdGraphPin* SourcePin = IndexerForGraph->GetPin(
-			NodeInputs[0],
-			PinInputs[0]
-		);
-
-		UEdGraphPin* TargetPin = IndexerForGraph->GetPin(
-			NodeInputs[1],
-			PinInputs[1]
-		);
-
-		if (SourcePin == nullptr || TargetPin == nullptr)
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Pins --"));
-			return;
-		}
-
-		CurrentGraph->GetSchema()->BreakSinglePinLink(SourcePin, TargetPin);
-	});
-
-	TDelegate<void(int32 IndexInput)> NodeIndexFocusEvent;
-	NodeIndexFocusEvent.BindLambda([this](int32 NodeIndex) {
-		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
-		if (!ActiveTab.IsValid())
-		{
-			return;
-		}
-
-		SGraphEditor* ActiveGraphEditor = (SGraphEditor*) ActiveTab->GetContent().ToSharedPtr().Get();
-		if (ActiveGraphEditor == nullptr)
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
-			return;
-		}
-
-		TSharedRef<FGraphIndexer> GraphIndexer = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
-
-		UEdGraphNode* Node = GraphIndexer->GetNode(NodeIndex);
-		if (Node == nullptr)
-		{
-			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Node Index --"));
-			return;
-		}
-
-		ActiveGraphEditor->ClearSelectionSet();
-		ActiveGraphEditor->SetNodeSelection(Node, true);
-	});
-
-	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
-		MakeShared<FPhraseNode>(
-			TEXT("NODE"),
-			TPhraseNodeArray{
-
-					MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
-					TPhraseNodeArray {
-
-							MakeShared<FPhraseNode>(TEXT("MOVE"),
-							TPhraseNodeArray {
-
-									MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
-									TPhraseNodeArray {
-
-											MakeShared<FPhraseInputNode>(TEXT("AMOUNT"),
-											TPhraseNodeArray {
-												MoveEventNode
-											})
-									})
-							}),
-
-							MakeShared<FPhraseNode>(TEXT("PIN"),
-							TPhraseNodeArray {
-
-									MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
-									TPhraseNodeArray {
-
-											MakeShared<FPhraseNode>(TEXT("CONNECT"),
-											TPhraseNodeArray {
-
-													MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
-													TPhraseNodeArray {
-
-															MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
-															TPhraseNodeArray {
-																PinConnectEventNode
-															})
-													})
-											}),
-
-											MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
-											TPhraseNodeArray {
-												
-													MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
-													TPhraseNodeArray {
-														
-															MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
-															TPhraseNodeArray {
-																PinDisconnectEventNode
-															})
-													}, NodeIndexFocusEvent)
-											})
-									})
-							}),
-					}, NodeIndexFocusEvent)
-			})
-	);
-
+	BindGraphInteractionBranch();
 	BindLocalLocomotionBranch();
 }
 
@@ -484,6 +223,342 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 	);
 }
 
+void FOpenAccessibilityModule::BindGraphInteractionBranch()
+{
+	// Node Events
+
+	TSharedPtr<FPhraseEventNode> MoveEventNode = MakeShared<FPhraseEventNode>();
+	MoveEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			return;
+		}
+
+		SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
+
+		if (ActiveGraphEditor != nullptr)
+		{
+			// Get Inputs
+			const int NodeIndex = *Record.PhraseInputs.Find("NODE_INDEX");
+			const int MoveDirection = *Record.PhraseInputs.Find("DIRECTION");
+			const int MoveAmount = *Record.PhraseInputs.Find("AMOUNT");
+
+			UEdGraphNode* GraphNode = AssetAccessibilityRegistry->GraphAssetIndex[ActiveGraphEditor->GetCurrentGraph()->GraphGuid]->GetNode(
+				NodeIndex
+			);
+
+			if (GraphNode == nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Node Index --"));
+				return;
+			}
+
+			switch (EPhraseDirectionalInput(MoveDirection))
+			{
+			case EPhraseDirectionalInput::UP:
+				GraphNode->NodePosY -= MoveAmount;
+				break;
+
+			case EPhraseDirectionalInput::DOWN:
+				GraphNode->NodePosY += MoveAmount;
+				break;
+
+			case EPhraseDirectionalInput::LEFT:
+				GraphNode->NodePosX -= MoveAmount;
+				break;
+
+			case EPhraseDirectionalInput::RIGHT:
+				GraphNode->NodePosX += MoveAmount;
+				break;
+
+			default:
+				UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Direction --"));
+				return;
+			}
+		}
+		else
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
+			return;
+		}
+		});
+
+	// Pin Events
+
+	TSharedPtr<FPhraseEventNode> PinConnectEventNode = MakeShared<FPhraseEventNode>();
+	PinConnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Active Tab --"));
+			return;
+		}
+
+		SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
+		if (ActiveGraphEditor == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
+			return;
+		}
+
+		UEdGraph* CurrentGraph = ActiveGraphEditor->GetCurrentGraph();
+		if (CurrentGraph == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Current Graph --"));
+			return;
+		}
+
+		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+		// Get Inputs
+		TArray<int> NodeInputs;
+		Record.PhraseInputs.MultiFind("NODE_INDEX", NodeInputs, true);
+
+		TArray<int> PinInputs;
+		Record.PhraseInputs.MultiFind("PIN_INDEX", PinInputs, true);
+
+		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Inputs Length --"));
+			return;
+		}
+
+		UEdGraphPin* SourcePin = IndexerForGraph->GetPin(
+			NodeInputs[0],
+			PinInputs[0]
+		);
+
+		UEdGraphPin* TargetPin = IndexerForGraph->GetPin(
+			NodeInputs[1],
+			PinInputs[1]
+		);
+
+		if (SourcePin == nullptr || TargetPin == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Pins --"));
+			return;
+		}
+
+
+		if (CurrentGraph->GetSchema()->TryCreateConnection(SourcePin, TargetPin))
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Success -- Pins Connected --"))
+		}
+		});
+
+	TSharedPtr<FPhraseEventNode> PinDisconnectEventNode = MakeShared<FPhraseEventNode>();
+	PinDisconnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Active Tab --"));
+			return;
+		}
+
+		SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
+		if (ActiveGraphEditor == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
+			return;
+		}
+		UEdGraph* CurrentGraph = ActiveGraphEditor->GetCurrentGraph();
+		if (CurrentGraph == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- No Current Graph --"));
+			return;
+		}
+
+		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+		// Get Inputs
+		TArray<int> NodeInputs;
+		Record.PhraseInputs.MultiFind("NODE_INDEX", NodeInputs, true);
+
+		TArray<int> PinInputs;
+		Record.PhraseInputs.MultiFind("PIN_INDEX", PinInputs, true);
+
+		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Inputs Length --"));
+			return;
+		}
+
+		UEdGraphPin* SourcePin = IndexerForGraph->GetPin(
+			NodeInputs[0],
+			PinInputs[0]
+		);
+
+		UEdGraphPin* TargetPin = IndexerForGraph->GetPin(
+			NodeInputs[1],
+			PinInputs[1]
+		);
+
+		if (SourcePin == nullptr || TargetPin == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Pins --"));
+			return;
+		}
+
+		CurrentGraph->GetSchema()->BreakSinglePinLink(SourcePin, TargetPin);
+		});
+
+	TDelegate<void(int32 IndexInput)> NodeIndexFocusEvent;
+	NodeIndexFocusEvent.BindLambda([this](int32 NodeIndex) {
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			return;
+		}
+
+		SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
+		if (ActiveGraphEditor == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
+			return;
+		}
+
+		TSharedRef<FGraphIndexer> GraphIndexer = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+		UEdGraphNode* Node = GraphIndexer->GetNode(NodeIndex);
+		if (Node == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Node Index --"));
+			return;
+		}
+
+		ActiveGraphEditor->ClearSelectionSet();
+		ActiveGraphEditor->SetNodeSelection(Node, true);
+		});
+
+	// Node Menu Events
+
+	TDelegate<void(const FParseRecord& Record)> OpenAddNodeMenuEvent;
+	OpenAddNodeMenuEvent.BindLambda(
+		[this](const FParseRecord& Record) {
+			TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+			if (!ActiveTab.IsValid())
+			{
+				return;
+			}
+
+			SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
+			if (ActiveGraphEditor == nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
+				return;
+			}
+			SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
+			
+			GraphPanel->SummonCreateNodeMenuFromUICommand(0);
+
+			TSharedPtr<SWidget> KeyboardFocusedWidget = StaticCastSharedPtr<SEditableText>(FSlateApplication::Get().GetKeyboardFocusedWidget());
+			if (KeyboardFocusedWidget.IsValid())
+			{
+				TSharedPtr<SGraphActionMenu> GraphActionMenu = StaticCastSharedPtr<SGraphActionMenu>(
+					KeyboardFocusedWidget
+						->GetParentWidget()
+						->GetParentWidget()
+						->GetParentWidget()
+						->GetParentWidget()
+						->GetParentWidget()
+				);
+
+				GraphActionMenu->GetFilterTextBox()->SetText(FText::FromString(TEXT("Test")));
+			}
+		}
+	);
+
+	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
+		MakeShared<FPhraseNode>(
+			TEXT("NODE"),
+			TPhraseNodeArray{
+
+				MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
+				TPhraseNodeArray {
+
+							MakeShared<FPhraseNode>(TEXT("MOVE"),
+							TPhraseNodeArray {
+
+									MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+									TPhraseNodeArray {
+
+											MakeShared<FPhraseInputNode>(TEXT("AMOUNT"),
+											TPhraseNodeArray {
+												MoveEventNode
+											})
+									})
+							}),
+
+							MakeShared<FPhraseNode>(TEXT("PIN"),
+							TPhraseNodeArray {
+
+									MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
+									TPhraseNodeArray {
+
+											MakeShared<FPhraseNode>(TEXT("CONNECT"),
+											TPhraseNodeArray {
+
+													MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
+													TPhraseNodeArray {
+
+															MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
+															TPhraseNodeArray {
+																PinConnectEventNode
+															})
+													})
+											}),
+
+											MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
+											TPhraseNodeArray {
+
+													MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
+													TPhraseNodeArray {
+
+															MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
+															TPhraseNodeArray {
+																PinDisconnectEventNode
+															})
+													}, NodeIndexFocusEvent)
+											})
+									})
+							}),
+					}, NodeIndexFocusEvent),
+
+				MakeShared<FPhraseNode>(TEXT("ADD"),
+				TPhraseNodeArray{
+
+					MakeShared<FPhraseNode>(TEXT("SELECT"),
+					TPhraseNodeArray {
+
+							MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
+							TPhraseNodeArray {
+										
+									MakeShared<FPhraseEventNode>()
+							})
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("SEARCH"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseNode>(TEXT("ADD"),
+						TPhraseNodeArray {
+
+						}),
+
+						MakeShared<FPhraseNode>(TEXT("RESET"),
+						TPhraseNodeArray {
+							
+						})
+					})
+
+				}, OpenAddNodeMenuEvent)
+			})
+	);
+}
+
 void FOpenAccessibilityModule::RegisterConsoleCommands()
 {
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
@@ -535,36 +610,111 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 
 		FConsoleCommandDelegate::CreateLambda(
 			[this]() {
-				TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
-				if (!ActiveTab.IsValid())
-					return;
 
-				SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
-				if (ActiveGraphEditor == nullptr)
+				SGraphEditor* ActiveGraphEditor = nullptr;
 				{
-					UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
-					return;
+					// Getting Graph Editor Section
+
+					TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+					if (!ActiveTab.IsValid())
+						return;
+
+					ActiveGraphEditor = (SGraphEditor*) ActiveTab->GetContent().ToSharedPtr().Get();
+					if (ActiveGraphEditor == nullptr)
+					{
+						UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
+						return;
+					}
 				}
 
-				ActiveGraphEditor->GetGraphPanel()->SummonCreateNodeMenuFromUICommand(0);
-
-				TSharedPtr<SWidget> KeyboardFocusedWidget = FSlateApplication::Get().GetKeyboardFocusedWidget();
-
-				if (!KeyboardFocusedWidget.IsValid())
+				TSharedPtr<IMenu> Menu;
+				TSharedPtr<SWindow> MenuWindow;
+				TSharedPtr<SGraphActionMenu> GraphActionMenu;
+				TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeView;
+				TSharedPtr<SSearchBox> SearchBox;
 				{
-					UE_LOG(LogOpenAccessibility, Display, TEXT("Cannot get Keyboard Focused Widget."));
-					return;
+					// Summoning Create Node Menu Section
+					// and Getting any Key Widgets
+
+					ActiveGraphEditor->GetGraphPanel()->SummonCreateNodeMenuFromUICommand(0);
+
+					TSharedPtr<SWidget> KeyboardFocusedWidget = StaticCastSharedPtr<SEditableText>(FSlateApplication::Get().GetKeyboardFocusedWidget());
+					if (!KeyboardFocusedWidget.IsValid())
+					{
+						UE_LOG(LogOpenAccessibility, Display, TEXT("Cannot get Keyboard Focused Widget."));
+						return;
+					}
+
+					UE_LOG(LogOpenAccessibility, Display, TEXT("Keyboard Focused Widget Type: %s"), *KeyboardFocusedWidget->GetTypeAsString());
+
+					// Getting Menu Object
+					FWidgetPath KeyboardFocusedWidgetPath;
+					if (FSlateApplication::Get().FindPathToWidget(KeyboardFocusedWidget.ToSharedRef(), KeyboardFocusedWidgetPath))
+					{
+						UE_LOG(LogOpenAccessibility, Display, TEXT("Keyboard Focused Widget Path Found."));
+					}
+					else return;
+
+					Menu = FSlateApplication::Get().FindMenuInWidgetPath(KeyboardFocusedWidgetPath);
+
+					// Getting Graph Action Menu Object
+					GraphActionMenu = StaticCastSharedPtr<SGraphActionMenu>(
+						KeyboardFocusedWidget
+							->GetParentWidget()
+							->GetParentWidget()
+							->GetParentWidget()
+							->GetParentWidget()
+							->GetParentWidget()
+					);
+
+					SearchBox = StaticCastSharedPtr<SSearchBox>(
+						KeyboardFocusedWidget
+							->GetParentWidget()
+							->GetParentWidget()
+							->GetParentWidget()
+					);
+
+					TSharedRef<SWidget> SearchBoxSibling = SearchBox->GetParentWidget()->GetChildren()->GetChildAt(1);
+					TreeView = StaticCastSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>>(
+						SearchBoxSibling->GetChildren()->GetChildAt(0)->GetChildren()->GetChildAt(0).ToSharedPtr()
+					);
+					if (!TreeView.IsValid())
+					{
+						UE_LOG(LogOpenAccessibility, Display, TEXT("TreeView Could Not Be Found."));
+						return;
+					}
+
+					MenuWindow = FSlateApplication::Get().FindWidgetWindow(KeyboardFocusedWidget.ToSharedRef());
+				}
+				
+				// Improve Menu Scaling
+				{
+					// Allow for Larger Scaling in the Menu,
+					// for better readability and for future eye-tracking support.
+					const float ScaleFactor = 1.5f;
+
+					TreeView->SetItemHeight(TAttribute<float>(16 * ScaleFactor));
+
+					MenuWindow->SetSizingRule(ESizingRule::UserSized);
+					MenuWindow->Resize(MenuWindow->GetSizeInScreen() * ScaleFactor);
 				}
 
-				SSearchBox* SearchBox = reinterpret_cast<SSearchBox*>(KeyboardFocusedWidget.Get());
-				if (SearchBox != nullptr)
+				
 				{
-					SearchBox->SetSearchText(FText::FromString(TEXT("Get")));
+					// Add Test Visual Indexing
+
+					UE_LOG(LogOpenAccessibility, Log, TEXT("TreeView Info | Num Items Generated: %d"), TreeView->GetNumGeneratedChildren());
+
+					TArrayView<const TSharedPtr<FGraphActionNode>> TreeItems; 
+					
+					TreeItems = TreeView->GetRootItems();
+					if (TreeItems.Num() > 0)
+					{
+						UE_LOG(LogOpenAccessibility, Display, TEXT("Root Items Found. Amount: %d"), TreeItems.Num());
+					}
+
+
 				}
-
-				TSharedPtr<IMenu> MenuWidget = FSlateApplication::Get().FindMenuInWidgetPath(FWidgetPath().GetPathDownTo(KeyboardFocusedWidget.ToSharedRef()));
-
-				UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibilityGraph_AddNodeMenu"));
 			}),
 
 		ECVF_Default
