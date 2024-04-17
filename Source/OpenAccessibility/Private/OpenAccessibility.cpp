@@ -9,9 +9,9 @@
 #include "PhraseTree/PhraseDirectionalInputNode.h"
 #include "PhraseTree/PhraseEventNode.h"
 
+#include "GraphActionNode.h"
 #include "SGraphPanel.h"
 #include "Widgets/Input/SSearchBox.h"
-#include "GraphActionNode.h"
 
 #include "Framework/Docking/TabManager.h"
 #include "Logging/StructuredLog.h"
@@ -34,11 +34,32 @@ void FOpenAccessibilityModule::StartupModule()
 
 	BindGraphInteractionBranch();
 	BindLocalLocomotionBranch();
+
+	TreeTickDelegate = FTickerDelegate::CreateLambda(
+		[this](float DeltaTime) -> bool {
+
+			if (TreeView.IsValid())
+			{
+				// Log TreeView Amount
+				UE_LOG(LogOpenAccessibility, Log, TEXT("TreeView Item Amount: %d | Amount Being Observed: %d"), 
+					TreeView.Pin()->GetRootItems().Num(), 
+					TreeView.Pin()->GetNumItemsBeingObserved()
+				);
+			}
+
+			return true;
+		}
+	);
+
+	TreeTickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TreeTickDelegate, 0.1f);
 }
 
 void FOpenAccessibilityModule::ShutdownModule()
 {
 	UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibilityModule::ShutdownModule()"));
+
+	// Unregister Test Tree Delegate
+	FTSTicker::RemoveTicker(TreeTickDelegateHandle);
 
 	UnregisterConsoleCommands();
 }
@@ -527,7 +548,9 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 							}),
 					}, NodeIndexFocusEvent),
 
-				MakeShared<FPhraseNode>(TEXT("ADD"),
+				MakeShared<FPhraseNode>(
+				TEXT("ADD"),
+				OpenAddNodeMenuEvent,
 				TPhraseNodeArray{
 
 					MakeShared<FPhraseNode>(TEXT("SELECT"),
@@ -554,7 +577,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 						})
 					})
 
-				}, OpenAddNodeMenuEvent)
+				})
 			})
 	);
 }
@@ -630,7 +653,6 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 				TSharedPtr<IMenu> Menu;
 				TSharedPtr<SWindow> MenuWindow;
 				TSharedPtr<SGraphActionMenu> GraphActionMenu;
-				TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeView;
 				TSharedPtr<SSearchBox> SearchBox;
 				{
 					// Summoning Create Node Menu Section
@@ -675,16 +697,18 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					);
 
 					TSharedRef<SWidget> SearchBoxSibling = SearchBox->GetParentWidget()->GetChildren()->GetChildAt(1);
-					TreeView = StaticCastSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>>(
-						SearchBoxSibling->GetChildren()->GetChildAt(0)->GetChildren()->GetChildAt(0).ToSharedPtr()
+					TreeView = StaticCastSharedRef<STreeView<TSharedPtr<FGraphActionNode>>>(
+						SearchBoxSibling->GetChildren()->GetChildAt(0)->GetChildren()->GetChildAt(0)
 					);
-					if (!TreeView.IsValid())
-					{
-						UE_LOG(LogOpenAccessibility, Display, TEXT("TreeView Could Not Be Found."));
-						return;
-					}
 
 					MenuWindow = FSlateApplication::Get().FindWidgetWindow(KeyboardFocusedWidget.ToSharedRef());
+				
+					MenuWindow->GetOnWindowClosedEvent()
+					.AddLambda([this](const TSharedRef<SWindow>& Window) {
+						UE_LOG(LogOpenAccessibility, Display, TEXT("Context Menu Window Closed"))
+					});
+
+					Menu->GetOnMenuDismissed();
 				}
 				
 				// Improve Menu Scaling
@@ -693,27 +717,9 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					// for better readability and for future eye-tracking support.
 					const float ScaleFactor = 1.5f;
 
-					TreeView->SetItemHeight(TAttribute<float>(16 * ScaleFactor));
-
-					MenuWindow->SetSizingRule(ESizingRule::UserSized);
+					MenuWindow->SetSizingRule(ESizingRule::FixedSize);
+					TreeView.Pin()->SetItemHeight(TAttribute<float>(16 * ScaleFactor));
 					MenuWindow->Resize(MenuWindow->GetSizeInScreen() * ScaleFactor);
-				}
-
-				
-				{
-					// Add Test Visual Indexing
-
-					UE_LOG(LogOpenAccessibility, Log, TEXT("TreeView Info | Num Items Generated: %d"), TreeView->GetNumGeneratedChildren());
-
-					TArrayView<const TSharedPtr<FGraphActionNode>> TreeItems; 
-					
-					TreeItems = TreeView->GetRootItems();
-					if (TreeItems.Num() > 0)
-					{
-						UE_LOG(LogOpenAccessibility, Display, TEXT("Root Items Found. Amount: %d"), TreeItems.Num());
-					}
-
-
 				}
 			}),
 

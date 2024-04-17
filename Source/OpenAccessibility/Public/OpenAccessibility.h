@@ -50,4 +50,10 @@ public:
 private:
 
 	TArray<IConsoleCommand*> ConsoleCommands;
+
+	// Tree Testing
+	TWeakPtr<STreeView<TSharedPtr<struct FGraphActionNode>>> TreeView;
+
+	FTickerDelegate TreeTickDelegate;
+	FTSTicker::FDelegateHandle TreeTickDelegateHandle;
 };
