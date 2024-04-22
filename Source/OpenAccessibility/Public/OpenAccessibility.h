@@ -7,6 +7,7 @@
 
 #include "AssetAccessibilityRegistry.h"
 #include "OAccessibilityNodeFactory.h"
+#include "AccessiblityWrappers/AccessibilityAddNodeContextMenu.h"
 
 class FOpenAccessibilityModule : public IModuleInterface
 {
@@ -54,6 +55,5 @@ private:
 	// Tree Testing
 	TWeakPtr<STreeView<TSharedPtr<struct FGraphActionNode>>> TreeView;
 
-	FTickerDelegate TreeTickDelegate;
-	FTSTicker::FDelegateHandle TreeTickDelegateHandle;
+	UAccessibilityContextMenu* ContextMenu;
 };

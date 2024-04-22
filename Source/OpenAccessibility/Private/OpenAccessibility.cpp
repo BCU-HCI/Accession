@@ -34,32 +34,11 @@ void FOpenAccessibilityModule::StartupModule()
 
 	BindGraphInteractionBranch();
 	BindLocalLocomotionBranch();
-
-	TreeTickDelegate = FTickerDelegate::CreateLambda(
-		[this](float DeltaTime) -> bool {
-
-			if (TreeView.IsValid())
-			{
-				// Log TreeView Amount
-				UE_LOG(LogOpenAccessibility, Log, TEXT("TreeView Item Amount: %d | Amount Being Observed: %d"), 
-					TreeView.Pin()->GetRootItems().Num(), 
-					TreeView.Pin()->GetNumItemsBeingObserved()
-				);
-			}
-
-			return true;
-		}
-	);
-
-	TreeTickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TreeTickDelegate, 0.1f);
 }
 
 void FOpenAccessibilityModule::ShutdownModule()
 {
 	UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibilityModule::ShutdownModule()"));
-
-	// Unregister Test Tree Delegate
-	FTSTicker::RemoveTicker(TreeTickDelegateHandle);
 
 	UnregisterConsoleCommands();
 }
@@ -721,6 +700,16 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					TreeView.Pin()->SetItemHeight(TAttribute<float>(16 * ScaleFactor));
 					MenuWindow->Resize(MenuWindow->GetSizeInScreen() * ScaleFactor);
 				}
+
+				UAccessibilityAddNodeContextMenu* MenuWrapper = NewObject<UAccessibilityAddNodeContextMenu>();
+				MenuWrapper->AddToRoot();
+				MenuWrapper->Init(
+					Menu.ToSharedRef(),
+					GraphActionMenu.ToSharedRef(),
+					TreeView.Pin().ToSharedRef()
+				);
+				 
+				ContextMenu = MenuWrapper;
 			}),
 
 		ECVF_Default
