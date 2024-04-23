@@ -226,7 +226,6 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 void FOpenAccessibilityModule::BindGraphInteractionBranch()
 {
 	// Node Events
-
 	TSharedPtr<FPhraseEventNode> MoveEventNode = MakeShared<FPhraseEventNode>();
 	MoveEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
@@ -283,9 +282,9 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 			return;
 		}
 		});
+	// -----
 
 	// Pin Events
-
 	TSharedPtr<FPhraseEventNode> PinConnectEventNode = MakeShared<FPhraseEventNode>();
 	PinConnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
 
@@ -432,9 +431,10 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		ActiveGraphEditor->ClearSelectionSet();
 		ActiveGraphEditor->SetNodeSelection(Node, true);
 		});
+	// ------
+
 
 	// Node Menu Events
-
 	TDelegate<void(const FParseRecord& Record)> OpenAddNodeMenuEvent;
 	OpenAddNodeMenuEvent.BindLambda(
 		[this](const FParseRecord& Record) {
@@ -455,19 +455,91 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 			GraphPanel->SummonCreateNodeMenuFromUICommand(0);
 
 			TSharedPtr<SWidget> KeyboardFocusedWidget = StaticCastSharedPtr<SEditableText>(FSlateApplication::Get().GetKeyboardFocusedWidget());
-			if (KeyboardFocusedWidget.IsValid())
-			{
-				TSharedPtr<SGraphActionMenu> GraphActionMenu = StaticCastSharedPtr<SGraphActionMenu>(
-					KeyboardFocusedWidget
-						->GetParentWidget()
-						->GetParentWidget()
-						->GetParentWidget()
-						->GetParentWidget()
-						->GetParentWidget()
-				);
+			
+			
+			if (KeyboardFocusedWidget.IsValid()) 
+			{	
+				FWidgetPath KeyboardFocusWidgetPath;
+				if (FSlateApplication::Get().FindPathToWidget(KeyboardFocusedWidget.ToSharedRef(), KeyboardFocusWidgetPath))
+				{
+					TSharedPtr<IMenu> Menu = FSlateApplication::Get().FindMenuInWidgetPath(KeyboardFocusWidgetPath);
 
-				GraphActionMenu->GetFilterTextBox()->SetText(FText::FromString(TEXT("Test")));
+					UAccessibilityAddNodeContextMenu* MenuWrapper = NewObject<UAccessibilityAddNodeContextMenu>();
+					MenuWrapper->AddToRoot();
+					MenuWrapper->Init(
+						Menu.ToSharedRef()
+					);
+
+					MenuWrapper->ScaleMenu(1.5f);
+
+					const_cast<FParseRecord&>(Record).SetContextObj(MenuWrapper);
+				}
 			}
+		}
+	);
+	// -----
+
+	// Node Add Context Events
+	TSharedPtr<FPhraseEventNode> Context_SelectAction = MakeShared<FPhraseEventNode>();
+	Context_SelectAction->OnPhraseParsed.BindLambda(
+		[this](const FParseRecord& Record) {
+			UAccessibilityAddNodeContextMenu* ContextMenu = const_cast<FParseRecord&>(Record).GetContextObj<UAccessibilityAddNodeContextMenu>();
+			if (ContextMenu == nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Log, TEXT("ContextMenu Cannot Be Obtained"));
+
+				return;
+			}
+
+			int Index = const_cast<FParseRecord&>(Record).GetPhraseInput(TEXT("NODE_INDEX"));
+
+			ContextMenu->TreeView.Pin()->Private_OnItemClicked(ContextMenu->GetGraphActionFromIndex(Index));
+		}
+	);
+
+	TSharedPtr<FPhraseEventNode> Context_SearchPhrase = MakeShared<FPhraseEventNode>();
+	Context_SearchPhrase->OnPhraseParsed.BindLambda(
+		[this](const FParseRecord& Record) {
+			UAccessibilityAddNodeContextMenu* ContextMenu = const_cast<FParseRecord&>(Record).GetContextObj<UAccessibilityAddNodeContextMenu>();
+			if (ContextMenu == nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Log, TEXT("ContextMenu Cannot Be Obtained"));
+
+				return;
+			}
+			
+			// Figure Out Phrase Input.
+			UE_LOG(LogOpenAccessibility, Display, TEXT("NOT IMPLEMENTED YET, DUE TO REQUIREMENT OF PHRASE STRING PARSING INTO INPUT"));
+		}
+	);
+
+	TSharedPtr<FPhraseEventNode> Context_SearchReset = MakeShared<FPhraseEventNode>();
+	Context_SearchPhrase->OnPhraseParsed.BindLambda(
+		[this](const FParseRecord& Record) {
+			UAccessibilityAddNodeContextMenu* ContextMenu = const_cast<FParseRecord&>(Record).GetContextObj<UAccessibilityAddNodeContextMenu>();
+			if (ContextMenu == nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Log, TEXT("ContextMenu Cannot Be Obtained"));
+
+				return;
+			}
+
+			ContextMenu->FilterTextBox.Pin()->SetText(FText::FromString(TEXT("")));
+		}
+	);
+
+	TSharedPtr<FPhraseEventNode> Context_Exit = MakeShared<FPhraseEventNode>();
+	Context_Exit->OnPhraseParsed.BindLambda(
+		[this](const FParseRecord& Record) {
+			UAccessibilityAddNodeContextMenu* ContextMenu = const_cast<FParseRecord&>(Record).GetContextObj<UAccessibilityAddNodeContextMenu>();
+			if (ContextMenu == nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Log, TEXT("ContextMenu Cannot Be Obtained"));
+
+				return;
+			}
+
+			ContextMenu->Window.Pin()->RequestDestroyWindow();
 		}
 	);
 
@@ -538,7 +610,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 							MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
 							TPhraseNodeArray {
 										
-									MakeShared<FPhraseEventNode>()
+									Context_SelectAction
 							})
 					}),
 
@@ -547,12 +619,12 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 						MakeShared<FPhraseNode>(TEXT("ADD"),
 						TPhraseNodeArray {
-
+							Context_SearchPhrase
 						}),
 
 						MakeShared<FPhraseNode>(TEXT("RESET"),
 						TPhraseNodeArray {
-							
+							Context_SearchReset
 						})
 					})
 
@@ -633,6 +705,7 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 				TSharedPtr<SWindow> MenuWindow;
 				TSharedPtr<SGraphActionMenu> GraphActionMenu;
 				TSharedPtr<SSearchBox> SearchBox;
+				TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeView;
 				{
 					// Summoning Create Node Menu Section
 					// and Getting any Key Widgets
@@ -688,12 +761,12 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 				MenuWrapper->Init(
 					Menu.ToSharedRef(),
 					GraphActionMenu.ToSharedRef(),
-					TreeView.Pin().ToSharedRef()
+					TreeView.ToSharedRef()
 				);
 
 				MenuWrapper->ScaleMenu(1.5f);
 				 
-				ContextMenu = MenuWrapper;
+				UObject* ContextMenu = MenuWrapper;
 			}),
 
 		ECVF_Default

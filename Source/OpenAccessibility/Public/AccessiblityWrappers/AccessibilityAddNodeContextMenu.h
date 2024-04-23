@@ -42,18 +42,26 @@ public:
 	bool DoesItemsRequireRefresh();
 	void RefreshAccessibilityWidgets();
 
+	// Utility Interactions
+	// Useful for simplifying common interactions.
+
+	TSharedRef<FGraphActionNode> GetGraphActionFromIndex(const int32 InIndex);
+	
+	void GetGraphActionFromIndex(const int32 InIndex, TSharedRef<FGraphActionNode>& OutGraphAction);
+
+public:
+
+	// Menu Components
+	TWeakPtr<SGraphActionMenu> GraphMenu;
+	TWeakPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeView;
+	TWeakPtr<SEditableTextBox> FilterTextBox;
+
 protected:
 
 	// Naive Indexing
 
 	TMap<int32, FGraphActionNode*> IndexMap;
 	TSet<FGraphActionNode*> IndexedWidgetSet;
-
-	// Menu Components
-	
-	TWeakPtr<SGraphActionMenu> GraphMenu;
-	TWeakPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeView;
-	TWeakPtr<SEditableTextBox> FilterTextBox;
 
 	// Prev Vars
 

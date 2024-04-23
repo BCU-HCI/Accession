@@ -103,8 +103,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 			case PHRASE_UNABLE_TO_PARSE:
 			{
 				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment Unable to be Parsed ||"))
-				
-					
+
 				break;
 			}
 		}
@@ -123,11 +122,13 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 		return FParseResult(PHRASE_NOT_PARSED);
 	}
 
+
 	// First give the last visited node a chance to parse the phrase.
 	// due to the possibility of connecting phrases over different transcription segments.
 	if (LastVistedNode != nullptr && LastVistedNode.IsValid())
 	{
 		TArray<FString> PhraseWordArrayCopy = TArray<FString>(InPhraseWordArray);
+
 		FParseResult ParseResult = LastVistedNode->ParsePhrase(PhraseWordArrayCopy, InParseRecord);
 		if (ParseResult.Result == PHRASE_PARSED || ParseResult.Result != PHRASE_UNABLE_TO_PARSE)
 		{

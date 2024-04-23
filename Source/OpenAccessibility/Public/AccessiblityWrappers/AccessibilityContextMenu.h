@@ -40,7 +40,7 @@ protected:
 		Menu.Pin()->GetOwnedWindow();
 	}
 
-protected:
+public:
 	TWeakPtr<IMenu> Menu;
 	TWeakPtr<SWindow> Window;
 

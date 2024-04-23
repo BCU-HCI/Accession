@@ -169,6 +169,16 @@ void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 	}
 }
 
+TSharedRef<FGraphActionNode> UAccessibilityAddNodeContextMenu::GetGraphActionFromIndex(const int32 InIndex)
+{
+	return TreeView.Pin()->GetItems()[InIndex].ToSharedRef();
+}
+
+void UAccessibilityAddNodeContextMenu::GetGraphActionFromIndex(const int32 InIndex, TSharedRef<FGraphActionNode>& OutGraphAction)
+{
+	OutGraphAction = TreeView.Pin()->GetItems()[InIndex].ToSharedRef();
+}
+
 bool UAccessibilityAddNodeContextMenu::Tick(float DeltaTime)
 {
 	if (!GraphMenu.IsValid() || !Menu.IsValid())

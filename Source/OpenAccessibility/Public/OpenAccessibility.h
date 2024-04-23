@@ -51,9 +51,4 @@ public:
 private:
 
 	TArray<IConsoleCommand*> ConsoleCommands;
-
-	// Tree Testing
-	TWeakPtr<STreeView<TSharedPtr<struct FGraphActionNode>>> TreeView;
-
-	UAccessibilityContextMenu* ContextMenu;
 };
