@@ -25,6 +25,9 @@ UAccessibilityContextMenu::~UAccessibilityContextMenu()
 void UAccessibilityContextMenu::Init(TSharedRef<IMenu> InMenu)
 {
 	this->Menu = Menu;
+	this->Window = FSlateApplication::Get().FindWidgetWindow(
+		InMenu->GetContent().ToSharedRef()
+	);
 
 	TickDelegate = FTickerDelegate::CreateUObject(this, &UAccessibilityContextMenu::Tick);
 	TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);

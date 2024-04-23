@@ -681,26 +681,8 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					);
 
 					MenuWindow = FSlateApplication::Get().FindWidgetWindow(KeyboardFocusedWidget.ToSharedRef());
-				
-					MenuWindow->GetOnWindowClosedEvent()
-					.AddLambda([this](const TSharedRef<SWindow>& Window) {
-						UE_LOG(LogOpenAccessibility, Display, TEXT("Context Menu Window Closed"))
-					});
-
-					Menu->GetOnMenuDismissed();
 				}
 				
-				// Improve Menu Scaling
-				{
-					// Allow for Larger Scaling in the Menu,
-					// for better readability and for future eye-tracking support.
-					const float ScaleFactor = 1.5f;
-
-					MenuWindow->SetSizingRule(ESizingRule::FixedSize);
-					TreeView.Pin()->SetItemHeight(TAttribute<float>(16 * ScaleFactor));
-					MenuWindow->Resize(MenuWindow->GetSizeInScreen() * ScaleFactor);
-				}
-
 				UAccessibilityAddNodeContextMenu* MenuWrapper = NewObject<UAccessibilityAddNodeContextMenu>();
 				MenuWrapper->AddToRoot();
 				MenuWrapper->Init(
@@ -708,6 +690,8 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					GraphActionMenu.ToSharedRef(),
 					TreeView.Pin().ToSharedRef()
 				);
+
+				MenuWrapper->ScaleMenu(1.5f);
 				 
 				ContextMenu = MenuWrapper;
 			}),

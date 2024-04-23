@@ -42,7 +42,7 @@ protected:
 
 protected:
 	TWeakPtr<IMenu> Menu;
-	// const TUniquePtr<FIndexer<int, IndexerType>> MenuIndexer;
+	TWeakPtr<SWindow> Window;
 
 private:
 

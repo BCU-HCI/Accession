@@ -29,14 +29,18 @@ public:
 
 	void Init(TSharedRef<IMenu> InMenu, TSharedRef<SGraphActionMenu> InGraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> InTreeView);
 
-	bool DoesItemsRequireRefresh();
-	void RefreshAccessibilityWidgets();
-
 	// UAccessibilityContextMenu Implementation
+
+	virtual void Init(TSharedRef<IMenu> InMenu) override;
 
 	virtual bool Tick(float DeltaTime) override;
 
 	// End UAccessibilityContextMenu Implementation
+
+	void ScaleMenu(const float ScaleFactor = 1.5f);
+
+	bool DoesItemsRequireRefresh();
+	void RefreshAccessibilityWidgets();
 
 protected:
 
