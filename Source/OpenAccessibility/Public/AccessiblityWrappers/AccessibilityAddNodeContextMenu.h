@@ -55,4 +55,6 @@ protected:
 
 	FString PrevFilterString;
 	int32 PrevNumItemsBeingObserved;
+	int32 PrevNumGeneratedChildren;
+	FVector2D PrevScrollDistance;
 };

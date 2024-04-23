@@ -26,6 +26,7 @@ public:
 
 	virtual bool Tick(float DeltaTime) { return true; };
 
+	void DestroyTicker();
 
 	virtual void SetMenu(TSharedRef<IMenu> InMenu)
 	{

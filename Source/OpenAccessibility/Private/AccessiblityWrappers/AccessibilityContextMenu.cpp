@@ -12,15 +12,14 @@ UAccessibilityContextMenu::UAccessibilityContextMenu(TSharedRef<IMenu> Menu) : U
 	.AddLambda([this](TSharedRef<IMenu> Menu)
 	{
 		RemoveFromRoot();
-
-		// WidgetIndexer->Clear();
+		DestroyTicker();
 	});
 }
 
 UAccessibilityContextMenu::~UAccessibilityContextMenu()
 {
 	// Unbind Tick Delegate
-	FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
+	DestroyTicker();
 }
 
 void UAccessibilityContextMenu::Init(TSharedRef<IMenu> InMenu)
@@ -29,4 +28,10 @@ void UAccessibilityContextMenu::Init(TSharedRef<IMenu> InMenu)
 
 	TickDelegate = FTickerDelegate::CreateUObject(this, &UAccessibilityContextMenu::Tick);
 	TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);
+}
+
+void UAccessibilityContextMenu::DestroyTicker()
+{
+	if (TickDelegateHandle != NULL)
+		FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
 }

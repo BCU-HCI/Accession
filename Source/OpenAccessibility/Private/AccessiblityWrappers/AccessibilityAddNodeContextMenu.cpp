@@ -45,59 +45,70 @@ bool UAccessibilityAddNodeContextMenu::DoesItemsRequireRefresh()
 {
 	return (
 		FilterTextBox.Pin()->GetText().ToString() != PrevFilterString ||
-		TreeView.Pin()->GetNumItemsBeingObserved() != PrevNumItemsBeingObserved
+		TreeView.Pin()->GetNumItemsBeingObserved() != PrevNumItemsBeingObserved ||
+		TreeView.Pin()->GetNumGeneratedChildren() != PrevNumGeneratedChildren ||
+		TreeView.Pin()->GetScrollDistance().Y != PrevScrollDistance.Y
 	);
 }
 
 void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 {
-	TArrayView<const TSharedPtr<FGraphActionNode>> RootItems = TreeView.Pin()->GetRootItems();
+	TArray<TSharedPtr<FGraphActionNode>> Items = TArray<TSharedPtr<FGraphActionNode>>(TreeView.Pin()->GetRootItems());
 
-	TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget = nullptr;
-	TSharedPtr<SWidget> ItemContent = nullptr;
-
-	for (const TSharedPtr<FGraphActionNode>& RootItem : RootItems)
 	{
-		ItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
-			TreeView.Pin()->WidgetFromItem(RootItem)
-		);
+		TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget = nullptr;
+		TSharedPtr<SWidget> ItemContent = nullptr;
+		int32 Index = NULL;
 
-		if (!ItemWidget.IsValid())
+		while (Items.Num() > 0)
 		{
-			if (IndexedWidgetSet.Contains(RootItem.Get()))
+			const TSharedPtr<FGraphActionNode> Item = Items[0];
+			Items.RemoveAt(0);
+
+			ItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
+				TreeView.Pin()->WidgetFromItem(Item)
+			);
+
+			if (!ItemWidget.IsValid())
 			{
-				IndexedWidgetSet.Remove(RootItem.Get());
+				if (IndexedWidgetSet.Contains(Item.Get()))
+					IndexedWidgetSet.Remove(Item.Get());
+
+				continue;
 			}
 
-			return;
-		}
+			if (Item->Children.Num() > 0)
+				Items.Append(Item->Children);
 
-		if (IndexedWidgetSet.Contains(RootItem.Get()))
-			return;
+			if (IndexedWidgetSet.Contains(Item.Get()) || Item->IsGroupDividerNode())
+				continue;
 
-		ItemContent = ItemWidget->GetContent();
-		ItemWidget->SetContent(
-			SNew(SHorizontalBox)
-			 
-			+ SHorizontalBox::Slot()
+			Index = ItemWidget->GetIndexInList();
+
+			ItemContent = ItemWidget->GetContent();
+			ItemWidget->SetContent(
+				SNew(SHorizontalBox)
+
+				+ SHorizontalBox::Slot()
 				.VAlign(VAlign_Center)
 				.HAlign(HAlign_Center)
 				.AutoWidth()
 				[
 					SNew(STextBlock)
-						.Text(FText::FromString(TEXT("[0]")))
+						.Text(FText::FromString(TEXT("[" + FString::FromInt(Index) + "]")))
 				]
 
-			+ SHorizontalBox::Slot()
+				+ SHorizontalBox::Slot()
 				.VAlign(VAlign_Center)
 				.HAlign(HAlign_Center)
 				.AutoWidth()
 				[
 					ItemContent.ToSharedRef()
 				]
-		);
+			);
 
-		IndexedWidgetSet.Add(RootItem.Get());
+			IndexedWidgetSet.Add(Item.Get());
+		}
 	}
 }
 
@@ -112,9 +123,10 @@ bool UAccessibilityAddNodeContextMenu::Tick(float DeltaTime)
 	}
 
 	// Set Previous Vars For Next Tick
-
 	PrevFilterString = FilterTextBox.Pin()->GetText().ToString();
 	PrevNumItemsBeingObserved = TreeView.Pin()->GetNumItemsBeingObserved();
+	PrevNumGeneratedChildren = TreeView.Pin()->GetNumGeneratedChildren();
+	PrevScrollDistance = TreeView.Pin()->GetScrollDistance();
 
 	return true;
 }
