@@ -69,4 +69,6 @@ protected:
 	int32 PrevNumItemsBeingObserved;
 	int32 PrevNumGeneratedChildren;
 	FVector2D PrevScrollDistance;
+
+	TSet<TSharedPtr<FGraphActionNode>> PrevExpandedItems;
 };
