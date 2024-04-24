@@ -493,7 +493,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 			int Index = const_cast<FParseRecord&>(Record).GetPhraseInput(TEXT("NODE_INDEX"));
 
-			ContextMenu->TreeView.Pin()->Private_OnItemClicked(ContextMenu->GetGraphActionFromIndex(Index));
+			ContextMenu->TreeView.Pin()->Private_OnItemDoubleClicked(ContextMenu->GetGraphActionFromIndex(Index));
 		}
 	);
 
