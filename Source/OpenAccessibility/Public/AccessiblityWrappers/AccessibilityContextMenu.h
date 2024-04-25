@@ -26,6 +26,14 @@ public:
 
 	virtual bool Tick(float DeltaTime) { return true; };
 
+	virtual bool Close() 
+	{
+		DestroyTicker();
+		Menu.Pin()->Dismiss();
+
+		return true;
+	};
+
 	void DestroyTicker();
 
 	virtual void SetMenu(TSharedRef<IMenu> InMenu)

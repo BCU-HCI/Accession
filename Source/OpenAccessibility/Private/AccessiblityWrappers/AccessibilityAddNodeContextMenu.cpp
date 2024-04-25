@@ -80,6 +80,35 @@ void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu, TSharedRef
 	this->FilterTextBox = InGraphMenu->GetFilterTextBox();
 }
 
+bool UAccessibilityAddNodeContextMenu::Tick(float DeltaTime)
+{
+	if (!GraphMenu.IsValid() || !Menu.IsValid())
+		return false;
+
+	if (DoesItemsRequireRefresh())
+	{
+		RefreshAccessibilityWidgets();
+	}
+
+	// Set Previous Vars For Next Tick
+	PrevFilterString = FilterTextBox.Pin()->GetText().ToString();
+	PrevNumItemsBeingObserved = TreeView.Pin()->GetNumItemsBeingObserved();
+	PrevNumGeneratedChildren = TreeView.Pin()->GetNumGeneratedChildren();
+	PrevScrollDistance = TreeView.Pin()->GetScrollDistance();
+
+	TreeView.Pin()->GetExpandedItems(PrevExpandedItems);
+
+	return true;
+}
+
+bool UAccessibilityAddNodeContextMenu::Close()
+{
+	DestroyTicker();
+	Menu.Pin()->Dismiss();
+
+	return true;
+}
+
 void UAccessibilityAddNodeContextMenu::ScaleMenu(const float ScaleFactor)
 {
 	// Scale TreeView Element
@@ -116,7 +145,6 @@ void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 	TreeView.Pin()->GetExpandedItems(ExpandedItems);
 
 	TSet<TSharedPtr<FGraphActionNode>> ExpandedItemsDifference = PrevExpandedItems.Difference(ExpandedItems);
-	UE_LOG(LogOpenAccessibility, Log, TEXT("ExpandedItemsDifference.Num(): %d"), ExpandedItemsDifference.Num());
 
 	{
 		TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget = nullptr;
@@ -183,33 +211,74 @@ void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 	}
 }
 
-TSharedRef<FGraphActionNode> UAccessibilityAddNodeContextMenu::GetGraphActionFromIndex(const int32 InIndex)
+FGraphActionNode* UAccessibilityAddNodeContextMenu::GetGraphActionFromIndex(const int32 InIndex)
 {
-	return TreeView.Pin()->GetItems()[InIndex].ToSharedRef();
+	TArrayView<const TSharedPtr<FGraphActionNode>> Items = TreeView.Pin()->GetItems();
+	
+	if (Items.Num() > InIndex)
+		return Items[InIndex].Get();
+
+	else return nullptr;
 }
 
-void UAccessibilityAddNodeContextMenu::GetGraphActionFromIndex(const int32 InIndex, TSharedRef<FGraphActionNode>& OutGraphAction)
+void UAccessibilityAddNodeContextMenu::GetGraphActionFromIndex(const int32 InIndex, FGraphActionNode* OutGraphAction)
 {
-	OutGraphAction = TreeView.Pin()->GetItems()[InIndex].ToSharedRef();
+	TArrayView<const TSharedPtr<FGraphActionNode>> Items = TreeView.Pin()->GetItems();
+
+	if (Items.Num() > InIndex)
+		OutGraphAction = Items[InIndex].Get();
+
+	else OutGraphAction = nullptr;
 }
 
-bool UAccessibilityAddNodeContextMenu::Tick(float DeltaTime)
+TSharedPtr<FGraphActionNode> UAccessibilityAddNodeContextMenu::GetGraphActionFromIndexSP(const int32 InIndex)
 {
-	if (!GraphMenu.IsValid() || !Menu.IsValid())
-		return false;
+	return TreeView.Pin()->GetItems()[InIndex];
+}
 
-	if (DoesItemsRequireRefresh())
+void UAccessibilityAddNodeContextMenu::SelectGraphAction(const int32 InIndex)
+{
+	TSharedPtr<FGraphActionNode> GraphAction = GetGraphActionFromIndexSP(InIndex);
+
+	if (GraphAction.IsValid())
 	{
-		RefreshAccessibilityWidgets();
+		TreeView.Pin()->Private_OnItemClicked(GraphAction);
 	}
+	else
+	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("SelectGraphAction: Provided GraphAction is Invalid."));
+	}
+}
 
-	// Set Previous Vars For Next Tick
-	PrevFilterString = FilterTextBox.Pin()->GetText().ToString();
-	PrevNumItemsBeingObserved = TreeView.Pin()->GetNumItemsBeingObserved();
-	PrevNumGeneratedChildren = TreeView.Pin()->GetNumGeneratedChildren();
-	PrevScrollDistance = TreeView.Pin()->GetScrollDistance();
+void UAccessibilityAddNodeContextMenu::PerformGraphAction(const int32 InIndex)
+{
+	TSharedPtr<FGraphActionNode> GraphAction = GetGraphActionFromIndexSP(InIndex);
 
-	TreeView.Pin()->GetExpandedItems(PrevExpandedItems);
+	if (GraphAction.IsValid())
+	{
+		TreeView.Pin()->Private_OnItemDoubleClicked(GraphAction);
+	}
+	else
+	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("PerformGraphAction: Provided GraphAction is Invalid."));
+	}
+}
 
-	return true;
+void UAccessibilityAddNodeContextMenu::SetFilterText(const FString& InFilterText)
+{
+	FilterTextBox.Pin()->SetText(FText::FromString(InFilterText));
+}
+
+void UAccessibilityAddNodeContextMenu::AppendFilterText(const FString& InFilterText)
+{
+	FilterTextBox.Pin()->SetText(
+		FText::FromString(
+			FilterTextBox.Pin()->GetText().ToString() + InFilterText
+		)
+	);
+}
+
+void UAccessibilityAddNodeContextMenu::ResetFilterText()
+{
+	FilterTextBox.Pin()->SetText(FText::FromString(TEXT("")));
 }

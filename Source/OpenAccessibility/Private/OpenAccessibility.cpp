@@ -493,7 +493,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 			int Index = const_cast<FParseRecord&>(Record).GetPhraseInput(TEXT("NODE_INDEX"));
 
-			ContextMenu->TreeView.Pin()->Private_OnItemDoubleClicked(ContextMenu->GetGraphActionFromIndex(Index));
+			ContextMenu->PerformGraphAction(Index);
 		}
 	);
 
@@ -524,7 +524,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				return;
 			}
 
-			ContextMenu->FilterTextBox.Pin()->SetText(FText::FromString(TEXT("")));
+			ContextMenu->ResetFilterText();
 		}
 	);
 
@@ -539,7 +539,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				return;
 			}
 
-			ContextMenu->Window.Pin()->RequestDestroyWindow();
+			ContextMenu->Close();
 		}
 	);
 
