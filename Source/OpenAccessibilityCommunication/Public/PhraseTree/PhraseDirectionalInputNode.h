@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "PhraseEnumInputNode.h"
-#include "InputContainers.h"
+#include "Containers/Input/InputContainers.h"
 
 class OPENACCESSIBILITYCOMMUNICATION_API FPhraseDirectionalInputNode : public FPhraseEnumInputNode<EPhraseDirectionalInput>
 {

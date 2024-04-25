@@ -3,7 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PhraseTree/Containers.h"
+
+#include "PhraseTree/Containers/ParseResult.h"
+#include "PhraseTree/Containers/ParseRecord.h"
 
 /**
  * 
