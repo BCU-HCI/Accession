@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "PhraseEnumInputNode.h"
 #include "Containers/Input/InputContainers.h"
 

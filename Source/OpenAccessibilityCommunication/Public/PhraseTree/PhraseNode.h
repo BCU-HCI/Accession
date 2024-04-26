@@ -58,7 +58,7 @@ public:
 	FString BoundPhrase;
 
 	// Phrase To Be Executed On the Parse Command
-	TDelegate<void (const FParseRecord& Record)> OnPhraseParsed;
+	TDelegate<void (FParseRecord& Record)> OnPhraseParsed;
 
 protected:
 };

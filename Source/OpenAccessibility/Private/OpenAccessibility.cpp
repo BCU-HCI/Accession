@@ -9,6 +9,11 @@
 #include "PhraseTree/PhraseDirectionalInputNode.h"
 #include "PhraseTree/PhraseEventNode.h"
 
+#include "PhraseTree/Containers/Input/UParseInput.h"
+#include "PhraseTree/Containers/Input/UParseIntInput.h"
+#include "PhraseTree/Containers/Input/UParseStringInput.h"
+#include "PhraseTree/Containers/Input/UParseEnumInput.h"
+
 #include "GraphActionNode.h"
 #include "SGraphPanel.h"
 #include "Widgets/Input/SSearchBox.h"
@@ -46,7 +51,7 @@ void FOpenAccessibilityModule::ShutdownModule()
 void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 {
 	TSharedPtr<FPhraseEventNode> MoveViewportEventNode = MakeShared<FPhraseEventNode>();
-	MoveViewportEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+	MoveViewportEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
 		{
@@ -59,8 +64,8 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 			return;
 		}
 		// Get Inputs
-		const int MoveDirection = *Record.PhraseInputs.Find("DIRECTION");
-		const int MoveAmount = *Record.PhraseInputs.Find("AMOUNT");
+		UParseEnumInput* MoveDirection = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
+		UParseIntInput* MoveAmount = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
 
 		const FString ActiveEditorViewportType = ActiveEditorViewport->GetTypeAsString();
 		if (ActiveEditorViewportType == "SGraphEditor")
@@ -73,22 +78,22 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 
 			UE_LOG(LogOpenAccessibility, Display, TEXT("MoveViewportEventNode: Curr Zoom Amount: %d"), CurrZoomAmount);
 		
-			switch (EPhraseDirectionalInput(MoveDirection))
+			switch (EPhraseDirectionalInput(MoveDirection->GetValue()))
 			{
 				case EPhraseDirectionalInput::UP:
-					CurrViewLocation.Y -= MoveAmount;
+					CurrViewLocation.Y -= MoveAmount->GetValue();
 					break;
 
 				case EPhraseDirectionalInput::DOWN:
-					CurrViewLocation.Y += MoveAmount;
+					CurrViewLocation.Y += MoveAmount->GetValue();
 					break;
 
 				case EPhraseDirectionalInput::LEFT:
-					CurrViewLocation.X -= MoveAmount;
+					CurrViewLocation.X -= MoveAmount->GetValue();
 					break;
 
 				case EPhraseDirectionalInput::RIGHT:
-					CurrViewLocation.X += MoveAmount;
+					CurrViewLocation.X += MoveAmount->GetValue();
 					break;
 
 				default:
@@ -103,7 +108,7 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 	});
 
 	TSharedPtr<FPhraseEventNode> ZoomViewportEventNode = MakeShared<FPhraseEventNode>();
-	ZoomViewportEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+	ZoomViewportEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
 		{
@@ -117,8 +122,8 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 		}
 
 		// Get Inputs
-		const int ZoomDirection = *Record.PhraseInputs.Find("DIRECTION");
-		const int ZoomAmount = *Record.PhraseInputs.Find("AMOUNT");
+		UParseEnumInput* ZoomDirection = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
+		UParseIntInput* ZoomAmount = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
 
 		const FString ActiveEditorViewportType = ActiveEditorViewport->GetTypeAsString();
 		if (ActiveEditorViewportType == "SGraphEditor")
@@ -131,14 +136,14 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 
 			UE_LOG(LogOpenAccessibility, Display, TEXT("ZoomViewportEventNode: Curr Zoom Amount: %d"), CurrZoomAmount);
 
-			switch (EPhraseDirectionalInput(ZoomDirection))
+			switch (EPhraseDirectionalInput(ZoomDirection->GetValue()))
 			{
 				case EPhraseDirectionalInput::UP:
-					CurrZoomAmount += ZoomAmount;
+					CurrZoomAmount += ZoomAmount->GetValue();
 					break;
 
 				case EPhraseDirectionalInput::DOWN:
-					CurrZoomAmount -= ZoomAmount;
+					CurrZoomAmount -= ZoomAmount->GetValue();
 					break;
 
 				default:
@@ -153,7 +158,7 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 	});
 
 	TSharedPtr<FPhraseEventNode> IndexFocusEventNode = MakeShared<FPhraseEventNode>();
-	IndexFocusEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+	IndexFocusEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
 		{
@@ -167,7 +172,7 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 		}
 
 		// Get Inputs
-		const int IndexToFocus = *Record.PhraseInputs.Find("INDEX");
+		UParseIntInput* IndexToFocus = Record.GetPhraseInput<UParseIntInput>("INDEX");
 
 		const FString ActiveEditorViewportType = ActiveEditorViewport->GetTypeAsString();
 		if (ActiveEditorViewportType == "SGraphEditor")
@@ -175,7 +180,7 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 			SGraphEditor* GraphViewport = (SGraphEditor*)ActiveEditorViewport;
 
 			TSharedRef<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(GraphViewport->GetCurrentGraph());
-			UEdGraphNode* GraphNode = IndexerForGraph->GetNode(IndexToFocus);
+			UEdGraphNode* GraphNode = IndexerForGraph->GetNode(IndexToFocus->GetValue());
 			
 			GraphViewport->JumpToNode(GraphNode, false, true);
 		}
@@ -227,7 +232,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 {
 	// Node Events
 	TSharedPtr<FPhraseEventNode> MoveEventNode = MakeShared<FPhraseEventNode>();
-	MoveEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+	MoveEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
 		{
@@ -239,12 +244,12 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		if (ActiveGraphEditor != nullptr)
 		{
 			// Get Inputs
-			const int NodeIndex = *Record.PhraseInputs.Find("NODE_INDEX");
-			const int MoveDirection = *Record.PhraseInputs.Find("DIRECTION");
-			const int MoveAmount = *Record.PhraseInputs.Find("AMOUNT");
+			UParseIntInput* NodeIndex = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+			UParseEnumInput* MoveDirection = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
+			UParseIntInput* MoveAmount = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
 
 			UEdGraphNode* GraphNode = AssetAccessibilityRegistry->GraphAssetIndex[ActiveGraphEditor->GetCurrentGraph()->GraphGuid]->GetNode(
-				NodeIndex
+				NodeIndex->GetValue()
 			);
 
 			if (GraphNode == nullptr)
@@ -253,22 +258,22 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				return;
 			}
 
-			switch (EPhraseDirectionalInput(MoveDirection))
+			switch (EPhraseDirectionalInput(MoveDirection->GetValue()))
 			{
 			case EPhraseDirectionalInput::UP:
-				GraphNode->NodePosY -= MoveAmount;
+				GraphNode->NodePosY -= MoveAmount->GetValue();
 				break;
 
 			case EPhraseDirectionalInput::DOWN:
-				GraphNode->NodePosY += MoveAmount;
+				GraphNode->NodePosY += MoveAmount->GetValue();
 				break;
 
 			case EPhraseDirectionalInput::LEFT:
-				GraphNode->NodePosX -= MoveAmount;
+				GraphNode->NodePosX -= MoveAmount->GetValue();
 				break;
 
 			case EPhraseDirectionalInput::RIGHT:
-				GraphNode->NodePosX += MoveAmount;
+				GraphNode->NodePosX += MoveAmount->GetValue();
 				break;
 
 			default:
@@ -286,7 +291,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 	// Pin Events
 	TSharedPtr<FPhraseEventNode> PinConnectEventNode = MakeShared<FPhraseEventNode>();
-	PinConnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+	PinConnectEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
 
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
@@ -312,11 +317,11 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 
 		// Get Inputs
-		TArray<int> NodeInputs;
-		Record.PhraseInputs.MultiFind("NODE_INDEX", NodeInputs, true);
+		TArray<UParseIntInput*> NodeInputs;
+		Record.GetPhraseInputs<UParseIntInput>(TEXT("NODE_INDEX"), NodeInputs);
 
-		TArray<int> PinInputs;
-		Record.PhraseInputs.MultiFind("PIN_INDEX", PinInputs, true);
+		TArray<UParseIntInput*> PinInputs;
+		Record.GetPhraseInputs<UParseIntInput>(TEXT("PIN_INDEX"), PinInputs);
 
 		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
 		{
@@ -325,13 +330,13 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		}
 
 		UEdGraphPin* SourcePin = IndexerForGraph->GetPin(
-			NodeInputs[0],
-			PinInputs[0]
+			NodeInputs[0]->GetValue(),
+			PinInputs[0]->GetValue()
 		);
 
 		UEdGraphPin* TargetPin = IndexerForGraph->GetPin(
-			NodeInputs[1],
-			PinInputs[1]
+			NodeInputs[1]->GetValue(),
+			PinInputs[1]->GetValue()
 		);
 
 		if (SourcePin == nullptr || TargetPin == nullptr)
@@ -348,7 +353,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		});
 
 	TSharedPtr<FPhraseEventNode> PinDisconnectEventNode = MakeShared<FPhraseEventNode>();
-	PinDisconnectEventNode->OnPhraseParsed.BindLambda([this](const FParseRecord& Record) {
+	PinDisconnectEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
 
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 		if (!ActiveTab.IsValid())
@@ -373,11 +378,10 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 
 		// Get Inputs
-		TArray<int> NodeInputs;
-		Record.PhraseInputs.MultiFind("NODE_INDEX", NodeInputs, true);
+		TArray<UParseIntInput*> NodeInputs = Record.GetPhraseInputs<UParseIntInput>(TEXT("NODE_INDEX"));
 
-		TArray<int> PinInputs;
-		Record.PhraseInputs.MultiFind("PIN_INDEX", PinInputs, true);
+		TArray<UParseIntInput*> PinInputs = Record.GetPhraseInputs<UParseIntInput>(TEXT("PIN_INDEX"));
+
 
 		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
 		{
@@ -386,13 +390,13 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		}
 
 		UEdGraphPin* SourcePin = IndexerForGraph->GetPin(
-			NodeInputs[0],
-			PinInputs[0]
+			NodeInputs[0]->GetValue(),
+			PinInputs[0]->GetValue()
 		);
 
 		UEdGraphPin* TargetPin = IndexerForGraph->GetPin(
-			NodeInputs[1],
-			PinInputs[1]
+			NodeInputs[1]->GetValue(),
+			PinInputs[1]->GetValue()
 		);
 
 		if (SourcePin == nullptr || TargetPin == nullptr)
@@ -437,7 +441,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 	// Node Menu Events
 	TDelegate<void(const FParseRecord& Record)> OpenAddNodeMenuEvent;
 	OpenAddNodeMenuEvent.BindLambda(
-		[this](const FParseRecord& Record) {
+		[this](FParseRecord& Record) {
 			TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 			if (!ActiveTab.IsValid())
 			{
@@ -472,7 +476,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 					MenuWrapper->ScaleMenu(1.5f);
 
-					const_cast<FParseRecord&>(Record).SetContextObj(MenuWrapper);
+					Record.SetContextObj(MenuWrapper);
 				}
 			}
 		}
@@ -482,7 +486,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 	// Node Add Context Events
 	TSharedPtr<FPhraseEventNode> Context_SelectAction = MakeShared<FPhraseEventNode>();
 	Context_SelectAction->OnPhraseParsed.BindLambda(
-		[this](const FParseRecord& Record) {
+		[this](FParseRecord& Record) {
 			UAccessibilityAddNodeContextMenu* ContextMenu = const_cast<FParseRecord&>(Record).GetContextObj<UAccessibilityAddNodeContextMenu>();
 			if (ContextMenu == nullptr)
 			{
@@ -491,9 +495,9 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				return;
 			}
 
-			int Index = const_cast<FParseRecord&>(Record).GetPhraseInput(TEXT("NODE_INDEX"));
+			UParseIntInput* Index = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
 
-			ContextMenu->PerformGraphAction(Index);
+			ContextMenu->PerformGraphAction(Index->GetValue());
 		}
 	);
 

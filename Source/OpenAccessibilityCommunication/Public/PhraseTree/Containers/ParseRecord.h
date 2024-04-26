@@ -4,6 +4,51 @@
 
 #include "CoreMinimal.h"
 
+#include "Input/UParseInput.h"
+
+/*
+template<typename InputType>
+class OPENACCESSIBILITYCOMMUNICATION_API FParseInput
+{
+
+public:
+
+	FParseInput(InputType* InInput)
+	{
+		Input = MakeUnique<InputType>(InInput);
+	}
+
+	FParseInput(InputType& InInput)
+	{
+		Input = MakeUnique<InputType>(InInput);
+	}
+
+	virtual ~FParseInput()
+	{
+		
+	}
+
+	void GetInput(InputType* OutInput)
+	{
+		OutInput = Input.Get();
+	}
+
+	void GetInput(InputType& OutInput)
+	{
+		OutInput = *Input.Get();
+	}
+
+	InputType* GetInput()
+	{
+		return Input.Get();
+	}
+
+private:
+	TUniquePtr<InputType> Input;
+
+};
+*/
+
 /// <summary>
 /// The Collected Information from the Propogation of the Phrase through the tree.
 /// </summary>
@@ -13,7 +58,7 @@ public:
 
 	FParseRecord()
 	{
-		PhraseInputs = TMultiMap<FString, int>();
+		PhraseInputs = TMultiMap<FString, UParseInput*>();
 	}
 
 	~FParseRecord()
@@ -21,34 +66,75 @@ public:
 		PhraseInputs.Empty();
 	}
 
-	int GetPhraseInput(const FString& InString)
+	UParseInput* GetPhraseInput(const FString& InString)
 	{
 		return *PhraseInputs.Find(InString);
 	}
 
-	void GetPhraseInput(const FString& InString, int OutInput)
+	template<class CastToType>
+	CastToType* GetPhraseInput(const FString& InString)
+	{
+		return Cast<CastToType>(*PhraseInputs.Find(InString));
+	}
+
+	void GetPhraseInput(const FString& InString, UParseInput* OutInput)
 	{
 		OutInput = *PhraseInputs.Find(InString);
 	}
 
-	TArray<int> GetPhraseInputs(const FString& InString, const bool MaintainOrder = true)
+	template<class CastToType>
+	void GetPhraseInput(const FString& InString, CastToType* OutInput)
 	{
-		TArray<int> OutInputs;
+		OutInput = Cast<CastToType>(*PhraseInputs.Find(InString));
+	}
+
+	// -- GetPhraseInputs
+
+	void GetPhraseInputs(const FString& InString, TArray<UParseInput*> OutInputs, const bool MaintainOrder = true)
+	{
+		PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);
+	}
+
+	template<class CastToType>
+	void GetPhraseInputs(const FString& InString, TArray<CastToType*> OutInputs, const bool MaintainOrder = true)
+	{
+		PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);
+	}
+
+	TArray<UParseInput*> GetPhraseInputs(const FString& InString, const bool MaintainOrder = true)
+	{
+		TArray<UParseInput*> OutInputs;
 
 		PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);
 
 		return OutInputs;
 	}
 
-	void GetPhraseInputs(const FString& InString, TArray<int> OutInputs, const bool MaintainOrder = true)
+	template<class CastToType>
+	TArray<CastToType*> GetPhraseInputs(const FString& InString, const bool MaintainOrder = true)
 	{
+		TArray<CastToType*> OutInputs;
+
 		PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);
+
+		return OutInputs;
 	}
+
+	// -- AddPhraseInput
+
+	void AddPhraseInput(const FString& InString, UParseInput* InInput)
+	{
+		PhraseInputs.Add(InString, InInput);
+	}
+
+	// -- SetContextObj
 
 	void SetContextObj(UObject* InObject)
 	{
 		this->ContextObj = InObject;
 	}
+
+	// -- GetContextObj
 
 	UObject* GetContextObj()
 	{
@@ -72,11 +158,10 @@ public:
 		OutObject = Cast<CastToType>(this->ContextObj);
 	}
 
-	// NEEDS TO BE MOVED TO PROTECTED AND ENFORCE FUNCTION USE,
-	// NEED TO PROVIDE CLEAN WAY TO ADD INPUTS.
-	TMultiMap<FString, int> PhraseInputs;
-
 protected:
 
 	UObject* ContextObj = nullptr;
+
+	TMultiMap<FString, UParseInput*> PhraseInputs;
+
 };
