@@ -3,7 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "PhraseTree/Containers.h"
+
+#include "PhraseTree/Containers/ParseResult.h"
+#include "PhraseTree/Containers/ParseRecord.h"
 
 /**
  * 
@@ -13,9 +15,9 @@ class OPENACCESSIBILITYCOMMUNICATION_API FPhraseNode : public TSharedFromThis<FP
 public:
 
 	FPhraseNode(const TCHAR* InBoundPhrase);
-	FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void (const FParseRecord& Record)> InOnPhraseParsed);
+	FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void (FParseRecord& Record)> InOnPhraseParsed);
 	FPhraseNode(const TCHAR* InBoundPhrase, TPhraseNodeArray InChildNodes);
-	FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes);
+	FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes);
 
 	virtual ~FPhraseNode();
 
@@ -56,7 +58,7 @@ public:
 	FString BoundPhrase;
 
 	// Phrase To Be Executed On the Parse Command
-	TDelegate<void (const FParseRecord& Record)> OnPhraseParsed;
+	TDelegate<void (FParseRecord& Record)> OnPhraseParsed;
 
 protected:
 };

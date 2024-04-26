@@ -3,6 +3,7 @@
 
 #include "PhraseTree/PhraseEnumInputNode.h"
 
+#include "PhraseTree/Containers/Input/UParseEnumInput.h"
 
 template<typename TEnum>
 FPhraseEnumInputNode<TEnum>::FPhraseEnumInputNode(const TCHAR* NodeName) 
@@ -19,7 +20,7 @@ FPhraseEnumInputNode<TEnum>::FPhraseEnumInputNode(const TCHAR* NodeName, TPhrase
 }
 
 template<typename TEnum>
-FPhraseEnumInputNode<TEnum>::FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+FPhraseEnumInputNode<TEnum>::FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
 	: FPhraseInputNode(InInputString, InOnPhraseParsed, InChildNodes)
 {
 	static_assert(TIsEnum<TEnum>::Value, "Passed EnumType Must be an Enum");
@@ -33,7 +34,7 @@ FPhraseEnumInputNode<TEnum>::FPhraseEnumInputNode(const TCHAR* InInputString, TP
 }
 
 template<typename TEnum>
-FPhraseEnumInputNode<TEnum>::FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+FPhraseEnumInputNode<TEnum>::FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
 	: FPhraseInputNode(InInputString, InOnPhraseParsed, InChildNodes, InOnInputRecieved)
 {
 	static_assert(TIsEnum<TEnum>::Value, "Passed EnumType Must be an Enum");
@@ -74,7 +75,11 @@ bool FPhraseEnumInputNode<TEnum>::RecordInput(const FString& InInput, FParseReco
 		return false;
 	}
 
-	OutParseRecord.PhraseInputs.Add(BoundPhrase, Val);
+	UParseEnumInput* ParseInput = MakeParseInput<UParseEnumInput>();
+	ParseInput->SetValue(Val);
+	ParseInput->SetEnumType(EnumPtr);
+
+	OutParseRecord.AddPhraseInput(BoundPhrase, ParseInput);
 
 	return true;
 }

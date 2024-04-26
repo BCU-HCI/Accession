@@ -3,8 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "PhraseTree/PhraseNode.h"
-#include "PhraseTree/Containers.h"
+#include "PhraseTree/Containers/ParseRecord.h"
 
 
 enum EPhraseTreeBranchBindResult : uint8_t

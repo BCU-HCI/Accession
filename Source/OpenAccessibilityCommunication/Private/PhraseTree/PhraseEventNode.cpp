@@ -6,17 +6,17 @@
 
 FPhraseEventNode::FPhraseEventNode() : FPhraseNode(TEXT("EVENT_NODE"))
 {
-    OnPhraseParsed = TDelegate<void(const FParseRecord&)>();
+    OnPhraseParsed = TDelegate<void(FParseRecord&)>();
 }
 
-FPhraseEventNode::FPhraseEventNode(TDelegate<void(const FParseRecord&)> InEvent) : FPhraseNode(TEXT("EVENT_NODE"))
+FPhraseEventNode::FPhraseEventNode(TDelegate<void(FParseRecord&)> InEvent) : FPhraseNode(TEXT("EVENT_NODE"))
 {
     OnPhraseParsed = InEvent;
 }
 
-FPhraseEventNode::FPhraseEventNode(TFunction<void(const FParseRecord&)> InEventFunction) : FPhraseNode(TEXT("EVENT_NODE"))
+FPhraseEventNode::FPhraseEventNode(TFunction<void(FParseRecord&)> InEventFunction) : FPhraseNode(TEXT("EVENT_NODE"))
 {
-    OnPhraseParsed = TDelegate<void(const FParseRecord&)>();
+    OnPhraseParsed = TDelegate<void(FParseRecord&)>();
     OnPhraseParsed.BindLambda(InEventFunction);
 }
 
