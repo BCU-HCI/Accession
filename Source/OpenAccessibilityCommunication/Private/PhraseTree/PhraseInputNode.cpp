@@ -4,6 +4,8 @@
 #include "PhraseTree/Utils.h"
 #include "OpenAccessibilityComLogging.h"
 
+#include "PhraseTree/Containers/Input/UParseIntInput.h"
+
 FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString) 
     : FPhraseNode(InInputString)
 {
@@ -16,7 +18,7 @@ FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TPhraseNodeArray 
 
 }
 
-FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
 	: FPhraseNode(InInputString, InOnPhraseParsed, InChildNodes)
 {
 
@@ -28,7 +30,7 @@ FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TPhraseNodeArray 
 	OnInputReceived = InOnInputRecieved;
 }
 
-FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+FPhraseInputNode::FPhraseInputNode(const TCHAR* InInputString, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
     : FPhraseNode(InInputString, InOnPhraseParsed, InChildNodes)
 {
 	OnInputReceived = InOnInputRecieved;
@@ -85,7 +87,10 @@ bool FPhraseInputNode::RecordInput(const FString& InInput, FParseRecord& OutPars
 {
     int32 Input = FCString::Atoi(*InInput);
 
-	OutParseRecord.PhraseInputs.Add(BoundPhrase, Input);
+    UParseIntInput* ParseInput = MakeParseInput<UParseIntInput>();
+	ParseInput->SetValue(Input);
+
+    OutParseRecord.AddPhraseInput(BoundPhrase, ParseInput);
 
     OnInputReceived.ExecuteIfBound(Input);
 

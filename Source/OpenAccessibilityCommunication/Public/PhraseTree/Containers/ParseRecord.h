@@ -95,25 +95,9 @@ public:
 		PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);
 	}
 
-	template<class CastToType>
-	void GetPhraseInputs(const FString& InString, TArray<CastToType*> OutInputs, const bool MaintainOrder = true)
-	{
-		PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);
-	}
-
 	TArray<UParseInput*> GetPhraseInputs(const FString& InString, const bool MaintainOrder = true)
 	{
 		TArray<UParseInput*> OutInputs;
-
-		PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);
-
-		return OutInputs;
-	}
-
-	template<class CastToType>
-	TArray<CastToType*> GetPhraseInputs(const FString& InString, const bool MaintainOrder = true)
-	{
-		TArray<CastToType*> OutInputs;
 
 		PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);
 

@@ -3,11 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "UObject/Object.h"
 
 #include "UParseInput.generated.h"
 
-UCLASS(Abstract)
-class UParseInput : public UObject
+UCLASS()
+class OPENACCESSIBILITYCOMMUNICATION_API UParseInput : public UObject
 {
 	GENERATED_BODY()
 
@@ -18,8 +19,6 @@ public:
 	{
 
 	};
-
-
 };
 
 // Input Constructor Functions
@@ -27,8 +26,8 @@ public:
 template<class ParseInputType>
 [[nodiscard]] FORCEINLINE ParseInputType* MakeParseInput()
 {
-	UParseInput* NewObject = NewObject<ParseInputType>();
-	NewObject->AddToRoot();
+	ParseInputType* NewObj = NewObject<ParseInputType>();
+	NewObj->AddToRoot();
 
-	return NewObject;
+	return NewObj;
 }

@@ -63,6 +63,7 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 		{
 			return;
 		}
+
 		// Get Inputs
 		UParseEnumInput* MoveDirection = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
 		UParseIntInput* MoveAmount = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
@@ -317,11 +318,11 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 
 		// Get Inputs
-		TArray<UParseIntInput*> NodeInputs;
-		Record.GetPhraseInputs<UParseIntInput>(TEXT("NODE_INDEX"), NodeInputs);
+		TArray<UParseInput*> NodeInputs;
+		Record.GetPhraseInputs(TEXT("NODE_INDEX"), NodeInputs);
 
-		TArray<UParseIntInput*> PinInputs;
-		Record.GetPhraseInputs<UParseIntInput>(TEXT("PIN_INDEX"), PinInputs);
+		TArray<UParseInput*> PinInputs;
+		Record.GetPhraseInputs(TEXT("PIN_INDEX"), PinInputs);
 
 		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
 		{
@@ -330,13 +331,13 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		}
 
 		UEdGraphPin* SourcePin = IndexerForGraph->GetPin(
-			NodeInputs[0]->GetValue(),
-			PinInputs[0]->GetValue()
+			Cast<UParseIntInput>(NodeInputs[0])->GetValue(),
+			Cast<UParseIntInput>(PinInputs[0])->GetValue()
 		);
 
 		UEdGraphPin* TargetPin = IndexerForGraph->GetPin(
-			NodeInputs[1]->GetValue(),
-			PinInputs[1]->GetValue()
+			Cast<UParseIntInput>(NodeInputs[1])->GetValue(),
+			Cast<UParseIntInput>(PinInputs[1])->GetValue()
 		);
 
 		if (SourcePin == nullptr || TargetPin == nullptr)
@@ -378,9 +379,9 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 
 		// Get Inputs
-		TArray<UParseIntInput*> NodeInputs = Record.GetPhraseInputs<UParseIntInput>(TEXT("NODE_INDEX"));
+		TArray<UParseInput*> NodeInputs = Record.GetPhraseInputs(TEXT("NODE_INDEX"));
 
-		TArray<UParseIntInput*> PinInputs = Record.GetPhraseInputs<UParseIntInput>(TEXT("PIN_INDEX"));
+		TArray<UParseInput*> PinInputs = Record.GetPhraseInputs(TEXT("PIN_INDEX"));
 
 
 		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
@@ -390,13 +391,13 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		}
 
 		UEdGraphPin* SourcePin = IndexerForGraph->GetPin(
-			NodeInputs[0]->GetValue(),
-			PinInputs[0]->GetValue()
+			Cast<UParseIntInput>(NodeInputs[0])->GetValue(),
+			Cast<UParseIntInput>(PinInputs[0])->GetValue()
 		);
 
 		UEdGraphPin* TargetPin = IndexerForGraph->GetPin(
-			NodeInputs[1]->GetValue(),
-			PinInputs[1]->GetValue()
+			Cast<UParseIntInput>(NodeInputs[1])->GetValue(),
+			Cast<UParseIntInput>(PinInputs[1])->GetValue()
 		);
 
 		if (SourcePin == nullptr || TargetPin == nullptr)
@@ -439,7 +440,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 
 	// Node Menu Events
-	TDelegate<void(const FParseRecord& Record)> OpenAddNodeMenuEvent;
+	TDelegate<void(FParseRecord& Record)> OpenAddNodeMenuEvent;
 	OpenAddNodeMenuEvent.BindLambda(
 		[this](FParseRecord& Record) {
 			TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
@@ -487,7 +488,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 	TSharedPtr<FPhraseEventNode> Context_SelectAction = MakeShared<FPhraseEventNode>();
 	Context_SelectAction->OnPhraseParsed.BindLambda(
 		[this](FParseRecord& Record) {
-			UAccessibilityAddNodeContextMenu* ContextMenu = const_cast<FParseRecord&>(Record).GetContextObj<UAccessibilityAddNodeContextMenu>();
+			UAccessibilityAddNodeContextMenu* ContextMenu = Record.GetContextObj<UAccessibilityAddNodeContextMenu>();
 			if (ContextMenu == nullptr)
 			{
 				UE_LOG(LogOpenAccessibility, Log, TEXT("ContextMenu Cannot Be Obtained"));
@@ -503,8 +504,8 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 	TSharedPtr<FPhraseEventNode> Context_SearchPhrase = MakeShared<FPhraseEventNode>();
 	Context_SearchPhrase->OnPhraseParsed.BindLambda(
-		[this](const FParseRecord& Record) {
-			UAccessibilityAddNodeContextMenu* ContextMenu = const_cast<FParseRecord&>(Record).GetContextObj<UAccessibilityAddNodeContextMenu>();
+		[this](FParseRecord& Record) {
+			UAccessibilityAddNodeContextMenu* ContextMenu = Record.GetContextObj<UAccessibilityAddNodeContextMenu>();
 			if (ContextMenu == nullptr)
 			{
 				UE_LOG(LogOpenAccessibility, Log, TEXT("ContextMenu Cannot Be Obtained"));
@@ -519,8 +520,8 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 	TSharedPtr<FPhraseEventNode> Context_SearchReset = MakeShared<FPhraseEventNode>();
 	Context_SearchPhrase->OnPhraseParsed.BindLambda(
-		[this](const FParseRecord& Record) {
-			UAccessibilityAddNodeContextMenu* ContextMenu = const_cast<FParseRecord&>(Record).GetContextObj<UAccessibilityAddNodeContextMenu>();
+		[this](FParseRecord& Record) {
+			UAccessibilityAddNodeContextMenu* ContextMenu = Record.GetContextObj<UAccessibilityAddNodeContextMenu>();
 			if (ContextMenu == nullptr)
 			{
 				UE_LOG(LogOpenAccessibility, Log, TEXT("ContextMenu Cannot Be Obtained"));
@@ -534,8 +535,8 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 	TSharedPtr<FPhraseEventNode> Context_Exit = MakeShared<FPhraseEventNode>();
 	Context_Exit->OnPhraseParsed.BindLambda(
-		[this](const FParseRecord& Record) {
-			UAccessibilityAddNodeContextMenu* ContextMenu = const_cast<FParseRecord&>(Record).GetContextObj<UAccessibilityAddNodeContextMenu>();
+		[this](FParseRecord& Record) {
+			UAccessibilityAddNodeContextMenu* ContextMenu = Record.GetContextObj<UAccessibilityAddNodeContextMenu>();
 			if (ContextMenu == nullptr)
 			{
 				UE_LOG(LogOpenAccessibility, Log, TEXT("ContextMenu Cannot Be Obtained"));
@@ -601,7 +602,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 											})
 									})
 							}),
-					}, NodeIndexFocusEvent),
+				}, NodeIndexFocusEvent),
 
 				MakeShared<FPhraseNode>(
 				TEXT("ADD"),

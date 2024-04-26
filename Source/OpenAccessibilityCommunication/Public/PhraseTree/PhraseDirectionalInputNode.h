@@ -16,7 +16,7 @@ public:
 		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InChildNodes)
 	{}
 
-	FPhraseDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+	FPhraseDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
 		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes)
 	{}
 
@@ -24,7 +24,7 @@ public:
 		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InChildNodes, InOnInputRecieved)
 	{}
 
-	FPhraseDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+	FPhraseDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
 		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes, InOnInputRecieved)
 	{}
 };
@@ -40,7 +40,7 @@ public:
 		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InChildNodes)
 	{}
 
-	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
 		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes)
 	{}
 
@@ -48,7 +48,7 @@ public:
 		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InChildNodes, InOnInputRecieved)
 	{}
 
-	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TDelegate<void (const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TDelegate<void (FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
 		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes, InOnInputRecieved)
 	{}
 };

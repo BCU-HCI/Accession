@@ -8,7 +8,7 @@
 #include "UParseStringInput.generated.h"
 
 UCLASS()
-class UParseStringInput : public UParseInput
+class OPENACCESSIBILITYCOMMUNICATION_API UParseStringInput : public UParseInput
 {
 	GENERATED_BODY()
 
