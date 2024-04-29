@@ -1,6 +1,6 @@
 // Copyright F-Dudley. All Rights Reserved.
 
-#include "AccessiblityWrappers/AccessibilityContextMenu.h"
+#include "AccessibilityWrappers/AccessibilityContextMenu.h"
 
 UAccessibilityContextMenu::UAccessibilityContextMenu(TSharedRef<IMenu> Menu) : UObject()
 {

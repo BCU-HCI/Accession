@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "AccessiblityWrappers/AccessibilityContextMenu.h"
+#include "AccessibilityWrappers/AccessibilityContextMenu.h"
 
 #include "SGraphActionMenu.h"
 #include "GraphActionNode.h"
@@ -122,6 +122,10 @@ public:
 	/// Clears the Current Filter Text.
 	/// </summary>
 	void ResetFilterText();
+
+protected:
+
+	void ApplyAccessibilityWidget(TSharedRef<FGraphActionNode> Item, TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);
 
 public:
 

@@ -1,6 +1,6 @@
 // Copyright F-Dudley. All Rights Reserved.
 
-#include "AccessiblityWrappers/AccessibilityAddNodeContextMenu.h"
+#include "AccessibilityWrappers/AccessibilityAddNodeContextMenu.h"
 #include "OpenAccessibilityLogging.h"
 
 #include "Widgets/Input/SSearchBox.h"
@@ -139,26 +139,34 @@ bool UAccessibilityAddNodeContextMenu::DoesItemsRequireRefresh()
 
 void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 {
-	TArray<TSharedPtr<FGraphActionNode>> Items = TArray<TSharedPtr<FGraphActionNode>>(TreeView.Pin()->GetRootItems());
-
 	TSet<TSharedPtr<FGraphActionNode>> ExpandedItems;
 	TreeView.Pin()->GetExpandedItems(ExpandedItems);
 
-	TSet<TSharedPtr<FGraphActionNode>> ExpandedItemsDifference = PrevExpandedItems.Difference(ExpandedItems);
+	TSet<TSharedPtr<FGraphActionNode>> ExpandedItemsOpened = ExpandedItems.Difference(PrevExpandedItems);
+	TSet<TSharedPtr<FGraphActionNode>> ExpandedItemsClosed = PrevExpandedItems.Difference(ExpandedItems);
+
+	TArray<TSharedPtr<FGraphActionNode>> Items = TArray<TSharedPtr<FGraphActionNode>>(TreeView.Pin()->GetItems());
 
 	{
 		TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget = nullptr;
-		TSharedPtr<SWidget> ItemContent = nullptr;
-		int32 Index = NULL;
+
+		int32 RebuildIndex = -1;
 
 		while (Items.Num() > 0)
 		{
 			const TSharedPtr<FGraphActionNode> Item = Items[0];
 			Items.RemoveAt(0);
 
-			if (ExpandedItems.Contains(Item))
-				Items.Append(Item->Children);
-			else if (ExpandedItemsDifference.Contains(Item))
+			if (ExpandedItemsOpened.Contains(Item) && RebuildIndex == -1)
+			{
+				TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> RebuildItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
+					TreeView.Pin()->WidgetFromItem(Item)
+				);
+
+				if (RebuildItemWidget.IsValid())
+					RebuildIndex = RebuildItemWidget->GetIndexInList();
+			}
+			else if (ExpandedItemsClosed.Contains(Item))
 			{
 				TArray<TSharedPtr<FGraphActionNode>> DerrivedNodes;
 				Item->GetAllNodes(DerrivedNodes);
@@ -179,34 +187,17 @@ void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 				continue;
 			}
 
-			if (IndexedWidgetSet.Contains(Item.Get()))
-				continue;
+			if (ExpandedItemsClosed.Contains(Item) && RebuildIndex == -1)
+			{
+				RebuildIndex = ItemWidget->GetIndexInList();
+			}
 
-			Index = ItemWidget->GetIndexInList();
+			if (!IndexedWidgetSet.Contains(Item.Get()) || (RebuildIndex < ItemWidget->GetIndexInList() && RebuildIndex != -1))
+			{
+				ApplyAccessibilityWidget(Item.ToSharedRef(), ItemWidget.ToSharedRef());
 
-			ItemContent = ItemWidget->GetContent();
-			ItemWidget->SetContent(
-				SNew(SHorizontalBox)
-
-				+ SHorizontalBox::Slot()
-				.VAlign(VAlign_Center)
-				.HAlign(HAlign_Center)
-				.AutoWidth()
-				[
-					SNew(STextBlock)
-						.Text(FText::FromString(TEXT("[" + FString::FromInt(Index) + "]")))
-				]
-
-				+ SHorizontalBox::Slot()
-				.VAlign(VAlign_Center)
-				.HAlign(HAlign_Center)
-				.AutoWidth()
-				[
-					ItemContent.ToSharedRef()
-				]
-			);
-
-			IndexedWidgetSet.Add(Item.Get());
+				IndexedWidgetSet.Add(Item.Get());
+			}
 		}
 	}
 }
@@ -281,4 +272,31 @@ void UAccessibilityAddNodeContextMenu::AppendFilterText(const FString& InFilterT
 void UAccessibilityAddNodeContextMenu::ResetFilterText()
 {
 	FilterTextBox.Pin()->SetText(FText::FromString(TEXT("")));
+}
+
+void UAccessibilityAddNodeContextMenu::ApplyAccessibilityWidget(TSharedRef<FGraphActionNode> Item, TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget)
+{
+	TSharedPtr<SWidget> ItemContent = ItemWidget->GetContent();
+
+	ItemWidget->SetContent(
+		SNew(SHorizontalBox)
+
+		+ SHorizontalBox::Slot()
+		.VAlign(VAlign_Center)
+		.HAlign(HAlign_Center)
+		.AutoWidth()
+		[
+			SNew(STextBlock)
+				.Text(FText::FromString(TEXT("[" + FString::FromInt(ItemWidget->GetIndexInList()) + "]")))
+		]
+
+		+ SHorizontalBox::Slot()
+		.VAlign(VAlign_Center)
+		.HAlign(HAlign_Center)
+		.AutoWidth()
+		[
+			ItemContent.ToSharedRef()
+		]
+	);
+
 }
