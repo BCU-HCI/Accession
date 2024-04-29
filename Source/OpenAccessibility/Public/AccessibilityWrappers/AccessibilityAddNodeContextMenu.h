@@ -123,8 +123,15 @@ public:
 	/// </summary>
 	void ResetFilterText();
 
+	void SetScrollDistance(const float InScrollDistance);
+
 protected:
 
+	/// <summary>
+	/// Applies the Accessibility Visuals to the given Item's TableRow Widget.
+	/// </summary>
+	/// <param name="Item">The Item to apply to.</param>
+	/// <param name="ItemWidget">The Items linked widget.</param>
 	void ApplyAccessibilityWidget(TSharedRef<FGraphActionNode> Item, TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);
 
 public:
@@ -136,9 +143,6 @@ public:
 
 protected:
 
-	// Naive Indexing
-
-	TMap<int32, FGraphActionNode*> IndexMap;
 	TSet<FGraphActionNode*> IndexedWidgetSet;
 
 	// Prev Vars
@@ -146,7 +150,7 @@ protected:
 	FString PrevFilterString;
 	int32 PrevNumItemsBeingObserved;
 	int32 PrevNumGeneratedChildren;
-	FVector2D PrevScrollDistance;
+	double PrevScrollDistance;
 
 	TSet<TSharedPtr<FGraphActionNode>> PrevExpandedItems;
 };

@@ -67,7 +67,6 @@ void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu)
 			SearchBoxSibling->GetChildren()->GetChildAt(0)->GetChildren()->GetChildAt(0)
 		);
 	}
-
 }
 
 void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu, TSharedRef<SGraphActionMenu> InGraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> InTreeView)
@@ -94,7 +93,7 @@ bool UAccessibilityAddNodeContextMenu::Tick(float DeltaTime)
 	PrevFilterString = FilterTextBox.Pin()->GetText().ToString();
 	PrevNumItemsBeingObserved = TreeView.Pin()->GetNumItemsBeingObserved();
 	PrevNumGeneratedChildren = TreeView.Pin()->GetNumGeneratedChildren();
-	PrevScrollDistance = TreeView.Pin()->GetScrollDistance();
+	PrevScrollDistance = TreeView.Pin()->GetScrollDistance().Y;
 
 	TreeView.Pin()->GetExpandedItems(PrevExpandedItems);
 
@@ -133,7 +132,7 @@ bool UAccessibilityAddNodeContextMenu::DoesItemsRequireRefresh()
 		FilterTextBox.Pin()->GetText().ToString() != PrevFilterString ||
 		TreeView.Pin()->GetNumItemsBeingObserved() != PrevNumItemsBeingObserved ||
 		TreeView.Pin()->GetNumGeneratedChildren() != PrevNumGeneratedChildren ||
-		TreeView.Pin()->GetScrollDistance().Y != PrevScrollDistance.Y
+		TreeView.Pin()->GetScrollDistance().Y != PrevScrollDistance
 	);
 }
 
@@ -272,6 +271,11 @@ void UAccessibilityAddNodeContextMenu::AppendFilterText(const FString& InFilterT
 void UAccessibilityAddNodeContextMenu::ResetFilterText()
 {
 	FilterTextBox.Pin()->SetText(FText::FromString(TEXT("")));
+}
+
+void UAccessibilityAddNodeContextMenu::SetScrollDistance(const float InScrollDistance)
+{
+	TreeView.Pin()->SetScrollOffset(InScrollDistance);
 }
 
 void UAccessibilityAddNodeContextMenu::ApplyAccessibilityWidget(TSharedRef<FGraphActionNode> Item, TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget)
