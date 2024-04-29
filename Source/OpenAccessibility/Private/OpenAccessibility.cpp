@@ -502,8 +502,8 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		}
 	);
 
-	TSharedPtr<FPhraseEventNode> Context_SearchPhrase = MakeShared<FPhraseEventNode>();
-	Context_SearchPhrase->OnPhraseParsed.BindLambda(
+	TSharedPtr<FPhraseEventNode> Context_SearchNewPhrase = MakeShared<FPhraseEventNode>();
+	Context_SearchNewPhrase->OnPhraseParsed.BindLambda(
 		[this](FParseRecord& Record) {
 			UAccessibilityAddNodeContextMenu* ContextMenu = Record.GetContextObj<UAccessibilityAddNodeContextMenu>();
 			if (ContextMenu == nullptr)
@@ -513,13 +513,31 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				return;
 			}
 			
-			// Figure Out Phrase Input.
-			UE_LOG(LogOpenAccessibility, Display, TEXT("NOT IMPLEMENTED YET, DUE TO REQUIREMENT OF PHRASE STRING PARSING INTO INPUT"));
+			UParseStringInput* Phrase = Record.GetPhraseInput<UParseStringInput>(TEXT("SEARCH_PHRASE"));
+
+			ContextMenu->SetFilterText(Phrase->GetValue());
+		}
+	);
+
+	TSharedPtr<FPhraseEventNode> Context_SearchAppendPhrase = MakeShared<FPhraseEventNode>();
+	Context_SearchAppendPhrase->OnPhraseParsed.BindLambda(
+		[this](FParseRecord& Record) {
+			UAccessibilityAddNodeContextMenu* ContextMenu = Record.GetContextObj<UAccessibilityAddNodeContextMenu>();
+			if (ContextMenu == nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Log, TEXT("ContextMenu Cannot Be Obtained"));
+
+				return;
+			}
+
+			UParseStringInput* Phrase = Record.GetPhraseInput<UParseStringInput>(TEXT("SEARCH_PHRASE"));
+
+			ContextMenu->AppendFilterText(Phrase->GetValue());
 		}
 	);
 
 	TSharedPtr<FPhraseEventNode> Context_SearchReset = MakeShared<FPhraseEventNode>();
-	Context_SearchPhrase->OnPhraseParsed.BindLambda(
+	Context_SearchReset->OnPhraseParsed.BindLambda(
 		[this](FParseRecord& Record) {
 			UAccessibilityAddNodeContextMenu* ContextMenu = Record.GetContextObj<UAccessibilityAddNodeContextMenu>();
 			if (ContextMenu == nullptr)
@@ -622,9 +640,14 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 					MakeShared<FPhraseNode>(TEXT("SEARCH"),
 					TPhraseNodeArray {
 
+						MakeShared<FPhraseNode>(TEXT("NEW"),
+						TPhraseNodeArray {
+							Context_SearchNewPhrase
+						}),
+
 						MakeShared<FPhraseNode>(TEXT("ADD"),
 						TPhraseNodeArray {
-							Context_SearchPhrase
+							Context_SearchAppendPhrase
 						}),
 
 						MakeShared<FPhraseNode>(TEXT("RESET"),

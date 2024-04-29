@@ -273,7 +273,7 @@ void UAccessibilityAddNodeContextMenu::AppendFilterText(const FString& InFilterT
 {
 	FilterTextBox.Pin()->SetText(
 		FText::FromString(
-			FilterTextBox.Pin()->GetText().ToString() + InFilterText
+			FilterTextBox.Pin()->GetText().ToString() + TEXT(" ") + InFilterText
 		)
 	);
 }
