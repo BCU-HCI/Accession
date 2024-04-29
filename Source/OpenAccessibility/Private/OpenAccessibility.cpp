@@ -197,7 +197,7 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
 				TPhraseNodeArray {
 					
-					MakeShared<FPhraseInputNode>(TEXT("AMOUNT"),
+					MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
 					TPhraseNodeArray {
 						MoveViewportEventNode
 					})
@@ -210,7 +210,7 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
 				TPhraseNodeArray {
 					
-					MakeShared<FPhraseInputNode>(TEXT("AMOUNT"),
+					MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
 					TPhraseNodeArray {
 						ZoomViewportEventNode
 					})
@@ -220,7 +220,7 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 			MakeShared<FPhraseNode>(TEXT("FOCUS"),
 			TPhraseNodeArray {
 				
-				MakeShared<FPhraseInputNode>(TEXT("INDEX"),
+				MakeShared<FPhraseInputNode<int32>>(TEXT("INDEX"),
 				TPhraseNodeArray {
 					IndexFocusEventNode
 				})
@@ -553,7 +553,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 			TEXT("NODE"),
 			TPhraseNodeArray{
 
-				MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
+				MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 				TPhraseNodeArray {
 
 							MakeShared<FPhraseNode>(TEXT("MOVE"),
@@ -562,7 +562,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 									MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
 									TPhraseNodeArray {
 
-											MakeShared<FPhraseInputNode>(TEXT("AMOUNT"),
+											MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
 											TPhraseNodeArray {
 												MoveEventNode
 											})
@@ -572,16 +572,16 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 							MakeShared<FPhraseNode>(TEXT("PIN"),
 							TPhraseNodeArray {
 
-									MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
+									MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
 									TPhraseNodeArray {
 
 											MakeShared<FPhraseNode>(TEXT("CONNECT"),
 											TPhraseNodeArray {
 
-													MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
+													MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 													TPhraseNodeArray {
 
-															MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
+															MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
 															TPhraseNodeArray {
 																PinConnectEventNode
 															})
@@ -591,10 +591,10 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 											MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
 											TPhraseNodeArray {
 
-													MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
+													MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 													TPhraseNodeArray {
 
-															MakeShared<FPhraseInputNode>(TEXT("PIN_INDEX"),
+															MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
 															TPhraseNodeArray {
 																PinDisconnectEventNode
 															})
@@ -612,7 +612,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 					MakeShared<FPhraseNode>(TEXT("SELECT"),
 					TPhraseNodeArray {
 
-							MakeShared<FPhraseInputNode>(TEXT("NODE_INDEX"),
+							MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 							TPhraseNodeArray {
 										
 									Context_SelectAction

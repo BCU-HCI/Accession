@@ -10,7 +10,7 @@
  * 
  */
 template<typename TEnum>
-class OPENACCESSIBILITYCOMMUNICATION_API FPhraseEnumInputNode : public FPhraseInputNode
+class OPENACCESSIBILITYCOMMUNICATION_API FPhraseEnumInputNode : public FPhraseInputNode<int32>
 {
 public:
 	FPhraseEnumInputNode(const TCHAR* InInputString);
