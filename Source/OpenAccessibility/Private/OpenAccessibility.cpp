@@ -627,34 +627,34 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				OpenAddNodeMenuEvent,
 				TPhraseNodeArray{
 
-					MakeShared<FPhraseNode>(TEXT("SELECT"),
-					TPhraseNodeArray {
+						MakeShared<FPhraseNode>(TEXT("SELECT"),
+						TPhraseNodeArray {
 
-							MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-							TPhraseNodeArray {
+								MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+								TPhraseNodeArray {
 										
-									Context_SelectAction
-							})
-					}),
-
-					MakeShared<FPhraseNode>(TEXT("SEARCH"),
-					TPhraseNodeArray {
-
-						MakeShared<FPhraseNode>(TEXT("NEW"),
-						TPhraseNodeArray {
-							Context_SearchNewPhrase
+										Context_SelectAction
+								})
 						}),
 
-						MakeShared<FPhraseNode>(TEXT("ADD"),
+						MakeShared<FPhraseNode>(TEXT("SEARCH"),
 						TPhraseNodeArray {
-							Context_SearchAppendPhrase
-						}),
 
-						MakeShared<FPhraseNode>(TEXT("RESET"),
-						TPhraseNodeArray {
-							Context_SearchReset
+								MakeShared<FPhraseNode>(TEXT("NEW"),
+								TPhraseNodeArray {
+									Context_SearchNewPhrase
+								}),
+
+								MakeShared<FPhraseNode>(TEXT("ADD"),
+								TPhraseNodeArray {
+									Context_SearchAppendPhrase
+								}),
+
+								MakeShared<FPhraseNode>(TEXT("RESET"),
+								TPhraseNodeArray {
+									Context_SearchReset
+								})
 						})
-					})
 
 				})
 			})
