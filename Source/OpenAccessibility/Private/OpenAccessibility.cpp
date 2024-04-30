@@ -713,7 +713,7 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 		FConsoleCommandDelegate::CreateLambda(
 			[this]() {
 
-				SGraphEditor* ActiveGraphEditor = nullptr;
+				TSharedPtr<SGraphEditor> ActiveGraphEditor = nullptr;
 				{
 					// Getting Graph Editor Section
 
@@ -721,8 +721,8 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					if (!ActiveTab.IsValid())
 						return;
 
-					ActiveGraphEditor = (SGraphEditor*) ActiveTab->GetContent().ToSharedPtr().Get();
-					if (ActiveGraphEditor == nullptr)
+					ActiveGraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab->GetContent().ToSharedPtr());
+					if (!ActiveGraphEditor.IsValid())
 					{
 						UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
 						return;

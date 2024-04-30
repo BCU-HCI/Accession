@@ -95,6 +95,7 @@ bool UAccessibilityAddNodeContextMenu::Tick(float DeltaTime)
 	PrevNumGeneratedChildren = TreeView.Pin()->GetNumGeneratedChildren();
 	PrevScrollDistance = TreeView.Pin()->GetScrollDistance().Y;
 
+	PrevExpandedItems.Reset();
 	TreeView.Pin()->GetExpandedItems(PrevExpandedItems);
 
 	return true;
@@ -156,6 +157,18 @@ void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 			const TSharedPtr<FGraphActionNode> Item = Items[0];
 			Items.RemoveAt(0);
 
+			ItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
+				TreeView.Pin()->WidgetFromItem(Item)
+			);
+
+			if (!ItemWidget.IsValid())
+			{
+				if (IndexedWidgetSet.Contains(Item.Get()))
+					IndexedWidgetSet.Remove(Item.Get());
+
+				continue;
+			}
+
 			if (ExpandedItemsOpened.Contains(Item) && RebuildIndex == -1)
 			{
 				TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> RebuildItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
@@ -172,26 +185,14 @@ void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 
 				for (auto& Child : DerrivedNodes)
 					IndexedWidgetSet.Remove(Child.Get());
+
+				if (RebuildIndex == -1)
+				{
+					RebuildIndex = ItemWidget->GetIndexInList();
+				}
 			}
 
-			ItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
-				TreeView.Pin()->WidgetFromItem(Item)
-			);
-
-			if (!ItemWidget.IsValid())
-			{
-				if (IndexedWidgetSet.Contains(Item.Get()))
-					IndexedWidgetSet.Remove(Item.Get());
-
-				continue;
-			}
-
-			if (ExpandedItemsClosed.Contains(Item) && RebuildIndex == -1)
-			{
-				RebuildIndex = ItemWidget->GetIndexInList();
-			}
-
-			if (!IndexedWidgetSet.Contains(Item.Get()) || (RebuildIndex < ItemWidget->GetIndexInList() && RebuildIndex != -1))
+			if (!IndexedWidgetSet.Contains(Item.Get()) || (RebuildIndex != -1 && RebuildIndex < ItemWidget->GetIndexInList()))
 			{
 				ApplyAccessibilityWidget(Item.ToSharedRef(), ItemWidget.ToSharedRef());
 
