@@ -10,6 +10,8 @@
  */
 class OPENACCESSIBILITYCOMMUNICATION_API FPhraseStringInputNode : public FPhraseInputNode<FString>
 {
+public:
+
 	FPhraseStringInputNode(const TCHAR* InInputString);
 	FPhraseStringInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes);
 	FPhraseStringInputNode(const TCHAR* InInputString, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes);

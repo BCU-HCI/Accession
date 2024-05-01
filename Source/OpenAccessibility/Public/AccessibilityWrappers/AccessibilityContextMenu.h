@@ -20,7 +20,7 @@ public:
 	UAccessibilityContextMenu() = default;
 	UAccessibilityContextMenu(TSharedRef<IMenu> Menu);
 
-	~UAccessibilityContextMenu();
+	virtual ~UAccessibilityContextMenu();
 
 	virtual void Init(TSharedRef<IMenu> InMenu);
 

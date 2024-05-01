@@ -6,6 +6,7 @@
 
 #include "PhraseTree/PhraseNode.h"
 #include "PhraseTree/PhraseInputNode.h"
+#include "PhraseTree/PhraseStringInputNode.h"
 #include "PhraseTree/PhraseDirectionalInputNode.h"
 #include "PhraseTree/PhraseEventNode.h"
 
@@ -443,6 +444,13 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 	TDelegate<void(FParseRecord& Record)> OpenAddNodeMenuEvent;
 	OpenAddNodeMenuEvent.BindLambda(
 		[this](FParseRecord& Record) {
+			if (Record.HasContextObj() && Record.GetContextObj<UAccessibilityAddNodeContextMenu>() != nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Display, TEXT("Context Menu Is Already Open, At The Top of Stack."));
+
+				return;
+			}
+
 			TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 			if (!ActiveTab.IsValid())
 			{
@@ -459,7 +467,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 			
 			GraphPanel->SummonCreateNodeMenuFromUICommand(0);
 
-			TSharedPtr<SWidget> KeyboardFocusedWidget = StaticCastSharedPtr<SEditableText>(FSlateApplication::Get().GetKeyboardFocusedWidget());
+			TSharedPtr<SWidget> KeyboardFocusedWidget = FSlateApplication::Get().GetKeyboardFocusedWidget();
 			
 			
 			if (KeyboardFocusedWidget.IsValid()) 
@@ -467,6 +475,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				FWidgetPath KeyboardFocusWidgetPath;
 				if (FSlateApplication::Get().FindPathToWidget(KeyboardFocusedWidget.ToSharedRef(), KeyboardFocusWidgetPath))
 				{
+					UE_LOG(LogOpenAccessibility, Display, TEXT("Keyboard Focused Widget Path Found."))
 					TSharedPtr<IMenu> Menu = FSlateApplication::Get().FindMenuInWidgetPath(KeyboardFocusWidgetPath);
 
 					UAccessibilityAddNodeContextMenu* MenuWrapper = NewObject<UAccessibilityAddNodeContextMenu>();
@@ -477,7 +486,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 					MenuWrapper->ScaleMenu(1.5f);
 
-					Record.SetContextObj(MenuWrapper);
+					Record.PushContextObj(MenuWrapper);
 				}
 			}
 		}
@@ -627,6 +636,11 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				OpenAddNodeMenuEvent,
 				TPhraseNodeArray{
 
+						MakeShared<FPhraseNode>(TEXT("EXIT"),
+						TPhraseNodeArray{
+							Context_Exit
+						}),
+
 						MakeShared<FPhraseNode>(TEXT("SELECT"),
 						TPhraseNodeArray {
 
@@ -642,12 +656,20 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 								MakeShared<FPhraseNode>(TEXT("NEW"),
 								TPhraseNodeArray {
-									Context_SearchNewPhrase
+
+										MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
+										TPhraseNodeArray {
+											Context_SearchNewPhrase
+										})
 								}),
 
 								MakeShared<FPhraseNode>(TEXT("ADD"),
 								TPhraseNodeArray {
-									Context_SearchAppendPhrase
+
+										MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
+										TPhraseNodeArray {
+											Context_SearchAppendPhrase
+										})
 								}),
 
 								MakeShared<FPhraseNode>(TEXT("RESET"),

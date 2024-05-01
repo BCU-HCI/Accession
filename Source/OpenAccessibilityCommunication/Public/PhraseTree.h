@@ -86,4 +86,6 @@ private:
 	/// Allowing for quick entry, due to split phrases.
 	/// </summary>
 	TSharedPtr<FPhraseNode> LastVistedNode;
+
+	TArray<UObject*> PrevContextObjectStack;
 };

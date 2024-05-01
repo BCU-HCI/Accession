@@ -42,10 +42,11 @@ void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu)
 	);
 	if (!KeyboardFocusedWidget.IsValid())
 	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("AddNodeContextWrapper::Init: KeyboardFocusedWidget is Invalid."));
 		return;
 	}
 
-	GraphMenu = StaticCastSharedPtr<SGraphActionMenu>(
+	this->GraphMenu = StaticCastSharedPtr<SGraphActionMenu>(
 		KeyboardFocusedWidget
 		->GetParentWidget()
 		->GetParentWidget()
@@ -63,17 +64,18 @@ void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu)
 		);
 
 		TSharedRef<SWidget> SearchBoxSibling = SearchBox->GetParentWidget()->GetChildren()->GetChildAt(1);
-		TreeView = StaticCastSharedRef<STreeView<TSharedPtr<FGraphActionNode>>>(
+		this->TreeView = StaticCastSharedRef<STreeView<TSharedPtr<FGraphActionNode>>>(
 			SearchBoxSibling->GetChildren()->GetChildAt(0)->GetChildren()->GetChildAt(0)
 		);
 	}
+
+	this->FilterTextBox = this->GraphMenu.Pin()->GetFilterTextBox();
 }
 
 void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu, TSharedRef<SGraphActionMenu> InGraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> InTreeView)
 {
 	UAccessibilityContextMenu::Init(InMenu);
 
-	this->Menu = InMenu;
 	this->GraphMenu = InGraphMenu;
 	this->TreeView = InTreeView;
 	this->FilterTextBox = InGraphMenu->GetFilterTextBox();
@@ -224,6 +226,11 @@ void UAccessibilityAddNodeContextMenu::GetGraphActionFromIndex(const int32 InInd
 
 TSharedPtr<FGraphActionNode> UAccessibilityAddNodeContextMenu::GetGraphActionFromIndexSP(const int32 InIndex)
 {
+	if (TreeView.Pin()->GetItems().Num() <= InIndex)
+	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("GetGraphActionFromIndexSP: Provided Index is Out of Range."));
+		return nullptr;
+	}
 	return TreeView.Pin()->GetItems()[InIndex];
 }
 
@@ -245,13 +252,20 @@ void UAccessibilityAddNodeContextMenu::PerformGraphAction(const int32 InIndex)
 {
 	TSharedPtr<FGraphActionNode> GraphAction = GetGraphActionFromIndexSP(InIndex);
 
-	if (GraphAction.IsValid())
+	if (!GraphAction.IsValid())
 	{
-		TreeView.Pin()->Private_OnItemDoubleClicked(GraphAction);
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("PerformGraphAction: Provided GraphAction is Invalid."));
+	}
+
+	if (GraphAction->IsActionNode())
+	{
+		TreeView.Pin()->Private_ClearSelection();
+		TreeView.Pin()->Private_SetItemSelection(GraphAction, true, true);
+		TreeView.Pin()->Private_SignalSelectionChanged(ESelectInfo::OnMouseClick);
 	}
 	else
 	{
-		UE_LOG(LogOpenAccessibility, Warning, TEXT("PerformGraphAction: Provided GraphAction is Invalid."));
+		TreeView.Pin()->Private_OnItemDoubleClicked(GraphAction);
 	}
 }
 

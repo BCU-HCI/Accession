@@ -144,17 +144,19 @@ bool FPhraseNode::BindChildrenNodesForce(TPhraseNodeArray InNodes)
 
 FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
 {
-    //if (InPhraseArray.IsEmpty())
-    //    return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
-
     for (auto& ChildNode : ChildNodes)
     {
         // ChildNodes cannot have duplicate bound phrases.
-        if (ChildNode->IsLeafNode() || ChildNode->RequiresPhrase(InPhraseArray.Last()))
+        if (ChildNode->IsLeafNode() || (InPhraseArray.Num() > 0 && ChildNode->RequiresPhrase(InPhraseArray.Last())))
         {
             return ChildNode->ParsePhrase(InPhraseArray, InParseRecord);
         }
     }
+
+	if (InPhraseArray.Num() > 0)
+    {
+		return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
+	}
 
 	return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
 }

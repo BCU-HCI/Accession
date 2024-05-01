@@ -73,10 +73,18 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 
 		Algo::Reverse(SegmentWordArray);
 
-		FParseRecord ParseRecord = FParseRecord();
+		FParseRecord ParseRecord = FParseRecord(PrevContextObjectStack);
 		FParseResult ParseResult = ParsePhrase(SegmentWordArray, ParseRecord);
 
 		UE_LOGFMT(LogOpenAccessibilityCom, Log, "|| Phrase Tree || Segment: {0} | Result: {1} ||", SegmentCount, ParseResult.Result);
+
+		PrevContextObjectStack = ParseRecord.ContextObjectStack;
+		PrevContextObjectStack.RemoveAll(
+		[](UObject* ObjectToCheck) { 
+				return ObjectToCheck == nullptr;
+		});
+
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Context Object Stack Size: { %d } ||"), PrevContextObjectStack.Num())
 
 		switch (ParseResult.Result)
 		{

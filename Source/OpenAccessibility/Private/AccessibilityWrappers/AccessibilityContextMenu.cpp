@@ -24,7 +24,7 @@ UAccessibilityContextMenu::~UAccessibilityContextMenu()
 
 void UAccessibilityContextMenu::Init(TSharedRef<IMenu> InMenu)
 {
-	this->Menu = Menu;
+	this->Menu = InMenu;
 	this->Window = FSlateApplication::Get().FindWidgetWindow(
 		InMenu->GetContent().ToSharedRef()
 	);
