@@ -7,10 +7,21 @@
 #include "PhraseTree/Containers/ParseResult.h"
 #include "PhraseTree/Containers/ParseRecord.h"
 
+class IPhraseNodeBase
+{
+public:
+
+	virtual bool IsLeafNode() const = 0;
+
+	virtual bool RequiresPhrase(const FString InPhrase) = 0;
+
+	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord) = 0;
+};
+
 /**
  * 
  */
-class OPENACCESSIBILITYCOMMUNICATION_API FPhraseNode : public TSharedFromThis<FPhraseNode>
+class OPENACCESSIBILITYCOMMUNICATION_API FPhraseNode :  public TSharedFromThis<FPhraseNode>
 {
 public:
 

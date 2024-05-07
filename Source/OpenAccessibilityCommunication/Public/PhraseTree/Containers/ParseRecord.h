@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "Input/UParseInput.h"
+#include "PhraseTree/Containers/ContextObject.h"
 
 /// <summary>
 /// The Collected Information from the Propogation of the Phrase through the tree.
@@ -17,10 +18,10 @@ public:
 	FParseRecord()
 	{
 		PhraseInputs = TMultiMap<FString, UParseInput*>();
-		ContextObjectStack = TArray<UObject*>();
+		ContextObjectStack = TArray<UPhraseTreeContextObject*>();
 	}
 
-	FParseRecord(TArray<UObject*> InContextObjects)
+	FParseRecord(TArray<UPhraseTreeContextObject*> InContextObjects)
 	{
 		PhraseInputs = TMultiMap<FString, UParseInput*>();
 		ContextObjectStack = InContextObjects;
@@ -83,7 +84,7 @@ public:
 
 	// -- ContextObject Stack Modification
 
-	void PushContextObj(UObject* InObject)
+	void PushContextObj(UPhraseTreeContextObject* InObject)
 	{
 		this->ContextObjectStack.Push(InObject);
 	}
@@ -93,12 +94,12 @@ public:
 		this->ContextObjectStack.Pop();
 	}
 
-	void PopContextObj(UObject* OutObject)
+	void PopContextObj(UPhraseTreeContextObject* OutObject)
 	{
 		OutObject = this->ContextObjectStack.Pop();
 	}
 
-	void RemoveContextObj(UObject* InObject)
+	void RemoveContextObj(UPhraseTreeContextObject* InObject)
 	{
 		this->ContextObjectStack.Remove(InObject);
 	}
@@ -110,19 +111,19 @@ public:
 		return this->ContextObjectStack.Num() > 0;
 	}
 
-	bool HasContextObj(UObject* InObject)
+	bool HasContextObj(UPhraseTreeContextObject* InObject)
 	{
 		return HasContextObj() && this->ContextObjectStack.Contains(InObject);
 	}
 
 	// -- GetContextObj
 
-	UObject* GetContextObj()
+	UPhraseTreeContextObject* GetContextObj()
 	{
 		return this->ContextObjectStack.Last();
 	}
 
-	void GetContextObj(UObject* OutObject)
+	void GetContextObj(UPhraseTreeContextObject* OutObject)
 	{
 		OutObject = this->ContextObjectStack.Last();
 	}
@@ -139,9 +140,19 @@ public:
 		OutObject = Cast<CastToType>(this->ContextObjectStack.Last());
 	}
 
+	void GetContextStack(TArray<UPhraseTreeContextObject*> OutContextStack)
+	{
+		OutContextStack = ContextObjectStack;
+	}
+
+	TArray<UPhraseTreeContextObject*> GetContextStack()
+	{
+		return ContextObjectStack;
+	}
+
 protected:
 
-	TArray<UObject*> ContextObjectStack = TArray<UObject*>();
+	TArray<UPhraseTreeContextObject*> ContextObjectStack = TArray<UPhraseTreeContextObject*>();
 
 	TMultiMap<FString, UParseInput*> PhraseInputs;
 

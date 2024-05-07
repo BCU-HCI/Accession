@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "AccessibilityWrappers/AccessibilityContextMenu.h"
+#include "PhraseTree/Containers/ContextMenuObject.h"
 
 #include "SGraphActionMenu.h"
 #include "GraphActionNode.h"
@@ -14,18 +14,20 @@
 struct FGraphActionNode;
 
 UCLASS()
-class UAccessibilityAddNodeContextMenu : public UAccessibilityContextMenu
+class OPENACCESSIBILITY_API UAccessibilityAddNodeContextMenu : public UPhraseTreeContextMenuObject
 {
 	GENERATED_BODY()
 
 public:
 
-	UAccessibilityAddNodeContextMenu() = default;
+	UAccessibilityAddNodeContextMenu();
 	UAccessibilityAddNodeContextMenu(TSharedRef<IMenu> Menu);
 	UAccessibilityAddNodeContextMenu(TSharedRef<IMenu> Menu, TSharedRef<SGraphActionMenu> GraphMenu);
 	UAccessibilityAddNodeContextMenu(TSharedRef<IMenu> Menu, TSharedRef<SGraphActionMenu> GraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> TreeView);
 
 	~UAccessibilityAddNodeContextMenu();
+
+	void Init(TSharedRef<IMenu> InMenu, TSharedRef<FPhraseNode> InContextRoot);
 
 	/// <summary>
 	/// Initializes the Context Menu from the given components.
@@ -51,13 +53,13 @@ public:
 	/// <returns>Returns True if the Menu was Successfully closed.</returns>
 	virtual bool Close() override;
 
-	// -- End UAccessibilityContextMenu Implementation
-
 	/// <summary>
 	/// Scaled the Context Menu's Core Components based on the provided ScaleFactor.
 	/// </summary>
 	/// <param name="ScaleFactor">The Factor for Scaling the Context Menu.</param>
-	void ScaleMenu(const float ScaleFactor = 1.5f);
+	void ScaleMenu(const float ScaleFactor = 1.5f) override;
+
+	// -- End UAccessibilityContextMenu Implementation
 
 	/// <summary>
 	/// Does the Context Menu's TreeView Require a Refresh of Accessibility Widgets.

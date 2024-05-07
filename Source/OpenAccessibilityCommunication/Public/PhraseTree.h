@@ -6,7 +6,7 @@
 
 #include "PhraseTree/PhraseNode.h"
 #include "PhraseTree/Containers/ParseRecord.h"
-
+#include "PhraseTree/Containers/ContextObject.h"
 
 enum EPhraseTreeBranchBindResult : uint8_t
 {
@@ -52,6 +52,112 @@ struct OPENACCESSIBILITYCOMMUNICATION_API FPhraseTreeBranchBind
 	TPhraseNode BranchRoot;
 };
 
+struct OPENACCESSIBILITYCOMMUNICATION_API FPhraseTreeContextManager
+{
+public:
+
+	FPhraseTreeContextManager()
+	{
+
+	}
+
+	~FPhraseTreeContextManager()
+	{
+
+	}
+
+	// Context Stack Management
+
+	void IsEmpty()
+	{
+		this->ContextObjectStack.IsEmpty();
+	}
+
+	bool HasContextObjects()
+	{
+		return this->ContextObjectStack.Num() > 0;
+	}
+
+	bool HasContextObject(UPhraseTreeContextObject* InContextObject)
+	{
+		return this->ContextObjectStack.Contains(InContextObject);
+	}
+
+	TArray<UPhraseTreeContextObject*> GetContextStack()
+	{
+		return this->ContextObjectStack;
+	}
+
+	// Context Stack Ammendments
+
+	void PeekContextObject(UPhraseTreeContextObject* OutContextObject)
+	{
+		OutContextObject = this->ContextObjectStack.Top();
+	}
+
+	UPhraseTreeContextObject* PeekContextObject()
+	{
+		return this->ContextObjectStack.Top();
+	}
+
+	void PushContextObject(UPhraseTreeContextObject* InContextObject)
+	{
+		this->ContextObjectStack.Push(InContextObject);
+	}
+	
+	void PopContextObject()
+	{
+		this->ContextObjectStack.Pop();
+	}
+
+	template<class CastToContextType>
+	void PopContextObject(CastToContextType* OutContextObject)
+	{
+		OutContextObject = Cast<CastToContextType>(this->ContextObjectStack.Pop());
+	}
+
+	void PopContextObject(UPhraseTreeContextObject* OutContextObject)
+	{
+		OutContextObject = this->ContextObjectStack.Pop();
+	}
+
+	void UpdateContextStack(TArray<UPhraseTreeContextObject*> InContextObjectStack)
+	{
+		this->ContextObjectStack = InContextObjectStack;
+
+		FilterContextStack();
+	}
+
+	// Context Stack Filtering
+
+	void FilterContextStack()
+	{
+		bool bRemoveDerivedContextObjects = false;
+
+		int i = 0;
+		while (i < this->ContextObjectStack.Num())
+		{
+			if (this->ContextObjectStack[i]->IsValidLowLevel() && !bRemoveDerivedContextObjects)
+				continue;
+
+			bRemoveDerivedContextObjects = true;
+
+			this->ContextObjectStack[i]->RemoveFromRoot();
+
+			this->ContextObjectStack.RemoveAt(i);
+			i--;
+
+			if (i < 0)
+				i = 0;
+		}
+	}
+
+private:
+
+	TArray<UPhraseTreeContextObject*> ContextObjectStack;
+
+};
+
 /**
  * 
  */
@@ -77,6 +183,10 @@ public:
 	/// </summary>
 	void BindBranches(const TPhraseNodeArray& InNodes);
 
+	/// <summary>
+	/// Parses and Propogates the given Transcription Segments down the tree.
+	/// </summary>
+	/// <param name="InTranscriptionSegments"></param>
 	void ParseTranscription(TArray<FString> InTranscriptionSegments);
 
 private:
@@ -87,5 +197,9 @@ private:
 	/// </summary>
 	TSharedPtr<FPhraseNode> LastVistedNode;
 
-	TArray<UObject*> PrevContextObjectStack;
+	/// <summary>
+	/// The Manager for the Context Objects, that are currently active in the Tree.
+	/// With them being stored in a stack context.
+	/// </summary>
+	FPhraseTreeContextManager ContextManager;
 };

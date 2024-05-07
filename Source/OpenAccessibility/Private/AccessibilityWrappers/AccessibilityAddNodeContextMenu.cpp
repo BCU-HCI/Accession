@@ -7,21 +7,27 @@
 
 #include "Styling/AppStyle.h"
 
+UAccessibilityAddNodeContextMenu::UAccessibilityAddNodeContextMenu()
+	: UPhraseTreeContextMenuObject()
+{
+
+}
+
 UAccessibilityAddNodeContextMenu::UAccessibilityAddNodeContextMenu(TSharedRef<IMenu> Menu)
-: UAccessibilityContextMenu(Menu)
+	: UPhraseTreeContextMenuObject(Menu)
 {
 
 }
 
 UAccessibilityAddNodeContextMenu::UAccessibilityAddNodeContextMenu(TSharedRef<IMenu> Menu, TSharedRef<SGraphActionMenu> GraphMenu)
-: UAccessibilityContextMenu(Menu)
+: UPhraseTreeContextMenuObject(Menu)
 {
 	this->GraphMenu = GraphMenu;
 	this->FilterTextBox = GraphMenu->GetFilterTextBox();
 }
 
 UAccessibilityAddNodeContextMenu::UAccessibilityAddNodeContextMenu(TSharedRef<IMenu> Menu, TSharedRef<SGraphActionMenu> GraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> TreeView)
-: UAccessibilityContextMenu(Menu)
+: UPhraseTreeContextMenuObject(Menu)
 {
 	this->GraphMenu = GraphMenu;
 	this->TreeView = TreeView;
@@ -33,9 +39,16 @@ UAccessibilityAddNodeContextMenu::~UAccessibilityAddNodeContextMenu()
 
 }
 
+void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu, TSharedRef<FPhraseNode> InContextRoot)
+{
+	Init(InMenu);
+
+	this->ContextRoot = InContextRoot;
+}
+
 void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu)
 {
-	UAccessibilityContextMenu::Init(InMenu);
+	UPhraseTreeContextMenuObject::Init(InMenu);
 
 	TSharedPtr<SWidget> KeyboardFocusedWidget = StaticCastSharedPtr<SEditableText>(
 		FSlateApplication::Get().GetKeyboardFocusedWidget()
@@ -74,7 +87,7 @@ void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu)
 
 void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu, TSharedRef<SGraphActionMenu> InGraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> InTreeView)
 {
-	UAccessibilityContextMenu::Init(InMenu);
+	UPhraseTreeContextMenuObject::Init(InMenu);
 
 	this->GraphMenu = InGraphMenu;
 	this->TreeView = InTreeView;
@@ -105,7 +118,7 @@ bool UAccessibilityAddNodeContextMenu::Tick(float DeltaTime)
 
 bool UAccessibilityAddNodeContextMenu::Close()
 {
-	DestroyTicker();
+	RemoveTickDelegate();
 	Menu.Pin()->Dismiss();
 
 	return true;
@@ -261,7 +274,7 @@ void UAccessibilityAddNodeContextMenu::PerformGraphAction(const int32 InIndex)
 	{
 		TreeView.Pin()->Private_ClearSelection();
 		TreeView.Pin()->Private_SetItemSelection(GraphAction, true, true);
-		TreeView.Pin()->Private_SignalSelectionChanged(ESelectInfo::OnMouseClick);
+		TreeView.Pin()->Private_SignalSelectionChanged(ESelectInfo::Direct);
 	}
 	else
 	{

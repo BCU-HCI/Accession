@@ -10,7 +10,7 @@
 
 FPhraseTree::FPhraseTree() : FPhraseNode(TEXT("ROOT_NODE"))
 {
-
+	ContextManager = FPhraseTreeContextManager();
 }
 
 FPhraseTree::~FPhraseTree()
@@ -73,18 +73,18 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 
 		Algo::Reverse(SegmentWordArray);
 
-		FParseRecord ParseRecord = FParseRecord(PrevContextObjectStack);
+		FParseRecord ParseRecord = FParseRecord(/*ContextManager.GetContextStack()*/);
 		FParseResult ParseResult = ParsePhrase(SegmentWordArray, ParseRecord);
 
 		UE_LOGFMT(LogOpenAccessibilityCom, Log, "|| Phrase Tree || Segment: {0} | Result: {1} ||", SegmentCount, ParseResult.Result);
 
+		/*
 		PrevContextObjectStack = ParseRecord.ContextObjectStack;
 		PrevContextObjectStack.RemoveAll(
 		[](UObject* ObjectToCheck) { 
-				return ObjectToCheck == nullptr;
+				return ObjectToCheck->IsValidLowLevel() == false;
 		});
-
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Context Object Stack Size: { %d } ||"), PrevContextObjectStack.Num())
+		*/
 
 		switch (ParseResult.Result)
 		{
@@ -146,13 +146,27 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 		}
 	}
 
-	// Proceed to start a new propogation.
-	for (const TSharedPtr<FPhraseNode>& ChildNode : ChildNodes)
+	// Check if the Context Stack has Objects, if so propogate from the Context Root.
+	// Otherwise, start a new propogation entirely from the Tree Root.
+	if (ContextManager.HasContextObjects())
 	{
-		if (!ChildNode->RequiresPhrase(InPhraseWordArray.Last()))
-			continue;
+		// Propogate from the Context Root, that is the Top of the Context Stack.
 
-		return ChildNode->ParsePhrase(InPhraseWordArray, InParseRecord);
+		FParseResult Result = ContextManager.PeekContextObject()->GetContextRoot()->ParsePhrase(InPhraseWordArray, InParseRecord);
+		ContextManager.UpdateContextStack(InParseRecord.ContextObjectStack);
+
+		return Result;
+	}
+	else
+	{
+		// Proceed to start a new propogation.
+		for (const TSharedPtr<FPhraseNode>& ChildNode : ChildNodes)
+		{
+			if (!ChildNode->RequiresPhrase(InPhraseWordArray.Last()))
+				continue;
+
+			return ChildNode->ParsePhrase(InPhraseWordArray, InParseRecord);
+		}
 	}
 
 	UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Phrase Tree || No Parse Path Found ||"));
