@@ -1,2 +1,0 @@
-
-#include "Indexer/WidgetIndexer.h"
