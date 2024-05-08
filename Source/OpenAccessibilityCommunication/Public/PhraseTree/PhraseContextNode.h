@@ -22,6 +22,8 @@ public:
 
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord) override;
 
+	virtual FParseResult ParsePhraseAsContext(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord) override;
+
 	// End FPhraseNode Implementation
 
 protected:

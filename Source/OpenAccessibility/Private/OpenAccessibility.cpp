@@ -672,16 +672,11 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 							}),
 				}, NodeIndexFocusEvent),
 				
-				MakeShared<FPhraseNode>(
+				MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
 				TEXT("ADD"),
-				//1.5f,
-				//GetAddNodeMenuEvent,
+				1.5f,
+				GetAddNodeMenuEvent,
 				TPhraseNodeArray{
-
-						MakeShared<FPhraseNode>(TEXT("EXIT"),
-						TPhraseNodeArray{
-							Context_Exit
-						}),
 
 						MakeShared<FPhraseNode>(TEXT("SELECT"),
 						TPhraseNodeArray {
@@ -855,10 +850,9 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					GraphActionMenu.ToSharedRef(),
 					TreeView.ToSharedRef()
 				);
+				// MenuWrapper->SetContextRootNode(FOpenAccessibilityCommunicationModule::Get().PhraseTree->AsShared());
 
 				MenuWrapper->ScaleMenu(1.5f);
-				 
-				UObject* ContextMenu = MenuWrapper;
 			}),
 
 		ECVF_Default

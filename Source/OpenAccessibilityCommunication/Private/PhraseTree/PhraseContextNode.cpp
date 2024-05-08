@@ -52,6 +52,29 @@ FParseResult FPhraseContextNode<ContextType>::ParsePhrase(TArray<FString>& InPhr
 }
 
 template<class ContextType>
+FParseResult FPhraseContextNode<ContextType>::ParsePhraseAsContext(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord)
+{
+	if (!HasContextObject(InParseRecord.GetContextStack()))
+	{
+		UPhraseTreeContextObject* NewObject = CreateContextObject();
+
+		InParseRecord.PushContextObj(NewObject);
+	}
+
+	if (InPhraseWordArray.IsEmpty())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
+
+			return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
+	}
+
+	OnPhraseParsed.ExecuteIfBound(InParseRecord);
+
+	// Pass 
+	return ParseChildren(InPhraseWordArray, InParseRecord);
+}
+
+template<class ContextType>
 bool FPhraseContextNode<ContextType>::HasContextObject(TArray<UPhraseTreeContextObject*> InContextObjects) const
 {
 	for (auto& ContextObject : InContextObjects)

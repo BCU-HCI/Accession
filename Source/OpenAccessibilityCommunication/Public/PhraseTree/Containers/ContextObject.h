@@ -37,7 +37,13 @@ public:
 		return ContextRoot.Pin();
 	}
 
+	const bool GetIsActive()
+	{
+		return bIsActive;
+	}
 protected:
+
+	bool bIsActive = true;
 
 	TWeakPtr<FPhraseNode> ContextRoot;
 };

@@ -60,6 +60,20 @@ FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseReco
     return ParseChildren(InPhraseArray, InParseRecord);
 }
 
+FParseResult FPhraseNode::ParsePhraseAsContext(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord)
+{
+    if (InPhraseWordArray.IsEmpty())
+    {
+        UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
+
+            return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
+    }
+
+    OnPhraseParsed.ExecuteIfBound(InParseRecord);
+
+    return ParseChildren(InPhraseWordArray, InParseRecord);
+}
+
 FParseResult FPhraseNode::ParsePhraseIfRequired(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord)
 {
     if (RequiresPhrase(InPhraseWordArray.Last()))

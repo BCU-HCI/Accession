@@ -20,7 +20,9 @@ UPhraseTreeContextMenuObject::~UPhraseTreeContextMenuObject()
 {
 	// Unbind Tick Delegate
 	RemoveTickDelegate();
-	RemoveMenuDismissed(Menu.Pin().ToSharedRef());
+
+	if (Menu.IsValid())
+		RemoveMenuDismissed(Menu.Pin().ToSharedRef());
 
 	UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Context Menu || Destroyed ||"))
 }
@@ -73,7 +75,11 @@ void UPhraseTreeContextMenuObject::RemoveMenuDismissed(TSharedRef<IMenu> InMenu)
 void UPhraseTreeContextMenuObject::OnMenuDismissed(TSharedRef<IMenu> InMenu)
 {
 	RemoveTickDelegate();
+
 	RemoveFromRoot();
+	MarkAsGarbage();
+
+	bIsActive = false;
 
 	UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Context Menu || Dismissed ||"))
 }

@@ -90,6 +90,8 @@ public:
 
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord) override;
 
+	virtual FParseResult ParsePhraseAsContext(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord) override;
+
 	// End FPhraseNode Implementation
 
 protected:
@@ -121,7 +123,42 @@ FParseResult FPhraseContextMenuNode<ContextMenuType>::ParsePhrase(TArray<FString
 		InParseRecord.PushContextObj(NewObject);
 	}
 
+	if (InPhraseWordArray.IsEmpty())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
+
+		return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
+	}
+
+	InPhraseWordArray.Pop();
+
+	OnPhraseParsed.ExecuteIfBound(InParseRecord);
+
+	return ParseChildren(InPhraseWordArray, InParseRecord);
+
 	return FPhraseNode::ParsePhrase(InPhraseWordArray, InParseRecord);
+}
+
+template<typename ContextMenuType>
+inline FParseResult FPhraseContextMenuNode<ContextMenuType>::ParsePhraseAsContext(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord)
+{
+	if (!HasContextObject(InParseRecord.GetContextStack()))
+	{
+		UPhraseTreeContextObject* NewObject = CreateContextObject();
+
+		InParseRecord.PushContextObj(NewObject);
+	}
+
+	if (InPhraseWordArray.IsEmpty())
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
+
+		return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
+	}
+
+	OnPhraseParsed.ExecuteIfBound(InParseRecord);
+
+	return ParseChildren(InPhraseWordArray, InParseRecord);
 }
 
 template<typename ContextMenuType>

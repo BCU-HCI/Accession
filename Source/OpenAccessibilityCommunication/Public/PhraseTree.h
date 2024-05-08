@@ -134,22 +134,34 @@ public:
 	{
 		bool bRemoveDerivedContextObjects = false;
 
-		int i = 0;
-		while (i < this->ContextObjectStack.Num())
+		int i = this->ContextObjectStack.Num() - 1;
+		if (i < 0)
+			return;
+
+		UPhraseTreeContextObject* CurrObj = nullptr;
+
+		do
 		{
-			if (this->ContextObjectStack[i]->IsValidLowLevel() && !bRemoveDerivedContextObjects)
+			CurrObj = this->ContextObjectStack[i];
+
+			if (CurrObj != nullptr && CurrObj->GetIsActive())
+			{
+				i--;
 				continue;
+			}
 
-			bRemoveDerivedContextObjects = true;
-
-			this->ContextObjectStack[i]->RemoveFromRoot();
+			if (CurrObj->IsValidLowLevel())
+			{
+				CurrObj->RemoveFromRoot();
+				CurrObj->MarkAsGarbage();
+			}
 
 			this->ContextObjectStack.RemoveAt(i);
 			i--;
 
-			if (i < 0)
-				i = 0;
-		}
+		} while (i > 0);
+
+		CurrObj = nullptr;
 	}
 
 private:
@@ -166,6 +178,8 @@ class OPENACCESSIBILITYCOMMUNICATION_API FPhraseTree : public FPhraseNode
 public:
 	FPhraseTree();
 	~FPhraseTree();
+
+	bool Tick(float DeltaTime);
 
 	// FPhaseNode Implementation
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord) override;
@@ -202,4 +216,6 @@ private:
 	/// With them being stored in a stack context.
 	/// </summary>
 	FPhraseTreeContextManager ContextManager;
+
+	FTSTicker::FDelegateHandle TickDelegateHandle;
 };

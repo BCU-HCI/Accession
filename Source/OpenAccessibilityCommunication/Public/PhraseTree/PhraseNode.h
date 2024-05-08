@@ -11,11 +11,35 @@ class IPhraseNodeBase
 {
 public:
 
+	/// <summary>
+	/// States if the Phrase Node is a LeafNode.
+	/// </summary>
+	/// <returns>true, if the Node is a Leaf Node otherwise false.</returns>
 	virtual bool IsLeafNode() const = 0;
 
+	/// <summary>
+	/// Checks if the Given Phrase is Bound to the Node.
+	/// </summary>
+	/// <param name="InPhrase">The Phrase String to Compare Against.</param>
+	/// <returns>True, if the Node requires the given phrase string otherwise false.</returns>
 	virtual bool RequiresPhrase(const FString InPhrase) = 0;
 
+	/// <summary>
+	/// Parses the phrase down the given Node, propagating down child nodes if required.
+	/// </summary>
+	/// <param name="InPhraseWordArray">The Array of Phrase Strings to Propogate against.</param>
+	/// <param name="InParseRecord">The Record of Propagation of collected context's and inputs.</param>
+	/// <returns>Returns the Result of the propogation, including any key nodes met.</returns>
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord) = 0;
+
+	/// <summary>
+	/// Parses the phrase down the given node, propagating down child nodes if required.
+	/// Missed Pop of the Phrase Array from this Node.
+	/// </summary>
+	/// <param name="InPhraseWordArray"></param>
+	/// <param name="InParseRecord"></param>
+	/// <returns>Returns the Result of the propogation, including any key nodes met.</returns>
+	virtual FParseResult ParsePhraseAsContext(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord) = 0;
 };
 
 /**
@@ -37,7 +61,11 @@ public:
 	virtual bool RequiresPhrase(const FString InPhrase);
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord);
 
+	virtual FParseResult ParsePhraseAsContext(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord);
+
 	virtual FParseResult ParsePhraseIfRequired(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord);
+
+	virtual FParseResult ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord);
 
 	bool CanBindChild(TPhraseNode& InNode);
 
@@ -46,10 +74,6 @@ public:
 
 	bool BindChildrenNodes(TPhraseNodeArray InNodes);
 	bool BindChildrenNodesForce(TPhraseNodeArray InNodes);
-
-protected:
-
-	virtual FParseResult ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord);
 
 public:
 

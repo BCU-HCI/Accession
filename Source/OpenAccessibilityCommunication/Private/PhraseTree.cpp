@@ -11,13 +11,22 @@
 FPhraseTree::FPhraseTree() : FPhraseNode(TEXT("ROOT_NODE"))
 {
 	ContextManager = FPhraseTreeContextManager();
+
+	FTickerDelegate TickDelegate = FTickerDelegate::CreateRaw(this, &FPhraseTree::Tick);
+	TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);
 }
 
 FPhraseTree::~FPhraseTree()
 {
-
+	FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
 }
 
+bool FPhraseTree::Tick(float DeltaTime)
+{
+	ContextManager.FilterContextStack();
+
+	return true;
+}
 
 void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 {
@@ -73,18 +82,12 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 
 		Algo::Reverse(SegmentWordArray);
 
-		FParseRecord ParseRecord = FParseRecord(/*ContextManager.GetContextStack()*/);
+		FParseRecord ParseRecord = FParseRecord(ContextManager.GetContextStack());
 		FParseResult ParseResult = ParsePhrase(SegmentWordArray, ParseRecord);
 
-		UE_LOGFMT(LogOpenAccessibilityCom, Log, "|| Phrase Tree || Segment: {0} | Result: {1} ||", SegmentCount, ParseResult.Result);
+		ContextManager.UpdateContextStack(ParseRecord.ContextObjectStack);
 
-		/*
-		PrevContextObjectStack = ParseRecord.ContextObjectStack;
-		PrevContextObjectStack.RemoveAll(
-		[](UObject* ObjectToCheck) { 
-				return ObjectToCheck->IsValidLowLevel() == false;
-		});
-		*/
+		UE_LOGFMT(LogOpenAccessibilityCom, Log, "|| Phrase Tree || Segment: {0} | Result: {1} ||", SegmentCount, ParseResult.Result);
 
 		switch (ParseResult.Result)
 		{
@@ -130,7 +133,6 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 		return FParseResult(PHRASE_NOT_PARSED);
 	}
 
-
 	// First give the last visited node a chance to parse the phrase.
 	// due to the possibility of connecting phrases over different transcription segments.
 	if (LastVistedNode != nullptr && LastVistedNode.IsValid())
@@ -138,10 +140,14 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 		TArray<FString> PhraseWordArrayCopy = TArray<FString>(InPhraseWordArray);
 
 		FParseResult ParseResult = LastVistedNode->ParsePhrase(PhraseWordArrayCopy, InParseRecord);
-		if (ParseResult.Result == PHRASE_PARSED || ParseResult.Result != PHRASE_UNABLE_TO_PARSE)
+		if (ParseResult.Result == PHRASE_PARSED)
 		{
 			LastVistedNode.Reset();
 
+			return ParseResult;
+		}
+		else if (ParseResult.Result != PHRASE_UNABLE_TO_PARSE)
+		{ 
 			return ParseResult;
 		}
 	}
@@ -152,10 +158,7 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 	{
 		// Propogate from the Context Root, that is the Top of the Context Stack.
 
-		FParseResult Result = ContextManager.PeekContextObject()->GetContextRoot()->ParsePhrase(InPhraseWordArray, InParseRecord);
-		ContextManager.UpdateContextStack(InParseRecord.ContextObjectStack);
-
-		return Result;
+		return ContextManager.PeekContextObject()->GetContextRoot()->ParsePhraseAsContext(InPhraseWordArray, InParseRecord);
 	}
 	else
 	{
