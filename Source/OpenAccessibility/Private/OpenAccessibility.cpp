@@ -443,57 +443,6 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 
 	// Node Menu Events
-	TDelegate<void(FParseRecord& Record)> OpenAddNodeMenuEvent;
-	OpenAddNodeMenuEvent.BindLambda(
-		[this](FParseRecord& Record) {
-			if (Record.HasContextObj() && Record.GetContextObj<UAccessibilityAddNodeContextMenu>() != nullptr)
-			{
-				UE_LOG(LogOpenAccessibility, Display, TEXT("Context Menu Is Already Open, At The Top of Stack."));
-
-				return;
-			}
-
-			TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
-			if (!ActiveTab.IsValid())
-			{
-				return;
-			}
-
-			SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
-			if (ActiveGraphEditor == nullptr)
-			{
-				UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Active Tab Not SGraphEditor --"));
-				return;
-			}
-			SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
-			
-			GraphPanel->SummonCreateNodeMenuFromUICommand(0);
-
-			TSharedPtr<SWidget> KeyboardFocusedWidget = FSlateApplication::Get().GetKeyboardFocusedWidget();
-			
-			
-			if (KeyboardFocusedWidget.IsValid()) 
-			{	
-				FWidgetPath KeyboardFocusWidgetPath;
-				if (FSlateApplication::Get().FindPathToWidget(KeyboardFocusedWidget.ToSharedRef(), KeyboardFocusWidgetPath))
-				{
-					UE_LOG(LogOpenAccessibility, Display, TEXT("Keyboard Focused Widget Path Found."))
-					TSharedPtr<IMenu> Menu = FSlateApplication::Get().FindMenuInWidgetPath(KeyboardFocusWidgetPath);
-
-					UAccessibilityAddNodeContextMenu* MenuWrapper = NewObject<UAccessibilityAddNodeContextMenu>();
-					MenuWrapper->AddToRoot();
-					MenuWrapper->Init(
-						Menu.ToSharedRef()
-					);
-
-					MenuWrapper->ScaleMenu(1.5f);
-
-					Record.PushContextObj(MenuWrapper);
-				}
-			}
-		}
-	);
-
 	TDelegate<TSharedPtr<IMenu>()> GetAddNodeMenuEvent;
 	GetAddNodeMenuEvent.BindLambda(
 		[this] () -> TSharedPtr<IMenu> {
@@ -599,8 +548,8 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		}
 	);
 
-	TSharedPtr<FPhraseEventNode> Context_Exit = MakeShared<FPhraseEventNode>();
-	Context_Exit->OnPhraseParsed.BindLambda(
+	TSharedPtr<FPhraseEventNode> Context_Scroll = MakeShared<FPhraseEventNode>();
+	Context_Scroll->OnPhraseParsed.BindLambda(
 		[this](FParseRecord& Record) {
 			UAccessibilityAddNodeContextMenu* ContextMenu = Record.GetContextObj<UAccessibilityAddNodeContextMenu>();
 			if (ContextMenu == nullptr)
@@ -610,9 +559,27 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				return;
 			}
 
-			ContextMenu->Close();
+			UParseEnumInput* Direction = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
+			UParseIntInput* Amount = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+			
+			switch (EPhraseScrollInput(Direction->GetValue()))
+			{
+				case EPhraseScrollInput::UP:
+					ContextMenu->AppendScrollDistance(-Amount->GetValue());
+					break;
 
-			Record.PopContextObj();
+				case EPhraseScrollInput::DOWN:
+					ContextMenu->AppendScrollDistance(Amount->GetValue());
+					break;
+
+				case EPhraseScrollInput::TOP:
+					ContextMenu->SetScrollDistanceTop();
+					break;
+
+				case EPhraseScrollInput::BOTTOM:
+					ContextMenu->SetScrollDistanceBottom();
+					break;
+			}
 		}
 	);
 
@@ -713,8 +680,20 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 								TPhraseNodeArray {
 									Context_SearchReset
 								})
-						})
+						}),
 
+						MakeShared<FPhraseNode>(TEXT("SCROLL"),
+						TPhraseNodeArray {
+
+								MakeShared<FPhraseScrollInputNode>(TEXT("DIRECTION"),
+								TPhraseNodeArray {
+
+										MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+										TPhraseNodeArray {
+											Context_Scroll
+										})
+								})
+						}),
 				})
 			})
 	);

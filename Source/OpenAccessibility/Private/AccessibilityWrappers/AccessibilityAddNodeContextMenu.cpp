@@ -306,6 +306,21 @@ void UAccessibilityAddNodeContextMenu::SetScrollDistance(const float InScrollDis
 	TreeView.Pin()->SetScrollOffset(InScrollDistance);
 }
 
+void UAccessibilityAddNodeContextMenu::AppendScrollDistance(const float InScrollDistance)
+{
+	TreeView.Pin()->AddScrollOffset(InScrollDistance);
+}
+
+void UAccessibilityAddNodeContextMenu::SetScrollDistanceTop()
+{
+	TreeView.Pin()->ScrollToTop();
+}
+
+void UAccessibilityAddNodeContextMenu::SetScrollDistanceBottom()
+{
+	TreeView.Pin()->ScrollToBottom();
+}
+
 void UAccessibilityAddNodeContextMenu::ApplyAccessibilityWidget(TSharedRef<FGraphActionNode> Item, TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget)
 {
 	TSharedPtr<SWidget> ItemContent = ItemWidget->GetContent();

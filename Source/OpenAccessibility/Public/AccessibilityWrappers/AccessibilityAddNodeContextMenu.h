@@ -127,6 +127,12 @@ public:
 
 	void SetScrollDistance(const float InScrollDistance);
 
+	void AppendScrollDistance(const float InScrollDistance);
+
+	void SetScrollDistanceTop();
+
+	void SetScrollDistanceBottom();
+
 protected:
 
 	/// <summary>
