@@ -12,7 +12,7 @@ FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase)
 	ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
 }
 
-FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed)
+FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed)
 {
     BoundPhrase = InBoundPhrase;
     OnPhraseParsed = InOnPhraseParsed;
@@ -25,7 +25,7 @@ FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TPhraseNodeArray InChildNod
 	ChildNodes = InChildNodes;
 }
 
-FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
 {
     BoundPhrase = InBoundPhrase;
     OnPhraseParsed = InOnPhraseParsed;
@@ -58,6 +58,20 @@ FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseReco
 
     // Pass 
     return ParseChildren(InPhraseArray, InParseRecord);
+}
+
+FParseResult FPhraseNode::ParsePhraseAsContext(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord)
+{
+    if (InPhraseWordArray.IsEmpty())
+    {
+        UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
+
+            return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
+    }
+
+    OnPhraseParsed.ExecuteIfBound(InParseRecord);
+
+    return ParseChildren(InPhraseWordArray, InParseRecord);
 }
 
 FParseResult FPhraseNode::ParsePhraseIfRequired(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord)
@@ -144,17 +158,19 @@ bool FPhraseNode::BindChildrenNodesForce(TPhraseNodeArray InNodes)
 
 FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
 {
-    //if (InPhraseArray.IsEmpty())
-    //    return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
-
     for (auto& ChildNode : ChildNodes)
     {
         // ChildNodes cannot have duplicate bound phrases.
-        if (ChildNode->IsLeafNode() || ChildNode->RequiresPhrase(InPhraseArray.Last()))
+        if (ChildNode->IsLeafNode() || (InPhraseArray.Num() > 0 && ChildNode->RequiresPhrase(InPhraseArray.Last())))
         {
             return ChildNode->ParsePhrase(InPhraseArray, InParseRecord);
         }
     }
+
+	if (InPhraseArray.Num() > 0)
+    {
+		return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
+	}
 
 	return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
 }

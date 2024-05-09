@@ -10,23 +10,6 @@ typedef TSharedPtr<FPhraseNode> TPhraseNode;
 
 typedef TArray<TPhraseNode> TPhraseNodeArray;
 
-/// <summary>
-/// The Collected Information from the Propogation of the Phrase through the tree.
-/// </summary>
-struct OPENACCESSIBILITYCOMMUNICATION_API FParseRecord
-{
-	FParseRecord()
-	{
-		PhraseInputs = TMultiMap<FString, int>();
-	}
-
-	~FParseRecord()
-	{
-		PhraseInputs.Empty();
-	}
-
-	TMultiMap<FString, int> PhraseInputs;
-};
 
 enum OPENACCESSIBILITYCOMMUNICATION_API PhrasePropogationType : uint8_t
 {

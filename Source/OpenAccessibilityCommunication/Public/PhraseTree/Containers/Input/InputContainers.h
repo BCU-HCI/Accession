@@ -23,3 +23,12 @@ enum class EPhrase2DDirectionalInput : int8
 	LEFT = EPhraseDirectionalInput::LEFT,
 	RIGHT = EPhraseDirectionalInput::RIGHT,
 };
+
+UENUM()
+enum class EPhraseScrollInput : uint8
+{
+	UP, // 0
+	DOWN, // 1
+	TOP, // 2 
+	BOTTOM // 3
+};

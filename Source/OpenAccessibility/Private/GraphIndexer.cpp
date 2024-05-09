@@ -89,7 +89,7 @@ UEdGraphNode* FGraphIndexer::GetNode(const int& InIndex)
 {
 	if (!IndexMap.Contains(InIndex))
 	{
-		UE_LOG(LogOpenAccessibilityWarning, Warning, TEXT("Provided Index is not recognised"))
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("Provided Index is not recognised"))
 
 		return nullptr;
 	}
@@ -132,7 +132,7 @@ int FGraphIndexer::AddNode(const UEdGraphNode* InNode)
 	
 	if (!InNode->IsValidLowLevelFast())
 	{
-		UE_LOG(LogOpenAccessibilityWarning, Warning, TEXT("Provided Node is not valid."))
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("Provided Node is not valid."))
 	}
 
 	int Index = ContainsNode(const_cast<UEdGraphNode*>(InNode));
@@ -180,7 +180,7 @@ void FGraphIndexer::RemoveNode(const int& InIndex)
 {
 	if (!IndexMap.Contains(InIndex))
 	{
-		UE_LOG(LogOpenAccessibilityWarning, Warning, TEXT("Provided Index is not recognised"))
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("Provided Index is not recognised"))
 	}
 	
 	const UEdGraphNode* Node = IndexMap[InIndex];
@@ -193,7 +193,7 @@ void FGraphIndexer::RemoveNode(const int& InIndex)
 	}
 	else
 	{
-		UE_LOG(LogOpenAccessibilityWarning, Warning, TEXT("Stored Node in IndexMap is not vaild."))
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("Stored Node in IndexMap is not vaild."))
 	}
 }
 
@@ -204,7 +204,7 @@ void FGraphIndexer::RemoveNode(const UEdGraphNode* InNode)
 	int Key = GetKey(InNode);
 	if (Key == -1)
 	{
-		UE_LOG(LogOpenAccessibilityWarning, Warning, TEXT("Node does not exist in IndexMap."))
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("Node does not exist in IndexMap."))
 		return;
 	}
 

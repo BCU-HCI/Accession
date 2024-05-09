@@ -1,8 +1,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+
 #include "PhraseEnumInputNode.h"
-#include "InputContainers.h"
+#include "Containers/Input/InputContainers.h"
 
 class OPENACCESSIBILITYCOMMUNICATION_API FPhraseDirectionalInputNode : public FPhraseEnumInputNode<EPhraseDirectionalInput>
 {
@@ -15,7 +16,7 @@ public:
 		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InChildNodes)
 	{}
 
-	FPhraseDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+	FPhraseDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
 		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes)
 	{}
 
@@ -23,7 +24,7 @@ public:
 		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InChildNodes, InOnInputRecieved)
 	{}
 
-	FPhraseDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+	FPhraseDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
 		: FPhraseEnumInputNode<EPhraseDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes, InOnInputRecieved)
 	{}
 };
@@ -39,7 +40,7 @@ public:
 		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InChildNodes)
 	{}
 
-	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
 		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes)
 	{}
 
@@ -47,7 +48,31 @@ public:
 		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InChildNodes, InOnInputRecieved)
 	{}
 
-	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TDelegate<void (const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+	FPhrase2DDirectionalInputNode(const TCHAR* NodeName, TDelegate<void (FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
 		: FPhraseEnumInputNode<EPhrase2DDirectionalInput>(NodeName, InOnPhraseParsed, InChildNodes, InOnInputRecieved)
+	{}
+};
+
+class OPENACCESSIBILITYCOMMUNICATION_API FPhraseScrollInputNode : public FPhraseEnumInputNode<EPhraseScrollInput>
+{
+public:
+	FPhraseScrollInputNode(const TCHAR* NodeName)
+		: FPhraseEnumInputNode<EPhraseScrollInput>(NodeName)
+	{}
+
+	FPhraseScrollInputNode(const TCHAR* NodeName, TPhraseNodeArray InChildNodes)
+		: FPhraseEnumInputNode<EPhraseScrollInput>(NodeName, InChildNodes)
+	{}
+
+	FPhraseScrollInputNode(const TCHAR* NodeName, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+		: FPhraseEnumInputNode<EPhraseScrollInput>(NodeName, InOnPhraseParsed, InChildNodes)
+	{}
+
+	FPhraseScrollInputNode(const TCHAR* NodeName, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+		: FPhraseEnumInputNode<EPhraseScrollInput>(NodeName, InChildNodes, InOnInputRecieved)
+	{}
+
+	FPhraseScrollInputNode(const TCHAR* NodeName, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+		: FPhraseEnumInputNode<EPhraseScrollInput>(NodeName, InOnPhraseParsed, InChildNodes, InOnInputRecieved)
 	{}
 };

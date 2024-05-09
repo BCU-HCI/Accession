@@ -10,14 +10,23 @@
 
 FPhraseTree::FPhraseTree() : FPhraseNode(TEXT("ROOT_NODE"))
 {
+	ContextManager = FPhraseTreeContextManager();
 
+	FTickerDelegate TickDelegate = FTickerDelegate::CreateRaw(this, &FPhraseTree::Tick);
+	TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);
 }
 
 FPhraseTree::~FPhraseTree()
 {
-
+	FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
 }
 
+bool FPhraseTree::Tick(float DeltaTime)
+{
+	ContextManager.FilterContextStack();
+
+	return true;
+}
 
 void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 {
@@ -73,8 +82,10 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 
 		Algo::Reverse(SegmentWordArray);
 
-		FParseRecord ParseRecord = FParseRecord();
+		FParseRecord ParseRecord = FParseRecord(ContextManager.GetContextStack());
 		FParseResult ParseResult = ParsePhrase(SegmentWordArray, ParseRecord);
+
+		ContextManager.UpdateContextStack(ParseRecord.ContextObjectStack);
 
 		UE_LOGFMT(LogOpenAccessibilityCom, Log, "|| Phrase Tree || Segment: {0} | Result: {1} ||", SegmentCount, ParseResult.Result);
 
@@ -103,8 +114,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 			case PHRASE_UNABLE_TO_PARSE:
 			{
 				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment Unable to be Parsed ||"))
-				
-					
+
 				break;
 			}
 		}
@@ -128,22 +138,38 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 	if (LastVistedNode != nullptr && LastVistedNode.IsValid())
 	{
 		TArray<FString> PhraseWordArrayCopy = TArray<FString>(InPhraseWordArray);
+
 		FParseResult ParseResult = LastVistedNode->ParsePhrase(PhraseWordArrayCopy, InParseRecord);
-		if (ParseResult.Result == PHRASE_PARSED || ParseResult.Result != PHRASE_UNABLE_TO_PARSE)
+		if (ParseResult.Result == PHRASE_PARSED)
 		{
 			LastVistedNode.Reset();
 
 			return ParseResult;
 		}
+		else if (ParseResult.Result != PHRASE_UNABLE_TO_PARSE)
+		{ 
+			return ParseResult;
+		}
 	}
 
-	// Proceed to start a new propogation.
-	for (const TSharedPtr<FPhraseNode>& ChildNode : ChildNodes)
+	// Check if the Context Stack has Objects, if so propogate from the Context Root.
+	// Otherwise, start a new propogation entirely from the Tree Root.
+	if (ContextManager.HasContextObjects())
 	{
-		if (!ChildNode->RequiresPhrase(InPhraseWordArray.Last()))
-			continue;
+		// Propogate from the Context Root, that is the Top of the Context Stack.
 
-		return ChildNode->ParsePhrase(InPhraseWordArray, InParseRecord);
+		return ContextManager.PeekContextObject()->GetContextRoot()->ParsePhraseAsContext(InPhraseWordArray, InParseRecord);
+	}
+	else
+	{
+		// Proceed to start a new propogation.
+		for (const TSharedPtr<FPhraseNode>& ChildNode : ChildNodes)
+		{
+			if (!ChildNode->RequiresPhrase(InPhraseWordArray.Last()))
+				continue;
+
+			return ChildNode->ParsePhrase(InPhraseWordArray, InParseRecord);
+		}
 	}
 
 	UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Phrase Tree || No Parse Path Found ||"));

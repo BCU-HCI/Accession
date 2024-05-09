@@ -4,20 +4,21 @@
 
 #include "CoreMinimal.h"
 #include "PhraseInputNode.h"
-#include "InputContainers.h"
+#include "Containers/Input/InputContainers.h"
 
 /**
  * 
  */
 template<typename TEnum>
-class OPENACCESSIBILITYCOMMUNICATION_API FPhraseEnumInputNode : public FPhraseInputNode
+class OPENACCESSIBILITYCOMMUNICATION_API FPhraseEnumInputNode : public FPhraseInputNode<int32>
 {
 public:
+
 	FPhraseEnumInputNode(const TCHAR* InInputString);
 	FPhraseEnumInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes);
-	FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes);
+	FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes);
 	FPhraseEnumInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved);
-	FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(const FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved);
+	FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved);
 
 	~FPhraseEnumInputNode();
 
