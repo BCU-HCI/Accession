@@ -17,6 +17,8 @@
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 #include "PhraseTree/Containers/Input/UParseEnumInput.h"
 
+#include "AccessibilityWidgets/SAccessibilityTranscriptionVis.h"
+
 #include "GraphActionNode.h"
 #include "SGraphPanel.h"
 #include "Widgets/Input/SSearchBox.h"
@@ -42,6 +44,8 @@ void FOpenAccessibilityModule::StartupModule()
 
 	BindGraphInteractionBranch();
 	BindLocalLocomotionBranch();
+
+	CreateTranscriptionVisualization();
 }
 
 void FOpenAccessibilityModule::ShutdownModule()
@@ -718,6 +722,23 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				})
 			})
 	);
+}
+
+void FOpenAccessibilityModule::CreateTranscriptionVisualization()
+{
+	// FSlateApplication::Get() Produces an Error, So Cannot Assign in the Module.
+
+	/*
+	TSharedPtr<SWidget> MenuContent = SNew(SAccessibilityTranscriptionVis);
+
+	TranscriptionMenu = FSlateApplication::Get().PushMenu(
+		FSlateApplication::Get().GetActiveTopLevelRegularWindow()->GetParentWidget().ToSharedRef(),
+		FWidgetPath(),
+		MenuContent.ToSharedRef(),
+		FVector2f(0.0f, 0.0f),
+		FPopupTransitionEffect(FPopupTransitionEffect::TopMenu)
+	);
+	*/
 }
 
 void FOpenAccessibilityModule::RegisterConsoleCommands()
