@@ -133,6 +133,8 @@ public:
 
 	void SetScrollDistanceBottom();
 
+	void ToggleContextAwareness();
+
 protected:
 
 	/// <summary>
@@ -148,6 +150,7 @@ public:
 	TWeakPtr<SGraphActionMenu> GraphMenu;
 	TWeakPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeView;
 	TWeakPtr<SEditableTextBox> FilterTextBox;
+	TWeakPtr<SCheckBox> ContextAwarenessCheckBox;
 
 protected:
 

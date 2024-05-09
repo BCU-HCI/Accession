@@ -7,13 +7,13 @@
 UPhraseTreeContextMenuObject::UPhraseTreeContextMenuObject()
 	: UPhraseTreeContextObject()
 {
-	BindTickDelegate();
+
 }
 
-UPhraseTreeContextMenuObject::UPhraseTreeContextMenuObject(TSharedRef<IMenu> Menu) : UPhraseTreeContextObject()
+UPhraseTreeContextMenuObject::UPhraseTreeContextMenuObject(TSharedRef<IMenu> Menu) 
+	: UPhraseTreeContextObject()
 {
-	BindMenuDismissed(Menu);
-	BindTickDelegate();
+
 }
 
 UPhraseTreeContextMenuObject::~UPhraseTreeContextMenuObject()

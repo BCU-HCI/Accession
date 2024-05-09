@@ -583,6 +583,22 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		}
 	);
 
+	TSharedPtr<FPhraseEventNode> Context_ToggleContextAwareness = MakeShared<FPhraseEventNode>();
+	Context_ToggleContextAwareness->OnPhraseParsed.BindLambda(
+		[this](FParseRecord& Record) {
+			UAccessibilityAddNodeContextMenu* ContextMenu = Record.GetContextObj<UAccessibilityAddNodeContextMenu>();
+			if (ContextMenu == nullptr)
+			{
+				UE_LOG(LogOpenAccessibility, Log, TEXT("ContextMenu Cannot Be Obtained"));
+				return;
+			}
+
+			ContextMenu->ToggleContextAwareness();
+		}
+	);
+
+	// -----
+
 	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
 		MakeShared<FPhraseNode>(
 			TEXT("NODE"),
@@ -694,6 +710,11 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 										})
 								})
 						}),
+
+						MakeShared<FPhraseNode>(TEXT("TOGGLE"),
+						TPhraseNodeArray {
+								Context_ToggleContextAwareness
+						})
 				})
 			})
 	);
@@ -826,10 +847,8 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 				MenuWrapper->AddToRoot();
 				MenuWrapper->Init(
 					Menu.ToSharedRef(),
-					GraphActionMenu.ToSharedRef(),
-					TreeView.ToSharedRef()
+					FOpenAccessibilityCommunicationModule::Get().PhraseTree->AsShared()
 				);
-				// MenuWrapper->SetContextRootNode(FOpenAccessibilityCommunicationModule::Get().PhraseTree->AsShared());
 
 				MenuWrapper->ScaleMenu(1.5f);
 			}),

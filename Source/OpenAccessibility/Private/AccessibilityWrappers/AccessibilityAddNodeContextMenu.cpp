@@ -50,6 +50,8 @@ void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu)
 {
 	UPhraseTreeContextMenuObject::Init(InMenu);
 
+	// This is a Mess but half the Menu Containers are private, so have to move myself to key aspects of the Menu.
+
 	TSharedPtr<SWidget> KeyboardFocusedWidget = StaticCastSharedPtr<SEditableText>(
 		FSlateApplication::Get().GetKeyboardFocusedWidget()
 	);
@@ -80,6 +82,14 @@ void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu)
 		this->TreeView = StaticCastSharedRef<STreeView<TSharedPtr<FGraphActionNode>>>(
 			SearchBoxSibling->GetChildren()->GetChildAt(0)->GetChildren()->GetChildAt(0)
 		);
+	}
+
+	{
+		TSharedRef<SCheckBox> CheckBox = StaticCastSharedRef<SCheckBox>(
+			this->GraphMenu.Pin()->GetParentWidget()->GetChildren()->GetChildAt(0)->GetChildren()->GetChildAt(2)
+		);
+
+		this->ContextAwarenessCheckBox = CheckBox;
 	}
 
 	this->FilterTextBox = this->GraphMenu.Pin()->GetFilterTextBox();
@@ -308,7 +318,13 @@ void UAccessibilityAddNodeContextMenu::SetScrollDistance(const float InScrollDis
 
 void UAccessibilityAddNodeContextMenu::AppendScrollDistance(const float InScrollDistance)
 {
-	TreeView.Pin()->AddScrollOffset(InScrollDistance);
+	if (TreeView.Pin()->GetScrollOffset() + InScrollDistance < 0.0f)
+	{
+		TreeView.Pin()->SetScrollOffset(0.0f);
+		return;
+	}
+
+	TreeView.Pin()->AddScrollOffset(InScrollDistance, true);
 }
 
 void UAccessibilityAddNodeContextMenu::SetScrollDistanceTop()
@@ -319,6 +335,11 @@ void UAccessibilityAddNodeContextMenu::SetScrollDistanceTop()
 void UAccessibilityAddNodeContextMenu::SetScrollDistanceBottom()
 {
 	TreeView.Pin()->ScrollToBottom();
+}
+
+void UAccessibilityAddNodeContextMenu::ToggleContextAwareness()
+{
+	ContextAwarenessCheckBox.Pin()->ToggleCheckedState();
 }
 
 void UAccessibilityAddNodeContextMenu::ApplyAccessibilityWidget(TSharedRef<FGraphActionNode> Item, TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget)
