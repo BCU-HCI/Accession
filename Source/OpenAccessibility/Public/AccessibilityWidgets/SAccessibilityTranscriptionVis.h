@@ -6,7 +6,7 @@
 #include "Styling/AppStyle.h"
 #include "Widgets/Layout/SBorder.h"
 
-class OPENACCESSIBILITY_API SAccessibilityTranscriptionVis : public SBorder
+class OPENACCESSIBILITY_API SAccessibilityTranscriptionVis : public SOverlay
 {
 public:
 

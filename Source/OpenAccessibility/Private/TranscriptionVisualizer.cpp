@@ -75,15 +75,17 @@ void FTranscriptionVisualizer::UpdateVisualizer()
 
 void FTranscriptionVisualizer::ReparentWindow()
 {
-	TSharedPtr<SWindow> TopLevelActiveWindow = FSlateApplication::Get()
-		.GetActiveTopLevelRegularWindow();
+	TSharedPtr<SWindow> TopLevelActiveWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
 	if (!TopLevelActiveWindow.IsValid())
 		return;
 
-	if (TopLevelActiveWindow == VisWindow.Pin())
+	if (TopLevelActiveWindow == VisWindow.Pin() ||
+		TopLevelActiveWindow->GetContent() == VisWindow.Pin()->GetParentWidget())
 		return;
 
-	VisWindow.Pin()->AssignParentWidget(TopLevelActiveWindow);
+	VisWindow.Pin()->AssignParentWidget(
+		TopLevelActiveWindow->GetContent()
+	);
 }
 
 void FTranscriptionVisualizer::MoveVisualizer()

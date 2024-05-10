@@ -30,31 +30,36 @@ void SAccessibilityTranscriptionVis::Construct(const FArguments& InArgs)
 			];
 	}
 
-	SBorder::Construct(SBorder::FArguments()
-		.BorderImage(FAppStyle::GetBrush("Menu.Background"))
+	SOverlay::Construct(SOverlay::FArguments()
+		+ SOverlay::Slot()
+		.ZOrder(10)
 		.Padding(FMargin(5.0f))
 		[
-			SNew(SBox)
-			.MinDesiredWidth(300.0f)
-			.MinDesiredHeight(100.0f)
-			[
-				// Transcription Holder
-				SNew(SVerticalBox)
+			SNew(SBorder)
+				.BorderBackgroundColor(FSlateColor(FLinearColor::White))
+				[
+					SNew(SBox)
+						.MinDesiredWidth(300.0f)
+						.MinDesiredHeight(100.0f)
+						[
+							SNew(SVerticalBox)
 
-					+ SVerticalBox::Slot()
-					.AutoHeight()
-					[
-						SNew(STextBlock)
-							.Text(FText::FromString(TEXT("TEST")))
-					]
+							+ SVerticalBox::Slot()
+							.AutoHeight()
+							[
+								SNew(STextBlock)
+								.Text(FText::FromString(TEXT("- - - - -")))
+							]
 
-					+ SVerticalBox::Slot()
-					.AutoHeight()
-					[
-						SNew(STextBlock)
-							.Text(FText::FromString(TEXT("TEST - LINE 2")))
-					]
-			]
+							+ SVerticalBox::Slot()
+							.AutoHeight()
+							[
+								SNew(STextBlock)
+								.Text(FText::FromString(TEXT("- - - - -")))
+							]
+						]
+				]
+			
 		]
 	);
 }
