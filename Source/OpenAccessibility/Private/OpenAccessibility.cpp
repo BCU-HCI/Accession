@@ -726,19 +726,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 void FOpenAccessibilityModule::CreateTranscriptionVisualization()
 {
-	// FSlateApplication::Get() Produces an Error, So Cannot Assign in the Module.
-
-	/*
-	TSharedPtr<SWidget> MenuContent = SNew(SAccessibilityTranscriptionVis);
-
-	TranscriptionMenu = FSlateApplication::Get().PushMenu(
-		FSlateApplication::Get().GetActiveTopLevelRegularWindow()->GetParentWidget().ToSharedRef(),
-		FWidgetPath(),
-		MenuContent.ToSharedRef(),
-		FVector2f(0.0f, 0.0f),
-		FPopupTransitionEffect(FPopupTransitionEffect::TopMenu)
-	);
-	*/
+	TranscriptionVisualizer = MakeShared<FTranscriptionVisualizer, ESPMode::ThreadSafe>();
 }
 
 void FOpenAccessibilityModule::RegisterConsoleCommands()

@@ -55,7 +55,7 @@ public:
 
 private:
 
-	TSharedPtr<IMenu> TranscriptionMenu;
+	TSharedPtr<class FTranscriptionVisualizer> TranscriptionVisualizer;
 
 	TArray<IConsoleCommand*> ConsoleCommands;
 };

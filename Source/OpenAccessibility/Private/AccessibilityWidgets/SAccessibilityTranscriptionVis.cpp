@@ -8,12 +8,34 @@ SAccessibilityTranscriptionVis::~SAccessibilityTranscriptionVis()
 
 void SAccessibilityTranscriptionVis::Construct(const FArguments& InArgs)
 {
+	TSharedPtr<SVerticalBox> TranscriptionHolder = SNew(SVerticalBox)
+		+ SVerticalBox::Slot()
+		.Padding(4.0f)
+		.AutoHeight()
+		[
+			SNew(STextBlock)
+				.Text(FText::FromString(TEXT("- - - - -")))
+				.ColorAndOpacity(FSlateColor(FLinearColor::Yellow))
+		];
+
+	for (int i = 1; i < InArgs._VisAmount; i++)
+	{
+		TranscriptionHolder->AddSlot()
+			.Padding(4.0f)
+			.AutoHeight()
+			[
+				SNew(STextBlock)
+					.Text(FText::FromString(TEXT("- - - - -")))
+					.ColorAndOpacity(FSlateColor(FLinearColor::Gray)) // Gradient Color
+			];
+	}
+
 	SBorder::Construct(SBorder::FArguments()
 		.BorderImage(FAppStyle::GetBrush("Menu.Background"))
 		.Padding(FMargin(5.0f))
 		[
 			SNew(SBox)
-			.MinDesiredWidth(250.0f)
+			.MinDesiredWidth(300.0f)
 			.MinDesiredHeight(100.0f)
 			[
 				// Transcription Holder
@@ -23,14 +45,14 @@ void SAccessibilityTranscriptionVis::Construct(const FArguments& InArgs)
 					.AutoHeight()
 					[
 						SNew(STextBlock)
-							.Text(FText::GetEmpty())
+							.Text(FText::FromString(TEXT("TEST")))
 					]
 
 					+ SVerticalBox::Slot()
 					.AutoHeight()
 					[
 						SNew(STextBlock)
-							.Text(FText::GetEmpty())
+							.Text(FText::FromString(TEXT("TEST - LINE 2")))
 					]
 			]
 		]
