@@ -142,7 +142,9 @@ protected:
 	/// </summary>
 	/// <param name="Item">The Item to apply to.</param>
 	/// <param name="ItemWidget">The Items linked widget.</param>
-	void ApplyAccessibilityWidget(TSharedRef<FGraphActionNode> Item, TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);
+	void ApplyAccessibilityWidget(TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);
+
+	void UpdateAccessibilityWidget(TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);
 
 public:
 

@@ -17,9 +17,6 @@
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 #include "PhraseTree/Containers/Input/UParseEnumInput.h"
 
-#include "TranscriptionVisualizer.h"
-//#include "AccessibilityWidgets/SAccessibilityTranscriptionVis.h"
-
 #include "GraphActionNode.h"
 #include "SGraphPanel.h"
 #include "Widgets/Input/SSearchBox.h"
@@ -601,7 +598,6 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 			ContextMenu->ToggleContextAwareness();
 		}
 	);
-
 	// -----
 
 	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(

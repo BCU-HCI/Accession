@@ -5,6 +5,9 @@
 
 #include "Widgets/Input/SSearchBox.h"
 
+#include "AccessibilityWidgets/SContentIndexer.h"
+
+
 #include "Styling/AppStyle.h"
 
 UAccessibilityAddNodeContextMenu::UAccessibilityAddNodeContextMenu()
@@ -114,14 +117,16 @@ bool UAccessibilityAddNodeContextMenu::Tick(float DeltaTime)
 		RefreshAccessibilityWidgets();
 	}
 
+	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
+
 	// Set Previous Vars For Next Tick
 	PrevFilterString = FilterTextBox.Pin()->GetText().ToString();
-	PrevNumItemsBeingObserved = TreeView.Pin()->GetNumItemsBeingObserved();
-	PrevNumGeneratedChildren = TreeView.Pin()->GetNumGeneratedChildren();
-	PrevScrollDistance = TreeView.Pin()->GetScrollDistance().Y;
+	PrevNumItemsBeingObserved = TreeViewPtr->GetNumItemsBeingObserved();
+	PrevNumGeneratedChildren = TreeViewPtr->GetNumGeneratedChildren();
+	PrevScrollDistance = TreeViewPtr->GetScrollDistance().Y;
 
 	PrevExpandedItems.Reset();
-	TreeView.Pin()->GetExpandedItems(PrevExpandedItems);
+	TreeViewPtr->GetExpandedItems(PrevExpandedItems);
 
 	return true;
 }
@@ -154,28 +159,30 @@ void UAccessibilityAddNodeContextMenu::ScaleMenu(const float ScaleFactor)
 
 bool UAccessibilityAddNodeContextMenu::DoesItemsRequireRefresh()
 {
+	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
+
 	return (
 		FilterTextBox.Pin()->GetText().ToString() != PrevFilterString ||
-		TreeView.Pin()->GetNumItemsBeingObserved() != PrevNumItemsBeingObserved ||
-		TreeView.Pin()->GetNumGeneratedChildren() != PrevNumGeneratedChildren ||
-		TreeView.Pin()->GetScrollDistance().Y != PrevScrollDistance
+		TreeViewPtr->GetNumItemsBeingObserved() != PrevNumItemsBeingObserved ||
+		TreeViewPtr->GetNumGeneratedChildren() != PrevNumGeneratedChildren ||
+		TreeViewPtr->GetScrollDistance().Y != PrevScrollDistance
 	);
 }
 
 void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 {
-	TSet<TSharedPtr<FGraphActionNode>> ExpandedItems;
-	TreeView.Pin()->GetExpandedItems(ExpandedItems);
 
-	TSet<TSharedPtr<FGraphActionNode>> ExpandedItemsOpened = ExpandedItems.Difference(PrevExpandedItems);
+	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
+
+	TSet<TSharedPtr<FGraphActionNode>> ExpandedItems;
+	TreeViewPtr->GetExpandedItems(ExpandedItems);
+
 	TSet<TSharedPtr<FGraphActionNode>> ExpandedItemsClosed = PrevExpandedItems.Difference(ExpandedItems);
 
-	TArray<TSharedPtr<FGraphActionNode>> Items = TArray<TSharedPtr<FGraphActionNode>>(TreeView.Pin()->GetItems());
+	TArray<TSharedPtr<FGraphActionNode>> Items = TArray<TSharedPtr<FGraphActionNode>>(TreeViewPtr->GetRootItems());
 
 	{
 		TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget = nullptr;
-
-		int32 RebuildIndex = -1;
 
 		while (Items.Num() > 0)
 		{
@@ -183,25 +190,19 @@ void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 			Items.RemoveAt(0);
 
 			ItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
-				TreeView.Pin()->WidgetFromItem(Item)
+				TreeViewPtr->WidgetFromItem(Item)
 			);
 
 			if (!ItemWidget.IsValid())
 			{
-				if (IndexedWidgetSet.Contains(Item.Get()))
-					IndexedWidgetSet.Remove(Item.Get());
+				IndexedWidgetSet.Remove(Item.Get());
 
 				continue;
 			}
-
-			if (ExpandedItemsOpened.Contains(Item) && RebuildIndex == -1)
+			
+			if (ExpandedItems.Contains(Item))
 			{
-				TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> RebuildItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
-					TreeView.Pin()->WidgetFromItem(Item)
-				);
-
-				if (RebuildItemWidget.IsValid())
-					RebuildIndex = RebuildItemWidget->GetIndexInList();
+				Items.Append(Item->Children);
 			}
 			else if (ExpandedItemsClosed.Contains(Item))
 			{
@@ -210,17 +211,15 @@ void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 
 				for (auto& Child : DerrivedNodes)
 					IndexedWidgetSet.Remove(Child.Get());
-
-				if (RebuildIndex == -1)
-				{
-					RebuildIndex = ItemWidget->GetIndexInList();
-				}
 			}
 
-			if (!IndexedWidgetSet.Contains(Item.Get()) || (RebuildIndex != -1 && RebuildIndex < ItemWidget->GetIndexInList()))
+			if (IndexedWidgetSet.Contains(Item.Get()))
 			{
-				ApplyAccessibilityWidget(Item.ToSharedRef(), ItemWidget.ToSharedRef());
-
+				UpdateAccessibilityWidget(ItemWidget.ToSharedRef());
+			}
+			else
+			{
+				ApplyAccessibilityWidget(ItemWidget.ToSharedRef());
 				IndexedWidgetSet.Add(Item.Get());
 			}
 		}
@@ -342,29 +341,21 @@ void UAccessibilityAddNodeContextMenu::ToggleContextAwareness()
 	ContextAwarenessCheckBox.Pin()->ToggleCheckedState();
 }
 
-void UAccessibilityAddNodeContextMenu::ApplyAccessibilityWidget(TSharedRef<FGraphActionNode> Item, TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget)
+void UAccessibilityAddNodeContextMenu::ApplyAccessibilityWidget(TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget)
 {
 	TSharedPtr<SWidget> ItemContent = ItemWidget->GetContent();
 
 	ItemWidget->SetContent(
-		SNew(SHorizontalBox)
-
-		+ SHorizontalBox::Slot()
-		.VAlign(VAlign_Center)
-		.HAlign(HAlign_Center)
-		.AutoWidth()
-		[
-			SNew(STextBlock)
-				.Text(FText::FromString(TEXT("[" + FString::FromInt(ItemWidget->GetIndexInList()) + "]")))
-		]
-
-		+ SHorizontalBox::Slot()
-		.VAlign(VAlign_Center)
-		.HAlign(HAlign_Center)
-		.AutoWidth()
-		[
-			ItemContent.ToSharedRef()
-		]
+		SNew(SContentIndexer)
+		.IndexValue(ItemWidget->GetIndexInList())
+		.IndexPositionToContent(IndexerPosition::Left)
+		.ContentToIndex(ItemContent)
 	);
+}
 
+void UAccessibilityAddNodeContextMenu::UpdateAccessibilityWidget(TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget)
+{
+	TSharedPtr<SContentIndexer> ItemContent = StaticCastSharedPtr<SContentIndexer>(ItemWidget->GetContent());
+
+	ItemContent->UpdateIndex(ItemWidget->GetIndexInList());
 }
