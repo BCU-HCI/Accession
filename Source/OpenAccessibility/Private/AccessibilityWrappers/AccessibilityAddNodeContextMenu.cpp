@@ -115,14 +115,16 @@ bool UAccessibilityAddNodeContextMenu::Tick(float DeltaTime)
 		RefreshAccessibilityWidgets();
 	}
 
+	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
+
 	// Set Previous Vars For Next Tick
 	PrevFilterString = FilterTextBox.Pin()->GetText().ToString();
-	PrevNumItemsBeingObserved = TreeView.Pin()->GetNumItemsBeingObserved();
-	PrevNumGeneratedChildren = TreeView.Pin()->GetNumGeneratedChildren();
-	PrevScrollDistance = TreeView.Pin()->GetScrollDistance().Y;
+	PrevNumItemsBeingObserved = TreeViewPtr->GetNumItemsBeingObserved();
+	PrevNumGeneratedChildren = TreeViewPtr->GetNumGeneratedChildren();
+	PrevScrollDistance = TreeViewPtr->GetScrollDistance().Y;
 
 	PrevExpandedItems.Reset();
-	TreeView.Pin()->GetExpandedItems(PrevExpandedItems);
+	TreeViewPtr->GetExpandedItems(PrevExpandedItems);
 
 	return true;
 }
@@ -155,11 +157,13 @@ void UAccessibilityAddNodeContextMenu::ScaleMenu(const float ScaleFactor)
 
 bool UAccessibilityAddNodeContextMenu::DoesItemsRequireRefresh()
 {
+	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
+
 	return (
 		FilterTextBox.Pin()->GetText().ToString() != PrevFilterString ||
-		TreeView.Pin()->GetNumItemsBeingObserved() != PrevNumItemsBeingObserved ||
-		TreeView.Pin()->GetNumGeneratedChildren() != PrevNumGeneratedChildren ||
-		TreeView.Pin()->GetScrollDistance().Y != PrevScrollDistance
+		TreeViewPtr->GetNumItemsBeingObserved() != PrevNumItemsBeingObserved ||
+		TreeViewPtr->GetNumGeneratedChildren() != PrevNumGeneratedChildren ||
+		TreeViewPtr->GetScrollDistance().Y != PrevScrollDistance
 	);
 }
 

@@ -17,6 +17,8 @@ class OPENACCESSIBILITY_API SContentIndexer : public SBox
 public:
 
 	SLATE_BEGIN_ARGS( SContentIndexer )
+		: _IndexValue(0)
+		, _IndexPositionToContent(IndexerPosition::Left)
 		{}
 		SLATE_ARGUMENT(int32, IndexValue)
 		SLATE_ARGUMENT(IndexerPosition, IndexPositionToContent)
