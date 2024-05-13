@@ -4,6 +4,7 @@
 #include "OpenAccessibilityLogging.h"
 
 #include "Widgets/Input/SSearchBox.h"
+#include "AccessibilityWidgets/SContentIndexer.h"
 
 #include "Styling/AppStyle.h"
 
@@ -347,8 +348,13 @@ void UAccessibilityAddNodeContextMenu::ApplyAccessibilityWidget(TSharedRef<FGrap
 	TSharedPtr<SWidget> ItemContent = ItemWidget->GetContent();
 
 	ItemWidget->SetContent(
-		SNew(SHorizontalBox)
+		SNew(SContentIndexer)
+		.IndexValue(ItemWidget->GetIndexInList())
+		.IndexPositionToContent(IndexerPosition::Left)
+		.ContentToIndex(ItemContent)
+	);
 
+	/*
 		+ SHorizontalBox::Slot()
 		.VAlign(VAlign_Center)
 		.HAlign(HAlign_Center)
@@ -366,5 +372,5 @@ void UAccessibilityAddNodeContextMenu::ApplyAccessibilityWidget(TSharedRef<FGrap
 			ItemContent.ToSharedRef()
 		]
 	);
-
+	*/
 }
