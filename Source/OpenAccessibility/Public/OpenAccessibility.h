@@ -36,6 +36,11 @@ private:
 	void BindGraphInteractionBranch();
 	void BindViewportInteractionBranch();
 
+	// Transcription Visualization
+	void CreateTranscriptionVisualization();
+
+	void DestroyTranscriptionVisualization();
+
 	// Console Commands
 	void RegisterConsoleCommands();
 
@@ -49,6 +54,8 @@ public:
 	TSharedPtr<class FAssetAccessibilityRegistry> AssetAccessibilityRegistry;
 
 private:
+
+	TSharedPtr<class FTranscriptionVisualizer> TranscriptionVisualizer;
 
 	TArray<IConsoleCommand*> ConsoleCommands;
 };

@@ -42,6 +42,8 @@ void FOpenAccessibilityModule::StartupModule()
 
 	BindGraphInteractionBranch();
 	BindLocalLocomotionBranch();
+
+	CreateTranscriptionVisualization();
 }
 
 void FOpenAccessibilityModule::ShutdownModule()
@@ -596,7 +598,6 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 			ContextMenu->ToggleContextAwareness();
 		}
 	);
-
 	// -----
 
 	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
@@ -718,6 +719,14 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				})
 			})
 	);
+}
+
+void FOpenAccessibilityModule::CreateTranscriptionVisualization()
+{
+	TranscriptionVisualizer = MakeShared<FTranscriptionVisualizer, ESPMode::ThreadSafe>();
+
+	FOpenAccessibilityCommunicationModule::Get().OnTranscriptionRecieved
+		.AddSP(TranscriptionVisualizer.ToSharedRef(), &FTranscriptionVisualizer::OnTranscriptionRecieved);
 }
 
 void FOpenAccessibilityModule::RegisterConsoleCommands()

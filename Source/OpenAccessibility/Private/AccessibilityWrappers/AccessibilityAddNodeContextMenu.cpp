@@ -4,7 +4,9 @@
 #include "OpenAccessibilityLogging.h"
 
 #include "Widgets/Input/SSearchBox.h"
+
 #include "AccessibilityWidgets/SContentIndexer.h"
+
 
 #include "Styling/AppStyle.h"
 
@@ -169,6 +171,7 @@ bool UAccessibilityAddNodeContextMenu::DoesItemsRequireRefresh()
 
 void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 {
+
 	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
 
 	TSet<TSharedPtr<FGraphActionNode>> ExpandedItems;
