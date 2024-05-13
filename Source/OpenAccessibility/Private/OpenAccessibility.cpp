@@ -17,6 +17,8 @@
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 #include "PhraseTree/Containers/Input/UParseEnumInput.h"
 
+#include "TranscriptionVisualizer.h"
+
 #include "GraphActionNode.h"
 #include "SGraphPanel.h"
 #include "Widgets/Input/SSearchBox.h"
