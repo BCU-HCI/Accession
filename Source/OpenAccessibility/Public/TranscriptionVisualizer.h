@@ -23,6 +23,9 @@ public:
 
 	void MoveVisualizer();
 
+	
+	void OnTranscriptionRecieved(TArray<FString> InTranscription);
+
 protected:
 
 	// Ticker Manager Methods
@@ -41,5 +44,5 @@ protected:
 	// Vis Components
 
 	TWeakPtr<SWindow> VisWindow;
-	TWeakPtr<SWidget> VisContent;
+	TWeakPtr<class SAccessibilityTranscriptionVis> VisContent;
 };

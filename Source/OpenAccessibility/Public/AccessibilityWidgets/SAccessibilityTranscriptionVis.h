@@ -25,7 +25,12 @@ public:
 
 	// End of SWidget Interface
 
+	void UpdateTopTranscription(const FString& InTopTranscription);
+
 protected:
 
+	TWeakPtr<SVerticalBox> TranscriptionContainer;
+
+	TArray<STextBlock*> TranscriptionSlots;
 
 };

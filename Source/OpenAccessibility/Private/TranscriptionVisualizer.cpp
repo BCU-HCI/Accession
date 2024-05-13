@@ -30,8 +30,8 @@ bool FTranscriptionVisualizer::Tick(float DeltaTime)
 
 void FTranscriptionVisualizer::ConstructVisualizer()
 {
-	TSharedPtr<SWidget> MenuContent = SNew(SAccessibilityTranscriptionVis)
-		.VisAmount(10);
+	TSharedPtr<SAccessibilityTranscriptionVis> MenuContent = SNew(SAccessibilityTranscriptionVis)
+		.VisAmount(2);
 
 	FDisplayMetrics DisplayMetrics;
 	FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);
@@ -57,7 +57,7 @@ void FTranscriptionVisualizer::ConstructVisualizer()
 		];
 
 	VisWindow = FSlateApplication::Get().AddWindowAsNativeChild(MenuWindow, FSlateApplication::Get().GetActiveTopLevelRegularWindow().ToSharedRef(), true);
-	VisContent = MenuContent;
+	VisContent = MenuContent.ToWeakPtr();
 }
 
 void FTranscriptionVisualizer::UpdateVisualizer()
@@ -107,6 +107,14 @@ void FTranscriptionVisualizer::MoveVisualizer()
 		NewPosition.Y = (ActiveWindowPosition.Y + ActiveWindowBounds.Y - 50) - VisWindowRef->GetClientSizeInScreen().Y;
 
 		VisWindowRef->MoveWindowTo(NewPosition);
+	}
+}
+
+void FTranscriptionVisualizer::OnTranscriptionRecieved(TArray<FString> InTranscription)
+{
+	for (int i = 0; i < InTranscription.Num(); i++)
+	{
+		VisContent.Pin()->UpdateTopTranscription(InTranscription[i]);
 	}
 }
 
