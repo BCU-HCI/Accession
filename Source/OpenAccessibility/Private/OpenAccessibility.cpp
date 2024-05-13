@@ -17,6 +17,9 @@
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 #include "PhraseTree/Containers/Input/UParseEnumInput.h"
 
+#include "TranscriptionVisualizer.h"
+//#include "AccessibilityWidgets/SAccessibilityTranscriptionVis.h"
+
 #include "GraphActionNode.h"
 #include "SGraphPanel.h"
 #include "Widgets/Input/SSearchBox.h"
@@ -42,6 +45,8 @@ void FOpenAccessibilityModule::StartupModule()
 
 	BindGraphInteractionBranch();
 	BindLocalLocomotionBranch();
+
+	CreateTranscriptionVisualization();
 }
 
 void FOpenAccessibilityModule::ShutdownModule()
@@ -718,6 +723,14 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				})
 			})
 	);
+}
+
+void FOpenAccessibilityModule::CreateTranscriptionVisualization()
+{
+	TranscriptionVisualizer = MakeShared<FTranscriptionVisualizer, ESPMode::ThreadSafe>();
+
+	FOpenAccessibilityCommunicationModule::Get().OnTranscriptionRecieved
+		.AddSP(TranscriptionVisualizer.ToSharedRef(), &FTranscriptionVisualizer::OnTranscriptionRecieved);
 }
 
 void FOpenAccessibilityModule::RegisterConsoleCommands()
