@@ -29,6 +29,9 @@ class WhisperInterface:
         )
         self.beam_size = 5
 
+    def __del__(self):
+        del self.whisper_model
+
     def process_file_from_dir(self, filepath: str):
 
         segments, info = self.whisper_model.transcribe(

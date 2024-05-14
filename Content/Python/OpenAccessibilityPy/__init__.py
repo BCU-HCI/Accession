@@ -1,6 +1,7 @@
 import unreal as ue
 import zmq
 import numpy as np
+from gc import collect as gc_collect
 
 from concurrent.futures import ThreadPoolExecutor as ThreadPool
 
@@ -36,8 +37,9 @@ class OpenAccessibilityPy:
         )
         self.audio_resampler = AudioResampler(target_sample_rate=16000)
 
-        self.tick_handle = None
         self.tick_handle = ue.register_slate_post_tick_callback(self.Tick)
+
+        self.pyshutdown_handle = ue.register_python_shutdown_callback(self.Shutdown)
 
     def __del__(self):
         self.Shutdown()
@@ -103,3 +105,6 @@ class OpenAccessibilityPy:
 
         if self.whisper_interface:
             del self.whisper_interface
+
+        # Force a Garbage Collection
+        gc_collect()
