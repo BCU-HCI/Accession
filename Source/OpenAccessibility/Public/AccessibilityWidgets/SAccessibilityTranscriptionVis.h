@@ -25,12 +25,21 @@ public:
 
 	// End of SWidget Interface
 
+	/// <summary>
+	/// Updates the Top Transcription Text, shifting all current transcriptions down.
+	/// </summary>
 	void UpdateTopTranscription(const FString& InTopTranscription);
 
 protected:
 
+	/// <summary>
+	/// The Container of the Transcription Slots.
+	/// </summary>
 	TWeakPtr<SVerticalBox> TranscriptionContainer;
 
+	/// <summary>
+	/// Array of the created Transcription Slots, displaying recieved transcriptions.
+	/// </summary>
 	TArray<STextBlock*> TranscriptionSlots;
 
 };
