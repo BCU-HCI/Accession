@@ -68,21 +68,37 @@ public:
 
 	// Context Stack Management
 
+	/// <summary>
+	/// Is the Context Stack Empty.
+	/// </summary>
 	void IsEmpty()
 	{
 		this->ContextObjectStack.IsEmpty();
 	}
 
+	/// <summary>
+	/// Does the Context Stack Contain Any Context Objects.
+	/// </summary>
+	/// <returns>True, if Context Objects are on the stack. Otherwise False.</returns>
 	bool HasContextObjects()
 	{
 		return this->ContextObjectStack.Num() > 0;
 	}
 
+	/// <summary>
+	/// Does the Context Stack Contain The Given Context Object.
+	/// </summary>
+	/// <param name="InContextObject">- The Context Object To Check if On The Stack.</param>
+	/// <returns>True, if the Context Object is Contained on the Stack.</returns>
 	bool HasContextObject(UPhraseTreeContextObject* InContextObject)
 	{
 		return this->ContextObjectStack.Contains(InContextObject);
 	}
 
+	/// <summary>
+	/// Gets the Entire Context Stack.
+	/// </summary>
+	/// <returns>An Array Containing the Current Context Stack.</returns>
 	TArray<UPhraseTreeContextObject*> GetContextStack()
 	{
 		return this->ContextObjectStack;
@@ -90,37 +106,65 @@ public:
 
 	// Context Stack Ammendments
 
+	/// <summary>
+	/// Peeks the Top Context Object On The Stack.
+	/// </summary>
+	/// <param name="OutContextObject">- Returns the Top Context Object.</param>
 	void PeekContextObject(UPhraseTreeContextObject* OutContextObject)
 	{
 		OutContextObject = this->ContextObjectStack.Top();
 	}
 
+	/// <summary>
+	/// Peeks the Top Context Object On The Stack.
+	/// </summary>
+	/// <returns>The Top Context Object on the Stack.</returns>
 	UPhraseTreeContextObject* PeekContextObject()
 	{
 		return this->ContextObjectStack.Top();
 	}
 
+	/// <summary>
+	/// Pushes a Context Object onto the Stack.
+	/// </summary>
+	/// <param name="InContextObject">- The Context Object To Push Onto The Stack.</param>
 	void PushContextObject(UPhraseTreeContextObject* InContextObject)
 	{
 		this->ContextObjectStack.Push(InContextObject);
 	}
 	
+	/// <summary>
+	/// Pops the Top Context Object From The Stack.
+	/// </summary>
 	void PopContextObject()
 	{
 		this->ContextObjectStack.Pop();
 	}
 
+	/// <summary>
+	/// Pops the Top Context Object From The Stack.
+	/// </summary>
+	/// <typeparam name="CastToContextType">DownCast Type for the Popped Context Object. (Must be Derrived From UPhraseTreeContextObject).</typeparam>
+	/// <param name="OutContextObject">- Returns the Popped Downcasted Context Object From the Stack.</param>
 	template<class CastToContextType>
 	void PopContextObject(CastToContextType* OutContextObject)
 	{
 		OutContextObject = Cast<CastToContextType>(this->ContextObjectStack.Pop());
 	}
 
+	/// <summary>
+	/// Pops the Top Context Object From The Stack.
+	/// </summary>
+	/// <param name="OutContextObject">- Returns the Popped Context Object From the Stack.</param>
 	void PopContextObject(UPhraseTreeContextObject* OutContextObject)
 	{
 		OutContextObject = this->ContextObjectStack.Pop();
 	}
 
+	/// <summary>
+	/// Updates the Context Stack with the Given Array of Context Objects.
+	/// </summary>
+	/// <param name="InContextObjectStack"></param>
 	void UpdateContextStack(TArray<UPhraseTreeContextObject*> InContextObjectStack)
 	{
 		this->ContextObjectStack = InContextObjectStack;
@@ -130,6 +174,9 @@ public:
 
 	// Context Stack Filtering
 
+	/// <summary>
+	/// Filters the Context Stack, removing any Context Objects that are no longer active and any of its derived context objects.
+	/// </summary>
 	void FilterContextStack()
 	{
 		bool bRemoveDerivedContextObjects = false;

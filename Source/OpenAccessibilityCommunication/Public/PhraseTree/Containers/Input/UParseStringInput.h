@@ -20,16 +20,28 @@ public:
 
 	};
 
+	/// <summary>
+	/// Sets the Value of the Input.
+	/// </summary>
+	/// <param name="InValue">- The Value to set the Input To.</param>
 	void SetValue(FString InValue)
 	{
 		Value = InValue;
 	}
 
+	/// <summary>
+	/// Gets the Value of the Input.
+	/// </summary>
+	/// <param name="OutValue">- Returns the Current Value of the Input.</param>
 	void GetValue(FString& OutValue)
 	{
 		OutValue = Value;
 	}
 
+	/// <summary>
+	/// Gets the Value of the Input.
+	/// </summary>
+	/// <returns></returns>
 	FString GetValue()
 	{
 		return Value;
