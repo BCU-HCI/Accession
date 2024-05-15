@@ -26,24 +26,42 @@ public:
 
 	}
 
-	
+	/// <summary>
+	/// Sets the Root Node In The Phrase Tree For This Context Objects.
+	/// </summary>
+	/// <param name="InRootNode"></param>
 	void SetContextRootNode(TSharedRef<FPhraseNode> InRootNode)
 	{
 		ContextRoot = InRootNode;
 	}
 
+	/// <summary>
+	/// Gets the Root Node For This Context.
+	/// </summary>
+	/// <returns></returns>
 	TSharedPtr<FPhraseNode> GetContextRoot()
 	{
 		return ContextRoot.Pin();
 	}
 
+	/// <summary>
+	/// Is the Context Still Active.
+	/// </summary>
+	/// <returns></returns>
 	const bool GetIsActive()
 	{
 		return bIsActive;
 	}
 protected:
 
+	/// <summary>
+	/// Is the Context Object Still Active.
+	/// </summary>
 	bool bIsActive = true;
 
+	/// <summary>
+	/// The Root Node In The Phrase Tree (The Origin of the Context).
+	/// Allowing for Propagation based on Context Root.
+	/// </summary>
 	TWeakPtr<FPhraseNode> ContextRoot;
 };

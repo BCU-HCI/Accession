@@ -56,23 +56,82 @@ public:
 
 	virtual ~FPhraseNode();
 
+	/// <summary>
+	/// Checks if the Node is a Leaf Node.
+	/// </summary>
+	/// <returns>True, if the Node is a Leaf Node. Otherwise False.</returns>
 	virtual bool IsLeafNode() const { return false; }
 
+	/// <summary>
+	/// Checks if the Node Requires the Given Phrase.
+	/// </summary>
+	/// <param name="InPhrase">- The Phrase To Check if Required By The Node.</param>
+	/// <returns>True, if the Phrase is Required. Otherwise False.</returns>
 	virtual bool RequiresPhrase(const FString InPhrase);
+	
+	/// <summary>
+	/// Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.
+	/// </summary>
+	/// <param name="InPhraseWordArray">- The Current Array of Transcription Phrases.</param>
+	/// <param name="InParseRecord">- The Parse Record of the Current Propagation.</param>
+	/// <returns>The Result of the Parsing of the Phrase, and any Propagation.</returns>
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord);
 
+	/// <summary>
+	/// Parses the Phrase Down This Node, Propagating Down Any Child Nodes If Required.
+	/// Does not Pop the Phrase Array.
+	/// </summary>
+	/// <param name="InPhraseWordArray">- The Current Array of Transcription Phrases.</param>
+	/// <param name="InParseRecord">- The Parse Record of the Current Propagation.</param>
+	/// <returns>The Result of the Parsing of the Phrase, and any Propagation.</returns>
 	virtual FParseResult ParsePhraseAsContext(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord);
 
+	/// <summary>
+	/// If the Phrase If Required, Parses the Phrase Down This Node, Propagating Down Any Child Nodes If Required. 
+	/// </summary>
 	virtual FParseResult ParsePhraseIfRequired(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord);
 
+	/// <summary>
+	/// Parses The Children Node of this Node.
+	/// </summary>
+	/// <param name="InPhraseArray">- The Current Array of Transcription Phrases.</param>
+	/// <param name="InParseRecord">- The Parse Record of the Current Propagation.</param>
+	/// <returns>The Result of the Parsing of the Phrase, and any Propagation.</returns>
 	virtual FParseResult ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord);
 
+	/// <summary>
+	/// Checks if the Given Node Can Be Bound as a Child Node.
+	/// </summary>
+	/// <param name="InNode">- The Node To Check If It Can Be Bound.</param>
+	/// <returns>True, if the Node Can Be Bound as a Child. Otherwise False.</returns>
 	bool CanBindChild(TPhraseNode& InNode);
 
+	/// <summary>
+	/// Binds the Given Node as a Child Node.
+	/// </summary>
+	/// <param name="InNode">- The Node To Bind as a Child of This Node.</param>
+	/// <returns>True, if the Node was Successfully Bound. Otherwise False.</returns>
 	bool BindChildNode(TPhraseNode InNode);
+
+	/// <summary>
+	/// Forcefully Binds the Given Node as a Child, performing no checks.
+	/// </summary>
+	/// <param name="InNode">- The Node To Foce Bind as a Child.</param>
+	/// <returns>True, if the Node was Successfully Bound. Otherwise False.</returns>
 	bool BindChildNodeForce(TPhraseNode InNode);
 
+	/// <summary>
+	/// Binds an Array of Nodes as Children of this Node.
+	/// </summary>
+	/// <param name="InNodes">- The Array of Nodes To Bind as Children.</param>
+	/// <returns>True, if the Nodes were Successfully Bound. Otherwise False.</returns>
 	bool BindChildrenNodes(TPhraseNodeArray InNodes);
+
+	/// <summary>
+	/// Forcefully Binds an Array of Nodes as Children of this Node, performing no checks.
+	/// </summary>
+	/// <param name="InNodes">- The Array of Nodes To Bind sa Children.</param>
+	/// <returns>True, if the Nodes were successfully bound. Otherwise False.</returns>
 	bool BindChildrenNodesForce(TPhraseNodeArray InNodes);
 
 public:
