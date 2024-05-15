@@ -283,7 +283,7 @@ void UAccessibilityAddNodeContextMenu::PerformGraphAction(const int32 InIndex)
 	{
 		TreeView.Pin()->Private_ClearSelection();
 		TreeView.Pin()->Private_SetItemSelection(GraphAction, true, true);
-		TreeView.Pin()->Private_SignalSelectionChanged(ESelectInfo::Direct);
+		TreeView.Pin()->Private_SignalSelectionChanged(ESelectInfo::OnMouseClick);
 	}
 	else
 	{
