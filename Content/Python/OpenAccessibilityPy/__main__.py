@@ -6,6 +6,7 @@ from faster_whisper.transcribe import decode_audio
 from CommunicationServer import CommunicationServer
 from WhisperInterface import WhisperInterface
 from Audio import AudioResampler
+import LibUtils
 
 from Logging import Log, LogLevel
 

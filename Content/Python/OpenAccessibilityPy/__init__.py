@@ -10,6 +10,24 @@ from .WhisperInterface import WhisperInterface
 from .Audio import AudioResampler
 from .Logging import Log, LogLevel
 
+import LibUtils
+
+
+def forward_CUDA_CUDNN_to_path():
+    """
+    Forces any found CUDA and CUDNN Paths to the System Path.
+
+    This is useful for circumventing issues with CUDA and CUDNN not being found on the embedded interpreter.
+    Not always needed, but useful for some systems.
+    """
+
+    filtered_path_list = LibUtils.get_filtered_path_list(["CUDA", "CUDNN"])
+
+    for path in filtered_path_list:
+        LibUtils.append_paths_to_library_path(
+            LibUtils.get_child_directories(path, depth=1)
+        )
+
 
 class OpenAccessibilityPy:
     def __init__(
