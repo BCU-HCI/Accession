@@ -55,5 +55,11 @@ import OpenAccessibilityPy as OAPy
 
 unreal.log("|| OpenAccessibility Python || Initializing Python Runtime ||")
 
+# Run Utilities for Better Project Library Initialization
+
+# Helps Circumvent CUDA and CUDNN Issues
+# when using the Whisper Model
+OAPy.forward_CUDA_CUDNN_to_path()
+
 # Initialize the Python Runtime
 OpenAccessibilityPy = OAPy.OpenAccessibilityPy()
