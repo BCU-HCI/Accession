@@ -18,41 +18,47 @@ void SAccessibilityTranscriptionVis::Construct(const FArguments& InArgs)
 	int TranscriptionSlotAmount = 1;
 	TranscriptionSlotAmount = FMath::Max(1, InArgs._VisAmount);
 
+	FSlateFontInfo FontInfo = FAppStyle::GetFontStyle("NormalText");
+	FontInfo.Size = 15;
+
+	TSharedPtr<STextBlock> CurrentTranscriptionSlot;
 	for (int i = 0; i < TranscriptionSlotAmount; i++)
 	{
-		TSharedPtr<STextBlock> TranscriptionSlot = SNew(STextBlock)
-			.Text(FText::FromString(TEXT("- - - - -")))
-			.ColorAndOpacity(i == 0 ? FSlateColor(FLinearColor::Yellow) : FSlateColor(FLinearColor::Gray));
-
 		TranscriptionHolder->AddSlot()
 			.HAlign(HAlign_Center)
 			.Padding(4.0f)
 			.AutoHeight()
 			[
-				TranscriptionSlot.ToSharedRef()
+				SAssignNew(CurrentTranscriptionSlot, STextBlock)
+					.Text(FText::GetEmpty())
+					.Font(FontInfo)
+					.SimpleTextMode(true)
+					.ColorAndOpacity(i == 0 ? FSlateColor(FLinearColor::Yellow) : FSlateColor(FLinearColor::Gray))
 			];
 
-		TranscriptionSlots.Add(TranscriptionSlot.Get());
+		TranscriptionSlots.Add(CurrentTranscriptionSlot);
 	}
 
 	// Construct the Main Component
 
-	SOverlay::Construct(SOverlay::FArguments()
-		+ SOverlay::Slot()
-		.ZOrder(10)
+	SBox::Construct(SBox::FArguments()
 		.Padding(FMargin(5.0f))
 		[
-			SNew(SBorder)
-				.BorderBackgroundColor(FSlateColor(FLinearColor::Gray))
+			SNew(SOverlay)
+			+ SOverlay::Slot()
+				.ZOrder(1)
 				[
-					SNew(SBox)
-						.MinDesiredWidth(250.0f)
-						.MinDesiredHeight(60.0f)
+					SNew(SBorder)
+						.BorderBackgroundColor(FSlateColor(FLinearColor::Gray))
 						[
-							TranscriptionHolder.ToSharedRef()
+							SNew(SBox)
+								.MinDesiredWidth(250.0f)
+								.MinDesiredHeight(60.0f)
+								[
+									TranscriptionHolder.ToSharedRef()
+								]
 						]
 				]
-			
 		]
 	);
 
@@ -61,20 +67,26 @@ void SAccessibilityTranscriptionVis::Construct(const FArguments& InArgs)
 
 void SAccessibilityTranscriptionVis::Tick(const FGeometry& AllottedGeometry, const double InCurrentTime, const float InDeltaTime)
 {
-	SOverlay::Tick(AllottedGeometry, InCurrentTime, InDeltaTime);
+	SBox::Tick(AllottedGeometry, InCurrentTime, InDeltaTime);
 }
 
 void SAccessibilityTranscriptionVis::UpdateTopTranscription(const FString& InTopTranscription)
 {
-	FText LastTopText = FText::FromString(InTopTranscription);
-	FText TempText = FText::GetEmpty();
+	FString LastTopText = InTopTranscription;
+	FString TempText;
 
-	for (STextBlock*& TranscriptionSlot : TranscriptionSlots)
+	TSharedPtr<STextBlock> CurrentTranscriptionSlot;
+	for (TWeakPtr<STextBlock>& TranscriptionSlot : TranscriptionSlots)
 	{
-		TempText = TranscriptionSlot->GetText();
-		TranscriptionSlot->SetText(LastTopText);
+		CurrentTranscriptionSlot = TranscriptionSlot.Pin();
+
+		TempText = FString(CurrentTranscriptionSlot->GetText().ToString());
+		CurrentTranscriptionSlot->SetText(FText::FromString(LastTopText));
+
+		CurrentTranscriptionSlot->Invalidate(EInvalidateWidgetReason::PaintAndVolatility);
 
 		LastTopText = TempText;
 	}
 
+	TranscriptionContainer.Pin()->Invalidate(EInvalidateWidget::Layout);
 }

@@ -6,12 +6,13 @@
 #include "Styling/AppStyle.h"
 #include "Widgets/Layout/SBorder.h"
 
-class OPENACCESSIBILITY_API SAccessibilityTranscriptionVis : public SOverlay
+class OPENACCESSIBILITY_API SAccessibilityTranscriptionVis : public SBox
 {
 public:
 
 	SLATE_BEGIN_ARGS(SAccessibilityTranscriptionVis)
-		{}
+	: _VisAmount(1)
+	{}
 		SLATE_ARGUMENT( int, VisAmount )
 	SLATE_END_ARGS()
 
@@ -40,6 +41,6 @@ protected:
 	/// <summary>
 	/// Array of the created Transcription Slots, displaying recieved transcriptions.
 	/// </summary>
-	TArray<STextBlock*> TranscriptionSlots;
+	TArray<TWeakPtr<STextBlock>> TranscriptionSlots;
 
 };

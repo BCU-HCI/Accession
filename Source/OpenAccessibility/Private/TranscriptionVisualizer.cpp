@@ -33,6 +33,8 @@ void FTranscriptionVisualizer::ConstructVisualizer()
 	TSharedPtr<SAccessibilityTranscriptionVis> MenuContent = SNew(SAccessibilityTranscriptionVis)
 		.VisAmount(2);
 
+	MenuContent->ForceVolatile(true);
+
 	FDisplayMetrics DisplayMetrics;
 	FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);
 
@@ -41,17 +43,16 @@ void FTranscriptionVisualizer::ConstructVisualizer()
 	VisPosition.Y = DisplayMetrics.PrimaryDisplayHeight / 2;
 
 	TSharedRef<SWindow> MenuWindow = SNew(SWindow)
-		.Type(EWindowType::Menu)
+		.Type(EWindowType::Normal)
 		.SizingRule(ESizingRule::Autosized)
 		.ScreenPosition(VisPosition)
-		.AutoCenter(EAutoCenter::PrimaryWorkArea)
 		.ClientSize(FVector2D(10, 10))
+		.IsPopupWindow(false)
 		.bDragAnywhere(true)
-		.IsTopmostWindow(false)
-		.AdjustInitialSizeAndPositionForDPIScale(true)
 		.InitialOpacity(0.5f)
 		.SupportsTransparency(EWindowTransparency::PerWindow)
 		.ActivationPolicy(EWindowActivationPolicy::Always)
+		.AdjustInitialSizeAndPositionForDPIScale(true)
 		[
 			MenuContent.ToSharedRef()
 		];
@@ -82,16 +83,15 @@ void FTranscriptionVisualizer::ReparentWindow()
 	if (TopLevelActiveWindow == VisWindow.Pin() ||
 		TopLevelActiveWindow->GetContent() == VisWindow.Pin()->GetParentWidget())
 		return;
-
-	VisWindow.Pin()->AssignParentWidget(
-		TopLevelActiveWindow->GetContent()
-	);
 }
 
 void FTranscriptionVisualizer::MoveVisualizer()
 {
 	// Do Not Perform a Movement if the Active Window is the Visualizer Window.
-	TSharedRef<SWindow> TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow().ToSharedRef();
+	TSharedPtr<SWindow> TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
+	if (!TopLevelWindow.IsValid())
+		return;
+
 	TSharedRef<SWindow> VisWindowRef = VisWindow.Pin().ToSharedRef();
 
 	if (TopLevelWindow == VisWindowRef)
