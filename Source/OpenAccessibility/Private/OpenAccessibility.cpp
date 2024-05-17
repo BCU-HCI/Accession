@@ -463,20 +463,53 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				return TSharedPtr<IMenu>();
 			}
 
-			ActiveGraphEditor->GetGraphPanel()->SummonCreateNodeMenuFromUICommand(0);
+			SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
+
+			FDisplayMetrics DisplayMetrics;
+			FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);
+
+			DisplayMetrics.PrimaryDisplayHeight;
+
+			TSharedPtr<SWindow> TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
+
+			FVector2D SpawnLocation;
+			if (TopLevelWindow.IsValid())
+			{
+				SpawnLocation = TopLevelWindow->GetPositionInScreen();
+
+				SpawnLocation.X += TopLevelWindow->GetSizeInScreen().X / 5;
+				SpawnLocation.Y += TopLevelWindow->GetSizeInScreen().Y / 5;
+			}
+			else
+			{
+				SpawnLocation = FVector2D(DisplayMetrics.PrimaryDisplayWidth / 4, DisplayMetrics.PrimaryDisplayHeight / 4);
+			}
+
+			TSharedPtr<SWidget> ContextWidgetToFocus = GraphPanel->SummonContextMenu(
+				SpawnLocation, 
+				GraphPanel->GetPastePosition(), 
+				nullptr, 
+				nullptr, 
+				TArray<UEdGraphPin*>()
+			);
+
+			if (ContextWidgetToFocus.IsValid())
+			{
+				FSlateApplication::Get().SetKeyboardFocus(ContextWidgetToFocus);
+			}
 
 			TSharedPtr<SWidget> KeyboardFocusedWidget = FSlateApplication::Get().GetKeyboardFocusedWidget();
-
-			if (KeyboardFocusedWidget.IsValid())
+			if (!KeyboardFocusedWidget.IsValid())
 			{
-				FWidgetPath KeyboardFocusWidgetPath;
-				if (FSlateApplication::Get().FindPathToWidget(KeyboardFocusedWidget.ToSharedRef(), KeyboardFocusWidgetPath))
-				{
-					UE_LOG(LogOpenAccessibility, Display, TEXT("Keyboard Focused Widget Path Found."))
-						TSharedPtr<IMenu> Menu = FSlateApplication::Get().FindMenuInWidgetPath(KeyboardFocusWidgetPath);
+				return TSharedPtr<IMenu>();
+			}
 
-					return Menu;
-				}
+			FWidgetPath KeyboardFocusWidgetPath;
+			if (FSlateApplication::Get().FindPathToWidget(KeyboardFocusedWidget.ToSharedRef(), KeyboardFocusWidgetPath))
+			{
+				TSharedPtr<IMenu> Menu = FSlateApplication::Get().FindMenuInWidgetPath(KeyboardFocusWidgetPath);
+
+				return Menu;
 			}
 			
 			return TSharedPtr<IMenu>();
