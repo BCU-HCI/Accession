@@ -447,9 +447,9 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 
 	// Node Menu Events
-	TDelegate<TSharedPtr<IMenu>()> GetAddNodeMenuEvent;
+	TDelegate<TSharedPtr<IMenu>(FParseRecord&)> GetAddNodeMenuEvent;
 	GetAddNodeMenuEvent.BindLambda(
-		[this] () -> TSharedPtr<IMenu> {
+		[this] (FParseRecord& Record) -> TSharedPtr<IMenu> {
 
 			TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 			if (!ActiveTab.IsValid())
@@ -512,6 +512,90 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				return Menu;
 			}
 			
+			return TSharedPtr<IMenu>();
+		}
+	);
+
+	TDelegate<TSharedPtr<IMenu>(FParseRecord&)> GetAddNodeMenu_PinEvent;
+	GetAddNodeMenu_PinEvent.BindLambda(
+		[this](FParseRecord& Record) -> TSharedPtr<IMenu> {
+
+			TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+			if (!ActiveTab.IsValid())
+			{
+				return TSharedPtr<IMenu>();
+			}
+
+			TSharedPtr<SGraphEditor> ActiveGraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab->GetContent().ToSharedPtr());
+			if (!ActiveGraphEditor.IsValid())
+			{
+				return TSharedPtr<IMenu>();
+			}
+
+			SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
+
+			FDisplayMetrics DisplayMetrics;
+			FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);
+
+			DisplayMetrics.PrimaryDisplayHeight;
+
+			TSharedPtr<SWindow> TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
+
+			FVector2D SpawnLocation;
+			if (TopLevelWindow.IsValid())
+			{
+				SpawnLocation = TopLevelWindow->GetPositionInScreen();
+
+				SpawnLocation.X += TopLevelWindow->GetSizeInScreen().X / 5;
+				SpawnLocation.Y += TopLevelWindow->GetSizeInScreen().Y / 5;
+			}
+			else
+			{
+				SpawnLocation = FVector2D(DisplayMetrics.PrimaryDisplayWidth / 4, DisplayMetrics.PrimaryDisplayHeight / 4);
+			}
+
+			TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+			UParseIntInput* NodeIndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+			UParseIntInput* PinIndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("PIN_INDEX"));
+
+			if (NodeIndexInput == nullptr || PinIndexInput == nullptr)
+			{
+				return TSharedPtr<IMenu>();
+			}
+
+			TSharedPtr<SWidget> ContextWidgetToFocus = GraphPanel->SummonContextMenu(
+				SpawnLocation,
+				GraphPanel->GetPastePosition(),
+				nullptr,
+				nullptr,
+				TArray<UEdGraphPin*> {
+					IndexerForGraph->GetPin(
+						NodeIndexInput->GetValue(),
+						PinIndexInput->GetValue()
+					)
+				}
+			);
+
+			if (ContextWidgetToFocus.IsValid())
+			{
+				FSlateApplication::Get().SetKeyboardFocus(ContextWidgetToFocus);
+			}
+
+			TSharedPtr<SWidget> KeyboardFocusedWidget = FSlateApplication::Get().GetKeyboardFocusedWidget();
+			if (!KeyboardFocusedWidget.IsValid())
+			{
+				return TSharedPtr<IMenu>();
+			}
+
+			FWidgetPath KeyboardFocusWidgetPath;
+			if (FSlateApplication::Get().FindPathToWidget(KeyboardFocusedWidget.ToSharedRef(), KeyboardFocusWidgetPath))
+			{
+				TSharedPtr<IMenu> Menu = FSlateApplication::Get().FindMenuInWidgetPath(KeyboardFocusWidgetPath);
+
+				return Menu;
+			}
+
 			return TSharedPtr<IMenu>();
 		}
 	);
@@ -665,12 +749,78 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 											MakeShared<FPhraseNode>(TEXT("CONNECT"),
 											TPhraseNodeArray {
 
-													MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+													MakeShared<FPhraseNode>(TEXT("NODE"),
 													TPhraseNodeArray {
 
-															MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+															MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+																	TEXT("ADD"),
+																	1.5f,
+																	GetAddNodeMenu_PinEvent,
+																	TPhraseNodeArray{
+
+																			MakeShared<FPhraseNode>(TEXT("SELECT"),
+																			TPhraseNodeArray {
+
+																					MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+																					TPhraseNodeArray {
+
+																							Context_SelectAction
+																					})
+																			}),
+
+																			MakeShared<FPhraseNode>(TEXT("SEARCH"),
+																			TPhraseNodeArray {
+
+																					MakeShared<FPhraseNode>(TEXT("NEW"),
+																					TPhraseNodeArray {
+
+																							MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
+																							TPhraseNodeArray {
+																								Context_SearchNewPhrase
+																							})
+																					}),
+
+																					MakeShared<FPhraseNode>(TEXT("ADD"),
+																					TPhraseNodeArray {
+
+																							MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
+																							TPhraseNodeArray {
+																								Context_SearchAppendPhrase
+																							})
+																					}),
+
+																					MakeShared<FPhraseNode>(TEXT("RESET"),
+																					TPhraseNodeArray {
+																						Context_SearchReset
+																					})
+																			}),
+
+																			MakeShared<FPhraseNode>(TEXT("SCROLL"),
+																			TPhraseNodeArray {
+
+																					MakeShared<FPhraseScrollInputNode>(TEXT("DIRECTION"),
+																					TPhraseNodeArray {
+
+																							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+																							TPhraseNodeArray {
+																								Context_Scroll
+																							})
+																					})
+																			}),
+
+																			MakeShared<FPhraseNode>(TEXT("TOGGLE"),
+																			TPhraseNodeArray {
+																					Context_ToggleContextAwareness
+																			})
+																	}),
+
+															MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 															TPhraseNodeArray {
-																PinConnectEventNode
+
+																	MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+																	TPhraseNodeArray {
+																		PinConnectEventNode
+																	})
 															})
 													})
 											}),
