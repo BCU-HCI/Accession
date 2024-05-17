@@ -19,7 +19,7 @@ void SAccessibilityTranscriptionVis::Construct(const FArguments& InArgs)
 	TranscriptionSlotAmount = FMath::Max(1, InArgs._VisAmount);
 
 	FSlateFontInfo FontInfo = FAppStyle::GetFontStyle("NormalText");
-	FontInfo.Size = 15;
+	FontInfo.Size = 12;
 
 	TSharedPtr<STextBlock> CurrentTranscriptionSlot;
 	for (int i = 0; i < TranscriptionSlotAmount; i++)

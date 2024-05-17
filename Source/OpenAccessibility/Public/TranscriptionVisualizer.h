@@ -43,6 +43,18 @@ public:
 
 protected:
 
+	/// <summary>
+	/// Gets the Position of the Visualizer for the Top Active Screen.
+	/// </summary>
+	/// <param name="OutPosition"></param>
+	bool GetTopScreenVisualizerPosition(FVector2D& OutPosition);
+
+	/// <summary>
+	/// Gets the Position of the Visualizer for the Last Active Display.
+	/// </summary>
+	/// <param name="OutPosition"></param>
+	bool GetDisplayVisualizerPosition(FVector2D& OutPosition);
+
 	// Ticker Manager Methods
 
 	/// <summary>

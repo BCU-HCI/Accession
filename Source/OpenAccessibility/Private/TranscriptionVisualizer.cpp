@@ -39,16 +39,20 @@ void FTranscriptionVisualizer::ConstructVisualizer()
 	FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);
 
 	FVector2D VisPosition = FVector2D();
-	VisPosition.X = DisplayMetrics.PrimaryDisplayWidth / 2;
-	VisPosition.Y = DisplayMetrics.PrimaryDisplayHeight / 2;
+
+	if (FSlateApplication::Get().GetActiveTopLevelRegularWindow().IsValid())
+	{
+		VisPosition = FSlateApplication::Get().GetActiveTopLevelRegularWindow()->GetPositionInScreen();
+	}
+	VisPosition.X = DisplayMetrics.PrimaryDisplayWidth;
+	VisPosition.Y = DisplayMetrics.PrimaryDisplayHeight;
 
 	TSharedRef<SWindow> MenuWindow = SNew(SWindow)
 		.Type(EWindowType::Normal)
 		.SizingRule(ESizingRule::Autosized)
 		.ScreenPosition(VisPosition)
 		.ClientSize(FVector2D(10, 10))
-		.IsPopupWindow(false)
-		.bDragAnywhere(true)
+		.IsPopupWindow(true)
 		.InitialOpacity(0.5f)
 		.SupportsTransparency(EWindowTransparency::PerWindow)
 		.ActivationPolicy(EWindowActivationPolicy::Always)
@@ -57,7 +61,12 @@ void FTranscriptionVisualizer::ConstructVisualizer()
 			MenuContent.ToSharedRef()
 		];
 
-	VisWindow = FSlateApplication::Get().AddWindowAsNativeChild(MenuWindow, FSlateApplication::Get().GetActiveTopLevelRegularWindow().ToSharedRef(), true);
+	TSharedPtr<SWindow> TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
+
+	MenuWindow->AssignParentWidget(TopLevelWindow);
+	FSlateApplication::Get().AddWindowAsNativeChild(MenuWindow , TopLevelWindow.ToSharedRef(), true);
+
+	VisWindow = MenuWindow.ToWeakPtr();
 	VisContent = MenuContent.ToWeakPtr();
 }
 
@@ -67,7 +76,7 @@ void FTranscriptionVisualizer::UpdateVisualizer()
 	{
 		VisWindow.Pin()->ShowWindow();
 
-		ReparentWindow();
+		// ReparentWindow();
 
 		MoveVisualizer();
 	}
@@ -80,34 +89,32 @@ void FTranscriptionVisualizer::ReparentWindow()
 	if (!TopLevelActiveWindow.IsValid())
 		return;
 
+	TSharedPtr<SWindow> VisWindowPtr = VisWindow.Pin();
+
 	if (TopLevelActiveWindow == VisWindow.Pin() ||
-		TopLevelActiveWindow->GetContent() == VisWindow.Pin()->GetParentWidget())
+		TopLevelActiveWindow->GetContent() == VisWindowPtr->GetParentWidget())
 		return;
+
+	TSharedPtr<SWindow> PrevParentWindow = VisWindowPtr->GetParentWindow();
+	if (PrevParentWindow.IsValid())
+	{
+		PrevParentWindow->RemoveDescendantWindow(VisWindowPtr.ToSharedRef());
+	}
+
+	VisWindowPtr->AssignParentWidget(TopLevelActiveWindow);
+	TopLevelActiveWindow->AddChildWindow(VisWindowPtr.ToSharedRef());
 }
 
 void FTranscriptionVisualizer::MoveVisualizer()
 {
-	// Do Not Perform a Movement if the Active Window is the Visualizer Window.
-	TSharedPtr<SWindow> TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
-	if (!TopLevelWindow.IsValid())
-		return;
+	FVector2D NewPosition = FVector2D();
 
-	TSharedRef<SWindow> VisWindowRef = VisWindow.Pin().ToSharedRef();
-
-	if (TopLevelWindow == VisWindowRef)
-		return;
-
-	FVector2D ActiveWindowPosition = FSlateApplication::Get().GetActiveTopLevelRegularWindow()->GetPositionInScreen();
-	FVector2D ActiveWindowBounds = FSlateApplication::Get().GetActiveTopLevelRegularWindow()->GetClientSizeInScreen();
-
+	if (!GetTopScreenVisualizerPosition(NewPosition))
 	{
-		FVector2D NewPosition = FVector2D();
-
-		NewPosition.X = (ActiveWindowPosition.X + ActiveWindowBounds.X / 2)  - (VisWindowRef->GetClientSizeInScreen().X / 2);
-		NewPosition.Y = (ActiveWindowPosition.Y + ActiveWindowBounds.Y - 50) - VisWindowRef->GetClientSizeInScreen().Y;
-
-		VisWindowRef->MoveWindowTo(NewPosition);
+		GetDisplayVisualizerPosition(NewPosition);
 	}
+
+	VisWindow.Pin()->MoveWindowTo(NewPosition);
 }
 
 void FTranscriptionVisualizer::OnTranscriptionRecieved(TArray<FString> InTranscription)
@@ -116,6 +123,34 @@ void FTranscriptionVisualizer::OnTranscriptionRecieved(TArray<FString> InTranscr
 	{
 		VisContent.Pin()->UpdateTopTranscription(InTranscription[i]);
 	}
+}
+
+bool FTranscriptionVisualizer::GetTopScreenVisualizerPosition(FVector2D& OutPosition)
+{
+	TSharedPtr<SWindow> TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
+	if (!TopLevelWindow.IsValid())
+		return false;
+
+	FVector2D ActiveWindowPosition = TopLevelWindow->GetPositionInScreen();
+	FVector2D ActiveWindowBounds = TopLevelWindow->GetClientSizeInScreen();
+
+	TSharedPtr<SWindow> VisWindowPtr = VisWindow.Pin();
+
+	OutPosition.X = (ActiveWindowPosition.X + ActiveWindowBounds.X / 2) - (VisWindowPtr->GetClientSizeInScreen().X / 2);
+	OutPosition.Y = (ActiveWindowPosition.Y + ActiveWindowBounds.Y - 50) - VisWindowPtr->GetClientSizeInScreen().Y;
+
+	return true;
+}
+
+bool FTranscriptionVisualizer::GetDisplayVisualizerPosition(FVector2D& OutPosition)
+{
+	FDisplayMetrics DisplayMetrics;
+	FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);
+
+	OutPosition.X = DisplayMetrics.PrimaryDisplayWidth;
+	OutPosition.Y = DisplayMetrics.PrimaryDisplayHeight;
+	
+	return true;
 }
 
 void FTranscriptionVisualizer::RegisterTicker()
