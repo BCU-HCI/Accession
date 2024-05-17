@@ -10,7 +10,11 @@ from .WhisperInterface import WhisperInterface
 from .Audio import AudioResampler
 from .Logging import Log, LogLevel
 
-import LibUtils
+from .LibUtils import (
+    get_filtered_path_list,
+    get_child_directories,
+    append_paths_to_library_path,
+)
 
 
 def forward_CUDA_CUDNN_to_path():
@@ -21,12 +25,10 @@ def forward_CUDA_CUDNN_to_path():
     Not always needed, but useful for some systems.
     """
 
-    filtered_path_list = LibUtils.get_filtered_path_list(["CUDA", "CUDNN"])
+    filtered_path_list = get_filtered_path_list(["CUDA", "CUDNN"])
 
     for path in filtered_path_list:
-        LibUtils.append_paths_to_library_path(
-            LibUtils.get_child_directories(path, depth=1)
-        )
+        append_paths_to_library_path(get_child_directories(path, depth=1))
 
 
 class OpenAccessibilityPy:

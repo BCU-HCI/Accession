@@ -7,6 +7,7 @@ INSTALL_DEPS = [
     "numpy",
     "faster-whisper",
     "pyzmq",
+    "av",
 ]
 
 setup(
