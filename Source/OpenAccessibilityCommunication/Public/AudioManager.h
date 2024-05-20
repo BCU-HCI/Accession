@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "UBAudioCapture.h"
+#include "AudioCapture.h"
 #include "Sound/SampleBufferIO.h"
 #include "Delegates/DelegateCombinations.h"
 
@@ -112,7 +112,7 @@ private:
     
     // Audio Capture
     bool bIsCapturingAudio = false;
-    class UBAudioCapture* AudioCapture;
+    class UAudioCapture* AudioCapture;
     TArray<float> AudioBuffer;
 
     FAudioGeneratorHandle OnAudioGenerateHandle;

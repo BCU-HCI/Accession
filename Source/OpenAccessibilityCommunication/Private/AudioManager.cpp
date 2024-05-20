@@ -14,19 +14,19 @@ UAudioManager::UAudioManager()
 
 	// Create Audio Capture Object and Initialize Audio Stream
 	bIsCapturingAudio = false;
-    AudioCapture = NewObject<UBAudioCapture>();
+    AudioCapture = NewObject<UAudioCapture>();
 	AudioCapture->AddToRoot();
-	AudioCapture->OpenDefaultAudioStream(NULL, NULL);
+	AudioCapture->OpenDefaultAudioStream();
 	AudioCapture->StartCapturingAudio();
-
-	// Create FileIO Objects
-	FileWriter = new Audio::FSoundWavePCMWriter();
 
 	// Add Audio Generator Delegate to get audio data from stream, 
 	// and apply wrapper function due to wanting to reference class function.
 	OnAudioGenerateHandle = AudioCapture->AddGeneratorDelegate(FOnAudioGenerate([this](const float* InAudio, int32 NumSamples) { 
 		if (this->IsCapturingAudio()) this->PRIVATE_OnAudioGenerate(InAudio, NumSamples);
 	}));
+
+	// Create FileIO Objects
+	FileWriter = new Audio::FSoundWavePCMWriter();
 }
 
 UAudioManager::~UAudioManager()
