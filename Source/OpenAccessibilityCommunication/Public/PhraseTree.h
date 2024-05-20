@@ -259,6 +259,12 @@ private:
 	TSharedPtr<FPhraseNode> LastVistedNode;
 
 	/// <summary>
+	/// The Parse Record that was achieved from the last visit to the tree that failed.
+	/// Allowing for correct propogation of Record Dependant Nodes, with correct inputs.
+	/// </summary>
+	TUniquePtr<FParseRecord> LastVistedParseRecord;
+
+	/// <summary>
 	/// The Manager for the Context Objects, that are currently active in the Tree.
 	/// With them being stored in a stack context.
 	/// </summary>

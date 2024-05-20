@@ -77,7 +77,7 @@ import OpenAccessibilityPy as OAPy
 
 # Helps Circumvent CUDA and CUDNN Issues
 # during the inference process with the Whisper Model.
-OAPy.forward_CUDA_CUDNN_to_path()
+# OAPy.forward_CUDA_CUDNN_to_path()
 
 # Initialize the Runtime
 OpenAccessibilityPy = OAPy.OpenAccessibilityPy()
