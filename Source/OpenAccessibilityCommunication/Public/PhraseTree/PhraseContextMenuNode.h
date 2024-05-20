@@ -33,7 +33,7 @@ public:
 		ConstructContextChildren(InChildNodes);
 	};
 
-	FPhraseContextMenuNode(const TCHAR* InInputString, TDelegate<TSharedPtr<IMenu>()> InOnGetMenu, TPhraseNodeArray InChildNodes)
+	FPhraseContextMenuNode(const TCHAR* InInputString, TDelegate<TSharedPtr<IMenu>(FParseRecord& Record)> InOnGetMenu, TPhraseNodeArray InChildNodes)
 		: FPhraseNode(InInputString)
 		, ContextMenuScalar(1.0f)
 		, OnGetMenu(InOnGetMenu)
@@ -52,7 +52,7 @@ public:
 		ConstructContextChildren(InChildNodes);
 	};
 
-	FPhraseContextMenuNode(const TCHAR* InInputString, const float InMenuScalar, TDelegate<TSharedPtr<IMenu>()> InOnGetMenu, TPhraseNodeArray InChildNodes)
+	FPhraseContextMenuNode(const TCHAR* InInputString, const float InMenuScalar, TDelegate<TSharedPtr<IMenu>(FParseRecord& Record)> InOnGetMenu, TPhraseNodeArray InChildNodes)
 		: FPhraseNode(InInputString)
 		, ContextMenuScalar(InMenuScalar)
 		, OnGetMenu(InOnGetMenu)
@@ -71,7 +71,7 @@ public:
 		ConstructContextChildren(InChildNodes);
 	}
 
-	FPhraseContextMenuNode(const TCHAR* InInputString, const float InMenuScalar, TDelegate<TSharedPtr<IMenu>()> InOnGetMenu, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+	FPhraseContextMenuNode(const TCHAR* InInputString, const float InMenuScalar, TDelegate<TSharedPtr<IMenu>(FParseRecord& Record)> InOnGetMenu, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
 		: FPhraseNode(InInputString, InOnPhraseParsed)
 		, ContextMenuScalar(InMenuScalar)
 		, OnGetMenu(InOnGetMenu)
@@ -100,7 +100,7 @@ protected:
 
 	bool HasContextObject(TArray<UPhraseTreeContextObject*> InContextObjects) const;
 
-	virtual UPhraseTreeContextObject* CreateContextObject();
+	virtual UPhraseTreeContextObject* CreateContextObject(FParseRecord& Record);
 
 	virtual void ConstructContextChildren(TPhraseNodeArray& InChildNodes);
 
@@ -110,7 +110,7 @@ protected:
 
 	const float ContextMenuScalar;
 
-	TDelegate<TSharedPtr<IMenu>()> OnGetMenu;
+	TDelegate<TSharedPtr<IMenu>(FParseRecord& Record)> OnGetMenu;
 };
 
 template<typename ContextMenuType>
@@ -118,7 +118,7 @@ FParseResult FPhraseContextMenuNode<ContextMenuType>::ParsePhrase(TArray<FString
 {
 	if (!HasContextObject(InParseRecord.GetContextStack()))
 	{
-		UPhraseTreeContextObject* NewObject = CreateContextObject();
+		UPhraseTreeContextObject* NewObject = CreateContextObject(InParseRecord);
 
 		InParseRecord.PushContextObj(NewObject);
 	}
@@ -144,7 +144,7 @@ inline FParseResult FPhraseContextMenuNode<ContextMenuType>::ParsePhraseAsContex
 {
 	if (!HasContextObject(InParseRecord.GetContextStack()))
 	{
-		UPhraseTreeContextObject* NewObject = CreateContextObject();
+		UPhraseTreeContextObject* NewObject = CreateContextObject(InParseRecord);
 
 		InParseRecord.PushContextObj(NewObject);
 	}
@@ -176,7 +176,7 @@ bool FPhraseContextMenuNode<ContextMenuType>::HasContextObject(TArray<UPhraseTre
 }
 
 template<typename ContextMenuType>
-UPhraseTreeContextObject* FPhraseContextMenuNode<ContextMenuType>::CreateContextObject()
+UPhraseTreeContextObject* FPhraseContextMenuNode<ContextMenuType>::CreateContextObject(FParseRecord& Record)
 {
 	if (!OnGetMenu.IsBound())
 	{
@@ -184,7 +184,7 @@ UPhraseTreeContextObject* FPhraseContextMenuNode<ContextMenuType>::CreateContext
 		return nullptr;
 	}
 
-	TSharedPtr<IMenu> NewMenu = OnGetMenu.Execute();
+	TSharedPtr<IMenu> NewMenu = OnGetMenu.Execute(Record);
 
 	if (!NewMenu.IsValid())
 	{

@@ -22,10 +22,10 @@ protected:
 	virtual bool HasContextObject(TArray<UPhraseTreeContextObject*> InContextObjects) const = 0;
 
 	/// <summary>
-	/// Creates a Context Object.
+	/// Creates a Context Object, using Record Inputs.
 	/// </summary>
 	/// <returns></returns>
-	virtual UPhraseTreeContextObject* CreateContextObject() = 0;
+	virtual UPhraseTreeContextObject* CreateContextObject(FParseRecord& Record) = 0;
 
 	/// <summary>
 	/// Constructs the Context Nodes Children, from Given Child Nodes.
