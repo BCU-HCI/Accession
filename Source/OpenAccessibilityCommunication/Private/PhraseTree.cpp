@@ -97,7 +97,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment Parsed ||"))
 				
 				LastVistedNode.Reset();
-				LastVistedParseRecord.Reset();
+				LastVistedParseRecord = FParseRecord();
 
 				break;
 			}
@@ -108,7 +108,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment Requires More Word Segments ||"))
 
 				LastVistedNode = ParseResult.ReachedNode;
-				LastVistedParseRecord.Reset(&ParseRecord);
+				LastVistedParseRecord = ParseRecord;
 
 				break;
 			}
@@ -141,11 +141,11 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 	{
 		TArray<FString> PhraseWordArrayCopy = TArray<FString>(InPhraseWordArray);
 
-		FParseResult ParseResult = LastVistedNode->ParseChildren(PhraseWordArrayCopy, *LastVistedParseRecord);
+		FParseResult ParseResult = LastVistedNode->ParseChildren(PhraseWordArrayCopy, LastVistedParseRecord);
 		if (ParseResult.Result == PHRASE_PARSED)
 		{
 			LastVistedNode.Reset();
-			LastVistedParseRecord.Reset();
+			LastVistedParseRecord = FParseRecord();
 
 			return ParseResult;
 		}

@@ -37,6 +37,11 @@ FPhraseNode::~FPhraseNode()
 
 }
 
+bool FPhraseNode::HasLeafChild() const
+{
+    return bHasLeafChild;
+}
+
 bool FPhraseNode::RequiresPhrase(FString InPhrase)
 {
     return InPhrase.Equals(BoundPhrase, ESearchCase::IgnoreCase) || Algo::LevenshteinDistance(BoundPhrase, InPhrase) < 3;
@@ -156,21 +161,24 @@ bool FPhraseNode::BindChildrenNodesForce(TPhraseNodeArray InNodes)
     return true;
 }
 
+bool FPhraseNode::HasLeafChild()
+{
+    return ChildNodes.Num() == 1 && ChildNodes[0]->IsLeafNode();
+}
+
 FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
 {
+    if (InPhraseArray.IsEmpty() && !HasLeafChild())
+        return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
+
     for (auto& ChildNode : ChildNodes)
     {
         // ChildNodes cannot have duplicate bound phrases.
-        if (ChildNode->IsLeafNode() || (InPhraseArray.Num() > 0 && ChildNode->RequiresPhrase(InPhraseArray.Last())))
+        if (ChildNode->IsLeafNode() || ChildNode->RequiresPhrase(InPhraseArray.Last()))
         {
             return ChildNode->ParsePhrase(InPhraseArray, InParseRecord);
         }
     }
-
-	if (InPhraseArray.Num() > 0)
-    {
-		return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
-	}
 
 	return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
 }
