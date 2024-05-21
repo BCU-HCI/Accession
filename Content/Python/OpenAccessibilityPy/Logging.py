@@ -1,5 +1,4 @@
 from enum import Enum
-import unreal as ue
 
 
 class LogLevel(Enum):
@@ -12,11 +11,18 @@ def Log(message: str, log_level: LogLevel = LogLevel.INFO):
 
     message = f"|| LogOpenAccessibilityPy || {message} ||"
 
-    if log_level == LogLevel.INFO:
-        ue.log(message)
-    elif log_level == LogLevel.WARNING:
-        ue.log_warning(message)
-    elif log_level == LogLevel.ERROR:
-        ue.log_error(message)
-    else:
-        ue.log(message)
+    try:
+        from unreal import log, log_warning, log_error
+
+        if log_level == LogLevel.INFO:
+            log(message)
+        elif log_level == LogLevel.WARNING:
+            log_warning(message)
+        elif log_level == LogLevel.ERROR:
+            log_error(message)
+        else:
+            log(message)
+
+    except ImportError:
+        print(message)
+        pass

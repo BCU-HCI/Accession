@@ -5,6 +5,8 @@
 #include "OpenAccessibilityComLogging.h"
 #include "SocketCommunicationServer.h"
 
+#include "AudioCaptureCore.h"
+#include "AudioDeviceNotificationSubsystem.h"
 #include "Templates/Function.h"
 
 UAudioManager::UAudioManager()
@@ -14,26 +16,33 @@ UAudioManager::UAudioManager()
 	// Create Audio Capture Object and Initialize Audio Stream
 	bIsCapturingAudio = false;
     AudioCapture = NewObject<UAudioCapture>();
-	AudioCapture->AddToRoot();
 	AudioCapture->OpenDefaultAudioStream();
 	AudioCapture->StartCapturingAudio();
 
+	RegisterAudioGenerator();
+
+	/*
+	UAudioDeviceNotificationSubsystem* AudioDeviceNotificationSubsystem = UAudioDeviceNotificationSubsystem::Get();
+	if (AudioDeviceNotificationSubsystem != nullptr)
+	{
+		AudioDeviceNotificationSubsystem->DefaultCaptureDeviceChangedNative
+			.AddUObject(this, &UAudioManager::OnDefaultDeviceChanged);
+	}
+	*/
+
 	// Create FileIO Objects
 	FileWriter = new Audio::FSoundWavePCMWriter();
-
-	// Add Audio Generator Delegate to get audio data from stream, 
-	// and apply wrapper function due to wanting to reference class function.
-	OnAudioGenerateHandle = AudioCapture->AddGeneratorDelegate(FOnAudioGenerate([this](const float* InAudio, int32 NumSamples) { 
-		if (this->IsCapturingAudio()) this->PRIVATE_OnAudioGenerate(InAudio, NumSamples);
-	}));
 }
 
 UAudioManager::~UAudioManager()
 {
+	UnregisterAudioGenerator();
 
 	AudioCapture->StopCapturingAudio();
-	AudioCapture->RemoveGeneratorDelegate(OnAudioGenerateHandle);
 	AudioCapture->RemoveFromRoot();
+
+	UAudioDeviceNotificationSubsystem::Get()->DefaultCaptureDeviceChangedNative
+		.Remove(OnDefaultDeviceChangedHandle);
 
 	delete AudioCapture; AudioCapture = nullptr;
 	delete FileWriter; FileWriter = nullptr;
@@ -41,6 +50,8 @@ UAudioManager::~UAudioManager()
 
 void UAudioManager::StartCapturingAudio()
 {
+	AudioBuffer.Empty();
+
 	bIsCapturingAudio = true;
 }
 
@@ -52,10 +63,17 @@ void UAudioManager::StopCapturingAudio()
 		return;
 
 	SaveAudioBufferToWAV(Settings.SavePath);
-	
-	SendBufferForTranscription();
 
-	AudioBuffer.Reset();
+	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer))
+	{
+		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Executing Audio Ready For Transcription Delegate. ||"));
+	}
+	else
+	{
+		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| No Delegates Bound to Audio Ready For Transcription Delegate. ||"));
+	}
+
+	AudioBuffer.Empty();
 }
 
 void UAudioManager::PRIVATE_OnAudioGenerate(const float* InAudio, int32 NumSamples)
@@ -79,25 +97,24 @@ void UAudioManager::SaveAudioBufferToWAV(const FString& FilePath)
 	});
 }
 
-void UAudioManager::SendBufferForTranscription()
+void UAudioManager::OnDefaultDeviceChanged(EAudioDeviceChangedRole ChangedRole, FString DeviceID)
 {
-	/*
-	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer))
-	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Sending Buffer for Transcription | Using Bound Transcriber ||"));
-	}
-	else
-	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("No Bound Delegates for OnAudioReadyForTranscription"));
-	}
-	*/
+	UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Default Device Changed || Role: %d || DeviceID: %s ||"), ChangedRole, *DeviceID);
 
-	if (FOpenAccessibilityCommunicationModule::Get()->SocketServer->SendArray(AudioBuffer.GetData(), AudioBuffer.Num(), zmq::send_flags::dontwait))
-	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Sending Buffer for Transcription | Using Socket Server ||"));
-	}
-	else
-	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Sending Buffer for Transcription | Failed to Send using Socket Server ||"));
-	}
+	this->UnregisterAudioGenerator();
+	this->RegisterAudioGenerator();
+}
+
+void UAudioManager::RegisterAudioGenerator()
+{
+	// Add Audio Generator Delegate to get audio data from stream, 
+	// and apply wrapper function due to wanting to reference class function.
+	OnAudioGenerateHandle = AudioCapture->AddGeneratorDelegate(FOnAudioGenerate([this](const float* InAudio, int32 NumSamples) {
+		if (this->IsCapturingAudio()) this->PRIVATE_OnAudioGenerate(InAudio, NumSamples);
+	}));
+}
+
+void UAudioManager::UnregisterAudioGenerator()
+{
+	AudioCapture->RemoveGeneratorDelegate(OnAudioGenerateHandle);
 }

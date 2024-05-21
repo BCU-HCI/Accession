@@ -15,11 +15,6 @@ public class OpenAccessibility : ModuleRules
 			}
 			);
 
-        // Add Private KismetNodes and MaterialNodes to the project.
-        /*
-		string PrivateGraphEditorPath = Path.Combine(Path.GetFullPath(Target.RelativeEnginePath), "Source/Editor/GraphEditor/Private");
-		*/
-
         PrivateIncludePaths.AddRange(
 			new string[] {
 				// ... add other private include paths required here ...
@@ -54,6 +49,7 @@ public class OpenAccessibility : ModuleRules
 				// Slate UI
                 "Slate",
 				"SlateCore",
+				"EditorStyle",
             }
 			);
 		
