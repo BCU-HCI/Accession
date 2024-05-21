@@ -6,6 +6,7 @@
 #include "SocketCommunicationServer.h"
 
 #include "AudioCaptureCore.h"
+#include "AudioDeviceNotificationSubsystem.h"
 #include "Templates/Function.h"
 
 UAudioManager::UAudioManager()
@@ -15,15 +16,19 @@ UAudioManager::UAudioManager()
 	// Create Audio Capture Object and Initialize Audio Stream
 	bIsCapturingAudio = false;
     AudioCapture = NewObject<UAudioCapture>();
-	AudioCapture->AddToRoot();
 	AudioCapture->OpenDefaultAudioStream();
 	AudioCapture->StartCapturingAudio();
 
-	// Add Audio Generator Delegate to get audio data from stream, 
-	// and apply wrapper function due to wanting to reference class function.
-	OnAudioGenerateHandle = AudioCapture->AddGeneratorDelegate(FOnAudioGenerate([this](const float* InAudio, int32 NumSamples) { 
-		if (this->IsCapturingAudio()) this->PRIVATE_OnAudioGenerate(InAudio, NumSamples);
-	}));
+	RegisterAudioGenerator();
+
+	/*
+	UAudioDeviceNotificationSubsystem* AudioDeviceNotificationSubsystem = UAudioDeviceNotificationSubsystem::Get();
+	if (AudioDeviceNotificationSubsystem != nullptr)
+	{
+		AudioDeviceNotificationSubsystem->DefaultCaptureDeviceChangedNative
+			.AddUObject(this, &UAudioManager::OnDefaultDeviceChanged);
+	}
+	*/
 
 	// Create FileIO Objects
 	FileWriter = new Audio::FSoundWavePCMWriter();
@@ -31,10 +36,13 @@ UAudioManager::UAudioManager()
 
 UAudioManager::~UAudioManager()
 {
+	UnregisterAudioGenerator();
 
 	AudioCapture->StopCapturingAudio();
-	AudioCapture->RemoveGeneratorDelegate(OnAudioGenerateHandle);
 	AudioCapture->RemoveFromRoot();
+
+	UAudioDeviceNotificationSubsystem::Get()->DefaultCaptureDeviceChangedNative
+		.Remove(OnDefaultDeviceChangedHandle);
 
 	delete AudioCapture; AudioCapture = nullptr;
 	delete FileWriter; FileWriter = nullptr;
@@ -87,4 +95,26 @@ void UAudioManager::SaveAudioBufferToWAV(const FString& FilePath)
 	FileWriter->BeginWriteToWavFile(SampleBuffer, Settings.SaveName, const_cast<FString&>(FilePath), []() {
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("Audio Buffer Saved to WAV"));
 	});
+}
+
+void UAudioManager::OnDefaultDeviceChanged(EAudioDeviceChangedRole ChangedRole, FString DeviceID)
+{
+	UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Default Device Changed || Role: %d || DeviceID: %s ||"), ChangedRole, *DeviceID);
+
+	this->UnregisterAudioGenerator();
+	this->RegisterAudioGenerator();
+}
+
+void UAudioManager::RegisterAudioGenerator()
+{
+	// Add Audio Generator Delegate to get audio data from stream, 
+	// and apply wrapper function due to wanting to reference class function.
+	OnAudioGenerateHandle = AudioCapture->AddGeneratorDelegate(FOnAudioGenerate([this](const float* InAudio, int32 NumSamples) {
+		if (this->IsCapturingAudio()) this->PRIVATE_OnAudioGenerate(InAudio, NumSamples);
+	}));
+}
+
+void UAudioManager::UnregisterAudioGenerator()
+{
+	AudioCapture->RemoveGeneratorDelegate(OnAudioGenerateHandle);
 }

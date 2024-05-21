@@ -7,6 +7,7 @@
 #include "AudioCapture.h"
 #include "Sound/SampleBufferIO.h"
 #include "Delegates/DelegateCombinations.h"
+#include "AudioDeviceNotificationSubsystem.h"
 
 #include "AudioManager.generated.h"
 
@@ -94,6 +95,20 @@ public:
     /// </summary>
     /// <returns>The Number of Channels used in the Audiocapture.</returns>
     int32 GetAudioCaptureNumChannels() const { return AudioCapture->GetNumChannels(); }
+    
+    /// <summary>
+    /// Callback for when the Default Audio Device Changes.
+	/// Allowing for dynamic re-registration of the Audio Generator, to make sure the new device is being used.
+    /// </summary>
+    /// <param name="ChangedRole"></param>
+    /// <param name="DeviceID"></param>
+    void OnDefaultDeviceChanged(EAudioDeviceChangedRole ChangedRole, FString DeviceID);
+
+private:
+
+    void RegisterAudioGenerator();
+
+	void UnregisterAudioGenerator();
 
 public:
 
@@ -112,10 +127,14 @@ private:
     
     // Audio Capture
     bool bIsCapturingAudio = false;
+
+    UPROPERTY(EditDefaultsOnly, Category = "OpenAccessibility/Audio Capture")
     class UAudioCapture* AudioCapture;
     TArray<float> AudioBuffer;
 
     FAudioGeneratorHandle OnAudioGenerateHandle;
+
+    FDelegateHandle OnDefaultDeviceChangedHandle;
 
     // Audio Saving
     Audio::FSoundWavePCMWriter* FileWriter;
