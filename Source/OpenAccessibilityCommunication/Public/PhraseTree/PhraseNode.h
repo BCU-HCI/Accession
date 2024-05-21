@@ -18,6 +18,12 @@ public:
 	virtual bool IsLeafNode() const = 0;
 
 	/// <summary>
+	/// States if the the Single Child Node is a Leaf Node, if it exists.
+	/// </summary>
+	/// <returns></returns>
+	virtual bool HasLeafChild() const = 0;
+
+	/// <summary>
 	/// Checks if the Given Phrase is Bound to the Node.
 	/// </summary>
 	/// <param name="InPhrase">The Phrase String to Compare Against.</param>
@@ -61,6 +67,8 @@ public:
 	/// </summary>
 	/// <returns>True, if the Node is a Leaf Node. Otherwise False.</returns>
 	virtual bool IsLeafNode() const { return false; }
+
+	virtual bool HasLeafChild() const;
 
 	/// <summary>
 	/// Checks if the Node Requires the Given Phrase.
@@ -134,6 +142,13 @@ public:
 	/// <returns>True, if the Nodes were successfully bound. Otherwise False.</returns>
 	bool BindChildrenNodesForce(TPhraseNodeArray InNodes);
 
+protected:
+
+	/// <summary>
+	/// Filters through the children, to check if it contains a Leaf Child.
+	/// </summary>
+	bool HasLeafChild();
+
 public:
 
 	/// <summary>
@@ -155,4 +170,9 @@ public:
 	TDelegate<void (FParseRecord& Record)> OnPhraseParsed;
 
 protected:
+
+	/// <summary>
+	/// Records if the Node has a Leaf Child.
+	/// </summary>
+	bool bHasLeafChild;
 };
