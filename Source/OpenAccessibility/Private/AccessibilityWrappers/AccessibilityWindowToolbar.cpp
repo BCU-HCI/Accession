@@ -4,7 +4,7 @@
 
 UAccessibilityWindowToolbar::UAccessibilityWindowToolbar() : UObject()
 {
-
+	Indexer = MakeUnique<FIndexer<int32, SMultiBlockBaseWidget*>>();
 }
 
 UAccessibilityWindowToolbar::~UAccessibilityWindowToolbar()
@@ -19,28 +19,29 @@ void UAccessibilityWindowToolbar::Init()
 
 bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 {
-	TSharedPtr<SWindow> TopActiveWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
-	if (!TopActiveWindow.IsValid())
+	// Get Active Tab
+	TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+	if (!ActiveTab.IsValid())
 		return false;
 
-	TSharedPtr<SWindow> TargetWindowPtr = TargetWindow.Pin();
+	TSharedPtr<SDockTab> TargetTabPtr = TargetTab.Pin();
 
-	if (TopActiveWindow != TargetWindowPtr)
+	if (ActiveTab != TargetTabPtr)
 	{
-		// Reset Graph
-		// Indexer->Empty();
+		TSharedPtr<SWindow> TabWindow = ActiveTab->GetParentWindow();
 
-		ApplyToolbarIndexing(TopActiveWindow.ToSharedRef());
+		// Empty the Current Indexer
+		Indexer->Empty();
 
-		// Add Window To Indexed Set
-		// and Bind Close Event to track on close.
-		IndexedWindows.Add(TopActiveWindow.Get());
-		TopActiveWindow->GetOnWindowClosedEvent()
-			.AddLambda([&](const TSharedRef<SWindow> WindowClosing) {
-				IndexedWindows.Remove(WindowClosing.ToSharedPtr().Get());
-			});
+		// Apply Indexing to the New Tab, if it is not already Indexed
+		if (!IndexedTabs.Contains(ActiveTab.Get()))
+		{
+			ApplyToolbarIndexing(TabWindow.ToSharedRef());
+			IndexedTabs.Add(ActiveTab.Get());
+		}
 
-		TargetWindow = TopActiveWindow;
+		TargetTab = ActiveTab;
+		TargetWindow = TabWindow;
 	}
 
 	return true;

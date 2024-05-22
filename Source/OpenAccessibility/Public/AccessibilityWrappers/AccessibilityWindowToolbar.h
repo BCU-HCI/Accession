@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 
+#include "Indexers/Indexer.h"
+
 #include "AccessibilityWindowToolbar.generated.h"
 
 UCLASS()
@@ -23,13 +25,7 @@ public:
 
 	void ApplyToolbarIndexing(TSharedRef<SWindow> WindowToApply);
 
-	// void ShowToolbarIndexing(TSharedRef<SWindow> WindowToShow);
-
-	// void HideToolbarIndexing(TSharedRef<SWindow> WindowToHide);
-
 private:
-
-
 
 	void BindTicker();
 
@@ -41,9 +37,11 @@ private:
 
 	TWeakPtr<SWindow> TargetWindow;
 
-	// TUniquePtr<FIndexer> Indexer;
+	TWeakPtr<SDockTab> TargetTab;
 
-	TSet<SWindow*> IndexedWindows;
+	TUniquePtr<FIndexer<int32, SMultiBlockBaseWidget*>> Indexer;
+
+	TSet<SDockTab*> IndexedTabs;
 
 	FTSTicker::FDelegateHandle TickDelegateHandle;
 
