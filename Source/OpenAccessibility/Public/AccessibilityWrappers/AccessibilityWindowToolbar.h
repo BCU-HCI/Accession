@@ -19,13 +19,13 @@ public:
 
 	virtual ~UAccessibilityWindowToolbar();
 
-	void Init();
-
 	bool Tick(float DeltaTime);
 
-	void ApplyToolbarIndexing(TSharedRef<SWindow> WindowToApply);
-
 private:
+
+	void ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget);
+
+	TSharedPtr<SBorder> GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer);
 
 	void BindTicker();
 
@@ -35,13 +35,13 @@ public:
 
 private:
 
-	TWeakPtr<SWindow> TargetWindow;
+	TWeakPtr<SWindow> LastTopWindow;
 
-	TWeakPtr<SDockTab> TargetTab;
+	TWeakPtr<SBorder> LastToolkitParent;
 
-	TUniquePtr<FIndexer<int32, SMultiBlockBaseWidget*>> Indexer;
+	TWeakPtr<SWidget> LastToolkit;
 
-	TSet<SDockTab*> IndexedTabs;
+	TUniquePtr<FIndexer<int32, SMultiBlockBaseWidget*>> ToolbarIndex;
 
 	FTSTicker::FDelegateHandle TickDelegateHandle;
 

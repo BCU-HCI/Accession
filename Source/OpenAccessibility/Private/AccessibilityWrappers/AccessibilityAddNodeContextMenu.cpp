@@ -348,7 +348,7 @@ void UAccessibilityAddNodeContextMenu::ApplyAccessibilityWidget(TSharedRef<STabl
 	ItemWidget->SetContent(
 		SNew(SContentIndexer)
 		.IndexValue(ItemWidget->GetIndexInList())
-		.IndexPositionToContent(IndexerPosition::Left)
+		.IndexPositionToContent(EIndexerPosition::Left)
 		.ContentToIndex(ItemContent)
 	);
 }

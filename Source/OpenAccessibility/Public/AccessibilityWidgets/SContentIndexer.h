@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-enum class IndexerPosition : uint8
+enum class EIndexerPosition : uint8
 {
 	Top,
 	Bottom,
@@ -18,10 +18,10 @@ public:
 
 	SLATE_BEGIN_ARGS( SContentIndexer )
 		: _IndexValue(0)
-		, _IndexPositionToContent(IndexerPosition::Left)
+		, _IndexPositionToContent(EIndexerPosition::Left)
 		{}
 		SLATE_ARGUMENT(int32, IndexValue)
-		SLATE_ARGUMENT(IndexerPosition, IndexPositionToContent)
+		SLATE_ARGUMENT(EIndexerPosition, IndexPositionToContent)
 		SLATE_ARGUMENT(TSharedPtr<SWidget>, ContentToIndex)
 	SLATE_END_ARGS()
 

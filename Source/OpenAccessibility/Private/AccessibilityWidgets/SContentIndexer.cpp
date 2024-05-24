@@ -12,20 +12,20 @@ void SContentIndexer::Construct(const FArguments& InArgs)
 
 	switch (InArgs._IndexPositionToContent)
 	{
-		case IndexerPosition::Top:
+		case EIndexerPosition::Top:
 			Content = ConstructTopIndexer(InArgs._IndexValue, InArgs._ContentToIndex.ToSharedRef());
 			break;
 
-		case IndexerPosition::Bottom:
+		case EIndexerPosition::Bottom:
 			Content = ConstructBottomIndexer(InArgs._IndexValue, InArgs._ContentToIndex.ToSharedRef());
 			break;
 
 		default:
-		case IndexerPosition::Left:
+		case EIndexerPosition::Left:
 			Content = ConstructLeftIndexer(InArgs._IndexValue, InArgs._ContentToIndex.ToSharedRef());
 			break;
 
-		case IndexerPosition::Right:
+		case EIndexerPosition::Right:
 			Content = ConstructRightIndexer(InArgs._IndexValue, InArgs._ContentToIndex.ToSharedRef());
 			break;
 	}
