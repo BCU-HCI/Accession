@@ -1,8 +1,9 @@
 // Copyright F-Dudley. All Rights Reserved.
 
 #include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
-
 #include "AccessibilityWidgets/SContentIndexer.h"
+
+#include "PhraseTree/Containers/Input/UParseIntInput.h"
 
 UAccessibilityWindowToolbar::UAccessibilityWindowToolbar() : UObject()
 {
@@ -54,47 +55,34 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 		return;
 	}
 
-	TArray<FChildren*> WidgetsToFilter;
+	TArray<FChildren*> ChildrenToFilter;
+	ChildrenToFilter.Add(ToolbarContainer->GetChildren());
+
+	TSharedPtr<SWidget> ChildWidget;
 	FString WidgetType;
-	WidgetsToFilter.Add(ToolbarContainer->GetChildren());
 
 	int32 Index = -1;
-	while (WidgetsToFilter.Num() > 0)
+	while (ChildrenToFilter.Num() > 0)
 	{
-		FChildren* Children = WidgetsToFilter[0];
-		WidgetsToFilter.RemoveAt(0);
-
-		WidgetType.Empty();
+		FChildren* Children = ChildrenToFilter[0];
+		ChildrenToFilter.RemoveAt(0);
 
 		// To-Do: Learn How to Write Readable Code.
 		for (int i = 0; i < Children->NumSlot(); i++)
 		{
+			ChildWidget = Children->GetChildAt(i);
+			WidgetType = ChildWidget->GetTypeAsString();
+
 			FSlotBase& ChildSlot = const_cast<FSlotBase&>(Children->GetSlotAt(i));
 
-			TSharedPtr<SMultiBlockBaseWidget> MultiBlockWidget = StaticCastSharedRef<SMultiBlockBaseWidget>(Children->GetChildAt(i));
-			WidgetType = MultiBlockWidget->GetTypeAsString();
-			
-			if (MultiBlockWidget.IsValid() && WidgetType != "SBorder")
-			{
-				ChildSlot.DetachWidget();
+			TSharedPtr<SContentIndexer> ContentIndexer = SNew(SContentIndexer)
+				.IndexValue(Index)
+				.IndexPositionToContent(EIndexerPosition::Bottom)
+				.ContentToIndex(ChildWidget);
 
-				ToolbarIndex->GetKeyOrAddValue(
-					MultiBlockWidget.Get(),
-					Index
-				);
+			ChildSlot.AttachWidget(ContentIndexer.ToSharedRef());
 
-				// Possible Solution, or Possible Loop.
-				ChildSlot.AttachWidget(
-					SNew(SContentIndexer)
-					.IndexPositionToContent(EIndexerPosition::Bottom)
-					.IndexValue(Index)
-					.ContentToIndex(MultiBlockWidget)
-				);
-			}
-			else
-			{
-				WidgetsToFilter.Add(ChildSlot.GetWidget()->GetChildren());
-			}
+			ChildrenToFilter.Add(ChildWidget->GetChildren());
 		}
 	}
 }
@@ -133,6 +121,19 @@ FORCEINLINE TSharedPtr<T> GetWidgetDescendantOfType(TSharedRef<SWidget> Widget, 
 }
 
 // --  --
+
+void UAccessibilityWindowToolbar::SelectToolbarItem(FParseRecord& Record)
+{
+	UParseIntInput* Input = Record.GetPhraseInput<UParseIntInput>("INDEX");
+	if (!Input->IsValidLowLevelFast())
+		return;
+
+	SMultiBlockBaseWidget* MultiBlockWidget = ToolbarIndex->GetValue(Input->GetValue());
+	if (MultiBlockWidget == nullptr)
+		return;
+
+	// Add OnClick Functionality Here, Using the MultiBlockWidget.
+}
 
 TSharedPtr<SBorder> UAccessibilityWindowToolbar::GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer)
 {

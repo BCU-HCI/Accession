@@ -41,8 +41,8 @@ void FOpenAccessibilityModule::StartupModule()
 	FEdGraphUtilities::RegisterVisualNodeFactory(AccessibilityNodeFactory);
 
 	// Construct the Manager for Toolbar Accessibility
-	ToolbarAccessibility = NewObject<UAccessibilityWindowToolbar>();
-	ToolbarAccessibility->AddToRoot();
+	// ToolbarAccessibility = NewObject<UAccessibilityWindowToolbar>();
+	// ToolbarAccessibility->AddToRoot();
 
 	// Register Console Commands
 	RegisterConsoleCommands();

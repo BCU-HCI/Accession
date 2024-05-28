@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "Indexers/Indexer.h"
+#include "PhraseTree/Containers/ParseRecord.h"
 
 #include "AccessibilityWindowToolbar.generated.h"
 
@@ -20,6 +21,10 @@ public:
 	virtual ~UAccessibilityWindowToolbar();
 
 	bool Tick(float DeltaTime);
+
+	// -- Parse Events --
+
+	void SelectToolbarItem(FParseRecord& Record);
 
 private:
 
