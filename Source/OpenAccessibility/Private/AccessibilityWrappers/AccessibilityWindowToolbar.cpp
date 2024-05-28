@@ -54,15 +54,17 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 		return;
 	}
 
-	TArray<FChildren*> WidgetsToFilter; 
-	WidgetsToFilter.Add(ToolbarContainer->GetChildren());
+	TArray<FChildren*> WidgetsToFilter;
 	FString WidgetType;
+	WidgetsToFilter.Add(ToolbarContainer->GetChildren());
 
 	int32 Index = -1;
 	while (WidgetsToFilter.Num() > 0)
 	{
 		FChildren* Children = WidgetsToFilter[0];
 		WidgetsToFilter.RemoveAt(0);
+
+		WidgetType.Empty();
 
 		// To-Do: Learn How to Write Readable Code.
 		for (int i = 0; i < Children->NumSlot(); i++)
