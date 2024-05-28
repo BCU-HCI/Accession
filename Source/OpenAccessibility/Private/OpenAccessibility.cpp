@@ -18,6 +18,7 @@
 #include "PhraseTree/Containers/Input/UParseEnumInput.h"
 
 #include "TranscriptionVisualizer.h"
+#include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
 
 #include "GraphActionNode.h"
 #include "SGraphPanel.h"
@@ -38,6 +39,10 @@ void FOpenAccessibilityModule::StartupModule()
 	// Register the Accessibility Node Factory
 	AccessibilityNodeFactory = MakeShared<FAccessibilityNodeFactory, ESPMode::ThreadSafe>();
 	FEdGraphUtilities::RegisterVisualNodeFactory(AccessibilityNodeFactory);
+
+	// Construct the Manager for Toolbar Accessibility
+	// ToolbarAccessibility = NewObject<UAccessibilityWindowToolbar>();
+	// ToolbarAccessibility->AddToRoot();
 
 	// Register Console Commands
 	RegisterConsoleCommands();
