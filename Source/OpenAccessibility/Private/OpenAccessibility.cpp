@@ -607,7 +607,8 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 	// -----
 
-	// Node Add Context Events
+	// Node Add Context
+
 	TSharedPtr<FPhraseEventNode> Context_SelectAction = MakeShared<FPhraseEventNode>();
 	Context_SelectAction->OnPhraseParsed.BindLambda(
 		[this](FParseRecord& Record) {
@@ -722,6 +723,68 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 			ContextMenu->ToggleContextAwareness();
 		}
 	);
+
+	TSharedPtr<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>> AddNodeContextMenu = MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+		TEXT("ADD"),
+		1.5f,
+		GetAddNodeMenu_PinEvent,
+		TPhraseNodeArray{
+
+				MakeShared<FPhraseNode>(TEXT("SELECT"),
+				TPhraseNodeArray {
+
+						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+						TPhraseNodeArray {
+
+								Context_SelectAction
+						})
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("SEARCH"),
+				TPhraseNodeArray {
+
+						MakeShared<FPhraseNode>(TEXT("NEW"),
+						TPhraseNodeArray {
+
+								MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
+								TPhraseNodeArray {
+									Context_SearchNewPhrase
+								})
+						}),
+
+						MakeShared<FPhraseNode>(TEXT("ADD"),
+						TPhraseNodeArray {
+
+								MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
+								TPhraseNodeArray {
+									Context_SearchAppendPhrase
+								})
+						}),
+
+						MakeShared<FPhraseNode>(TEXT("RESET"),
+						TPhraseNodeArray {
+							Context_SearchReset
+						})
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("SCROLL"),
+				TPhraseNodeArray {
+
+						MakeShared<FPhraseScrollInputNode>(TEXT("DIRECTION"),
+						TPhraseNodeArray {
+
+								MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+								TPhraseNodeArray {
+									Context_Scroll
+								})
+						})
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("TOGGLE"),
+				TPhraseNodeArray {
+						Context_ToggleContextAwareness
+				})
+		});
 	// -----
 
 	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
@@ -757,67 +820,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 													MakeShared<FPhraseNode>(TEXT("NODE"),
 													TPhraseNodeArray {
 
-															MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
-																	TEXT("ADD"),
-																	1.5f,
-																	GetAddNodeMenu_PinEvent,
-																	TPhraseNodeArray{
-
-																			MakeShared<FPhraseNode>(TEXT("SELECT"),
-																			TPhraseNodeArray {
-
-																					MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-																					TPhraseNodeArray {
-
-																							Context_SelectAction
-																					})
-																			}),
-
-																			MakeShared<FPhraseNode>(TEXT("SEARCH"),
-																			TPhraseNodeArray {
-
-																					MakeShared<FPhraseNode>(TEXT("NEW"),
-																					TPhraseNodeArray {
-
-																							MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
-																							TPhraseNodeArray {
-																								Context_SearchNewPhrase
-																							})
-																					}),
-
-																					MakeShared<FPhraseNode>(TEXT("ADD"),
-																					TPhraseNodeArray {
-
-																							MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
-																							TPhraseNodeArray {
-																								Context_SearchAppendPhrase
-																							})
-																					}),
-
-																					MakeShared<FPhraseNode>(TEXT("RESET"),
-																					TPhraseNodeArray {
-																						Context_SearchReset
-																					})
-																			}),
-
-																			MakeShared<FPhraseNode>(TEXT("SCROLL"),
-																			TPhraseNodeArray {
-
-																					MakeShared<FPhraseScrollInputNode>(TEXT("DIRECTION"),
-																					TPhraseNodeArray {
-
-																							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
-																							TPhraseNodeArray {
-																								Context_Scroll
-																							})
-																					})
-																			}),
-
-																			MakeShared<FPhraseNode>(TEXT("TOGGLE"),
-																			TPhraseNodeArray {
-																					Context_ToggleContextAwareness
-																			})
-																	}),
+															AddNodeContextMenu,
 
 															MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 															TPhraseNodeArray {
@@ -846,67 +849,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 							}),
 				}, NodeIndexFocusEvent),
 				
-				MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
-				TEXT("ADD"),
-				1.5f,
-				GetAddNodeMenuEvent,
-				TPhraseNodeArray{
-
-						MakeShared<FPhraseNode>(TEXT("SELECT"),
-						TPhraseNodeArray {
-
-								MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-								TPhraseNodeArray {
-										
-										Context_SelectAction
-								})
-						}),
-
-						MakeShared<FPhraseNode>(TEXT("SEARCH"),
-						TPhraseNodeArray {
-
-								MakeShared<FPhraseNode>(TEXT("NEW"),
-								TPhraseNodeArray {
-
-										MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
-										TPhraseNodeArray {
-											Context_SearchNewPhrase
-										})
-								}),
-
-								MakeShared<FPhraseNode>(TEXT("ADD"),
-								TPhraseNodeArray {
-
-										MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
-										TPhraseNodeArray {
-											Context_SearchAppendPhrase
-										})
-								}),
-
-								MakeShared<FPhraseNode>(TEXT("RESET"),
-								TPhraseNodeArray {
-									Context_SearchReset
-								})
-						}),
-
-						MakeShared<FPhraseNode>(TEXT("SCROLL"),
-						TPhraseNodeArray {
-
-								MakeShared<FPhraseScrollInputNode>(TEXT("DIRECTION"),
-								TPhraseNodeArray {
-
-										MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
-										TPhraseNodeArray {
-											Context_Scroll
-										})
-								})
-						}),
-
-						MakeShared<FPhraseNode>(TEXT("TOGGLE"),
-						TPhraseNodeArray {
-								Context_ToggleContextAwareness
-						})
-				})
+				AddNodeContextMenu
 			})
 	);
 }
