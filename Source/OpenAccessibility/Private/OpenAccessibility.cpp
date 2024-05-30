@@ -688,6 +688,19 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		}
 	});
 
+	TSharedPtr<FPhraseEventNode> NodeSelectionComment = MakeShared<FPhraseEventNode>();
+	NodeSelectionComment->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		UEdGraph* Graph = ActiveGraphEditor->GetCurrentGraph();
+
+		TSharedPtr<FEdGraphSchemaAction> CommentCreateAction = Graph->GetSchema()->GetCreateCommentAction();
+		if (CommentCreateAction.IsValid())
+		{
+			CommentCreateAction->PerformAction(Graph, nullptr, FVector2D(0, 0), true);
+		}
+	});
+
 	TSharedPtr<FPhraseEventNode> NodeSelectionAlignment = MakeShared<FPhraseEventNode>();
 	NodeSelectionAlignment->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
 		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
@@ -1186,6 +1199,11 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 						})
 
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("COMMENT"), 
+					TPhraseNodeArray {
+						NodeSelectionComment
 					}),
 
 					MakeShared<FPhraseNode>(TEXT("ALIGN"),
