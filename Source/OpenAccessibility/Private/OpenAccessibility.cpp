@@ -284,7 +284,7 @@ void FOpenAccessibilityModule::BindLocalizedInteractionBranch()
 		}
 
 		ActiveTextBox->SetText(
-			TextBoxString
+			FText::FromString(TextBoxString)
 		);
 	});
 
@@ -1191,7 +1191,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 					MakeShared<FPhraseNode>(TEXT("ALIGN"),
 					TPhraseNodeArray {
 
-						MakeShared<FPhraseEnumInputNode<EPhrasePositionalInput>>(TEXT("POSITION"),
+						MakeShared<FPhrasePositionalInputNode>(TEXT("POSITION"),
 						TPhraseNodeArray {
 							NodeSelectionAlignment
 						})
