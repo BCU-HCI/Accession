@@ -27,6 +27,26 @@
 #include "Framework/Docking/TabManager.h"
 #include "Logging/StructuredLog.h"
 
+/// <summary>
+/// Obtains the Active Unreal Tab, if available, and Casts It To the Provided Type.
+/// </summary>
+/// <param name="ActiveContainerName">- The Name of the SharedPtr To Store The Found Tab In.</param>
+/// <param name="InActiveTabType">- The Type of the Tab To Cast To.</param>
+#define GET_ACTIVE_TAB( ActiveContainerName, InActiveTabType, ...) TSharedPtr< InActiveTabType > ActiveContainerName; {\
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab(); \
+		if (!ActiveTab.IsValid()) \
+		{ \
+			UE_LOG(LogOpenAccessibility, Display, TEXT("GET_ACTIVE_TAB: NO ACTIVE TAB FOUND.")); \
+			return; \
+		} \
+		ActiveContainerName = StaticCastSharedPtr< InActiveTabType >(ActiveTab->GetContent().ToSharedPtr()); \
+		if (!ActiveContainerName.IsValid()) \
+		{ \
+			UE_LOG(LogOpenAccessibility, Display, TEXT("GET_ACTIVE_TAB: CURRENT ACTIVE TAB IS NOT OF TYPE - %s"), #InActiveTabType); \
+			return; \
+		} \
+	}
+
 #define LOCTEXT_NAMESPACE "FOpenAccessibilityModule"
 
 void FOpenAccessibilityModule::StartupModule()
@@ -365,6 +385,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		}
 		});
 
+
 	TSharedPtr<FPhraseEventNode> PinDisconnectEventNode = MakeShared<FPhraseEventNode>();
 	PinDisconnectEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
 
@@ -448,6 +469,92 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		ActiveGraphEditor->ClearSelectionSet();
 		ActiveGraphEditor->SetNodeSelection(Node, true);
 		});
+	// ------
+
+	// Node Selection Events
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionAddNode = MakeShared<FPhraseEventNode>();
+	NodeSelectionAddNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB( ActiveGraphEditor, SGraphEditor );
+
+		UParseIntInput* NodeIndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+		if (NodeIndexInput == nullptr)
+			return;
+
+		TSharedRef<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+		UEdGraphNode* GraphNode = IndexerForGraph->GetNode(NodeIndexInput->GetValue());
+		if (GraphNode == nullptr)
+			return;
+
+		ActiveGraphEditor->SetNodeSelection(GraphNode, true);
+	});
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionRemoveNode = MakeShared<FPhraseEventNode>();
+	NodeSelectionRemoveNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB( ActiveGraphEditor, SGraphEditor );
+
+		UParseIntInput* NodeIndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+		if (NodeIndexInput == nullptr)
+			return;
+
+		TSharedRef<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+		UEdGraphNode* GraphNode = IndexerForGraph->GetNode(NodeIndexInput->GetValue());
+		if (GraphNode == nullptr)
+			return;
+
+		ActiveGraphEditor->SetNodeSelection(GraphNode, false);
+	});
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionReset = MakeShared<FPhraseEventNode>();
+	NodeSelectionReset->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		ActiveGraphEditor->ClearSelectionSet();
+	});
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionMove = MakeShared<FPhraseEventNode>();
+	NodeSelectionMove->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		UParseEnumInput* Direction = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
+		if (Direction == nullptr)
+			return;
+
+		UParseIntInput* Amount = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+		if (Amount == nullptr)
+			return;
+
+		for (UObject* Node : ActiveGraphEditor->GetSelectedNodes())
+		{
+			UEdGraphNode* GraphNode = Cast<UEdGraphNode>(Node);
+			if (GraphNode == nullptr)
+				continue;
+
+			switch (EPhraseDirectionalInput(Direction->GetValue()))
+			{
+			case EPhraseDirectionalInput::UP:
+				GraphNode->NodePosY -= Amount->GetValue();
+				break;
+
+			case EPhraseDirectionalInput::DOWN:
+				GraphNode->NodePosY += Amount->GetValue();
+				break;
+
+			case EPhraseDirectionalInput::LEFT:
+				GraphNode->NodePosX -= Amount->GetValue();
+				break;
+
+			case EPhraseDirectionalInput::RIGHT:
+				GraphNode->NodePosX += Amount->GetValue();
+				break;
+			}
+		}
+	});
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionAlignment = MakeShared<FPhraseEventNode>();
+
 	// ------
 
 
