@@ -16,6 +16,7 @@
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 #include "PhraseTree/Containers/Input/UParseEnumInput.h"
+#include "PhraseTree/Containers/Input/InputContainers.h"
 
 #include "TranscriptionVisualizer.h"
 #include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
@@ -291,26 +292,26 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				return;
 			}
 
-			switch (EPhraseDirectionalInput(MoveDirection->GetValue()))
+			switch (EPhrase2DDirectionalInput(MoveDirection->GetValue()))
 			{
-			case EPhraseDirectionalInput::UP:
+			case EPhrase2DDirectionalInput::UP:
 				GraphNode->NodePosY -= MoveAmount->GetValue();
 				break;
 
-			case EPhraseDirectionalInput::DOWN:
+			case EPhrase2DDirectionalInput::DOWN:
 				GraphNode->NodePosY += MoveAmount->GetValue();
 				break;
 
-			case EPhraseDirectionalInput::LEFT:
+			case EPhrase2DDirectionalInput::LEFT:
 				GraphNode->NodePosX -= MoveAmount->GetValue();
 				break;
 
-			case EPhraseDirectionalInput::RIGHT:
+			case EPhrase2DDirectionalInput::RIGHT:
 				GraphNode->NodePosX += MoveAmount->GetValue();
 				break;
 
 			default:
-				UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Direction --"));
+				UE_LOG(LogOpenAccessibility, Display, TEXT("Provided Direction Is In-Valid"));
 				return;
 			}
 		}
@@ -384,7 +385,6 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Success -- Pins Connected --"))
 		}
 		});
-
 
 	TSharedPtr<FPhraseEventNode> PinDisconnectEventNode = MakeShared<FPhraseEventNode>();
 	PinDisconnectEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
@@ -554,6 +554,47 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 	});
 
 	TSharedPtr<FPhraseEventNode> NodeSelectionAlignment = MakeShared<FPhraseEventNode>();
+	NodeSelectionAlignment->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		UParseEnumInput* PositionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("POSITION"));
+		if (PositionInput == nullptr)
+			return;
+
+		for (UObject* Node : ActiveGraphEditor->GetSelectedNodes())
+		{
+			UEdGraphNode* GraphNode = Cast<UEdGraphNode>(Node);
+			if (GraphNode == nullptr)
+				continue;
+
+			switch (EPhrasePositionalInput(PositionInput->GetValue()))
+			{
+				case EPhrasePositionalInput::TOP:
+					ActiveGraphEditor->OnAlignTop();
+					break;
+
+				case EPhrasePositionalInput::MIDDLE:
+					ActiveGraphEditor->OnAlignMiddle();
+					break;
+
+				case EPhrasePositionalInput::BOTTOM:
+					ActiveGraphEditor->OnAlignBottom();
+					break;
+
+				case EPhrasePositionalInput::LEFT:
+					ActiveGraphEditor->OnAlignLeft();
+					break;
+
+				case EPhrasePositionalInput::CENTER:
+					ActiveGraphEditor->OnAlignCenter();
+					break;
+
+				case EPhrasePositionalInput::RIGHT:
+					ActiveGraphEditor->OnAlignRight();
+					break;
+			}
+		}
+		});
 
 	// ------
 
