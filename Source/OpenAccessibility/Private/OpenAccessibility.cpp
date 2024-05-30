@@ -69,7 +69,7 @@ void FOpenAccessibilityModule::StartupModule()
 	RegisterConsoleCommands();
 
 	BindGraphInteractionBranch();
-	BindLocalLocomotionBranch();
+	BindLocalizedInteractionBranch();
 
 	CreateTranscriptionVisualization();
 }
@@ -81,8 +81,10 @@ void FOpenAccessibilityModule::ShutdownModule()
 	UnregisterConsoleCommands();
 }
 
-void FOpenAccessibilityModule::BindLocalLocomotionBranch()
+void FOpenAccessibilityModule::BindLocalizedInteractionBranch()
 {
+	// Localized Object Interaction
+
 	TSharedPtr<FPhraseEventNode> MoveViewportEventNode = MakeShared<FPhraseEventNode>();
 	MoveViewportEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
@@ -220,45 +222,70 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 		}
 	});
 
-	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
-		MakeShared<FPhraseNode>(TEXT("VIEW"),
-		TPhraseNodeArray{
-			
-			MakeShared<FPhraseNode>(TEXT("MOVE"),
-			TPhraseNodeArray {
-				
-				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+	// -----
+
+	// Localized Input Interaction (TextBoxes, etc.)
+
+	TSharedPtr<FPhraseEventNode> TextInputNewEventNode = MakeShared<FPhraseEventNode>();
+
+	TSharedPtr<FPhraseEventNode> TextInputAppendEventNode = MakeShared<FPhraseEventNode>();
+
+	TSharedPtr<FPhraseEventNode> TextInputResetEventNode = MakeShared<FPhraseEventNode>();
+
+	TSharedPtr<FPhraseEventNode> TextInputExitEventNode = MakeShared<FPhraseEventNode>();
+
+	// -----
+
+	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranches(
+		TPhraseNodeArray {
+			MakeShared<FPhraseNode>(TEXT("VIEW"),
+			TPhraseNodeArray{
+
+				MakeShared<FPhraseNode>(TEXT("MOVE"),
 				TPhraseNodeArray {
-					
-					MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+
+					MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
 					TPhraseNodeArray {
-						MoveViewportEventNode
+
+						MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+						TPhraseNodeArray {
+							MoveViewportEventNode
+						})
+
+					})
+
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("ZOOM"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+						TPhraseNodeArray {
+							ZoomViewportEventNode
+						})
+					})
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("FOCUS"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseInputNode<int32>>(TEXT("INDEX"),
+					TPhraseNodeArray {
+						IndexFocusEventNode
 					})
 				})
 			}),
 
-			MakeShared<FPhraseNode>(TEXT("ZOOM"),
+			MakeShared<FPhraseNode>(TEXT("INPUT"),
 			TPhraseNodeArray {
 				
-				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
-				TPhraseNodeArray {
-					
-					MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
-					TPhraseNodeArray {
-						ZoomViewportEventNode
-					})
-				})
-			}),
+				/// LOCAL TEXT INPUT NODES HERE
 
-			MakeShared<FPhraseNode>(TEXT("FOCUS"),
-			TPhraseNodeArray {
-				
-				MakeShared<FPhraseInputNode<int32>>(TEXT("INDEX"),
-				TPhraseNodeArray {
-					IndexFocusEventNode
-				})
 			})
-		})
+		}
 	);
 }
 
@@ -597,6 +624,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		});
 
 	// ------
+
 
 
 	// Node Menu Events
@@ -997,7 +1025,62 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 							}),
 				}, NodeIndexFocusEvent),
 				
-				AddNodeContextMenu
+				MakeShared<FPhraseNode>(TEXT("SELECT"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseNode>(TEXT("ADD"),
+					TPhraseNodeArray {
+						
+						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+						TPhraseNodeArray {
+							NodeSelectionAddNode
+						})
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("REMOVE"),
+					TPhraseNodeArray {
+						
+						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+						TPhraseNodeArray {
+							NodeSelectionRemoveNode
+						})
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("RESET"),
+					TPhraseNodeArray {
+						NodeSelectionReset
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("MOVE"),
+					TPhraseNodeArray {
+						
+						MakeShared<FPhraseEnumInputNode<EPhrase2DDirectionalInput>>(TEXT("DIRECTION"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+							TPhraseNodeArray {
+								NodeSelectionMove
+							})
+
+						})
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("ALIGN"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseEnumInputNode<EPhrasePositionalInput>>(TEXT("POSITION"),
+						TPhraseNodeArray {
+							NodeSelectionAlignment
+						})
+
+					}),
+
+				}),
+
+				AddNodeContextMenu,
 			})
 	);
 }

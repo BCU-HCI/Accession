@@ -36,7 +36,7 @@ private:
 	/// <summary>
 	/// Binds the Local Locomotion Branch of Commands onto the Phrase Tree.
 	/// </summary>
-	void BindLocalLocomotionBranch();
+	void BindLocalizedInteractionBranch();
 
 	/// <summary>
 	/// Binds the Graph Interaction Branch of Commands onto the Phrase Tree.
