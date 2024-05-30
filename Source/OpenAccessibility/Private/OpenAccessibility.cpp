@@ -226,13 +226,93 @@ void FOpenAccessibilityModule::BindLocalizedInteractionBranch()
 
 	// Localized Input Interaction (TextBoxes, etc.)
 
-	TSharedPtr<FPhraseEventNode> TextInputNewEventNode = MakeShared<FPhraseEventNode>();
-
 	TSharedPtr<FPhraseEventNode> TextInputAppendEventNode = MakeShared<FPhraseEventNode>();
+	TextInputAppendEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		FSlateApplication& SlateApp = FSlateApplication::Get();
+		if (!SlateApp.IsInitialized())
+			return;
+
+		TSharedPtr<SEditableTextBox> ActiveTextBox = StaticCastSharedPtr<SEditableTextBox>(SlateApp.GetKeyboardFocusedWidget());
+		if (!ActiveTextBox.IsValid())
+			return;
+
+		UParseStringInput* PhraseInput = Record.GetPhraseInput<UParseStringInput>(TEXT("SEARCH_PHRASE"));
+		if (PhraseInput == nullptr)
+			return;
+
+		ActiveTextBox->SetText(
+			FText::FromString(
+				ActiveTextBox->GetText().ToString() + TEXT(" ") + PhraseInput->GetValue()
+			)
+		);
+	});
+
+	TSharedPtr<FPhraseEventNode> TextInputRemoveEventNode = MakeShared<FPhraseEventNode>();
+	TextInputRemoveEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		FSlateApplication& SlateApp = FSlateApplication::Get();
+		if (!SlateApp.IsInitialized())
+			return;
+
+		TSharedPtr<SEditableTextBox> ActiveTextBox = StaticCastSharedPtr<SEditableTextBox>(SlateApp.GetKeyboardFocusedWidget());
+		if (!ActiveTextBox.IsValid())
+			return;
+
+		UParseIntInput* AmountToRemove = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+		if (AmountToRemove == nullptr)
+			return;
+
+		FString TextBoxString = ActiveTextBox->GetText().ToString();
+
+		{
+			TArray<FString> SplitTextBoxString;
+			TextBoxString.ParseIntoArrayWS(SplitTextBoxString);
+
+			int RemovedAmount = 0;
+			int CurrentIndex = SplitTextBoxString.Num() - 1;
+			while (RemovedAmount < AmountToRemove->GetValue())
+			{
+				if (SplitTextBoxString.IsEmpty())
+					break;
+
+				SplitTextBoxString.RemoveAt(CurrentIndex--);
+				RemovedAmount++;
+			}
+
+			if (SplitTextBoxString.Num() > 0)
+				TextBoxString = FString::Join(SplitTextBoxString, TEXT(" "));
+			else TextBoxString = TEXT("");
+		}
+
+		ActiveTextBox->SetText(
+			TextBoxString
+		);
+	});
 
 	TSharedPtr<FPhraseEventNode> TextInputResetEventNode = MakeShared<FPhraseEventNode>();
+	TextInputResetEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		FSlateApplication& SlateApp = FSlateApplication::Get();
+		if (!SlateApp.IsInitialized())
+			return;
+
+		TSharedPtr<SEditableTextBox> ActiveTextBox = StaticCastSharedPtr<SEditableTextBox>(SlateApp.GetKeyboardFocusedWidget());
+		if (!ActiveTextBox.IsValid())
+			return;
+
+		ActiveTextBox->SetText(FText::FromString(TEXT("")));
+	});
 
 	TSharedPtr<FPhraseEventNode> TextInputExitEventNode = MakeShared<FPhraseEventNode>();
+	TextInputExitEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		FSlateApplication& SlateApp = FSlateApplication::Get();
+		if (!SlateApp.IsInitialized())
+			return;
+
+		TSharedPtr<SEditableTextBox> ActiveTextBox = StaticCastSharedPtr<SEditableTextBox>(SlateApp.GetKeyboardFocusedWidget());
+		if (!ActiveTextBox.IsValid())
+			return;
+
+		SlateApp.SetKeyboardFocus(nullptr);
+	});
 
 	// -----
 
@@ -282,7 +362,35 @@ void FOpenAccessibilityModule::BindLocalizedInteractionBranch()
 			MakeShared<FPhraseNode>(TEXT("INPUT"),
 			TPhraseNodeArray {
 				
-				/// LOCAL TEXT INPUT NODES HERE
+				MakeShared<FPhraseNode>(TEXT("ADD"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
+					TPhraseNodeArray {
+						TextInputAppendEventNode
+					})
+
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("REMOVE"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+					TPhraseNodeArray {
+						TextInputRemoveEventNode
+					})
+
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("RESET"),
+				TPhraseNodeArray {
+					TextInputResetEventNode
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("EXIT"),
+				TPhraseNodeArray {
+					TextInputExitEventNode
+				})
 
 			})
 		}
