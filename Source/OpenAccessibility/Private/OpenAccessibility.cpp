@@ -731,6 +731,13 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		}
 		});
 
+	TSharedPtr<FPhraseEventNode> NodeSelectionStraighten = MakeShared<FPhraseEventNode>();
+	NodeSelectionStraighten->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		ActiveGraphEditor->StraightenConnections();
+	});
+
 	// ------
 
 
@@ -1159,6 +1166,11 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 					MakeShared<FPhraseNode>(TEXT("RESET"),
 					TPhraseNodeArray {
 						NodeSelectionReset
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("STRAIGHTEN"),
+					TPhraseNodeArray {
+						NodeSelectionStraighten
 					}),
 
 					MakeShared<FPhraseNode>(TEXT("MOVE"),
