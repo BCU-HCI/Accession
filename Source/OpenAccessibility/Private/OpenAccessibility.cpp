@@ -1028,11 +1028,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		}
 	);
 
-	TSharedPtr<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>> AddNodeContextMenu = MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
-		TEXT("ADD"),
-		1.5f,
-		GetAddNodeMenu_PinEvent,
-		TPhraseNodeArray{
+	TPhraseNodeArray AddNodeContextChildren = TPhraseNodeArray{
 
 				MakeShared<FPhraseNode>(TEXT("SELECT"),
 				TPhraseNodeArray {
@@ -1088,7 +1084,21 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				TPhraseNodeArray {
 						Context_ToggleContextAwareness
 				})
-		});
+	};
+
+	TSharedPtr<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>> AddNodeContextMenu = MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+		TEXT("ADD"),
+		1.5f,
+		GetAddNodeMenuEvent,
+		AddNodeContextChildren
+	);
+
+	TSharedPtr<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>> AddNodeContextMenu_PinEvent = MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+		TEXT("ADD"),
+		1.5f,
+		GetAddNodeMenu_PinEvent,
+		AddNodeContextChildren
+	);
 	// -----
 
 	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
@@ -1124,7 +1134,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 													MakeShared<FPhraseNode>(TEXT("NODE"),
 													TPhraseNodeArray {
 
-															AddNodeContextMenu,
+															AddNodeContextMenu_PinEvent,
 
 															MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 															TPhraseNodeArray {
