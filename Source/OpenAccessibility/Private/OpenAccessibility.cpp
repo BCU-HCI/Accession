@@ -1144,10 +1144,9 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 									})
 							}),
 
-							MakeShared<FPhraseNode>(TEXT("REMOVE"),
+							MakeShared<FPhraseNode>(TEXT("DELETE"),
 							TPhraseNodeArray {
-
-									
+									DeleteEventNode
 							}),
 
 							MakeShared<FPhraseNode>(TEXT("PIN"),
