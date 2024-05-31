@@ -232,18 +232,17 @@ void FOpenAccessibilityModule::BindLocalizedInteractionBranch()
 		if (!SlateApp.IsInitialized())
 			return;
 
-		TSharedPtr<SEditableTextBox> ActiveTextBox = StaticCastSharedPtr<SEditableTextBox>(SlateApp.GetKeyboardFocusedWidget());
+		TSharedPtr<SEditableText> ActiveTextBox = StaticCastSharedPtr<SEditableText>(SlateApp.GetKeyboardFocusedWidget());
 		if (!ActiveTextBox.IsValid())
 			return;
 
-		UParseStringInput* PhraseInput = Record.GetPhraseInput<UParseStringInput>(TEXT("SEARCH_PHRASE"));
+		UParseStringInput* PhraseInput = Record.GetPhraseInput<UParseStringInput>(TEXT("PHRASE_TO_ADD"));
 		if (PhraseInput == nullptr)
 			return;
 
+		FString CurrText = ActiveTextBox->GetText().ToString();
 		ActiveTextBox->SetText(
-			FText::FromString(
-				ActiveTextBox->GetText().ToString() + TEXT(" ") + PhraseInput->GetValue()
-			)
+			FText::FromString(CurrText + TEXT(" ") + PhraseInput->GetValue())
 		);
 	});
 
@@ -253,7 +252,7 @@ void FOpenAccessibilityModule::BindLocalizedInteractionBranch()
 		if (!SlateApp.IsInitialized())
 			return;
 
-		TSharedPtr<SEditableTextBox> ActiveTextBox = StaticCastSharedPtr<SEditableTextBox>(SlateApp.GetKeyboardFocusedWidget());
+		TSharedPtr<SEditableText> ActiveTextBox = StaticCastSharedPtr<SEditableText>(SlateApp.GetKeyboardFocusedWidget());
 		if (!ActiveTextBox.IsValid())
 			return;
 
@@ -294,7 +293,7 @@ void FOpenAccessibilityModule::BindLocalizedInteractionBranch()
 		if (!SlateApp.IsInitialized())
 			return;
 
-		TSharedPtr<SEditableTextBox> ActiveTextBox = StaticCastSharedPtr<SEditableTextBox>(SlateApp.GetKeyboardFocusedWidget());
+		TSharedPtr<SEditableText> ActiveTextBox = StaticCastSharedPtr<SEditableText>(SlateApp.GetKeyboardFocusedWidget());
 		if (!ActiveTextBox.IsValid())
 			return;
 
@@ -311,7 +310,7 @@ void FOpenAccessibilityModule::BindLocalizedInteractionBranch()
 		if (!ActiveTextBox.IsValid())
 			return;
 
-		SlateApp.SetKeyboardFocus(nullptr);
+		SlateApp.ClearKeyboardFocus(EFocusCause::Cleared);
 	});
 
 	// -----
@@ -365,7 +364,7 @@ void FOpenAccessibilityModule::BindLocalizedInteractionBranch()
 				MakeShared<FPhraseNode>(TEXT("ADD"),
 				TPhraseNodeArray {
 
-					MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
+					MakeShared<FPhraseStringInputNode>(TEXT("PHRASE_TO_ADD"),
 					TPhraseNodeArray {
 						TextInputAppendEventNode
 					})
@@ -456,6 +455,29 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 			return;
 		}
 		});
+
+	TSharedPtr<FPhraseEventNode> DeleteEventNode = MakeShared<FPhraseEventNode>();
+	DeleteEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		// Get Node Index
+		UParseIntInput* NodeIndex = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+		if (NodeIndex == nullptr)
+			return;
+
+		UEdGraph* ActiveGraph = ActiveGraphEditor->GetCurrentGraph();
+		if (ActiveGraph == nullptr)
+			return;	
+
+		// Get Graph Indexer
+		TSharedRef<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraph);
+
+		UEdGraphNode* GraphNode = IndexerForGraph->GetNode(NodeIndex->GetValue());
+		if (GraphNode == nullptr)
+			return;
+		else GraphNode->DestroyNode();
+	});
+
 	// -----
 
 	// Pin Events
@@ -1122,6 +1144,12 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 									})
 							}),
 
+							MakeShared<FPhraseNode>(TEXT("REMOVE"),
+							TPhraseNodeArray {
+
+									
+							}),
+
 							MakeShared<FPhraseNode>(TEXT("PIN"),
 							TPhraseNodeArray {
 
@@ -1161,6 +1189,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 											})
 									})
 							}),
+
 				}, NodeIndexFocusEvent),
 				
 				MakeShared<FPhraseNode>(TEXT("SELECT"),
@@ -1199,7 +1228,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 					MakeShared<FPhraseNode>(TEXT("MOVE"),
 					TPhraseNodeArray {
 						
-						MakeShared<FPhraseEnumInputNode<EPhrase2DDirectionalInput>>(TEXT("DIRECTION"),
+						MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
 						TPhraseNodeArray {
 
 							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
@@ -1216,7 +1245,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 						NodeSelectionComment
 					}),
 
-					MakeShared<FPhraseNode>(TEXT("ALIGN"),
+					MakeShared<FPhraseNode>(TEXT("ALIGNMENT"),
 					TPhraseNodeArray {
 
 						MakeShared<FPhrasePositionalInputNode>(TEXT("POSITION"),
