@@ -23,6 +23,7 @@
 
 #include "GraphActionNode.h"
 #include "SGraphPanel.h"
+#include "Widgets/Text/SMultiLineEditableText.h"
 #include "Widgets/Input/SSearchBox.h"
 
 #include "Framework/Docking/TabManager.h"
@@ -232,18 +233,40 @@ void FOpenAccessibilityModule::BindLocalizedInteractionBranch()
 		if (!SlateApp.IsInitialized())
 			return;
 
-		TSharedPtr<SEditableText> ActiveTextBox = StaticCastSharedPtr<SEditableText>(SlateApp.GetKeyboardFocusedWidget());
-		if (!ActiveTextBox.IsValid())
-			return;
-
 		UParseStringInput* PhraseInput = Record.GetPhraseInput<UParseStringInput>(TEXT("PHRASE_TO_ADD"));
 		if (PhraseInput == nullptr)
 			return;
 
-		FString CurrText = ActiveTextBox->GetText().ToString();
-		ActiveTextBox->SetText(
-			FText::FromString(CurrText + TEXT(" ") + PhraseInput->GetValue())
-		);
+		TSharedPtr<SWidget> KeyboardFocusedWidget = SlateApp.GetKeyboardFocusedWidget();
+		if (!KeyboardFocusedWidget.IsValid())
+			return;
+
+		FString KeyboardFocusedWidgetType = KeyboardFocusedWidget->GetTypeAsString();
+
+		if (KeyboardFocusedWidgetType == "SEditableText")
+		{
+			TSharedPtr<SEditableText> EditableText = StaticCastSharedPtr<SEditableText>(KeyboardFocusedWidget);
+
+			FString CurrText = EditableText->GetText().ToString();
+			EditableText->SetText(
+				FText::FromString(CurrText.TrimStartAndEnd() + TEXT(" ") + PhraseInput->GetValue())
+			);
+
+			return;
+		}
+		else if (KeyboardFocusedWidgetType == "SMultiLineEditableText")
+		{
+			TSharedPtr<SMultiLineEditableText> EditableMultiLineText = StaticCastSharedPtr<SMultiLineEditableText>(KeyboardFocusedWidget);
+
+			FString CurrText = EditableMultiLineText->GetText().ToString();
+
+			EditableMultiLineText->SetText(
+				FText::FromString(CurrText.TrimStartAndEnd() + TEXT(" ") + PhraseInput->GetValue())
+			);
+
+			return;
+		}
+		else UE_LOG(LogOpenAccessibility, Display, TEXT("Found TextBox Not Of Editable Type"));
 	});
 
 	TSharedPtr<FPhraseEventNode> TextInputRemoveEventNode = MakeShared<FPhraseEventNode>();
@@ -508,12 +531,9 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 
 		// Get Inputs
-		TArray<UParseInput*> NodeInputs;
-		Record.GetPhraseInputs(TEXT("NODE_INDEX"), NodeInputs);
+		TArray<UParseInput*> NodeInputs = Record.GetPhraseInputs(TEXT("NODE_INDEX"));
 
-		TArray<UParseInput*> PinInputs;
-		Record.GetPhraseInputs(TEXT("PIN_INDEX"), PinInputs);
-
+		TArray<UParseInput*> PinInputs = Record.GetPhraseInputs(TEXT("PIN_INDEX"));
 		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
 		{
 			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Inputs Length --"));
@@ -1131,26 +1151,26 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 				TPhraseNodeArray {
 
-							MakeShared<FPhraseNode>(TEXT("MOVE"),
+					MakeShared<FPhraseNode>(TEXT("MOVE"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
 							TPhraseNodeArray {
+								MoveEventNode
+							})
+						})
+					}),
 
-									MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
-									TPhraseNodeArray {
+					MakeShared<FPhraseNode>(TEXT("DELETE"),
+					TPhraseNodeArray {
+						DeleteEventNode
+					}),
 
-											MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
-											TPhraseNodeArray {
-												MoveEventNode
-											})
-									})
-							}),
-
-							MakeShared<FPhraseNode>(TEXT("DELETE"),
-							TPhraseNodeArray {
-									DeleteEventNode
-							}),
-
-							MakeShared<FPhraseNode>(TEXT("PIN"),
-							TPhraseNodeArray {
+					MakeShared<FPhraseNode>(TEXT("PIN"),
+					TPhraseNodeArray {
 
 									MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
 									TPhraseNodeArray {
@@ -1166,25 +1186,40 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 															MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 															TPhraseNodeArray {
 
-																	MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+																	MakeShared<FPhraseNode>(TEXT("PIN"),
 																	TPhraseNodeArray {
-																		PinConnectEventNode
+
+																		MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+																		TPhraseNodeArray {
+																			PinConnectEventNode
+																		})
+
 																	})
-															})
+
+															}, NodeIndexFocusEvent)
 													})
 											}),
 
 											MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
 											TPhraseNodeArray {
 
-													MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+													MakeShared<FPhraseNode>(TEXT("NODE"),
 													TPhraseNodeArray {
 
-															MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
-															TPhraseNodeArray {
-																PinDisconnectEventNode
-															})
-													}, NodeIndexFocusEvent)
+														MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+														TPhraseNodeArray {
+
+																MakeShared<FPhraseNode>(TEXT("PIN"),
+																TPhraseNodeArray {
+
+																	MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+																	TPhraseNodeArray {
+																		PinDisconnectEventNode
+																	})
+																})
+
+														}, NodeIndexFocusEvent)
+													})
 											})
 									})
 							}),
