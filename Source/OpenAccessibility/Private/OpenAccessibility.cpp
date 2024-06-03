@@ -1172,57 +1172,57 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 					MakeShared<FPhraseNode>(TEXT("PIN"),
 					TPhraseNodeArray {
 
-									MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+						MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseNode>(TEXT("CONNECT"),
+							TPhraseNodeArray {
+
+								MakeShared<FPhraseNode>(TEXT("NODE"),
+								TPhraseNodeArray {
+
+									AddNodeContextMenu_PinEvent,
+
+									MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 									TPhraseNodeArray {
 
-											MakeShared<FPhraseNode>(TEXT("CONNECT"),
+										MakeShared<FPhraseNode>(TEXT("PIN"),
+										TPhraseNodeArray {
+
+											MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
 											TPhraseNodeArray {
-
-													MakeShared<FPhraseNode>(TEXT("NODE"),
-													TPhraseNodeArray {
-
-															AddNodeContextMenu_PinEvent,
-
-															MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-															TPhraseNodeArray {
-
-																	MakeShared<FPhraseNode>(TEXT("PIN"),
-																	TPhraseNodeArray {
-
-																		MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
-																		TPhraseNodeArray {
-																			PinConnectEventNode
-																		})
-
-																	})
-
-															}, NodeIndexFocusEvent)
-													})
-											}),
-
-											MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
-											TPhraseNodeArray {
-
-													MakeShared<FPhraseNode>(TEXT("NODE"),
-													TPhraseNodeArray {
-
-														MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-														TPhraseNodeArray {
-
-																MakeShared<FPhraseNode>(TEXT("PIN"),
-																TPhraseNodeArray {
-
-																	MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
-																	TPhraseNodeArray {
-																		PinDisconnectEventNode
-																	})
-																})
-
-														}, NodeIndexFocusEvent)
-													})
+												PinConnectEventNode
 											})
-									})
+
+										})
+
+									}, NodeIndexFocusEvent)
+								})
 							}),
+
+							MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
+							TPhraseNodeArray {
+
+								MakeShared<FPhraseNode>(TEXT("NODE"),
+								TPhraseNodeArray {
+
+									MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+									TPhraseNodeArray {
+
+										MakeShared<FPhraseNode>(TEXT("PIN"),
+										TPhraseNodeArray {
+
+											MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+											TPhraseNodeArray {
+												PinDisconnectEventNode
+											})
+										})
+
+									}, NodeIndexFocusEvent)
+								})
+							})
+						})
+					}),
 
 				}, NodeIndexFocusEvent),
 				
