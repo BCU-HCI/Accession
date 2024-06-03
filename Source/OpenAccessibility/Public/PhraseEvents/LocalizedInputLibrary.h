@@ -22,7 +22,10 @@ public:
 	static void KeyboardInputRemove(FParseRecord& Record);
 
 	UFUNCTION()
-    static void KeyboardInputReset(FParseRecord& Record);
+	static void KeyboardInputReset(FParseRecord& Record);
+
+	UFUNCTION()
+	static void KeyboardInputExit(FParseRecord& Record);
 
 protected:
 
