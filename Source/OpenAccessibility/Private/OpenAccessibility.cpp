@@ -35,13 +35,14 @@
 /// <param name="ActiveContainerName">- The Name of the SharedPtr To Store The Found Tab In.</param>
 /// <param name="InActiveTabType">- The Type of the Tab To Cast To.</param>
 #define GET_ACTIVE_TAB( ActiveContainerName, InActiveTabType, ...) TSharedPtr< InActiveTabType > ActiveContainerName; {\
-		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab(); \
-		if (!ActiveTab.IsValid()) \
+		TSharedPtr<SDockTab> _AT = FGlobalTabmanager::Get()->GetActiveTab(); \
+		if (!_AT.IsValid()) \
 		{ \
 			UE_LOG(LogOpenAccessibility, Display, TEXT("GET_ACTIVE_TAB: NO ACTIVE TAB FOUND.")); \
 			return; \
 		} \
-		ActiveContainerName = StaticCastSharedPtr< InActiveTabType >(ActiveTab->GetContent().ToSharedPtr()); \
+		ActiveContainerName =                                                      \
+        StaticCastSharedPtr<InActiveTabType>(_AT->GetContent().ToSharedPtr()); \
 		if (!ActiveContainerName.IsValid()) \
 		{ \
 			UE_LOG(LogOpenAccessibility, Display, TEXT("GET_ACTIVE_TAB: CURRENT ACTIVE TAB IS NOT OF TYPE - %s"), #InActiveTabType); \

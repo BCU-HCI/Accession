@@ -9,8 +9,14 @@
 #include "UObject/ScriptMacros.h"
 
 #include "Containers/ParseRecord.h"
+#include "Containers/Input/UParseIntInput.h"
+#include "Containers/Input/UParseStringInput.h"
+#include "Containers/Input/UParseEnumInput.h"
 
 #include "PhraseTreeFunctionLibrary.generated.h"
+
+class FPhraseTree;
+class FAssetAccessibilityRegistry;
 
 // Utility Definitions
 
@@ -21,17 +27,17 @@ DEFINE_LOG_CATEGORY(LogOpenAccessibilityPhraseEvent);
 #define GET_ACTIVE_TAB(ActiveContainerName, InActiveTabType, ...)              \
   TSharedPtr<InActiveTabType> ActiveContainerName;                             \
   {                                                                            \
-    TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab(); \
-    if (!ActiveTab.IsValid()) {                                                \
-      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                                    \
+    TSharedPtr<SDockTab> _AT = FGlobalTabmanager::Get()->GetActiveTab();       \
+    if (!_AT.IsValid()) {                                                      \
+      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                         \
              TEXT("GET_ACTIVE_TAB: NO ACTIVE TAB FOUND."));                    \
       return;                                                                  \
     }                                                                          \
                                                                                \
     ActiveContainerName = StaticCastSharedPtr<InActiveTabType>(                \
-        ActiveTab->GetContent().ToSharedPtr());                                \
+        _AT->GetContent().ToSharedPtr());                                      \
     if (!ActiveContainerName.IsValid()) {                                      \
-      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                                    \
+      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                         \
              TEXT("GET_ACTIVE_TAB: CURRENT ACTIVE TAB IS NOT OF TYPE - %s"),   \
              #InActiveTabType);                                                \
       return;                                                                  \
@@ -47,15 +53,21 @@ DEFINE_LOG_CATEGORY(LogOpenAccessibilityPhraseEvent);
                                                                                \
     ActiveContainerName = SlateApp.GetKeyboardFocusedWidget();                 \
     if (!ActiveContainerName.IsValid()) {                                      \
-      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                                    \
+      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                         \
              TEXT("GET_ACTIVE_KEYBOARD_WIDGET: NO ACTIVE WIDGET FOUND."));     \
       return;                                                                  \
     }                                                                          \
-  };                                                                           \
+  };                                                                           
 
 UCLASS(Abstract, MinimalAPI)
 class UPhraseTreeFunctionLibrary : public UObject
 {
     GENERATED_UCLASS_BODY()
 
+
+protected:
+
+    static TSharedRef<FPhraseTree> GetPhraseTree();
+
+    static TSharedRef<FAssetAccessibilityRegistry> GetAssetRegistry();
 };

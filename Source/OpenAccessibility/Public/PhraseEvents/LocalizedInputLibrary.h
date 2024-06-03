@@ -11,9 +11,11 @@
 UCLASS()
 class ULocalizedInputLibrary : public UPhraseTreeFunctionLibrary 
 {
-  GENERATED_BODY()
+	GENERATED_BODY()
 
 public:
+
+	// Keyboard Input Implementation
 
 	UFUNCTION()
 	static void KeyboardInputAdd(FParseRecord& Record);
@@ -26,6 +28,15 @@ public:
 
 	UFUNCTION()
 	static void KeyboardInputExit(FParseRecord& Record);
+
+	// End of Keyboard Input Implementation
+
+
+	// Mouse Input Implementation
+
+
+
+	// End of Keyboard Input Implementation
 
 protected:
 
