@@ -7,11 +7,16 @@
 #include "Input/UParseInput.h"
 #include "PhraseTree/Containers/ContextObject.h"
 
+#include "ParseRecord.generated.h"
+
 /// <summary>
 /// The Collected Information from the Propogation of the Phrase through the tree.
 /// </summary>
+USTRUCT(BlueprintType)
 struct OPENACCESSIBILITYCOMMUNICATION_API FParseRecord
 {
+	GENERATED_BODY()
+
 public:
 	friend class FPhraseTree;
 

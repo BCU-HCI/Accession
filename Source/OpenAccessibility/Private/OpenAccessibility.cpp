@@ -47,7 +47,7 @@
 			UE_LOG(LogOpenAccessibility, Display, TEXT("GET_ACTIVE_TAB: CURRENT ACTIVE TAB IS NOT OF TYPE - %s"), #InActiveTabType); \
 			return; \
 		} \
-	}
+	}\
 
 #define LOCTEXT_NAMESPACE "FOpenAccessibilityModule"
 
