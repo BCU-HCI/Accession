@@ -1307,23 +1307,24 @@ void FOpenAccessibilityModule::CreateTranscriptionVisualization()
 void FOpenAccessibilityModule::RegisterConsoleCommands()
 {
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibility.Debug.FlashActiveTab"),
-		TEXT("Flashes the active tab in the editor."),
-
-		FConsoleCommandDelegate::CreateLambda([]() {
-			UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibility.Debug.FlashActiveTab"));
-
-			TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
-			if (!ActiveTab.IsValid())
-			{
+		TEXT("OpenAccessibility.Debug.SendPhraseEvent"), 
+		TEXT("Sends the provided Phrase to the Phrase Tree, replicating the STT Communication Module's Transcription Recieving."),
+        FConsoleCommandWithArgsDelegate::CreateLambda([this](const TArray<FString> &Args) {
+			if (Args.Num() == 0)
 				return;
-			}
-			
-			ActiveTab->FlashTab();
-			
-			UE_LOG(LogOpenAccessibility, Log, TEXT("Active Tab Content Type: %s"), *ActiveTab->GetContent()->GetTypeAsString())
 
-		}),
+			FString ProvidedPhrase;
+			for (const FString& Arg : Args)
+			{
+				ProvidedPhrase += Arg + TEXT(" ");
+			}
+
+			ProvidedPhrase.TrimStartAndEndInline();
+			ProvidedPhrase.ToUpperInline();
+
+            FOpenAccessibilityCommunicationModule::Get()
+				.OnTranscriptionRecieved.Broadcast(TArray<FString>{ ProvidedPhrase });
+        }),
 
 		ECVF_Default
 	));
