@@ -16,16 +16,38 @@
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 #include "PhraseTree/Containers/Input/UParseEnumInput.h"
+#include "PhraseTree/Containers/Input/InputContainers.h"
 
 #include "TranscriptionVisualizer.h"
 #include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
 
 #include "GraphActionNode.h"
 #include "SGraphPanel.h"
+#include "Widgets/Text/SMultiLineEditableText.h"
 #include "Widgets/Input/SSearchBox.h"
 
 #include "Framework/Docking/TabManager.h"
 #include "Logging/StructuredLog.h"
+
+/// <summary>
+/// Obtains the Active Unreal Tab, if available, and Casts It To the Provided Type.
+/// </summary>
+/// <param name="ActiveContainerName">- The Name of the SharedPtr To Store The Found Tab In.</param>
+/// <param name="InActiveTabType">- The Type of the Tab To Cast To.</param>
+#define GET_ACTIVE_TAB( ActiveContainerName, InActiveTabType, ...) TSharedPtr< InActiveTabType > ActiveContainerName; {\
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab(); \
+		if (!ActiveTab.IsValid()) \
+		{ \
+			UE_LOG(LogOpenAccessibility, Display, TEXT("GET_ACTIVE_TAB: NO ACTIVE TAB FOUND.")); \
+			return; \
+		} \
+		ActiveContainerName = StaticCastSharedPtr< InActiveTabType >(ActiveTab->GetContent().ToSharedPtr()); \
+		if (!ActiveContainerName.IsValid()) \
+		{ \
+			UE_LOG(LogOpenAccessibility, Display, TEXT("GET_ACTIVE_TAB: CURRENT ACTIVE TAB IS NOT OF TYPE - %s"), #InActiveTabType); \
+			return; \
+		} \
+	}
 
 #define LOCTEXT_NAMESPACE "FOpenAccessibilityModule"
 
@@ -48,7 +70,7 @@ void FOpenAccessibilityModule::StartupModule()
 	RegisterConsoleCommands();
 
 	BindGraphInteractionBranch();
-	BindLocalLocomotionBranch();
+	BindLocalizedInteractionBranch();
 
 	CreateTranscriptionVisualization();
 }
@@ -60,8 +82,10 @@ void FOpenAccessibilityModule::ShutdownModule()
 	UnregisterConsoleCommands();
 }
 
-void FOpenAccessibilityModule::BindLocalLocomotionBranch()
+void FOpenAccessibilityModule::BindLocalizedInteractionBranch()
 {
+	// Localized Object Interaction
+
 	TSharedPtr<FPhraseEventNode> MoveViewportEventNode = MakeShared<FPhraseEventNode>();
 	MoveViewportEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
 		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
@@ -199,45 +223,199 @@ void FOpenAccessibilityModule::BindLocalLocomotionBranch()
 		}
 	});
 
-	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
-		MakeShared<FPhraseNode>(TEXT("VIEW"),
-		TPhraseNodeArray{
-			
-			MakeShared<FPhraseNode>(TEXT("MOVE"),
-			TPhraseNodeArray {
-				
-				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+	// -----
+
+	// Localized Input Interaction (TextBoxes, etc.)
+
+	TSharedPtr<FPhraseEventNode> TextInputAppendEventNode = MakeShared<FPhraseEventNode>();
+	TextInputAppendEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		FSlateApplication& SlateApp = FSlateApplication::Get();
+		if (!SlateApp.IsInitialized())
+			return;
+
+		UParseStringInput* PhraseInput = Record.GetPhraseInput<UParseStringInput>(TEXT("PHRASE_TO_ADD"));
+		if (PhraseInput == nullptr)
+			return;
+
+		TSharedPtr<SWidget> KeyboardFocusedWidget = SlateApp.GetKeyboardFocusedWidget();
+		if (!KeyboardFocusedWidget.IsValid())
+			return;
+
+		FString KeyboardFocusedWidgetType = KeyboardFocusedWidget->GetTypeAsString();
+
+		if (KeyboardFocusedWidgetType == "SEditableText")
+		{
+			TSharedPtr<SEditableText> EditableText = StaticCastSharedPtr<SEditableText>(KeyboardFocusedWidget);
+
+			FString CurrText = EditableText->GetText().ToString();
+			EditableText->SetText(
+				FText::FromString(CurrText.TrimStartAndEnd() + TEXT(" ") + PhraseInput->GetValue())
+			);
+
+			return;
+		}
+		else if (KeyboardFocusedWidgetType == "SMultiLineEditableText")
+		{
+			TSharedPtr<SMultiLineEditableText> EditableMultiLineText = StaticCastSharedPtr<SMultiLineEditableText>(KeyboardFocusedWidget);
+
+			FString CurrText = EditableMultiLineText->GetText().ToString();
+
+			EditableMultiLineText->SetText(
+				FText::FromString(CurrText.TrimStartAndEnd() + TEXT(" ") + PhraseInput->GetValue())
+			);
+
+			return;
+		}
+		else UE_LOG(LogOpenAccessibility, Display, TEXT("Found TextBox Not Of Editable Type"));
+	});
+
+	TSharedPtr<FPhraseEventNode> TextInputRemoveEventNode = MakeShared<FPhraseEventNode>();
+	TextInputRemoveEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		FSlateApplication& SlateApp = FSlateApplication::Get();
+		if (!SlateApp.IsInitialized())
+			return;
+
+		TSharedPtr<SEditableText> ActiveTextBox = StaticCastSharedPtr<SEditableText>(SlateApp.GetKeyboardFocusedWidget());
+		if (!ActiveTextBox.IsValid())
+			return;
+
+		UParseIntInput* AmountToRemove = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+		if (AmountToRemove == nullptr)
+			return;
+
+		FString TextBoxString = ActiveTextBox->GetText().ToString();
+
+		{
+			TArray<FString> SplitTextBoxString;
+			TextBoxString.ParseIntoArrayWS(SplitTextBoxString);
+
+			int RemovedAmount = 0;
+			int CurrentIndex = SplitTextBoxString.Num() - 1;
+			while (RemovedAmount < AmountToRemove->GetValue())
+			{
+				if (SplitTextBoxString.IsEmpty())
+					break;
+
+				SplitTextBoxString.RemoveAt(CurrentIndex--);
+				RemovedAmount++;
+			}
+
+			if (SplitTextBoxString.Num() > 0)
+				TextBoxString = FString::Join(SplitTextBoxString, TEXT(" "));
+			else TextBoxString = TEXT("");
+		}
+
+		ActiveTextBox->SetText(
+			FText::FromString(TextBoxString)
+		);
+	});
+
+	TSharedPtr<FPhraseEventNode> TextInputResetEventNode = MakeShared<FPhraseEventNode>();
+	TextInputResetEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		FSlateApplication& SlateApp = FSlateApplication::Get();
+		if (!SlateApp.IsInitialized())
+			return;
+
+		TSharedPtr<SEditableText> ActiveTextBox = StaticCastSharedPtr<SEditableText>(SlateApp.GetKeyboardFocusedWidget());
+		if (!ActiveTextBox.IsValid())
+			return;
+
+		ActiveTextBox->SetText(FText::FromString(TEXT("")));
+	});
+
+	TSharedPtr<FPhraseEventNode> TextInputExitEventNode = MakeShared<FPhraseEventNode>();
+	TextInputExitEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		FSlateApplication& SlateApp = FSlateApplication::Get();
+		if (!SlateApp.IsInitialized())
+			return;
+
+		TSharedPtr<SEditableTextBox> ActiveTextBox = StaticCastSharedPtr<SEditableTextBox>(SlateApp.GetKeyboardFocusedWidget());
+		if (!ActiveTextBox.IsValid())
+			return;
+
+		SlateApp.ClearKeyboardFocus(EFocusCause::Cleared);
+	});
+
+	// -----
+
+	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranches(
+		TPhraseNodeArray {
+			MakeShared<FPhraseNode>(TEXT("VIEW"),
+			TPhraseNodeArray{
+
+				MakeShared<FPhraseNode>(TEXT("MOVE"),
 				TPhraseNodeArray {
-					
-					MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+
+					MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
 					TPhraseNodeArray {
-						MoveViewportEventNode
+
+						MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+						TPhraseNodeArray {
+							MoveViewportEventNode
+						})
+
+					})
+
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("ZOOM"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+						TPhraseNodeArray {
+							ZoomViewportEventNode
+						})
+					})
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("FOCUS"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseInputNode<int32>>(TEXT("INDEX"),
+					TPhraseNodeArray {
+						IndexFocusEventNode
 					})
 				})
 			}),
 
-			MakeShared<FPhraseNode>(TEXT("ZOOM"),
+			MakeShared<FPhraseNode>(TEXT("INPUT"),
 			TPhraseNodeArray {
 				
-				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+				MakeShared<FPhraseNode>(TEXT("ADD"),
 				TPhraseNodeArray {
-					
+
+					MakeShared<FPhraseStringInputNode>(TEXT("PHRASE_TO_ADD"),
+					TPhraseNodeArray {
+						TextInputAppendEventNode
+					})
+
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("REMOVE"),
+				TPhraseNodeArray {
+
 					MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
 					TPhraseNodeArray {
-						ZoomViewportEventNode
+						TextInputRemoveEventNode
 					})
-				})
-			}),
 
-			MakeShared<FPhraseNode>(TEXT("FOCUS"),
-			TPhraseNodeArray {
-				
-				MakeShared<FPhraseInputNode<int32>>(TEXT("INDEX"),
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("RESET"),
 				TPhraseNodeArray {
-					IndexFocusEventNode
+					TextInputResetEventNode
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("EXIT"),
+				TPhraseNodeArray {
+					TextInputExitEventNode
 				})
+
 			})
-		})
+		}
 	);
 }
 
@@ -271,26 +449,26 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				return;
 			}
 
-			switch (EPhraseDirectionalInput(MoveDirection->GetValue()))
+			switch (EPhrase2DDirectionalInput(MoveDirection->GetValue()))
 			{
-			case EPhraseDirectionalInput::UP:
+			case EPhrase2DDirectionalInput::UP:
 				GraphNode->NodePosY -= MoveAmount->GetValue();
 				break;
 
-			case EPhraseDirectionalInput::DOWN:
+			case EPhrase2DDirectionalInput::DOWN:
 				GraphNode->NodePosY += MoveAmount->GetValue();
 				break;
 
-			case EPhraseDirectionalInput::LEFT:
+			case EPhrase2DDirectionalInput::LEFT:
 				GraphNode->NodePosX -= MoveAmount->GetValue();
 				break;
 
-			case EPhraseDirectionalInput::RIGHT:
+			case EPhrase2DDirectionalInput::RIGHT:
 				GraphNode->NodePosX += MoveAmount->GetValue();
 				break;
 
 			default:
-				UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Direction --"));
+				UE_LOG(LogOpenAccessibility, Display, TEXT("Provided Direction Is In-Valid"));
 				return;
 			}
 		}
@@ -300,6 +478,29 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 			return;
 		}
 		});
+
+	TSharedPtr<FPhraseEventNode> DeleteEventNode = MakeShared<FPhraseEventNode>();
+	DeleteEventNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		// Get Node Index
+		UParseIntInput* NodeIndex = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+		if (NodeIndex == nullptr)
+			return;
+
+		UEdGraph* ActiveGraph = ActiveGraphEditor->GetCurrentGraph();
+		if (ActiveGraph == nullptr)
+			return;	
+
+		// Get Graph Indexer
+		TSharedRef<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraph);
+
+		UEdGraphNode* GraphNode = IndexerForGraph->GetNode(NodeIndex->GetValue());
+		if (GraphNode == nullptr)
+			return;
+		else GraphNode->DestroyNode();
+	});
+
 	// -----
 
 	// Pin Events
@@ -330,12 +531,9 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		TSharedPtr<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 
 		// Get Inputs
-		TArray<UParseInput*> NodeInputs;
-		Record.GetPhraseInputs(TEXT("NODE_INDEX"), NodeInputs);
+		TArray<UParseInput*> NodeInputs = Record.GetPhraseInputs(TEXT("NODE_INDEX"));
 
-		TArray<UParseInput*> PinInputs;
-		Record.GetPhraseInputs(TEXT("PIN_INDEX"), PinInputs);
-
+		TArray<UParseInput*> PinInputs = Record.GetPhraseInputs(TEXT("PIN_INDEX"));
 		if (NodeInputs.Num() < 2 || PinInputs.Num() < 2)
 		{
 			UE_LOG(LogOpenAccessibility, Display, TEXT(" -- DEMO PHRASE_TREE Event Failed -- Invalid Inputs Length --"));
@@ -449,6 +647,154 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 		ActiveGraphEditor->SetNodeSelection(Node, true);
 		});
 	// ------
+
+	// Node Selection Events
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionAddNode = MakeShared<FPhraseEventNode>();
+	NodeSelectionAddNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB( ActiveGraphEditor, SGraphEditor );
+
+		UParseIntInput* NodeIndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+		if (NodeIndexInput == nullptr)
+			return;
+
+		TSharedRef<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+		UEdGraphNode* GraphNode = IndexerForGraph->GetNode(NodeIndexInput->GetValue());
+		if (GraphNode == nullptr)
+			return;
+
+		ActiveGraphEditor->SetNodeSelection(GraphNode, true);
+	});
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionRemoveNode = MakeShared<FPhraseEventNode>();
+	NodeSelectionRemoveNode->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB( ActiveGraphEditor, SGraphEditor );
+
+		UParseIntInput* NodeIndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+		if (NodeIndexInput == nullptr)
+			return;
+
+		TSharedRef<FGraphIndexer> IndexerForGraph = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
+
+		UEdGraphNode* GraphNode = IndexerForGraph->GetNode(NodeIndexInput->GetValue());
+		if (GraphNode == nullptr)
+			return;
+
+		ActiveGraphEditor->SetNodeSelection(GraphNode, false);
+	});
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionReset = MakeShared<FPhraseEventNode>();
+	NodeSelectionReset->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		ActiveGraphEditor->ClearSelectionSet();
+	});
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionMove = MakeShared<FPhraseEventNode>();
+	NodeSelectionMove->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		UParseEnumInput* Direction = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
+		if (Direction == nullptr)
+			return;
+
+		UParseIntInput* Amount = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+		if (Amount == nullptr)
+			return;
+
+		for (UObject* Node : ActiveGraphEditor->GetSelectedNodes())
+		{
+			UEdGraphNode* GraphNode = Cast<UEdGraphNode>(Node);
+			if (GraphNode == nullptr)
+				continue;
+
+			switch (EPhraseDirectionalInput(Direction->GetValue()))
+			{
+			case EPhraseDirectionalInput::UP:
+				GraphNode->NodePosY -= Amount->GetValue();
+				break;
+
+			case EPhraseDirectionalInput::DOWN:
+				GraphNode->NodePosY += Amount->GetValue();
+				break;
+
+			case EPhraseDirectionalInput::LEFT:
+				GraphNode->NodePosX -= Amount->GetValue();
+				break;
+
+			case EPhraseDirectionalInput::RIGHT:
+				GraphNode->NodePosX += Amount->GetValue();
+				break;
+			}
+		}
+	});
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionComment = MakeShared<FPhraseEventNode>();
+	NodeSelectionComment->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		UEdGraph* Graph = ActiveGraphEditor->GetCurrentGraph();
+
+		TSharedPtr<FEdGraphSchemaAction> CommentCreateAction = Graph->GetSchema()->GetCreateCommentAction();
+		if (CommentCreateAction.IsValid())
+		{
+			CommentCreateAction->PerformAction(Graph, nullptr, FVector2D(0, 0), true);
+		}
+	});
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionAlignment = MakeShared<FPhraseEventNode>();
+	NodeSelectionAlignment->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		UParseEnumInput* PositionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("POSITION"));
+		if (PositionInput == nullptr)
+			return;
+
+		for (UObject* Node : ActiveGraphEditor->GetSelectedNodes())
+		{
+			UEdGraphNode* GraphNode = Cast<UEdGraphNode>(Node);
+			if (GraphNode == nullptr)
+				continue;
+
+			switch (EPhrasePositionalInput(PositionInput->GetValue()))
+			{
+				case EPhrasePositionalInput::TOP:
+					ActiveGraphEditor->OnAlignTop();
+					break;
+
+				case EPhrasePositionalInput::MIDDLE:
+					ActiveGraphEditor->OnAlignMiddle();
+					break;
+
+				case EPhrasePositionalInput::BOTTOM:
+					ActiveGraphEditor->OnAlignBottom();
+					break;
+
+				case EPhrasePositionalInput::LEFT:
+					ActiveGraphEditor->OnAlignLeft();
+					break;
+
+				case EPhrasePositionalInput::CENTER:
+					ActiveGraphEditor->OnAlignCenter();
+					break;
+
+				case EPhrasePositionalInput::RIGHT:
+					ActiveGraphEditor->OnAlignRight();
+					break;
+			}
+		}
+		});
+
+	TSharedPtr<FPhraseEventNode> NodeSelectionStraighten = MakeShared<FPhraseEventNode>();
+	NodeSelectionStraighten->OnPhraseParsed.BindLambda([this](FParseRecord& Record) {
+		GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+
+		ActiveGraphEditor->StraightenConnections();
+	});
+
+	// ------
+
 
 
 	// Node Menu Events
@@ -607,7 +953,8 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 	// -----
 
-	// Node Add Context Events
+	// Node Add Context
+
 	TSharedPtr<FPhraseEventNode> Context_SelectAction = MakeShared<FPhraseEventNode>();
 	Context_SelectAction->OnPhraseParsed.BindLambda(
 		[this](FParseRecord& Record) {
@@ -722,6 +1069,78 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 			ContextMenu->ToggleContextAwareness();
 		}
 	);
+
+	TPhraseNodeArray AddNodeContextChildren = TPhraseNodeArray{
+
+				MakeShared<FPhraseNode>(TEXT("SELECT"),
+				TPhraseNodeArray {
+
+						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+						TPhraseNodeArray {
+
+								Context_SelectAction
+						})
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("SEARCH"),
+				TPhraseNodeArray {
+
+						MakeShared<FPhraseNode>(TEXT("NEW"),
+						TPhraseNodeArray {
+
+								MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
+								TPhraseNodeArray {
+									Context_SearchNewPhrase
+								})
+						}),
+
+						MakeShared<FPhraseNode>(TEXT("ADD"),
+						TPhraseNodeArray {
+
+								MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
+								TPhraseNodeArray {
+									Context_SearchAppendPhrase
+								})
+						}),
+
+						MakeShared<FPhraseNode>(TEXT("RESET"),
+						TPhraseNodeArray {
+							Context_SearchReset
+						})
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("SCROLL"),
+				TPhraseNodeArray {
+
+						MakeShared<FPhraseScrollInputNode>(TEXT("DIRECTION"),
+						TPhraseNodeArray {
+
+								MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+								TPhraseNodeArray {
+									Context_Scroll
+								})
+						})
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("TOGGLE"),
+				TPhraseNodeArray {
+						Context_ToggleContextAwareness
+				})
+	};
+
+	TSharedPtr<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>> AddNodeContextMenu = MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+		TEXT("ADD"),
+		1.5f,
+		GetAddNodeMenuEvent,
+		AddNodeContextChildren
+	);
+
+	TSharedPtr<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>> AddNodeContextMenu_PinEvent = MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+		TEXT("ADD"),
+		1.5f,
+		GetAddNodeMenu_PinEvent,
+		AddNodeContextChildren
+	);
 	// -----
 
 	FOpenAccessibilityCommunicationModule::Get().PhraseTree->BindBranch(
@@ -732,181 +1151,147 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 				TPhraseNodeArray {
 
-							MakeShared<FPhraseNode>(TEXT("MOVE"),
+					MakeShared<FPhraseNode>(TEXT("MOVE"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+							TPhraseNodeArray {
+								MoveEventNode
+							})
+						})
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("DELETE"),
+					TPhraseNodeArray {
+						DeleteEventNode
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("PIN"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseNode>(TEXT("CONNECT"),
 							TPhraseNodeArray {
 
-									MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+								MakeShared<FPhraseNode>(TEXT("NODE"),
+								TPhraseNodeArray {
+
+									AddNodeContextMenu_PinEvent,
+
+									MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 									TPhraseNodeArray {
 
-											MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+										MakeShared<FPhraseNode>(TEXT("PIN"),
+										TPhraseNodeArray {
+
+											MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
 											TPhraseNodeArray {
-												MoveEventNode
+												PinConnectEventNode
 											})
-									})
+
+										})
+
+									}, NodeIndexFocusEvent)
+								})
 							}),
 
-							MakeShared<FPhraseNode>(TEXT("PIN"),
+							MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
 							TPhraseNodeArray {
 
-									MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+								MakeShared<FPhraseNode>(TEXT("NODE"),
+								TPhraseNodeArray {
+
+									MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 									TPhraseNodeArray {
 
-											MakeShared<FPhraseNode>(TEXT("CONNECT"),
+										MakeShared<FPhraseNode>(TEXT("PIN"),
+										TPhraseNodeArray {
+
+											MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
 											TPhraseNodeArray {
-
-													MakeShared<FPhraseNode>(TEXT("NODE"),
-													TPhraseNodeArray {
-
-															MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
-																	TEXT("ADD"),
-																	1.5f,
-																	GetAddNodeMenu_PinEvent,
-																	TPhraseNodeArray{
-
-																			MakeShared<FPhraseNode>(TEXT("SELECT"),
-																			TPhraseNodeArray {
-
-																					MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-																					TPhraseNodeArray {
-
-																							Context_SelectAction
-																					})
-																			}),
-
-																			MakeShared<FPhraseNode>(TEXT("SEARCH"),
-																			TPhraseNodeArray {
-
-																					MakeShared<FPhraseNode>(TEXT("NEW"),
-																					TPhraseNodeArray {
-
-																							MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
-																							TPhraseNodeArray {
-																								Context_SearchNewPhrase
-																							})
-																					}),
-
-																					MakeShared<FPhraseNode>(TEXT("ADD"),
-																					TPhraseNodeArray {
-
-																							MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
-																							TPhraseNodeArray {
-																								Context_SearchAppendPhrase
-																							})
-																					}),
-
-																					MakeShared<FPhraseNode>(TEXT("RESET"),
-																					TPhraseNodeArray {
-																						Context_SearchReset
-																					})
-																			}),
-
-																			MakeShared<FPhraseNode>(TEXT("SCROLL"),
-																			TPhraseNodeArray {
-
-																					MakeShared<FPhraseScrollInputNode>(TEXT("DIRECTION"),
-																					TPhraseNodeArray {
-
-																							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
-																							TPhraseNodeArray {
-																								Context_Scroll
-																							})
-																					})
-																			}),
-
-																			MakeShared<FPhraseNode>(TEXT("TOGGLE"),
-																			TPhraseNodeArray {
-																					Context_ToggleContextAwareness
-																			})
-																	}),
-
-															MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-															TPhraseNodeArray {
-
-																	MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
-																	TPhraseNodeArray {
-																		PinConnectEventNode
-																	})
-															})
-													})
-											}),
-
-											MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
-											TPhraseNodeArray {
-
-													MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-													TPhraseNodeArray {
-
-															MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
-															TPhraseNodeArray {
-																PinDisconnectEventNode
-															})
-													}, NodeIndexFocusEvent)
+												PinDisconnectEventNode
 											})
-									})
-							}),
+										})
+
+									}, NodeIndexFocusEvent)
+								})
+							})
+						})
+					}),
+
 				}, NodeIndexFocusEvent),
 				
-				MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
-				TEXT("ADD"),
-				1.5f,
-				GetAddNodeMenuEvent,
-				TPhraseNodeArray{
+				MakeShared<FPhraseNode>(TEXT("SELECT"),
+				TPhraseNodeArray {
 
-						MakeShared<FPhraseNode>(TEXT("SELECT"),
+					MakeShared<FPhraseNode>(TEXT("ADD"),
+					TPhraseNodeArray {
+						
+						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 						TPhraseNodeArray {
-
-								MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-								TPhraseNodeArray {
-										
-										Context_SelectAction
-								})
-						}),
-
-						MakeShared<FPhraseNode>(TEXT("SEARCH"),
-						TPhraseNodeArray {
-
-								MakeShared<FPhraseNode>(TEXT("NEW"),
-								TPhraseNodeArray {
-
-										MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
-										TPhraseNodeArray {
-											Context_SearchNewPhrase
-										})
-								}),
-
-								MakeShared<FPhraseNode>(TEXT("ADD"),
-								TPhraseNodeArray {
-
-										MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
-										TPhraseNodeArray {
-											Context_SearchAppendPhrase
-										})
-								}),
-
-								MakeShared<FPhraseNode>(TEXT("RESET"),
-								TPhraseNodeArray {
-									Context_SearchReset
-								})
-						}),
-
-						MakeShared<FPhraseNode>(TEXT("SCROLL"),
-						TPhraseNodeArray {
-
-								MakeShared<FPhraseScrollInputNode>(TEXT("DIRECTION"),
-								TPhraseNodeArray {
-
-										MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
-										TPhraseNodeArray {
-											Context_Scroll
-										})
-								})
-						}),
-
-						MakeShared<FPhraseNode>(TEXT("TOGGLE"),
-						TPhraseNodeArray {
-								Context_ToggleContextAwareness
+							NodeSelectionAddNode
 						})
-				})
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("REMOVE"),
+					TPhraseNodeArray {
+						
+						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+						TPhraseNodeArray {
+							NodeSelectionRemoveNode
+						})
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("RESET"),
+					TPhraseNodeArray {
+						NodeSelectionReset
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("STRAIGHTEN"),
+					TPhraseNodeArray {
+						NodeSelectionStraighten
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("MOVE"),
+					TPhraseNodeArray {
+						
+						MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+							TPhraseNodeArray {
+								NodeSelectionMove
+							})
+
+						})
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("COMMENT"), 
+					TPhraseNodeArray {
+						NodeSelectionComment
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("ALIGNMENT"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhrasePositionalInputNode>(TEXT("POSITION"),
+						TPhraseNodeArray {
+							NodeSelectionAlignment
+						})
+
+					}),
+
+				}),
+
+				AddNodeContextMenu,
 			})
 	);
 }

@@ -84,7 +84,7 @@ public:
 	/// <param name="InString">- The Phrase To Check For A Multi-Input.</param>
 	/// <param name="OutInputs">- Returns An Array of Inputs.</param>
 	/// <param name="MaintainOrder">- Should the Returned Array Maintain the Order the Inputs where Inserted.</param>
-	void GetPhraseInputs(const FString& InString, TArray<UParseInput*> OutInputs, const bool MaintainOrder = true)
+	void GetPhraseInputs(const FString& InString, TArray<UParseInput*>& OutInputs, const bool MaintainOrder = true)
 	{
 		PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);
 	}
