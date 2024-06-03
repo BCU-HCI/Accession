@@ -712,21 +712,21 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 
 			switch (EPhraseDirectionalInput(Direction->GetValue()))
 			{
-			case EPhraseDirectionalInput::UP:
-				GraphNode->NodePosY -= Amount->GetValue();
-				break;
+				case EPhraseDirectionalInput::UP:
+					GraphNode->NodePosY -= Amount->GetValue();
+					break;
 
-			case EPhraseDirectionalInput::DOWN:
-				GraphNode->NodePosY += Amount->GetValue();
-				break;
+				case EPhraseDirectionalInput::DOWN:
+					GraphNode->NodePosY += Amount->GetValue();
+					break;
 
-			case EPhraseDirectionalInput::LEFT:
-				GraphNode->NodePosX -= Amount->GetValue();
-				break;
+				case EPhraseDirectionalInput::LEFT:
+					GraphNode->NodePosX -= Amount->GetValue();
+					break;
 
-			case EPhraseDirectionalInput::RIGHT:
-				GraphNode->NodePosX += Amount->GetValue();
-				break;
+				case EPhraseDirectionalInput::RIGHT:
+					GraphNode->NodePosX += Amount->GetValue();
+					break;
 			}
 		}
 	});

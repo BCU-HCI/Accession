@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "PhraseTree/PhraseTreeFunctionLibrary.h"
+#include "PhraseTreeFunctionLibrary.h"
 
 #include "LocalizedInputLibrary.generated.h"
 

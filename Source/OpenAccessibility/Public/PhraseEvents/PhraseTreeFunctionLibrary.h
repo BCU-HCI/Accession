@@ -8,15 +8,15 @@
 #include "UObject/UnrealType.h"
 #include "UObject/ScriptMacros.h"
 
-#include "Containers/ParseRecord.h"
-#include "Containers/Input/UParseIntInput.h"
-#include "Containers/Input/UParseStringInput.h"
-#include "Containers/Input/UParseEnumInput.h"
+#include "PhraseTree.h"
+#include "AssetAccessibilityRegistry.h"
+
+#include "PhraseTree/Containers/ParseRecord.h"
+#include "PhraseTree/Containers/Input/UParseIntInput.h"
+#include "PhraseTree/Containers/Input/UParseStringInput.h"
+#include "PhraseTree/Containers/Input/UParseEnumInput.h"
 
 #include "PhraseTreeFunctionLibrary.generated.h"
-
-class FPhraseTree;
-class FAssetAccessibilityRegistry;
 
 // Utility Definitions
 
@@ -67,7 +67,7 @@ class UPhraseTreeFunctionLibrary : public UObject
 
 protected:
 
-    static TSharedRef<FPhraseTree> GetPhraseTree();
+    static TSharedRef<class FPhraseTree> GetPhraseTree();
 
-    static TSharedRef<FAssetAccessibilityRegistry> GetAssetRegistry();
+    static TSharedRef<class FAssetAccessibilityRegistry> GetAssetRegistry();
 };

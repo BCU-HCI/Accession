@@ -35,7 +35,7 @@ public class OpenAccessibilityCommunication : ModuleRules
 			new string[]
 			{
 				// Internal Plugin Dependencies
-				"OpenAccessibility",
+				// "OpenAccessibility",
 
 				// Internal ThirdParty Dependencies
 				"ZeroMQ",

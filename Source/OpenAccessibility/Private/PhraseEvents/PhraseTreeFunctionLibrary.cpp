@@ -1,8 +1,7 @@
-#include "PhraseTree/PhraseTreeFunctionLibrary.h"
+#include "PhraseEvents/PhraseTreeFunctionLibrary.h"
 
 #include "OpenAccessibility.h"
 #include "OpenAccessibilityCommunication.h"
-#include "PhraseTree.h"
 
 UPhraseTreeFunctionLibrary::UPhraseTreeFunctionLibrary(const FObjectInitializer& ObjectInitializer) 
 	: Super(ObjectInitializer) 
@@ -26,4 +25,6 @@ TSharedRef<FAssetAccessibilityRegistry> UPhraseTreeFunctionLibrary::GetAssetRegi
 	if (OAModule.AssetAccessibilityRegistry.IsValid())
 		return OAModule.AssetAccessibilityRegistry.ToSharedRef();
 	else return TSharedRef<FAssetAccessibilityRegistry>();
+
+	return TSharedRef<FAssetAccessibilityRegistry>();
 }

@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "PhraseTree/PhraseTreeFunctionLibrary.h"
+#include "PhraseTreeFunctionLibrary.h"
 
 #include "ViewInteractionLibrary.generated.h"
 

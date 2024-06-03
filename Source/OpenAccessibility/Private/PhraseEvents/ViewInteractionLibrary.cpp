@@ -91,7 +91,7 @@ void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record)
 	// Further Viewport Specific Implementation Here
 }
 
-void UViewInteractionLibrary::IndexFocus(FParseRecord &Record) 
+void UViewInteractionLibrary::IndexFocus(FParseRecord& Record) 
 {
     GET_ACTIVE_TAB(ActiveTab, SWidget)
 
