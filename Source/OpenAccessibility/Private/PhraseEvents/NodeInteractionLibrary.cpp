@@ -3,6 +3,7 @@
 #include "SGraphPanel.h"
 
 #include "PhraseTree/Containers/Input/InputContainers.h"
+#include "AccessibilityWrappers/AccessibilityAddNodeContextMenu.h"
 
 void UNodeInteractionLibrary::MoveNode(FParseRecord &Record)
 {
@@ -197,6 +198,60 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record) {
 			);
 		}
 
+		TSharedPtr<SWidget> ContextWidgetToFocus = GraphPanel->SummonContextMenu(
+            SpawnLocation, 
+			GraphPanel->GetPastePosition(),
+			nullptr,
+			nullptr, 
+			TArray<UEdGraphPin *>()
+		);
+
+		if (!ContextWidgetToFocus.IsValid())
+		{
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: Context Keyboard Focus Widget Not Found"));            
+			return TSharedPtr<IMenu>();
+		}
+
+		FSlateApplication::Get().SetKeyboardFocus(ContextWidgetToFocus);
+
+		FWidgetPath KeyboardFocusPath;
+		if (FSlateApplication::Get().FindPathToWidget(ContextWidgetToFocus.ToSharedRef(), KeyboardFocusPath))
+		{
+			return FSlateApplication::Get().FindMenuInWidgetPath(KeyboardFocusPath);
+		} 
+		else UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: IMenu Could Not Be Found In Widget Path"))
+	}
+}
+
+TSharedPtr<IMenu>
+UNodeInteractionLibrary::NodeAddPinMenu(FParseRecord &Record) {
+GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+
+	SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
+    
+	FVector2D SpawnLocation;
+	{
+		TSharedPtr<SWindow> TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
+
+		if (TopLevelWindow.IsValid())
+		{
+			SpawnLocation = TopLevelWindow->GetPositionInScreen();
+			FVector2D WindowSize = TopLevelWindow->GetSizeInScreen();
+
+			SpawnLocation.X += WindowSize.X / 5;
+            SpawnLocation.Y += WindowSize.Y / 5;
+		}
+		else
+		{
+            FDisplayMetrics DisplayMetrics;
+            FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);
+
+			SpawnLocation = FVector2D(
+				DisplayMetrics.PrimaryDisplayWidth / 5,
+				DisplayMetrics.PrimaryDisplayHeight / 5
+			);
+		}
+
 		TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 
 		UParseIntInput* NodeIndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
@@ -237,6 +292,86 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record) {
 		} 
 		else UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: IMenu Could Not Be Found In Widget Path"))
 	}
+}
+
+void UNodeInteractionLibrary::NodeAddSelect(FParseRecord& Record) 
+{
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
+
+	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("SELECTION_INDEX"));
+	if (IndexInput == nullptr)
+		return;
+
+	ContextMenu->PerformGraphAction(IndexInput->GetValue());
+}
+
+void UNodeInteractionLibrary::NodeAddSearchNew(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
+
+	UParseStringInput* SearchInput = Record.GetPhraseInput<UParseStringInput>(TEXT("SEARCH_PHRASE"));
+	if (SearchInput == nullptr)
+		return;
+
+	ContextMenu->SetFilterText(SearchInput->GetValue());
+}
+
+void UNodeInteractionLibrary::NodeAddSearchAdd(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
+
+	UParseStringInput *SearchInput = Record.GetPhraseInput<UParseStringInput>(TEXT("SEARCH_PHRASE"));
+	if (SearchInput == nullptr)
+		return;
+
+	ContextMenu->AppendFilterText(SearchInput->GetValue());
+}
+
+void UNodeInteractionLibrary::NodeAddSearchReset(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
+
+	ContextMenu->ResetFilterText();
+}
+
+void UNodeInteractionLibrary::NodeAddScroll(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
+
+	UParseEnumInput* DirectionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
+	UParseIntInput* AmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+	if (DirectionInput == nullptr || AmountInput == nullptr)
+		return;
+
+	switch (EPhraseScrollInput(DirectionInput->GetValue()))
+	{
+        case EPhraseScrollInput::UP:
+			ContextMenu->AppendScrollDistance(-AmountInput->GetValue());
+            break;
+
+		case EPhraseScrollInput::DOWN:
+            ContextMenu->AppendScrollDistance(AmountInput->GetValue());
+            break;
+
+		case EPhraseScrollInput::TOP:
+            ContextMenu->SetScrollDistanceTop();
+            break;
+
+		case EPhraseScrollInput::BOTTOM:
+			ContextMenu->SetScrollDistanceBottom();
+				break;
+
+		default:
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddScroll: Invalid Scroll Position / Direction"));
+			return;
+	}
+}
+
+void UNodeInteractionLibrary::NodeAddToggleContext(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
+
+	ContextMenu->ToggleContextAwareness();
 }
 
 void UNodeInteractionLibrary::SelectionAdd(FParseRecord& Record)

@@ -967,7 +967,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				return;
 			}
 
-			UParseIntInput* Index = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+			UParseIntInput* Index = Record.GetPhraseInput<UParseIntInput>(TEXT("SELECTION_INDEX"));
 
 			ContextMenu->PerformGraphAction(Index->GetValue());
 		}
@@ -1076,7 +1076,7 @@ void FOpenAccessibilityModule::BindGraphInteractionBranch()
 				MakeShared<FPhraseNode>(TEXT("SELECT"),
 				TPhraseNodeArray {
 
-						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+						MakeShared<FPhraseInputNode<int32>>(TEXT("SELECTION_INDEX"),
 						TPhraseNodeArray {
 
 								Context_SelectAction

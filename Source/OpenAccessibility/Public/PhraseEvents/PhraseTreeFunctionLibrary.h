@@ -34,8 +34,8 @@ DEFINE_LOG_CATEGORY(LogOpenAccessibilityPhraseEvent);
       return;                                                                  \
     }                                                                          \
                                                                                \
-    ActiveContainerName = StaticCastSharedPtr<InActiveTabType>(                \
-        _AT->GetContent().ToSharedPtr());                                      \
+    ActiveContainerName =                                                      \
+        StaticCastSharedPtr<InActiveTabType>(_AT->GetContent().ToSharedPtr()); \
     if (!ActiveContainerName.IsValid()) {                                      \
       UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                         \
              TEXT("GET_ACTIVE_TAB: CURRENT ACTIVE TAB IS NOT OF TYPE - %s"),   \
@@ -57,7 +57,19 @@ DEFINE_LOG_CATEGORY(LogOpenAccessibilityPhraseEvent);
              TEXT("GET_ACTIVE_KEYBOARD_WIDGET: NO ACTIVE WIDGET FOUND."));     \
       return;                                                                  \
     }                                                                          \
-  };                                                                           
+  };
+
+#define GET_TOP_CONTEXT(InRecord, ContextObjectName, ContextObjectType, ...)   \
+  ContextObjectType *ContextObjectName;                                        \
+  {                                                                            \
+    ContextObjectName = InRecord.GetContextObj<ContextObjectType>();           \
+    if (ContextObjectName == nullptr) {                                        \
+      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                         \
+             TEXT("GET_TOP_CONTEXT: NO CONTEXT OBJECT FOUND."))                \
+      return;                                                                  \
+    }                                                                          \
+  };
+
 
 UCLASS(Abstract, MinimalAPI)
 class UPhraseTreeFunctionLibrary : public UObject

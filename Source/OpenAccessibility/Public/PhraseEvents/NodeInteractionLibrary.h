@@ -43,11 +43,22 @@ public:
 
 	// Node Add Implementation
 
-	UFUNCTION()
 	static TSharedPtr<IMenu> NodeAddMenu(FParseRecord& Record);
 
-	UFUNCTION()
     static TSharedPtr<IMenu> NodeAddPinMenu(FParseRecord& Record);
+
+	
+	static void NodeAddSelect(FParseRecord& Record);
+
+	static void NodeAddSearchNew(FParseRecord& Record);
+
+	static void NodeAddSearchAdd(FParseRecord& Record);
+
+	static void NodeAddSearchReset(FParseRecord& Record);
+
+	static void NodeAddScroll(FParseRecord& Record);
+
+	static void NodeAddToggleContext(FParseRecord& Record);
 
 	// End of Node Add Implementation
 
