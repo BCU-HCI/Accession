@@ -170,8 +170,24 @@ void UNodeInteractionLibrary::PinDisconnect(FParseRecord& Record)
 	Graph->GetSchema()->BreakSinglePinLink(SourcePin, TargetPin);
 }
 
-TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record) {
-	GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record) 
+{
+	TSharedPtr<SGraphEditor> ActiveGraphEditor;
+	{
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: No Active Tab Found"));
+			return TSharedPtr<IMenu>();
+		}
+
+		ActiveGraphEditor = StaticCastSharedRef<SGraphEditor>(ActiveTab->GetContent());
+		if (!ActiveGraphEditor.IsValid())
+		{
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: Active Tab Is Not A Graph Editor"));
+			return TSharedPtr<IMenu>();
+		}
+	}
 
 	SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
     
@@ -219,13 +235,33 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record) {
 		{
 			return FSlateApplication::Get().FindMenuInWidgetPath(KeyboardFocusPath);
 		} 
-		else UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: IMenu Could Not Be Found In Widget Path"))
+		else 
+		{
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: IMenu Could Not Be Found In Widget Path"))
+			return TSharedPtr<IMenu>();
+		}
 	}
 }
 
 TSharedPtr<IMenu>
-UNodeInteractionLibrary::NodeAddPinMenu(FParseRecord &Record) {
-GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+UNodeInteractionLibrary::NodeAddPinMenu(FParseRecord &Record) 
+{
+	TSharedPtr<SGraphEditor> ActiveGraphEditor;
+	{
+		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+		if (!ActiveTab.IsValid())
+		{
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: No Active Tab Found"));
+			return TSharedPtr<IMenu>();
+		}
+
+		ActiveGraphEditor = StaticCastSharedRef<SGraphEditor>(ActiveTab->GetContent());
+		if (!ActiveGraphEditor.IsValid())
+		{
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: Active Tab Is Not A Graph Editor"));
+			return TSharedPtr<IMenu>();
+		}
+	}
 
 	SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
     
@@ -290,7 +326,11 @@ GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
 		{
 			return FSlateApplication::Get().FindMenuInWidgetPath(KeyboardFocusPath);
 		} 
-		else UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: IMenu Could Not Be Found In Widget Path"))
+		else 
+		{
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: IMenu Could Not Be Found In Widget Path"))
+			return TSharedPtr<IMenu>();
+		}
 	}
 }
 
