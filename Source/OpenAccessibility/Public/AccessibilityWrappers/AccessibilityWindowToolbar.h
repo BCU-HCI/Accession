@@ -40,13 +40,15 @@ public:
 
 private:
 
+	TSet<SWidget*> IndexedToolkits;
+
 	TWeakPtr<SWindow> LastTopWindow;
 
 	TWeakPtr<SBorder> LastToolkitParent;
 
 	TWeakPtr<SWidget> LastToolkit;
 
-	TUniquePtr<FIndexer<int32, SMultiBlockBaseWidget*>> ToolbarIndex;
+	TUniquePtr<FIndexer<int32, SButton*>> ToolbarIndex;
 
 	FTSTicker::FDelegateHandle TickDelegateHandle;
 

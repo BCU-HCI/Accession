@@ -3,11 +3,16 @@
 #include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
 #include "AccessibilityWidgets/SContentIndexer.h"
 
+#include "PhraseTree/Containers/ParseRecord.h"
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 
 UAccessibilityWindowToolbar::UAccessibilityWindowToolbar() : UObject()
 {
-	ToolbarIndex = MakeUnique<FIndexer<int32, SMultiBlockBaseWidget*>>();
+	ToolbarIndex = MakeUnique<FIndexer<int32, SButton*>>();
+
+	LastToolkit = TWeakPtr<SWidget>();
+	LastTopWindow = TWeakPtr<SWindow>();
+	LastToolkitParent = TWeakPtr<SBorder>();
 
 	BindTicker();
 }
@@ -28,10 +33,15 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 	if (!ContentContainer.IsValid())
 		return false;
 
+	/*
 	if (Toolkit == LastToolkit && TopWindow == LastTopWindow)
 		return false;
-
-	ApplyToolbarIndexing(ContentContainer->GetContent());
+	*/
+	if (!IndexedToolkits.Contains(Toolkit.Get()))
+	{
+		ApplyToolbarIndexing(ContentContainer->GetContent());
+		IndexedToolkits.Add(Toolkit.Get());
+	}
 
 	LastToolkit = Toolkit;
 	LastTopWindow = TopWindow;
@@ -55,10 +65,10 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 		return;
 	}
 
-	TArray<FChildren*> ChildrenToFilter;
-	ChildrenToFilter.Add(ToolbarContainer->GetChildren());
+	TArray<FChildren*> ChildrenToFilter = TArray<FChildren*> {
+		ToolbarContainer->GetChildren()
+	};
 
-	TSharedPtr<SWidget> ChildWidget;
 	FString WidgetType;
 
 	int32 Index = -1;
@@ -70,19 +80,30 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 		// To-Do: Learn How to Write Readable Code.
 		for (int i = 0; i < Children->NumSlot(); i++)
 		{
-			ChildWidget = Children->GetChildAt(i);
-			WidgetType = ChildWidget->GetTypeAsString();
-
 			FSlotBase& ChildSlot = const_cast<FSlotBase&>(Children->GetSlotAt(i));
 
-			TSharedPtr<SContentIndexer> ContentIndexer = SNew(SContentIndexer)
-				.IndexValue(Index)
-				.IndexPositionToContent(EIndexerPosition::Bottom)
-				.ContentToIndex(ChildWidget);
+			TSharedPtr<SWidget> ChildWidget = Children->GetChildAt(i);
+			WidgetType = ChildWidget->GetTypeAsString();
 
-			ChildSlot.AttachWidget(ContentIndexer.ToSharedRef());
+			if (WidgetType == "SButton" && ChildWidget.IsValid())
+			{
+				TSharedPtr<SButton> ChildButtonWidget = StaticCastSharedPtr<SButton>(ChildWidget);
 
-			ChildrenToFilter.Add(ChildWidget->GetChildren());
+				ChildSlot.DetachWidget();
+
+				ToolbarIndex->GetKeyOrAddValue(
+					ChildButtonWidget.Get(), 
+					Index
+				);
+
+				ChildSlot.AttachWidget(
+					SNew(SContentIndexer)
+					.IndexValue(Index)
+					.IndexPositionToContent(EIndexerPosition::Bottom)
+					.ContentToIndex(ChildButtonWidget)
+				);
+			} 
+			else ChildrenToFilter.Add(ChildWidget->GetChildren());
 		}
 	}
 }
@@ -128,11 +149,14 @@ void UAccessibilityWindowToolbar::SelectToolbarItem(FParseRecord& Record)
 	if (!Input->IsValidLowLevelFast())
 		return;
 
-	SMultiBlockBaseWidget* MultiBlockWidget = ToolbarIndex->GetValue(Input->GetValue());
-	if (MultiBlockWidget == nullptr)
+	SButton* LinkedButton = ToolbarIndex->GetValue(Input->GetValue());
+        if (LinkedButton == nullptr)
 		return;
 
-	// Add OnClick Functionality Here, Using the MultiBlockWidget.
+	// Might Work?
+	// Just Might break in future.
+
+	LinkedButton->SimulateClick();
 }
 
 TSharedPtr<SBorder> UAccessibilityWindowToolbar::GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer)
