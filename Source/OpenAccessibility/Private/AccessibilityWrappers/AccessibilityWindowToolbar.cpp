@@ -39,8 +39,7 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 
 	if (!IndexedToolkits.Contains(Toolkit.Get()))
 	{
-		ApplyToolbarIndexing(ContentContainer->GetContent());
-		IndexedToolkits.Add(Toolkit.Get());
+		ApplyToolbarIndexing(Toolkit.ToSharedRef());
 	}
 
 	LastToolkit = Toolkit;
@@ -72,6 +71,12 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 	};
 
 	FString WidgetType;
+	TSet<FString> AllowedWidgetTypes = TSet<FString>{
+		TEXT("SToolBarButtonBlock"),
+		TEXT("SToolBarComboButtonBlock"),
+		TEXT("SToolBarStackButtonBlock"),
+		TEXT("SUniformToolBarButtonBlock")
+	};
 
 	int32 Index = -1;
 	while (ChildrenToFilter.Num() > 0)
@@ -87,12 +92,7 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 			TSharedPtr<SWidget> ChildWidget = Children->GetChildAt(i);
 			WidgetType = ChildWidget->GetTypeAsString();
 			
-			if (ChildWidget.IsValid() && (
-				WidgetType == "SToolBarButtonBlock" ||
-                WidgetType == "SToolBarComboButtonBlock" ||
-                WidgetType == "SToolBarStackButtonBlock" ||
-				WidgetType == "SUniformToolBarButtonBlock"
-				))
+			if (ChildWidget.IsValid() && AllowedWidgetTypes.Contains(WidgetType))
 			{
 				TSharedPtr<SMultiBlockBaseWidget> ToolBarButtonWidget = StaticCastSharedPtr<SMultiBlockBaseWidget>(ChildWidget);
 
@@ -113,6 +113,8 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 			else ChildrenToFilter.Add(ChildWidget->GetChildren());
 		}
 	}
+
+	IndexedToolkits.Add(ToolkitWidget.ToSharedPtr().Get());
 }
 
 // -- Util Widget Function -- 
