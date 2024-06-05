@@ -32,6 +32,8 @@ private:
 
 	TSharedPtr<SBorder> GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer);
 
+	bool GetToolKitToolBar(TSharedRef<SWidget> ToolKitWidget, TSharedPtr<SWidget>& OutToolBar);
+
 	void BindTicker();
 
 	void UnbindTicker();
@@ -48,7 +50,7 @@ private:
 
 	TWeakPtr<SWidget> LastToolkit;
 
-	TUniquePtr<FIndexer<int32, SButton*>> ToolbarIndex;
+	TUniquePtr<FIndexer<int32, SMultiBlockBaseWidget*>> ToolbarIndex;
 
 	FTSTicker::FDelegateHandle TickDelegateHandle;
 
