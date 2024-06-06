@@ -1,6 +1,9 @@
 #include "PhraseEvents/NodeInteractionLibrary.h"
 
+#include "BlueprintEditor.h"
 #include "SGraphPanel.h"
+#include "Kismet2/KismetEditorUtilities.h"
+#include "Kismet2/BlueprintEditorUtils.h"
 
 #include "PhraseTree/Containers/Input/InputContainers.h"
 #include "AccessibilityWrappers/AccessibilityAddNodeContextMenu.h"
@@ -578,4 +581,32 @@ void UNodeInteractionLibrary::SelectionComment(FParseRecord& Record)
 		CommentCreateAction->PerformAction(Graph, nullptr, FVector2D(0, 0), true);
     }
 	else UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SelectionComment: Comment Creation Failed"));
+}
+
+void UNodeInteractionLibrary::BlueprintCompile(FParseRecord& Record)
+{
+    GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+
+    UEdGraph* ActiveGraph = ActiveGraphEditor->GetCurrentGraph();
+	if (ActiveGraph == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("BlueprintCompile: Active Graph Not Found"));
+		return;
+	}
+
+	UBlueprint* FoundBlueprint = FBlueprintEditorUtils::FindBlueprintForGraph(ActiveGraph);
+	if (FoundBlueprint == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("BlueprintCompile: Blueprint Not Found"));
+		return;
+	}
+
+	TSharedPtr<FBlueprintEditor> BlueprintEditor = StaticCastSharedPtr<FBlueprintEditor>(FKismetEditorUtilities::GetIBlueprintEditorForObject(FoundBlueprint, false));
+	if (!BlueprintEditor.IsValid())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("BlueprintCompile: BlueprintEditor Not Found"));
+		return;
+	}
+
+	BlueprintEditor->Compile();
 }

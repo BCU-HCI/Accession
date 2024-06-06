@@ -88,4 +88,11 @@ public:
 
 	// End of Selection Implementation
 
+
+	// Blueprint Specifics
+
+	UFUNCTION()
+	static void BlueprintCompile(FParseRecord& Record);
+
+	// End of Blueprint Specifics
 };
