@@ -52,6 +52,29 @@ void UNodeInteractionLibrary::MoveNode(FParseRecord &Record)
 	Node->Modify();
     Node->NodePosX = NodePositon.X;
 	Node->NodePosY = NodePositon.Y;
+
+	if (UEdGraphNode_Comment* CommentNode = Cast<UEdGraphNode_Comment>(Node))
+	{
+		SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
+        if (GraphPanel == nullptr)
+		{
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("MoveNode: Cannot Move Comment Children."));
+			return;
+		}
+
+		for (UObject* _CommentChildNode : CommentNode->GetNodesUnderComment())
+		{
+			if (UEdGraphNode* CommentChildNode = Cast<UEdGraphNode>(_CommentChildNode))
+			{
+				if (!GraphPanel->SelectionManager.IsNodeSelected(CommentChildNode))
+				{
+					CommentChildNode->Modify();
+					CommentChildNode->NodePosX = NodePositon.X;
+					CommentChildNode->NodePosY = NodePositon.Y;
+				}
+			}
+		}
+	}
 }
 
 void UNodeInteractionLibrary::DeleteNode(FParseRecord& Record)
