@@ -30,6 +30,8 @@ private:
 
 	void ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow);
 
+	// Widget Getters
+
 	TSharedPtr<SBorder> GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer);
 
 	bool GetToolKitToolBar(TSharedRef<SWidget> ToolKitWidget, TSharedPtr<SWidget>& OutToolBar);
@@ -41,8 +43,6 @@ private:
 public:
 
 private:
-
-	TSet<SWidget*> IndexedToolkits;
 
 	TWeakPtr<SWindow> LastTopWindow;
 

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Widgets/DeclarativeSyntaxSupport.h"
 
 enum class EIndexerPosition : uint8
 {
@@ -24,6 +25,9 @@ public:
 		SLATE_ARGUMENT(int32, IndexValue)
 		SLATE_ARGUMENT(EIndexerPosition, IndexPositionToContent)
 		SLATE_ARGUMENT(TSharedPtr<SWidget>, ContentToIndex)
+
+		SLATE_PRIVATE_ATTRIBUTE_VARIABLE(EVisibility, IndexVisibility) = EVisibility::Visible;
+		SLATE_PRIVATE_ATTRIBUTE_FUNCTION(EVisibility, IndexVisibility)
 	SLATE_END_ARGS()
 
 	~SContentIndexer();
@@ -57,7 +61,7 @@ protected:
 	/// <param name="IndexValue">The Index Value to Index.</param>
 	/// <param name="ContentToIndex">The Content that the Indexer is Wrapping.</param>
 	/// <returns></returns>
-	TSharedPtr<SWidget> ConstructTopIndexer(int32 IndexValue, TSharedRef<SWidget> ContentToIndex);
+	TSharedPtr<SWidget> ConstructTopIndexer(const FArguments& InArgs);
 
 	/// <summary>
 	/// Constructs the Indexer Widget with the Index Below the Content.
@@ -65,7 +69,7 @@ protected:
 	/// <param name="IndexValue">The Index Value to Index.</param>
 	/// <param name="ContentToIndex">The Content that the Indexer is Wrapping.</param>
 	/// <returns></returns>
-	TSharedPtr<SWidget> ConstructBottomIndexer(int32 IndexValue, TSharedRef<SWidget> ContentToIndex);
+	TSharedPtr<SWidget> ConstructBottomIndexer(const FArguments& InArgs);
 
 	/// <summary>
 	/// Constructs the Indexer Widget with the Index to the Left of the Content.
@@ -73,7 +77,7 @@ protected:
 	/// <param name="IndexValue">The Index Value to Index.</param>
 	/// <param name="ContentToIndex">The Content that the Indexer is Wrapping.</param>
 	/// <returns></returns>
-	TSharedPtr<SWidget> ConstructLeftIndexer(int32 IndexValue, TSharedRef<SWidget> ContentToIndex);
+	TSharedPtr<SWidget> ConstructLeftIndexer(const FArguments& InArgs);
 
 	/// <summary>
 	/// Constructs the Indexer Widget with the Index to the Right of the Content.
@@ -81,7 +85,7 @@ protected:
 	/// <param name="IndexValue">The Index Value to Index.</param>
 	/// <param name="ContentToIndex">The Content that the Indexer is Wrapping.</param>
 	/// <returns></returns>
-	TSharedPtr<SWidget> ConstructRightIndexer(int32 IndexValue, TSharedRef<SWidget> ContentToIndex);
+	TSharedPtr<SWidget> ConstructRightIndexer(const FArguments& InArgs);
 
 	/// <summary>
 	/// Constructs the Container for the Indexer witht the provided Content.
@@ -96,7 +100,7 @@ protected:
 	/// <param name="IndexValue">The Index Value to be displayed in the Indexer Widget.</param>
 	/// <param name="TextColor">The Color of the Text displaying the Index.</param>
 	/// <returns></returns>
-	TSharedPtr<SWidget> ConstructIndexContainer(int32 IndexValue, FLinearColor TextColor = FLinearColor::White);
+	TSharedPtr<SWidget> ConstructIndexContainer(const FArguments& InArgs, FLinearColor TextColor = FLinearColor::White);
 
 	/// <summary>
 	/// Creates the Text Element of the Provided Index Value.

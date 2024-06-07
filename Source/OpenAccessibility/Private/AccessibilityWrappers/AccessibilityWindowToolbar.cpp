@@ -24,6 +24,12 @@ UAccessibilityWindowToolbar::~UAccessibilityWindowToolbar()
 
 bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 {
+	if (!FSlateApplication::Get().IsInitialized())
+	{
+          UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Slate Application Is Not Initialized."));
+          return true;
+	}
+
 	TSharedPtr<SWindow> TopWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
 	if (!TopWindow.IsValid())
 	{
@@ -42,13 +48,6 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 		UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Toolkit Is Not Valid."));
 		return false;
 	}
-
-	/*
-	if (!IndexedToolkits.Contains(Toolkit.Get()))
-	{
-		ApplyToolbarIndexing(Toolkit.ToSharedRef());
-	}
-	*/
 
 	ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef());
 
@@ -100,12 +99,9 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 			FSlotBase& ChildSlot = const_cast<FSlotBase&>(Children->GetSlotAt(i));
 
 			TSharedPtr<SWidget> ChildWidget = Children->GetChildAt(i);
-			if (!ChildWidget.IsValid())
+			if (!ChildWidget.IsValid() || ChildWidget->GetDesiredSize() == FVector2D::ZeroVector)
 				continue;
 
-			if (ChildWidget->GetDesiredSize() == FVector2D::ZeroVector)
-				continue;
-			
 			WidgetType = ChildWidget->GetTypeAsString();
 			
 			if (ChildWidget.IsValid() && AllowedWidgetTypes.Contains(WidgetType))
@@ -124,12 +120,11 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 					.IndexValue(Index)
 					.IndexPositionToContent(EIndexerPosition::Bottom)
 					.ContentToIndex(ToolBarButtonWidget)
-                    .Visibility_Lambda([ToolkitWindow]() -> EVisibility {
+					.IndexVisibility_Lambda([ToolkitWindow]() -> EVisibility {
 						if (FSlateApplication::Get().GetActiveTopLevelRegularWindow() == ToolkitWindow)
 							return EVisibility::Visible;
-                        else return EVisibility::Hidden;
+						else return EVisibility::Hidden;
 					})
-
 				);
 			} 
 			else if (ChildWidget.IsValid() && WidgetType == "SContentIndexer")
@@ -150,8 +145,6 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 			else ChildrenToFilter.Add(ChildWidget->GetChildren());
 		}
 	}
-
-	IndexedToolkits.Add(ToolkitWidget.ToSharedPtr().Get());
 }
 
 // -- Util Widget Function -- 
