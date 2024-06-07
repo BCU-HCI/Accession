@@ -49,6 +49,11 @@ void SContentIndexer::UpdateIndex(const int32 IndexValue)
 		IndexTextBlock.Pin()->SetText( ConstructIndexText(IndexValue) );
 }
 
+TSharedPtr<SWidget> SContentIndexer::GetContent() const
+{
+	return IndexedContent.Pin();
+}
+
 TSharedPtr<SWidget> SContentIndexer::ConstructTopIndexer(int32 IndexValue, TSharedRef<SWidget> ContentToIndex)
 {
 	return SNew(SVerticalBox)
@@ -56,6 +61,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructTopIndexer(int32 IndexValue, TShar
 		+ SVerticalBox::Slot()
 		.HAlign(HAlign_Center)
 		.VAlign(VAlign_Center)
+		.AutoHeight()
 		[
 			ConstructIndexContainer(IndexValue).ToSharedRef()
 		]
@@ -63,6 +69,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructTopIndexer(int32 IndexValue, TShar
 		+ SVerticalBox::Slot()
 		.HAlign(HAlign_Center)
 		.VAlign(VAlign_Center)
+		.AutoHeight()
 		[
 			ConstructContentContainer(ContentToIndex).ToSharedRef()
 		];

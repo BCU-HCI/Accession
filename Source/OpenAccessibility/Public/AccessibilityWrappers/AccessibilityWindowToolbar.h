@@ -28,7 +28,7 @@ public:
 
 private:
 
-	void ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget);
+	void ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow);
 
 	TSharedPtr<SBorder> GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer);
 

@@ -26,7 +26,10 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 {
 	TSharedPtr<SWindow> TopWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
 	if (!TopWindow.IsValid())
+	{
+		UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Window Is Not Valid."));
 		return false;
+	}
 
 	TSharedPtr<SBorder> ContentContainer;
 	if (TopWindow != LastTopWindow)
@@ -35,12 +38,19 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 
 	TSharedPtr<SWidget> Toolkit = ContentContainer->GetContent();
 	if (!Toolkit.IsValid())
+	{
+		UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Toolkit Is Not Valid."));
 		return false;
+	}
 
+	/*
 	if (!IndexedToolkits.Contains(Toolkit.Get()))
 	{
 		ApplyToolbarIndexing(Toolkit.ToSharedRef());
 	}
+	*/
+
+	ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef());
 
 	LastToolkit = Toolkit;
 	LastTopWindow = TopWindow;
@@ -49,7 +59,7 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 	return true;
 }
 
-void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget)
+void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow)
 {
 	TSharedPtr<SWidget> ToolBarContainer;
 	if (!GetToolKitToolBar(ToolkitWidget, ToolBarContainer))
@@ -90,6 +100,12 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 			FSlotBase& ChildSlot = const_cast<FSlotBase&>(Children->GetSlotAt(i));
 
 			TSharedPtr<SWidget> ChildWidget = Children->GetChildAt(i);
+			if (!ChildWidget.IsValid())
+				continue;
+
+			if (ChildWidget->GetDesiredSize() == FVector2D::ZeroVector)
+				continue;
+			
 			WidgetType = ChildWidget->GetTypeAsString();
 			
 			if (ChildWidget.IsValid() && AllowedWidgetTypes.Contains(WidgetType))
@@ -108,8 +124,29 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 					.IndexValue(Index)
 					.IndexPositionToContent(EIndexerPosition::Bottom)
 					.ContentToIndex(ToolBarButtonWidget)
+                    .Visibility_Lambda([ToolkitWindow]() -> EVisibility {
+						if (FSlateApplication::Get().GetActiveTopLevelRegularWindow() == ToolkitWindow)
+							return EVisibility::Visible;
+                        else return EVisibility::Hidden;
+					})
+
 				);
 			} 
+			else if (ChildWidget.IsValid() && WidgetType == "SContentIndexer")
+			{
+				TSharedPtr<SContentIndexer> IndexerWidget = StaticCastSharedPtr<SContentIndexer>(ChildWidget);
+
+				TSharedPtr<SMultiBlockBaseWidget> IndexedContent = StaticCastSharedPtr<SMultiBlockBaseWidget>(IndexerWidget->GetContent());
+				if (!IndexedContent.IsValid())
+					continue;
+
+				ToolbarIndex->GetKeyOrAddValue(
+					IndexedContent.Get(),
+					Index
+				);
+
+				IndexerWidget->UpdateIndex(Index);
+			}
 			else ChildrenToFilter.Add(ChildWidget->GetChildren());
 		}
 	}

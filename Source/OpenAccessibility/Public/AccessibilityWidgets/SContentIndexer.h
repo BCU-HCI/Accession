@@ -19,6 +19,7 @@ public:
 	SLATE_BEGIN_ARGS( SContentIndexer )
 		: _IndexValue(0)
 		, _IndexPositionToContent(EIndexerPosition::Left)
+		, _ContentToIndex(SNullWidget::NullWidget)
 		{}
 		SLATE_ARGUMENT(int32, IndexValue)
 		SLATE_ARGUMENT(EIndexerPosition, IndexPositionToContent)
@@ -41,6 +42,12 @@ public:
 	/// </summary>
 	/// <param name="IndexValue">The New Interger Index to Show.</param>
 	void UpdateIndex(const int32 IndexValue);
+
+	/// <summary>
+	/// Gets the Current Content Being Indexed.
+	/// </summary>
+	/// <returns>A Shared Ptr of the Indexed Content</returns>
+	TSharedPtr<SWidget> GetContent() const;
 
 protected:
 
@@ -99,6 +106,11 @@ protected:
 	FText ConstructIndexText(int32 Index);
 
 protected:
+
+	/// <summary>
+	/// The Content That The Indexer Is Currently Indexing.
+	/// </summary>
+	TWeakPtr<SWidget> IndexedContent;
 
 	/// <summary>
 	/// The Text Block that Displays the Index Value.
