@@ -1,11 +1,27 @@
 #include "PhraseEvents/ViewInteractionLibrary.h"
+#include "PhraseEvents/Utils.h"
 
 #include "PhraseTree/Containers/Input/InputContainers.h"
 
 #include "AssetAccessibilityRegistry.h"
 
-void UViewInteractionLibrary::MoveViewport(FParseRecord &Record) 
+UViewInteractionLibrary::UViewInteractionLibrary(const FObjectInitializer &ObjectInitializer)
+	: Super(ObjectInitializer)
 {
+
+}
+
+UViewInteractionLibrary::~UViewInteractionLibrary()
+{
+
+}
+
+void UViewInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
+{
+
+}
+
+void UViewInteractionLibrary::MoveViewport(FParseRecord &Record) {
 	GET_ACTIVE_TAB(ActiveTab, SWidget)
 
 	FString TabType = ActiveTab->GetTypeAsString();

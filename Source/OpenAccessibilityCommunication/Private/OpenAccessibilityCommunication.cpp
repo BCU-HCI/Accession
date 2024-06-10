@@ -57,6 +57,7 @@ void FOpenAccessibilityCommunicationModule::ShutdownModule()
 	UE_LOG(LogOpenAccessibilityCom, Display, TEXT("OpenAccessibilityComModule::ShutdownModule()"));
 
 	AudioManager->RemoveFromRoot();
+	PhraseTreeUtils->RemoveFromRoot();
 
 	FSlateApplication::Get().OnApplicationPreInputKeyDownListener().Remove(KeyDownEventHandle);
 
@@ -136,24 +137,8 @@ void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
 	PhraseTreePhraseRecievedHandle = OnTranscriptionRecieved
 		.AddRaw(PhraseTree.Get(), &FPhraseTree::ParseTranscription);
 
-	/*TSharedPtr<FPhraseEventNode> EventNode = MakeShared<FPhraseEventNode>();
-	EventNode->OnPhraseEvent.BindLambda([](const FParseRecord& InParseRecord)
-	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Event Node Hit || INDEX_0 Val: %d ||"), InParseRecord.PhraseInputs["INDEX_0"]);
-	});
-
-	PhraseTree->BindBranch(
-		MakeShared<FPhraseNode>(
-			TEXT("NODE"),
-			TPhraseNodeArray {
-				MakeShared<FPhraseInputNode>(TEXT("INDEX_0"),
-					TPhraseNodeArray {
-						EventNode
-					}
-				)
-			}
-		)
-	);*/
+	PhraseTreeUtils = NewObject<UPhraseTreeUtils>();
+	PhraseTreeUtils->AddToRoot();
 }
 
 void FOpenAccessibilityCommunicationModule::RegisterConsoleCommands()

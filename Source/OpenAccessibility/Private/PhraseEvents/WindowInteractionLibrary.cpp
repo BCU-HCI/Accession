@@ -2,8 +2,23 @@
 
 #include "OpenAccessibility.h"
 
-void UWindowInteractionLibrary::CloseActiveWindow(FParseRecord& Record)
+UWindowInteractionLibrary::UWindowInteractionLibrary(const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer)
 {
+
+}
+
+UWindowInteractionLibrary::~UWindowInteractionLibrary()
+{
+
+}
+
+void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
+{
+
+}
+
+void UWindowInteractionLibrary::CloseActiveWindow(FParseRecord &Record) {
 	FSlateApplication& SlateApp = FSlateApplication::Get();
 	if (!SlateApp.CanDisplayWindows())
 	{

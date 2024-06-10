@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "PhraseTreeFunctionLibrary.h"
+#include "PhraseTree/PhraseTreeFunctionLibrary.h"
 
 #include "ViewInteractionLibrary.generated.h"
 
@@ -15,10 +15,20 @@ class UViewInteractionLibrary : public UPhraseTreeFunctionLibrary
 
 public:
 
+	UViewInteractionLibrary(const FObjectInitializer& ObjectInitializer);
+
+	virtual ~UViewInteractionLibrary();
+
+	// UPhraseTreeFunctionLibrary Implementation
+
+	void BindBranches(TSharedRef<FPhraseTree> PhraseTree);
+
+	// End of UPhraseTreeFunctionLibrary Implementation
+
+
 	static void MoveViewport(FParseRecord& Record);
 
 	static void ZoomViewport(FParseRecord& Record);
 
 	static void IndexFocus(FParseRecord& Record);
-
 };

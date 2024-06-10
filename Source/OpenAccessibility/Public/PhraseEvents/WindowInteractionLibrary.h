@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "PhraseTreeFunctionLibrary.h"
+#include "PhraseTree/PhraseTreeFunctionLibrary.h"
 
 #include "WindowInteractionLibrary.generated.h"
 
@@ -14,6 +14,17 @@ class UWindowInteractionLibrary : public UPhraseTreeFunctionLibrary
 	GENERATED_BODY()
 
 public:
+
+	UWindowInteractionLibrary(const FObjectInitializer& ObjectInitializer);
+
+	virtual ~UWindowInteractionLibrary();
+
+	// UPhraseTreeFunctionLibrary Implementation
+
+	void BindBranches(TSharedRef<FPhraseTree> PhraseTree);
+
+	// End of UPhraseTreeFunctionLibrary Implementation
+
 
 	// Window Interaction
 

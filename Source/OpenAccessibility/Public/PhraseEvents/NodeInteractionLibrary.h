@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "PhraseTreeFunctionLibrary.h"
+#include "PhraseTree/PhraseTreeFunctionLibrary.h"
 
 #include "NodeInteractionLibrary.generated.h"
 
@@ -14,6 +14,16 @@ class UNodeInteractionLibrary : public UPhraseTreeFunctionLibrary
 	GENERATED_BODY()
 
 public:
+
+	UNodeInteractionLibrary(const FObjectInitializer& ObjectInitializer);
+
+	virtual ~UNodeInteractionLibrary();
+
+	// UPhraseTreeFunctionLibrary Implementation
+
+	void BindBranches(TSharedRef<FPhraseTree> PhraseTree);
+
+	// End of UPhraseTreeFunctionLibrary Implementation
 
 
 	// Node Implementation

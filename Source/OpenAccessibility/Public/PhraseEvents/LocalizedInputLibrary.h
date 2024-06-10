@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "PhraseTreeFunctionLibrary.h"
+#include "PhraseTree/PhraseTreeFunctionLibrary.h"
 
 #include "LocalizedInputLibrary.generated.h"
 
@@ -14,6 +14,17 @@ class ULocalizedInputLibrary : public UPhraseTreeFunctionLibrary
 	GENERATED_BODY()
 
 public:
+
+	ULocalizedInputLibrary(const FObjectInitializer& ObjectInitializer);
+
+	virtual ~ULocalizedInputLibrary();
+
+	// UPhraseTreeFunctionLibrary Implementation
+
+	void BindBranches(TSharedRef<FPhraseTree> PhraseTree);
+
+	// End of UPhraseTreeFunctionLibrary Implementation
+
 
 	// Keyboard Input Implementation
 

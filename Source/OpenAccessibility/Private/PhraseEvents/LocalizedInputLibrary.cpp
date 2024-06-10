@@ -1,10 +1,25 @@
 #include "PhraseEvents/LocalizedInputLibrary.h"
+#include "PhraseEvents/Utils.h"
 
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 
-void ULocalizedInputLibrary::KeyboardInputAdd(FParseRecord &Record) 
+ULocalizedInputLibrary::ULocalizedInputLibrary(const FObjectInitializer &ObjectInitializer)
 {
+
+}
+
+ULocalizedInputLibrary::~ULocalizedInputLibrary()
+{
+
+}
+
+void ULocalizedInputLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
+{
+
+}
+
+void ULocalizedInputLibrary::KeyboardInputAdd(FParseRecord &Record) {
 	GET_ACTIVE_KEYBOARD_WIDGET(KeyboardFocusedWidget);
 
 	FString WidgetType = KeyboardFocusedWidget->GetTypeAsString();

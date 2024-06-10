@@ -3,26 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/ObjectMacros.h"
-#include "UObject/Object.h"
-#include "UObject/UnrealType.h"
-#include "UObject/ScriptMacros.h"
 
-#include "PhraseTree.h"
-#include "AssetAccessibilityRegistry.h"
+#include "OpenAccessibility.h"
+#include "OpenAccessibilityCommunication.h"
 
-#include "PhraseTree/Containers/ParseRecord.h"
-#include "PhraseTree/Containers/Input/UParseIntInput.h"
-#include "PhraseTree/Containers/Input/UParseStringInput.h"
-#include "PhraseTree/Containers/Input/UParseEnumInput.h"
-
-#include "PhraseTreeFunctionLibrary.generated.h"
-
-// Utility Definitions
-
-DECLARE_LOG_CATEGORY_EXTERN(LogOpenAccessibilityPhraseEvent, Log, All);
-
-DEFINE_LOG_CATEGORY(LogOpenAccessibilityPhraseEvent);
+// Utility Macros
 
 #define GET_ACTIVE_TAB(ActiveContainerName, InActiveTabType, ...)              \
   TSharedPtr<InActiveTabType> ActiveContainerName;                             \
@@ -70,16 +55,27 @@ DEFINE_LOG_CATEGORY(LogOpenAccessibilityPhraseEvent);
     }                                                                          \
   };
 
+// Utility Functions
 
-UCLASS(Abstract, MinimalAPI)
-class UPhraseTreeFunctionLibrary : public UObject
+TSharedRef<FPhraseTree> GetPhraseTree() 
 {
-    GENERATED_UCLASS_BODY()
+  FOpenAccessibilityCommunicationModule &OAComsModule =
+      FOpenAccessibilityCommunicationModule::Get();
 
+  if (OAComsModule.PhraseTree.IsValid())
+    return OAComsModule.PhraseTree.ToSharedRef();
+  else
+    return TSharedRef<FPhraseTree>();
+}
 
-protected:
+TSharedRef<FAssetAccessibilityRegistry> GetAssetRegistry() 
+{
+  FOpenAccessibilityModule &OAModule = FOpenAccessibilityModule::Get();
 
-    static TSharedRef<class FPhraseTree> GetPhraseTree();
+  if (OAModule.AssetAccessibilityRegistry.IsValid())
+    return OAModule.AssetAccessibilityRegistry.ToSharedRef();
+  else
+    return TSharedRef<FAssetAccessibilityRegistry>();
 
-    static TSharedRef<class FAssetAccessibilityRegistry> GetAssetRegistry();
-};
+  return TSharedRef<FAssetAccessibilityRegistry>();
+}

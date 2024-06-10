@@ -1,4 +1,5 @@
 #include "PhraseEvents/NodeInteractionLibrary.h"
+#include "PhraseEvents/Utils.h"
 
 #include "BlueprintEditor.h"
 #include "SGraphPanel.h"
@@ -8,8 +9,23 @@
 #include "PhraseTree/Containers/Input/InputContainers.h"
 #include "AccessibilityWrappers/AccessibilityAddNodeContextMenu.h"
 
-void UNodeInteractionLibrary::MoveNode(FParseRecord &Record)
+UNodeInteractionLibrary::UNodeInteractionLibrary(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
+
+}
+
+UNodeInteractionLibrary::~UNodeInteractionLibrary() 
+{
+
+}
+
+void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree) 
+{
+
+}
+
+void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 	GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
 
 	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("INDEX"));
