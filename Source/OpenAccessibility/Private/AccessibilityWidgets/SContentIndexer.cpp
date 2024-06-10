@@ -13,20 +13,20 @@ void SContentIndexer::Construct(const FArguments& InArgs)
 	switch (InArgs._IndexPositionToContent)
 	{
 		case EIndexerPosition::Top:
-			Content = ConstructTopIndexer(InArgs._IndexValue, InArgs._ContentToIndex.ToSharedRef());
+			Content = ConstructTopIndexer(InArgs);
 			break;
 
 		case EIndexerPosition::Bottom:
-			Content = ConstructBottomIndexer(InArgs._IndexValue, InArgs._ContentToIndex.ToSharedRef());
+			Content = ConstructBottomIndexer(InArgs);
 			break;
 
 		default:
 		case EIndexerPosition::Left:
-			Content = ConstructLeftIndexer(InArgs._IndexValue, InArgs._ContentToIndex.ToSharedRef());
+			Content = ConstructLeftIndexer(InArgs);
 			break;
 
 		case EIndexerPosition::Right:
-			Content = ConstructRightIndexer(InArgs._IndexValue, InArgs._ContentToIndex.ToSharedRef());
+			Content = ConstructRightIndexer(InArgs);
 			break;
 	}
 
@@ -49,26 +49,12 @@ void SContentIndexer::UpdateIndex(const int32 IndexValue)
 		IndexTextBlock.Pin()->SetText( ConstructIndexText(IndexValue) );
 }
 
-TSharedPtr<SWidget> SContentIndexer::ConstructTopIndexer(int32 IndexValue, TSharedRef<SWidget> ContentToIndex)
+TSharedPtr<SWidget> SContentIndexer::GetContent() const
 {
-	return SNew(SVerticalBox)
-
-		+ SVerticalBox::Slot()
-		.HAlign(HAlign_Center)
-		.VAlign(VAlign_Center)
-		[
-			ConstructIndexContainer(IndexValue).ToSharedRef()
-		]
-
-		+ SVerticalBox::Slot()
-		.HAlign(HAlign_Center)
-		.VAlign(VAlign_Center)
-		[
-			ConstructContentContainer(ContentToIndex).ToSharedRef()
-		];
+	return IndexedContent.Pin();
 }
 
-TSharedPtr<SWidget> SContentIndexer::ConstructBottomIndexer(int32 IndexValue, TSharedRef<SWidget> ContentToIndex)
+TSharedPtr<SWidget> SContentIndexer::ConstructTopIndexer(const FArguments& InArgs)
 {
 	return SNew(SVerticalBox)
 
@@ -77,7 +63,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructBottomIndexer(int32 IndexValue, TS
 		.VAlign(VAlign_Center)
 		.AutoHeight()
 		[
-			ConstructContentContainer(ContentToIndex).ToSharedRef()
+			ConstructIndexContainer(InArgs).ToSharedRef()
 		]
 
 		+ SVerticalBox::Slot()
@@ -85,11 +71,32 @@ TSharedPtr<SWidget> SContentIndexer::ConstructBottomIndexer(int32 IndexValue, TS
 		.VAlign(VAlign_Center)
 		.AutoHeight()
 		[
-			ConstructIndexContainer(IndexValue).ToSharedRef()
+			ConstructContentContainer(InArgs._ContentToIndex.ToSharedRef()).ToSharedRef()
 		];
 }
 
-TSharedPtr<SWidget> SContentIndexer::ConstructLeftIndexer(int32 IndexValue, TSharedRef<SWidget> ContentToIndex)
+TSharedPtr<SWidget> SContentIndexer::ConstructBottomIndexer(const FArguments& InArgs)
+{
+	return SNew(SVerticalBox)
+
+		+ SVerticalBox::Slot()
+		.HAlign(HAlign_Center)
+		.VAlign(VAlign_Center)
+		.AutoHeight()
+		[
+			ConstructContentContainer(InArgs._ContentToIndex.ToSharedRef()).ToSharedRef()
+		]
+
+		+ SVerticalBox::Slot()
+		.HAlign(HAlign_Center)
+		.VAlign(VAlign_Center)
+		.AutoHeight()
+		[
+			ConstructIndexContainer(InArgs).ToSharedRef()
+		];
+}
+
+TSharedPtr<SWidget> SContentIndexer::ConstructLeftIndexer(const FArguments& InArgs)
 {
 	return SNew(SHorizontalBox)
 
@@ -98,7 +105,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructLeftIndexer(int32 IndexValue, TSha
 		.HAlign(HAlign_Center)
 		.AutoWidth()
 		[
-			ConstructIndexContainer(IndexValue).ToSharedRef()
+			ConstructIndexContainer(InArgs).ToSharedRef()
 		]
 
 		+ SHorizontalBox::Slot()
@@ -106,11 +113,11 @@ TSharedPtr<SWidget> SContentIndexer::ConstructLeftIndexer(int32 IndexValue, TSha
 		.HAlign(HAlign_Center)
 		.AutoWidth()
 		[
-			ConstructContentContainer(ContentToIndex).ToSharedRef()
+			ConstructContentContainer(InArgs._ContentToIndex.ToSharedRef()).ToSharedRef()
 		];
 }
 
-TSharedPtr<SWidget> SContentIndexer::ConstructRightIndexer(int32 IndexValue, TSharedRef<SWidget> ContentToIndex)
+TSharedPtr<SWidget> SContentIndexer::ConstructRightIndexer(const FArguments& InArgs)
 {
 	return SNew(SHorizontalBox)
 
@@ -119,7 +126,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructRightIndexer(int32 IndexValue, TSh
 		.HAlign(HAlign_Center)
 		.AutoWidth()
 		[
-			ConstructContentContainer(ContentToIndex).ToSharedRef()
+			ConstructContentContainer(InArgs._ContentToIndex.ToSharedRef()).ToSharedRef()
 		]
 
 		+ SHorizontalBox::Slot()
@@ -127,7 +134,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructRightIndexer(int32 IndexValue, TSh
 		.HAlign(HAlign_Center)
 		.AutoWidth()
 		[
-			ConstructIndexContainer(IndexValue).ToSharedRef()
+			ConstructIndexContainer(InArgs).ToSharedRef()
 		];
 }
 
@@ -136,11 +143,12 @@ TSharedPtr<SWidget> SContentIndexer::ConstructContentContainer(TSharedRef<SWidge
 	return ContentToIndex;
 }
 
-TSharedPtr<SWidget> SContentIndexer::ConstructIndexContainer(int32 IndexValue, FLinearColor TextColor)
+TSharedPtr<SWidget> SContentIndexer::ConstructIndexContainer(const FArguments& InArgs, FLinearColor TextColor)
 {
 	return SAssignNew(IndexTextBlock, STextBlock)
-		.Text( ConstructIndexText(IndexValue) )
-		.ColorAndOpacity(FSlateColor(TextColor));
+		.Text( ConstructIndexText(InArgs._IndexValue) )
+		.ColorAndOpacity( FSlateColor(TextColor) )
+		.Visibility(InArgs._IndexVisibility);
 }
 
 FText SContentIndexer::ConstructIndexText(int32 Index)

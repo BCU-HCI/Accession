@@ -28,9 +28,13 @@ public:
 
 private:
 
-	void ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget);
+	void ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow);
+
+	// Widget Getters
 
 	TSharedPtr<SBorder> GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer);
+
+	bool GetToolKitToolBar(TSharedRef<SWidget> ToolKitWidget, TSharedPtr<SWidget>& OutToolBar);
 
 	void BindTicker();
 
