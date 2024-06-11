@@ -5,6 +5,10 @@
 
 #include "AssetAccessibilityRegistry.h"
 
+#include "PhraseTree/PhraseInputNode.h"
+#include "PhraseTree/PhraseDirectionalInputNode.h"
+#include "PhraseTree/PhraseEventNode.h"
+
 UViewInteractionLibrary::UViewInteractionLibrary(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer)
 {
@@ -18,7 +22,58 @@ UViewInteractionLibrary::~UViewInteractionLibrary()
 
 void UViewInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 {
+	PhraseTree->BindBranch(
+		MakeShared<FPhraseNode>(TEXT("VIEW"), 
+		TPhraseNodeArray {
+			
+			MakeShared<FPhraseNode>(TEXT("MOVE"),
+			TPhraseNodeArray {
 
+				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"), 
+				TPhraseNodeArray {
+				
+					MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+					TPhraseNodeArray {
+					
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::MoveViewport))
+
+					})
+
+				})
+
+			}),
+
+			MakeShared<FPhraseNode>(TEXT("ZOOM"), 
+			TPhraseNodeArray {
+			
+				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"), 
+				TPhraseNodeArray {
+				
+					MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"), 
+					TPhraseNodeArray {
+					
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::ZoomViewport))
+					
+					})
+
+				})
+			
+			}),
+
+			MakeShared<FPhraseNode>(TEXT("FOCUS"), 
+			TPhraseNodeArray {
+				
+				MakeShared<FPhraseInputNode<int32>>(TEXT("INDEX"), 
+				TPhraseNodeArray {
+				
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::IndexFocus))
+
+				})
+
+			})
+
+		})
+	);
 }
 
 void UViewInteractionLibrary::MoveViewport(FParseRecord &Record) {

@@ -26,9 +26,9 @@ public:
 	// End of UPhraseTreeFunctionLibrary Implementation
 
 
-	static void MoveViewport(FParseRecord& Record);
+	void MoveViewport(FParseRecord& Record);
 
-	static void ZoomViewport(FParseRecord& Record);
+	void ZoomViewport(FParseRecord& Record);
 
-	static void IndexFocus(FParseRecord& Record);
+	void IndexFocus(FParseRecord& Record);
 };
