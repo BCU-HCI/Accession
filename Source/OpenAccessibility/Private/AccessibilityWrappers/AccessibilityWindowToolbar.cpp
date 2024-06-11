@@ -34,7 +34,7 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 	if (!TopWindow.IsValid())
 	{
 		UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Window Is Not Valid."));
-		return false;
+		return true;
 	}
 
 	TSharedPtr<SBorder> ContentContainer;
@@ -46,7 +46,7 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 	if (!Toolkit.IsValid())
 	{
 		UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Toolkit Is Not Valid."));
-		return false;
+		return true;
 	}
 
 	ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef());
@@ -198,6 +198,22 @@ void UAccessibilityWindowToolbar::SelectToolbarItem(int32 Index)
 	// Just Might break in future.
 
 	// LinkedButton->SimulateClick();
+
+	TSharedPtr<const FMultiBlock> MultiBlock = LinkedButton->GetBlock();
+
+	TSharedPtr<const FUICommandList> ActionList = MultiBlock->GetActionList();
+	TSharedPtr<const FUICommandInfo> Action = MultiBlock->GetAction();
+
+	if (ActionList.IsValid() && Action.IsValid()) 
+	{
+		ActionList->ExecuteAction( Action.ToSharedRef() );    
+	}
+	else 
+	{
+		const FUIAction& DirectAction = MultiBlock->GetDirectActions();
+
+		DirectAction.Execute();
+	}
 }
 
 TSharedPtr<SBorder> UAccessibilityWindowToolbar::GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer)
