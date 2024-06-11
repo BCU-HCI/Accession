@@ -41,13 +41,6 @@ void FOpenAccessibilityModule::StartupModule()
 	AccessibilityNodeFactory = MakeShared<FAccessibilityNodeFactory, ESPMode::ThreadSafe>();
 	FEdGraphUtilities::RegisterVisualNodeFactory(AccessibilityNodeFactory);
 
-	// Construct the Manager for Toolbar Accessibility
-	ToolbarAccessibility = NewObject<UAccessibilityWindowToolbar>();
-	ToolbarAccessibility->AddToRoot();
-
-	// Register Console Commands
-	RegisterConsoleCommands();
-
 	// Construct Base Phrase Tree Libraries
 	FOpenAccessibilityCommunicationModule::Get()
 	.PhraseTreeUtils->RegisterFunctionLibrary(
@@ -69,10 +62,10 @@ void FOpenAccessibilityModule::StartupModule()
 		NewObject<UNodeInteractionLibrary>()
 	);
 
-	//BindGraphInteractionBranch();
-	//BindLocalizedInteractionBranch();
-
 	CreateTranscriptionVisualization();
+
+	// Register Console Commands
+	RegisterConsoleCommands();
 }
 
 void FOpenAccessibilityModule::ShutdownModule()

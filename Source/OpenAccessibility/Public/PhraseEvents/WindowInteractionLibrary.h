@@ -39,4 +39,10 @@ public:
 
 	// End Window ToolBar Interaction
 
+
+protected:
+
+	UPROPERTY(BlueprintReadOnly)
+	class UAccessibilityWindowToolbar* WindowToolBar;
+
 };

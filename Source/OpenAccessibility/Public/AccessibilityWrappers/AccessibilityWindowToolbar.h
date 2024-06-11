@@ -24,7 +24,7 @@ public:
 
 	// -- Parse Events --
 
-	void SelectToolbarItem(FParseRecord& Record);
+	void SelectToolbarItem(int32 Index);
 
 private:
 

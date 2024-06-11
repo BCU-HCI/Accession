@@ -182,13 +182,15 @@ FORCEINLINE TSharedPtr<T> GetWidgetDescendantOfType(TSharedRef<SWidget> Widget, 
 
 // --  --
 
-void UAccessibilityWindowToolbar::SelectToolbarItem(FParseRecord& Record)
+void UAccessibilityWindowToolbar::SelectToolbarItem(int32 Index)
 {
-	UParseIntInput* Input = Record.GetPhraseInput<UParseIntInput>("INDEX");
-	if (!Input->IsValidLowLevelFast())
+	if (Index > ToolbarIndex->Num()) 
+	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("Provided Index Out Of Range"))
 		return;
+	}
 
-	SMultiBlockBaseWidget* LinkedButton = ToolbarIndex->GetValue(Input->GetValue());
+	SMultiBlockBaseWidget* LinkedButton = ToolbarIndex->GetValue(Index);
 	if (LinkedButton == nullptr)
 		return;
 

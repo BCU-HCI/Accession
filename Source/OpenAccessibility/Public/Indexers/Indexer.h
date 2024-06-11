@@ -27,6 +27,16 @@ public:
 		AvailableIndexes.Empty();
 	}
 
+	int32 Num() const
+	{
+		return IndexMap.Num();
+	}
+
+	void Num(int32& OutNum) const
+	{
+		OutNum = IndexMap.Num();
+	}
+
 	bool ContainsKey(const KeyType& InKey)
 	{
 		return IndexMap.Contains(InKey);
