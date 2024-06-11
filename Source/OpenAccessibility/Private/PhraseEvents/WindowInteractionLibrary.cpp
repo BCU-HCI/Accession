@@ -1,6 +1,8 @@
 #include "PhraseEvents/WindowInteractionLibrary.h"
 #include "PhraseEvents/Utils.h"
 
+#include "PhraseTree/PhraseEventNode.h"
+
 UWindowInteractionLibrary::UWindowInteractionLibrary(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)
 {
@@ -14,7 +16,30 @@ UWindowInteractionLibrary::~UWindowInteractionLibrary()
 
 void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 {
+	PhraseTree->BindBranch(
+		MakeShared<FPhraseNode>(TEXT("WINDOW"),
+		TPhraseNodeArray{
 
+			MakeShared<FPhraseNode>(TEXT("CLOSE"),
+			TPhraseNodeArray {
+
+				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::CloseActiveWindow))
+			}),
+
+			MakeShared<FPhraseNode>(TEXT("TOOLBAR"), 
+			TPhraseNodeArray {
+					
+				MakeShared<FPhraseNode>(TEXT("SELECT"), 
+				TPhraseNodeArray {
+					
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SelectToolBarItem))
+
+				})
+
+			})
+
+		})
+	);
 }
 
 void UWindowInteractionLibrary::CloseActiveWindow(FParseRecord &Record) {

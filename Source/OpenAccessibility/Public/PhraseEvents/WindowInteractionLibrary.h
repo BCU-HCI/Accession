@@ -28,14 +28,14 @@ public:
 
 	// Window Interaction
 
-	static void CloseActiveWindow(FParseRecord& Record);
+	void CloseActiveWindow(FParseRecord& Record);
 
 	// End Window Interaction
 
 
 	// Window ToolBar Interaction
 
-	static void SelectToolBarItem(FParseRecord& Record);
+	void SelectToolBarItem(FParseRecord& Record);
 
 	// End Window ToolBar Interaction
 
