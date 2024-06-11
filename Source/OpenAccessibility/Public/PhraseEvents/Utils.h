@@ -79,3 +79,23 @@ TSharedRef<FAssetAccessibilityRegistry> GetAssetRegistry()
 
   return TSharedRef<FAssetAccessibilityRegistry>();
 }
+
+// Delegate Utilities
+
+template<typename ObjectType> 
+[[nodiscard]] FORCEINLINE TDelegate<void(FParseRecord&)> CreateParseDelegate(ObjectType* ObjPtr, void (ObjectType::* ObjFunction)(FParseRecord&))
+{
+    return TDelegate<void(FParseRecord &)>::CreateUObject(ObjPtr, ObjFunction);
+}
+
+template <typename ObjectType, typename InputType>
+[[nodiscard]] FORCEINLINE TDelegate<void(InputType)> CreateInputDelegate(ObjectType* ObjPtr, void (ObjectType::* ObjFunction)(InputType))
+{
+	return TDelegate<void(InputType)>::CreateUObject(ObjPtr, ObjFunction);
+}
+
+template <typename ObjectType> 
+[[nodiscard]] FORCEINLINE TDelegate<TSharedPtr<IMenu>(FParseRecord&)> CreateMenuDelegate(ObjectType* ObjPtr, void (ObjectType::* ObjFunction)(FParseRecord&))
+{
+	return TDelegate<TSharedPtr<IMenu>(FParseRecord&)>::CreateUObject(ObjPtr, ObjFunction);
+}

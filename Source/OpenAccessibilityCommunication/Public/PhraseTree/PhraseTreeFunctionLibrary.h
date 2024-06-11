@@ -30,5 +30,6 @@ class OPENACCESSIBILITYCOMMUNICATION_API UPhraseTreeFunctionLibrary : public UOb
 
 public:
 
-    virtual void BindBranches(TSharedRef<FPhraseTree> PhraseTree) const PURE_VIRTUAL(UPhraseTreeFunctionLibrary::BindBranches);
-};
+    virtual void BindBranches(TSharedRef<FPhraseTree> PhraseTree) {};
+
+}; 

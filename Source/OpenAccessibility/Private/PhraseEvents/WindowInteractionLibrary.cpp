@@ -1,6 +1,5 @@
 #include "PhraseEvents/WindowInteractionLibrary.h"
-
-#include "OpenAccessibility.h"
+#include "PhraseEvents/Utils.h"
 
 UWindowInteractionLibrary::UWindowInteractionLibrary(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)

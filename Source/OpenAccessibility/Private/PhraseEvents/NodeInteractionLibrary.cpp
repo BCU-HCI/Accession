@@ -9,6 +9,9 @@
 #include "PhraseTree/Containers/Input/InputContainers.h"
 #include "AccessibilityWrappers/AccessibilityAddNodeContextMenu.h"
 
+#include "PhraseTree/PhraseInputNode.h"
+#include "PhraseTree/PhraseEventNode.h"
+
 UNodeInteractionLibrary::UNodeInteractionLibrary(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {

@@ -13,14 +13,9 @@
 #include "PhraseTree/PhraseEventNode.h"
 
 #include "PhraseEvents/LocalizedInputLibrary.h"
+#include "PhraseEvents/WindowInteractionLibrary.h"
 #include "PhraseEvents/ViewInteractionLibrary.h"
 #include "PhraseEvents/NodeInteractionLibrary.h"
-
-#include "PhraseTree/Containers/Input/UParseInput.h"
-#include "PhraseTree/Containers/Input/UParseIntInput.h"
-#include "PhraseTree/Containers/Input/UParseStringInput.h"
-#include "PhraseTree/Containers/Input/UParseEnumInput.h"
-#include "PhraseTree/Containers/Input/InputContainers.h"
 
 #include "TranscriptionVisualizer.h"
 #include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
@@ -32,27 +27,6 @@
 
 #include "Framework/Docking/TabManager.h"
 #include "Logging/StructuredLog.h"
-
-/// <summary>
-/// Obtains the Active Unreal Tab, if available, and Casts It To the Provided Type.
-/// </summary>
-/// <param name="ActiveContainerName">- The Name of the SharedPtr To Store The Found Tab In.</param>
-/// <param name="InActiveTabType">- The Type of the Tab To Cast To.</param>
-#define GET_ACTIVE_TAB( ActiveContainerName, InActiveTabType, ...) TSharedPtr< InActiveTabType > ActiveContainerName; {\
-		TSharedPtr<SDockTab> _AT = FGlobalTabmanager::Get()->GetActiveTab(); \
-		if (!_AT.IsValid()) \
-		{ \
-			UE_LOG(LogOpenAccessibility, Display, TEXT("GET_ACTIVE_TAB: NO ACTIVE TAB FOUND.")); \
-			return; \
-		} \
-		ActiveContainerName =                                                      \
-        StaticCastSharedPtr<InActiveTabType>(_AT->GetContent().ToSharedPtr()); \
-		if (!ActiveContainerName.IsValid()) \
-		{ \
-			UE_LOG(LogOpenAccessibility, Display, TEXT("GET_ACTIVE_TAB: CURRENT ACTIVE TAB IS NOT OF TYPE - %s"), #InActiveTabType); \
-			return; \
-		} \
-	}\
 
 #define LOCTEXT_NAMESPACE "FOpenAccessibilityModule"
 
@@ -74,8 +48,29 @@ void FOpenAccessibilityModule::StartupModule()
 	// Register Console Commands
 	RegisterConsoleCommands();
 
-	BindGraphInteractionBranch();
-	BindLocalizedInteractionBranch();
+	// Construct Base Phrase Tree Libraries
+	FOpenAccessibilityCommunicationModule::Get()
+	.PhraseTreeUtils->RegisterFunctionLibrary(
+		NewObject<ULocalizedInputLibrary>()
+	);
+
+	FOpenAccessibilityCommunicationModule::Get()
+	.PhraseTreeUtils->RegisterFunctionLibrary(
+		NewObject<UWindowInteractionLibrary>()
+	);
+
+	FOpenAccessibilityCommunicationModule::Get()
+	.PhraseTreeUtils->RegisterFunctionLibrary(
+		NewObject<UViewInteractionLibrary>()
+	);
+
+	FOpenAccessibilityCommunicationModule::Get()
+	.PhraseTreeUtils->RegisterFunctionLibrary(
+		NewObject<UNodeInteractionLibrary>()
+	);
+
+	//BindGraphInteractionBranch();
+	//BindLocalizedInteractionBranch();
 
 	CreateTranscriptionVisualization();
 }

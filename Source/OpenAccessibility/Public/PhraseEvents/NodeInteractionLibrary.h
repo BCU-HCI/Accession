@@ -21,7 +21,7 @@ public:
 
 	// UPhraseTreeFunctionLibrary Implementation
 
-	void BindBranches(TSharedRef<FPhraseTree> PhraseTree);
+	void BindBranches(TSharedRef<FPhraseTree> PhraseTree) override;
 
 	// End of UPhraseTreeFunctionLibrary Implementation
 

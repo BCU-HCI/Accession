@@ -138,6 +138,7 @@ void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
 		.AddRaw(PhraseTree.Get(), &FPhraseTree::ParseTranscription);
 
 	PhraseTreeUtils = NewObject<UPhraseTreeUtils>();
+	PhraseTreeUtils->SetPhraseTree(PhraseTree.ToSharedRef());
 	PhraseTreeUtils->AddToRoot();
 }
 

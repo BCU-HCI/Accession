@@ -21,5 +21,5 @@ void UPhraseTreeUtils::RegisterFunctionLibrary(const UPhraseTreeFunctionLibrary*
 		return;
 	}
 
-	LibraryToRegister->BindBranches(PhraseTreeSP.ToSharedRef());
+	const_cast<UPhraseTreeFunctionLibrary*>(LibraryToRegister)->BindBranches(PhraseTreeSP.ToSharedRef());
 }
