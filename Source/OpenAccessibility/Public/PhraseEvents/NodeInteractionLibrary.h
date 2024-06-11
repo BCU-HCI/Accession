@@ -29,13 +29,13 @@ public:
 	// Node Implementation
 
 	UFUNCTION()
-	static void MoveNode(FParseRecord& Record);
+	void MoveNode(FParseRecord& Record);
 
 	UFUNCTION()
-	static void DeleteNode(FParseRecord& Record);
+	void DeleteNode(FParseRecord& Record);
 
 	UFUNCTION()
-	static void NodeIndexFocus(int32 Index);
+	void NodeIndexFocus(int32 Index);
 
 	// End of Node Implementation
 
@@ -43,32 +43,32 @@ public:
 	// Pin Implementation
 
 	UFUNCTION()
-	static void PinConnect(FParseRecord& Record);
+	void PinConnect(FParseRecord& Record);
 
 	UFUNCTION()
-	static void PinDisconnect(FParseRecord& Record);
+	void PinDisconnect(FParseRecord& Record);
 
 	// End of Pin Implementation
 
 
 	// Node Add Implementation
 
-	static TSharedPtr<IMenu> NodeAddMenu(FParseRecord& Record);
+	TSharedPtr<IMenu> NodeAddMenu(FParseRecord& Record);
 
-    static TSharedPtr<IMenu> NodeAddPinMenu(FParseRecord& Record);
+    TSharedPtr<IMenu> NodeAddPinMenu(FParseRecord& Record);
 
 	
-	static void NodeAddSelect(FParseRecord& Record);
+	void NodeAddSelect(FParseRecord& Record);
 
-	static void NodeAddSearchNew(FParseRecord& Record);
+	void NodeAddSearchNew(FParseRecord& Record);
 
-	static void NodeAddSearchAdd(FParseRecord& Record);
+	void NodeAddSearchAdd(FParseRecord& Record);
 
-	static void NodeAddSearchReset(FParseRecord& Record);
+	void NodeAddSearchReset(FParseRecord& Record);
 
-	static void NodeAddScroll(FParseRecord& Record);
+	void NodeAddScroll(FParseRecord& Record);
 
-	static void NodeAddToggleContext(FParseRecord& Record);
+	void NodeAddToggleContext(FParseRecord& Record);
 
 	// End of Node Add Implementation
 
@@ -76,25 +76,25 @@ public:
 	// Selection Implementation
 
 	UFUNCTION()
-	static void SelectionAdd(FParseRecord& Record);
+	void SelectionAdd(FParseRecord& Record);
 
 	UFUNCTION()
-	static void SelectionRemove(FParseRecord &Record);
+	void SelectionRemove(FParseRecord &Record);
 
 	UFUNCTION()
-	static void SelectionReset(FParseRecord &Record);
+	void SelectionReset(FParseRecord &Record);
 
 	UFUNCTION()
-	static void SelectionMove(FParseRecord &Record);
+	void SelectionMove(FParseRecord &Record);
 
 	UFUNCTION()
-	static void SelectionAlignment(FParseRecord &Record);
+	void SelectionAlignment(FParseRecord &Record);
 
 	UFUNCTION()
-	static void SelectionStraighten(FParseRecord &Record);
+	void SelectionStraighten(FParseRecord &Record);
 
 	UFUNCTION()
-	static void SelectionComment(FParseRecord &Record);
+	void SelectionComment(FParseRecord &Record);
 
 	// End of Selection Implementation
 

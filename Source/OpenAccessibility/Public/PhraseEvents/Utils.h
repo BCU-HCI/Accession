@@ -95,7 +95,7 @@ template <typename ObjectType, typename InputType>
 }
 
 template <typename ObjectType> 
-[[nodiscard]] FORCEINLINE TDelegate<TSharedPtr<IMenu>(FParseRecord&)> CreateMenuDelegate(ObjectType* ObjPtr, void (ObjectType::* ObjFunction)(FParseRecord&))
+[[nodiscard]] FORCEINLINE TDelegate<TSharedPtr<IMenu>(FParseRecord&)> CreateMenuDelegate(ObjectType* ObjPtr, TSharedPtr<IMenu> (ObjectType::* ObjFunction)(FParseRecord&))
 {
 	return TDelegate<TSharedPtr<IMenu>(FParseRecord&)>::CreateUObject(ObjPtr, ObjFunction);
 }
