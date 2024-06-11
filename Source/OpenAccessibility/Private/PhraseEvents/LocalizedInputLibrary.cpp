@@ -1,6 +1,9 @@
 #include "PhraseEvents/LocalizedInputLibrary.h"
 #include "PhraseEvents/Utils.h"
 
+#include "PhraseTree/PhraseStringInputNode.h"
+#include "PhraseTree/PhraseEventNode.h"
+
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 
@@ -16,7 +19,50 @@ ULocalizedInputLibrary::~ULocalizedInputLibrary()
 
 void ULocalizedInputLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 {
+	PhraseTree->BindBranch(
+		MakeShared<FPhraseNode>(TEXT("INPUT"), 
+		TPhraseNodeArray {
+		
+			MakeShared<FPhraseNode>(TEXT("ADD"), 
+			TPhraseNodeArray {
+			
+				MakeShared<FPhraseStringInputNode>(TEXT("PHRASE_TO_ADD"), 
+				TPhraseNodeArray {
+					
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &ULocalizedInputLibrary::KeyboardInputAdd))
 
+				})
+
+			}),
+
+			MakeShared<FPhraseNode>(TEXT("REMOVE"),
+			TPhraseNodeArray {
+
+				MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"), 
+				TPhraseNodeArray {
+					
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this,&ULocalizedInputLibrary::KeyboardInputRemove))
+
+				})
+
+			}),
+
+			MakeShared<FPhraseNode>(TEXT("RESET"), 
+			TPhraseNodeArray {
+			
+				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &ULocalizedInputLibrary::KeyboardInputReset))
+
+			}),
+
+			MakeShared<FPhraseNode>(TEXT("EXIT"), 
+			TPhraseNodeArray {
+				
+				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &ULocalizedInputLibrary::KeyboardInputExit))
+
+			})
+
+		})
+	);
 }
 
 void ULocalizedInputLibrary::KeyboardInputAdd(FParseRecord &Record) {

@@ -29,16 +29,16 @@ public:
 	// Keyboard Input Implementation
 
 	UFUNCTION()
-	static void KeyboardInputAdd(FParseRecord& Record);
+	void KeyboardInputAdd(FParseRecord& Record);
 
 	UFUNCTION()
-	static void KeyboardInputRemove(FParseRecord& Record);
+	void KeyboardInputRemove(FParseRecord& Record);
 
 	UFUNCTION()
-	static void KeyboardInputReset(FParseRecord& Record);
+	void KeyboardInputReset(FParseRecord& Record);
 
 	UFUNCTION()
-	static void KeyboardInputExit(FParseRecord& Record);
+	void KeyboardInputExit(FParseRecord& Record);
 
 	// End of Keyboard Input Implementation
 
