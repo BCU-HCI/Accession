@@ -2,6 +2,7 @@
 #include "PhraseEvents/Utils.h"
 
 #include "BlueprintEditor.h"
+#include "SNodePanel.h"
 #include "SGraphPanel.h"
 #include "Kismet2/KismetEditorUtilities.h"
 #include "Kismet2/BlueprintEditorUtils.h"
@@ -344,10 +345,28 @@ void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 			return;
 	}
 
-	Node->Modify();
-    Node->NodePosX = NodePositon.X;
-	Node->NodePosY = NodePositon.Y;
+	SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
+	if (GraphPanel == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("MoveNode: Linked Graph Panel Not Found"));
+	}
 
+	TSharedPtr<SGraphNode> NodeWidget = GraphPanel ? GraphPanel->GetNodeWidgetFromGuid(Node->NodeGuid) : TSharedPtr<SGraphNode>();
+	if (NodeWidget.IsValid())
+	{
+        SNodePanel::SNode::FNodeSet NodeFilter;
+		NodeWidget->MoveTo(NodePositon, NodeFilter);
+	}
+	else 
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("MoveNode: Node Widget Not Found, Cannot Move Any Children"));
+	
+		Node->Modify();
+		Node->NodePosX = NodePositon.X;
+		Node->NodePosY = NodePositon.Y;
+	}
+
+	/*
 	if (UEdGraphNode_Comment* CommentNode = Cast<UEdGraphNode_Comment>(Node))
 	{
 		SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
@@ -370,6 +389,7 @@ void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 			}
 		}
 	}
+	*/
 }
 
 void UNodeInteractionLibrary::DeleteNode(FParseRecord& Record)
