@@ -329,23 +329,23 @@ void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 		return;
 	}
 
-	FVector2D NodePositon = FVector2D(Node->NodePosX, Node->NodePosY);
+	FVector2D PositionDelta = FVector2D::ZeroVector;
 	switch (EPhrase2DDirectionalInput(DirectionInput->GetValue()))
 	{
 		case EPhrase2DDirectionalInput::UP:
-            NodePositon.Y -= AmountInput->GetValue();
+            PositionDelta.Y -= AmountInput->GetValue();
 			break;
 
 		case EPhrase2DDirectionalInput::DOWN:
-			NodePositon.Y += AmountInput->GetValue();
+			PositionDelta.Y += AmountInput->GetValue();
 			break;
 
 		case EPhrase2DDirectionalInput::LEFT:
-			NodePositon.X -= AmountInput->GetValue();
+			PositionDelta.X -= AmountInput->GetValue();
 			break;
 
 		case EPhrase2DDirectionalInput::RIGHT:
-			NodePositon.X += AmountInput->GetValue();
+			PositionDelta.X += AmountInput->GetValue();
 			break;
 
 		default:
@@ -363,27 +363,19 @@ void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 	if (NodeWidget.IsValid())
 	{
         SNodePanel::SNode::FNodeSet NodeFilter;
-		NodeWidget->MoveTo(NodePositon, NodeFilter);
+		NodeWidget->MoveTo(FVector2D(Node->NodePosX, Node->NodePosY) + PositionDelta, NodeFilter);
 	}
 	else 
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("MoveNode: Node Widget Not Found, Cannot Move Any Children"));
-	
 		Node->Modify();
-		Node->NodePosX = NodePositon.X;
-		Node->NodePosY = NodePositon.Y;
+		Node->NodePosX += PositionDelta.X;
+		Node->NodePosY += PositionDelta.Y;
 	}
 
-	/*
+	// Move Comment Node Children
+    // Note: This is a workaround for the MoveTo Function not calling the override in UEdGraphNode_Comment
 	if (UEdGraphNode_Comment* CommentNode = Cast<UEdGraphNode_Comment>(Node))
 	{
-		SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
-        if (GraphPanel == nullptr)
-		{
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("MoveNode: Cannot Move Comment Children."));
-			return;
-		}
-
 		for (UObject* _CommentChildNode : CommentNode->GetNodesUnderComment())
 		{
 			if (UEdGraphNode* CommentChildNode = Cast<UEdGraphNode>(_CommentChildNode))
@@ -391,13 +383,12 @@ void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 				if (!GraphPanel->SelectionManager.IsNodeSelected(CommentChildNode))
 				{
 					CommentChildNode->Modify();
-					CommentChildNode->NodePosX = NodePositon.X;
-					CommentChildNode->NodePosY = NodePositon.Y;
+					CommentChildNode->NodePosX += PositionDelta.X;
+					CommentChildNode->NodePosY += PositionDelta.Y;
 				}
 			}
 		}
 	}
-	*/
 }
 
 void UNodeInteractionLibrary::DeleteNode(FParseRecord& Record)

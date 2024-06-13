@@ -28,6 +28,7 @@ void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 			TPhraseNodeArray {
 
 				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::CloseActiveWindow))
+
 			}),
 
 			MakeShared<FPhraseNode>(TEXT("TOOLBAR"), 
@@ -66,7 +67,8 @@ void UWindowInteractionLibrary::CloseActiveWindow(FParseRecord &Record) {
 		return;
 	}
 
-	if (ActiveWindow->IsVisible() && ActiveWindow->GetTopmostAncestor().IsValid())
+	TSharedPtr<SWindow> TopAncestor = ActiveWindow->GetTopmostAncestor();
+	if (ActiveWindow->IsVisible() && ActiveWindow != TopAncestor)
 	{
 		ActiveWindow->RequestDestroyWindow();
 	}
