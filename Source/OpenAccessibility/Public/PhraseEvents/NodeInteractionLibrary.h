@@ -102,7 +102,7 @@ public:
 	// Blueprint Specifics
 
 	UFUNCTION()
-	static void BlueprintCompile(FParseRecord& Record);
+	void BlueprintCompile(FParseRecord& Record);
 
 	// End of Blueprint Specifics
 };

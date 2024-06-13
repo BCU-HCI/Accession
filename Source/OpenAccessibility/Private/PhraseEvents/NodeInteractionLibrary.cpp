@@ -296,7 +296,15 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 				1.5f,
 				CreateMenuDelegate(this, &UNodeInteractionLibrary::NodeAddMenu),
 				AddNodeContextChildren
-			)
+			),
+
+			MakeShared<FPhraseNode>(TEXT("COMPILE"), 
+			TPhraseNodeArray {
+				
+				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::BlueprintCompile))
+
+			})
+
 		})
 	);
 };
@@ -305,7 +313,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 	GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
 
-	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("INDEX"));
+	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
 	UParseEnumInput* DirectionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
 	UParseIntInput* AmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
 	if (IndexInput == nullptr || DirectionInput == nullptr || AmountInput == nullptr)
@@ -396,7 +404,7 @@ void UNodeInteractionLibrary::DeleteNode(FParseRecord& Record)
 {
 	GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
 
-	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("INDEX"));
+	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
 	if (IndexInput == nullptr)
 		return;
 
