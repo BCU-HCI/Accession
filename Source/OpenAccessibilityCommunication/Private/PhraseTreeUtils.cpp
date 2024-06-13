@@ -12,7 +12,7 @@ UPhraseTreeUtils::~UPhraseTreeUtils()
 
 }
 
-void UPhraseTreeUtils::RegisterFunctionLibrary(const UPhraseTreeFunctionLibrary* LibraryToRegister)
+void UPhraseTreeUtils::RegisterFunctionLibrary(UPhraseTreeFunctionLibrary* LibraryToRegister)
 {
 	TSharedPtr<FPhraseTree> PhraseTreeSP = PhraseTree.Pin();
 	if (!PhraseTreeSP.IsValid())
@@ -21,5 +21,8 @@ void UPhraseTreeUtils::RegisterFunctionLibrary(const UPhraseTreeFunctionLibrary*
 		return;
 	}
 
-	const_cast<UPhraseTreeFunctionLibrary*>(LibraryToRegister)->BindBranches(PhraseTreeSP.ToSharedRef());
+	// For some reason this needs to be told directly to be kept alive,
+	// even though it is a UPROPERTY TArray and should be kept alive by the UObject system.
+	LibraryToRegister->AddToRoot();
+	LibraryToRegister->BindBranches(PhraseTreeSP.ToSharedRef());
 }

@@ -85,7 +85,7 @@ TSharedRef<FAssetAccessibilityRegistry> GetAssetRegistry()
 template<typename ObjectType> 
 [[nodiscard]] FORCEINLINE TDelegate<void(FParseRecord&)> CreateParseDelegate(ObjectType* ObjPtr, void (ObjectType::* ObjFunction)(FParseRecord&))
 {
-    return TDelegate<void(FParseRecord &)>::CreateUObject(ObjPtr, ObjFunction);
+    return TDelegate<void(FParseRecord&)>::CreateUObject(ObjPtr, ObjFunction);
 }
 
 template <typename ObjectType, typename InputType>

@@ -21,7 +21,7 @@ public:
 
 	// Function Library Methods
 
-	void RegisterFunctionLibrary(const UPhraseTreeFunctionLibrary* LibraryToRegister);
+	void RegisterFunctionLibrary(UPhraseTreeFunctionLibrary* LibraryToRegister);
 
 	void SetPhraseTree(TSharedRef<FPhraseTree> NewPhraseTree)
 	{
@@ -30,7 +30,7 @@ public:
 
 protected:
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(EditAnywhere)
 	TArray<UPhraseTreeFunctionLibrary*> RegisteredLibraries;
 
 
