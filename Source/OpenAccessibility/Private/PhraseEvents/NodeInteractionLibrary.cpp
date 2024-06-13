@@ -227,7 +227,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 				}),
 
-				MakeShared<FPhraseNode>(TEXT("REMOVE"),
+				MakeShared<FPhraseNode>(TEXT("DELETE"),
 				TPhraseNodeArray {
 
 					MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"), 
