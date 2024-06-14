@@ -77,7 +77,8 @@ void UWindowInteractionLibrary::CloseActiveWindow(FParseRecord &Record) {
 void UWindowInteractionLibrary::SelectToolBarItem(FParseRecord& Record)
 {
 	UParseIntInput* ItemIndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("ITEM_INDEX"));
-	if (ItemIndexInput == nullptr) {
+	if (ItemIndexInput == nullptr) 
+	{
 		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SelectToolBarItem: No Item Index Found."));
 		return;
 	}

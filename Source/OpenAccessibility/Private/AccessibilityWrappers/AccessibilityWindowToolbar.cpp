@@ -8,8 +8,6 @@
 
 UAccessibilityWindowToolbar::UAccessibilityWindowToolbar() : UObject()
 {
-	ToolbarIndex = MakeUnique<FIndexer<int32, SMultiBlockBaseWidget*>>();
-
 	LastToolkit = TWeakPtr<SWidget>();
 	LastTopWindow = TWeakPtr<SWindow>();
 	LastToolkitParent = TWeakPtr<SBorder>();
@@ -19,21 +17,16 @@ UAccessibilityWindowToolbar::UAccessibilityWindowToolbar() : UObject()
 
 UAccessibilityWindowToolbar::~UAccessibilityWindowToolbar()
 {
+	UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Destroyed."));
+
 	UnbindTicker();
 }
 
 bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 {
-	if (!FSlateApplication::Get().IsInitialized())
-	{
-          UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Slate Application Is Not Initialized."));
-          return true;
-	}
-
 	TSharedPtr<SWindow> TopWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
 	if (!TopWindow.IsValid())
 	{
-		UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Window Is Not Valid."));
 		return true;
 	}
 
@@ -45,34 +38,34 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 	TSharedPtr<SWidget> Toolkit = ContentContainer->GetContent();
 	if (!Toolkit.IsValid())
 	{
-		UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Toolkit Is Not Valid."));
 		return true;
 	}
 
-	ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef());
+	if (Toolkit != LastToolkit && ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef())) 
+	{
+		LastToolkit = Toolkit;
+		UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Toolkit Indexing Applied To %s"), *Toolkit->GetTypeAsString());
+	}
 
-	LastToolkit = Toolkit;
 	LastTopWindow = TopWindow;
 	LastToolkitParent = ContentContainer;
 
 	return true;
 }
 
-void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow)
+bool UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow)
 {
 	TSharedPtr<SWidget> ToolBarContainer;
 	if (!GetToolKitToolBar(ToolkitWidget, ToolBarContainer))
 	{
 		UE_LOG(LogOpenAccessibility, Log, TEXT("Failed to get Toolbar."));
-		return;
+		return false;
 	}
-
-	ToolbarIndex->Empty();
 
 	if (!ToolBarContainer.IsValid())
 	{
 		UE_LOG(LogOpenAccessibility, Log, TEXT("Toolbar Container Is Not Valid."));
-		return;
+		return false;
 	}
 
 	TArray<FChildren*> ChildrenToFilter = TArray<FChildren*> {
@@ -86,6 +79,8 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 		TEXT("SToolBarStackButtonBlock"),
 		TEXT("SUniformToolBarButtonBlock")
 	};
+
+	ToolbarIndex.Reset();
 
 	int32 Index = -1;
 	while (ChildrenToFilter.Num() > 0)
@@ -110,7 +105,7 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 
 				ChildSlot.DetachWidget();
 
-				ToolbarIndex->GetKeyOrAddValue(
+				ToolbarIndex.GetKeyOrAddValue(
 					ToolBarButtonWidget.Get(), 
 					Index
 				);
@@ -135,7 +130,7 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 				if (!IndexedContent.IsValid())
 					continue;
 
-				ToolbarIndex->GetKeyOrAddValue(
+				ToolbarIndex.GetKeyOrAddValue(
 					IndexedContent.Get(),
 					Index
 				);
@@ -145,6 +140,8 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 			else ChildrenToFilter.Add(ChildWidget->GetChildren());
 		}
 	}
+
+	return true;
 }
 
 // -- Util Widget Function -- 
@@ -184,14 +181,14 @@ FORCEINLINE TSharedPtr<T> GetWidgetDescendantOfType(TSharedRef<SWidget> Widget, 
 
 void UAccessibilityWindowToolbar::SelectToolbarItem(int32 Index)
 {
-	if (Index > ToolbarIndex->Num()) 
+	if (ToolbarIndex.IsEmpty()) 
 	{
-		UE_LOG(LogOpenAccessibility, Warning, TEXT("Provided Index Out Of Range"))
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("ToolBar Index is Empty."))
 		return;
 	}
 
-	SMultiBlockBaseWidget* LinkedButton = ToolbarIndex->GetValue(Index);
-	if (LinkedButton == nullptr)
+	SMultiBlockBaseWidget* LinkedButton;
+	if (ToolbarIndex.GetValue(Index, LinkedButton))
 		return;
 
 	// Might Work?

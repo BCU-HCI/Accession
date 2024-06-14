@@ -16,14 +16,26 @@ public:
 
 	}
 
-	virtual ~FIndexer()
+	virtual ~FIndexer() 
 	{
+	
+    }
+	
 
+	bool IsEmpty() const 
+	{ 
+		return IndexMap.IsEmpty();
+	}
+
+	void Reset() 
+	{ 
+		IndexMap.Reset();
+		AvailableIndexes.Empty();
 	}
 
 	void Empty()
 	{
-		IndexMap.Reset();
+		IndexMap.Empty();
 		AvailableIndexes.Empty();
 	}
 
@@ -90,7 +102,6 @@ public:
 
 		return true;
 	}
-
 
 	KeyType AddValue(const ValueType& InValue)
 	{

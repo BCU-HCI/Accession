@@ -28,7 +28,7 @@ public:
 
 private:
 
-	void ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow);
+	bool ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow);
 
 	// Widget Getters
 
@@ -50,7 +50,7 @@ private:
 
 	TWeakPtr<SWidget> LastToolkit;
 
-	TUniquePtr<FIndexer<int32, SMultiBlockBaseWidget*>> ToolbarIndex;
+	FIndexer<int32, SMultiBlockBaseWidget*> ToolbarIndex;
 
 	FTSTicker::FDelegateHandle TickDelegateHandle;
 
