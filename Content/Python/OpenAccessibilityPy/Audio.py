@@ -35,14 +35,19 @@ class AudioResampler:
         # Force Garbage Collection, due to resampler not being properly deleted otherwise.
         gc.collect()
 
-    def resample(self, audio_data: np.ndarray, buffer_sample_rate: int) -> np.ndarray:
+    def resample(
+        self,
+        audio_data: np.ndarray,
+        buffer_sample_rate: int,
+        buffer_num_channels: int = 2,  # Defaults To Stereo, as more common
+    ) -> np.ndarray:
 
         audio_data = self._convert_to_s16(audio_data).reshape(-1, 1)
 
         frame: av.AudioFrame = av.AudioFrame.from_ndarray(
             audio_data.T,
             format="s16",
-            layout="stereo",
+            layout="stereo" if buffer_num_channels == 2 else "mono",
         )
 
         frame.sample_rate = buffer_sample_rate
