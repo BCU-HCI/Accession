@@ -44,6 +44,12 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 		ContentContainer = GetWindowContentContainer(TopWindow.ToSharedRef());
 	else ContentContainer = LastToolkitParent.Pin();
 
+	if (!ContentContainer.IsValid())
+	{
+		return true;
+	}
+
+
 	TSharedPtr<SWidget> Toolkit = ContentContainer->GetContent();
 	if (!Toolkit.IsValid())
 	{
@@ -200,15 +206,17 @@ void UAccessibilityWindowToolbar::SelectToolbarItem(int32 Index)
 	}
 
 	SMultiBlockBaseWidget* LinkedButton;
-	if (ToolbarIndex.GetValue(Index, LinkedButton))
+	if (!ToolbarIndex.GetValue(Index, LinkedButton)) 
+	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("Provided Index is Not Linked to a ToolBar Button."))
 		return;
-
-	// Might Work?
-	// Just Might break in future.
-
-	// LinkedButton->SimulateClick();
+	}
 
 	TSharedPtr<const FMultiBlock> MultiBlock = LinkedButton->GetBlock();
+	if (!MultiBlock.IsValid()) 
+	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("Provided ToolBar MultiBlock is Not Valid."))
+	}
 
 	TSharedPtr<const FUICommandList> ActionList = MultiBlock->GetActionList();
 	TSharedPtr<const FUICommandInfo> Action = MultiBlock->GetAction();
