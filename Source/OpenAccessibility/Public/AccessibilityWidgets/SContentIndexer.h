@@ -51,7 +51,22 @@ public:
 	/// Gets the Current Content Being Indexed.
 	/// </summary>
 	/// <returns>A Shared Ptr of the Indexed Content</returns>
-	TSharedPtr<SWidget> GetContent() const;
+	TSharedRef<SWidget> GetContent() const 
+	{
+		return IndexedContent.Pin().ToSharedRef();
+    }
+
+	/// <summary>
+    /// Gets the Current Content Being Indexed and Casts it to the Provided
+    /// Type.
+	/// </summary>
+	/// <typeparam name="CastType">The Type To Cast The Stored Value To.</typeparam>
+	/// <returns>The Casted SharedReference.</returns>
+	template<typename CastType>
+	TSharedRef<CastType> GetContent() const 
+	{
+		return CastStaticSharedPtr<CastType>(IndexedContent.Pin());
+	}
 
 protected:
 

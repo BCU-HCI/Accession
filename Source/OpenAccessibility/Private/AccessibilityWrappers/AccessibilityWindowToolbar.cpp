@@ -12,6 +12,15 @@ UAccessibilityWindowToolbar::UAccessibilityWindowToolbar() : UObject()
 	LastTopWindow = TWeakPtr<SWindow>();
 	LastToolkitParent = TWeakPtr<SBorder>();
 
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibiliy.ToolBar.ShowIndexerStats"), 
+		TEXT("Displays the Indexer Stats for the Toolbar."),
+
+		FConsoleCommandDelegate::CreateLambda([this]() {
+			UE_LOG(LogOpenAccessibility, Display, TEXT("| ToolBar Indexer Stats | Indexed Amount: %d | "), ToolbarIndex.Num())
+		})
+	));
+
 	BindTicker();
 }
 
@@ -41,10 +50,10 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 		return true;
 	}
 
-	if (Toolkit != LastToolkit && ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef())) 
+	if (ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef())) 
 	{
 		LastToolkit = Toolkit;
-		UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Toolkit Indexing Applied To %s"), *Toolkit->GetTypeAsString());
+		//UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Toolkit Indexing Applied To %s"), *Toolkit->GetTypeAsString());
 	}
 
 	LastTopWindow = TopWindow;
@@ -80,7 +89,8 @@ bool UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 		TEXT("SUniformToolBarButtonBlock")
 	};
 
-	ToolbarIndex.Reset();
+	if (LastToolkit != ToolkitWidget)
+		ToolbarIndex.Reset();
 
 	int32 Index = -1;
 	while (ChildrenToFilter.Num() > 0)
@@ -126,7 +136,7 @@ bool UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 			{
 				TSharedPtr<SContentIndexer> IndexerWidget = StaticCastSharedPtr<SContentIndexer>(ChildWidget);
 
-				TSharedPtr<SMultiBlockBaseWidget> IndexedContent = StaticCastSharedPtr<SMultiBlockBaseWidget>(IndexerWidget->GetContent());
+				TSharedPtr<SMultiBlockBaseWidget> IndexedContent = StaticCastSharedRef<SMultiBlockBaseWidget>(IndexerWidget->GetContent());
 				if (!IndexedContent.IsValid())
 					continue;
 
@@ -140,6 +150,8 @@ bool UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 			else ChildrenToFilter.Add(ChildWidget->GetChildren());
 		}
 	}
+
+	//UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Indexed %d Items."), ToolbarIndex.Num());
 
 	return true;
 }

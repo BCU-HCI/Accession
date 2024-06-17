@@ -38,7 +38,7 @@ class AudioResampler:
     def resample(
         self,
         audio_data: np.ndarray,
-        buffer_sample_rate: int,
+        buffer_sample_rate: int = 48000,  # Defaults to 48KHz, as more common
         buffer_num_channels: int = 2,  # Defaults To Stereo, as more common
     ) -> np.ndarray:
 

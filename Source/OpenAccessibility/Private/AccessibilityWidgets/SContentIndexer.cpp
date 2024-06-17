@@ -35,7 +35,7 @@ void SContentIndexer::Construct(const FArguments& InArgs)
 		[
 			Content.ToSharedRef()
 		]
-	); 
+	);
 }
 
 void SContentIndexer::Tick(const FGeometry& AllottedGeometry, const double InCurrentTime, const float InDeltaTime)
@@ -47,11 +47,6 @@ void SContentIndexer::UpdateIndex(const int32 IndexValue)
 {
 	if (IndexTextBlock.IsValid())
 		IndexTextBlock.Pin()->SetText( ConstructIndexText(IndexValue) );
-}
-
-TSharedPtr<SWidget> SContentIndexer::GetContent() const
-{
-	return IndexedContent.Pin();
 }
 
 TSharedPtr<SWidget> SContentIndexer::ConstructTopIndexer(const FArguments& InArgs)
@@ -140,6 +135,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructRightIndexer(const FArguments& InA
 
 TSharedPtr<SWidget> SContentIndexer::ConstructContentContainer(TSharedRef<SWidget> ContentToIndex)
 {
+	IndexedContent = ContentToIndex;
 	return ContentToIndex;
 }
 

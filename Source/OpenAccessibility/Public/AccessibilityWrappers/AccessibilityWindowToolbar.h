@@ -54,4 +54,6 @@ private:
 
 	FTSTicker::FDelegateHandle TickDelegateHandle;
 
+	TArray<IConsoleCommand*> ConsoleCommands;
+
 };
