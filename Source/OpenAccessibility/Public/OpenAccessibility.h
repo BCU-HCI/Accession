@@ -90,7 +90,5 @@ private:
 
 	TSharedPtr<class FTranscriptionVisualizer> TranscriptionVisualizer;
 
-	class UAccessibilityWindowToolbar* ToolbarAccessibility;
-
 	TArray<IConsoleCommand*> ConsoleCommands;
 };

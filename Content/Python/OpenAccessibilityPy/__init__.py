@@ -82,9 +82,11 @@ class OpenAccessibilityPy:
         )
 
         sample_rate = metadata.get("sample_rate", 48000)
-        num_channels = metadata.get("num_channels", 1)
+        num_channels = metadata.get("num_channels", 2)
 
-        message_ndarray = self.audio_resampler.resample(recv_message, sample_rate)
+        message_ndarray = self.audio_resampler.resample(
+            recv_message, sample_rate, num_channels
+        )
 
         trans_segments, trans_metadata = self.whisper_interface.process_audio_buffer(
             message_ndarray

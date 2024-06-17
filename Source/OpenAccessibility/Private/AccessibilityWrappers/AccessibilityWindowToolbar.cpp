@@ -3,17 +3,31 @@
 #include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
 #include "AccessibilityWidgets/SContentIndexer.h"
 
+#include "PhraseTree/Containers/ParseRecord.h"
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 
 UAccessibilityWindowToolbar::UAccessibilityWindowToolbar() : UObject()
 {
-	ToolbarIndex = MakeUnique<FIndexer<int32, SMultiBlockBaseWidget*>>();
+	LastToolkit = TWeakPtr<SWidget>();
+	LastTopWindow = TWeakPtr<SWindow>();
+	LastToolkitParent = TWeakPtr<SBorder>();
+
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibiliy.ToolBar.ShowIndexerStats"), 
+		TEXT("Displays the Indexer Stats for the Toolbar."),
+
+		FConsoleCommandDelegate::CreateLambda([this]() {
+			UE_LOG(LogOpenAccessibility, Display, TEXT("| ToolBar Indexer Stats | Indexed Amount: %d | "), ToolbarIndex.Num())
+		})
+	));
 
 	BindTicker();
 }
 
 UAccessibilityWindowToolbar::~UAccessibilityWindowToolbar()
 {
+	UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Destroyed."));
+
 	UnbindTicker();
 }
 
@@ -21,45 +35,68 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 {
 	TSharedPtr<SWindow> TopWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
 	if (!TopWindow.IsValid())
-		return false;
+	{
+		return true;
+	}
 
-	TSharedPtr<SBorder> ContentContainer = GetWindowContentContainer(TopWindow.ToSharedRef());
-	TSharedPtr<SWidget> Toolkit = ContentContainer->GetContent();
+	TSharedPtr<SBorder> ContentContainer;
+	if (TopWindow != LastTopWindow)
+		ContentContainer = GetWindowContentContainer(TopWindow.ToSharedRef());
+	else ContentContainer = LastToolkitParent.Pin();
+
 	if (!ContentContainer.IsValid())
-		return false;
+	{
+		return true;
+	}
 
-	if (Toolkit == LastToolkit && TopWindow == LastTopWindow)
-		return false;
 
-	ApplyToolbarIndexing(ContentContainer->GetContent());
+	TSharedPtr<SWidget> Toolkit = ContentContainer->GetContent();
+	if (!Toolkit.IsValid())
+	{
+		return true;
+	}
 
-	LastToolkit = Toolkit;
+	if (ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef())) 
+	{
+		LastToolkit = Toolkit;
+		//UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Toolkit Indexing Applied To %s"), *Toolkit->GetTypeAsString());
+	}
+
 	LastTopWindow = TopWindow;
 	LastToolkitParent = ContentContainer;
 
 	return true;
 }
 
-void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget)
+bool UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow)
 {
-	ToolbarIndex->Empty();
-
-	TSharedPtr<SWidget> ToolbarContainer = ToolkitWidget
-		->GetChildren()->GetChildAt(0)  // Get SVerticalBox
-		->GetChildren()->GetChildAt(0)  // Get SOverlay
-		->GetChildren()->GetChildAt(1); // Get SHorizontalBox
-
-	if (!ToolbarContainer.IsValid())
+	TSharedPtr<SWidget> ToolBarContainer;
+	if (!GetToolKitToolBar(ToolkitWidget, ToolBarContainer))
 	{
-		UE_LOG(LogOpenAccessibility, Log, TEXT("Toolbar Container is not valid."));
-		return;
+		UE_LOG(LogOpenAccessibility, Log, TEXT("Failed to get Toolbar."));
+		return false;
 	}
 
-	TArray<FChildren*> ChildrenToFilter;
-	ChildrenToFilter.Add(ToolbarContainer->GetChildren());
+	if (!ToolBarContainer.IsValid())
+	{
+		UE_LOG(LogOpenAccessibility, Log, TEXT("Toolbar Container Is Not Valid."));
+		return false;
+	}
 
-	TSharedPtr<SWidget> ChildWidget;
+	TArray<FChildren*> ChildrenToFilter = TArray<FChildren*> {
+		ToolBarContainer->GetChildren()
+	};
+
 	FString WidgetType;
+	TSet<FString> AllowedWidgetTypes = TSet<FString>{
+		TEXT("SToolBarButtonBlock"),
+		TEXT("SToolBarComboButtonBlock"),
+		TEXT("SToolBarStackButtonBlock"),
+		TEXT("SUniformToolBarButtonBlock")
+	};
+
+	if (LastToolkit != ToolkitWidget)
+		ToolbarIndex.Reset();
 
 	int32 Index = -1;
 	while (ChildrenToFilter.Num() > 0)
@@ -70,21 +107,59 @@ void UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 		// To-Do: Learn How to Write Readable Code.
 		for (int i = 0; i < Children->NumSlot(); i++)
 		{
-			ChildWidget = Children->GetChildAt(i);
-			WidgetType = ChildWidget->GetTypeAsString();
-
 			FSlotBase& ChildSlot = const_cast<FSlotBase&>(Children->GetSlotAt(i));
 
-			TSharedPtr<SContentIndexer> ContentIndexer = SNew(SContentIndexer)
-				.IndexValue(Index)
-				.IndexPositionToContent(EIndexerPosition::Bottom)
-				.ContentToIndex(ChildWidget);
+			TSharedPtr<SWidget> ChildWidget = Children->GetChildAt(i);
+			if (!ChildWidget.IsValid() || ChildWidget->GetDesiredSize() == FVector2D::ZeroVector)
+				continue;
 
-			ChildSlot.AttachWidget(ContentIndexer.ToSharedRef());
+			WidgetType = ChildWidget->GetTypeAsString();
+			
+			if (ChildWidget.IsValid() && AllowedWidgetTypes.Contains(WidgetType))
+			{
+				TSharedPtr<SMultiBlockBaseWidget> ToolBarButtonWidget = StaticCastSharedPtr<SMultiBlockBaseWidget>(ChildWidget);
 
-			ChildrenToFilter.Add(ChildWidget->GetChildren());
+				ChildSlot.DetachWidget();
+
+				ToolbarIndex.GetKeyOrAddValue(
+					ToolBarButtonWidget.Get(), 
+					Index
+				);
+
+				ChildSlot.AttachWidget(
+					SNew(SContentIndexer)
+					.IndexValue(Index)
+					.IndexPositionToContent(EIndexerPosition::Bottom)
+					.ContentToIndex(ToolBarButtonWidget)
+					.IndexVisibility_Lambda([ToolkitWindow]() -> EVisibility {
+						if (FSlateApplication::Get().GetActiveTopLevelRegularWindow() == ToolkitWindow)
+							return EVisibility::Visible;
+						else return EVisibility::Hidden;
+					})
+				);
+			} 
+			else if (ChildWidget.IsValid() && WidgetType == "SContentIndexer")
+			{
+				TSharedPtr<SContentIndexer> IndexerWidget = StaticCastSharedPtr<SContentIndexer>(ChildWidget);
+
+				TSharedPtr<SMultiBlockBaseWidget> IndexedContent = StaticCastSharedRef<SMultiBlockBaseWidget>(IndexerWidget->GetContent());
+				if (!IndexedContent.IsValid())
+					continue;
+
+				ToolbarIndex.GetKeyOrAddValue(
+					IndexedContent.Get(),
+					Index
+				);
+
+				IndexerWidget->UpdateIndex(Index);
+			}
+			else ChildrenToFilter.Add(ChildWidget->GetChildren());
 		}
 	}
+
+	//UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Indexed %d Items."), ToolbarIndex.Num());
+
+	return true;
 }
 
 // -- Util Widget Function -- 
@@ -122,17 +197,40 @@ FORCEINLINE TSharedPtr<T> GetWidgetDescendantOfType(TSharedRef<SWidget> Widget, 
 
 // --  --
 
-void UAccessibilityWindowToolbar::SelectToolbarItem(FParseRecord& Record)
+void UAccessibilityWindowToolbar::SelectToolbarItem(int32 Index)
 {
-	UParseIntInput* Input = Record.GetPhraseInput<UParseIntInput>("INDEX");
-	if (!Input->IsValidLowLevelFast())
+	if (ToolbarIndex.IsEmpty()) 
+	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("ToolBar Index is Empty."))
 		return;
+	}
 
-	SMultiBlockBaseWidget* MultiBlockWidget = ToolbarIndex->GetValue(Input->GetValue());
-	if (MultiBlockWidget == nullptr)
+	SMultiBlockBaseWidget* LinkedButton;
+	if (!ToolbarIndex.GetValue(Index, LinkedButton)) 
+	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("Provided Index is Not Linked to a ToolBar Button."))
 		return;
+	}
 
-	// Add OnClick Functionality Here, Using the MultiBlockWidget.
+	TSharedPtr<const FMultiBlock> MultiBlock = LinkedButton->GetBlock();
+	if (!MultiBlock.IsValid()) 
+	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("Provided ToolBar MultiBlock is Not Valid."))
+	}
+
+	TSharedPtr<const FUICommandList> ActionList = MultiBlock->GetActionList();
+	TSharedPtr<const FUICommandInfo> Action = MultiBlock->GetAction();
+
+	if (ActionList.IsValid() && Action.IsValid()) 
+	{
+		ActionList->ExecuteAction( Action.ToSharedRef() );    
+	}
+	else 
+	{
+		const FUIAction& DirectAction = MultiBlock->GetDirectActions();
+
+		DirectAction.Execute();
+	}
 }
 
 TSharedPtr<SBorder> UAccessibilityWindowToolbar::GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer)
@@ -151,6 +249,28 @@ TSharedPtr<SBorder> UAccessibilityWindowToolbar::GetWindowContentContainer(TShar
 			->GetChildren()->GetChildAt(1) // SOverlay
 			->GetChildren()->GetChildAt(0) // SBorder
 	);
+}
+
+bool UAccessibilityWindowToolbar::GetToolKitToolBar(TSharedRef<SWidget> ToolKitWidget, TSharedPtr<SWidget>& OutToolBar)
+{
+	TSharedPtr<SWidget> CurrChild;
+	FChildren* CurrChildren = ToolKitWidget->GetChildren();
+	if (CurrChildren->Num() == 0) 
+		return false;
+
+	CurrChild = CurrChildren->GetChildAt(0); // Get SVerticalBox
+	CurrChildren = CurrChild->GetChildren();
+	if (CurrChildren->Num() == 0)
+		return false;
+
+	CurrChild = CurrChildren->GetChildAt(0); // Get SOverlay
+	CurrChildren = CurrChild->GetChildren();
+	if (CurrChildren->Num() < 2)
+		return false;
+
+	OutToolBar = CurrChildren->GetChildAt(1); // Get SHorizontalBox
+        if (OutToolBar.IsValid()) return true;
+        else return false;
 }
 
 void UAccessibilityWindowToolbar::BindTicker()

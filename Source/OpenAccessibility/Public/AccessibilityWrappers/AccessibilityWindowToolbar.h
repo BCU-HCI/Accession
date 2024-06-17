@@ -24,13 +24,17 @@ public:
 
 	// -- Parse Events --
 
-	void SelectToolbarItem(FParseRecord& Record);
+	void SelectToolbarItem(int32 Index);
 
 private:
 
-	void ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget);
+	bool ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow);
+
+	// Widget Getters
 
 	TSharedPtr<SBorder> GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer);
+
+	bool GetToolKitToolBar(TSharedRef<SWidget> ToolKitWidget, TSharedPtr<SWidget>& OutToolBar);
 
 	void BindTicker();
 
@@ -46,8 +50,10 @@ private:
 
 	TWeakPtr<SWidget> LastToolkit;
 
-	TUniquePtr<FIndexer<int32, SMultiBlockBaseWidget*>> ToolbarIndex;
+	FIndexer<int32, SMultiBlockBaseWidget*> ToolbarIndex;
 
 	FTSTicker::FDelegateHandle TickDelegateHandle;
+
+	TArray<IConsoleCommand*> ConsoleCommands;
 
 };

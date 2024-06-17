@@ -9,12 +9,16 @@
 FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase)
 {
 	BoundPhrase = InBoundPhrase;
+    BoundPhrase.ToUpperInline();
+
 	ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
 }
 
 FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed)
 {
     BoundPhrase = InBoundPhrase;
+    BoundPhrase.ToUpperInline();
+
     OnPhraseParsed = InOnPhraseParsed;
     ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
 }
@@ -22,12 +26,16 @@ FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(FParseRecord
 FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TPhraseNodeArray InChildNodes)
 {
 	BoundPhrase = InBoundPhrase;
+    BoundPhrase.ToUpperInline();
+
 	ChildNodes = InChildNodes;
 }
 
 FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
 {
     BoundPhrase = InBoundPhrase;
+    BoundPhrase.ToUpperInline();
+
     OnPhraseParsed = InOnPhraseParsed;
 	ChildNodes = InChildNodes;
 }

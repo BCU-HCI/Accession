@@ -16,15 +16,37 @@ public:
 
 	}
 
-	virtual ~FIndexer()
+	virtual ~FIndexer() 
 	{
+	
+    }
+	
 
+	bool IsEmpty() const 
+	{ 
+		return IndexMap.IsEmpty();
+	}
+
+	void Reset() 
+	{ 
+		IndexMap.Reset();
+		AvailableIndexes.Empty();
 	}
 
 	void Empty()
 	{
-		IndexMap.Reset();
+		IndexMap.Empty();
 		AvailableIndexes.Empty();
+	}
+
+	int32 Num() const
+	{
+		return IndexMap.Num();
+	}
+
+	void Num(int32& OutNum) const
+	{
+		OutNum = IndexMap.Num();
 	}
 
 	bool ContainsKey(const KeyType& InKey)
@@ -80,7 +102,6 @@ public:
 
 		return true;
 	}
-
 
 	KeyType AddValue(const ValueType& InValue)
 	{
