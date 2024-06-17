@@ -55,8 +55,15 @@ bool FPhraseNode::RequiresPhrase(FString InPhrase)
     return InPhrase.Equals(BoundPhrase, ESearchCase::IgnoreCase) || Algo::LevenshteinDistance(BoundPhrase, InPhrase) < 3;
 }
 
-FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
+bool FPhraseNode::RequiresPhrase(const FString InPhrase, int32& OutDistance) 
 {
+    OutDistance = Algo::LevenshteinDistance(BoundPhrase, InPhrase);
+
+    return InPhrase.Equals(BoundPhrase, ESearchCase::IgnoreCase) || OutDistance < 3;
+}
+
+FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray,
+                                      FParseRecord& InParseRecord) {
     if (InPhraseArray.IsEmpty())
     {
         UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
@@ -176,17 +183,32 @@ bool FPhraseNode::HasLeafChild()
 
 FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
 {
-    if (InPhraseArray.IsEmpty() && !HasLeafChild())
+    if (HasLeafChild())
+		return ChildNodes[0]->ParsePhrase(InPhraseArray, InParseRecord);
+    else if (InPhraseArray.IsEmpty() ) 
         return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
 
-    for (auto& ChildNode : ChildNodes)
+    // Below Can Be Optimized.
+    // Maybe bypass the loop if Distance == 0 and Sort ChildNodes with Derrived PhraseNodes Last?
+
+    int FoundChildIndex = -1;
     {
-        // ChildNodes cannot have duplicate bound phrases.
-        if (ChildNode->IsLeafNode() || ChildNode->RequiresPhrase(InPhraseArray.Last()))
+        int32 FoundChildDistance = INT32_MAX, CurrentDistance = INT32_MAX;
+
+        for (int i = 0; i < ChildNodes.Num(); i++)
         {
-            return ChildNode->ParsePhrase(InPhraseArray, InParseRecord);
+            // Child Nodes Require Unique Phrases to Siblings.
+            if (ChildNodes[i]->RequiresPhrase(InPhraseArray.Last(), CurrentDistance))
+            {
+                if (FoundChildDistance > CurrentDistance)
+                {
+                    FoundChildIndex = i;
+                    FoundChildDistance = CurrentDistance;
+                }
+            }
         }
     }
 
-	return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
+    if (FoundChildIndex != -1) return ChildNodes[FoundChildIndex]->ParsePhrase(InPhraseArray, InParseRecord);
+    else return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
 }

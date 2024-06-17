@@ -165,14 +165,7 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 	}
 	else
 	{
-		// Proceed to start a new propogation.
-		for (const TSharedPtr<FPhraseNode>& ChildNode : ChildNodes)
-		{
-			if (!ChildNode->RequiresPhrase(InPhraseWordArray.Last()))
-				continue;
-
-			return ChildNode->ParsePhrase(InPhraseWordArray, InParseRecord);
-		}
+		return ParseChildren(InPhraseWordArray, InParseRecord);
 	}
 
 	UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Phrase Tree || No Parse Path Found ||"));

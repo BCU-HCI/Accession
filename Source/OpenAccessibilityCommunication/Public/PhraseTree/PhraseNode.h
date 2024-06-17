@@ -78,6 +78,14 @@ public:
 	virtual bool RequiresPhrase(const FString InPhrase);
 	
 	/// <summary>
+	/// Checks if the Node Requires the Given Phrase, and Returns the Distance of the Phrase.
+	/// </summary>
+	/// <param name="InPhrase">- The Phrase To Check if Required By The Node.</param>
+	/// <param name="OutDistance">- The Returned Distancing from the Target Phrase To The BoundPhrase.</param>
+	/// <returns>True, if the Phrase is Required. Otherwise False.</returns>
+	virtual bool RequiresPhrase(const FString InPhrase, int32& OutDistance);
+
+	/// <summary>
 	/// Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.
 	/// </summary>
 	/// <param name="InPhraseWordArray">- The Current Array of Transcription Phrases.</param>

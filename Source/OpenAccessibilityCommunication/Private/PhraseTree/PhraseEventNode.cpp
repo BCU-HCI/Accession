@@ -32,6 +32,12 @@ bool FPhraseEventNode::RequiresPhrase(const FString InPhrase)
     return true;
 }
 
+bool FPhraseEventNode::RequiresPhrase(const FString InPhrase, int32& OutDistance) 
+{
+    OutDistance = 0;
+    return true;
+}
+
 FParseResult FPhraseEventNode::ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
 {
     if (OnPhraseParsed.ExecuteIfBound(InParseRecord))
