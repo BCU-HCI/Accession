@@ -144,26 +144,6 @@ TSharedPtr<SWidget> SContentIndexer::ConstructContentContainer(TSharedRef<SWidge
 
 TSharedPtr<SWidget> SContentIndexer::ConstructIndexContainer(const FArguments& InArgs, FLinearColor TextColor)
 {
-	/*
-	return SNew(SBox)
-	.HAlign(HAlign_Fill)
-	.VAlign(VAlign_Fill)
-	[
-		SNew(SBorder)
-		.HAlign(HAlign_Center)
-		.VAlign(VAlign_Center)
-		.BorderBackgroundColor( FSlateColor(FLinearColor::Gray) )
-		.Padding(FMargin(2.5f, 1.5f))
-		[
-			SAssignNew(IndexTextBlock, STextBlock)
-			.Text( ConstructIndexText(InArgs._IndexValue) )
-			.ColorAndOpacity( FSlateColor(TextColor) )
-			.TextShapingMethod(ETextShapingMethod::KerningOnly)
-			.Visibility(InArgs._IndexVisibility)
-		]
-	];
-	*/
-
 	return SAssignNew(IndexerWidget, SIndexer)
 	.TextColor(TextColor)
 	.BorderColor(FLinearColor::Gray)

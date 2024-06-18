@@ -30,12 +30,28 @@ public:
 
 	// End SWidget Implementation
 
+	/// <summary>
+	/// Updates the Index Widget with the New Index Value.
+	/// </summary>
+	/// <param name="NewIndex">- The New Index Value.</param>
 	void UpdateIndex(const int32 NewIndex);
 
+	/// <summary>
+	/// Updates the Index Widget with the New String Index Value.
+	/// </summary>
+	/// <param name="NewIndex">- The New Index Value, in String Form.</param>
 	void UpdateIndex(const FString& NewIndex);
 
+	/// <summary>
+	/// Updates the Index Widget with the New Text Index Value.
+	/// </summary>
+	/// <param name="NewIndex">- The New Index Value, in Text Form.</param>
 	void UpdateIndex(const FText& NewIndex);
 
+	/// <summary>
+	/// Gets the Index TextBlock Widget.
+	/// </summary>
+	/// <returns>A Valid TextBlock Widget, if it is still found. Otherwise InValid SharedPtr.</returns>
 	TSharedPtr<STextBlock> GetIndexText() const 
 	{
 		return IndexTextBlock.IsValid() ? IndexTextBlock.Pin() : TSharedPtr<STextBlock>();
@@ -43,6 +59,9 @@ public:
 
 protected:
 
+	/// <summary>
+	/// Weak Pointer to the Main TextBlock Widget.
+	/// </summary>
 	TWeakPtr<STextBlock> IndexTextBlock;
 
 };
