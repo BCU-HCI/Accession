@@ -18,6 +18,7 @@
 #include "Widgets/Text/STextBlock.h"
 
 #include "OpenAccessibility.h"
+#include "AccessibilityWidgets/SIndexer.h"
 
 FAccessibilityNodeFactory::FAccessibilityNodeFactory() : FGraphPanelNodeFactory()
 {
@@ -110,8 +111,10 @@ void FAccessibilityNodeFactory::WrapNodeWidget(UEdGraphNode* Node, TSharedRef<SG
                                     SNew(SOverlay)
                                         + SOverlay::Slot()
                                         [
-                                            SNew(STextBlock)
-                                                .Text(FText::FromString("[" + FString::FromInt(NodeIndex) + "]"))
+                                            SNew(SIndexer)
+                                            .IndexValue(NodeIndex)
+                                            .TextColor(FLinearColor::White)
+                                            .BorderColor(FLinearColor::Gray)
                                         ]
                                 ]
                         ]
@@ -141,8 +144,10 @@ void FAccessibilityNodeFactory::WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGrap
         })
         + SOverlay::Slot()
         [
-            SNew(STextBlock)
-                .Text(FText::FromString("[" + FString::FromInt(PinIndex) + "]"))
+            SNew(SIndexer)
+            .IndexValue(PinIndex)
+            .TextColor(FLinearColor::White)
+            .BorderColor(FLinearColor::Gray)
         ];
 
     switch (Pin->Direction)

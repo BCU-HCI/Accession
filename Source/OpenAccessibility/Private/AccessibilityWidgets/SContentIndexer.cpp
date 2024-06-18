@@ -1,6 +1,7 @@
 // Copyright F-Dudley. All Rights Reserved.
 
 #include "AccessibilityWidgets/SContentIndexer.h"
+#include "AccessibilityWidgets/SIndexer.h"
 
 SContentIndexer::~SContentIndexer()
 {
@@ -30,12 +31,10 @@ void SContentIndexer::Construct(const FArguments& InArgs)
 			break;
 	}
 
-	SBox::Construct(
-		SBox::FArguments()
-		[
-			Content.ToSharedRef()
-		]
-	);
+	ChildSlot
+	[
+		Content.ToSharedRef()
+	];
 }
 
 void SContentIndexer::Tick(const FGeometry& AllottedGeometry, const double InCurrentTime, const float InDeltaTime)
@@ -45,8 +44,8 @@ void SContentIndexer::Tick(const FGeometry& AllottedGeometry, const double InCur
 
 void SContentIndexer::UpdateIndex(const int32 IndexValue)
 {
-	if (IndexTextBlock.IsValid())
-		IndexTextBlock.Pin()->SetText( ConstructIndexText(IndexValue) );
+	if (IndexerWidget.IsValid())
+		IndexerWidget.Pin()->UpdateIndex( IndexValue );
 }
 
 TSharedPtr<SWidget> SContentIndexer::ConstructTopIndexer(const FArguments& InArgs)
@@ -57,6 +56,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructTopIndexer(const FArguments& InArg
 		.HAlign(HAlign_Center)
 		.VAlign(VAlign_Center)
 		.AutoHeight()
+		.Padding(.1f, .25f)
 		[
 			ConstructIndexContainer(InArgs).ToSharedRef()
 		]
@@ -86,6 +86,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructBottomIndexer(const FArguments& In
 		.HAlign(HAlign_Center)
 		.VAlign(VAlign_Center)
 		.AutoHeight()
+		.Padding(.1f, .25f)
 		[
 			ConstructIndexContainer(InArgs).ToSharedRef()
 		];
@@ -99,6 +100,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructLeftIndexer(const FArguments& InAr
 		.VAlign(VAlign_Center)
 		.HAlign(HAlign_Center)
 		.AutoWidth()
+		.Padding(.25f, .1f)
 		[
 			ConstructIndexContainer(InArgs).ToSharedRef()
 		]
@@ -128,6 +130,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructRightIndexer(const FArguments& InA
 		.VAlign(VAlign_Center)
 		.HAlign(HAlign_Center)
 		.AutoWidth()
+		.Padding(.25f, .1f)
 		[
 			ConstructIndexContainer(InArgs).ToSharedRef()
 		];
@@ -141,13 +144,14 @@ TSharedPtr<SWidget> SContentIndexer::ConstructContentContainer(TSharedRef<SWidge
 
 TSharedPtr<SWidget> SContentIndexer::ConstructIndexContainer(const FArguments& InArgs, FLinearColor TextColor)
 {
-	return SAssignNew(IndexTextBlock, STextBlock)
-		.Text( ConstructIndexText(InArgs._IndexValue) )
-		.ColorAndOpacity( FSlateColor(TextColor) )
-		.Visibility(InArgs._IndexVisibility);
+	return SAssignNew(IndexerWidget, SIndexer)
+	.TextColor(TextColor)
+	.BorderColor(FLinearColor::Gray)
+	.IndexValue(InArgs._IndexValue)
+	.IndexVisibility(InArgs._IndexVisibility);
 }
 
 FText SContentIndexer::ConstructIndexText(int32 Index)
 {
-	return FText::FromString("[" + FString::FromInt(Index) + " ]");
+	return FText::FromString(FString::FromInt(Index));
 }
