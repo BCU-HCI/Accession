@@ -134,5 +134,5 @@ protected:
 	/// <summary>
 	/// The Text Block that Displays the Index Value.
 	/// </summary>
-	TWeakPtr<STextBlock> IndexTextBlock;
+	TWeakPtr<class SIndexer> IndexerWidget;
 };
