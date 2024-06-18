@@ -144,8 +144,10 @@ void FAccessibilityNodeFactory::WrapPinWidget(UEdGraphPin* Pin, TSharedRef<SGrap
         })
         + SOverlay::Slot()
         [
-            SNew(STextBlock)
-                .Text(FText::FromString("[" + FString::FromInt(PinIndex) + "]"))
+            SNew(SIndexer)
+            .IndexValue(PinIndex)
+            .TextColor(FLinearColor::White)
+            .BorderColor(FLinearColor::Gray)
         ];
 
     switch (Pin->Direction)
