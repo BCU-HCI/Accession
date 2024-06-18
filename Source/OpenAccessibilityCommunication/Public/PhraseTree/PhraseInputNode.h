@@ -24,6 +24,8 @@ public:
 	
 	virtual bool RequiresPhrase(const FString InPhrase) override;
 
+	virtual bool RequiresPhrase(const FString InPhrase, int32& OutDistance) override;
+
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord) override;
 
 	// End FPhraseNode Implementation
