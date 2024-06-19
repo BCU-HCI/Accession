@@ -1549,7 +1549,7 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 						return;
 
 					ActiveGraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab->GetContent().ToSharedPtr());
-					if (!ActiveGraphEditor.IsValid()) 
+					if (!ActiveGraphEditor.IsValid() || ActiveGraphEditor->GetTypeAsString() != "SGraphEditor") 
 					{
 						UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
 						return;

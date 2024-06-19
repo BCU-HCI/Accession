@@ -13,10 +13,9 @@ UAccessibilityGraphLocomotionContext::UAccessibilityGraphLocomotionContext(const
 
 UAccessibilityGraphLocomotionContext::~UAccessibilityGraphLocomotionContext()
 {
-    if (FocusChangedHandle.IsValid()) 
-	{
-		FSlateApplication::Get().OnFocusChanging().Remove(FocusChangedHandle);
-    }
+	Close();
+
+	UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphLocomotion: CONTEXT DESTROYED."));
 }
 
 void UAccessibilityGraphLocomotionContext::Init()
@@ -70,6 +69,8 @@ void UAccessibilityGraphLocomotionContext::Close()
 
 	RemoveFromRoot();
 	MarkAsGarbage();
+
+	UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphLocomotion: CONTEXT CLOSED."));
 }
 
 void UAccessibilityGraphLocomotionContext::CreateVisualGrid(TSharedRef<SGraphEditor> InGraphEditor) 
@@ -111,20 +112,21 @@ void UAccessibilityGraphLocomotionContext::GenerateVisualChunks(TSharedRef<SGrap
 			GridContainerPtr->AddSlot(X, Y)
 			[
 				SNew(SBox)
-				.WidthOverride(100)
-				.HeightOverride(100)
 				[
 					SNew(SBorder)
 					.HAlign(HAlign_Fill)
 					.VAlign(VAlign_Fill)
 					.BorderBackgroundColor(FLinearColor::Green)
 					[
-						SNew(SBox)
+						SNew(SBorder)
 						.HAlign(HAlign_Center)
 						.VAlign(VAlign_Center)
+						.Padding(2.0f)
+						.BorderBackgroundColor(FLinearColor::Green)
 						[
 							SNew(STextBlock)
-                            .Text(ChunkText)
+							.Text(ChunkText)
+							.ColorAndOpacity(FSlateColor(FLinearColor::Green))
 						]
 					]
 				]
@@ -208,6 +210,7 @@ void UAccessibilityGraphLocomotionContext::OnFocusChanged(
 
 	if (!NewFocusedWidgetPath.ContainsWidget(LinkedEditorPtr.ToSharedRef()))
 	{
+		bIsActive = false;
 		Close();
 	}
 }
