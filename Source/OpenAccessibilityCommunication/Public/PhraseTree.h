@@ -54,6 +54,8 @@ struct OPENACCESSIBILITYCOMMUNICATION_API FPhraseTreeBranchBind
 
 struct OPENACCESSIBILITYCOMMUNICATION_API FPhraseTreeContextManager
 {
+friend class FPhraseTree;
+
 public:
 
 	FPhraseTreeContextManager()
@@ -161,6 +163,8 @@ public:
 		OutContextObject = this->ContextObjectStack.Pop();
 	}
 
+private:
+
 	/// <summary>
 	/// Updates the Context Stack with the Given Array of Context Objects.
 	/// </summary>
@@ -225,6 +229,10 @@ class OPENACCESSIBILITYCOMMUNICATION_API FPhraseTree : public FPhraseNode
 public:
 	FPhraseTree();
 	~FPhraseTree();
+
+	FPhraseTreeContextManager& GetContextManager() {
+		return ContextManager;
+	}
 
 	bool Tick(float DeltaTime);
 

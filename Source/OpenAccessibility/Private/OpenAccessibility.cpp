@@ -18,7 +18,8 @@
 #include "PhraseEvents/NodeInteractionLibrary.h"
 
 #include "TranscriptionVisualizer.h"
-#include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
+#include "AccessibilityWrappers/AccessibilityAddNodeContextMenu.h"
+#include "AccessibilityWrappers/AccessibilityGraphLocomotionContext.h"
 
 #include "GraphActionNode.h"
 #include "SGraphPanel.h"
@@ -1515,14 +1516,54 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					MenuWindow = FSlateApplication::Get().FindWidgetWindow(KeyboardFocusedWidget.ToSharedRef());
 				}
 				
-				UAccessibilityAddNodeContextMenu* MenuWrapper = NewObject<UAccessibilityAddNodeContextMenu>();
-				MenuWrapper->AddToRoot();
-				MenuWrapper->Init(
+				UAccessibilityAddNodeContextMenu* AddNodeContextMenu = NewObject<UAccessibilityAddNodeContextMenu>();
+				AddNodeContextMenu->AddToRoot();
+				AddNodeContextMenu->Init(
 					Menu.ToSharedRef(),
 					FOpenAccessibilityCommunicationModule::Get().PhraseTree->AsShared()
 				);
 
-				MenuWrapper->ScaleMenu(1.5f);
+				AddNodeContextMenu->ScaleMenu(1.5f);
+
+				FPhraseTreeContextManager& ContextManager =FOpenAccessibilityCommunicationModule::Get()
+                      .PhraseTree->GetContextManager();
+
+				ContextManager.PushContextObject(AddNodeContextMenu);
+			}),
+
+		ECVF_Default
+	));
+
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibility.Debug.OpenAccessibilityGraph_SummonImprovedLocomotion"),
+		TEXT("Summons the Improved Locomotion Menu for the Active Graph Editor."),
+
+		FConsoleCommandDelegate::CreateLambda(
+			[this]() {
+				TSharedPtr<SGraphEditor> ActiveGraphEditor = nullptr;
+				{
+					// Getting Graph Editor Section
+
+					TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+					if (!ActiveTab.IsValid())
+						return;
+
+					ActiveGraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab->GetContent().ToSharedPtr());
+					if (!ActiveGraphEditor.IsValid()) 
+					{
+						UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
+						return;
+					}
+				}
+
+				UAccessibilityGraphLocomotionContext* LocomotionContext = NewObject<UAccessibilityGraphLocomotionContext>();
+				LocomotionContext->AddToRoot();
+				LocomotionContext->Init(ActiveGraphEditor.ToSharedRef());
+
+				FPhraseTreeContextManager& ContextManager = FOpenAccessibilityCommunicationModule::Get()
+                  .PhraseTree->GetContextManager();
+
+				ContextManager.PushContextObject(LocomotionContext);
 			}),
 
 		ECVF_Default
