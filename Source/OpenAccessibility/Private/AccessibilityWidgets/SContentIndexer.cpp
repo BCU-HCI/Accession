@@ -51,6 +51,7 @@ void SContentIndexer::UpdateIndex(const int32 IndexValue)
 TSharedPtr<SWidget> SContentIndexer::ConstructTopIndexer(const FArguments& InArgs)
 {
 	return SNew(SVerticalBox)
+	.Visibility(AccessWidgetVisibilityAttribute(InArgs._ContentToIndex.ToSharedRef()))
 
 		+ SVerticalBox::Slot()
 		.HAlign(HAlign_Center)
@@ -73,6 +74,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructTopIndexer(const FArguments& InArg
 TSharedPtr<SWidget> SContentIndexer::ConstructBottomIndexer(const FArguments& InArgs)
 {
 	return SNew(SVerticalBox)
+	.Visibility(AccessWidgetVisibilityAttribute(InArgs._ContentToIndex.ToSharedRef()))
 
 		+ SVerticalBox::Slot()
 		.HAlign(HAlign_Center)
@@ -95,6 +97,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructBottomIndexer(const FArguments& In
 TSharedPtr<SWidget> SContentIndexer::ConstructLeftIndexer(const FArguments& InArgs)
 {
 	return SNew(SHorizontalBox)
+	.Visibility(AccessWidgetVisibilityAttribute(InArgs._ContentToIndex.ToSharedRef()))
 
 		+ SHorizontalBox::Slot()
 		.VAlign(VAlign_Center)
@@ -117,6 +120,7 @@ TSharedPtr<SWidget> SContentIndexer::ConstructLeftIndexer(const FArguments& InAr
 TSharedPtr<SWidget> SContentIndexer::ConstructRightIndexer(const FArguments& InArgs)
 {
 	return SNew(SHorizontalBox)
+	.Visibility(AccessWidgetVisibilityAttribute(InArgs._ContentToIndex.ToSharedRef()))
 
 		+ SHorizontalBox::Slot()
 		.VAlign(VAlign_Center)

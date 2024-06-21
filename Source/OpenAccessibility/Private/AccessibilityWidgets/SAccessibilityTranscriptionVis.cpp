@@ -15,8 +15,7 @@ void SAccessibilityTranscriptionVis::Construct(const FArguments& InArgs)
 		.AutoHeight();
 
 	// Verify a least one slot will be constructed
-	int TranscriptionSlotAmount = 1;
-	TranscriptionSlotAmount = FMath::Max(1, InArgs._VisAmount);
+	int TranscriptionSlotAmount = FMath::Max(1, InArgs._VisAmount);
 
 	FSlateFontInfo FontInfo = FAppStyle::GetFontStyle("NormalText");
 	FontInfo.Size = 12;
@@ -33,7 +32,7 @@ void SAccessibilityTranscriptionVis::Construct(const FArguments& InArgs)
 					.Text(FText::GetEmpty())
 					.Font(FontInfo)
 					.SimpleTextMode(true)
-					.ColorAndOpacity(i == 0 ? FSlateColor(FLinearColor::Yellow) : FSlateColor(FLinearColor::Gray))
+					.ColorAndOpacity(i == 0 ? FSlateColor(FLinearColor(1.0f, 1.0f, 0, 1.0f)) : FSlateColor(FLinearColor(0.5f, 0.5f, 0.5f, 1.0f)))
 			];
 
 		TranscriptionSlots.Add(CurrentTranscriptionSlot);
@@ -41,26 +40,25 @@ void SAccessibilityTranscriptionVis::Construct(const FArguments& InArgs)
 
 	// Construct the Main Component
 
-	SBox::Construct(SBox::FArguments()
-		.Padding(FMargin(5.0f))
+	ChildSlot
+	.Padding(FMargin(5.0f))
+	[
+		SNew(SOverlay)
+		+ SOverlay::Slot()
+		.ZOrder(1)
 		[
-			SNew(SOverlay)
-			+ SOverlay::Slot()
-				.ZOrder(1)
+			SNew(SBorder)
+			.BorderBackgroundColor(FSlateColor(FLinearColor::Gray))
+			[
+				SNew(SBox)
+				.MinDesiredWidth(250.0f)
+				.MinDesiredHeight(60.0f)
 				[
-					SNew(SBorder)
-						.BorderBackgroundColor(FSlateColor(FLinearColor::Gray))
-						[
-							SNew(SBox)
-								.MinDesiredWidth(250.0f)
-								.MinDesiredHeight(60.0f)
-								[
-									TranscriptionHolder.ToSharedRef()
-								]
-						]
+					TranscriptionHolder.ToSharedRef()
 				]
+			]
 		]
-	);
+	];
 
 	this->TranscriptionContainer = TranscriptionHolder;
 }

@@ -95,8 +95,7 @@ bool UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 		TEXT("SUniformToolBarButtonBlock")
 	};
 
-	if (LastToolkit != ToolkitWidget)
-		ToolbarIndex.Reset();
+	ToolbarIndex.Reset();
 
 	int32 Index = -1;
 	while (ChildrenToFilter.Num() > 0)
