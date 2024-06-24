@@ -63,19 +63,23 @@ private:
 		LoggedEvent()
 		{ };
 
-		LoggedEvent(const TCHAR* EventTitle, const TCHAR* EventString)
+		LoggedEvent(const TCHAR* EventTitle, const TCHAR* EventString, FDateTime EventTimestamp = FDateTime::Now())
 			: Title(EventTitle)
 			, Body(EventString)
+			, Timestamp(EventTimestamp)
 		{ };
 		
-		LoggedEvent(const FString& EventTitle, const FString& EventString)
+		LoggedEvent(const FString& EventTitle, const FString& EventString, FDateTime EventTimestamp = FDateTime::Now())
 			: Title(EventTitle)
 			, Body(EventString)
+			, Timestamp(EventTimestamp)
 		{ };
 
 	public:
 		FString Title;
 		FString Body;
+
+		FDateTime Timestamp;
 	};
 
 	TArray<LoggedEvent> EventBuffer;
