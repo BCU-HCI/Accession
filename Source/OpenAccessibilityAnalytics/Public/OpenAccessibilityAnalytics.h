@@ -101,7 +101,7 @@ FORCEINLINE void FOpenAccessibilityAnalyticsModule::LogEvent(const TCHAR* EventT
 	Message.AppendV(LogString, Args);
 	va_end(Args);
 
-	EventBuffer.Add(
+ 	EventBuffer.Add(
 		LoggedEvent(EventTitle, *Message)
 	);
 }

@@ -48,7 +48,7 @@ public:
 		return PhraseString;
 	}
 
-	bool AddPhraseString(FString StringToRecord)
+	void AddPhraseString(FString StringToRecord)
 	{
 		PhraseString += TEXT(" ") + StringToRecord;
 	}

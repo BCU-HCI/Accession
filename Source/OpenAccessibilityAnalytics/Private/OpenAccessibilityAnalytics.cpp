@@ -42,7 +42,7 @@ FString FOpenAccessibilityAnalyticsModule::GenerateFileForSessionLog()
 {
 	FDateTime CurrentDateTime = FDateTime::Now();
 
-	FString CombinedFileName = TEXT("OA Event Log:") + CurrentDateTime.ToString() + TEXT(".log");
+	FString CombinedFileName = TEXT("[") + CurrentDateTime.ToString() + TEXT("] OA Event Log.log");
 	return FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() + TEXT("Logs/OpenAccessibility/") + CombinedFileName);
 }
 
@@ -99,7 +99,7 @@ void FOpenAccessibilityAnalyticsModule::AddConsoleCommands()
 		FConsoleCommandWithArgsDelegate::CreateLambda(
 			[this](const TArray<FString>& Args) {
 
-				if (!(Args.Num() >= 2))
+				if (Args.Num() < 2)
 					return;
 
 				FString EventTitle = Args[0];
@@ -111,6 +111,17 @@ void FOpenAccessibilityAnalyticsModule::AddConsoleCommands()
 				}
 
 				this->LogEvent(*EventTitle, *EventBody);
+			}
+		)
+	));
+
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibilityAnalytics.Debug.ForceLogDump"),
+		TEXT("Forces a Dump of the Active To Log File."),
+
+		FConsoleCommandDelegate::CreateLambda(
+			[this]() {
+				this->DumpTick(0.0f);
 			}
 		)
 	));
