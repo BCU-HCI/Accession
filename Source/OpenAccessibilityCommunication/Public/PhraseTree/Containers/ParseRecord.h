@@ -37,6 +37,25 @@ public:
 		PhraseInputs.Empty();
 	}
 
+	// -- Phrase String
+
+	/// <summary>
+	/// Gets the Recorded Phrase String for this record of propagation.
+	/// </summary>
+	/// <returns></returns>
+	const FString GetPhraseString() const
+	{
+		return PhraseString;
+	}
+
+	bool AddPhraseString(FString StringToRecord)
+	{
+		PhraseString += TEXT(" ") + StringToRecord;
+	}
+
+	// --
+
+
 	/// <summary>
 	/// Gets the Input for the Provided Phrase, if it exists.
 	/// </summary>
@@ -274,6 +293,11 @@ protected:
 	/// The Context Stack of Context Objects.
 	/// </summary>
 	TArray<UPhraseTreeContextObject*> ContextObjectStack = TArray<UPhraseTreeContextObject*>();
+
+	/// <summary>
+	/// A Record of the Phrase String used through-out propagation.
+	/// </summary>
+	FString PhraseString;
 
 	/// <summary>
 	/// Map of all the Provided Phrase Inputs, to their Respective Phrases.

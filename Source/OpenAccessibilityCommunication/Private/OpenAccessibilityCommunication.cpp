@@ -121,16 +121,11 @@ void FOpenAccessibilityCommunicationModule::TranscribeWaveForm(const TArray<floa
 	AudioBufferMetadata->SetNumberField(TEXT("sample_rate"), AudioManager->GetAudioCaptureSampleRate());
 	AudioBufferMetadata->SetNumberField(TEXT("num_channels"), AudioManager->GetAudioCaptureNumChannels());
 
-	if (SocketServer->SendArrayMessageWithMeta(AudioBufferToTranscribe, AudioBufferMetadata.ToSharedRef(), ComSendFlags::none))
-	{
-		OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION SENT"), TEXT("Sent Audiobuffer (float x %d / %d Hz / %d channels)"), 
-			AudioBufferToTranscribe.Num(), AudioManager->GetAudioCaptureSampleRate(), AudioManager->GetAudioCaptureNumChannels());
-	}
-	else
-	{
-		OA_LOG(LogOpenAccessibilityCom, Error, TEXT("TRANSCRIPTION SENT"), TEXT("Failed to Send AudioBuffer (float x %d / %d Hz / %d channels)"),
-			AudioBufferToTranscribe.Num(), AudioManager->GetAudioCaptureSampleRate(), AudioManager->GetAudioCaptureNumChannels());
-	}
+	bool bArrayMessageSent = SocketServer->SendArrayMessageWithMeta(AudioBufferToTranscribe, AudioBufferMetadata.ToSharedRef(), ComSendFlags::none);
+	
+	OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION SENT"), TEXT("{%s} Send Audiobuffer (float x %d / %d Hz / %d channels)"),
+		bArrayMessageSent ? TEXT("Success") : TEXT("Failed"),
+		AudioBufferToTranscribe.Num(), AudioManager->GetAudioCaptureSampleRate(), AudioManager->GetAudioCaptureNumChannels());
 }
 
 void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
