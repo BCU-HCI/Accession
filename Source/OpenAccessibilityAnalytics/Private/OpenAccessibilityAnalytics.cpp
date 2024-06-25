@@ -42,7 +42,7 @@ FString FOpenAccessibilityAnalyticsModule::GenerateFileForSessionLog()
 {
 	FDateTime CurrentDateTime = FDateTime::Now();
 
-	FString CombinedFileName = TEXT("OA Event Log:") + CurrentDateTime.ToString();
+	FString CombinedFileName = TEXT("OA Event Log:") + CurrentDateTime.ToString() + TEXT(".log");
 	return FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() + TEXT("Logs/OpenAccessibility/") + CombinedFileName);
 }
 
