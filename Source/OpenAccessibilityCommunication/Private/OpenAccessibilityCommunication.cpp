@@ -3,6 +3,8 @@
 #include "OpenAccessibilityCommunication.h"
 #include "OpenAccessibilityComLogging.h"
 
+#include "OpenAccessibilityAnalytics.h"
+
 #include "AudioManager.h"
 #include "SocketCommunicationServer.h"
 
@@ -75,8 +77,7 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 
 		if (SocketServer->RecvStringMultipartWithMeta(RecvStrings, RecvMetadata))
 		{
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Tick || Received Multipart | Message Count: %d ||"), RecvStrings.Num());
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Tick || Received Duration Metadata: %d ||"), RecvMetadata->GetNumberField(TEXT("duration")));
+			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION RECIEVED"), TEXT("Recieved Multipart - Message Count: %d"), RecvStrings.Num());
 
 			OnTranscriptionRecieved.Broadcast(RecvStrings);
 		}
@@ -92,12 +93,12 @@ void FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(const FKeyEvent& 
 	{
 		if (InKeyEvent.IsShiftDown())
 		{
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Keydown Event || Shift + SpaceBar ||"));
+			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
 			AudioManager->StopCapturingAudio();
 		}
 		else
 		{
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Keydown Event || SpaceBar ||"));
+			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Starting Audio Capture"));
 			AudioManager->StartCapturingAudio();
 		}
 	}
@@ -122,11 +123,13 @@ void FOpenAccessibilityCommunicationModule::TranscribeWaveForm(const TArray<floa
 
 	if (SocketServer->SendArrayMessageWithMeta(AudioBufferToTranscribe, AudioBufferMetadata.ToSharedRef(), ComSendFlags::none))
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Transcription Ready || Sent Audio Buffer ||"));
+		OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION SENT"), TEXT("Sent Audiobuffer (float x %d / %d Hz / %d channels)"), 
+			AudioBufferToTranscribe.Num(), AudioManager->GetAudioCaptureSampleRate(), AudioManager->GetAudioCaptureNumChannels());
 	}
 	else
 	{
-		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Transcription Ready || Failed to Send Audio Buffer ||"));
+		OA_LOG(LogOpenAccessibilityCom, Error, TEXT("TRANSCRIPTION SENT"), TEXT("Failed to Send AudioBuffer (float x %d / %d Hz / %d channels)"),
+			AudioBufferToTranscribe.Num(), AudioManager->GetAudioCaptureSampleRate(), AudioManager->GetAudioCaptureNumChannels());
 	}
 }
 

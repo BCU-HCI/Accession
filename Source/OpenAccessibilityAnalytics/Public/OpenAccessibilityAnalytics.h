@@ -90,3 +90,18 @@ private:
 
 	TArray<IConsoleCommand*> ConsoleCommands;
 };
+
+
+FORCEINLINE void FOpenAccessibilityAnalyticsModule::LogEvent(const TCHAR* EventTitle, const TCHAR* LogString, ...)
+{
+	va_list Args;
+
+	va_start(Args, LogString);
+	TStringBuilder<1024> Message;
+	Message.AppendV(LogString, Args);
+	va_end(Args);
+
+	EventBuffer.Add(
+		LoggedEvent(EventTitle, *Message)
+	);
+}

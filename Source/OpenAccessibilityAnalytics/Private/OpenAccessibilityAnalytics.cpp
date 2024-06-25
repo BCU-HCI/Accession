@@ -39,20 +39,6 @@ bool FOpenAccessibilityAnalyticsModule::DumpTick(float DeltaTime)
 	return true;
 }
 
-void FOpenAccessibilityAnalyticsModule::LogEvent(const TCHAR* EventTitle, const TCHAR* LogString, ...)
-{
-	va_list Args;
-
-	va_start(Args, LogString);
-	TStringBuilder<1024> Message;
-	Message.AppendV(LogString, Args);
-	va_end(Args);
-
-	EventBuffer.Add(
-		LoggedEvent(EventTitle, *Message)
-	);
-}
-
 FString FOpenAccessibilityAnalyticsModule::GenerateFileForSessionLog()
 {
 	FDateTime CurrentDateTime = FDateTime::Now();
