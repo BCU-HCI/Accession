@@ -8,8 +8,7 @@
 
 void FOpenAccessibilityAnalyticsModule::StartupModule() 
 {
-	if (SessionBufferFile.IsEmpty())
-		SessionBufferFile = GenerateFileForSessionLog();
+	SessionBufferFile = GenerateFileForSessionLog();
 
 	EnableDumpTick();
 	AddConsoleCommands();
