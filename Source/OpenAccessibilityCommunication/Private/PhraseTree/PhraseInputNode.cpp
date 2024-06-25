@@ -74,7 +74,12 @@ FParseResult FPhraseInputNode<InputType>::ParsePhrase(TArray<FString>& InPhraseA
 
     if (MeetsInputRequirements(InPhraseArray.Last()))
     {
+        // Get the Input String.
         FString InputToRecord = InPhraseArray.Pop();
+
+        // Append the Input String to the Record.
+        InParseRecord.AddPhraseString(InputToRecord);
+
         if (!InputToRecord.IsNumeric() && NumericParser::IsValidNumeric(InputToRecord, false))
         {
 			NumericParser::StringToNumeric(InputToRecord, false);

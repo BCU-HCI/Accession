@@ -72,7 +72,11 @@ FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray,
     }
 
     // Pop the Phrase Linked to this Node.
-    InPhraseArray.Pop();
+    // Apply to the Record.
+    FString LinkedPhrase = InPhraseArray.Pop();
+    
+    // Append Removed Phrase To Record.
+    InParseRecord.AddPhraseString(LinkedPhrase);
     
     OnPhraseParsed.ExecuteIfBound(InParseRecord);
 
