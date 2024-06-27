@@ -1,6 +1,7 @@
 // Copyright F-Dudley. All Rights Reserved.
 
 #include "AccessibilityWrappers/AccessibilityGraphLocomotionContext.h"
+#include "AccessibilityWidgets/SIndexer.h"
 #include "OpenAccessibilityLogging.h"
 
 #include "SGraphPanel.h"
@@ -58,6 +59,27 @@ void UAccessibilityGraphLocomotionContext::Init(TSharedRef<SGraphEditor> InGraph
 	BindFocusChangedEvent();
 }
 
+bool UAccessibilityGraphLocomotionContext::SelectChunk(int32 Index)
+{
+	if (Index > ChunkArray.Num() || Index < 0)
+		return false;
+
+	FGraphLocomotionChunk SelectedChunk = ChunkArray[Index];
+
+	SGraphPanel* LinkedPanel = LinkedEditor.Pin()->GetGraphPanel();
+
+	FVector2D TopLeftCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkTopLeft());
+	FVector2D BottomRightCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkBottomRight());
+
+	if (!LinkedPanel->JumpToRect(BottomRightCoord, TopLeftCoord))
+	{
+		UE_LOG(LogOpenAccessibility, Log, TEXT("Failed To Jump To Viewport Coords (TopLeft: %s | BottomRight: %s)"), *TopLeftCoord.ToString(), *BottomRightCoord.ToString());
+		return false;
+	}
+
+	return true;
+}
+
 void UAccessibilityGraphLocomotionContext::Close() 
 {
 	UnbindFocusChangedEvent();
@@ -95,42 +117,77 @@ void UAccessibilityGraphLocomotionContext::CreateVisualGrid(TSharedRef<SGraphEdi
 
 void UAccessibilityGraphLocomotionContext::GenerateVisualChunks(TSharedRef<SGraphEditor> InGraphEdi, FIntVector2 InVisualChunkSize) 
 {
-	ChunkArray.Empty();
+	ChunkArray.Reset(InVisualChunkSize.X * InVisualChunkSize.Y);
+	ChunkSize = InVisualChunkSize;
 
 	TSharedPtr<SUniformGridPanel> GridContainerPtr = GridContainer.Pin();
 
-	FText ChunkText = FText::GetEmpty();
+	int32 ChunkIndex = -1;
+	TSharedPtr<SBox> ChunkWidget;
+	TSharedPtr<SIndexer> ChunkIndexer;
 
-	for (int32 X = 0; X < InVisualChunkSize.X; X++)
+	for (int32 Y = 0; Y < InVisualChunkSize.Y; Y++)
 	{
-		for (int32 Y = 0; Y < InVisualChunkSize.Y; Y++)
+		for (int32 X = 0; X < InVisualChunkSize.X; X++)
 		{
-			ChunkText = FText::FromString(
-				FString::Printf(TEXT("Chunk %d-%d"), X, Y)
-			);
+			ChunkIndex = X + (Y * InVisualChunkSize.X);
+			FGraphLocomotionChunk& GraphChunk = ChunkArray.EmplaceAt_GetRef(ChunkIndex);
 
 			GridContainerPtr->AddSlot(X, Y)
 			[
-				SNew(SBox)
+				SAssignNew(ChunkWidget, SBox)
 				[
 					SNew(SBorder)
-					.HAlign(HAlign_Fill)
-					.VAlign(VAlign_Fill)
-					.BorderBackgroundColor(FLinearColor::Green)
+					.Padding(0.5f)
+					.BorderBackgroundColor(FLinearColor(0.f, .75f, 0.f))
 					[
 						SNew(SBorder)
 						.HAlign(HAlign_Center)
 						.VAlign(VAlign_Center)
-						.Padding(2.0f)
 						.BorderBackgroundColor(FLinearColor::Green)
 						[
-							SNew(STextBlock)
-							.Text(ChunkText)
-							.ColorAndOpacity(FSlateColor(FLinearColor::Green))
+							SAssignNew(ChunkIndexer, SIndexer)
+							.TextColor(FLinearColor::Green)
+							.IndexValue(ChunkIndex)
 						]
 					]
 				]
 			];
+
+			GraphChunk.ChunkWidget = ChunkWidget;
+			GraphChunk.ChunkIndexer = ChunkIndexer;
+		}
+	}
+
+	CalculateVisualChunksBounds();
+}
+
+void UAccessibilityGraphLocomotionContext::CalculateVisualChunksBounds()
+{
+	if (!LinkedEditor.IsValid())
+		return;
+
+	FVector2D PanelGeoSize = GridContainer.Pin()->GetTickSpaceGeometry().GetLocalSize();
+
+	double ChunkWidgetSizeX = PanelGeoSize.X / ChunkSize.X;
+	double ChunkWidgetSizeY = PanelGeoSize.Y / ChunkSize.Y;
+
+	FGraphLocomotionChunk Chunk;
+	double ChunkX, ChunkY;
+
+	for (int Y = 0; Y < ChunkSize.Y; Y++)
+	{
+		for (int X = 0; X < ChunkSize.X; X++)
+		{
+			Chunk = ChunkArray[(Y * ChunkSize.X) + X];
+
+			ChunkX = X * ChunkWidgetSizeX;
+			ChunkY = Y * ChunkWidgetSizeY;
+
+			Chunk.SetChunkBounds(
+				FVector2D(ChunkX, ChunkY), 
+				FVector2D(ChunkWidgetSizeX + ChunkX, ChunkWidgetSizeY + ChunkY)
+			);
 		}
 	}
 }

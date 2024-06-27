@@ -16,33 +16,43 @@ struct FGraphLocomotionChunk
 
 public:
 	
-	void SetChunkBounds(FVector2f InTopLeft, FVector2f InBottomRight) 
+	void SetChunkBounds(FVector2D InTopLeft, FVector2D InBottomRight) 
 	{
 		TopLeft = InTopLeft;
 		BottomRight = InBottomRight;
 	}
 
-	void GetChunkBounds(FVector2f& OutTopLeft, FVector2f& OutBottomRight) const
+	void GetChunkBounds(FVector2D& OutTopLeft, FVector2D& OutBottomRight) const
 	{
 		OutTopLeft = TopLeft;
         OutBottomRight = BottomRight;
     }
 
-	FVector2f GetChunkTopLeft() const { return TopLeft; } 
+	FVector2D GetChunkTopLeft() const { return TopLeft; } 
 
-	FVector2f GetChunkBottomRight() const { return BottomRight; }
+	FVector2D GetChunkBottomRight() const { return BottomRight; }
 
 public:
 
   /// <summary>
   /// Visual Chunks Top Left Corner.
   /// </summary>
-  FVector2f TopLeft;
+  FVector2D TopLeft;
 
   /// <summary>
   /// Visual Chunks Bottom Right Corner.
   /// </summary>
-  FVector2f BottomRight;
+  FVector2D BottomRight;
+
+  /// <summary>
+  /// Weak Pointer to the Chunks Visual Widget.
+  /// </summary>
+  TWeakPtr<SBox> ChunkWidget;
+
+  /// <summary>
+  /// Weak Pointer to the Chunks Indexer Widget.
+  /// </summary>
+  TWeakPtr<class SIndexer> ChunkIndexer;
 
 };
 
@@ -60,6 +70,8 @@ public:
 	void Init();
 	void Init(TSharedRef<SGraphEditor> InGraphEditor);
 
+	bool SelectChunk(int32 Index);
+
 	void Close();
 
 protected:
@@ -67,6 +79,8 @@ protected:
 	void CreateVisualGrid(TSharedRef<SGraphEditor> InGraphEditor);
 
 	void GenerateVisualChunks(TSharedRef<SGraphEditor> InGraphEditor, FIntVector2 InVisualChunkSize = FIntVector2(10));
+
+	void CalculateVisualChunksBounds();
 
 	void RemoveVisualGrid();
 
@@ -84,6 +98,8 @@ protected:
 protected:
 
 	TArray<FGraphLocomotionChunk> ChunkArray;
+
+	FIntVector2 ChunkSize;
 
 	TWeakPtr<SUniformGridPanel> GridContainer;
 
