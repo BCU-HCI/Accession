@@ -39,10 +39,7 @@ void UAccessibilityGraphLocomotionContext::Init()
 
 	TSharedPtr<SGraphEditor> LinkedEditorPtr = LinkedEditor.Pin();
 
-	LinkedEditorPtr->ZoomToFit(false);
-
-	CreateVisualGrid(LinkedEditorPtr.ToSharedRef());
-    GenerateVisualChunks(LinkedEditorPtr.ToSharedRef(), FIntVector2(6, 4));
+	Init(LinkedEditorPtr.ToSharedRef());
 }
 
 void UAccessibilityGraphLocomotionContext::Init(TSharedRef<SGraphEditor> InGraphEditor) 
@@ -182,7 +179,8 @@ void UAccessibilityGraphLocomotionContext::CalculateVisualChunksBounds()
 	if (!LinkedEditor.IsValid())
 		return;
 
-	FVector2D PanelGeoSize = GridContainer.Pin()->GetTickSpaceGeometry().GetLocalSize();
+	SGraphPanel* LinkedPanel = LinkedEditor.Pin()->GetGraphPanel();
+	FVector2D PanelGeoSize = LinkedPanel->GetTickSpaceGeometry().GetLocalSize();
 
 	double ChunkWidgetSizeX = PanelGeoSize.X / ChunkSize.X;
 	double ChunkWidgetSizeY = PanelGeoSize.Y / ChunkSize.Y;
@@ -190,11 +188,14 @@ void UAccessibilityGraphLocomotionContext::CalculateVisualChunksBounds()
 	FGraphLocomotionChunk Chunk;
 	double ChunkX, ChunkY;
 
+	int32 ArrIndex;
 	for (int Y = 0; Y < ChunkSize.Y; Y++)
 	{
 		for (int X = 0; X < ChunkSize.X; X++)
 		{
-			Chunk = ChunkArray[(Y * ChunkSize.X) + X];
+			ArrIndex = (Y * ChunkSize.X) + X;
+
+			Chunk = ChunkArray[ArrIndex];
 
 			ChunkX = X * ChunkWidgetSizeX;
 			ChunkY = Y * ChunkWidgetSizeY;
@@ -203,6 +204,8 @@ void UAccessibilityGraphLocomotionContext::CalculateVisualChunksBounds()
 				FVector2D(ChunkX, ChunkY), 
 				FVector2D(ChunkWidgetSizeX + ChunkX, ChunkWidgetSizeY + ChunkY)
 			);
+
+			ChunkArray[ArrIndex] = Chunk;
 		}
 	}
 }

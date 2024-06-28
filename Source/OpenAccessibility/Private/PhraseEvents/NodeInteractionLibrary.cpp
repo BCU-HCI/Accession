@@ -299,6 +299,37 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 				AddNodeContextChildren
 			),
 
+			MakeShared<FPhraseContextNode<UAccessibilityGraphLocomotionContext>>(TEXT("MOVE"),
+			TPhraseNodeArray{
+
+				MakeShared<FPhraseNode>(TEXT("SELECT"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseInputNode<int32>>(TEXT("INDEX"),
+					TPhraseNodeArray {
+						
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionSelect))
+
+					})
+
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("REVERT"),
+				TPhraseNodeArray {
+				
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionRevert))
+
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("CONFIRM"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionConfirm))
+
+				})
+
+			}),
+
 			MakeShared<FPhraseNode>(TEXT("COMPILE"), 
 			TPhraseNodeArray {
 				
