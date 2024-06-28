@@ -72,6 +72,10 @@ public:
 
 	bool SelectChunk(int32 Index);
 
+	bool RevertToPreviousView();
+
+	void ConfirmSelection();
+
 	void Close();
 
 protected:
@@ -97,9 +101,34 @@ protected:
 
 protected:
 
+	struct FPanelViewPosition
+	{
+	public:
+
+		FPanelViewPosition()
+			: TopLeft(FVector2D::ZeroVector)
+			, BotRight(FVector2D::ZeroVector)
+		{ }
+
+		FPanelViewPosition(FVector2D InTopLeft, FVector2D InBotRight)
+			: TopLeft(InTopLeft)
+			, BotRight(InBotRight)
+		{ }
+
+		FVector2D TopLeft;
+		FVector2D BotRight;
+	};
+	FPanelViewPosition DefaultViewPosition;
+	TArray<FPanelViewPosition> PreviousPositions;
+
+	// Chunking References
+
 	TArray<FGraphLocomotionChunk> ChunkArray;
 
 	FIntVector2 ChunkSize;
+
+
+	// Container References
 
 	TWeakPtr<SUniformGridPanel> GridContainer;
 

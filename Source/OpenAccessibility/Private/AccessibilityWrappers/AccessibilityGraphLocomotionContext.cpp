@@ -50,6 +50,11 @@ void UAccessibilityGraphLocomotionContext::Init(TSharedRef<SGraphEditor> InGraph
     LinkedEditor = InGraphEditor;
 
     InGraphEditor->ZoomToFit(false);
+	FVector2D TopLeft, BotRight;
+	if (InGraphEditor->GetGraphPanel()->GetZoomTargetRect(TopLeft, BotRight))
+	{
+		DefaultViewPosition = FPanelViewPosition(TopLeft, BotRight);
+	}
 
     CreateVisualGrid(InGraphEditor);
     GenerateVisualChunks(InGraphEditor, FIntVector2(6, 4));
@@ -78,6 +83,16 @@ bool UAccessibilityGraphLocomotionContext::SelectChunk(int32 Index)
 	}
 
 	return true;
+}
+
+bool UAccessibilityGraphLocomotionContext::RevertToPreviousView()
+{
+	return false;
+}
+
+void UAccessibilityGraphLocomotionContext::ConfirmSelection()
+{
+	Close();
 }
 
 void UAccessibilityGraphLocomotionContext::Close() 

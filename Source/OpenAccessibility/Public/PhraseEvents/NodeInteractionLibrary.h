@@ -99,6 +99,20 @@ public:
 	// End of Selection Implementation
 
 
+	// Locomotion Implementation
+
+	UFUNCTION()
+	void LocomotionSelect(FParseRecord& Record);
+
+	UFUNCTION()
+	void LocomotionRevert(FParseRecord& Record);
+
+	UFUNCTION()
+	void LocomotionConfirm(FParseRecord& Record);
+
+	// End of Locomotion Implementations
+
+
 	// Blueprint Specifics
 
 	UFUNCTION()

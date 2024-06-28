@@ -9,6 +9,7 @@
 
 #include "PhraseTree/Containers/Input/InputContainers.h"
 #include "AccessibilityWrappers/AccessibilityAddNodeContextMenu.h"
+#include "AccessibilityWrappers/AccessibilityGraphLocomotionContext.h"
 
 #include "PhraseTree/PhraseInputNode.h"
 #include "PhraseTree/PhraseStringInputNode.h"
@@ -892,6 +893,37 @@ void UNodeInteractionLibrary::SelectionComment(FParseRecord& Record)
 		CommentCreateAction->PerformAction(Graph, nullptr, FVector2D(0, 0), true);
     }
 	else UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SelectionComment: Comment Creation Failed"));
+}
+
+void UNodeInteractionLibrary::LocomotionSelect(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, LocomotionContext, UAccessibilityGraphLocomotionContext);
+
+	UParseIntInput* ViewSelectionInput = Record.GetPhraseInput<UParseIntInput>(TEXT("INDEX"));
+	if (ViewSelectionInput == nullptr)
+		return;
+
+	if (!LocomotionContext->SelectChunk(ViewSelectionInput->GetValue()))
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("Locomotion Select: Failed to Choose New View."));
+	}
+}
+
+void UNodeInteractionLibrary::LocomotionRevert(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, LocomotionContext, UAccessibilityGraphLocomotionContext);
+
+	if (!LocomotionContext->RevertToPreviousView())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("Locomotion Revert: Failed to Revert to Previous View."));
+	}
+}
+
+void UNodeInteractionLibrary::LocomotionConfirm(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, LocomotionContext, UAccessibilityGraphLocomotionContext);
+
+	LocomotionContext->ConfirmSelection(); 
 }
 
 void UNodeInteractionLibrary::BlueprintCompile(FParseRecord& Record)
