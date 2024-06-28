@@ -47,11 +47,6 @@ void UAccessibilityGraphLocomotionContext::Init(TSharedRef<SGraphEditor> InGraph
     LinkedEditor = InGraphEditor;
 
     InGraphEditor->ZoomToFit(false);
-	FVector2D TopLeft, BotRight;
-	if (InGraphEditor->GetGraphPanel()->GetZoomTargetRect(TopLeft, BotRight))
-	{
-		DefaultViewPosition = FPanelViewPosition(TopLeft, BotRight);
-	}
 
     CreateVisualGrid(InGraphEditor);
     GenerateVisualChunks(InGraphEditor, FIntVector2(6, 4));
@@ -73,18 +68,36 @@ bool UAccessibilityGraphLocomotionContext::SelectChunk(int32 Index)
 	FVector2D TopLeftCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkTopLeft());
 	FVector2D BottomRightCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkBottomRight());
 
-	if (!LinkedPanel->JumpToRect(BottomRightCoord, TopLeftCoord))
+	FPanelViewPosition PrevView = CurrentViewPosition;
+
+	if (!MoveViewport(FPanelViewPosition(TopLeftCoord, BottomRightCoord)))
 	{
 		UE_LOG(LogOpenAccessibility, Log, TEXT("Failed To Jump To Viewport Coords (TopLeft: %s | BottomRight: %s)"), *TopLeftCoord.ToString(), *BottomRightCoord.ToString());
 		return false;
 	}
+
+	if (PrevView != FVector2D::ZeroVector)
+		PreviousPositions.Push(PrevView);
+
+	PrevView != PrevView;
 
 	return true;
 }
 
 bool UAccessibilityGraphLocomotionContext::RevertToPreviousView()
 {
-	return false;
+	if (PreviousPositions.IsEmpty())
+	{
+		LinkedEditor.Pin()->ZoomToFit(false);
+		return true;
+	}
+
+	if (!MoveViewport(PreviousPositions.Pop()))
+	{
+		return false;
+	}
+
+	return true;
 }
 
 void UAccessibilityGraphLocomotionContext::ConfirmSelection()
@@ -105,6 +118,23 @@ void UAccessibilityGraphLocomotionContext::Close()
 	MarkAsGarbage();
 
 	UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphLocomotion: CONTEXT CLOSED."));
+}
+
+bool UAccessibilityGraphLocomotionContext::MoveViewport(FPanelViewPosition NewViewPosition)
+{
+	if (!LinkedEditor.IsValid())
+		return false;
+
+	SGraphPanel* LinkedPanel = LinkedEditor.Pin()->GetGraphPanel();
+
+	if (!LinkedPanel->JumpToRect(NewViewPosition.BotRight, NewViewPosition.TopLeft))
+	{
+		return false;
+	}
+
+	CurrentViewPosition = NewViewPosition;
+
+	return true;
 }
 
 void UAccessibilityGraphLocomotionContext::CreateVisualGrid(TSharedRef<SGraphEditor> InGraphEditor) 
