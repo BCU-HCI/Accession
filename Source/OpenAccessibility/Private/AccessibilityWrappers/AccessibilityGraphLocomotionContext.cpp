@@ -103,7 +103,7 @@ void UAccessibilityGraphLocomotionContext::ConfirmSelection()
 	Close();
 }
 
-void UAccessibilityGraphLocomotionContext::Close() 
+bool UAccessibilityGraphLocomotionContext::Close() 
 {
 	UnbindFocusChangedEvent();
 
@@ -116,6 +116,8 @@ void UAccessibilityGraphLocomotionContext::Close()
 	MarkAsGarbage();
 
 	UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphLocomotion: CONTEXT CLOSED."));
+
+	return true;
 }
 
 bool UAccessibilityGraphLocomotionContext::MoveViewport(FPanelViewPosition NewViewPosition)

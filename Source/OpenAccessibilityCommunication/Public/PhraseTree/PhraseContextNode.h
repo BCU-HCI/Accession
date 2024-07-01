@@ -8,6 +8,7 @@
 #include "PhraseTree/Containers/ContextObject.h"
 
 #include "OpenAccessibilityComLogging.h"
+#include "PhraseEventNode.h"
 
 template<class ContextType = UPhraseTreeContextObject>
 class FPhraseContextNode : public FPhraseNode, public IPhraseContextNodeBase
@@ -130,5 +131,27 @@ UPhraseTreeContextObject* FPhraseContextNode<ContextType>::CreateContextObject(F
 template<class ContextType>
 void FPhraseContextNode<ContextType>::ConstructContextChildren(TPhraseNodeArray& InChildNodes)
 {
-	this->ChildNodes = InChildNodes;
+	TSharedPtr<FPhraseEventNode> CloseContextNode = MakeShared<FPhraseEventNode>();
+	CloseContextNode->OnPhraseParsed.BindLambda(
+		[this](FParseRecord& Record) {
+
+			UPhraseTreeContextObject* ContextObject = Record.GetContextObj();
+			if (ContextObject->GetContextRoot() == this->AsShared())
+			{
+				ContextObject->Close();
+				ContextObject->RemoveFromRoot();
+
+				Record.PopContextObj();
+			}
+		}
+	);
+
+	this->ChildNodes = TPhraseNodeArray{
+		MakeShared<FPhraseNode>(TEXT("CLOSE"),
+		TPhraseNodeArray {
+			CloseContextNode
+		})
+	};
+
+	this->ChildNodes.Append(InChildNodes);
 }

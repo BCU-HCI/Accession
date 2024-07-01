@@ -104,7 +104,7 @@ public:
 
 	void ConfirmSelection();
 
-	void Close();
+	virtual bool Close() override;
 
 protected:
 
