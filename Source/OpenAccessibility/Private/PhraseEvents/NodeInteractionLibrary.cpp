@@ -307,7 +307,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 					MakeShared<FPhraseInputNode<int32>>(TEXT("INDEX"),
 					TPhraseNodeArray {
-						
+
 						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionSelect))
 
 					})
@@ -316,7 +316,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 				MakeShared<FPhraseNode>(TEXT("REVERT"),
 				TPhraseNodeArray {
-				
+
 					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionRevert))
 
 				}),
@@ -325,6 +325,13 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 				TPhraseNodeArray {
 
 					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionConfirm))
+
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("CLOSE"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionClose))
 
 				})
 
@@ -955,6 +962,13 @@ void UNodeInteractionLibrary::LocomotionConfirm(FParseRecord& Record)
 	GET_TOP_CONTEXT(Record, LocomotionContext, UAccessibilityGraphLocomotionContext);
 
 	LocomotionContext->ConfirmSelection(); 
+}
+
+void UNodeInteractionLibrary::LocomotionClose(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, LocomotionContext, UAccessibilityGraphLocomotionContext);
+
+	LocomotionContext->Close();
 }
 
 void UNodeInteractionLibrary::BlueprintCompile(FParseRecord& Record)

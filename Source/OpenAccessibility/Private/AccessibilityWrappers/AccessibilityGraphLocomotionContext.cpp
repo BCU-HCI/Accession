@@ -79,8 +79,6 @@ bool UAccessibilityGraphLocomotionContext::SelectChunk(int32 Index)
 	if (PrevView != FVector2D::ZeroVector)
 		PreviousPositions.Push(PrevView);
 
-	PrevView != PrevView;
-
 	return true;
 }
 
