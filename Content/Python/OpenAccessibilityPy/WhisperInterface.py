@@ -14,8 +14,10 @@ class WhisperInterface:
 
     def __init__(
         self,
-        model_name: str = "Systran/faster-distil-whisper-small.en",
+        model_name: str = "distil-small.en",
         device: str = "auto",
+        cpu_threads: int = 4,
+        transcribe_workers: int = 2,
         compute_type: str = "default",
     ):
         # Whisper Focused Variables
@@ -23,8 +25,8 @@ class WhisperInterface:
             model_name,
             device=device,
             compute_type=compute_type,
-            num_workers=2,
-            cpu_threads=4,
+            num_workers=transcribe_workers,
+            cpu_threads=cpu_threads,
             local_files_only=True,
         )
         self.beam_size = 5

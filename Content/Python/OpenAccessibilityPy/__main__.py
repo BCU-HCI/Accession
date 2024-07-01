@@ -52,7 +52,7 @@ def PlotAudioBuffers(
 
 def main():
 
-    whisper_interface = WhisperInterface("Systran/faster-distil-whisper-small.en")
+    whisper_interface = WhisperInterface("distil-small.en")
     com_server = CommunicationServer(
         send_socket_type=zmq_PUSH, recv_socket_type=zmq_PULL, poll_timeout=10
     )

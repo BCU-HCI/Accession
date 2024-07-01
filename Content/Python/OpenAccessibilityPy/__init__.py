@@ -37,7 +37,7 @@ class OpenAccessibilityPy:
         # General Runtime Specifics
         worker_count: int = 2,
         # Whisper Specifics
-        whisper_model: str = "Systran/faster-distil-whisper-small.en",
+        whisper_model: str = "distil-small.en",
         device: str = "auto",
         compute_type: str = "default",
         # Communication Specifics
@@ -48,7 +48,10 @@ class OpenAccessibilityPy:
         )
 
         self.whisper_interface = WhisperInterface(
-            model_name=whisper_model, device=device, compute_type=compute_type
+            model_name=whisper_model,
+            device=device,
+            compute_type=compute_type,
+            transcribe_workers=worker_count,
         )
         self.com_server = CommunicationServer(
             send_socket_type=zmq.PUSH,
