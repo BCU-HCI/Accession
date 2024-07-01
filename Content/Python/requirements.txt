@@ -1,0 +1,5 @@
+unreal
+numpy
+faster-whisper
+pyzmq
+av
