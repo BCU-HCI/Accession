@@ -90,8 +90,13 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 		
 			MakeShared<FPhraseScrollInputNode>(TEXT("DIRECTION"), 
 			TPhraseNodeArray {
-				
-				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddScroll))
+
+				MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddScroll))
+
+				})
 
 			}),
 
