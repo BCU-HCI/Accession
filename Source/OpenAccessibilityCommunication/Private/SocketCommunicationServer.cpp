@@ -6,9 +6,9 @@
 #include "Serialization/JsonSerializer.h"
 
 FSocketCommunicationServer::FSocketCommunicationServer(const std::string SendAddress = "tcp://127.0.0.1:5555", std::string RecvAddress = "tcp://127.0.0.1:5556", const int PollTimeout = 10)
-	: Address(Address), PollTimeout(PollTimeout)
+	: SendAddress(SendAddress), RecvAddress(RecvAddress), PollTimeout(PollTimeout)
 {
-	Context = new zmq::context_t();
+	Context = new zmq::context_t(1);
 	if (Context == nullptr)
 	{
 		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("Failed to create ZMQ context"));
@@ -47,11 +47,11 @@ FSocketCommunicationServer::~FSocketCommunicationServer()
 	Poller->remove(*RecvSocket);
 	delete Poller; Poller = nullptr;
 
-	SendSocket->disconnect(Address);
+	SendSocket->disconnect(SendAddress);
 	SendSocket->close();
 	delete SendSocket; SendSocket = nullptr;
 
-	RecvSocket->unbind(Address);
+	RecvSocket->unbind(RecvAddress);
 	RecvSocket->close();
 	delete RecvSocket; RecvSocket = nullptr;
 

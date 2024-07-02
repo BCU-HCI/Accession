@@ -219,7 +219,8 @@ protected:
 	/// </summary>
 	zmq::poller_t<int>* Poller;
 
-	std::string Address;
+	std::string SendAddress;
+	std::string RecvAddress;
 
 	/// <summary>
 	/// The Time Taken By The Poller To Look For Events.
