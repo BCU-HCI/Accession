@@ -24,5 +24,5 @@ public:
 	static void StringToNumeric(FString& NumericString, bool ConvertToUpper = true);
 
 private:
-	static const TMap<const FString, const TCHAR*> StringMappings;
+	static const TMap<const FString, const FString> StringMappings;
 };

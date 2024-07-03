@@ -514,22 +514,7 @@ void UNodeInteractionLibrary::PinDisconnect(FParseRecord& Record)
 
 TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record) 
 {
-	TSharedPtr<SGraphEditor> ActiveGraphEditor;
-	{
-		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
-		if (!ActiveTab.IsValid())
-		{
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: No Active Tab Found"));
-			return TSharedPtr<IMenu>();
-		}
-
-		ActiveGraphEditor = StaticCastSharedRef<SGraphEditor>(ActiveTab->GetContent());
-		if (!ActiveGraphEditor.IsValid())
-		{
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: Active Tab Is Not A Graph Editor"));
-			return TSharedPtr<IMenu>();
-		}
-	}
+	GET_ACTIVE_TAB_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())
 
 	SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
     
@@ -585,25 +570,9 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record)
 	}
 }
 
-TSharedPtr<IMenu>
-UNodeInteractionLibrary::NodeAddPinMenu(FParseRecord &Record) 
+TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddPinMenu(FParseRecord &Record) 
 {
-	TSharedPtr<SGraphEditor> ActiveGraphEditor;
-	{
-		TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
-		if (!ActiveTab.IsValid())
-		{
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: No Active Tab Found"));
-			return TSharedPtr<IMenu>();
-		}
-
-		ActiveGraphEditor = StaticCastSharedRef<SGraphEditor>(ActiveTab->GetContent());
-		if (!ActiveGraphEditor.IsValid())
-		{
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: Active Tab Is Not A Graph Editor"));
-			return TSharedPtr<IMenu>();
-		}
-	}
+	GET_ACTIVE_TAB_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())
 
 	SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
     

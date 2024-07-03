@@ -11,21 +11,14 @@ bool NumericParser::IsValidNumeric(const FString& StringToCheck, bool ConvertToU
 
 void NumericParser::StringToNumeric(FString& NumericString, bool ConvertToUpper)
 {
-	const TCHAR* const* FoundMapping = StringMappings.Find(*NumericString);
-
-	if (FoundMapping != nullptr)
+	if (const FString* FoundMapping = StringMappings.Find(NumericString))
 	{
-		NumericString = *FoundMapping;
-		return;
+		NumericString = ConvertToUpper ? *FoundMapping->ToUpper() : *FoundMapping;
 	}
-	else
-	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Numeric Parser || No Mapping Found for String: %s ||"), *NumericString);
-		return;
-	}
+	else UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Numeric Parser || No Mapping Found for String: %s ||"), *NumericString);
 }
 
-const TMap<const FString, const TCHAR*> NumericParser::StringMappings = TMap<const FString, const TCHAR*>
+const TMap<const FString, const FString> NumericParser::StringMappings = TMap<const FString, const FString>
 {
 	{ TEXT("ZERO"), TEXT("0") },
 	{ TEXT("ONE"), TEXT("1") },

@@ -62,7 +62,7 @@ public:
 	/// Scaled the Context Menu's Core Components based on the provided ScaleFactor.
 	/// </summary>
 	/// <param name="ScaleFactor">The Factor for Scaling the Context Menu.</param>
-	void ScaleMenu(const float ScaleFactor = 1.5f) override;
+	virtual void ScaleMenu(const float ScaleFactor = 1.5f) override;
 
 	// -- End UAccessibilityContextMenu Implementation
 
@@ -197,16 +197,6 @@ public:
 	TWeakPtr<SCheckBox> ContextAwarenessCheckBox;
 
 protected:
-
-	/// <summary>
-	/// Set Containing the Widgets that have been Indexed.
-	/// </summary>
-	TSet<FGraphActionNode*> IndexedWidgetSet;
-
-	/// <summary>
-	/// Set Containing the Items that have been Expanded int the TreeView.
-	/// </summary>
-	TSet<TSharedPtr<FGraphActionNode>> PrevExpandedItems;
 
 	FString PrevFilterString;
 	int32 PrevNumItemsBeingObserved;
