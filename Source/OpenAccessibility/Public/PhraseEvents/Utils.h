@@ -11,24 +11,24 @@
 
 #define EMPTY_ARG
 
-#define GET_ACTIVE_TAB_RETURN(ActiveContainerName, ActiveTabType, ReturnObject)\
-  TSharedPtr<ActiveTabType> ActiveContainerName;                               \
-  {                                                                            \
-    TSharedPtr<SDockTab> _AT = FGlobalTabmanager::Get()->GetActiveTab();       \
-    if (!_AT.IsValid()) {                                                      \
-      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                         \
-             TEXT("GET_ACTIVE_TAB: NO ACTIVE TAB FOUND."));                    \
-      return ReturnObject;                                                     \
-    }                                                                          \
-                                                                               \
-    ActiveContainerName =                                                      \
-        StaticCastSharedPtr<ActiveTabType>(_AT->GetContent().ToSharedPtr());   \
-    if (!ActiveContainerName.IsValid()) {                                      \
-      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                         \
-             TEXT("GET_ACTIVE_TAB: CURRENT ACTIVE TAB IS NOT OF TYPE - %s"),   \
-             #ActiveTabType);                                                  \
-      return ReturnObject;                                                     \
-    }                                                                          \
+#define GET_ACTIVE_TAB_RETURN(ActiveContainerName, ActiveTabType, ReturnObject) \
+  TSharedPtr<ActiveTabType> ActiveContainerName;                                \
+  {                                                                             \
+    TSharedPtr<SDockTab> _AT = FGlobalTabmanager::Get()->GetActiveTab();        \
+    if (!_AT.IsValid() || _AT->GetContent()->GetType() != #ActiveTabType) {     \
+      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                          \
+             TEXT("GET_ACTIVE_TAB: NO ACTIVE TAB FOUND OF TYPE: %s"),           \
+			 *FString(#ActiveTabType));                                         \
+      return ReturnObject;                                                      \
+    }                                                                           \
+																				\
+    ActiveContainerName =                                                       \
+        StaticCastSharedRef<ActiveTabType>(_AT->GetContent());                  \
+    if (!ActiveContainerName.IsValid()) {                                       \
+      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                          \
+             TEXT("GET_ACTIVE_TAB: FOUND ACTIVE TAB IS NOT VALID"));            \
+      return ReturnObject;                                                      \
+    }                                                                           \
   };
 
 #define GET_ACTIVE_TAB(ActiveContainerName, ActiveTabType) \
