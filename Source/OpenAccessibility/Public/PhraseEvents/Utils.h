@@ -107,3 +107,29 @@ template <typename ObjectType>
 {
 	return TDelegate<TSharedPtr<IMenu>(FParseRecord&)>::CreateUObject(ObjPtr, ObjFunction);
 }
+
+
+// Utility Functions
+namespace EventUtils
+{
+    [[nodiscard]] FORCEINLINE FString RemoveWordsFromEnd(const FString& InString, const int32& AmountToRemove)
+    {
+        TArray<FString> SplitTextBoxString;
+        InString.ParseIntoArrayWS(SplitTextBoxString);
+
+        int RemovedAmount = 0;
+        int CurrentIndex = SplitTextBoxString.Num() - 1;
+        while (RemovedAmount < AmountToRemove) {
+            if (SplitTextBoxString.IsEmpty())
+                break;
+
+            SplitTextBoxString.RemoveAt(CurrentIndex--);
+            RemovedAmount++;
+        }
+
+        if (SplitTextBoxString.Num() > 0)
+            return FString::Join(SplitTextBoxString, TEXT(" "));
+
+        return TEXT("");
+    }
+}

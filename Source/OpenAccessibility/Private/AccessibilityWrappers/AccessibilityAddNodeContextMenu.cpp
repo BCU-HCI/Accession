@@ -96,6 +96,8 @@ void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu)
 	}
 
 	this->FilterTextBox = this->GraphMenu.Pin()->GetFilterTextBox();
+
+	FSlateApplication::Get().SetKeyboardFocus(this->TreeView.Pin());
 }
 
 void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu, TSharedRef<SGraphActionMenu> InGraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> InTreeView)
@@ -265,6 +267,11 @@ void UAccessibilityAddNodeContextMenu::PerformGraphAction(const int32 InIndex)
 	{
 		TreeView.Pin()->Private_OnItemDoubleClicked(GraphAction);
 	}
+}
+
+FString UAccessibilityAddNodeContextMenu::GetFilterText()
+{
+	return FilterTextBox.Pin()->GetText().ToString();
 }
 
 void UAccessibilityAddNodeContextMenu::SetFilterText(const FString& InFilterText)

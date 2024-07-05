@@ -114,6 +114,12 @@ public:
 	void PerformGraphAction(const int32 InIndex);
 
 	/// <summary>
+	/// Gets the Current Filter Text in the Search Bar.
+	/// </summary>
+	/// <returns>The Current Filter Text in the Search Bar.</returns>
+	FString GetFilterText();
+
+	/// <summary>
 	/// Overrides the Current Filter Text with the given string.
 	/// </summary>
 	/// <param name="InFilterText">The String to Override with.</param>

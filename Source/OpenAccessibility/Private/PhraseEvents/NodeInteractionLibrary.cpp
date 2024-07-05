@@ -52,18 +52,6 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 		MakeShared<FPhraseNode>(TEXT("SEARCH"), 
 		TPhraseNodeArray{
-			
-			MakeShared<FPhraseNode>(TEXT("NEW"), 
-			TPhraseNodeArray{
-				
-				MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
-				TPhraseNodeArray{
-					
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddSearchNew))
-
-				})
-
-			}),
 
 			MakeShared<FPhraseNode>(TEXT("ADD"), 
 			TPhraseNodeArray {
@@ -72,6 +60,18 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 				TPhraseNodeArray{
 					
 					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddSearchAdd))
+
+				})
+
+			}),
+
+			MakeShared<FPhraseNode>(TEXT("REMOVE"),
+			TPhraseNodeArray {
+
+				MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddSearchRemove))
 
 				})
 
@@ -104,7 +104,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 		}),
 
 
-		MakeShared<FPhraseNode>(TEXT("TOGGLE"), 
+		MakeShared<FPhraseNode>(TEXT("CONTEXT"), 
 		TPhraseNodeArray {
 		
 			MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddToggleContext))
@@ -223,27 +223,10 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 				MakeShared<FPhraseNode>(TEXT("SELECT"),
 				TPhraseNodeArray {
 
-					MakeShared<FPhraseNode>(TEXT("ADD"),
+					MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 					TPhraseNodeArray {
 
-						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-						TPhraseNodeArray {
-
-							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionAdd))
-
-						})
-
-					}),
-
-					MakeShared<FPhraseNode>(TEXT("REMOVE"),
-					TPhraseNodeArray {
-
-						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-						TPhraseNodeArray {
-
-							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionRemove))
-
-						})
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionNodeToggle))
 
 					}),
 
@@ -696,17 +679,6 @@ void UNodeInteractionLibrary::NodeAddSelect(FParseRecord& Record)
 	ContextMenu->PerformGraphAction(IndexInput->GetValue());
 }
 
-void UNodeInteractionLibrary::NodeAddSearchNew(FParseRecord& Record)
-{
-	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
-
-	UParseStringInput* SearchInput = Record.GetPhraseInput<UParseStringInput>(TEXT("SEARCH_PHRASE"));
-	if (SearchInput == nullptr)
-		return;
-
-	ContextMenu->SetFilterText(SearchInput->GetValue());
-}
-
 void UNodeInteractionLibrary::NodeAddSearchAdd(FParseRecord& Record)
 {
 	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
@@ -716,6 +688,19 @@ void UNodeInteractionLibrary::NodeAddSearchAdd(FParseRecord& Record)
 		return;
 
 	ContextMenu->AppendFilterText(SearchInput->GetValue());
+}
+
+void UNodeInteractionLibrary::NodeAddSearchRemove(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu);
+
+	UParseIntInput* RemoveAmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+	if (RemoveAmountInput == nullptr)
+		return;
+
+	ContextMenu->SetFilterText(
+		EventUtils::RemoveWordsFromEnd(ContextMenu->GetFilterText(), RemoveAmountInput->GetValue())
+	);
 }
 
 void UNodeInteractionLibrary::NodeAddSearchReset(FParseRecord& Record)
@@ -765,44 +750,29 @@ void UNodeInteractionLibrary::NodeAddToggleContext(FParseRecord& Record)
 	ContextMenu->ToggleContextAwareness();
 }
 
-void UNodeInteractionLibrary::SelectionAdd(FParseRecord& Record)
+void UNodeInteractionLibrary::SelectionNodeToggle(FParseRecord& Record)
 {
-	GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
 
 	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
 	if (IndexInput == nullptr)
 		return;
 
-	TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
-	
-	UEdGraphNode *Node = Indexer->GetNode(IndexInput->GetValue());
+	TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(
+		ActiveGraphEditor->GetCurrentGraph()
+	);
+
+	UEdGraphNode* Node = Indexer->GetNode(IndexInput->GetValue());
 	if (Node == nullptr)
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SelectionAdd: Node Not Found"));
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SelectionToggle: Node Not Found"));
 		return;
 	}
 
-	ActiveGraphEditor->SetNodeSelection(Node, true);
-}
-
-void UNodeInteractionLibrary::SelectionRemove(FParseRecord& Record)
-{
-	GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
-
-	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
-	if (IndexInput == nullptr)
-		return;
-
-	TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
-
-	UEdGraphNode *Node = Indexer->GetNode(IndexInput->GetValue());
-	if (Node == nullptr)
-	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SelectionRemove: Node Not Found"));
-		return;
-	}
-
-	ActiveGraphEditor->SetNodeSelection(Node, false);
+	ActiveGraphEditor->SetNodeSelection(
+		Node, 
+		!ActiveGraphEditor->GetSelectedNodes().Contains(Node)
+	);
 }
 
 void UNodeInteractionLibrary::SelectionReset(FParseRecord &Record) {

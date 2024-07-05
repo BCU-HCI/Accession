@@ -60,9 +60,9 @@ public:
 	
 	void NodeAddSelect(FParseRecord& Record);
 
-	void NodeAddSearchNew(FParseRecord& Record);
-
 	void NodeAddSearchAdd(FParseRecord& Record);
+
+	void NodeAddSearchRemove(FParseRecord& Record);
 
 	void NodeAddSearchReset(FParseRecord& Record);
 
@@ -76,10 +76,7 @@ public:
 	// Selection Implementation
 
 	UFUNCTION()
-	void SelectionAdd(FParseRecord& Record);
-
-	UFUNCTION()
-	void SelectionRemove(FParseRecord &Record);
+	void SelectionNodeToggle(FParseRecord& Record);
 
 	UFUNCTION()
 	void SelectionReset(FParseRecord &Record);

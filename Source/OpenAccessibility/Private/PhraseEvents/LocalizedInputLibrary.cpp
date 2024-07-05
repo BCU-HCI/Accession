@@ -121,7 +121,7 @@ void ULocalizedInputLibrary::KeyboardInputRemove(FParseRecord& Record)
 			return;
 		}
 
-		FString FilteredText = RemoveWordsFromEnd(EditableText->GetText().ToString(), AmountInput->GetValue());
+		FString FilteredText = EventUtils::RemoveWordsFromEnd(EditableText->GetText().ToString(), AmountInput->GetValue());
 
         EditableText->SetText(FText::FromString(FilteredText));
 	}
@@ -133,7 +133,7 @@ void ULocalizedInputLibrary::KeyboardInputRemove(FParseRecord& Record)
             return;
         }
 
-		FString FilteredText = RemoveWordsFromEnd(MultiLineEditableText->GetText().ToString(), AmountInput->GetValue());
+		FString FilteredText = EventUtils::RemoveWordsFromEnd(MultiLineEditableText->GetText().ToString(), AmountInput->GetValue());
 
         MultiLineEditableText->SetText(FText::FromString(FilteredText));
 	} 
@@ -176,25 +176,4 @@ void ULocalizedInputLibrary::KeyboardInputExit(FParseRecord &Record)
         return;
 
 	SlateApp.ClearKeyboardFocus(EFocusCause::Cleared);
-}
-
-FString ULocalizedInputLibrary::RemoveWordsFromEnd(const FString& InString, const int32& AmountToRemove) 
-{
-	TArray<FString> SplitTextBoxString;
-	InString.ParseIntoArrayWS(SplitTextBoxString);
-
-    int RemovedAmount = 0;
-    int CurrentIndex = SplitTextBoxString.Num() - 1;
-    while (RemovedAmount < AmountToRemove) {
-		if (SplitTextBoxString.IsEmpty())
-			break;
-
-        SplitTextBoxString.RemoveAt(CurrentIndex--);
-        RemovedAmount++;
-    }
-
-    if (SplitTextBoxString.Num() > 0)
-        return FString::Join(SplitTextBoxString, TEXT(" "));
-    else
-		return TEXT("");
 }
