@@ -76,10 +76,7 @@ public:
 	// Selection Implementation
 
 	UFUNCTION()
-	void SelectionAdd(FParseRecord& Record);
-
-	UFUNCTION()
-	void SelectionRemove(FParseRecord &Record);
+	void SelectionNodeToggle(FParseRecord& Record);
 
 	UFUNCTION()
 	void SelectionReset(FParseRecord &Record);

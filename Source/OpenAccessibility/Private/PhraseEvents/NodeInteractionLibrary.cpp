@@ -223,27 +223,10 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 				MakeShared<FPhraseNode>(TEXT("SELECT"),
 				TPhraseNodeArray {
 
-					MakeShared<FPhraseNode>(TEXT("ADD"),
+					MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 					TPhraseNodeArray {
 
-						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-						TPhraseNodeArray {
-
-							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionAdd))
-
-						})
-
-					}),
-
-					MakeShared<FPhraseNode>(TEXT("REMOVE"),
-					TPhraseNodeArray {
-
-						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-						TPhraseNodeArray {
-
-							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionRemove))
-
-						})
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionNodeToggle))
 
 					}),
 
@@ -765,44 +748,29 @@ void UNodeInteractionLibrary::NodeAddToggleContext(FParseRecord& Record)
 	ContextMenu->ToggleContextAwareness();
 }
 
-void UNodeInteractionLibrary::SelectionAdd(FParseRecord& Record)
+void UNodeInteractionLibrary::SelectionNodeToggle(FParseRecord& Record)
 {
-	GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
 
 	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
 	if (IndexInput == nullptr)
 		return;
 
-	TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
-	
-	UEdGraphNode *Node = Indexer->GetNode(IndexInput->GetValue());
+	TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(
+		ActiveGraphEditor->GetCurrentGraph()
+	);
+
+	UEdGraphNode* Node = Indexer->GetNode(IndexInput->GetValue());
 	if (Node == nullptr)
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SelectionAdd: Node Not Found"));
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SelectionToggle: Node Not Found"));
 		return;
 	}
 
-	ActiveGraphEditor->SetNodeSelection(Node, true);
-}
-
-void UNodeInteractionLibrary::SelectionRemove(FParseRecord& Record)
-{
-	GET_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
-
-	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
-	if (IndexInput == nullptr)
-		return;
-
-	TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
-
-	UEdGraphNode *Node = Indexer->GetNode(IndexInput->GetValue());
-	if (Node == nullptr)
-	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SelectionRemove: Node Not Found"));
-		return;
-	}
-
-	ActiveGraphEditor->SetNodeSelection(Node, false);
+	ActiveGraphEditor->SetNodeSelection(
+		Node, 
+		!ActiveGraphEditor->GetSelectedNodes().Contains(Node)
+	);
 }
 
 void UNodeInteractionLibrary::SelectionReset(FParseRecord &Record) {
