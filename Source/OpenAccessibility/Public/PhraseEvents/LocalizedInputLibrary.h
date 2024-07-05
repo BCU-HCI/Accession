@@ -51,5 +51,5 @@ public:
 
 protected:
 
-	static FString RemoveWordsFromEnd(const FString& InString, const int32& AmountToRemove);
+	//static FString RemoveWordsFromEnd(const FString& InString, const int32& AmountToRemove);
 };

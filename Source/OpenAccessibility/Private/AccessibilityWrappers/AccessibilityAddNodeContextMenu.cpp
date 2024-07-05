@@ -267,6 +267,11 @@ void UAccessibilityAddNodeContextMenu::PerformGraphAction(const int32 InIndex)
 	}
 }
 
+FString UAccessibilityAddNodeContextMenu::GetFilterText()
+{
+	return FilterTextBox.Pin()->GetText().ToString();
+}
+
 void UAccessibilityAddNodeContextMenu::SetFilterText(const FString& InFilterText)
 {
 	FilterTextBox.Pin()->SetText(FText::FromString(InFilterText));

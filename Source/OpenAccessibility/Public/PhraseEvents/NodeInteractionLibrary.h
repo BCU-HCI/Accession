@@ -60,9 +60,9 @@ public:
 	
 	void NodeAddSelect(FParseRecord& Record);
 
-	void NodeAddSearchNew(FParseRecord& Record);
-
 	void NodeAddSearchAdd(FParseRecord& Record);
+
+	void NodeAddSearchRemove(FParseRecord& Record);
 
 	void NodeAddSearchReset(FParseRecord& Record);
 

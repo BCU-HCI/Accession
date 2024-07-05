@@ -52,18 +52,6 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 		MakeShared<FPhraseNode>(TEXT("SEARCH"), 
 		TPhraseNodeArray{
-			
-			MakeShared<FPhraseNode>(TEXT("NEW"), 
-			TPhraseNodeArray{
-				
-				MakeShared<FPhraseStringInputNode>(TEXT("SEARCH_PHRASE"),
-				TPhraseNodeArray{
-					
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddSearchNew))
-
-				})
-
-			}),
 
 			MakeShared<FPhraseNode>(TEXT("ADD"), 
 			TPhraseNodeArray {
@@ -72,6 +60,18 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 				TPhraseNodeArray{
 					
 					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddSearchAdd))
+
+				})
+
+			}),
+
+			MakeShared<FPhraseNode>(TEXT("REMOVE"),
+			TPhraseNodeArray {
+
+				MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddSearchRemove))
 
 				})
 
@@ -104,7 +104,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 		}),
 
 
-		MakeShared<FPhraseNode>(TEXT("TOGGLE"), 
+		MakeShared<FPhraseNode>(TEXT("CONTEXT"), 
 		TPhraseNodeArray {
 		
 			MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddToggleContext))
@@ -679,17 +679,6 @@ void UNodeInteractionLibrary::NodeAddSelect(FParseRecord& Record)
 	ContextMenu->PerformGraphAction(IndexInput->GetValue());
 }
 
-void UNodeInteractionLibrary::NodeAddSearchNew(FParseRecord& Record)
-{
-	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
-
-	UParseStringInput* SearchInput = Record.GetPhraseInput<UParseStringInput>(TEXT("SEARCH_PHRASE"));
-	if (SearchInput == nullptr)
-		return;
-
-	ContextMenu->SetFilterText(SearchInput->GetValue());
-}
-
 void UNodeInteractionLibrary::NodeAddSearchAdd(FParseRecord& Record)
 {
 	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
@@ -699,6 +688,19 @@ void UNodeInteractionLibrary::NodeAddSearchAdd(FParseRecord& Record)
 		return;
 
 	ContextMenu->AppendFilterText(SearchInput->GetValue());
+}
+
+void UNodeInteractionLibrary::NodeAddSearchRemove(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu);
+
+	UParseIntInput* RemoveAmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+	if (RemoveAmountInput == nullptr)
+		return;
+
+	ContextMenu->SetFilterText(
+		EventUtils::RemoveWordsFromEnd(ContextMenu->GetFilterText(), RemoveAmountInput->GetValue())
+	);
 }
 
 void UNodeInteractionLibrary::NodeAddSearchReset(FParseRecord& Record)
