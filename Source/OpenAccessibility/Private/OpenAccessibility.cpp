@@ -1525,6 +1525,8 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 
 				AddNodeContextMenu->ScaleMenu(1.5f);
 
+				FSlateApplication::Get().SetKeyboardFocus(TreeView);
+
 				FPhraseTreeContextManager& ContextManager =FOpenAccessibilityCommunicationModule::Get()
                       .PhraseTree->GetContextManager();
 

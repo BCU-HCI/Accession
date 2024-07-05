@@ -96,6 +96,8 @@ void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu)
 	}
 
 	this->FilterTextBox = this->GraphMenu.Pin()->GetFilterTextBox();
+
+	FSlateApplication::Get().SetKeyboardFocus(this->TreeView.Pin());
 }
 
 void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu, TSharedRef<SGraphActionMenu> InGraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> InTreeView)
