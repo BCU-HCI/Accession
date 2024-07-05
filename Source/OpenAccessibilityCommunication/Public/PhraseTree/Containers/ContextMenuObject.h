@@ -41,7 +41,7 @@ public:
 	/// Closes the Context Menu Object.
 	/// </summary>
 	/// <returns></returns>
-	virtual bool Close() 
+	virtual bool Close() override
 	{
 		RemoveTickDelegate();
 		Menu.Pin()->Dismiss();

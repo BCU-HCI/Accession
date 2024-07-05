@@ -7,7 +7,6 @@
 
 #include "AssetAccessibilityRegistry.h"
 #include "OAccessibilityNodeFactory.h"
-#include "AccessibilityWrappers/AccessibilityAddNodeContextMenu.h"
 
 class FOpenAccessibilityModule : public IModuleInterface
 {

@@ -9,6 +9,7 @@
 
 #include "PhraseTree/Containers/Input/InputContainers.h"
 #include "AccessibilityWrappers/AccessibilityAddNodeContextMenu.h"
+#include "AccessibilityWrappers/AccessibilityGraphLocomotionContext.h"
 
 #include "PhraseTree/PhraseInputNode.h"
 #include "PhraseTree/PhraseStringInputNode.h"
@@ -112,206 +113,245 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 	};
 
-	PhraseTree->BindBranch(
-		MakeShared<FPhraseNode>(TEXT("NODE"),
-		TPhraseNodeArray {
-		
-			MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"), 
+	PhraseTree->BindBranches(
+		TPhraseNodeArray
+		{
+			MakeShared<FPhraseNode>(TEXT("NODE"),
 			TPhraseNodeArray {
-				
-				MakeShared<FPhraseNode>(TEXT("MOVE"),
+
+				MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 				TPhraseNodeArray {
-					
-					MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"), 
-					TPhraseNodeArray {
-						
-						MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"), 
-						TPhraseNodeArray {
-							
-							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::MoveNode))
 
-						})
-
-					})
-
-				}),
-
-				MakeShared<FPhraseNode>(TEXT("REMOVE"),
-				TPhraseNodeArray {
-				
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::DeleteNode))
-
-				}),
-
-				MakeShared<FPhraseNode>(TEXT("PIN"),
-				TPhraseNodeArray {
-				
-					MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"), 
+					MakeShared<FPhraseNode>(TEXT("MOVE"),
 					TPhraseNodeArray {
 
-						MakeShared<FPhraseNode>(TEXT("CONNECT"),
+						MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
 						TPhraseNodeArray {
-							
-							MakeShared<FPhraseNode>(TEXT("NODE"), 
+
+							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
 							TPhraseNodeArray {
 
-								MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
-									TEXT("ADD"),
-									1.5f,
-									CreateMenuDelegate(this, &UNodeInteractionLibrary::NodeAddPinMenu),
-									AddNodeContextChildren
-								),
-
-								MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-								TPhraseNodeArray {
-							
-									MakeShared<FPhraseNode>(TEXT("PIN"),
-									TPhraseNodeArray {
-										
-										MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
-										TPhraseNodeArray {
-										
-											MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinConnect))
-
-										})
-
-									})
-
-								}, NodeIndexFocusDelegate)
-
-							})
-
-						}),
-					
-						MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
-						TPhraseNodeArray {
-						
-							MakeShared<FPhraseNode>(TEXT("NODE"),
-							TPhraseNodeArray {
-								
-								MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-								TPhraseNodeArray {
-								
-								
-									MakeShared<FPhraseNode>(TEXT("PIN"),
-									TPhraseNodeArray {
-										
-										MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
-										TPhraseNodeArray {
-										
-											MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinDisconnect))
-
-										})
-
-									})
-
-								}, NodeIndexFocusDelegate)
+								MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::MoveNode))
 
 							})
 
 						})
 
-					})
+					}),
 
-				})
-
-			}, NodeIndexFocusDelegate),
-
-			MakeShared<FPhraseNode>(TEXT("SELECT"), 
-			TPhraseNodeArray {
-			
-				MakeShared<FPhraseNode>(TEXT("ADD"),
-				TPhraseNodeArray {
-				
-					MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"), 
+					MakeShared<FPhraseNode>(TEXT("REMOVE"),
 					TPhraseNodeArray {
-						
-						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionAdd))
 
-					})
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::DeleteNode))
 
-				}),
+					}),
 
-				MakeShared<FPhraseNode>(TEXT("REMOVE"),
-				TPhraseNodeArray {
-
-					MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"), 
+					MakeShared<FPhraseNode>(TEXT("PIN"),
 					TPhraseNodeArray {
-					
-						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionRemove))
 
-					})
-
-				}),
-
-				MakeShared<FPhraseNode>(TEXT("RESET"),
-				TPhraseNodeArray {
-					
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionReset))
-
-				}),
-
-				MakeShared<FPhraseNode>(TEXT("MOVE"),
-				TPhraseNodeArray {
-				
-					MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"), 
-					TPhraseNodeArray {
-						
-						MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"), 
+						MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
 						TPhraseNodeArray {
-						
-							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionMove))
+
+							MakeShared<FPhraseNode>(TEXT("CONNECT"),
+							TPhraseNodeArray {
+
+								MakeShared<FPhraseNode>(TEXT("NODE"),
+								TPhraseNodeArray {
+
+									MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+										TEXT("ADD"),
+										1.5f,
+										CreateMenuDelegate(this, &UNodeInteractionLibrary::NodeAddPinMenu),
+										AddNodeContextChildren
+									),
+
+									MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+									TPhraseNodeArray {
+
+										MakeShared<FPhraseNode>(TEXT("PIN"),
+										TPhraseNodeArray {
+
+											MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+											TPhraseNodeArray {
+
+												MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinConnect))
+
+											})
+
+										})
+
+									}, NodeIndexFocusDelegate)
+
+								})
+
+							}),
+
+							MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
+							TPhraseNodeArray {
+
+								MakeShared<FPhraseNode>(TEXT("NODE"),
+								TPhraseNodeArray {
+
+									MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+									TPhraseNodeArray {
+
+
+										MakeShared<FPhraseNode>(TEXT("PIN"),
+										TPhraseNodeArray {
+
+											MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+											TPhraseNodeArray {
+
+												MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinDisconnect))
+
+											})
+
+										})
+
+									}, NodeIndexFocusDelegate)
+
+								})
+
+							})
 
 						})
 
 					})
-				
-				}),
 
-				MakeShared<FPhraseNode>(TEXT("STRAIGHTEN"),
+				}, NodeIndexFocusDelegate),
+
+				MakeShared<FPhraseNode>(TEXT("SELECT"),
 				TPhraseNodeArray {
-				
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionStraighten))
 
-				}),
-
-				MakeShared<FPhraseNode>(TEXT("ALIGNMENT"),
-				TPhraseNodeArray {
-					
-					MakeShared<FPhrasePositionalInputNode>(TEXT("POSITION"), 
+					MakeShared<FPhraseNode>(TEXT("ADD"),
 					TPhraseNodeArray {
-					
-						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionAlignment))
+
+						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionAdd))
+
+						})
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("REMOVE"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionRemove))
+
+						})
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("RESET"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionReset))
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("MOVE"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+							TPhraseNodeArray {
+
+								MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionMove))
+
+							})
+
+						})
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("STRAIGHTEN"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionStraighten))
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("ALIGNMENT"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhrasePositionalInputNode>(TEXT("POSITION"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionAlignment))
+
+						})
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("COMMENT"),
+					TPhraseNodeArray{
+
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionComment))
 
 					})
 
 				}),
 
-				MakeShared<FPhraseNode>(TEXT("COMMENT"),
-				TPhraseNodeArray{
-					
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionComment))
-
-				})
+				MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+					TEXT("ADD"),
+					1.5f,
+					CreateMenuDelegate(this, &UNodeInteractionLibrary::NodeAddMenu),
+					AddNodeContextChildren
+				),
 
 			}),
 
-			MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
-				TEXT("ADD"),
-				1.5f,
-				CreateMenuDelegate(this, &UNodeInteractionLibrary::NodeAddMenu),
-				AddNodeContextChildren
-			),
-
-			MakeShared<FPhraseNode>(TEXT("COMPILE"), 
+			MakeShared<FPhraseNode>(TEXT("GRAPH"),
 			TPhraseNodeArray {
-				
-				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::BlueprintCompile))
 
+				MakeShared<FPhraseNode>(TEXT("COMPILE"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::BlueprintCompile))
+
+				}),
+
+				MakeShared<FPhraseContextNode<UAccessibilityGraphLocomotionContext>>(TEXT("MOVE"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseNode>(TEXT("SELECT"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseInputNode<int32>>(TEXT("INDEX"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionSelect))
+
+						})
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("REVERT"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionRevert))
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("CONFIRM"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionConfirm))
+
+					}),
+
+				}),
 			})
-
-		})
+		}
 	);
+
 };
 
 
@@ -866,6 +906,37 @@ void UNodeInteractionLibrary::SelectionComment(FParseRecord& Record)
 		CommentCreateAction->PerformAction(Graph, nullptr, FVector2D(0, 0), true);
     }
 	else UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SelectionComment: Comment Creation Failed"));
+}
+
+void UNodeInteractionLibrary::LocomotionSelect(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, LocomotionContext, UAccessibilityGraphLocomotionContext);
+
+	UParseIntInput* ViewSelectionInput = Record.GetPhraseInput<UParseIntInput>(TEXT("INDEX"));
+	if (ViewSelectionInput == nullptr)
+		return;
+
+	if (!LocomotionContext->SelectChunk(ViewSelectionInput->GetValue()))
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("Locomotion Select: Failed to Choose New View."));
+	}
+}
+
+void UNodeInteractionLibrary::LocomotionRevert(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, LocomotionContext, UAccessibilityGraphLocomotionContext);
+
+	if (!LocomotionContext->RevertToPreviousView())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("Locomotion Revert: Failed to Revert to Previous View."));
+	}
+}
+
+void UNodeInteractionLibrary::LocomotionConfirm(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, LocomotionContext, UAccessibilityGraphLocomotionContext);
+
+	LocomotionContext->ConfirmSelection(); 
 }
 
 void UNodeInteractionLibrary::BlueprintCompile(FParseRecord& Record)

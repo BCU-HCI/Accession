@@ -21,7 +21,7 @@ public:
 
 	// UPhraseTreeFunctionLibrary Implementation
 
-	void BindBranches(TSharedRef<FPhraseTree> PhraseTree) override;
+	virtual void BindBranches(TSharedRef<FPhraseTree> PhraseTree) override;
 
 	// End of UPhraseTreeFunctionLibrary Implementation
 
@@ -97,6 +97,20 @@ public:
 	void SelectionComment(FParseRecord &Record);
 
 	// End of Selection Implementation
+
+
+	// Locomotion Implementation
+
+	UFUNCTION()
+	void LocomotionSelect(FParseRecord& Record);
+
+	UFUNCTION()
+	void LocomotionRevert(FParseRecord& Record);
+
+	UFUNCTION()
+	void LocomotionConfirm(FParseRecord& Record);
+
+	// End of Locomotion Implementations
 
 
 	// Blueprint Specifics
