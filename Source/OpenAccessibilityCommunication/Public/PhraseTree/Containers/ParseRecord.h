@@ -43,14 +43,14 @@ public:
 	/// Gets the Recorded Phrase String for this record of propagation.
 	/// </summary>
 	/// <returns></returns>
-	const FString GetPhraseString() const
+	FString GetPhraseString() const
 	{
-		return PhraseString;
+		return FString::Join(PhraseRecord, TEXT(" "));
 	}
 
 	void AddPhraseString(FString StringToRecord)
 	{
-		PhraseString += TEXT(" ") + StringToRecord;
+		PhraseRecord.Add(StringToRecord);
 	}
 
 	// --
@@ -63,6 +63,10 @@ public:
 	/// <returns>The Found PhraseInput For the Phrase, otherwise nullptr.</returns>
 	UParseInput* GetPhraseInput(const FString& InString)
 	{
+		// Check If The Phrase Exits
+		// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.
+		check(PhraseInputs.Contains(InString))
+
 		return *PhraseInputs.Find(InString);
 	}
 
@@ -185,6 +189,9 @@ public:
 	/// </summary>
 	void PopContextObj()
 	{
+		if (ContextObjectStack.IsEmpty())
+			return;
+
 		this->ContextObjectStack.Pop();
 	}
 
@@ -194,6 +201,12 @@ public:
 	/// <param name="OutObject">- The Popped Context Object.</param>
 	void PopContextObj(UPhraseTreeContextObject* OutObject)
 	{
+		if (ContextObjectStack.IsEmpty())
+		{
+			OutObject = nullptr;
+			return;
+		}
+
 		OutObject = this->ContextObjectStack.Pop();
 	}
 
@@ -235,6 +248,9 @@ public:
 	/// <returns>The Top Context Object On The Stack.</returns>
 	UPhraseTreeContextObject* GetContextObj()
 	{
+		if (ContextObjectStack.IsEmpty())
+			return nullptr;
+
 		return this->ContextObjectStack.Last();
 	}
 
@@ -244,6 +260,12 @@ public:
 	/// <param name="OutObject">- Returns the Top Context Object On The Stack.</param>
 	void GetContextObj(UPhraseTreeContextObject* OutObject)
 	{
+		if (ContextObjectStack.IsEmpty())
+		{
+			OutObject = nullptr;
+			return;
+		}
+
 		OutObject = this->ContextObjectStack.Last();
 	}
 
@@ -255,6 +277,9 @@ public:
 	template<class CastToType>
 	CastToType* GetContextObj()
 	{
+		if (ContextObjectStack.IsEmpty())
+			return nullptr;
+
 		return Cast<CastToType>(this->ContextObjectStack.Last());
 	}
 
@@ -266,6 +291,12 @@ public:
 	template<class CastToType>
 	void GetContextObj(CastToType* OutObject)
 	{
+		if (ContextObjectStack.IsEmpty())
+		{
+			OutObject = nullptr;
+			return;
+		}
+
 		OutObject = Cast<CastToType>(this->ContextObjectStack.Last());
 	}
 
@@ -297,7 +328,7 @@ protected:
 	/// <summary>
 	/// A Record of the Phrase String used through-out propagation.
 	/// </summary>
-	FString PhraseString;
+	TArray<FString> PhraseRecord;
 
 	/// <summary>
 	/// Map of all the Provided Phrase Inputs, to their Respective Phrases.

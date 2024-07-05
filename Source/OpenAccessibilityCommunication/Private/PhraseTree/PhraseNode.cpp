@@ -189,7 +189,7 @@ FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRe
 {
     if (HasLeafChild())
 		return ChildNodes[0]->ParsePhrase(InPhraseArray, InParseRecord);
-    else if (InPhraseArray.IsEmpty() ) 
+    if (InPhraseArray.IsEmpty()) 
         return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
 
     // Below Can Be Optimized.
@@ -213,6 +213,14 @@ FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRe
         }
     }
 
-    if (FoundChildIndex != -1) return ChildNodes[FoundChildIndex]->ParsePhrase(InPhraseArray, InParseRecord);
-    else return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
+    if (FoundChildIndex != -1)
+    {
+        return ChildNodes[FoundChildIndex]->ParsePhrase(InPhraseArray, InParseRecord);
+    }
+    else if (!InPhraseArray.IsEmpty())
+    {
+		return FParseResult(PHRASE_REQUIRES_MORE_CORRECT_PHRASES, AsShared());
+    }
+
+	return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
 }

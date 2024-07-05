@@ -38,31 +38,14 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 	}
 
 	TArray<FString> SegmentWordArray = TArray<FString>();
-	const TCHAR* ParseDelimsArray[11] = {
-		// Whitespace Delims
-		TEXT(" "),
-		TEXT("\t"),
-		TEXT("\r"),
-		TEXT("\n"),
-		TEXT(""),
-
-		// Punctuation Delims
-		TEXT("."),
-		TEXT(","),
-		TEXT("!"),
-		TEXT("?"),
-		TEXT(":"),
-		TEXT(";"),
-	};
-	int ParseDelimsCount = UE_ARRAY_COUNT(ParseDelimsArray);
-
 	int SegmentCount = 0;
+
 	for (FString& TranscriptionSegment : InTranscriptionSegments)
 	{
 		if (TranscriptionSegment.IsEmpty())
 		{
 			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment is Empty ||"))
-			continue;
+				continue;
 		}
 
 		// Filter the Transcription Segment, to remove any unwanted characters.
@@ -73,55 +56,74 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Filtered Transcription Segment: { %s } ||"), *TranscriptionSegment)
 
-		// Parse the Transcription Segment into an Array of Words, removing any white space.
-		TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray);
+			// Parse the Transcription Segment into an Array of Words, removing any white space.
+			TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray);
 		if (SegmentWordArray.Num() == 0)
 		{
 			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment has no Word Content ||"))
-			continue;
+				continue;
 		}
 
 		Algo::Reverse(SegmentWordArray);
 
-		FParseRecord ParseRecord = FParseRecord(ContextManager.GetContextStack());
-		FParseResult ParseResult = ParsePhrase(SegmentWordArray, ParseRecord);
-
-		ContextManager.UpdateContextStack(ParseRecord.ContextObjectStack);
-
-		UE_LOGFMT(LogOpenAccessibilityCom, Log, "|| Phrase Tree || Segment: {0} | Result: {1} ||", SegmentCount, ParseResult.Result);
-
-		switch (ParseResult.Result)
+		while (!SegmentWordArray.IsEmpty())
 		{
-			case PHRASE_PARSED:
-			case PHRASE_PARSED_AND_EXECUTED:
+
+			FParseRecord ParseRecord = FParseRecord(ContextManager.GetContextStack());
+			FParseResult ParseResult = ParsePhrase(SegmentWordArray, ParseRecord);
+
+			ContextManager.UpdateContextStack(ParseRecord.ContextObjectStack);
+
+			UE_LOGFMT(LogOpenAccessibilityCom, Log, "|| Phrase Tree || Segment: {0} | Result: {1} ||", SegmentCount, ParseResult.Result);
+
+			switch (ParseResult.Result)
 			{
-				OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Success} Phrase Tree Parsed Correctly (%s)"),
-					*ParseRecord.GetPhraseString())
-				
-				LastVistedNode.Reset();
-				LastVistedParseRecord = FParseRecord();
+				case PHRASE_PARSED:
+				case PHRASE_PARSED_AND_EXECUTED:
+				{
+					OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Success} Phrase Tree Parsed Correctly (%s)"),
+						*ParseRecord.GetPhraseString())
 
-				break;
-			}
+					LastVistedNode.Reset();
+					LastVistedParseRecord = FParseRecord();
 
-			case PHRASE_REQUIRES_MORE:
-			case PHRASE_REQUIRES_MORE_CORRECT_PHRASES:
-			{
-				OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Requires More Segments. (%s)"),
-					*ParseRecord.GetPhraseString())
+					break;
+				}
 
-				LastVistedNode = ParseResult.ReachedNode;
-				LastVistedParseRecord = ParseRecord;
+				case PHRASE_REQUIRES_MORE:
+				{
+					OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Requires More Segments. (%s)"), 
+						*ParseRecord.GetPhraseString());
 
-				break;
-			}
+					LastVistedNode = ParseResult.ReachedNode;
+					LastVistedParseRecord = ParseRecord;
+				}
 
-			case PHRASE_UNABLE_TO_PARSE:
-			{
-				OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Failed. (%s)"),
-					*ParseRecord.GetPhraseString())
+				case PHRASE_REQUIRES_MORE_CORRECT_PHRASES:
+				{
+					OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Requires More Correct Segments. (%s)"),
+						*ParseRecord.GetPhraseString())
 
-				break;
+					LastVistedNode = ParseResult.ReachedNode;
+					LastVistedParseRecord = ParseRecord;
+
+					if (!SegmentWordArray.IsEmpty())
+						SegmentWordArray.Pop();
+
+					break;
+				}
+
+				default:
+				case PHRASE_UNABLE_TO_PARSE:
+				{
+					OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Failed. (%s)"),
+						*ParseRecord.GetPhraseString())
+
+					if (!SegmentWordArray.IsEmpty())
+						SegmentWordArray.Pop();
+
+					break;
+				}
 			}
 		}
 
