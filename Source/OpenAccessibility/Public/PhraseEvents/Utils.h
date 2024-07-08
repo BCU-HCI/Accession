@@ -11,28 +11,41 @@
 
 #define EMPTY_ARG
 
-#define GET_ACTIVE_TAB_RETURN(ActiveContainerName, ActiveTabType, ReturnObject) \
-  TSharedPtr<ActiveTabType> ActiveContainerName;                                \
+#define GET_ACTIVE_TAB_RETURN(ActiveContainerName, ReturnObject)                \
+  TSharedPtr<SWidget> ActiveContainerName;                                      \
   {                                                                             \
     TSharedPtr<SDockTab> _AT = FGlobalTabmanager::Get()->GetActiveTab();        \
-    if (!_AT.IsValid() || _AT->GetContent()->GetType() != #ActiveTabType) {     \
-      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                          \
-             TEXT("GET_ACTIVE_TAB: NO ACTIVE TAB FOUND OF TYPE: %s"),           \
-			 *FString(#ActiveTabType));                                         \
+    if (_AT == nullptr || !_AT.IsValid()) {                                     \
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                        \
+			TEXT("GET_ACTIVE_TAB: NO ACTIVE TAB FOUND"));                       \
       return ReturnObject;                                                      \
     }                                                                           \
 																				\
-    ActiveContainerName =                                                       \
-        StaticCastSharedRef<ActiveTabType>(_AT->GetContent());                  \
-    if (!ActiveContainerName.IsValid()) {                                       \
-      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                          \
-             TEXT("GET_ACTIVE_TAB: FOUND ACTIVE TAB IS NOT VALID"));            \
-      return ReturnObject;                                                      \
+    ActiveContainerName = _AT->GetContent();                                    \
+    if (_AT == nullptr || !ActiveContainerName.IsValid()) {                     \
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                        \
+			TEXT("GET_ACTIVE_TAB: FOUND ACTIVE TAB IS NOT VALID"));             \
+		return ReturnObject;                                                    \
     }                                                                           \
   };
 
-#define GET_ACTIVE_TAB(ActiveContainerName, ActiveTabType) \
-	GET_ACTIVE_TAB_RETURN(ActiveContainerName, ActiveTabType, EMPTY_ARG)
+#define GET_ACTIVE_TAB(ActiveContainerName) \
+    GET_ACTIVE_TAB_RETURN(ActiveContainerName, EMPTY_ARG)
+
+#define GET_CAST_ACTIVE_TAB_RETURN(ActiveContainerName, ActiveTabType, ReturnObject)                \
+	TSharedPtr<ActiveTabType> ActiveContainerName;                                                  \
+	{                                                                                               \
+		GET_ACTIVE_TAB_RETURN(_PreCastContainer, ReturnObject);                                     \
+	    ActiveContainerName = StaticCastSharedPtr<ActiveTabType>(_PreCastContainer);                \
+	    if (!ActiveContainerName.IsValid() || ActiveContainerName->GetType() != #ActiveTabType) {   \
+	      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                                          \
+	             TEXT("GET_ACTIVE_TAB: FOUND ACTIVE TAB IS NOT VALID"));                            \
+	      return ReturnObject;                                                                      \
+	    }                                                                                           \
+	};
+
+#define GET_CAST_ACTIVE_TAB(ActiveContainerName, ActiveTabType) \
+	GET_CAST_ACTIVE_TAB_RETURN(ActiveContainerName, ActiveTabType, EMPTY_ARG)
 
 #define GET_ACTIVE_KEYBOARD_WIDGET_RETURN(ActiveContainerName, ReturnObject)   \
   TSharedPtr<SWidget> ActiveContainerName;                                     \
