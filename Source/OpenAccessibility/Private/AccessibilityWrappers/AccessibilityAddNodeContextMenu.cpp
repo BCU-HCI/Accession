@@ -96,6 +96,8 @@ void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu)
 	}
 
 	this->FilterTextBox = this->GraphMenu.Pin()->GetFilterTextBox();
+
+	FSlateApplication::Get().SetKeyboardFocus(this->TreeView.Pin());
 }
 
 void UAccessibilityAddNodeContextMenu::Init(TSharedRef<IMenu> InMenu, TSharedRef<SGraphActionMenu> InGraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> InTreeView)
@@ -113,9 +115,7 @@ bool UAccessibilityAddNodeContextMenu::Tick(float DeltaTime)
 		return false;
 
 	if (DoesItemsRequireRefresh())
-	{
 		RefreshAccessibilityWidgets();
-	}
 
 	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
 
@@ -124,9 +124,6 @@ bool UAccessibilityAddNodeContextMenu::Tick(float DeltaTime)
 	PrevNumItemsBeingObserved = TreeViewPtr->GetNumItemsBeingObserved();
 	PrevNumGeneratedChildren = TreeViewPtr->GetNumGeneratedChildren();
 	PrevScrollDistance = TreeViewPtr->GetScrollDistance().Y;
-
-	PrevExpandedItems.Reset();
-	TreeViewPtr->GetExpandedItems(PrevExpandedItems);
 
 	return true;
 }
@@ -174,11 +171,6 @@ void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 
 	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
 
-	TSet<TSharedPtr<FGraphActionNode>> ExpandedItems;
-	TreeViewPtr->GetExpandedItems(ExpandedItems);
-
-	TSet<TSharedPtr<FGraphActionNode>> ExpandedItemsClosed = PrevExpandedItems.Difference(ExpandedItems);
-
 	TArray<TSharedPtr<FGraphActionNode>> Items = TArray<TSharedPtr<FGraphActionNode>>(TreeViewPtr->GetRootItems());
 
 	{
@@ -189,38 +181,24 @@ void UAccessibilityAddNodeContextMenu::RefreshAccessibilityWidgets()
 			const TSharedPtr<FGraphActionNode> Item = Items[0];
 			Items.RemoveAt(0);
 
+			if (TreeViewPtr->IsItemExpanded(Item))
+				Items.Append(Item->Children);
+
 			ItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
 				TreeViewPtr->WidgetFromItem(Item)
 			);
 
 			if (!ItemWidget.IsValid())
-			{
-				IndexedWidgetSet.Remove(Item.Get());
-
 				continue;
-			}
-			
-			if (ExpandedItems.Contains(Item))
-			{
-				Items.Append(Item->Children);
-			}
-			else if (ExpandedItemsClosed.Contains(Item))
-			{
-				TArray<TSharedPtr<FGraphActionNode>> DerrivedNodes;
-				Item->GetAllNodes(DerrivedNodes);
 
-				for (auto& Child : DerrivedNodes)
-					IndexedWidgetSet.Remove(Child.Get());
-			}
-
-			if (IndexedWidgetSet.Contains(Item.Get()))
+			// TO-DO: Change To Non-HardCoded Type Comparison.
+			if (ItemWidget->GetContent()->GetType() == "SContentIndexer")
 			{
 				UpdateAccessibilityWidget(ItemWidget.ToSharedRef());
 			}
 			else
 			{
 				ApplyAccessibilityWidget(ItemWidget.ToSharedRef());
-				IndexedWidgetSet.Add(Item.Get());
 			}
 		}
 	}
@@ -291,6 +269,11 @@ void UAccessibilityAddNodeContextMenu::PerformGraphAction(const int32 InIndex)
 	}
 }
 
+FString UAccessibilityAddNodeContextMenu::GetFilterText()
+{
+	return FilterTextBox.Pin()->GetText().ToString();
+}
+
 void UAccessibilityAddNodeContextMenu::SetFilterText(const FString& InFilterText)
 {
 	FilterTextBox.Pin()->SetText(FText::FromString(InFilterText));
@@ -348,7 +331,7 @@ void UAccessibilityAddNodeContextMenu::ApplyAccessibilityWidget(TSharedRef<STabl
 	ItemWidget->SetContent(
 		SNew(SContentIndexer)
 		.IndexValue(ItemWidget->GetIndexInList())
-		.IndexPositionToContent(IndexerPosition::Left)
+		.IndexPositionToContent(EIndexerPosition::Left)
 		.ContentToIndex(ItemContent)
 	);
 }

@@ -53,6 +53,15 @@ bool FPhraseInputNode<InputType>::RequiresPhrase(const FString InPhrase)
     return MeetsInputRequirements(InPhrase);
 }
 
+template <typename InputType>
+bool FPhraseInputNode<InputType>::RequiresPhrase(const FString InPhrase, int32& OutDistance) 
+{
+    bool bMeetsRequirements = MeetsInputRequirements(InPhrase);
+    OutDistance = bMeetsRequirements ? 0 : INT32_MAX;
+
+    return bMeetsRequirements;
+}
+
 template<typename InputType>
 FParseResult FPhraseInputNode<InputType>::ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
 {
@@ -65,7 +74,12 @@ FParseResult FPhraseInputNode<InputType>::ParsePhrase(TArray<FString>& InPhraseA
 
     if (MeetsInputRequirements(InPhraseArray.Last()))
     {
+        // Get the Input String.
         FString InputToRecord = InPhraseArray.Pop();
+
+        // Append the Input String to the Record.
+        InParseRecord.AddPhraseString(InputToRecord);
+
         if (!InputToRecord.IsNumeric() && NumericParser::IsValidNumeric(InputToRecord, false))
         {
 			NumericParser::StringToNumeric(InputToRecord, false);

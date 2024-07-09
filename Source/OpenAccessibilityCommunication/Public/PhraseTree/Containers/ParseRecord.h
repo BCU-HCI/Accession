@@ -7,11 +7,16 @@
 #include "Input/UParseInput.h"
 #include "PhraseTree/Containers/ContextObject.h"
 
+#include "ParseRecord.generated.h"
+
 /// <summary>
 /// The Collected Information from the Propogation of the Phrase through the tree.
 /// </summary>
+USTRUCT(BlueprintType)
 struct OPENACCESSIBILITYCOMMUNICATION_API FParseRecord
 {
+	GENERATED_BODY()
+
 public:
 	friend class FPhraseTree;
 
@@ -32,6 +37,25 @@ public:
 		PhraseInputs.Empty();
 	}
 
+	// -- Phrase String
+
+	/// <summary>
+	/// Gets the Recorded Phrase String for this record of propagation.
+	/// </summary>
+	/// <returns></returns>
+	const FString GetPhraseString() const
+	{
+		return PhraseString;
+	}
+
+	void AddPhraseString(FString StringToRecord)
+	{
+		PhraseString += TEXT(" ") + StringToRecord;
+	}
+
+	// --
+
+
 	/// <summary>
 	/// Gets the Input for the Provided Phrase, if it exists.
 	/// </summary>
@@ -51,6 +75,10 @@ public:
 	template<class CastToType>
 	CastToType* GetPhraseInput(const FString& InString)
 	{
+		// Check If The Phrase Exits
+		// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.
+		check(PhraseInputs.Contains(InString))
+
 		return Cast<CastToType>(*PhraseInputs.Find(InString));
 	}
 
@@ -61,6 +89,10 @@ public:
 	/// <param name="OutInput">- Returns the Found Input or nullptr.</param>
 	void GetPhraseInput(const FString& InString, UParseInput* OutInput)
 	{
+		// Check If The Phrase Exits
+		// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.
+		check(PhraseInputs.Contains(InString))
+
 		OutInput = *PhraseInputs.Find(InString);
 	}
 
@@ -73,6 +105,10 @@ public:
 	template<class CastToType>
 	void GetPhraseInput(const FString& InString, CastToType* OutInput)
 	{
+		// Check If The Phrase Exits
+		// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.
+		check(PhraseInputs.Contains(InString))
+
 		OutInput = Cast<CastToType>(*PhraseInputs.Find(InString));
 	}
 
@@ -84,8 +120,12 @@ public:
 	/// <param name="InString">- The Phrase To Check For A Multi-Input.</param>
 	/// <param name="OutInputs">- Returns An Array of Inputs.</param>
 	/// <param name="MaintainOrder">- Should the Returned Array Maintain the Order the Inputs where Inserted.</param>
-	void GetPhraseInputs(const FString& InString, TArray<UParseInput*> OutInputs, const bool MaintainOrder = true)
+	void GetPhraseInputs(const FString& InString, TArray<UParseInput*>& OutInputs, const bool MaintainOrder = true)
 	{
+		// Check If The Phrase Exits
+		// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.
+		check(PhraseInputs.Contains(InString))
+
 		PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);
 	}
 
@@ -97,6 +137,10 @@ public:
 	/// <returns>The Array of Found Inputs.</returns>
 	TArray<UParseInput*> GetPhraseInputs(const FString& InString, const bool MaintainOrder = true)
 	{
+		// Check If The Phrase Exits
+		// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.
+		check(PhraseInputs.Contains(InString))
+
 		TArray<UParseInput*> OutInputs;
 
 		PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);
@@ -113,7 +157,7 @@ public:
 	/// <param name="InInput">- The Phrase Input Object Containing Input Data.</param>
 	void AddPhraseInput(const FString& InString, UParseInput* InInput)
 	{
-		PhraseInputs.Add(InString, InInput);
+		PhraseInputs.Add(InString.ToUpper(), InInput);
 	}
 
 	/// <summary>
@@ -249,6 +293,11 @@ protected:
 	/// The Context Stack of Context Objects.
 	/// </summary>
 	TArray<UPhraseTreeContextObject*> ContextObjectStack = TArray<UPhraseTreeContextObject*>();
+
+	/// <summary>
+	/// A Record of the Phrase String used through-out propagation.
+	/// </summary>
+	FString PhraseString;
 
 	/// <summary>
 	/// Map of all the Provided Phrase Inputs, to their Respective Phrases.

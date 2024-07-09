@@ -3,6 +3,8 @@
 #include "OpenAccessibilityCommunication.h"
 #include "OpenAccessibilityComLogging.h"
 
+#include "OpenAccessibilityAnalytics.h"
+
 #include "AudioManager.h"
 #include "SocketCommunicationServer.h"
 
@@ -57,6 +59,7 @@ void FOpenAccessibilityCommunicationModule::ShutdownModule()
 	UE_LOG(LogOpenAccessibilityCom, Display, TEXT("OpenAccessibilityComModule::ShutdownModule()"));
 
 	AudioManager->RemoveFromRoot();
+	PhraseTreeUtils->RemoveFromRoot();
 
 	FSlateApplication::Get().OnApplicationPreInputKeyDownListener().Remove(KeyDownEventHandle);
 
@@ -74,8 +77,7 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 
 		if (SocketServer->RecvStringMultipartWithMeta(RecvStrings, RecvMetadata))
 		{
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Tick || Received Multipart | Message Count: %d ||"), RecvStrings.Num());
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Tick || Received Duration Metadata: %d ||"), RecvMetadata->GetNumberField(TEXT("duration")));
+			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION RECIEVED"), TEXT("Recieved Multipart - Message Count: %d"), RecvStrings.Num());
 
 			OnTranscriptionRecieved.Broadcast(RecvStrings);
 		}
@@ -91,12 +93,12 @@ void FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(const FKeyEvent& 
 	{
 		if (InKeyEvent.IsShiftDown())
 		{
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Keydown Event || Shift + SpaceBar ||"));
+			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
 			AudioManager->StopCapturingAudio();
 		}
 		else
 		{
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Keydown Event || SpaceBar ||"));
+			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Starting Audio Capture"));
 			AudioManager->StartCapturingAudio();
 		}
 	}
@@ -119,14 +121,11 @@ void FOpenAccessibilityCommunicationModule::TranscribeWaveForm(const TArray<floa
 	AudioBufferMetadata->SetNumberField(TEXT("sample_rate"), AudioManager->GetAudioCaptureSampleRate());
 	AudioBufferMetadata->SetNumberField(TEXT("num_channels"), AudioManager->GetAudioCaptureNumChannels());
 
-	if (SocketServer->SendArrayMessageWithMeta(AudioBufferToTranscribe, AudioBufferMetadata.ToSharedRef(), ComSendFlags::none))
-	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Transcription Ready || Sent Audio Buffer ||"));
-	}
-	else
-	{
-		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Transcription Ready || Failed to Send Audio Buffer ||"));
-	}
+	bool bArrayMessageSent = SocketServer->SendArrayMessageWithMeta(AudioBufferToTranscribe, AudioBufferMetadata.ToSharedRef(), ComSendFlags::none);
+	
+	OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION SENT"), TEXT("{%s} Send Audiobuffer (float x %d / %d Hz / %d channels)"),
+		bArrayMessageSent ? TEXT("Success") : TEXT("Failed"),
+		AudioBufferToTranscribe.Num(), AudioManager->GetAudioCaptureSampleRate(), AudioManager->GetAudioCaptureNumChannels());
 }
 
 void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
@@ -136,24 +135,9 @@ void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
 	PhraseTreePhraseRecievedHandle = OnTranscriptionRecieved
 		.AddRaw(PhraseTree.Get(), &FPhraseTree::ParseTranscription);
 
-	/*TSharedPtr<FPhraseEventNode> EventNode = MakeShared<FPhraseEventNode>();
-	EventNode->OnPhraseEvent.BindLambda([](const FParseRecord& InParseRecord)
-	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Event Node Hit || INDEX_0 Val: %d ||"), InParseRecord.PhraseInputs["INDEX_0"]);
-	});
-
-	PhraseTree->BindBranch(
-		MakeShared<FPhraseNode>(
-			TEXT("NODE"),
-			TPhraseNodeArray {
-				MakeShared<FPhraseInputNode>(TEXT("INDEX_0"),
-					TPhraseNodeArray {
-						EventNode
-					}
-				)
-			}
-		)
-	);*/
+	PhraseTreeUtils = NewObject<UPhraseTreeUtils>();
+	PhraseTreeUtils->SetPhraseTree(PhraseTree.ToSharedRef());
+	PhraseTreeUtils->AddToRoot();
 }
 
 void FOpenAccessibilityCommunicationModule::RegisterConsoleCommands()

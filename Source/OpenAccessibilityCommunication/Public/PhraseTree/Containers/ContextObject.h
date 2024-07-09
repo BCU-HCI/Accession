@@ -26,6 +26,8 @@ public:
 
 	}
 
+	virtual bool Close() { return true; }
+
 	/// <summary>
 	/// Sets the Root Node In The Phrase Tree For This Context Objects.
 	/// </summary>
@@ -52,6 +54,7 @@ public:
 	{
 		return bIsActive;
 	}
+
 protected:
 
 	/// <summary>

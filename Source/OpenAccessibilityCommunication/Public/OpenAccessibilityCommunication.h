@@ -8,6 +8,7 @@
 #include "Delegates/DelegateCombinations.h"
 
 #include "PhraseTree.h"
+#include "PhraseTreeUtils.h"
 
 //UDELEGATE()
 //DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTranscriptionRecievedSignature, const TArray<FString>, InTranscription);
@@ -89,6 +90,11 @@ public:
 	/// The PhraseTree, Containing any Bound Phrase Nodes and Commands to Execute from Transcriptions.
 	/// </summary>
 	TSharedPtr<FPhraseTree> PhraseTree;
+
+	/// <summary>
+	/// Phrase Tree Utility Class, For Dealing With Phrase Tree Function Libraries.
+	/// </summary>
+	class UPhraseTreeUtils* PhraseTreeUtils;
 
 private:
 

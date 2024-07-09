@@ -21,15 +21,6 @@ UAudioManager::UAudioManager()
 
 	RegisterAudioGenerator();
 
-	/*
-	UAudioDeviceNotificationSubsystem* AudioDeviceNotificationSubsystem = UAudioDeviceNotificationSubsystem::Get();
-	if (AudioDeviceNotificationSubsystem != nullptr)
-	{
-		AudioDeviceNotificationSubsystem->DefaultCaptureDeviceChangedNative
-			.AddUObject(this, &UAudioManager::OnDefaultDeviceChanged);
-	}
-	*/
-
 	// Create FileIO Objects
 	FileWriter = new Audio::FSoundWavePCMWriter();
 }
@@ -40,9 +31,6 @@ UAudioManager::~UAudioManager()
 
 	AudioCapture->StopCapturingAudio();
 	AudioCapture->RemoveFromRoot();
-
-	UAudioDeviceNotificationSubsystem::Get()->DefaultCaptureDeviceChangedNative
-		.Remove(OnDefaultDeviceChangedHandle);
 
 	delete AudioCapture; AudioCapture = nullptr;
 	delete FileWriter; FileWriter = nullptr;

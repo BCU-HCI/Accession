@@ -24,6 +24,11 @@
 			"Name": "OpenAccessibilityCommunication",
 			"Type": "Editor",
 			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "OpenAccessibilityAnalytics",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
 		}
 	],
 	"Plugins": [

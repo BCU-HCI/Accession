@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 
 #include "PhraseTree/Containers/ContextObject.h"
-#include "PhraseTree/Containers/ContextObject.h"
 
 /// <summary>
 /// Base Abstract Class For Phrase Context Nodes, that are required to have a Context Node.

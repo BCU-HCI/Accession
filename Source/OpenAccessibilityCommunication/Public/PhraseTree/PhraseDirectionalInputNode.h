@@ -76,3 +76,27 @@ public:
 		: FPhraseEnumInputNode<EPhraseScrollInput>(NodeName, InOnPhraseParsed, InChildNodes, InOnInputRecieved)
 	{}
 };
+
+class OPENACCESSIBILITYCOMMUNICATION_API FPhrasePositionalInputNode : public FPhraseEnumInputNode<EPhrasePositionalInput>
+{
+public:
+	FPhrasePositionalInputNode(const TCHAR* NodeName)
+		: FPhraseEnumInputNode<EPhrasePositionalInput>(NodeName)
+	{}
+
+	FPhrasePositionalInputNode(const TCHAR* NodeName, TPhraseNodeArray InChildNodes)
+		: FPhraseEnumInputNode<EPhrasePositionalInput>(NodeName, InChildNodes)
+	{}
+
+	FPhrasePositionalInputNode(const TCHAR* NodeName, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+		: FPhraseEnumInputNode<EPhrasePositionalInput>(NodeName, InOnPhraseParsed, InChildNodes)
+	{}
+
+	FPhrasePositionalInputNode(const TCHAR* NodeName, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+		: FPhraseEnumInputNode<EPhrasePositionalInput>(NodeName, InChildNodes, InOnInputRecieved)
+	{}
+
+	FPhrasePositionalInputNode(const TCHAR* NodeName, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved)
+		: FPhraseEnumInputNode<EPhrasePositionalInput>(NodeName, InOnPhraseParsed, InChildNodes, InOnInputRecieved)
+	{}
+};

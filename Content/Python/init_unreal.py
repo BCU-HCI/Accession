@@ -2,13 +2,14 @@ import unreal
 
 import subprocess
 import pkg_resources
-
-# Main Variables
-
-INSTALL_DEPS = ["unreal", "numpy", "faster-whisper", "pyzmq", "av"]
+from os import path
 
 
-## ------------------------------
+def get_requirements(requirements_dir: str) -> list[str]:
+    with open(
+        path.join(requirements_dir, "requirements.txt"), "r"
+    ) as requirements_file:
+        return [line.strip() for line in requirements_file.readlines()]
 
 
 def is_dependency_satisfied(dependency: str) -> bool:
@@ -60,7 +61,11 @@ unreal.log("|| OpenAccessibility Python || Initializing ||")
 
 # Verify Required Dependencies
 
-missing_deps = [dep for dep in INSTALL_DEPS if not is_dependency_satisfied(dep)]
+missing_deps = [
+    dep
+    for dep in get_requirements(path.dirname(path.realpath(__file__)))
+    if not is_dependency_satisfied(dep)
+]
 
 if missing_deps:
     install_dependencies(missing_deps)

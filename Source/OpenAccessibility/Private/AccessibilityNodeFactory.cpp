@@ -3,6 +3,7 @@
 
 #include "AccessibilityNodeFactory.h"
 #include "OpenAccessibility.h"
+#include "AccessibilityWidgets/SIndexer.h"
 
 #include "SGraphNode.h"
 #include "SGraphPin.h"
@@ -69,8 +70,10 @@ TSharedPtr<class SGraphNode> FGraphAccessibilityNodeFactory::CreateNodeWidget(UE
                                     SNew(SOverlay)
                                         + SOverlay::Slot()
                                         [
-                                            SNew(STextBlock)
-                                                .Text(FText::FromString("[" + FString::FromInt(NodeIndex) + "]"))
+                                            SNew(SIndexer)
+                                            .IndexValue(NodeIndex)
+                                            .TextColor(FLinearColor::White)
+                                            .BorderColor(FLinearColor::Gray)
                                         ]
                                 ]
                         ]

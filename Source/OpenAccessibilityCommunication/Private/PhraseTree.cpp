@@ -7,6 +7,7 @@
 
 #include "Logging/StructuredLog.h"
 #include "OpenAccessibilityComLogging.h"
+#include "OpenAccessibilityAnalytics.h"
 
 FPhraseTree::FPhraseTree() : FPhraseNode(TEXT("ROOT_NODE"))
 {
@@ -94,7 +95,8 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 			case PHRASE_PARSED:
 			case PHRASE_PARSED_AND_EXECUTED:
 			{
-				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment Parsed ||"))
+				OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Success} Phrase Tree Parsed Correctly (%s)"),
+					*ParseRecord.GetPhraseString())
 				
 				LastVistedNode.Reset();
 				LastVistedParseRecord = FParseRecord();
@@ -105,7 +107,8 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 			case PHRASE_REQUIRES_MORE:
 			case PHRASE_REQUIRES_MORE_CORRECT_PHRASES:
 			{
-				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment Requires More Word Segments ||"))
+				OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Requires More Segments. (%s)"),
+					*ParseRecord.GetPhraseString())
 
 				LastVistedNode = ParseResult.ReachedNode;
 				LastVistedParseRecord = ParseRecord;
@@ -115,7 +118,8 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 
 			case PHRASE_UNABLE_TO_PARSE:
 			{
-				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment Unable to be Parsed ||"))
+				OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Failed. (%s)"),
+					*ParseRecord.GetPhraseString())
 
 				break;
 			}
@@ -145,6 +149,7 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 		if (ParseResult.Result == PHRASE_PARSED)
 		{
 			LastVistedNode.Reset();
+			InParseRecord = LastVistedParseRecord;
 			LastVistedParseRecord = FParseRecord();
 
 			return ParseResult;
@@ -165,14 +170,7 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 	}
 	else
 	{
-		// Proceed to start a new propogation.
-		for (const TSharedPtr<FPhraseNode>& ChildNode : ChildNodes)
-		{
-			if (!ChildNode->RequiresPhrase(InPhraseWordArray.Last()))
-				continue;
-
-			return ChildNode->ParsePhrase(InPhraseWordArray, InParseRecord);
-		}
+		return ParseChildren(InPhraseWordArray, InParseRecord);
 	}
 
 	UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Phrase Tree || No Parse Path Found ||"));

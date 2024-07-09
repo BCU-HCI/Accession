@@ -37,7 +37,7 @@ class OpenAccessibilityPy:
         # General Runtime Specifics
         worker_count: int = 2,
         # Whisper Specifics
-        whisper_model: str = "Systran/faster-distil-whisper-small.en",
+        whisper_model: str = "distil-small.en",
         device: str = "auto",
         compute_type: str = "default",
         # Communication Specifics
@@ -48,7 +48,10 @@ class OpenAccessibilityPy:
         )
 
         self.whisper_interface = WhisperInterface(
-            model_name=whisper_model, device=device, compute_type=compute_type
+            model_name=whisper_model,
+            device=device,
+            compute_type=compute_type,
+            transcribe_workers=worker_count,
         )
         self.com_server = CommunicationServer(
             send_socket_type=zmq.PUSH,
@@ -82,9 +85,11 @@ class OpenAccessibilityPy:
         )
 
         sample_rate = metadata.get("sample_rate", 48000)
-        num_channels = metadata.get("num_channels", 1)
+        num_channels = metadata.get("num_channels", 2)
 
-        message_ndarray = self.audio_resampler.resample(recv_message, sample_rate)
+        message_ndarray = self.audio_resampler.resample(
+            recv_message, sample_rate, num_channels
+        )
 
         trans_segments, trans_metadata = self.whisper_interface.process_audio_buffer(
             message_ndarray

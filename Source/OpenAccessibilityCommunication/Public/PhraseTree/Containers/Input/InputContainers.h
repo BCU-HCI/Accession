@@ -5,6 +5,17 @@
 #include "CoreMinimal.h"
 
 UENUM()
+enum class EPhrasePositionalInput : uint8
+{
+	TOP,
+	MIDDLE,
+	BOTTOM,
+	LEFT,
+	RIGHT,
+	CENTER
+};
+
+UENUM()
 enum class EPhraseDirectionalInput : int8
 {
 	UP,

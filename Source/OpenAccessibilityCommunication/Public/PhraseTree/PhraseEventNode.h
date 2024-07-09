@@ -19,7 +19,9 @@ public:
 
 	// FPhraseNode Implementation
 	virtual bool IsLeafNode() const override { return true; }
+
 	virtual bool RequiresPhrase(const FString InPhrase) override;
+	virtual bool RequiresPhrase(const FString InPhrase, int32& OutDistance);
 
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord) override;
 	// End FPhraseNode Implementation

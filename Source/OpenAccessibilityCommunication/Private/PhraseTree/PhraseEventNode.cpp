@@ -4,20 +4,22 @@
 #include "PhraseTree/PhraseEventNode.h"
 #include "OpenAccessibilityComLogging.h"
 
-FPhraseEventNode::FPhraseEventNode() : FPhraseNode(TEXT("EVENT_NODE"))
+FPhraseEventNode::FPhraseEventNode() 
+    : FPhraseNode(TEXT("EVENT_NODE"))
 {
     OnPhraseParsed = TDelegate<void(FParseRecord&)>();
 }
 
-FPhraseEventNode::FPhraseEventNode(TDelegate<void(FParseRecord&)> InEvent) : FPhraseNode(TEXT("EVENT_NODE"))
+FPhraseEventNode::FPhraseEventNode(TDelegate<void(FParseRecord&)> InEvent) 
+    : FPhraseNode(TEXT("EVENT_NODE"), InEvent)
 {
-    OnPhraseParsed = InEvent;
+
 }
 
-FPhraseEventNode::FPhraseEventNode(TFunction<void(FParseRecord&)> InEventFunction) : FPhraseNode(TEXT("EVENT_NODE"))
+FPhraseEventNode::FPhraseEventNode(TFunction<void(FParseRecord&)> InEventFunction) 
+    : FPhraseNode(TEXT("EVENT_NODE"), TDelegate<void(FParseRecord&)>::CreateLambda(InEventFunction))
 {
-    OnPhraseParsed = TDelegate<void(FParseRecord&)>();
-    OnPhraseParsed.BindLambda(InEventFunction);
+
 }
 
 FPhraseEventNode::~FPhraseEventNode()
@@ -27,6 +29,12 @@ FPhraseEventNode::~FPhraseEventNode()
 
 bool FPhraseEventNode::RequiresPhrase(const FString InPhrase)
 {
+    return true;
+}
+
+bool FPhraseEventNode::RequiresPhrase(const FString InPhrase, int32& OutDistance) 
+{
+    OutDistance = 0;
     return true;
 }
 
