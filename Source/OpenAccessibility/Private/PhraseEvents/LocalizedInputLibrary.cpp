@@ -1,4 +1,6 @@
 #include "PhraseEvents/LocalizedInputLibrary.h"
+
+#include "ToolContextInterfaces.h"
 #include "PhraseEvents/Utils.h"
 
 #include "PhraseTree/PhraseStringInputNode.h"
@@ -6,6 +8,7 @@
 
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
+#include "Widgets/Text/SMultiLineEditableText.h"
 
 ULocalizedInputLibrary::ULocalizedInputLibrary(const FObjectInitializer &ObjectInitializer)
 {
@@ -54,6 +57,15 @@ void ULocalizedInputLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 			}),
 
+			/*
+			MakeShared<FPhraseNode>(TEXT("CONFIRM"),
+			TPhraseNodeArray {
+
+				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &ULocalizedInputLibrary::KeyboardInputConfirm))
+
+			}),
+			*/
+
 			MakeShared<FPhraseNode>(TEXT("EXIT"), 
 			TPhraseNodeArray {
 				
@@ -78,7 +90,7 @@ void ULocalizedInputLibrary::KeyboardInputAdd(FParseRecord &Record) {
 	{
 		TSharedPtr<SEditableText> EditableText = StaticCastSharedPtr<SEditableText>(KeyboardFocusedWidget);
 		if (!EditableText.IsValid()) {
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT OF TYPE - %s"),"SEditableText");
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT OF TYPE - SEditableText"));
 			return;
 		}
 
@@ -89,9 +101,9 @@ void ULocalizedInputLibrary::KeyboardInputAdd(FParseRecord &Record) {
 	}
 	else if (WidgetType == "SMultiLineEditableText")
 	{
-        TSharedPtr<SEditableText> MultiLineEditableText = StaticCastSharedPtr<SEditableText>(KeyboardFocusedWidget);
+        TSharedPtr<SMultiLineEditableText> MultiLineEditableText = StaticCastSharedPtr<SMultiLineEditableText>(KeyboardFocusedWidget);
         if (!MultiLineEditableText.IsValid()) {
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT OF TYPE - %s"), "SMultiLineEditableText");
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT OF TYPE - SMultiLineEditableText"));
             return;
         }
 
@@ -100,7 +112,7 @@ void ULocalizedInputLibrary::KeyboardInputAdd(FParseRecord &Record) {
 			FText::FromString(CurrText.TrimStartAndEnd() + TEXT(" ") + PhraseInput->GetValue())
 		);
 	} 
-	else UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT AN INTERFACEABLE TYPE"));
+	else UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT AN INTERFACEABLE TYPE"));
 }
 
 void ULocalizedInputLibrary::KeyboardInputRemove(FParseRecord& Record) 
@@ -109,35 +121,39 @@ void ULocalizedInputLibrary::KeyboardInputRemove(FParseRecord& Record)
 
 	FString WidgetType = KeyboardFocusedWidget->GetTypeAsString();
 
-	UParseIntInput* AmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
-    if (AmountInput == nullptr)
+	UParseIntInput* RemoveInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+	if (RemoveInput == nullptr)
 		return;
 
 	if (WidgetType == "SEditableText")
 	{
 		TSharedPtr<SEditableText> EditableText = StaticCastSharedPtr<SEditableText>(KeyboardFocusedWidget);
 		if (!EditableText.IsValid()) {
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT OF TYPE - %s"),"SEditableText");
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputRemove: CURRENT ACTIVE WIDGET IS NOT OF TYPE - SEditableText"));
 			return;
 		}
 
-		FString FilteredText = EventUtils::RemoveWordsFromEnd(EditableText->GetText().ToString(), AmountInput->GetValue());
-
-        EditableText->SetText(FText::FromString(FilteredText));
+		EditableText->SetText(
+			FText::FromString(
+				EventUtils::RemoveWordsFromEnd(EditableText->GetText().ToString(), RemoveInput->GetValue())
+			)
+		);
 	}
 	else if (WidgetType == "SMultiLineEditableText")
 	{
-        TSharedPtr<SEditableText> MultiLineEditableText = StaticCastSharedPtr<SEditableText>(KeyboardFocusedWidget);
-        if (!MultiLineEditableText.IsValid()) {
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT OF TYPE - %s"), "SMultiLineEditableText");
-            return;
-        }
+		TSharedPtr<SMultiLineEditableText> MultiLineEditableText = StaticCastSharedPtr<SMultiLineEditableText>(KeyboardFocusedWidget);
+		if (!MultiLineEditableText.IsValid()) {
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputRemove: CURRENT ACTIVE WIDGET IS NOT OF TYPE - SMultiLineEditableText"));
+			return;
+		}
 
-		FString FilteredText = EventUtils::RemoveWordsFromEnd(MultiLineEditableText->GetText().ToString(), AmountInput->GetValue());
-
-        MultiLineEditableText->SetText(FText::FromString(FilteredText));
-	} 
-	else UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT AN INTERFACEABLE TYPE"));
+		MultiLineEditableText->SetText(
+			FText::FromString(
+				EventUtils::RemoveWordsFromEnd(MultiLineEditableText->GetText().ToString(), RemoveInput->GetValue())
+			)
+		);
+	}
+	else UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputRemove: CURRENT ACTIVE WIDGET IS NOT AN INTERFACEABLE TYPE"));
 }
 
 void ULocalizedInputLibrary::KeyboardInputReset(FParseRecord &Record) 
@@ -150,23 +166,56 @@ void ULocalizedInputLibrary::KeyboardInputReset(FParseRecord &Record)
 	{
 		TSharedPtr<SEditableText> EditableText = StaticCastSharedPtr<SEditableText>(KeyboardFocusedWidget);
 		if (!EditableText.IsValid()) {
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT OF TYPE - %s"),"SEditableText");
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputReset: CURRENT ACTIVE WIDGET IS NOT OF TYPE - SEditableText"));
 			return;
 		}
 
-		EditableText->SetText(FText::FromString(TEXT("")));
+		EditableText->SetText(
+			FText::FromString(TEXT(""))
+		);
 	}
 	else if (WidgetType == "SMultiLineEditableText")
 	{
-        TSharedPtr<SEditableText> MultiLineEditableText = StaticCastSharedPtr<SEditableText>(KeyboardFocusedWidget);
-        if (!MultiLineEditableText.IsValid()) {
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT OF TYPE - %s"), "SMultiLineEditableText");
-            return;
-        }
+		TSharedPtr<SMultiLineEditableText> MultiLineEditableText = StaticCastSharedPtr<SMultiLineEditableText>(KeyboardFocusedWidget);
+		if (!MultiLineEditableText.IsValid()) {
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputReset: CURRENT ACTIVE WIDGET IS NOT OF TYPE - SMultiLineEditableText"));
+			return;
+		}
 
-        MultiLineEditableText->SetText(FText::FromString(TEXT("")));
-	} 
-	else UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("KeyboardInputAdd: CURRENT ACTIVE WIDGET IS NOT AN INTERFACEABLE TYPE"));
+		MultiLineEditableText->SetText(
+			FText::FromString(TEXT(""))
+		);
+	}
+	else UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputReset: CURRENT ACTIVE WIDGET IS NOT AN INTERFACEABLE TYPE"));
+}
+
+void ULocalizedInputLibrary::KeyboardInputConfirm(FParseRecord& Record)
+{
+	GET_ACTIVE_KEYBOARD_WIDGET(KeyboardFocusedWidget);
+
+	FName WidgetType = KeyboardFocusedWidget->GetType();
+
+	if (WidgetType == SEditableText::StaticWidgetClass().GetWidgetType())
+	{
+		TSharedPtr<SEditableText> EditableText = StaticCastSharedPtr<SEditableText>(KeyboardFocusedWidget);
+		if (!EditableText.IsValid())
+		{
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputConfirm: CURRENT ACTIVE WIDGET IS NOT OF TYPE - SEditableText"))
+			return;
+		}
+
+	}
+	else if (WidgetType == SMultiLineEditableText::StaticWidgetClass().GetWidgetType())
+	{
+		TSharedPtr<SMultiLineEditableText> MultiLineEditableText = StaticCastSharedPtr<SMultiLineEditableText>(KeyboardFocusedWidget);
+		if (!MultiLineEditableText.IsValid())
+		{
+			UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputConfirm: CURRENT ACTIVE WIDGET IS NOT OF TYPE - SMultiLineEditableText"))
+			return;
+		}
+
+	}
+	else UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputConfirm: CURRENT ACTIVE WIDGET IS NOT AN INTERFACEABLE TYPE"))
 }
 
 void ULocalizedInputLibrary::KeyboardInputExit(FParseRecord &Record) 
@@ -175,5 +224,5 @@ void ULocalizedInputLibrary::KeyboardInputExit(FParseRecord &Record)
     if (!SlateApp.IsInitialized())
         return;
 
-	SlateApp.ClearKeyboardFocus(EFocusCause::Cleared);
+	SlateApp.ClearKeyboardFocus();
 }
