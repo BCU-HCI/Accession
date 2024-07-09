@@ -21,7 +21,7 @@ public:
 
 	// UPhraseTreeFunctionLibrary Implementation
 
-	void BindBranches(TSharedRef<FPhraseTree> PhraseTree) override;
+	virtual void BindBranches(TSharedRef<FPhraseTree> PhraseTree) override;
 
 	// End of UPhraseTreeFunctionLibrary Implementation
 
@@ -36,6 +36,9 @@ public:
 
 	UFUNCTION()
 	void KeyboardInputReset(FParseRecord& Record);
+
+	UFUNCTION()
+	void KeyboardInputConfirm(FParseRecord& Record);
 
 	UFUNCTION()
 	void KeyboardInputExit(FParseRecord& Record);
