@@ -67,8 +67,8 @@ void UWindowInteractionLibrary::CloseActiveWindow(FParseRecord &Record) {
 		return;
 	}
 
-	TSharedPtr<SWindow> TopAncestor = ActiveWindow->GetTopmostAncestor();
-	if (ActiveWindow->IsVisible() && ActiveWindow != TopAncestor)
+	TSharedPtr<SWindow> RootWindow = FGlobalTabmanager::Get()->GetRootWindow();
+	if (ActiveWindow->IsVisible() && ActiveWindow != RootWindow)
 	{
 		ActiveWindow->RequestDestroyWindow();
 	}
