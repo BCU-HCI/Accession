@@ -125,11 +125,11 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 					MakeShared<FPhraseNode>(TEXT("MOVE"),
 					TPhraseNodeArray {
 
-							MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
-							TPhraseNodeArray {
+						MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+						TPhraseNodeArray {
 
-								MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
-								TPhraseNodeArray {
+							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+							TPhraseNodeArray {
 
 								MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::MoveNode))
 
