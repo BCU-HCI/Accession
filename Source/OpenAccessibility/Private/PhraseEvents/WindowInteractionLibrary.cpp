@@ -20,35 +20,34 @@ UWindowInteractionLibrary::~UWindowInteractionLibrary()
 
 void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 {
-	PhraseTree->BindBranch(
-		MakeShared<FPhraseNode>(TEXT("WINDOW"),
+	PhraseTree->BindBranches(
 		TPhraseNodeArray{
 
-			MakeShared<FPhraseNode>(TEXT("CLOSE"),
-			TPhraseNodeArray {
+			MakeShared<FPhraseNode>(TEXT("WINDOW"),
+			TPhraseNodeArray{
 
-				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::CloseActiveWindow))
+				MakeShared<FPhraseNode>(TEXT("CLOSE"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::CloseActiveWindow))
+
+				}),
 
 			}),
 
-			MakeShared<FPhraseNode>(TEXT("TOOLBAR"), 
+			MakeShared<FPhraseNode>(TEXT("TOOLBAR"),
 			TPhraseNodeArray {
-					
-				MakeShared<FPhraseNode>(TEXT("SELECT"), 
+
+				MakeShared<FPhraseInputNode<int32>>(TEXT("ITEM_INDEX"),
 				TPhraseNodeArray {
-					
-					MakeShared<FPhraseInputNode<int32>>(TEXT("ITEM_INDEX"), 
-					TPhraseNodeArray {
-						
-						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SelectToolBarItem))
-					
-					})
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SelectToolBarItem))
 
 				})
 
 			})
 
-		})
+		}
 	);
 }
 
