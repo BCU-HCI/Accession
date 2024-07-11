@@ -152,24 +152,24 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 						MakeShared<FPhraseNode>(TEXT("CONNECT"),
 						TPhraseNodeArray {
 
-									MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
-										TEXT("ADD"),
-										1.5f,
-										CreateMenuDelegate(this, &UNodeInteractionLibrary::NodeAddPinMenu),
-										AddNodeContextChildren
-									),
+							MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+								TEXT("ADD"),
+								1.5f,
+								CreateMenuDelegate(this, &UNodeInteractionLibrary::NodeAddPinMenu),
+								AddNodeContextChildren
+							),
 
-									MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-									TPhraseNodeArray {
+							MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+							TPhraseNodeArray {
 
-											MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
-											TPhraseNodeArray {
+								MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+								TPhraseNodeArray {
 
-												MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinConnect))
+									MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinConnect))
 
-											})
+								})
 
-									}, NodeIndexFocusDelegate)
+							}, NodeIndexFocusDelegate)
 
 						}),
 
