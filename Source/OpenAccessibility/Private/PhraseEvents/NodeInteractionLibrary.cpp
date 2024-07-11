@@ -146,69 +146,43 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 					}),
 
-					MakeShared<FPhraseNode>(TEXT("PIN"),
+					MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
 					TPhraseNodeArray {
 
-						MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+						MakeShared<FPhraseNode>(TEXT("CONNECT"),
 						TPhraseNodeArray {
 
-							MakeShared<FPhraseNode>(TEXT("CONNECT"),
+							MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+								TEXT("ADD"),
+								1.5f,
+								CreateMenuDelegate(this, &UNodeInteractionLibrary::NodeAddPinMenu),
+								AddNodeContextChildren
+							),
+
+							MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 							TPhraseNodeArray {
 
-								MakeShared<FPhraseNode>(TEXT("NODE"),
+								MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
 								TPhraseNodeArray {
 
-									MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
-										TEXT("ADD"),
-										1.5f,
-										CreateMenuDelegate(this, &UNodeInteractionLibrary::NodeAddPinMenu),
-										AddNodeContextChildren
-									),
-
-									MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-									TPhraseNodeArray {
-
-										MakeShared<FPhraseNode>(TEXT("PIN"),
-										TPhraseNodeArray {
-
-											MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
-											TPhraseNodeArray {
-
-												MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinConnect))
-
-											})
-
-										})
-
-									}, NodeIndexFocusDelegate)
+									MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinConnect))
 
 								})
 
-							}),
+							}, NodeIndexFocusDelegate)
 
-							MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
+						}),
+
+						MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
 							TPhraseNodeArray {
 
-								MakeShared<FPhraseNode>(TEXT("NODE"),
+								MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
 								TPhraseNodeArray {
 
-									MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
-									TPhraseNodeArray {
-
-
-										MakeShared<FPhraseNode>(TEXT("PIN"),
-										TPhraseNodeArray {
-
-											MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
-											TPhraseNodeArray {
-
-												MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinDisconnect))
-
-											})
-
-										})
-
-									}, NodeIndexFocusDelegate)
+									MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinDisconnect))
 
 								})
 
