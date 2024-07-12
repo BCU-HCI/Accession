@@ -45,7 +45,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 		if (TranscriptionSegment.IsEmpty())
 		{
 			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment is Empty ||"))
-				continue;
+			continue;
 		}
 
 		// Filter the Transcription Segment, to remove any unwanted characters.
@@ -56,12 +56,12 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Filtered Transcription Segment: { %s } ||"), *TranscriptionSegment)
 
-			// Parse the Transcription Segment into an Array of Words, removing any white space.
-			TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray);
+		// Parse the Transcription Segment into an Array of Words, removing any white space.
+		TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray);
 		if (SegmentWordArray.Num() == 0)
 		{
 			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment has no Word Content ||"))
-				continue;
+			continue;
 		}
 
 		Algo::Reverse(SegmentWordArray);
@@ -107,7 +107,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 					LastVistedNode = ParseResult.ReachedNode;
 					LastVistedParseRecord = ParseRecord;
 
-					if (!SegmentWordArray.IsEmpty())
+					if (!SegmentWordArray.IsEmpty())  
 						SegmentWordArray.Pop();
 
 					break;
@@ -145,7 +145,7 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 	// due to the possibility of connecting phrases over different transcription segments.
 	if (LastVistedNode != nullptr && LastVistedNode.IsValid())
 	{
-		TArray<FString> PhraseWordArrayCopy = TArray<FString>(InPhraseWordArray);
+		TArray<FString> PhraseWordArrayCopy = TArray(InPhraseWordArray);
 
 		FParseResult ParseResult = LastVistedNode->ParseChildren(PhraseWordArrayCopy, LastVistedParseRecord);
 		if (ParseResult.Result == PHRASE_PARSED)
@@ -162,22 +162,15 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 		}
 	}
 
-	// Check if the Context Stack has Objects, if so propogate from the Context Root.
-	// Otherwise, start a new propogation entirely from the Tree Root.
+	// Check if the Context Stack has Objects, if so propagation from the Context Root.
 	if (ContextManager.HasContextObjects())
 	{
-		// Propogate from the Context Root, that is the Top of the Context Stack.
-
+		// Propagate from the Context Root, that is the Top of the Context Stack.
 		return ContextManager.PeekContextObject()->GetContextRoot()->ParsePhraseAsContext(InPhraseWordArray, InParseRecord);
 	}
-	else
-	{
-		return ParseChildren(InPhraseWordArray, InParseRecord);
-	}
 
-	UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Phrase Tree || No Parse Path Found ||"));
-
-	return FParseResult(PHRASE_NOT_PARSED);
+	// Otherwise, start a new propagation entirely from the Tree Root.
+	return ParseChildren(InPhraseWordArray, InParseRecord);
 }
 
 void FPhraseTree::BindBranch(const TPhraseNode& InNode)
@@ -206,7 +199,7 @@ void FPhraseTree::BindBranch(const TPhraseNode& InNode)
 			}
 		}
 
-		// If the Start Node has no similar chilren, then bind the branch to the start node.
+		// If the Start Node has no similar children, then bind the branch to the start node.
 		// Can force bind, as previous checks show no child is similar.
 		BranchToBind.StartNode->BindChildNodeForce(BranchToBind.BranchRoot);
 	}

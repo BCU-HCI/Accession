@@ -217,10 +217,11 @@ FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRe
     {
         return ChildNodes[FoundChildIndex]->ParsePhrase(InPhraseArray, InParseRecord);
     }
-    else if (!InPhraseArray.IsEmpty())
+
+	/*else if (!InPhraseArray.IsEmpty())
     {
 		return FParseResult(PHRASE_REQUIRES_MORE_CORRECT_PHRASES, AsShared());
-    }
+    }*/
 
 	return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
 }
