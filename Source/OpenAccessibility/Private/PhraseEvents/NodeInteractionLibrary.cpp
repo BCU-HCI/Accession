@@ -304,6 +304,13 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 					}),
 
+					MakeShared<FPhraseNode>(TEXT("CANCEL"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionCancel))
+
+					})
+
 				}),
 			})
 		}
@@ -880,6 +887,13 @@ void UNodeInteractionLibrary::LocomotionConfirm(FParseRecord& Record)
 	GET_TOP_CONTEXT(Record, LocomotionContext, UAccessibilityGraphLocomotionContext);
 
 	LocomotionContext->ConfirmSelection(); 
+}
+
+void UNodeInteractionLibrary::LocomotionCancel(FParseRecord& Record)
+{
+	GET_TOP_CONTEXT(Record, LocomotionContext, UAccessibilityGraphLocomotionContext);
+
+	LocomotionContext->CancelLocomotion();
 }
 
 void UNodeInteractionLibrary::BlueprintCompile(FParseRecord& Record)

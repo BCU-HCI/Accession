@@ -104,6 +104,8 @@ public:
 
 	void ConfirmSelection();
 
+	void CancelLocomotion();
+
 	virtual bool Close() override;
 
 protected:
@@ -133,7 +135,8 @@ protected:
 
 protected:
 
-	FPanelViewPosition StartViewPosition;
+	FVector2D StartViewPosition; float StartViewZoom;
+
 	FPanelViewPosition CurrentViewPosition;
 	TArray<FPanelViewPosition> PreviousPositions;
 

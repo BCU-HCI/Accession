@@ -107,6 +107,9 @@ public:
 	UFUNCTION()
 	void LocomotionConfirm(FParseRecord& Record);
 
+	UFUNCTION()
+	void LocomotionCancel(FParseRecord& Record);
+
 	// End of Locomotion Implementations
 
 

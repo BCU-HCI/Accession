@@ -103,6 +103,16 @@ void UAccessibilityGraphLocomotionContext::ConfirmSelection()
 	Close();
 }
 
+void UAccessibilityGraphLocomotionContext::CancelLocomotion()
+{
+	if (LinkedEditor.IsValid())
+	{
+		LinkedEditor.Pin()->SetViewLocation(StartViewPosition, StartViewZoom);
+
+		Close();
+	}
+}
+
 bool UAccessibilityGraphLocomotionContext::Close() 
 {
 	UnbindFocusChangedEvent();
@@ -125,7 +135,10 @@ bool UAccessibilityGraphLocomotionContext::MoveViewport(FPanelViewPosition NewVi
 	if (!LinkedEditor.IsValid())
 		return false;
 
-	SGraphPanel* LinkedPanel = LinkedEditor.Pin()->GetGraphPanel();
+	TSharedPtr<SGraphEditor> LinkedEditorPtr = LinkedEditor.Pin();
+	SGraphPanel* LinkedPanel = LinkedEditorPtr->GetGraphPanel();
+
+	LinkedEditorPtr->GetViewLocation(StartViewPosition, StartViewZoom);
 
 	if (!LinkedPanel->JumpToRect(NewViewPosition.BotRight, NewViewPosition.TopLeft))
 	{
