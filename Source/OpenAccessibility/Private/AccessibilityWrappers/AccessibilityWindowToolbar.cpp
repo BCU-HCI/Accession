@@ -262,20 +262,17 @@ bool UAccessibilityWindowToolbar::GetToolKitToolBar(TSharedRef<SWidget> ToolKitW
 	if (CurrChildren->Num() == 0)
 		return false;
 
-	CurrChild = CurrChildren->GetChildAt(0); // Get SOverlay
-	CurrChildren = CurrChild->GetChildren();
-	if (CurrChildren->Num() < 2)
+	OutToolBar = CurrChildren->GetChildAt(0); // Get SHorizontalBox
+	if (!OutToolBar.IsValid()) 
 		return false;
 
-	OutToolBar = CurrChildren->GetChildAt(1); // Get SHorizontalBox
-        if (OutToolBar.IsValid()) return true;
-        else return false;
+	return true;
 }
 
 void UAccessibilityWindowToolbar::BindTicker()
 {
 	FTickerDelegate TickDelegate = FTickerDelegate::CreateUObject(this, &UAccessibilityWindowToolbar::Tick);
-
+	
 	TickDelegateHandle = FTSTicker::GetCoreTicker()
 		.AddTicker(TickDelegate);
 }
@@ -284,4 +281,5 @@ void UAccessibilityWindowToolbar::UnbindTicker()
 {
 	FTSTicker::GetCoreTicker()
 		.RemoveTicker(TickDelegateHandle);
+ 
 }
