@@ -32,6 +32,12 @@ public:
 
 	FVector2D GetChunkBottomRight() const { return BottomRight; }
 
+	void SetVisColor(const FLinearColor& NewColor) const
+	{
+		if (ChunkVisWidget.IsValid())
+			ChunkVisWidget.Pin()->SetBorderBackgroundColor(NewColor);
+	}
+
 public:
 
 	/// <summary>
@@ -48,6 +54,11 @@ public:
 	/// Weak Pointer to the Chunks Visual Widget.
 	/// </summary>
 	TWeakPtr<SBox> ChunkWidget;
+
+	/// <summary>
+	/// Weak Pointer to the Chunks Visual Widget.
+	/// </summary>
+	TWeakPtr<SBorder> ChunkVisWidget;
 
 	/// <summary>
 	/// Weak Pointer to the Chunks Indexer Widget.
@@ -98,7 +109,7 @@ public:
 	void Init();
 	void Init(TSharedRef<SGraphEditor> InGraphEditor);
 
-	bool SelectChunk(int32 Index);
+	bool SelectChunk(const int32& Index);
 
 	bool RevertToPreviousView();
 
@@ -110,9 +121,13 @@ public:
 
 protected:
 
-	bool MoveViewport(FPanelViewPosition NewViewPosition);
+	bool MoveViewport(const FVector2D& InTopLeft, const FVector2D& InBottomRight) const;
+
+	bool MoveViewport(const FPanelViewPosition& NewViewPosition) const;
 
 	// Visuals Methods
+
+	void ChangeChunkVis(const int32& Index, const FLinearColor& NewColor = FLinearColor::Yellow);
 
 	void CreateVisualGrid(TSharedRef<SGraphEditor> InGraphEditor);
 
@@ -156,6 +171,8 @@ protected:
 	TWeakPtr<SGraphEditor> LinkedEditor;
 
 private:
+
+	FTimerHandle SelectionTimerHandle;
 
 	TMap<SWidget*, EVisibility> NativeWidgetVisibility;
 

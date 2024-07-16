@@ -56,7 +56,7 @@ void UAccessibilityGraphLocomotionContext::Init(TSharedRef<SGraphEditor> InGraph
 	BindFocusChangedEvent();
 }
 
-bool UAccessibilityGraphLocomotionContext::SelectChunk(int32 Index)
+bool UAccessibilityGraphLocomotionContext::SelectChunk(const int32& Index)
 {
 	if (Index > ChunkArray.Num() || Index < 0)
 		return false;
@@ -65,19 +65,33 @@ bool UAccessibilityGraphLocomotionContext::SelectChunk(int32 Index)
 
 	SGraphPanel* LinkedPanel = LinkedEditor.Pin()->GetGraphPanel();
 
-	FVector2D TopLeftCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkTopLeft());
-	FVector2D BottomRightCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkBottomRight());
+	FVector2D GraphTopLeftCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkTopLeft());
+	FVector2D GraphBottomRightCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkBottomRight());
 
-	FPanelViewPosition PrevView = CurrentViewPosition;
+	ChangeChunkVis(Index, FLinearColor::Red);
 
-	if (!MoveViewport(FPanelViewPosition(TopLeftCoord, BottomRightCoord)))
-	{
-		UE_LOG(LogOpenAccessibility, Log, TEXT("Failed To Jump To Viewport Coords (TopLeft: %s | BottomRight: %s)"), *TopLeftCoord.ToString(), *BottomRightCoord.ToString());
-		return false;
-	}
+	GEditor->GetTimerManager()->SetTimer(
+		SelectionTimerHandle,
+		[this, Index, GraphTopLeftCoord, GraphBottomRightCoord]()
+		{
+			ChangeChunkVis(Index);
 
-	if (PrevView != FVector2D::ZeroVector)
-		PreviousPositions.Push(PrevView);
+			if (MoveViewport(GraphTopLeftCoord, GraphBottomRightCoord))
+			{
+				if (CurrentViewPosition != FVector2D::ZeroVector)
+					PreviousPositions.Push(CurrentViewPosition);
+
+				CurrentViewPosition = FPanelViewPosition(GraphTopLeftCoord, GraphBottomRightCoord);
+			}
+			else
+			{
+				UE_LOG(LogOpenAccessibility, Log, TEXT("Failed To Jump To Viewport Coords (TopLeft: %s | BottomRight: %s)"), 
+					*GraphTopLeftCoord.ToString(), *GraphBottomRightCoord.ToString());
+			}
+		},
+		0.5f,
+		false
+	);
 
 	return true;
 }
@@ -117,6 +131,9 @@ bool UAccessibilityGraphLocomotionContext::Close()
 {
 	UnbindFocusChangedEvent();
 
+	if (SelectionTimerHandle.IsValid())
+		GEditor->GetTimerManager()->ClearTimer(SelectionTimerHandle);
+
 	RemoveVisualGrid();
 	UnHideNativeVisuals();
 
@@ -130,27 +147,34 @@ bool UAccessibilityGraphLocomotionContext::Close()
 	return true;
 }
 
-bool UAccessibilityGraphLocomotionContext::MoveViewport(FPanelViewPosition NewViewPosition)
+bool UAccessibilityGraphLocomotionContext::MoveViewport(const FVector2D& InTopLeft, const FVector2D& InBottomRight) const
 {
 	if (!LinkedEditor.IsValid())
 		return false;
 
-	TSharedPtr<SGraphEditor> LinkedEditorPtr = LinkedEditor.Pin();
-	SGraphPanel* LinkedPanel = LinkedEditorPtr->GetGraphPanel();
+	SGraphPanel* LinkedPanel = LinkedEditor.Pin()->GetGraphPanel();
 
-	LinkedEditorPtr->GetViewLocation(StartViewPosition, StartViewZoom);
-
-	if (!LinkedPanel->JumpToRect(NewViewPosition.BotRight, NewViewPosition.TopLeft))
-	{
-		return false;
-	}
-
-	CurrentViewPosition = NewViewPosition;
-
-	return true;
+	return LinkedPanel->JumpToRect(InTopLeft, InBottomRight);
 }
 
-void UAccessibilityGraphLocomotionContext::CreateVisualGrid(TSharedRef<SGraphEditor> InGraphEditor) 
+bool UAccessibilityGraphLocomotionContext::MoveViewport(const FPanelViewPosition& NewViewPosition) const
+{
+	if (!LinkedEditor.IsValid())
+		return false;
+
+	SGraphPanel* LinkedPanel = LinkedEditor.Pin()->GetGraphPanel();
+
+	return LinkedPanel->JumpToRect(NewViewPosition.TopLeft, NewViewPosition.BotRight);
+}
+
+void UAccessibilityGraphLocomotionContext::ChangeChunkVis(const int32& Index, const FLinearColor& NewColor)
+{
+	check(Index < ChunkArray.Num() && Index >= 0)
+
+	ChunkArray[Index].SetVisColor(NewColor);
+}
+
+void UAccessibilityGraphLocomotionContext::CreateVisualGrid(TSharedRef<SGraphEditor> InGraphEditor)
 {
 	TSharedPtr<SOverlay> GraphViewport = StaticCastSharedPtr<SOverlay>(InGraphEditor->GetGraphPanel()->GetParentWidget());
 	if (!GraphViewport.IsValid()) 
@@ -179,6 +203,7 @@ void UAccessibilityGraphLocomotionContext::GenerateVisualChunks(TSharedRef<SGrap
 
 	int32 ChunkIndex = -1;
 	TSharedPtr<SBox> ChunkWidget;
+	TSharedPtr<SBorder> ChunkVisWidget;
 	TSharedPtr<SIndexer> ChunkIndexer;
 
 	for (int32 Y = 0; Y < InVisualChunkSize.Y; Y++)
@@ -192,17 +217,17 @@ void UAccessibilityGraphLocomotionContext::GenerateVisualChunks(TSharedRef<SGrap
 			[
 				SAssignNew(ChunkWidget, SBox)
 				[
-					SNew(SBorder)
+					SAssignNew(ChunkVisWidget, SBorder)
 					.Padding(0.5f)
-					.BorderBackgroundColor(FLinearColor(0.f, .75f, 0.f))
+					.BorderBackgroundColor(FLinearColor::Yellow)
 					[
 						SNew(SBorder)
 						.HAlign(HAlign_Center)
 						.VAlign(VAlign_Center)
-						.BorderBackgroundColor(FLinearColor::Green)
+						.BorderBackgroundColor(FLinearColor::Yellow)
 						[
 							SAssignNew(ChunkIndexer, SIndexer)
-							.TextColor(FLinearColor::Green)
+							.TextColor(FLinearColor::Yellow)
 							.IndexValue(ChunkIndex)
 						]
 					]
@@ -210,6 +235,7 @@ void UAccessibilityGraphLocomotionContext::GenerateVisualChunks(TSharedRef<SGrap
 			];
 
 			GraphChunk.ChunkWidget = ChunkWidget;
+			GraphChunk.ChunkVisWidget = ChunkVisWidget;
 			GraphChunk.ChunkIndexer = ChunkIndexer;
 		}
 	}
