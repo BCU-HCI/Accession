@@ -42,10 +42,11 @@ void UAccessibilityGraphLocomotionContext::Init()
 	Init(LinkedEditorPtr.ToSharedRef());
 }
 
-void UAccessibilityGraphLocomotionContext::Init(TSharedRef<SGraphEditor> InGraphEditor) 
+void UAccessibilityGraphLocomotionContext::Init(const TSharedRef<SGraphEditor> InGraphEditor) 
 {
     LinkedEditor = InGraphEditor;
 
+	InGraphEditor->GetViewLocation(StartViewPosition, StartViewZoom);
     InGraphEditor->ZoomToFit(false);
 
     CreateVisualGrid(InGraphEditor);
@@ -61,12 +62,12 @@ bool UAccessibilityGraphLocomotionContext::SelectChunk(const int32& Index)
 	if (Index > ChunkArray.Num() || Index < 0)
 		return false;
 
-	FGraphLocomotionChunk SelectedChunk = ChunkArray[Index];
+	const FGraphLocomotionChunk SelectedChunk = ChunkArray[Index];
 
-	SGraphPanel* LinkedPanel = LinkedEditor.Pin()->GetGraphPanel();
+	const SGraphPanel* LinkedPanel = LinkedEditor.Pin()->GetGraphPanel();
 
-	FVector2D GraphTopLeftCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkTopLeft());
-	FVector2D GraphBottomRightCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkBottomRight());
+	const FVector2D GraphTopLeftCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkTopLeft());
+	const FVector2D GraphBottomRightCoord = LinkedPanel->PanelCoordToGraphCoord(SelectedChunk.GetChunkBottomRight());
 
 	ChangeChunkVis(Index, FLinearColor::Red);
 
@@ -155,8 +156,6 @@ bool UAccessibilityGraphLocomotionContext::MoveViewport(const FVector2D& InTopLe
 	TSharedPtr<SGraphEditor> LinkedEditorPtr = LinkedEditor.Pin();
 	SGraphPanel* LinkedPanel = LinkedEditorPtr->GetGraphPanel();
 
-	LinkedEditorPtr->GetViewLocation(StartViewPosition, StartViewZoom);
-
 	return LinkedPanel->JumpToRect(InTopLeft, InBottomRight);
 }
 
@@ -177,7 +176,7 @@ void UAccessibilityGraphLocomotionContext::ChangeChunkVis(const int32& Index, co
 	ChunkArray[Index].SetVisColor(NewColor);
 }
 
-void UAccessibilityGraphLocomotionContext::CreateVisualGrid(TSharedRef<SGraphEditor> InGraphEditor)
+void UAccessibilityGraphLocomotionContext::CreateVisualGrid(const TSharedRef<SGraphEditor> InGraphEditor)
 {
 	TSharedPtr<SOverlay> GraphViewport = StaticCastSharedPtr<SOverlay>(InGraphEditor->GetGraphPanel()->GetParentWidget());
 	if (!GraphViewport.IsValid()) 
@@ -197,7 +196,7 @@ void UAccessibilityGraphLocomotionContext::CreateVisualGrid(TSharedRef<SGraphEdi
 	];
 }
 
-void UAccessibilityGraphLocomotionContext::GenerateVisualChunks(TSharedRef<SGraphEditor> InGraphEdi, FIntVector2 InVisualChunkSize) 
+void UAccessibilityGraphLocomotionContext::GenerateVisualChunks(const TSharedRef<SGraphEditor> InGraphEditor, FIntVector2 InVisualChunkSize) 
 {
 	ChunkArray.Reset(InVisualChunkSize.X * InVisualChunkSize.Y);
 	ChunkSize = InVisualChunkSize;

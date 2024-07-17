@@ -129,9 +129,9 @@ protected:
 
 	void ChangeChunkVis(const int32& Index, const FLinearColor& NewColor = FLinearColor::Yellow);
 
-	void CreateVisualGrid(TSharedRef<SGraphEditor> InGraphEditor);
+	void CreateVisualGrid(const TSharedRef<SGraphEditor> InGraphEditor);
 
-	void GenerateVisualChunks(TSharedRef<SGraphEditor> InGraphEditor, FIntVector2 InVisualChunkSize = FIntVector2(10));
+	void GenerateVisualChunks(const TSharedRef<SGraphEditor> InGraphEditor, FIntVector2 InVisualChunkSize = FIntVector2(10));
 
 	void CalculateVisualChunksBounds();
 
