@@ -2,6 +2,7 @@
 
 #include "AssetAccessibilityRegistry.h"
 #include "OpenAccessibilityLogging.h"
+#include "BehaviorTree/BehaviorTree.h"
 
 #include "Subsystems/AssetEditorSubsystem.h"
 #include "EdGraph/EdGraph.h"
@@ -50,6 +51,12 @@ void FAssetAccessibilityRegistry::OnAssetOpenedInEditor(UObject* OpenedAsset, IA
 	
 		RegisterMaterialAsset(OpenedMaterial);
 	}
+	else if (UBehaviorTree* OpenedBehaviorTree = Cast<UBehaviorTree>(OpenedAsset))
+	{
+		UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Is A Behavior Tree ||"), *OpenedBehaviorTree->GetName());
+
+		RegisterBehaviorTreeAsset(OpenedBehaviorTree);
+	}
 }
 
 void FAssetAccessibilityRegistry::OnAssetEditorRequestClose(UObject* ClosingAsset, EAssetEditorCloseReason CloseReason)
@@ -62,7 +69,7 @@ void FAssetAccessibilityRegistry::OnAssetEditorRequestClose(UObject* ClosingAsse
 
 bool FAssetAccessibilityRegistry::IsGraphAssetRegistered(const UEdGraph* InUEdGraph) const
 {
-	return GraphAssetIndex.Find(InUEdGraph->GraphGuid) != nullptr;
+	return GraphAssetIndex.Contains(InUEdGraph->GraphGuid);
 }
 
 bool FAssetAccessibilityRegistry::RegisterGraphAsset(const UEdGraph* InGraph)
@@ -201,6 +208,14 @@ void FAssetAccessibilityRegistry::RegisterMaterialAsset(const UMaterial* InMater
 		TSharedPtr<FGraphIndexer> GraphIndexer = MakeShared<FGraphIndexer>(InMaterial->MaterialGraph.Get());
 
 		RegisterGraphAsset(InMaterial->MaterialGraph.Get(), GraphIndexer.ToSharedRef());
+	}
+}
+
+void FAssetAccessibilityRegistry::RegisterBehaviorTreeAsset(const UBehaviorTree* InBehaviorTree)
+{
+	if (InBehaviorTree->BTGraph->IsValidLowLevel())
+	{
+		RegisterGraphAsset(InBehaviorTree->BTGraph);
 	}
 }
 

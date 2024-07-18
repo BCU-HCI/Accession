@@ -6,6 +6,8 @@
 
 #include "GraphIndexer.h"
 
+class UBehaviorTree;
+
 /**
  * 
  */
@@ -46,7 +48,10 @@ public:
 	/// <param name="InGraph">The Graph to Find the Linked Indexer For.</param>
 	/// <returns>Returns the Found SharedReference of the GraphIndexer when found successfully. Returns nullptr on fail.</returns>
 	TSharedRef<FGraphIndexer> GetGraphIndexer(const UEdGraph* InGraph) const {
-		return GraphAssetIndex[InGraph->GraphGuid].ToSharedRef();
+		if (GraphAssetIndex.Contains(InGraph->GraphGuid))
+			return GraphAssetIndex[InGraph->GraphGuid].ToSharedRef();
+
+		return TSharedRef<FGraphIndexer>();
 	}
 
 	/// <summary>
@@ -137,6 +142,11 @@ private:
 	/// </summary>
 	/// <param name="InMaterial">The UMaterial Assset to Register.</param>
 	void RegisterMaterialAsset(const UMaterial* InMaterial);
+
+	/// <summary>
+	/// Registers the provided Behavior Tree Asset, and its core components, with the Registry.
+	/// </summary>
+	void RegisterBehaviorTreeAsset(const UBehaviorTree* InBehaviorTree);
 
 	/// <summary>
 	/// Registers the provided UWorld Asset with the Registry.

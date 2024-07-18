@@ -45,6 +45,7 @@ public class OpenAccessibility : ModuleRules
 				"UnrealEd",
                 "GraphEditor",
                 "Kismet",
+                "AIModule",
 
 				// Slate UI
                 "Slate",
