@@ -31,6 +31,8 @@ public:
 	/// <returns>True, if the Graph was Successfully Registered. False, if the Graph Could Not Be Registered.</returns>
 	bool RegisterGraphAsset(const UEdGraph* InGraph);
 
+	bool RegisterGraphAsset(const UEdGraph* InGraph, const TSharedRef<FGraphIndexer> InGraphIndexer);
+
 	/// <summary>
 	/// Unregisters the provided graph asset from the registry.
 	/// </summary>
@@ -128,19 +130,19 @@ private:
 	/// Registers the provided Blueprint Asset, and its componets, with the Registry.
 	/// </summary>
 	/// <param name="InBlueprint">The UBlueprint Asset To Register.</param>
-	void RegisterBlueprintAsset(UBlueprint* InBlueprint);
+	void RegisterBlueprintAsset(const UBlueprint* InBlueprint);
 
 	/// <summary>
 	/// Registers the provided Material Asset with the Registry.
 	/// </summary>
 	/// <param name="InMaterial">The UMaterial Assset to Register.</param>
-	void RegisterMaterialAsset(UMaterial* InMaterial);
+	void RegisterMaterialAsset(const UMaterial* InMaterial);
 
 	/// <summary>
 	/// Registers the provided UWorld Asset with the Registry.
 	/// </summary>
 	/// <param name="InWorld">The UWorld Asset to Register.</param>
-	void RegisterUWorldAsset(UWorld* InWorld);
+	void RegisterUWorldAsset(const UWorld* InWorld);
 
 public:
 

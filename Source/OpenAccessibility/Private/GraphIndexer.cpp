@@ -280,6 +280,9 @@ void FGraphIndexer::GetAvailableIndex(int& OutIndex)
 
 void FGraphIndexer::BuildGraphIndex()
 {
+	if (LinkedGraph == nullptr)
+		return;
+
 	for (TObjectPtr<UEdGraphNode> Node : LinkedGraph->Nodes)
 	{
 		AddNode(Node);

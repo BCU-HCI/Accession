@@ -82,6 +82,22 @@ bool FAssetAccessibilityRegistry::RegisterGraphAsset(const UEdGraph* InGraph)
 	return true;
 }
 
+bool FAssetAccessibilityRegistry::RegisterGraphAsset(const UEdGraph* InGraph, const TSharedRef<FGraphIndexer> InGraphIndexer)
+{
+	GraphAssetIndex.Add(InGraph->GraphGuid, InGraphIndexer.ToSharedPtr());
+
+	for (auto& ChildGraph : InGraph->SubGraphs)
+	{
+		if (!RegisterGraphAsset(ChildGraph))
+		{
+			UE_LOG(LogOpenAccessibility, Error, TEXT("|| AssetRegistry || Error When Logging Child Graph: { %s } From Parent: { %s} ||"), *ChildGraph->GetName(), *InGraph->GetName());
+			return false;
+		}
+	}
+
+	return true;
+}
+
 bool FAssetAccessibilityRegistry::UnregisterGraphAsset(const UEdGraph* UEdGraph)
 {
 	GraphAssetIndex.Remove(UEdGraph->GraphGuid);
@@ -156,7 +172,7 @@ void FAssetAccessibilityRegistry::EmptyGameWorldAssetIndex()
 	throw std::exception("The method or operation is not implemented.");	
 }
 
-void FAssetAccessibilityRegistry::RegisterBlueprintAsset(UBlueprint* InBlueprint)
+void FAssetAccessibilityRegistry::RegisterBlueprintAsset(const UBlueprint* InBlueprint)
 {
 	// Register the Blueprint's Graphs
 	TArray<UEdGraph*> Graphs;
@@ -178,14 +194,17 @@ void FAssetAccessibilityRegistry::RegisterBlueprintAsset(UBlueprint* InBlueprint
 	}
 }
 
-void FAssetAccessibilityRegistry::RegisterMaterialAsset(UMaterial* InMaterial)
+void FAssetAccessibilityRegistry::RegisterMaterialAsset(const UMaterial* InMaterial)
 {
-	const UEdGraph* MaterialGraph = dynamic_cast<UMaterialGraph*>(InMaterial->MaterialGraph.Get());
+	if (InMaterial->MaterialGraph->IsValidLowLevel())
+	{
+		TSharedPtr<FGraphIndexer> GraphIndexer = MakeShared<FGraphIndexer>(InMaterial->MaterialGraph.Get());
 
-	RegisterGraphAsset(MaterialGraph);
+		RegisterGraphAsset(InMaterial->MaterialGraph.Get(), GraphIndexer.ToSharedRef());
+	}
 }
 
-void FAssetAccessibilityRegistry::RegisterUWorldAsset(UWorld* InWorld)
+void FAssetAccessibilityRegistry::RegisterUWorldAsset(const UWorld* InWorld)
 {
 	throw std::exception("The method or operation is not implemented.");
 } 
