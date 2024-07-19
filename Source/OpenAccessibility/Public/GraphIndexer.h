@@ -14,6 +14,8 @@ struct FEdGraphEditAction;
 class OPENACCESSIBILITY_API FGraphIndexer 
 {
 public:
+
+	FGraphIndexer();
 	FGraphIndexer(const UEdGraph* GraphToIndex);
 	~FGraphIndexer();
 

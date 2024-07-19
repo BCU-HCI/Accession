@@ -9,6 +9,11 @@
 #include "GraphEditAction.h"
 #include "OpenAccessibilityLogging.h"
 
+FGraphIndexer::FGraphIndexer()
+{
+
+}
+
 FGraphIndexer::FGraphIndexer(const UEdGraph* GraphToIndex)
 	: LinkedGraph(const_cast<UEdGraph*>(GraphToIndex))
 {
