@@ -36,13 +36,40 @@ public:
 
 protected:
 
+	// Component Finders
+
 	bool FindGraphActionMenu(const TSharedRef<SWidget>& SearchRoot);
 
 	bool FindTreeView(const TSharedRef<SWidget>& SearchRoot);
 
 	bool FindCheckBoxes(const TSharedRef<SWidget>& SearchRoot);
 
+	// Component Tickers
+
+	struct FTreeViewTickRequirements
+	{
+	public:
+
+		FTreeViewTickRequirements()
+			: PrevNumItemsBeingObserved(-1)
+			, PrevNumGeneratedChildren(-1)
+			, PrevScrollDistance(-1.00)
+		{
+
+		}
+
+		int32 PrevNumItemsBeingObserved;
+		int32 PrevNumGeneratedChildren;
+		double PrevScrollDistance;
+	};
+
+	bool TreeViewRequiresTick();
+
+	void TickTreeViewAccessibility();
+
 protected:
+
+	FTreeViewTickRequirements TreeViewTickRequirements;
 
 	TWeakPtr<SGraphActionMenu> GraphMenu = TWeakPtr<SGraphActionMenu>();
 	TWeakPtr<SEditableTextBox> FilterTextBox = TWeakPtr<SEditableTextBox>();

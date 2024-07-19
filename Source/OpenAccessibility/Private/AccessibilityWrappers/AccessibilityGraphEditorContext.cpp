@@ -27,6 +27,10 @@ void UAccessibilityGraphEditorContext::Init(TSharedRef<IMenu> InMenu, TSharedRef
 	{
 		UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphEditorContext: Cannot Find a STreeView Widget"));
 	}
+	else
+	{
+		TreeViewTickRequirements = FTreeViewTickRequirements();
+	}
 
 	if (!FindCheckBoxes(WindowRef))
 	{
@@ -37,6 +41,17 @@ void UAccessibilityGraphEditorContext::Init(TSharedRef<IMenu> InMenu, TSharedRef
 bool UAccessibilityGraphEditorContext::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (TreeViewRequiresTick())
+	{
+		TickTreeViewAccessibility();
+
+		TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
+
+		TreeViewTickRequirements.PrevNumGeneratedChildren = TreeViewPtr->GetNumGeneratedChildren();
+		TreeViewTickRequirements.PrevNumItemsBeingObserved = TreeViewPtr->GetNumItemsBeingObserved();
+		TreeViewTickRequirements.PrevScrollDistance = TreeViewPtr->GetScrollDistance().Y;
+	}
 
 	return true;
 }
@@ -176,5 +191,29 @@ bool UAccessibilityGraphEditorContext::FindCheckBoxes(const TSharedRef<SWidget>&
 	}
 
 	return false;
+}
+
+bool UAccessibilityGraphEditorContext::TreeViewRequiresTick()
+{
+	if (!TreeView.IsValid() || !GraphMenu.IsValid())
+		return false;
+
+	bool bFilterTextChange = FilterTextBox.IsValid()
+		? FilterTextBox.Pin()->GetText().ToString() != GraphMenu.Pin()->LastUsedFilterText
+		: false;
+
+	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
+
+	return (
+		bFilterTextChange ||
+		TreeViewPtr->GetNumItemsBeingObserved() != TreeViewTickRequirements.PrevNumItemsBeingObserved ||
+		TreeViewPtr->GetNumGeneratedChildren() != TreeViewTickRequirements.PrevNumGeneratedChildren ||
+		TreeViewPtr->GetScrollDistance().Y != TreeViewTickRequirements.PrevScrollDistance
+	);
+}
+
+void UAccessibilityGraphEditorContext::TickTreeViewAccessibility()
+{
+	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
 }
 
