@@ -3,6 +3,8 @@
 #include "AccessibilityWrappers/AccessibilityGraphEditorContext.h"
 
 #include "OpenAccessibilityLogging.h"
+#include "AccessibilityWidgets/SIndexer.h"
+#include "AccessibilityWidgets/SContentIndexer.h"
 #include "Widgets/SWindow.h"
 #include "Widgets/Input/SEditableTextBox.h"
 
@@ -42,7 +44,7 @@ bool UAccessibilityGraphEditorContext::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (TreeViewRequiresTick())
+	if (TreeViewCanTick())
 	{
 		TickTreeViewAccessibility();
 
@@ -151,6 +153,11 @@ FORCEINLINE TArray<TSharedPtr<T>> GetWidgetDescendants(const TSharedRef<SWidget>
 	return FoundDescendants;
 }
 
+const int32 UAccessibilityGraphEditorContext::GetStaticIndexOffset()
+{
+	return CheckBoxes.Num();
+}
+
 bool UAccessibilityGraphEditorContext::FindGraphActionMenu(const TSharedRef<SWidget>& SearchRoot)
 {
 	TSharedPtr<SGraphActionMenu> GraphActionMenu = GetWidgetDescendant<SGraphActionMenu>(SearchRoot, "SGraphActionMenu");
@@ -186,11 +193,27 @@ bool UAccessibilityGraphEditorContext::FindCheckBoxes(const TSharedRef<SWidget>&
 	TArray<TSharedPtr<SCheckBox>> FoundCheckBoxes = GetWidgetDescendants<SCheckBox>(SearchRoot, "SCheckBox");
 	if (!FoundCheckBoxes.IsEmpty())
 	{
+		for (int i = 0; i < FoundCheckBoxes.Num(); i++)
+		{
+			TSharedPtr<SCheckBox> CheckBox = FoundCheckBoxes[i];
+
+			CheckBox->SetContent(
+				SNew(SIndexer)
+				.IndexValue(i)
+			);
+		}
+
 		CheckBoxes.Append(FoundCheckBoxes);
+
 		return true;
 	}
 
 	return false;
+}
+
+bool UAccessibilityGraphEditorContext::TreeViewCanTick()
+{
+	return TreeView.IsValid() && GraphMenu.IsValid();
 }
 
 bool UAccessibilityGraphEditorContext::TreeViewRequiresTick()
@@ -214,6 +237,62 @@ bool UAccessibilityGraphEditorContext::TreeViewRequiresTick()
 
 void UAccessibilityGraphEditorContext::TickTreeViewAccessibility()
 {
+	if (!TreeViewRequiresTick())
+		return;
+
 	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
+
+	TArray<TSharedPtr<FGraphActionNode>> Items = TArray<TSharedPtr<FGraphActionNode>>(
+		TreeViewPtr->GetRootItems()
+	);
+
+	{
+		TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget = nullptr;
+		const int32 IndexOffset = GetStaticIndexOffset();
+
+		while (Items.Num() > 0)
+		{
+			const TSharedPtr<FGraphActionNode> Item = Items[0];
+			Items.RemoveAt(0);
+
+			if (TreeViewPtr->IsItemExpanded(Item))
+				Items.Append(Item->Children);
+
+			ItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
+				TreeViewPtr->WidgetFromItem(Item)
+			);
+			if (!ItemWidget.IsValid())
+				continue;
+
+			TSharedPtr<SWidget> ItemContent = ItemWidget->GetContent();
+
+			if (ItemContent->GetType() == "SContentIndexer")
+			{
+				UpdateAccessibilityWidget(StaticCastSharedRef<SContentIndexer>(
+					ItemContent.ToSharedRef()), 
+					IndexOffset + ItemWidget->GetIndexInList()
+				);
+			}
+			else
+			{
+				ItemWidget->SetContent(
+					CreateAccessibilityWrapper(ItemContent.ToSharedRef(), IndexOffset + ItemWidget->GetIndexInList())
+				);
+			}
+		}
+	}
+}
+
+void UAccessibilityGraphEditorContext::UpdateAccessibilityWidget(const TSharedRef<SContentIndexer>& ContentIndexer, const int32& NewIndex)
+{
+	ContentIndexer->UpdateIndex(NewIndex);
+}
+
+const TSharedRef<SContentIndexer> UAccessibilityGraphEditorContext::CreateAccessibilityWrapper(const TSharedRef<SWidget>& ContentToWrap, const int32& Index)
+{
+	return SNew(SContentIndexer)
+		.IndexValue(Index)
+		.IndexPositionToContent(EIndexerPosition::Left)
+		.ContentToIndex(ContentToWrap);
 }
 

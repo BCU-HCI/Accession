@@ -11,6 +11,8 @@
 
 #include "AccessibilityGraphEditorContext.generated.h"
 
+class SContentIndexer;
+
 UCLASS()
 class OPENACCESSIBILITY_API UAccessibilityGraphEditorContext : public UPhraseTreeContextMenuObject
 {
@@ -36,6 +38,10 @@ public:
 
 protected:
 
+	// Index Utils
+
+	const int32 GetStaticIndexOffset();
+
 	// Component Finders
 
 	bool FindGraphActionMenu(const TSharedRef<SWidget>& SearchRoot);
@@ -54,19 +60,25 @@ protected:
 			: PrevNumItemsBeingObserved(-1)
 			, PrevNumGeneratedChildren(-1)
 			, PrevScrollDistance(-1.00)
-		{
-
-		}
+		{ }
 
 		int32 PrevNumItemsBeingObserved;
 		int32 PrevNumGeneratedChildren;
 		double PrevScrollDistance;
 	};
 
+	bool TreeViewCanTick();
+
 	bool TreeViewRequiresTick();
 
 	void TickTreeViewAccessibility();
 
+	// Widget Utils
+
+	void UpdateAccessibilityWidget(const TSharedRef<SContentIndexer>& TableRow, const int32& NewIndex);
+
+	const TSharedRef<SContentIndexer> CreateAccessibilityWrapper(const TSharedRef<SWidget>& ContentToWrap, const int32& Index);
+	
 protected:
 
 	FTreeViewTickRequirements TreeViewTickRequirements;

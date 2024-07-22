@@ -298,6 +298,8 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 						FOpenAccessibilityCommunicationModule::Get().PhraseTree->AsShared()
 
 					);
+
+					GraphContext->ScaleMenu(1.5f);
 				}
 
 			}
