@@ -68,8 +68,6 @@ public:
 
 	void NodeAddScroll(FParseRecord& Record);
 
-	void NodeAddToggleContext(FParseRecord& Record);
-
 	// End of Node Add Implementation
 
 

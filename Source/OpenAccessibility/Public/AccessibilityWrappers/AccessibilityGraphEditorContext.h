@@ -44,6 +44,8 @@ public:
 
 	void SelectAction(const int32& InIndex);
 
+	FString GetFilterText();
+
 	void SetFilterText(const FString& NewString);
 
 	void AppendFilterText(const FString& StringToAdd);

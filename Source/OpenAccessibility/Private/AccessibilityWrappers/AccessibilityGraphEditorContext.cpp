@@ -132,13 +132,18 @@ void UAccessibilityGraphEditorContext::SelectAction(const int32& InIndex)
 	}
 }
 
+FString UAccessibilityGraphEditorContext::GetFilterText()
+{
+	return FilterTextBox.IsValid() ? FilterTextBox.Pin()->GetText().ToString() : FString();
+}
+
 void UAccessibilityGraphEditorContext::SetFilterText(const FString& NewString)
 {
 	if (!FilterTextBox.IsValid())
 		return;
 
 	FilterTextBox.Pin()->SetText(
-		NewString
+		FText::FromString(NewString)
 	);
 }
 
