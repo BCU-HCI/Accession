@@ -50,6 +50,7 @@ bool UAccessibilityGraphEditorContext::Tick(float DeltaTime)
 
 		TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
 
+		TreeViewTickRequirements.PrevSearchText = FilterTextBox.Pin()->GetText().ToString();
 		TreeViewTickRequirements.PrevNumGeneratedChildren = TreeViewPtr->GetNumGeneratedChildren();
 		TreeViewTickRequirements.PrevNumItemsBeingObserved = TreeViewPtr->GetNumItemsBeingObserved();
 		TreeViewTickRequirements.PrevScrollDistance = TreeViewPtr->GetScrollDistance().Y;
@@ -87,8 +88,106 @@ void UAccessibilityGraphEditorContext::ScaleMenu(const float ScaleFactor)
 	}
 }
 
+TSharedPtr<FGraphActionNode> UAccessibilityGraphEditorContext::GetTreeViewAction(const int32& InIndex)
+{
+	TArrayView<const TSharedPtr<FGraphActionNode>> Items = TreeView.Pin()->GetItems();
+
+	if (Items.Num() > InIndex && InIndex >= 0)
+		return Items[InIndex];
+
+	return TSharedPtr<FGraphActionNode>();
+}
+
+void UAccessibilityGraphEditorContext::SelectAction(const int32& InIndex)
+{
+	if (InIndex < 0)
+		return;
+
+	if (!CheckBoxes.IsEmpty() && InIndex < CheckBoxes.Num())
+	{
+		if (CheckBoxes[InIndex].IsValid())
+		{
+			CheckBoxes[InIndex].Pin()->ToggleCheckedState();
+			return;
+		}
+	}
+
+	TSharedPtr<FGraphActionNode> ChosenTreeViewAction = GetTreeViewAction(InIndex - GetStaticIndexOffset());
+	if (!ChosenTreeViewAction.IsValid())
+	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("SelectGraphAction: Provided TreeView Action is Invalid"))
+		return;
+	}
+
+	auto TreeViewPtr = TreeView.Pin();
+	if (ChosenTreeViewAction->IsActionNode())
+	{
+		TreeViewPtr->Private_ClearSelection();
+		TreeViewPtr->Private_SetItemSelection(ChosenTreeViewAction, true, true);
+		TreeViewPtr->Private_SignalSelectionChanged(ESelectInfo::Type::OnMouseClick);
+	}
+	else
+	{
+		TreeViewPtr->Private_OnItemDoubleClicked(ChosenTreeViewAction);
+	}
+}
+
+void UAccessibilityGraphEditorContext::SetFilterText(const FString& NewString)
+{
+	if (!FilterTextBox.IsValid())
+		return;
+
+	FilterTextBox.Pin()->SetText(
+		NewString
+	);
+}
+
+void UAccessibilityGraphEditorContext::AppendFilterText(const FString& StringToAdd)
+{
+	if (!FilterTextBox.IsValid())
+		return;
+
+	TSharedPtr<SEditableTextBox> FilterTextBoxPtr = FilterTextBox.Pin();
+
+	FilterTextBoxPtr->SetText(
+		FText::FromString( FilterTextBoxPtr->GetText().ToString() + TEXT(" ") + StringToAdd )
+	);
+}
+
+void UAccessibilityGraphEditorContext::SetScrollDistance(const float NewDistance)
+{
+	if (TreeView.IsValid())
+		return;
+
+	TreeView.Pin()->SetScrollOffset(NewDistance);
+}
+
+void UAccessibilityGraphEditorContext::AppendScrollDistance(const float DistanceToAdd)
+{
+	auto TreeViewPtr = TreeView.Pin();
+
+	if (TreeViewPtr->GetScrollOffset() + DistanceToAdd < 0.0f)
+	{
+		TreeViewPtr->SetScrollOffset(0.0f);
+		return;
+	}
+
+	TreeViewPtr->AddScrollOffset(DistanceToAdd);
+}
+
+void UAccessibilityGraphEditorContext::SetScrollDistanceTop()
+{
+	TreeView.Pin()->ScrollToTop();
+}
+
+void UAccessibilityGraphEditorContext::SetScrollDistanceBottom()
+{
+	TreeView.Pin()->ScrollToBottom();
+}
+
+
 template<class T = SWidget>
-FORCEINLINE TSharedPtr<T> GetWidgetDescendant(const TSharedRef<SWidget>& SearchRoot, const FString& TargetWidgetTypeName)
+[[nodiscard]] FORCEINLINE TSharedPtr<T> GetWidgetDescendant(const TSharedRef<SWidget>& SearchRoot, const FString& TargetWidgetTypeName)
 {
 	if (SearchRoot->GetType() == TargetWidgetTypeName)
 		return StaticCastSharedRef<T>(SearchRoot);
@@ -119,7 +218,7 @@ FORCEINLINE TSharedPtr<T> GetWidgetDescendant(const TSharedRef<SWidget>& SearchR
 }
 
 template<class T = SWidget>
-FORCEINLINE TArray<TSharedPtr<T>> GetWidgetDescendants(const TSharedRef<SWidget>& SearchRoot, const FString& TargetWidgetTypeString)
+[[nodiscard]] FORCEINLINE TArray<TSharedPtr<T>> GetWidgetDescendants(const TSharedRef<SWidget>& SearchRoot, const FString& TargetWidgetTypeString)
 {
 	TArray<TSharedPtr<T>> FoundDescendants = TArray<TSharedPtr<T>>();
 
@@ -222,7 +321,7 @@ bool UAccessibilityGraphEditorContext::TreeViewRequiresTick()
 		return false;
 
 	bool bFilterTextChange = FilterTextBox.IsValid()
-		? FilterTextBox.Pin()->GetText().ToString() != GraphMenu.Pin()->LastUsedFilterText
+		? FilterTextBox.Pin()->GetText().ToString() != TreeViewTickRequirements.PrevSearchText
 		: false;
 
 	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
@@ -233,7 +332,7 @@ bool UAccessibilityGraphEditorContext::TreeViewRequiresTick()
 		TreeViewPtr->GetNumGeneratedChildren() != TreeViewTickRequirements.PrevNumGeneratedChildren ||
 		TreeViewPtr->GetScrollDistance().Y != TreeViewTickRequirements.PrevScrollDistance
 	);
-}
+} 
 
 void UAccessibilityGraphEditorContext::TickTreeViewAccessibility()
 {
@@ -246,39 +345,38 @@ void UAccessibilityGraphEditorContext::TickTreeViewAccessibility()
 		TreeViewPtr->GetRootItems()
 	);
 
+
+	TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget = nullptr;
+	const int32 IndexOffset = GetStaticIndexOffset();
+
+	while (Items.Num() > 0)
 	{
-		TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget = nullptr;
-		const int32 IndexOffset = GetStaticIndexOffset();
+		const TSharedPtr<FGraphActionNode> Item = Items[0];
+		Items.RemoveAt(0);
 
-		while (Items.Num() > 0)
+		if (TreeViewPtr->IsItemExpanded(Item))
+			Items.Append(Item->Children);
+
+		ItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
+			TreeViewPtr->WidgetFromItem(Item)
+		);
+		if (!ItemWidget.IsValid())
+			continue;
+
+		TSharedPtr<SWidget> ItemContent = ItemWidget->GetContent();
+
+		if (ItemContent->GetType() == "SContentIndexer")
 		{
-			const TSharedPtr<FGraphActionNode> Item = Items[0];
-			Items.RemoveAt(0);
-
-			if (TreeViewPtr->IsItemExpanded(Item))
-				Items.Append(Item->Children);
-
-			ItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
-				TreeViewPtr->WidgetFromItem(Item)
+			UpdateAccessibilityWidget(
+				StaticCastSharedRef<SContentIndexer>(ItemContent.ToSharedRef()), 
+				IndexOffset + ItemWidget->GetIndexInList()
 			);
-			if (!ItemWidget.IsValid())
-				continue;
-
-			TSharedPtr<SWidget> ItemContent = ItemWidget->GetContent();
-
-			if (ItemContent->GetType() == "SContentIndexer")
-			{
-				UpdateAccessibilityWidget(StaticCastSharedRef<SContentIndexer>(
-					ItemContent.ToSharedRef()), 
-					IndexOffset + ItemWidget->GetIndexInList()
-				);
-			}
-			else
-			{
-				ItemWidget->SetContent(
-					CreateAccessibilityWrapper(ItemContent.ToSharedRef(), IndexOffset + ItemWidget->GetIndexInList())
-				);
-			}
+		}
+		else
+		{
+			ItemWidget->SetContent(
+				CreateAccessibilityWrapper(ItemContent.ToSharedRef(), IndexOffset + ItemWidget->GetIndexInList())
+			);
 		}
 	}
 }

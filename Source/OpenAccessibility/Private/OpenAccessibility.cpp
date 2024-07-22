@@ -299,7 +299,7 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 
 					);
 
-					GraphContext->ScaleMenu(1.5f);
+					GraphContext->ScaleMenu(1.5f); 
 				}
 
 			}

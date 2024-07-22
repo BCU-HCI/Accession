@@ -36,6 +36,26 @@ public:
 
 	// -- End of UPhraseTreeContextMenuObject Implementation
 
+
+
+	// -- Event Actions
+
+	TSharedPtr<FGraphActionNode> GetTreeViewAction(const int32& InIndex);
+
+	void SelectAction(const int32& InIndex);
+
+	void SetFilterText(const FString& NewString);
+
+	void AppendFilterText(const FString& StringToAdd);
+
+	void SetScrollDistance(const float NewDistance);
+
+	void AppendScrollDistance(const float DistanceToAdd);
+
+	void SetScrollDistanceTop();
+
+	void SetScrollDistanceBottom();
+
 protected:
 
 	// Index Utils
@@ -57,11 +77,13 @@ protected:
 	public:
 
 		FTreeViewTickRequirements()
-			: PrevNumItemsBeingObserved(-1)
+			: PrevSearchText(FString())
+			, PrevNumItemsBeingObserved(-1)
 			, PrevNumGeneratedChildren(-1)
 			, PrevScrollDistance(-1.00)
 		{ }
 
+		FString PrevSearchText;
 		int32 PrevNumItemsBeingObserved;
 		int32 PrevNumGeneratedChildren;
 		double PrevScrollDistance;
