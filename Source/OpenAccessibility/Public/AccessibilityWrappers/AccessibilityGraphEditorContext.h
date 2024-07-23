@@ -21,8 +21,6 @@ class OPENACCESSIBILITY_API UAccessibilityGraphEditorContext : public UPhraseTre
 public:
 
 	UAccessibilityGraphEditorContext();
-	UAccessibilityGraphEditorContext(TSharedRef<IMenu> Menu);
-
 
 	// -- UPhraseTreeContextMenuObject Implementation
 

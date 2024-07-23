@@ -551,8 +551,6 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record)
 			return TSharedPtr<IMenu>();
 		}
 
-		FSlateApplication::Get().SetKeyboardFocus(ContextWidgetToFocus);
-
 		FWidgetPath KeyboardFocusPath;
 		if (FSlateApplication::Get().FindPathToWidget(ContextWidgetToFocus.ToSharedRef(), KeyboardFocusPath))
 		{
@@ -625,8 +623,6 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddPinMenu(FParseRecord &Record)
 			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddMenu: Context Keyboard Focus Widget Not Found"));            
 			return TSharedPtr<IMenu>();
 		}
-
-		FSlateApplication::Get().SetKeyboardFocus(ContextWidgetToFocus);
 
 		FWidgetPath KeyboardFocusPath;
 		if (FSlateApplication::Get().FindPathToWidget(ContextWidgetToFocus.ToSharedRef(), KeyboardFocusPath))

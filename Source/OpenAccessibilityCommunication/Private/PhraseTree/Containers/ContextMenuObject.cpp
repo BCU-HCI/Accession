@@ -45,6 +45,8 @@ void UPhraseTreeContextMenuObject::Init(TSharedRef<IMenu> InMenu, TSharedRef<FPh
 		InMenu->GetContent().ToSharedRef()
 	);
 
+	this->ContextRoot = InContextRoot;
+
 	BindMenuDismissed(InMenu);
 	BindTickDelegate();
 }
