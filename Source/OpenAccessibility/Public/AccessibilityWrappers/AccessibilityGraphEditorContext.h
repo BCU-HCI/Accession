@@ -68,7 +68,7 @@ protected:
 
 	bool FindTreeView(const TSharedRef<SWidget>& SearchRoot);
 
-	bool FindCheckBoxes(const TSharedRef<SWidget>& SearchRoot);
+	bool FindStaticComponents(const TSharedRef<SWidget>& SearchRoot);
 
 	// Component Tickers
 

@@ -5,6 +5,8 @@
 #include "OpenAccessibilityLogging.h"
 #include "AccessibilityWidgets/SIndexer.h"
 #include "AccessibilityWidgets/SContentIndexer.h"
+#include "Utils/WidgetUtils.h"
+
 #include "Widgets/SWindow.h"
 #include "Widgets/Input/SEditableTextBox.h"
 
@@ -25,6 +27,11 @@ void UAccessibilityGraphEditorContext::Init(TSharedRef<IMenu> InMenu, TSharedRef
 		UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphEditorContext: Cannot Find a SGraphActionMenu Widget"));
 	}
 
+	if (!FindStaticComponents(WindowRef))
+	{
+		UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphEditorContext: Cannot Find Any Static Components"));
+	}
+
 	if (!FindTreeView(WindowRef))
 	{
 		UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphEditorContext: Cannot Find a STreeView Widget"));
@@ -32,11 +39,6 @@ void UAccessibilityGraphEditorContext::Init(TSharedRef<IMenu> InMenu, TSharedRef
 	else
 	{
 		TreeViewTickRequirements = FTreeViewTickRequirements();
-	}
-
-	if (!FindCheckBoxes(WindowRef))
-	{
-		UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphEditorContext: Cannot Find Any SCheckBox Widgets"));
 	}
 }
 
@@ -92,8 +94,8 @@ TSharedPtr<FGraphActionNode> UAccessibilityGraphEditorContext::GetTreeViewAction
 {
 	TArrayView<const TSharedPtr<FGraphActionNode>> Items = TreeView.Pin()->GetItems();
 
-	if (Items.Num() > InIndex && InIndex >= 0)
-		return Items[InIndex];
+	if (TreeView.IsValid() && Items.Num() > InIndex && InIndex >= 0)
+		return TreeView.Pin()->GetItems()[InIndex];
 
 	return TSharedPtr<FGraphActionNode>();
 }
@@ -190,73 +192,6 @@ void UAccessibilityGraphEditorContext::SetScrollDistanceBottom()
 	TreeView.Pin()->ScrollToBottom();
 }
 
-
-template<class T = SWidget>
-[[nodiscard]] FORCEINLINE TSharedPtr<T> GetWidgetDescendant(const TSharedRef<SWidget>& SearchRoot, const FString& TargetWidgetTypeName)
-{
-	if (SearchRoot->GetType() == TargetWidgetTypeName)
-		return StaticCastSharedRef<T>(SearchRoot);
-
-	TArray<FChildren*> ChildrenToSearch = TArray {
-		SearchRoot->GetChildren()
-	};
-
-	TSharedPtr<SWidget> CurrentChild;
-	while (ChildrenToSearch.Num() > 0)
-	{
-		FChildren* Children = ChildrenToSearch.Pop();
-
-		for (int i = 0; i < Children->Num(); i++)
-		{
-			CurrentChild = Children->GetChildAt(i);
-
-			if (CurrentChild->GetTypeAsString() == TargetWidgetTypeName)
-			{
-				return StaticCastSharedPtr<T>(CurrentChild);
-			}
-
-			ChildrenToSearch.Add(CurrentChild->GetChildren());
-		}
-	}
-
-	return TSharedPtr<T>();
-}
-
-template<class T = SWidget>
-[[nodiscard]] FORCEINLINE TArray<TSharedPtr<T>> GetWidgetDescendants(const TSharedRef<SWidget>& SearchRoot, const FString& TargetWidgetTypeString)
-{
-	TArray<TSharedPtr<T>> FoundDescendants = TArray<TSharedPtr<T>>();
-
-	if (SearchRoot->GetTypeAsString() == TargetWidgetTypeString)
-		FoundDescendants.Add(
-			StaticCastSharedRef<T>(SearchRoot)
-		);
-
-	TArray<FChildren*> ChildrenToSearch = TArray {
-		SearchRoot->GetChildren()
-	};
-
-	TSharedPtr<SWidget> CurrentChild;
-	while (ChildrenToSearch.Num() > 0)
-	{
-		FChildren* Children = ChildrenToSearch.Pop();
-
-		for (int i = 0; i < Children->Num(); i++)
-		{
-			CurrentChild = Children->GetChildAt(i);
-
-			if (CurrentChild->GetTypeAsString() == TargetWidgetTypeString)
-				FoundDescendants.Add(
-					StaticCastSharedPtr<T>(CurrentChild)
-				);
-
-			ChildrenToSearch.Add(CurrentChild->GetChildren());
-		}
-	}
-
-	return FoundDescendants;
-}
-
 const int32 UAccessibilityGraphEditorContext::GetStaticIndexOffset()
 {
 	return CheckBoxes.Num();
@@ -264,7 +199,7 @@ const int32 UAccessibilityGraphEditorContext::GetStaticIndexOffset()
 
 bool UAccessibilityGraphEditorContext::FindGraphActionMenu(const TSharedRef<SWidget>& SearchRoot)
 {
-	TSharedPtr<SGraphActionMenu> GraphActionMenu = GetWidgetDescendant<SGraphActionMenu>(SearchRoot, "SGraphActionMenu");
+	TSharedPtr<SGraphActionMenu> GraphActionMenu = GetWidgetDescendant<SGraphActionMenu>(SearchRoot, TEXT("SGraphActionMenu"));
 	if (GraphActionMenu.IsValid())
 	{
 		GraphMenu = GraphActionMenu;
@@ -280,7 +215,7 @@ bool UAccessibilityGraphEditorContext::FindTreeView(const TSharedRef<SWidget>& S
 {
 	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> ContextTreeView = GetWidgetDescendant<STreeView<TSharedPtr<FGraphActionNode>>>(
 		SearchRoot,
-		"STreeView< TSharedPtr<FGraphActionNode> >"
+		TEXT("STreeView<TSharedPtr<FGraphActionNode>>")
 	);
 	if (ContextTreeView.IsValid())
 	{
@@ -292,22 +227,42 @@ bool UAccessibilityGraphEditorContext::FindTreeView(const TSharedRef<SWidget>& S
 	return false;
 }
 
-bool UAccessibilityGraphEditorContext::FindCheckBoxes(const TSharedRef<SWidget>& SearchRoot)
+bool UAccessibilityGraphEditorContext::FindStaticComponents(const TSharedRef<SWidget>& SearchRoot)
 {
-	TArray<TSharedPtr<SCheckBox>> FoundCheckBoxes = GetWidgetDescendants<SCheckBox>(SearchRoot, "SCheckBox");
-	if (!FoundCheckBoxes.IsEmpty())
-	{
-		for (int i = 0; i < FoundCheckBoxes.Num(); i++)
-		{
-			TSharedPtr<SCheckBox> CheckBox = FoundCheckBoxes[i];
+	TArray<FSlotBase*> FoundComponentSlots = GetWidgetSlotsByType(
+		SearchRoot, 
+		TSet<FString> {
+			TEXT("SCheckBox")
+		}
+	);
 
-			CheckBox->SetContent(
-				SNew(SIndexer)
-				.IndexValue(i)
+	if (!FoundComponentSlots.IsEmpty())
+	{
+		// Sort and Index the Static Components.
+		for (int i = 0; i < FoundComponentSlots.Num(); i++)
+		{
+			FSlotBase* FoundComponentSlot = FoundComponentSlots[i];
+
+			TSharedPtr<SWidget> DetachedWidget = FoundComponentSlot->DetachWidget();
+			if (!DetachedWidget.IsValid())
+				continue;
+
+			int32 ComponentIndex = -1;
+			FString ComponentType = DetachedWidget->GetTypeAsString();
+
+			if (ComponentType == "SCheckBox")
+			{
+				ComponentIndex = CheckBoxes.Num();
+				CheckBoxes.Add(StaticCastSharedPtr<SCheckBox>(DetachedWidget));
+			}
+
+			FoundComponentSlot->AttachWidget(
+				SNew(SContentIndexer)
+				.IndexValue(ComponentIndex)
+				.IndexPositionToContent(EIndexerPosition::Left)
+				.ContentToIndex(DetachedWidget)
 			);
 		}
-
-		CheckBoxes.Append(FoundCheckBoxes);
 
 		return true;
 	}
