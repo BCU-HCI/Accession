@@ -8,7 +8,7 @@
 #include "Kismet2/BlueprintEditorUtils.h"
 
 #include "PhraseTree/Containers/Input/InputContainers.h"
-#include "AccessibilityWrappers/AccessibilityAddNodeContextMenu.h"
+#include "AccessibilityWrappers/AccessibilityGraphEditorContext.h"
 #include "AccessibilityWrappers/AccessibilityGraphLocomotionContext.h"
 
 #include "PhraseTree/PhraseInputNode.h"
@@ -103,14 +103,6 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 		}),
 
-
-		MakeShared<FPhraseNode>(TEXT("CONTEXT"), 
-		TPhraseNodeArray {
-		
-			MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddToggleContext))
-
-		})
-
 	};
 
 	PhraseTree->BindBranches(
@@ -152,7 +144,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 						MakeShared<FPhraseNode>(TEXT("CONNECT"),
 						TPhraseNodeArray {
 
-							MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+							MakeShared<FPhraseContextMenuNode<UAccessibilityGraphEditorContext>>(
 								TEXT("ADD"),
 								1.5f,
 								CreateMenuDelegate(this, &UNodeInteractionLibrary::NodeAddPinMenu),
@@ -256,7 +248,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 				}),
 
-				MakeShared<FPhraseContextMenuNode<UAccessibilityAddNodeContextMenu>>(
+				MakeShared<FPhraseContextMenuNode<UAccessibilityGraphEditorContext>>(
 					TEXT("ADD"),
 					1.5f,
 					CreateMenuDelegate(this, &UNodeInteractionLibrary::NodeAddMenu),
@@ -558,8 +550,6 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record)
 			return TSharedPtr<IMenu>();
 		}
 
-		FSlateApplication::Get().SetKeyboardFocus(ContextWidgetToFocus);
-
 		FWidgetPath KeyboardFocusPath;
 		if (FSlateApplication::Get().FindPathToWidget(ContextWidgetToFocus.ToSharedRef(), KeyboardFocusPath))
 		{
@@ -633,8 +623,6 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddPinMenu(FParseRecord &Record)
 			return TSharedPtr<IMenu>();
 		}
 
-		FSlateApplication::Get().SetKeyboardFocus(ContextWidgetToFocus);
-
 		FWidgetPath KeyboardFocusPath;
 		if (FSlateApplication::Get().FindPathToWidget(ContextWidgetToFocus.ToSharedRef(), KeyboardFocusPath))
 		{
@@ -650,18 +638,18 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddPinMenu(FParseRecord &Record)
 
 void UNodeInteractionLibrary::NodeAddSelect(FParseRecord& Record) 
 {
-	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityGraphEditorContext)
 
 	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("SELECTION_INDEX"));
 	if (IndexInput == nullptr)
 		return;
 
-	ContextMenu->PerformGraphAction(IndexInput->GetValue());
+	ContextMenu->SelectAction(IndexInput->GetValue());
 }
 
 void UNodeInteractionLibrary::NodeAddSearchAdd(FParseRecord& Record)
 {
-	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityGraphEditorContext)
 
 	UParseStringInput *SearchInput = Record.GetPhraseInput<UParseStringInput>(TEXT("SEARCH_PHRASE"));
 	if (SearchInput == nullptr)
@@ -672,7 +660,7 @@ void UNodeInteractionLibrary::NodeAddSearchAdd(FParseRecord& Record)
 
 void UNodeInteractionLibrary::NodeAddSearchRemove(FParseRecord& Record)
 {
-	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu);
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityGraphEditorContext);
 
 	UParseIntInput* RemoveAmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
 	if (RemoveAmountInput == nullptr)
@@ -685,14 +673,14 @@ void UNodeInteractionLibrary::NodeAddSearchRemove(FParseRecord& Record)
 
 void UNodeInteractionLibrary::NodeAddSearchReset(FParseRecord& Record)
 {
-	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityGraphEditorContext)
 
-	ContextMenu->ResetFilterText();
+	ContextMenu->SetFilterText(TEXT(""));
 }
 
 void UNodeInteractionLibrary::NodeAddScroll(FParseRecord& Record)
 {
-	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
+	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityGraphEditorContext)
 
 	UParseEnumInput* DirectionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
 	UParseIntInput* AmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
@@ -721,13 +709,6 @@ void UNodeInteractionLibrary::NodeAddScroll(FParseRecord& Record)
 			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("NodeAddScroll: Invalid Scroll Position / Direction"));
 			return;
 	}
-}
-
-void UNodeInteractionLibrary::NodeAddToggleContext(FParseRecord& Record)
-{
-	GET_TOP_CONTEXT(Record, ContextMenu, UAccessibilityAddNodeContextMenu)
-
-	ContextMenu->ToggleContextAwareness();
 }
 
 void UNodeInteractionLibrary::SelectionNodeToggle(FParseRecord& Record)

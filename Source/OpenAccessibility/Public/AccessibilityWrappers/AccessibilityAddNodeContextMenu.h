@@ -32,7 +32,7 @@ public:
 	/// </summary>
 	/// <param name="InMenu">The Menu to Initialize from and obtain key components.</param>
 	/// <param name="InContextRoot">The Context Root in the PhraseTree that this ContextMenu Originates from.</param>
-	void Init(TSharedRef<IMenu> InMenu, TSharedRef<FPhraseNode> InContextRoot);
+	virtual void Init(TSharedRef<IMenu> InMenu, TSharedRef<FPhraseNode> InContextRoot) override;
 
 	/// <summary>
 	/// Initializes the Context Menu from the given components.
