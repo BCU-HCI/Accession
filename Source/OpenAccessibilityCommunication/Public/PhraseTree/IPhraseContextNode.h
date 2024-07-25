@@ -23,7 +23,7 @@ protected:
 	/// <summary>
 	/// Creates a Context Object, using Record Inputs.
 	/// </summary>
-	/// <returns></returns>
+	/// <returns>The Created Context Object, otherwise nullptr</returns>
 	virtual UPhraseTreeContextObject* CreateContextObject(FParseRecord& Record) = 0;
 
 	/// <summary>

@@ -48,7 +48,7 @@
  * @param ReturnObject The Object To Return Upon Failure.
  */
 #define GET_CAST_ACTIVE_TAB_RETURN(ActiveContainerName, ActiveTabType, ReturnObject)                             \
-    static_assert(TIsDerivedFrom<ActiveTabType, SWidget>::IsDerived, "Provided Type Is Not a Valid Widget Type") \
+    static_assert(TIsDerivedFrom<ActiveTabType, SWidget>::IsDerived, "Provided Type Is Not a Valid Widget Type");\
 	TSharedPtr<ActiveTabType> ActiveContainerName;                                                               \
 	{                                                                                                            \
 		GET_ACTIVE_TAB_RETURN(_PreCastContainer, ReturnObject);                                                  \

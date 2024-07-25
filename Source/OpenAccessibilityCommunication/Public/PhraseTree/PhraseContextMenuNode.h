@@ -15,12 +15,12 @@ class FPhraseContextMenuNode : public FPhraseNode, public IPhraseContextNodeBase
 {
 public:
 
+	static_assert(std::is_base_of_v<UPhraseTreeContextMenuObject, ContextMenuType>, "ContextType must be a subclass of UPhraseTreeContextMenuObject");
+
 	FPhraseContextMenuNode(const TCHAR* InInputString)
 		: FPhraseNode(InInputString)
 		, ContextMenuScalar(1.0f)
 	{
-		static_assert(std::is_base_of<UPhraseTreeContextMenuObject, ContextMenuType>::value, "ContextType must be a subclass of UPhraseTreeContextMenuObject");
-
 		this->ChildNodes = TPhraseNodeArray();
 	};
 
@@ -28,8 +28,6 @@ public:
 		: FPhraseNode(InInputString)
 		, ContextMenuScalar(1.0f)
 	{
-		static_assert(std::is_base_of<UPhraseTreeContextMenuObject, ContextMenuType>::value, "ContextType must be a subclass of UPhraseTreeContextMenuObject");
-
 		ConstructContextChildren(InChildNodes);
 	};
 
@@ -38,8 +36,6 @@ public:
 		, ContextMenuScalar(1.0f)
 		, OnGetMenu(InOnGetMenu)
 	{
-		static_assert(std::is_base_of<UPhraseTreeContextMenuObject, ContextMenuType>::value, "ContextType must be a subclass of UPhraseTreeContextMenuObject");
-
 		ConstructContextChildren(InChildNodes);
 	};
 
@@ -47,8 +43,6 @@ public:
 		: FPhraseNode(InInputString)
 		, ContextMenuScalar(InMenuScalar)
 	{
-		static_assert(std::is_base_of<UPhraseTreeContextMenuObject, ContextMenuType>::value, "ContextType must be a subclass of UPhraseTreeContextMenuObject");
-
 		ConstructContextChildren(InChildNodes);
 	};
 
@@ -57,8 +51,6 @@ public:
 		, ContextMenuScalar(InMenuScalar)
 		, OnGetMenu(InOnGetMenu)
 	{
-		static_assert(std::is_base_of<UPhraseTreeContextMenuObject, ContextMenuType>::value, "ContextType must be a subclass of UPhraseTreeContextMenuObject");
-
 		ConstructContextChildren(InChildNodes);
 	}
 
@@ -66,8 +58,6 @@ public:
 		: FPhraseNode(InInputString, InOnPhraseParsed)
 		, ContextMenuScalar(InMenuScalar)
 	{
-		static_assert(std::is_base_of<UPhraseTreeContextMenuObject, ContextMenuType>::value, "ContextType must be a subclass of UPhraseTreeContextMenuObject");
-
 		ConstructContextChildren(InChildNodes);
 	}
 
@@ -76,8 +66,6 @@ public:
 		, ContextMenuScalar(InMenuScalar)
 		, OnGetMenu(InOnGetMenu)
 	{
-		static_assert(std::is_base_of<UPhraseTreeContextMenuObject, ContextMenuType>::value, "ContextType must be a subclass of UPhraseTreeContextMenuObject");
-
 		ConstructContextChildren(InChildNodes);
 	}
 
@@ -88,8 +76,21 @@ public:
 
 	// FPhraseNode Implementation
 
+	/// <summary>
+	/// Parses the phrase down the given Node, propagating down child nodes if required.
+	/// </summary>
+	/// <param name="InPhraseWordArray">The Array of Phrase Strings to Propogate against.</param>
+	/// <param name="InParseRecord">The Record of Propagation of collected context's and inputs.</param>
+	/// <returns>Returns the Result of the propogation, including any key nodes met.</returns>
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord) override;
 
+	/// <summary>
+	/// Parses the phrase down the given node, propagating down child nodes if required.
+	/// Missed Pop of the Phrase Array from this Node.
+	/// </summary>
+	/// <param name="InPhraseWordArray"></param>
+	/// <param name="InParseRecord"></param>
+	/// <returns>Returns the Result of the propogation, including any key nodes met.</returns>
 	virtual FParseResult ParsePhraseAsContext(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord) override;
 
 	// End FPhraseNode Implementation
@@ -98,18 +99,38 @@ protected:
 
 	// FPhraseContextNodeBase Implementation
 
-	bool HasContextObject(TArray<UPhraseTreeContextObject*> InContextObjects) const;
+	/// <summary>
+	/// Checks if the Given Context Array Contains Context Objects.
+	/// </summary>
+	/// <param name="InContextObjects">- The Array To Check For Context Objects.</param>
+	/// <returns>True, if their is Context Objects in the Given Array.</returns>
+	virtual bool HasContextObject(TArray<UPhraseTreeContextObject*> InContextObjects) const override;
 
-	virtual UPhraseTreeContextObject* CreateContextObject(FParseRecord& Record);
+	/// <summary>
+	/// Creates a Context Object, using Record Inputs.
+	/// </summary>
+	/// <returns>The Created Context Object, otherwise nullptr</returns>
+	virtual UPhraseTreeContextObject* CreateContextObject(FParseRecord& Record) override;
 
-	virtual void ConstructContextChildren(TPhraseNodeArray& InChildNodes);
+	/// <summary>
+	/// Constructs the Context Nodes Children, from Given Child Nodes.
+	/// Allowing for Inclusion of Utility Nodes in relation to the Context.
+	/// </summary>
+	/// <param name="InChildNodes">- An Array of the Nodes Children.</param>
+	virtual void ConstructContextChildren(TPhraseNodeArray& InChildNodes) override;
 
 	// End FPhraseContextNode Implementation
 
 protected:
 
+	/// <summary>
+	///	Scalar for the Initialized Menu Elements.
+	/// </summary>
 	const float ContextMenuScalar;
 
+	/// <summary>
+	///	Delegate for Initializing of the Menu.
+	/// </summary>
 	TDelegate<TSharedPtr<IMenu>(FParseRecord& Record)> OnGetMenu;
 };
 

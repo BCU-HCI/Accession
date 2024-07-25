@@ -46,7 +46,7 @@ enum OPENACCESSIBILITYCOMMUNICATION_API PhrasePropogationType : uint8_t
 };
 
 /// <summary>
-/// Contains the Result of Propogating the Phrase through the Tree.
+/// Contains the Result of Propagation through the Phrase Tree.
 /// </summary>
 struct OPENACCESSIBILITYCOMMUNICATION_API FParseResult
 {

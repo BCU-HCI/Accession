@@ -101,7 +101,7 @@ public:
 	}
 
 	/// <summary>
-	/// Gets the Input for the Porvided Phrase, if it exists.
+	/// Gets the Input for the Provided Phrase, if it exists.
 	/// </summary>
 	/// <typeparam name="CastToType">DownCast Type For the Phrase Input (Must Derrive From UPhraseInput).</typeparam>
 	/// <param name="InString">- The Phrase To Check For An Input.</param>

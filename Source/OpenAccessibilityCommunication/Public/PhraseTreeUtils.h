@@ -21,8 +21,16 @@ public:
 
 	// Function Library Methods
 
+	/**
+	 * Registers the provided Phrase Tree Function Library.
+	 * @param LibraryToRegister The Phrase Tree Function Library to Register.
+	 */
 	void RegisterFunctionLibrary(UPhraseTreeFunctionLibrary* LibraryToRegister);
 
+	/**
+	 * Sets the Phrase Tree Reference used for Registering Phrase Tree Function Libraries.
+	 * @param NewPhraseTree Reference to the Phrase Tree to use.
+	 */
 	void SetPhraseTree(TSharedRef<FPhraseTree> NewPhraseTree)
 	{
 		this->PhraseTree = NewPhraseTree;
@@ -30,10 +38,16 @@ public:
 
 protected:
 
+	/**
+	 * An Array of all the Registered Phrase Tree Function Libraries.
+	 */
 	UPROPERTY(EditAnywhere)
 	TArray<UPhraseTreeFunctionLibrary*> RegisteredLibraries;
 
 
+	/**
+	 * Weak Pointer to the Current Phrase Tree Instance used in Registering the Phrase Tree Function Libraries.
+	 */
 	TWeakPtr<FPhraseTree> PhraseTree;
 };
 
