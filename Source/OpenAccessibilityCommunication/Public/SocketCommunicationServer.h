@@ -23,7 +23,7 @@ class OPENACCESSIBILITYCOMMUNICATION_API FSocketCommunicationServer
 {
 public:
 
-	FSocketCommunicationServer(const std::string SendAddress, const std::string RecvAddress, const int Timeout);
+	FSocketCommunicationServer(const std::string SendAddress = "tcp://127.0.0.1:5555", const std::string RecvAddress = "tcp://127.0.0.1:5556", const int PollTimeout = 10);
 	~FSocketCommunicationServer();
 
 	/// <summary>

@@ -5,7 +5,7 @@
 
 #include "Serialization/JsonSerializer.h"
 
-FSocketCommunicationServer::FSocketCommunicationServer(const std::string SendAddress = "tcp://127.0.0.1:5555", std::string RecvAddress = "tcp://127.0.0.1:5556", const int PollTimeout = 10)
+FSocketCommunicationServer::FSocketCommunicationServer(const std::string SendAddress, std::string RecvAddress, const int PollTimeout)
 	: SendAddress(SendAddress), RecvAddress(RecvAddress), PollTimeout(PollTimeout)
 {
 	Context = new zmq::context_t(1);

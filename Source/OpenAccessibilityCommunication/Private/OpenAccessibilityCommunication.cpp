@@ -70,15 +70,18 @@ void FOpenAccessibilityCommunicationModule::ShutdownModule()
 
 bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 {
+	// Detect if any events are ready to be received.
 	if (SocketServer->EventOccured())
 	{
 		TArray<FString> RecvStrings;
 		TSharedPtr<FJsonObject> RecvMetadata;
 
+		// Receive the Detected Event, with separate transcriptions and metadata. 
 		if (SocketServer->RecvStringMultipartWithMeta(RecvStrings, RecvMetadata))
 		{
 			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION RECIEVED"), TEXT("Recieved Multipart - Message Count: %d"), RecvStrings.Num());
 
+			// Send Received Transcriptions to any bound events.
 			OnTranscriptionRecieved.Broadcast(RecvStrings);
 		}
 	}
@@ -116,8 +119,8 @@ void FOpenAccessibilityCommunicationModule::TranscribeWaveForm(const TArray<floa
 
 	UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||"), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * sizeof(float)));
 
+	// Create Metadata of Audio Source.
 	TSharedPtr<FJsonObject> AudioBufferMetadata = MakeShared<FJsonObject>();
-
 	AudioBufferMetadata->SetNumberField(TEXT("sample_rate"), AudioManager->GetAudioCaptureSampleRate());
 	AudioBufferMetadata->SetNumberField(TEXT("num_channels"), AudioManager->GetAudioCaptureNumChannels());
 
