@@ -39,6 +39,7 @@ void FAssetAccessibilityRegistry::OnAssetOpenedInEditor(UObject* OpenedAsset, IA
 {
 	UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Opened In Editor: { %s } ||"), *OpenedAsset->GetName(), *EditorInstance->GetEditorName().ToString());
 
+	// Find Asset Type for correct Parsing.
 	if (UBlueprint* OpenedBlueprint = Cast<UBlueprint>(OpenedAsset))
 	{
 		UE_LOG(LogOpenAccessibility, Log, TEXT("|| AssetRegistry || Asset { %s } Is A Blueprint ||"), *OpenedBlueprint->GetName());
@@ -74,6 +75,9 @@ bool FAssetAccessibilityRegistry::IsGraphAssetRegistered(const UEdGraph* InUEdGr
 
 bool FAssetAccessibilityRegistry::RegisterGraphAsset(const UEdGraph* InGraph)
 {
+	if (!InGraph->IsValidLowLevel())
+		return false;
+
 	GraphAssetIndex.Add(InGraph->GraphGuid, MakeShared<FGraphIndexer>(InGraph));
 
 	for (auto& ChildGraph : InGraph->SubGraphs)
@@ -91,6 +95,9 @@ bool FAssetAccessibilityRegistry::RegisterGraphAsset(const UEdGraph* InGraph)
 
 bool FAssetAccessibilityRegistry::RegisterGraphAsset(const UEdGraph* InGraph, const TSharedRef<FGraphIndexer> InGraphIndexer)
 {
+	if (!InGraph->IsValidLowLevel())
+		return false;
+
 	GraphAssetIndex.Add(InGraph->GraphGuid, InGraphIndexer.ToSharedPtr());
 
 	for (auto& ChildGraph : InGraph->SubGraphs)
@@ -203,12 +210,12 @@ void FAssetAccessibilityRegistry::RegisterBlueprintAsset(const UBlueprint* InBlu
 
 void FAssetAccessibilityRegistry::RegisterMaterialAsset(const UMaterial* InMaterial)
 {
-	if (InMaterial->MaterialGraph->IsValidLowLevel())
-	{
-		TSharedPtr<FGraphIndexer> GraphIndexer = MakeShared<FGraphIndexer>(InMaterial->MaterialGraph.Get());
+	if (InMaterial->MaterialGraph.IsNull())
+		return;
 
-		RegisterGraphAsset(InMaterial->MaterialGraph.Get(), GraphIndexer.ToSharedRef());
-	}
+	TSharedPtr<FGraphIndexer> GraphIndexer = MakeShared<FGraphIndexer>(InMaterial->MaterialGraph.Get());
+
+	RegisterGraphAsset(InMaterial->MaterialGraph.Get(), GraphIndexer.ToSharedRef());
 }
 
 void FAssetAccessibilityRegistry::RegisterBehaviorTreeAsset(const UBehaviorTree* InBehaviorTree)

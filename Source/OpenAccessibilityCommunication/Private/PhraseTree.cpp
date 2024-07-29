@@ -24,6 +24,7 @@ FPhraseTree::~FPhraseTree()
 
 bool FPhraseTree::Tick(float DeltaTime)
 {
+	// Filter InActive Context Objects out of the stack.
 	ContextManager.FilterContextStack();
 
 	return true;
@@ -40,6 +41,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 	TArray<FString> SegmentWordArray = TArray<FString>();
 	int SegmentCount = 0;
 
+	// Loop over any Transcription Segments.
 	for (FString& TranscriptionSegment : InTranscriptionSegments)
 	{
 		if (TranscriptionSegment.IsEmpty())
@@ -66,6 +68,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 
 		Algo::Reverse(SegmentWordArray);
 
+		// Loop until the Segment is Empty
 		while (!SegmentWordArray.IsEmpty())
 		{
 
@@ -95,6 +98,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 					OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Requires More Segments. (%s)"), 
 						*ParseRecord.GetPhraseString());
 
+					// Store Reach Nodes, and the ParseRecord for future propagation attempts.
 					LastVistedNode = ParseResult.ReachedNode;
 					LastVistedParseRecord = ParseRecord;
 				}
@@ -107,6 +111,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 					LastVistedNode = ParseResult.ReachedNode;
 					LastVistedParseRecord = ParseRecord;
 
+					// Dirty Way of Ensuring all Segments in Transcription are Attempted.
 					if (!SegmentWordArray.IsEmpty())  
 						SegmentWordArray.Pop();
 
@@ -119,6 +124,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 					OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Failed. (%s)"),
 						*ParseRecord.GetPhraseString())
 
+					// Dirty Way of Ensuring all Segments in Transcription are Attempted.
 					if (!SegmentWordArray.IsEmpty())
 						SegmentWordArray.Pop();
 
