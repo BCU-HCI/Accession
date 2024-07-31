@@ -8,6 +8,15 @@ class LogLevel(Enum):
 
 
 def Log(message: str, log_level: LogLevel = LogLevel.INFO):
+    """Logs a Message to the Unreal Engine Console.
+
+    Displays the given message in the Unreal Engine Console, with the given log level.
+    If the Unreal Engine Python API is not available, the message is printed to the python terminal.
+
+    Args:
+        message (str): Message to Log.
+        log_level (LogLevel, optional): Log Level of the Message. Defaults to LogLevel.INFO.
+    """
 
     message = f"|| LogOpenAccessibilityPy || {message} ||"
 

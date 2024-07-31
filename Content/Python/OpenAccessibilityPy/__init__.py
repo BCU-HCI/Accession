@@ -32,6 +32,8 @@ def forward_CUDA_CUDNN_to_path():
 
 
 class OpenAccessibilityPy:
+    """Python Runtime Class for Open Accessbility Plugin"""
+
     def __init__(
         self,
         # General Runtime Specifics
@@ -43,6 +45,16 @@ class OpenAccessibilityPy:
         # Communication Specifics
         poll_timeout: int = 10,
     ):
+        """Constructor of Python Runtime Class for Open Accessibility Plugin
+
+        Args:
+            worker_count (int, optional): Amount of Thread Workers for Audio Transcription. Defaults to 2.
+            whisper_model (str, optional): Hugging-Face Model Specifier for CTranslate Compatible Models. Defaults to "distil-small.en".
+            device (str, optional): Device host for the Whisper Model (Can be "auto", "cpu", "cuda"). Defaults to "auto".
+            compute_type (str, optional): Data Structure for Whisper Compute. Defaults to "default".
+            poll_timeout (int, optional): Amount of time (ms) for event polling on the Transcription Socket. Defaults to 10.
+        """
+
         self.worker_pool = ThreadPool(
             max_workers=worker_count, thread_name_prefix="TranscriptionWorker"
         )
@@ -65,9 +77,18 @@ class OpenAccessibilityPy:
         self.pyshutdown_handle = ue.register_python_shutdown_callback(self.Shutdown)
 
     def __del__(self):
+        """Destructor of Python Runtime Class for Open Accessibility Plugin"""
+
         self.Shutdown()
 
     def Tick(self, delta_time: float):
+        """Tick Callback for Unreal Engine Slate Post Tick.
+
+        Detecting Incoming Transcription Requests and Handling them, through the Worker Pool.
+
+        Args:
+            delta_time (float): Time since last tick
+        """
 
         if self.com_server.EventOccured():
             Log("Event Occured")
@@ -79,6 +100,14 @@ class OpenAccessibilityPy:
     def HandleTranscriptionRequest(
         self, recv_message: np.ndarray, metadata: dict = None
     ):
+        """Handles Incoming Transcription Requests
+
+        Takes the Incoming AudioBuffer, Resamples it to 16kHz and Transcribes it using Whisper.
+
+        Args:
+            recv_message (np.ndarray): ndarray of the incoming audio buffer.
+            metadata (dict, optional): metadata of the incoming audio buffer, if any is recieved. Defaults to None.
+        """
 
         Log(
             f"Handling Transcription Request | Message: {recv_message} | Size: {recv_message.size} | Shape: {recv_message.shape}"
@@ -114,6 +143,8 @@ class OpenAccessibilityPy:
             Log("No Transcription Segments Returned", LogLevel.WARNING)
 
     def Shutdown(self):
+        """Shutsdown the Python Runtime Components, and Forces a Garbage Collection."""
+
         if self.tick_handle:
             ue.unregister_slate_post_tick_callback(self.tick_handle)
             del self.tick_handle

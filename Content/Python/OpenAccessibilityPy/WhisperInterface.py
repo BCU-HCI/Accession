@@ -11,6 +11,7 @@ except ImportError:
 
 
 class WhisperInterface:
+    """Interface Class for Interacting with the CTranslate2 Faster Whisper Model."""
 
     def __init__(
         self,
@@ -20,6 +21,16 @@ class WhisperInterface:
         transcribe_workers: int = 2,
         compute_type: str = "default",
     ):
+        """Constructor of Whisper Interface Class
+
+        Args:
+            model_name (str, optional): Hugging-Face Model Specifier for CTranslate Compatible Models. Defaults to "distil-small.en".
+            device (str, optional): Device host for the Whisper Model (Can be "auto", "cpu", "cuda"). Defaults to "auto".
+            cpu_threads (int, optional): Amount of CPU Threads to use, if Hosting the Model on a CPU. Defaults to 4.
+            transcribe_workers (int, optional): Amount of Thread Workers for Audio Transcription. Defaults to 2.
+            compute_type (str, optional): Data Structure for Whisper Compute. Defaults to "default".
+        """
+
         # Whisper Focused Variables
         self.whisper_model = WhisperModel(
             model_name,
@@ -32,9 +43,19 @@ class WhisperInterface:
         self.beam_size = 5
 
     def __del__(self):
+        """Destructor of Whisper Interface Class."""
+
         del self.whisper_model
 
     def process_file_from_dir(self, filepath: str):
+        """Transcribes an Audio Files from a Given WAV File Path.
+
+        Args:
+            filepath (str): Path to the Audio Files to Transcribe.
+
+        Returns:
+            A List of Segments containing the Transcribed Text and their Time Stamps.
+        """
 
         segments, info = self.whisper_model.transcribe(
             filepath,
@@ -59,6 +80,14 @@ class WhisperInterface:
     def process_audio_buffer(
         self, audio_buffer: np.ndarray
     ) -> tuple[list[Segment], dict]:
+        """Transcribes an NDArray AudioBuffer.
+
+        Args:
+            audio_buffer (np.ndarray): AudioBuffer to Transcribe.
+
+        Returns:
+            tuple[list[Segment], dict]: Tuple Containing a List of Transcription Segments and a Dictionary of Collected Metadata.
+        """
 
         segments, info = self.whisper_model.transcribe(
             audio_buffer,
