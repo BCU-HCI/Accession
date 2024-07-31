@@ -17,6 +17,7 @@ jobs:
       - name: Run Doxygen Action
         uses: mattnotmitt/doxygen-action@v1.9.5
         with:
+          doxyfile-path: ./Doxygen
           enable-latex: true
 
       - name: Deploy Documentation to Gh-Pages
