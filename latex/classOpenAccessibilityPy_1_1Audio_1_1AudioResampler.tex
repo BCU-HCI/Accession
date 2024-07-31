@@ -1,0 +1,112 @@
+\hypertarget{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler}{}\doxysection{Open\+Accessibility\+Py.\+Audio.\+Audio\+Resampler Class Reference}
+\label{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler}\index{OpenAccessibilityPy.Audio.AudioResampler@{OpenAccessibilityPy.Audio.AudioResampler}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a91fcdfa019d75cd080ef86a0254bead4}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int target\+\_\+sample\+\_\+rate=16000)
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_adf2d5700a04f24c0d77d776ae534f665}{\+\_\+\+\_\+del\+\_\+\+\_\+}} (self)
+\item 
+np.\+ndarray \mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a9d99b19346cebb0f6b5827a5f01bf48b}{resample}} (self, np.\+ndarray audio\+\_\+data, int buffer\+\_\+sample\+\_\+rate=48000, int buffer\+\_\+num\+\_\+channels=2)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{Audio_8py_source_l00015}{15}} of file \mbox{\hyperlink{Audio_8py_source}{Audio.\+py}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a91fcdfa019d75cd080ef86a0254bead4}\label{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a91fcdfa019d75cd080ef86a0254bead4}} 
+\index{OpenAccessibilityPy.Audio.AudioResampler@{OpenAccessibilityPy.Audio.AudioResampler}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!OpenAccessibilityPy.Audio.AudioResampler@{OpenAccessibilityPy.Audio.AudioResampler}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Audio.\+Audio\+Resampler.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int }]{target\+\_\+sample\+\_\+rate = {\ttfamily 16000} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Audio_8py_source_l00017}{17}} of file \mbox{\hyperlink{Audio_8py_source}{Audio.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017     \textcolor{keyword}{def }\_\_init\_\_(self, target\_sample\_rate: int = 16000):}
+\DoxyCodeLine{00018         self.\_audio\_resampler = av.AudioResampler(}
+\DoxyCodeLine{00019             format=\textcolor{stringliteral}{"{}s16"{}}, layout=\textcolor{stringliteral}{"{}mono"{}}, rate=target\_sample\_rate}
+\DoxyCodeLine{00020         )}
+\DoxyCodeLine{00021         self.\_resample\_mutex = Lock()}
+\DoxyCodeLine{00022 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_adf2d5700a04f24c0d77d776ae534f665}\label{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_adf2d5700a04f24c0d77d776ae534f665}} 
+\index{OpenAccessibilityPy.Audio.AudioResampler@{OpenAccessibilityPy.Audio.AudioResampler}!\_\_del\_\_@{\_\_del\_\_}}
+\index{\_\_del\_\_@{\_\_del\_\_}!OpenAccessibilityPy.Audio.AudioResampler@{OpenAccessibilityPy.Audio.AudioResampler}}
+\doxysubsubsection{\texorpdfstring{\_\_del\_\_()}{\_\_del\_\_()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Audio.\+Audio\+Resampler.\+\_\+\+\_\+del\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Audio_8py_source_l00023}{23}} of file \mbox{\hyperlink{Audio_8py_source}{Audio.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023     \textcolor{keyword}{def }\_\_del\_\_(self):}
+\DoxyCodeLine{00024         \textcolor{comment}{\# Try Deleting the resampler object to cleanly free up memory}}
+\DoxyCodeLine{00025         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00026             del self.\_audio\_resampler}
+\DoxyCodeLine{00027         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{00028             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{00029 }
+\DoxyCodeLine{00030         \textcolor{keywordflow}{try}:  \textcolor{comment}{\# Delete the mutex}}
+\DoxyCodeLine{00031             del self.\_resample\_mutex}
+\DoxyCodeLine{00032         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{00033             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{00034 }
+\DoxyCodeLine{00035         \textcolor{comment}{\# Force Garbage Collection, due to resampler not being properly deleted otherwise.}}
+\DoxyCodeLine{00036         gc.collect()}
+\DoxyCodeLine{00037 }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a9d99b19346cebb0f6b5827a5f01bf48b}\label{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a9d99b19346cebb0f6b5827a5f01bf48b}} 
+\index{OpenAccessibilityPy.Audio.AudioResampler@{OpenAccessibilityPy.Audio.AudioResampler}!resample@{resample}}
+\index{resample@{resample}!OpenAccessibilityPy.Audio.AudioResampler@{OpenAccessibilityPy.Audio.AudioResampler}}
+\doxysubsubsection{\texorpdfstring{resample()}{resample()}}
+{\footnotesize\ttfamily  np.\+ndarray Open\+Accessibility\+Py.\+Audio.\+Audio\+Resampler.\+resample (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{np.\+ndarray}]{audio\+\_\+data,  }\item[{int }]{buffer\+\_\+sample\+\_\+rate = {\ttfamily 48000},  }\item[{int }]{buffer\+\_\+num\+\_\+channels = {\ttfamily 2} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{Audio_8py_source_l00038}{38}} of file \mbox{\hyperlink{Audio_8py_source}{Audio.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043     ) -\/> np.ndarray:}
+\DoxyCodeLine{00044 }
+\DoxyCodeLine{00045         audio\_data = self.\_convert\_to\_s16(audio\_data).reshape(-\/1, 1)}
+\DoxyCodeLine{00046 }
+\DoxyCodeLine{00047         frame: av.AudioFrame = av.AudioFrame.from\_ndarray(}
+\DoxyCodeLine{00048             audio\_data.T,}
+\DoxyCodeLine{00049             format=\textcolor{stringliteral}{"{}s16"{}},}
+\DoxyCodeLine{00050             layout=\textcolor{stringliteral}{"{}stereo"{}} \textcolor{keywordflow}{if} buffer\_num\_channels == 2 \textcolor{keywordflow}{else} \textcolor{stringliteral}{"{}mono"{}},}
+\DoxyCodeLine{00051         )}
+\DoxyCodeLine{00052 }
+\DoxyCodeLine{00053         frame.sample\_rate = buffer\_sample\_rate}
+\DoxyCodeLine{00054 }
+\DoxyCodeLine{00055         resampled\_frames: list[av.AudioFrame] = []}
+\DoxyCodeLine{00056         \textcolor{keyword}{with} self.\_resample\_mutex:}
+\DoxyCodeLine{00057             resampled\_frames = self.\_audio\_resampler.resample(frame)}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059         \textcolor{keywordflow}{return} self.\_convert\_to\_float32(resampled\_frames[0].to\_ndarray()).reshape(}
+\DoxyCodeLine{00060             -\/1,}
+\DoxyCodeLine{00061         )}
+\DoxyCodeLine{00062 }
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Content/\+Python/\+Open\+Accessibility\+Py/Audio.\+py\end{DoxyCompactItemize}

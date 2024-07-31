@@ -1,0 +1,127 @@
+\hypertarget{structFPanelViewPosition}{}\doxysection{FPanel\+View\+Position Struct Reference}
+\label{structFPanelViewPosition}\index{FPanelViewPosition@{FPanelViewPosition}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structFPanelViewPosition_ada93e5fbe589f2dd176393585d69dc59}{FPanel\+View\+Position}} (FVector2D In\+Top\+Left, FVector2D In\+Bot\+Right)
+\item 
+bool \mbox{\hyperlink{structFPanelViewPosition_aa22738168bb8c12435203eb7c92d415d}{operator!=}} (const FVector2D \&Other)
+\item 
+bool \mbox{\hyperlink{structFPanelViewPosition_af808026d0b23f7e4af0dc12e38a68816}{operator!=}} (const \mbox{\hyperlink{structFPanelViewPosition}{FPanel\+View\+Position}} \&Other)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FVector2D \mbox{\hyperlink{structFPanelViewPosition_ab696288e887f6089a617e48205451750}{Top\+Left}}
+\item 
+FVector2D \mbox{\hyperlink{structFPanelViewPosition_aed1e0faf3b3634b2d10e759f027a753c}{Bot\+Right}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00070}{70}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structFPanelViewPosition_a79ffd7403c2f76da6756bf5e2a2789a8}\label{structFPanelViewPosition_a79ffd7403c2f76da6756bf5e2a2789a8}} 
+\index{FPanelViewPosition@{FPanelViewPosition}!FPanelViewPosition@{FPanelViewPosition}}
+\index{FPanelViewPosition@{FPanelViewPosition}!FPanelViewPosition@{FPanelViewPosition}}
+\doxysubsubsection{\texorpdfstring{FPanelViewPosition()}{FPanelViewPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily FPanel\+View\+Position\+::\+FPanel\+View\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00074}{74}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00075         : TopLeft(FVector2D::ZeroVector)}
+\DoxyCodeLine{00076         , BotRight(FVector2D::ZeroVector)}
+\DoxyCodeLine{00077     \{ \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{structFPanelViewPosition_ada93e5fbe589f2dd176393585d69dc59}\label{structFPanelViewPosition_ada93e5fbe589f2dd176393585d69dc59}} 
+\index{FPanelViewPosition@{FPanelViewPosition}!FPanelViewPosition@{FPanelViewPosition}}
+\index{FPanelViewPosition@{FPanelViewPosition}!FPanelViewPosition@{FPanelViewPosition}}
+\doxysubsubsection{\texorpdfstring{FPanelViewPosition()}{FPanelViewPosition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily FPanel\+View\+Position\+::\+FPanel\+View\+Position (\begin{DoxyParamCaption}\item[{FVector2D}]{In\+Top\+Left,  }\item[{FVector2D}]{In\+Bot\+Right }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00079}{79}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00080         : TopLeft(InTopLeft)}
+\DoxyCodeLine{00081         , BotRight(InBotRight)}
+\DoxyCodeLine{00082     \{ \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structFPanelViewPosition_af808026d0b23f7e4af0dc12e38a68816}\label{structFPanelViewPosition_af808026d0b23f7e4af0dc12e38a68816}} 
+\index{FPanelViewPosition@{FPanelViewPosition}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!FPanelViewPosition@{FPanelViewPosition}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool FPanel\+View\+Position\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structFPanelViewPosition}{FPanel\+View\+Position}} \&}]{Other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00089}{89}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00090     \{}
+\DoxyCodeLine{00091         \textcolor{keywordflow}{return} TopLeft != Other.TopLeft || BotRight != Other.BotRight;}
+\DoxyCodeLine{00092     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{structFPanelViewPosition_aa22738168bb8c12435203eb7c92d415d}\label{structFPanelViewPosition_aa22738168bb8c12435203eb7c92d415d}} 
+\index{FPanelViewPosition@{FPanelViewPosition}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!FPanelViewPosition@{FPanelViewPosition}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool FPanel\+View\+Position\+::operator!= (\begin{DoxyParamCaption}\item[{const FVector2D \&}]{Other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00084}{84}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00085     \{}
+\DoxyCodeLine{00086         \textcolor{keywordflow}{return} TopLeft != Other || BotRight != Other;}
+\DoxyCodeLine{00087     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structFPanelViewPosition_aed1e0faf3b3634b2d10e759f027a753c}\label{structFPanelViewPosition_aed1e0faf3b3634b2d10e759f027a753c}} 
+\index{FPanelViewPosition@{FPanelViewPosition}!BotRight@{BotRight}}
+\index{BotRight@{BotRight}!FPanelViewPosition@{FPanelViewPosition}}
+\doxysubsubsection{\texorpdfstring{BotRight}{BotRight}}
+{\footnotesize\ttfamily FVector2D FPanel\+View\+Position\+::\+Bot\+Right}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00095}{95}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+\mbox{\Hypertarget{structFPanelViewPosition_ab696288e887f6089a617e48205451750}\label{structFPanelViewPosition_ab696288e887f6089a617e48205451750}} 
+\index{FPanelViewPosition@{FPanelViewPosition}!TopLeft@{TopLeft}}
+\index{TopLeft@{TopLeft}!FPanelViewPosition@{FPanelViewPosition}}
+\doxysubsubsection{\texorpdfstring{TopLeft}{TopLeft}}
+{\footnotesize\ttfamily FVector2D FPanel\+View\+Position\+::\+Top\+Left}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00094}{94}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility/\+Public/\+Accessibility\+Wrappers/Accessibility\+Graph\+Locomotion\+Context.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,24 @@
+\hypertarget{IPhraseContextNode_8h_source}{}\doxysection{IPhrase\+Context\+Node.\+h}
+\label{IPhraseContextNode_8h_source}\index{Source/OpenAccessibilityCommunication/Public/PhraseTree/IPhraseContextNode.h@{Source/OpenAccessibilityCommunication/Public/PhraseTree/IPhraseContextNode.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00003}00003 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00007}00007 \textcolor{preprocessor}{\#include "{}PhraseTree/Containers/ContextObject.h"{}}}
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00012}\mbox{\hyperlink{classIPhraseContextNodeBase}{00012}} \textcolor{keyword}{class }\mbox{\hyperlink{classIPhraseContextNodeBase}{IPhraseContextNodeBase}}}
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00013}00013 \{}
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00014}00014 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00021}\mbox{\hyperlink{classIPhraseContextNodeBase_a7cd16a514b9ae55a293078bccb3816a6}{00021}}     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classIPhraseContextNodeBase_a7cd16a514b9ae55a293078bccb3816a6}{HasContextObject}}(TArray<UPhraseTreeContextObject*> InContextObjects) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00027}\mbox{\hyperlink{classIPhraseContextNodeBase_ab76ed702f9c1f709f37976fd7e6c7067}{00027}}     \textcolor{keyword}{virtual} \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}* \mbox{\hyperlink{classIPhraseContextNodeBase_ab76ed702f9c1f709f37976fd7e6c7067}{CreateContextObject}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record) = 0;}
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00034}\mbox{\hyperlink{classIPhraseContextNodeBase_adec997b4c9fc11b839739483ce73095c}{00034}}     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classIPhraseContextNodeBase_adec997b4c9fc11b839739483ce73095c}{ConstructContextChildren}}(TArray<TSharedPtr<class FPhraseNode>>\& InChildNodes) = 0;}
+\DoxyCodeLine{\Hypertarget{IPhraseContextNode_8h_source_l00035}00035 \};}
+
+\end{DoxyCode}

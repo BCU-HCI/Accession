@@ -1,0 +1,43 @@
+\hypertarget{SAccessibilityTranscriptionVis_8h_source}{}\doxysection{SAccessibility\+Transcription\+Vis.\+h}
+\label{SAccessibilityTranscriptionVis_8h_source}\index{Source/OpenAccessibility/Public/AccessibilityWidgets/SAccessibilityTranscriptionVis.h@{Source/OpenAccessibility/Public/AccessibilityWidgets/SAccessibilityTranscriptionVis.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00003}00003 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00006}00006 \textcolor{preprocessor}{\#include "{}Styling/AppStyle.h"{}}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00007}00007 \textcolor{preprocessor}{\#include "{}Widgets/Layout/SBorder.h"{}}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00009}\mbox{\hyperlink{classSAccessibilityTranscriptionVis}{00009}} \textcolor{keyword}{class }OPENACCESSIBILITY\_API \mbox{\hyperlink{classSAccessibilityTranscriptionVis}{SAccessibilityTranscriptionVis}} : \textcolor{keyword}{public} SBox}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00010}00010 \{}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00011}00011 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00013}00013     SLATE\_BEGIN\_ARGS(\mbox{\hyperlink{classSAccessibilityTranscriptionVis}{SAccessibilityTranscriptionVis}})}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00014}00014     : \_VisAmount(1)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00015}00015     \{\}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00016}00016         SLATE\_ARGUMENT( \textcolor{keywordtype}{int}, VisAmount )}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00017}00017     SLATE\_END\_ARGS()}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00019}00019     \mbox{\hyperlink{classSAccessibilityTranscriptionVis}{\string~SAccessibilityTranscriptionVis}}();}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00021}00021     \textcolor{keywordtype}{void} Construct(\textcolor{keyword}{const} FArguments\& InArgs);}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00023}00023     \textcolor{comment}{// SWidget Interface}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00025}00025     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Tick(\textcolor{keyword}{const} FGeometry\& AllottedGeometry, \textcolor{keyword}{const} \textcolor{keywordtype}{double} InCurrentTime, \textcolor{keyword}{const} \textcolor{keywordtype}{float} InDeltaTime) \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00027}00027     \textcolor{comment}{// End of SWidget Interface}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00032}00032     \textcolor{keywordtype}{void} UpdateTopTranscription(\textcolor{keyword}{const} FString\& InTopTranscription);}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00034}00034 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00039}\mbox{\hyperlink{classSAccessibilityTranscriptionVis_a252aa6d658e15a1e272e6cc995fbbf9c}{00039}}     TWeakPtr<SVerticalBox> \mbox{\hyperlink{classSAccessibilityTranscriptionVis_a252aa6d658e15a1e272e6cc995fbbf9c}{TranscriptionContainer}};}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00044}\mbox{\hyperlink{classSAccessibilityTranscriptionVis_a2033256c83d4acf28b59c6da9c85a95b}{00044}}     TArray<TWeakPtr<STextBlock>> \mbox{\hyperlink{classSAccessibilityTranscriptionVis_a2033256c83d4acf28b59c6da9c85a95b}{TranscriptionSlots}};}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8h_source_l00046}00046 \};}
+
+\end{DoxyCode}

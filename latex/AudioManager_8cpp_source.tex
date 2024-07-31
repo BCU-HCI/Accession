@@ -1,0 +1,114 @@
+\hypertarget{AudioManager_8cpp_source}{}\doxysection{Audio\+Manager.\+cpp}
+\label{AudioManager_8cpp_source}\index{Source/OpenAccessibilityCommunication/Private/AudioManager.cpp@{Source/OpenAccessibilityCommunication/Private/AudioManager.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include "{}AudioManager.h"{}}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00004}00004 \textcolor{preprocessor}{\#include "{}OpenAccessibilityCommunication.h"{}}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00005}00005 \textcolor{preprocessor}{\#include "{}OpenAccessibilityComLogging.h"{}}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00006}00006 \textcolor{preprocessor}{\#include "{}SocketCommunicationServer.h"{}}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00008}00008 \textcolor{preprocessor}{\#include "{}AudioCaptureCore.h"{}}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00009}00009 \textcolor{preprocessor}{\#include "{}AudioDeviceNotificationSubsystem.h"{}}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00010}00010 \textcolor{preprocessor}{\#include "{}Templates/Function.h"{}}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00012}00012 UAudioManager::UAudioManager()}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00013}00013 \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00014}00014     \mbox{\hyperlink{classUAudioManager_addf856d032dedc5835e117f8f700fc79}{Settings}} = \mbox{\hyperlink{structFAudioManagerSettings}{FAudioManagerSettings}}();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00016}00016     \textcolor{comment}{// Create Audio Capture Object and Initialize Audio Stream}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00017}00017     bIsCapturingAudio = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00018}00018     AudioCapture = NewObject<UAudioCapture>();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00019}00019     AudioCapture-\/>OpenDefaultAudioStream();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00020}00020     AudioCapture-\/>StartCapturingAudio();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00022}00022     RegisterAudioGenerator();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00024}00024     \textcolor{comment}{// Create FileIO Objects}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00025}00025     FileWriter = \textcolor{keyword}{new} Audio::FSoundWavePCMWriter();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00026}00026 \}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00028}00028 UAudioManager::\string~UAudioManager()}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00029}00029 \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00030}00030     UnregisterAudioGenerator();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00032}00032     AudioCapture-\/>StopCapturingAudio();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00033}00033     AudioCapture-\/>RemoveFromRoot();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00035}00035     \textcolor{keyword}{delete} AudioCapture; AudioCapture = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00036}00036     \textcolor{keyword}{delete} FileWriter; FileWriter = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00037}00037 \}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00039}\mbox{\hyperlink{classUAudioManager_a7d1368be18287e1f8c288c81d571142d}{00039}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAudioManager_a7d1368be18287e1f8c288c81d571142d}{UAudioManager::StartCapturingAudio}}()}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00040}00040 \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00041}00041     AudioBuffer.Empty();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00043}00043     bIsCapturingAudio = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00044}00044 \}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00046}\mbox{\hyperlink{classUAudioManager_a0b9517bb36ae5a96308dd290f7b57f1f}{00046}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAudioManager_a0b9517bb36ae5a96308dd290f7b57f1f}{UAudioManager::StopCapturingAudio}}()}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00047}00047 \{   }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00048}00048     bIsCapturingAudio = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00050}00050     \textcolor{keywordflow}{if} (AudioBuffer.Num() == 0)}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00051}00051         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00053}00053     \mbox{\hyperlink{classUAudioManager_af6cdc7231287e412ecf89ee8f60c7300}{SaveAudioBufferToWAV}}(\mbox{\hyperlink{classUAudioManager_addf856d032dedc5835e117f8f700fc79}{Settings}}.\mbox{\hyperlink{structFAudioManagerSettings_ae98270b08ad9a9192c6622f827276741}{SavePath}});}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00055}00055     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classUAudioManager_a5eb5bc3ec0e84cb2f4b3a1c8666b0abe}{OnAudioReadyForTranscription}}.ExecuteIfBound(AudioBuffer))}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00056}00056     \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00057}00057         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}|| Executing Audio Ready For Transcription Delegate. ||"{}}));}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00058}00058     \}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00059}00059     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00060}00060     \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00061}00061         UE\_LOG(LogOpenAccessibilityCom, Warning, TEXT(\textcolor{stringliteral}{"{}|| No Delegates Bound to Audio Ready For Transcription Delegate. ||"{}}));}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00062}00062     \}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00064}00064     AudioBuffer.Empty();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00065}00065 \}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00067}\mbox{\hyperlink{classUAudioManager_a8fec78e6cbe60a5398600da81b47fbf7}{00067}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAudioManager_a8fec78e6cbe60a5398600da81b47fbf7}{UAudioManager::PRIVATE\_OnAudioGenerate}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float}* InAudio, int32 NumSamples)}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00068}00068 \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00069}00069     \textcolor{keywordflow}{if} (bIsCapturingAudio == \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00070}00070         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00072}00072     \textcolor{comment}{// Need to Check Samples are above threshold and ignore if their run length is too long.}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00074}00074     AudioBuffer.Append(InAudio, NumSamples);}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00075}00075 \}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00077}\mbox{\hyperlink{classUAudioManager_af6cdc7231287e412ecf89ee8f60c7300}{00077}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAudioManager_af6cdc7231287e412ecf89ee8f60c7300}{UAudioManager::SaveAudioBufferToWAV}}(\textcolor{keyword}{const} FString\& FilePath)}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00078}00078 \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00079}00079     UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}Starting to Save Audio Buffer to WAV"{}}));}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00081}00081     Audio::FSampleBuffer SampleBuffer = Audio::FSampleBuffer(AudioBuffer.GetData(), AudioBuffer.Num(), AudioCapture-\/>GetNumChannels(), AudioCapture-\/>GetSampleRate());}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00083}00083     FileWriter-\/>BeginWriteToWavFile(SampleBuffer, \mbox{\hyperlink{classUAudioManager_addf856d032dedc5835e117f8f700fc79}{Settings}}.\mbox{\hyperlink{structFAudioManagerSettings_adeeaa0e6e3fefc89ff21ca7f13587eb1}{SaveName}}, \textcolor{keyword}{const\_cast<}FString\&\textcolor{keyword}{>}(FilePath), []() \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00084}00084         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}Audio Buffer Saved to WAV"{}}));}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00085}00085     \});}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00086}00086 \}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00088}\mbox{\hyperlink{classUAudioManager_a4415e515a1e70915c3edee4a57382668}{00088}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAudioManager_a4415e515a1e70915c3edee4a57382668}{UAudioManager::OnDefaultDeviceChanged}}(EAudioDeviceChangedRole ChangedRole, FString DeviceID)}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00089}00089 \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00090}00090     UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}|| Default Device Changed || Role: \%d || DeviceID: \%s ||"{}}), ChangedRole, *DeviceID);}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00092}00092     this-\/>UnregisterAudioGenerator();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00093}00093     this-\/>RegisterAudioGenerator();}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00094}00094 \}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00096}00096 \textcolor{keywordtype}{void} UAudioManager::RegisterAudioGenerator()}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00097}00097 \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00098}00098     \textcolor{comment}{// Add Audio Generator Delegate to get audio data from stream, }}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00099}00099     \textcolor{comment}{// and apply wrapper function due to wanting to reference class function.}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00100}00100     OnAudioGenerateHandle = AudioCapture-\/>AddGeneratorDelegate(FOnAudioGenerate([\textcolor{keyword}{this}](\textcolor{keyword}{const} \textcolor{keywordtype}{float}* InAudio, int32 NumSamples) \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00101}00101         \textcolor{keywordflow}{if} (this-\/>\mbox{\hyperlink{classUAudioManager_a19164195b0f4762910b909ba2dd15582}{IsCapturingAudio}}()) this-\/>\mbox{\hyperlink{classUAudioManager_a8fec78e6cbe60a5398600da81b47fbf7}{PRIVATE\_OnAudioGenerate}}(InAudio, NumSamples);}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00102}00102     \}));}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00103}00103 \}}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00105}00105 \textcolor{keywordtype}{void} UAudioManager::UnregisterAudioGenerator()}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00106}00106 \{}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00107}00107     AudioCapture-\/>RemoveGeneratorDelegate(OnAudioGenerateHandle);}
+\DoxyCodeLine{\Hypertarget{AudioManager_8cpp_source_l00108}00108 \}}
+
+\end{DoxyCode}

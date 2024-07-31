@@ -1,0 +1,817 @@
+\hypertarget{classFGraphIndexer}{}\doxysection{FGraph\+Indexer Class Reference}
+\label{classFGraphIndexer}\index{FGraphIndexer@{FGraphIndexer}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFGraphIndexer_a45b08491c539a33f6907da4d4659f283}{FGraph\+Indexer}} (const UEd\+Graph $\ast$Graph\+To\+Index)
+\item 
+bool \mbox{\hyperlink{classFGraphIndexer_a340b54e2594f0cae3efeb07b245038bb}{Contains\+Key}} (const int \&In\+Key)
+\begin{DoxyCompactList}\small\item\em Checks if the Provided Key is Contained within the Indexer.  \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classFGraphIndexer_a3da5527929de755f0054053c38385ae7}{Contains\+Node}} (UEd\+Graph\+Node $\ast$In\+Node)
+\begin{DoxyCompactList}\small\item\em Checks that the provided Node is Indexed, and retrieves its Key.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFGraphIndexer_a2e5bcf1711ba7875ef164160854fbbf2}{Contains\+Node}} (UEd\+Graph\+Node $\ast$In\+Node, int \&Out\+Index)
+\begin{DoxyCompactList}\small\item\em Checks that the provided Node is Indexed, and retrieves its Key.  \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classFGraphIndexer_a27b35d445390c74cd4d4939e17536f17}{Get\+Key}} (const UEd\+Graph\+Node $\ast$In\+Node)
+\begin{DoxyCompactList}\small\item\em Gets the Key Linked to the Provided Node in the Indexer.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classFGraphIndexer_aaba3d3dc7bf45ec21be29af465a6d0ba}{Get\+Key}} (const UEd\+Graph\+Node $\ast$In\+Node, int \&Out\+Key)
+\begin{DoxyCompactList}\small\item\em Gets the Key Linked to the Provided Node in the Indexer.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFGraphIndexer_a62206ec64082d69b21b2e1d6691ba285}{Get\+Node}} (const int \&In\+Index, UEd\+Graph\+Node $\ast$Out\+Node)
+\begin{DoxyCompactList}\small\item\em Gets the Node Linked to the Provided Index.  \end{DoxyCompactList}\item 
+UEd\+Graph\+Node $\ast$ \mbox{\hyperlink{classFGraphIndexer_a11e0df401a0efd447910ad2502168861}{Get\+Node}} (const int \&In\+Index)
+\begin{DoxyCompactList}\small\item\em Gets the Node Linked to the Provided Index.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFGraphIndexer_a6aac92578b2cb8e54d74b54727323cb6}{Get\+Pin}} (const int \&In\+Node\+Index, const int \&In\+Pin\+Index, UEd\+Graph\+Pin $\ast$Out\+Pin)
+\begin{DoxyCompactList}\small\item\em Gets the Pin Linked to the Provided Index, of the Provided Node Index.  \end{DoxyCompactList}\item 
+UEd\+Graph\+Pin $\ast$ \mbox{\hyperlink{classFGraphIndexer_a30d36ca27c3e88b9f246b6795cdf5b9e}{Get\+Pin}} (const int \&In\+Node\+Index, const int \&In\+Pin\+Index)
+\begin{DoxyCompactList}\small\item\em Gets the Pin Linked to the Provided Index, of the Provided Node Index.  \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classFGraphIndexer_abe51e50c9906b6a20089a44ae7a0dcea}{Add\+Node}} (const UEd\+Graph\+Node $\ast$Node)
+\begin{DoxyCompactList}\small\item\em Adds the Given Node to the Indexer.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFGraphIndexer_a22e7a70aece183d7001b1caf6a73db7d}{Add\+Node}} (int \&Out\+Index, const UEd\+Graph\+Node \&In\+Node)
+\begin{DoxyCompactList}\small\item\em Adds the Given Node to the Indexer.  \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classFGraphIndexer_a0692993e9b7cc39b4c46c8ef2ee835e5}{Get\+Or\+Add\+Node}} (const UEd\+Graph\+Node $\ast$In\+Node)
+\begin{DoxyCompactList}\small\item\em Gets or Adds the Provided Node to the Indexer.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFGraphIndexer_ad61d5fe61f251f9c45e992868b4e2fb2}{Get\+Or\+Add\+Node}} (const UEd\+Graph\+Node $\ast$In\+Node, int \&Out\+Index)
+\begin{DoxyCompactList}\small\item\em Gets or Adds the Provided Node to the Indexer.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFGraphIndexer_ac1ef6ef472f50489d82cfec46d59b909}{Remove\+Node}} (const int \&In\+Index)
+\begin{DoxyCompactList}\small\item\em Removes the Node from the Indexer, linked to the Provided Index.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFGraphIndexer_aee509f79de6ecec47c9a5ae939e770f7}{Remove\+Node}} (const UEd\+Graph\+Node $\ast$In\+Node)
+\begin{DoxyCompactList}\small\item\em Removes the Node from the Indexer, finds the Index in the Process.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFGraphIndexer_a5b8b8c88fd0d2e906cf3d358bee48fcf}{On\+Graph\+Event}} (const FEd\+Graph\+Edit\+Action \&In\+Action)
+\begin{DoxyCompactList}\small\item\em Callback for when the Linked Graph for the Indexer has been Modified.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFGraphIndexer_a763e1b74402f235dfcf33647018d0ac9}{On\+Graph\+Rebuild}} ()
+\begin{DoxyCompactList}\small\item\em Calls a Full Rebuild of the Indexer, to ensure all Nodes are Indexed.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TMap$<$ int, UEd\+Graph\+Node $\ast$ $>$ \mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{Index\+Map}}
+\begin{DoxyCompactList}\small\item\em Map of the Index to the Node.  \end{DoxyCompactList}\item 
+TSet$<$ int32 $>$ \mbox{\hyperlink{classFGraphIndexer_af326872f3d3e372e90e3763302d47aba}{Node\+Set}}
+\begin{DoxyCompactList}\small\item\em Look-\/\+Up Set of the Nodes Contained in the Indexer.  \end{DoxyCompactList}\item 
+TQueue$<$ int32 $>$ \mbox{\hyperlink{classFGraphIndexer_a331470f63727a15c6399ad4e99f1895a}{Available\+Indices}}
+\begin{DoxyCompactList}\small\item\em A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.  \end{DoxyCompactList}\item 
+UEd\+Graph $\ast$ \mbox{\hyperlink{classFGraphIndexer_a2c316f3ca2135b295bd5f7e6b2ebc392}{Linked\+Graph}}
+\begin{DoxyCompactList}\small\item\em The Graph Being Indexed By This Indexer.  \end{DoxyCompactList}\item 
+FDelegate\+Handle \mbox{\hyperlink{classFGraphIndexer_a7d56566f451dec106e2b6767596e2835}{On\+Graph\+Changed\+Handle}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8h_source_l00014}{14}} of file \mbox{\hyperlink{GraphIndexer_8h_source}{Graph\+Indexer.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFGraphIndexer_afb85276be2f8bc351258926d9dd175ce}\label{classFGraphIndexer_afb85276be2f8bc351258926d9dd175ce}} 
+\index{FGraphIndexer@{FGraphIndexer}!FGraphIndexer@{FGraphIndexer}}
+\index{FGraphIndexer@{FGraphIndexer}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{FGraphIndexer()}{FGraphIndexer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily FGraph\+Indexer\+::\+FGraph\+Indexer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013 \{}
+\DoxyCodeLine{00014 }
+\DoxyCodeLine{00015 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a45b08491c539a33f6907da4d4659f283}\label{classFGraphIndexer_a45b08491c539a33f6907da4d4659f283}} 
+\index{FGraphIndexer@{FGraphIndexer}!FGraphIndexer@{FGraphIndexer}}
+\index{FGraphIndexer@{FGraphIndexer}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{FGraphIndexer()}{FGraphIndexer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily FGraph\+Indexer\+::\+FGraph\+Indexer (\begin{DoxyParamCaption}\item[{const UEd\+Graph $\ast$}]{Graph\+To\+Index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018     : \mbox{\hyperlink{classFGraphIndexer_a2c316f3ca2135b295bd5f7e6b2ebc392}{LinkedGraph}}(\textcolor{keyword}{const\_cast<}UEdGraph*\textcolor{keyword}{>}(GraphToIndex))}
+\DoxyCodeLine{00019 \{}
+\DoxyCodeLine{00020     BuildGraphIndex();}
+\DoxyCodeLine{00021 }
+\DoxyCodeLine{00022     OnGraphChangedHandle = \mbox{\hyperlink{classFGraphIndexer_a2c316f3ca2135b295bd5f7e6b2ebc392}{LinkedGraph}}-\/>AddOnGraphChangedHandler(}
+\DoxyCodeLine{00023         FOnGraphChanged::FDelegate::CreateRaw(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classFGraphIndexer_a5b8b8c88fd0d2e906cf3d358bee48fcf}{FGraphIndexer::OnGraphEvent}})}
+\DoxyCodeLine{00024     );}
+\DoxyCodeLine{00025 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_ab4925562e860472985bcb03272b620da}\label{classFGraphIndexer_ab4925562e860472985bcb03272b620da}} 
+\index{FGraphIndexer@{FGraphIndexer}!````~FGraphIndexer@{$\sim$FGraphIndexer}}
+\index{````~FGraphIndexer@{$\sim$FGraphIndexer}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{$\sim$FGraphIndexer()}{~FGraphIndexer()}}
+{\footnotesize\ttfamily FGraph\+Indexer\+::$\sim$\+FGraph\+Indexer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028 \{}
+\DoxyCodeLine{00029     \mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}.Empty();}
+\DoxyCodeLine{00030     \mbox{\hyperlink{classFGraphIndexer_af326872f3d3e372e90e3763302d47aba}{NodeSet}}.Empty();}
+\DoxyCodeLine{00031     \mbox{\hyperlink{classFGraphIndexer_a331470f63727a15c6399ad4e99f1895a}{AvailableIndices}}.Empty();}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033     \mbox{\hyperlink{classFGraphIndexer_a2c316f3ca2135b295bd5f7e6b2ebc392}{LinkedGraph}}-\/>RemoveOnGraphChangedHandler(OnGraphChangedHandle);}
+\DoxyCodeLine{00034 }
+\DoxyCodeLine{00035     \mbox{\hyperlink{classFGraphIndexer_a2c316f3ca2135b295bd5f7e6b2ebc392}{LinkedGraph}} = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00036 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFGraphIndexer_abe51e50c9906b6a20089a44ae7a0dcea}\label{classFGraphIndexer_abe51e50c9906b6a20089a44ae7a0dcea}} 
+\index{FGraphIndexer@{FGraphIndexer}!AddNode@{AddNode}}
+\index{AddNode@{AddNode}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{AddNode()}{AddNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int FGraph\+Indexer\+::\+Add\+Node (\begin{DoxyParamCaption}\item[{const UEd\+Graph\+Node $\ast$}]{Node }\end{DoxyParamCaption})}
+
+
+
+Adds the Given Node to the Indexer.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em Node} & The Node To Add To The Indexer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Index of the Node in the Indexer.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00134}{134}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00135 \{}
+\DoxyCodeLine{00136     check (InNode != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00137     }
+\DoxyCodeLine{00138     \textcolor{keywordflow}{if} (!InNode-\/>IsValidLowLevelFast())}
+\DoxyCodeLine{00139     \{}
+\DoxyCodeLine{00140         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Provided Node is not valid."{}}))}
+\DoxyCodeLine{00141     \}}
+\DoxyCodeLine{00142 }
+\DoxyCodeLine{00143     \textcolor{keywordtype}{int} Index = \mbox{\hyperlink{classFGraphIndexer_a3da5527929de755f0054053c38385ae7}{ContainsNode}}(\textcolor{keyword}{const\_cast<}UEdGraphNode*\textcolor{keyword}{>}(InNode));}
+\DoxyCodeLine{00144     \textcolor{keywordflow}{if} (Index != -\/1)}
+\DoxyCodeLine{00145     \{}
+\DoxyCodeLine{00146         \textcolor{keywordflow}{return} Index;}
+\DoxyCodeLine{00147     \}}
+\DoxyCodeLine{00148 }
+\DoxyCodeLine{00149     GetAvailableIndex(Index);}
+\DoxyCodeLine{00150 }
+\DoxyCodeLine{00151     \mbox{\hyperlink{classFGraphIndexer_af326872f3d3e372e90e3763302d47aba}{NodeSet}}.Add(InNode-\/>GetUniqueID());}
+\DoxyCodeLine{00152     \mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}.Add(Index, \textcolor{keyword}{const\_cast<}UEdGraphNode*\textcolor{keyword}{>}(InNode));}
+\DoxyCodeLine{00153 }
+\DoxyCodeLine{00154     \textcolor{keywordflow}{return} Index;}
+\DoxyCodeLine{00155 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a22e7a70aece183d7001b1caf6a73db7d}\label{classFGraphIndexer_a22e7a70aece183d7001b1caf6a73db7d}} 
+\index{FGraphIndexer@{FGraphIndexer}!AddNode@{AddNode}}
+\index{AddNode@{AddNode}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{AddNode()}{AddNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FGraph\+Indexer\+::\+Add\+Node (\begin{DoxyParamCaption}\item[{int \&}]{Out\+Index,  }\item[{const UEd\+Graph\+Node \&}]{In\+Node }\end{DoxyParamCaption})}
+
+
+
+Adds the Given Node to the Indexer.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em Out\+Index} & The Index of the Node in the Indexer.\\
+\hline
+{\em In\+Node} & The Node To Add to the Indexer.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00157}{157}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00158 \{}
+\DoxyCodeLine{00159     OutIndex = \mbox{\hyperlink{classFGraphIndexer_abe51e50c9906b6a20089a44ae7a0dcea}{AddNode}}(\&InNode);}
+\DoxyCodeLine{00160 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a340b54e2594f0cae3efeb07b245038bb}\label{classFGraphIndexer_a340b54e2594f0cae3efeb07b245038bb}} 
+\index{FGraphIndexer@{FGraphIndexer}!ContainsKey@{ContainsKey}}
+\index{ContainsKey@{ContainsKey}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{ContainsKey()}{ContainsKey()}}
+{\footnotesize\ttfamily bool FGraph\+Indexer\+::\+Contains\+Key (\begin{DoxyParamCaption}\item[{const int \&}]{In\+Key }\end{DoxyParamCaption})}
+
+
+
+Checks if the Provided Key is Contained within the Indexer.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Key} & The Key To Check if used in the Indexer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Key is Used for Indexing. False, if the Key is Not Used for Indexing.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00039 \{}
+\DoxyCodeLine{00040     \textcolor{keywordflow}{return} \mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}.Contains(InKey);}
+\DoxyCodeLine{00041 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a3da5527929de755f0054053c38385ae7}\label{classFGraphIndexer_a3da5527929de755f0054053c38385ae7}} 
+\index{FGraphIndexer@{FGraphIndexer}!ContainsNode@{ContainsNode}}
+\index{ContainsNode@{ContainsNode}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{ContainsNode()}{ContainsNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int FGraph\+Indexer\+::\+Contains\+Node (\begin{DoxyParamCaption}\item[{UEd\+Graph\+Node $\ast$}]{In\+Node }\end{DoxyParamCaption})}
+
+
+
+Checks that the provided Node is Indexed, and retrieves its Key.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node} & The Node to Find.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Key Used to Index The Provided Node. -\/1 if Unsuccessful in finding the Node.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044 \{}
+\DoxyCodeLine{00045     check(InNode != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00046 }
+\DoxyCodeLine{00047     \textcolor{keywordflow}{if} (!InNode-\/>IsValidLowLevelFast() || !\mbox{\hyperlink{classFGraphIndexer_af326872f3d3e372e90e3763302d47aba}{NodeSet}}.Contains(InNode-\/>GetUniqueID()))}
+\DoxyCodeLine{00048         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050     \textcolor{keyword}{const} \textcolor{keywordtype}{int}* ReturnedIndex = \mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}.FindKey(InNode);}
+\DoxyCodeLine{00051 }
+\DoxyCodeLine{00052     \textcolor{keywordflow}{if} (ReturnedIndex != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00053     \{}
+\DoxyCodeLine{00054         \textcolor{keywordflow}{return} *ReturnedIndex;}
+\DoxyCodeLine{00055     \}}
+\DoxyCodeLine{00056     \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{00057 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a2e5bcf1711ba7875ef164160854fbbf2}\label{classFGraphIndexer_a2e5bcf1711ba7875ef164160854fbbf2}} 
+\index{FGraphIndexer@{FGraphIndexer}!ContainsNode@{ContainsNode}}
+\index{ContainsNode@{ContainsNode}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{ContainsNode()}{ContainsNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FGraph\+Indexer\+::\+Contains\+Node (\begin{DoxyParamCaption}\item[{UEd\+Graph\+Node $\ast$}]{In\+Node,  }\item[{int \&}]{Out\+Index }\end{DoxyParamCaption})}
+
+
+
+Checks that the provided Node is Indexed, and retrieves its Key.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node} & The Node to Find.\\
+\hline
+{\em Out\+Index} & The Index Linked to the Provided Node.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00059}{59}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060 \{}
+\DoxyCodeLine{00061     OutIndex = \mbox{\hyperlink{classFGraphIndexer_a3da5527929de755f0054053c38385ae7}{ContainsNode}}(InNode);}
+\DoxyCodeLine{00062 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a27b35d445390c74cd4d4939e17536f17}\label{classFGraphIndexer_a27b35d445390c74cd4d4939e17536f17}} 
+\index{FGraphIndexer@{FGraphIndexer}!GetKey@{GetKey}}
+\index{GetKey@{GetKey}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{GetKey()}{GetKey()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int FGraph\+Indexer\+::\+Get\+Key (\begin{DoxyParamCaption}\item[{const UEd\+Graph\+Node $\ast$}]{In\+Node }\end{DoxyParamCaption})}
+
+
+
+Gets the Key Linked to the Provided Node in the Indexer.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node} & The Node to find the Index of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Index of the Provided Node. -\/1 on Failure.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00064}{64}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00065 \{}
+\DoxyCodeLine{00066     check(InNode != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00067 }
+\DoxyCodeLine{00068     \textcolor{keywordflow}{if} (!InNode-\/>IsValidLowLevelFast())}
+\DoxyCodeLine{00069         \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071     \textcolor{keyword}{const} \textcolor{keywordtype}{int}* FoundKey = \mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}.FindKey(\textcolor{keyword}{const\_cast<}UEdGraphNode*\textcolor{keyword}{>}(InNode));}
+\DoxyCodeLine{00072 }
+\DoxyCodeLine{00073     \textcolor{keywordflow}{if} (FoundKey != \textcolor{keyword}{nullptr}) \textcolor{keywordflow}{return} *FoundKey;}
+\DoxyCodeLine{00074     \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} -\/1;}
+\DoxyCodeLine{00075 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_aaba3d3dc7bf45ec21be29af465a6d0ba}\label{classFGraphIndexer_aaba3d3dc7bf45ec21be29af465a6d0ba}} 
+\index{FGraphIndexer@{FGraphIndexer}!GetKey@{GetKey}}
+\index{GetKey@{GetKey}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{GetKey()}{GetKey()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool FGraph\+Indexer\+::\+Get\+Key (\begin{DoxyParamCaption}\item[{const UEd\+Graph\+Node $\ast$}]{In\+Node,  }\item[{int \&}]{Out\+Key }\end{DoxyParamCaption})}
+
+
+
+Gets the Key Linked to the Provided Node in the Indexer.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node} & The Node to find the Index of.\\
+\hline
+{\em Out\+Key} & The Index of the Provided Node.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Key Was Found. False, if the Key Could Not Be Found.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00077}{77}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00078 \{}
+\DoxyCodeLine{00079     check(InNode != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00080 }
+\DoxyCodeLine{00081     \textcolor{keywordflow}{if} (!InNode-\/>IsValidLowLevelFast())}
+\DoxyCodeLine{00082         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00083 }
+\DoxyCodeLine{00084     \textcolor{keyword}{const} \textcolor{keywordtype}{int}* FoundKey = \mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}.FindKey(\textcolor{keyword}{const\_cast<}UEdGraphNode*\textcolor{keyword}{>}(InNode));}
+\DoxyCodeLine{00085     \textcolor{keywordflow}{if} (FoundKey != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00086     \{}
+\DoxyCodeLine{00087         OutKey = *FoundKey;}
+\DoxyCodeLine{00088         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00089     \}}
+\DoxyCodeLine{00090     \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00091 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a11e0df401a0efd447910ad2502168861}\label{classFGraphIndexer_a11e0df401a0efd447910ad2502168861}} 
+\index{FGraphIndexer@{FGraphIndexer}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{GetNode()}{GetNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily UEd\+Graph\+Node $\ast$ FGraph\+Indexer\+::\+Get\+Node (\begin{DoxyParamCaption}\item[{const int \&}]{In\+Index }\end{DoxyParamCaption})}
+
+
+
+Gets the Node Linked to the Provided Index.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Index} & The Index to Find the Node of.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Found Graph Node, nullptr on Failure.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00093}{93}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00094 \{}
+\DoxyCodeLine{00095     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}.Contains(InIndex))}
+\DoxyCodeLine{00096     \{}
+\DoxyCodeLine{00097         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Provided Index is not recognised"{}}))}
+\DoxyCodeLine{00098 }
+\DoxyCodeLine{00099         return \textcolor{keywordtype}{nullptr};}
+\DoxyCodeLine{00100     \}}
+\DoxyCodeLine{00101 }
+\DoxyCodeLine{00102     return \mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}[InIndex];}
+\DoxyCodeLine{00103 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a62206ec64082d69b21b2e1d6691ba285}\label{classFGraphIndexer_a62206ec64082d69b21b2e1d6691ba285}} 
+\index{FGraphIndexer@{FGraphIndexer}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{GetNode()}{GetNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FGraph\+Indexer\+::\+Get\+Node (\begin{DoxyParamCaption}\item[{const int \&}]{In\+Index,  }\item[{UEd\+Graph\+Node $\ast$}]{Out\+Node }\end{DoxyParamCaption})}
+
+
+
+Gets the Node Linked to the Provided Index.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Index} & The Index to Find the Node of.\\
+\hline
+{\em Out\+Node} & Applies the Found Node, else nullptr.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00129}{129}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00130 \{}
+\DoxyCodeLine{00131     OutNode = \mbox{\hyperlink{classFGraphIndexer_a62206ec64082d69b21b2e1d6691ba285}{GetNode}}(InIndex);}
+\DoxyCodeLine{00132 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a0692993e9b7cc39b4c46c8ef2ee835e5}\label{classFGraphIndexer_a0692993e9b7cc39b4c46c8ef2ee835e5}} 
+\index{FGraphIndexer@{FGraphIndexer}!GetOrAddNode@{GetOrAddNode}}
+\index{GetOrAddNode@{GetOrAddNode}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{GetOrAddNode()}{GetOrAddNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int FGraph\+Indexer\+::\+Get\+Or\+Add\+Node (\begin{DoxyParamCaption}\item[{const UEd\+Graph\+Node $\ast$}]{In\+Node }\end{DoxyParamCaption})}
+
+
+
+Gets or Adds the Provided Node to the Indexer.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node} & The Node to Get or Look-\/\+Up in the Indexer.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Index of the Node in the Graph.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00162}{162}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00163 \{}
+\DoxyCodeLine{00164     \textcolor{keywordtype}{int} Key = \mbox{\hyperlink{classFGraphIndexer_a27b35d445390c74cd4d4939e17536f17}{GetKey}}(InNode);}
+\DoxyCodeLine{00165     \textcolor{keywordflow}{if} (Key != -\/1)}
+\DoxyCodeLine{00166     \{}
+\DoxyCodeLine{00167         \textcolor{keywordflow}{return} Key;}
+\DoxyCodeLine{00168     \}}
+\DoxyCodeLine{00169 }
+\DoxyCodeLine{00170     \textcolor{keywordflow}{return} \mbox{\hyperlink{classFGraphIndexer_abe51e50c9906b6a20089a44ae7a0dcea}{AddNode}}(InNode);}
+\DoxyCodeLine{00171 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_ad61d5fe61f251f9c45e992868b4e2fb2}\label{classFGraphIndexer_ad61d5fe61f251f9c45e992868b4e2fb2}} 
+\index{FGraphIndexer@{FGraphIndexer}!GetOrAddNode@{GetOrAddNode}}
+\index{GetOrAddNode@{GetOrAddNode}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{GetOrAddNode()}{GetOrAddNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FGraph\+Indexer\+::\+Get\+Or\+Add\+Node (\begin{DoxyParamCaption}\item[{const UEd\+Graph\+Node $\ast$}]{In\+Node,  }\item[{int \&}]{Out\+Index }\end{DoxyParamCaption})}
+
+
+
+Gets or Adds the Provided Node to the Indexer.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node} & The Node to Get or Look-\/\+Up in the Indexer.\\
+\hline
+{\em Out\+Index} & The Index of the Node in the Graph.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00173}{173}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00174 \{}
+\DoxyCodeLine{00175     OutIndex = \mbox{\hyperlink{classFGraphIndexer_a27b35d445390c74cd4d4939e17536f17}{GetKey}}(InNode);}
+\DoxyCodeLine{00176     \textcolor{keywordflow}{if} (OutIndex != -\/1)}
+\DoxyCodeLine{00177     \{}
+\DoxyCodeLine{00178         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00179     \}}
+\DoxyCodeLine{00180 }
+\DoxyCodeLine{00181     OutIndex = \mbox{\hyperlink{classFGraphIndexer_abe51e50c9906b6a20089a44ae7a0dcea}{AddNode}}(InNode);}
+\DoxyCodeLine{00182 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a30d36ca27c3e88b9f246b6795cdf5b9e}\label{classFGraphIndexer_a30d36ca27c3e88b9f246b6795cdf5b9e}} 
+\index{FGraphIndexer@{FGraphIndexer}!GetPin@{GetPin}}
+\index{GetPin@{GetPin}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{GetPin()}{GetPin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily UEd\+Graph\+Pin $\ast$ FGraph\+Indexer\+::\+Get\+Pin (\begin{DoxyParamCaption}\item[{const int \&}]{In\+Node\+Index,  }\item[{const int \&}]{In\+Pin\+Index }\end{DoxyParamCaption})}
+
+
+
+Gets the Pin Linked to the Provided Index, of the Provided Node Index.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node\+Index} & The Index of the Node to find the Pin From.\\
+\hline
+{\em In\+Pin\+Index} & The Index of the Pin on the Provided Node.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Found Pin on the Provided Node, nullptr on Failure.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00117}{117}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00118 \{}
+\DoxyCodeLine{00119     UEdGraphNode* Node = \mbox{\hyperlink{classFGraphIndexer_a62206ec64082d69b21b2e1d6691ba285}{GetNode}}(InNodeIndex);}
+\DoxyCodeLine{00120     \textcolor{keywordflow}{if} (Node == \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00121     \{}
+\DoxyCodeLine{00122         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Requested Node at index \%d is not valid."{}}), InNodeIndex);}
+\DoxyCodeLine{00123         \textcolor{keywordflow}{return} \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00124     \}}
+\DoxyCodeLine{00125 }
+\DoxyCodeLine{00126     \textcolor{keywordflow}{return} Node-\/>GetPinAt(InPinIndex); \textcolor{comment}{// Returns nullptr if invalid}}
+\DoxyCodeLine{00127 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a6aac92578b2cb8e54d74b54727323cb6}\label{classFGraphIndexer_a6aac92578b2cb8e54d74b54727323cb6}} 
+\index{FGraphIndexer@{FGraphIndexer}!GetPin@{GetPin}}
+\index{GetPin@{GetPin}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{GetPin()}{GetPin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FGraph\+Indexer\+::\+Get\+Pin (\begin{DoxyParamCaption}\item[{const int \&}]{In\+Node\+Index,  }\item[{const int \&}]{In\+Pin\+Index,  }\item[{UEd\+Graph\+Pin $\ast$}]{Out\+Pin }\end{DoxyParamCaption})}
+
+
+
+Gets the Pin Linked to the Provided Index, of the Provided Node Index.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node\+Index} & The Index of the Node to find the Pin From.\\
+\hline
+{\em In\+Pin\+Index} & The Index of the Pin on the Provided Node.\\
+\hline
+{\em Out\+Pin} & The Found Pin on the Provided Node.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00105}{105}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00106 \{}
+\DoxyCodeLine{00107     UEdGraphNode* Node = \mbox{\hyperlink{classFGraphIndexer_a62206ec64082d69b21b2e1d6691ba285}{GetNode}}(InNodeIndex);}
+\DoxyCodeLine{00108     \textcolor{keywordflow}{if} (Node == \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00109     \{}
+\DoxyCodeLine{00110         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Requested Node at index \%d is not valid."{}}), InNodeIndex);}
+\DoxyCodeLine{00111         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00112     \}}
+\DoxyCodeLine{00113 }
+\DoxyCodeLine{00114     OutPin = Node-\/>GetPinAt(InPinIndex); \textcolor{comment}{// Returns nullptr if invalid}}
+\DoxyCodeLine{00115 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a5b8b8c88fd0d2e906cf3d358bee48fcf}\label{classFGraphIndexer_a5b8b8c88fd0d2e906cf3d358bee48fcf}} 
+\index{FGraphIndexer@{FGraphIndexer}!OnGraphEvent@{OnGraphEvent}}
+\index{OnGraphEvent@{OnGraphEvent}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{OnGraphEvent()}{OnGraphEvent()}}
+{\footnotesize\ttfamily void FGraph\+Indexer\+::\+On\+Graph\+Event (\begin{DoxyParamCaption}\item[{const FEd\+Graph\+Edit\+Action \&}]{In\+Action }\end{DoxyParamCaption})}
+
+
+
+Callback for when the Linked Graph for the Indexer has been Modified.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Action} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00225}{225}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00226 \{}
+\DoxyCodeLine{00227     \textcolor{keywordflow}{if} (InAction.Graph != \mbox{\hyperlink{classFGraphIndexer_a2c316f3ca2135b295bd5f7e6b2ebc392}{LinkedGraph}})}
+\DoxyCodeLine{00228     \{}
+\DoxyCodeLine{00229         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00230     \}}
+\DoxyCodeLine{00231 }
+\DoxyCodeLine{00232     \textcolor{keywordflow}{switch} (InAction.Action)}
+\DoxyCodeLine{00233     \{}
+\DoxyCodeLine{00234         \textcolor{keywordflow}{case} EEdGraphActionType::GRAPHACTION\_AddNode:}
+\DoxyCodeLine{00235         \{}
+\DoxyCodeLine{00236             \textcolor{keywordflow}{for} (\textcolor{keyword}{const} UEdGraphNode* Node : InAction.Nodes)}
+\DoxyCodeLine{00237             \{}
+\DoxyCodeLine{00238                 \mbox{\hyperlink{classFGraphIndexer_abe51e50c9906b6a20089a44ae7a0dcea}{AddNode}}(Node);}
+\DoxyCodeLine{00239             \}}
+\DoxyCodeLine{00240 }
+\DoxyCodeLine{00241             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00242         \}}
+\DoxyCodeLine{00243 }
+\DoxyCodeLine{00244         \textcolor{keywordflow}{case} EEdGraphActionType::GRAPHACTION\_RemoveNode:}
+\DoxyCodeLine{00245         \{}
+\DoxyCodeLine{00246             \textcolor{keywordflow}{for} (\textcolor{keyword}{const} UEdGraphNode* Node : InAction.Nodes)}
+\DoxyCodeLine{00247             \{}
+\DoxyCodeLine{00248                 \mbox{\hyperlink{classFGraphIndexer_ac1ef6ef472f50489d82cfec46d59b909}{RemoveNode}}(Node);}
+\DoxyCodeLine{00249             \}}
+\DoxyCodeLine{00250 }
+\DoxyCodeLine{00251             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00252         \}}
+\DoxyCodeLine{00253     \}}
+\DoxyCodeLine{00254 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_a763e1b74402f235dfcf33647018d0ac9}\label{classFGraphIndexer_a763e1b74402f235dfcf33647018d0ac9}} 
+\index{FGraphIndexer@{FGraphIndexer}!OnGraphRebuild@{OnGraphRebuild}}
+\index{OnGraphRebuild@{OnGraphRebuild}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{OnGraphRebuild()}{OnGraphRebuild()}}
+{\footnotesize\ttfamily void FGraph\+Indexer\+::\+On\+Graph\+Rebuild (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calls a Full Rebuild of the Indexer, to ensure all Nodes are Indexed.  
+
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00256}{256}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00257 \{}
+\DoxyCodeLine{00258     \mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}.Reset();}
+\DoxyCodeLine{00259     \mbox{\hyperlink{classFGraphIndexer_af326872f3d3e372e90e3763302d47aba}{NodeSet}}.Reset();}
+\DoxyCodeLine{00260     \mbox{\hyperlink{classFGraphIndexer_a331470f63727a15c6399ad4e99f1895a}{AvailableIndices}}.Empty();}
+\DoxyCodeLine{00261 }
+\DoxyCodeLine{00262     BuildGraphIndex();}
+\DoxyCodeLine{00263 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_ac1ef6ef472f50489d82cfec46d59b909}\label{classFGraphIndexer_ac1ef6ef472f50489d82cfec46d59b909}} 
+\index{FGraphIndexer@{FGraphIndexer}!RemoveNode@{RemoveNode}}
+\index{RemoveNode@{RemoveNode}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{RemoveNode()}{RemoveNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void FGraph\+Indexer\+::\+Remove\+Node (\begin{DoxyParamCaption}\item[{const int \&}]{In\+Index }\end{DoxyParamCaption})}
+
+
+
+Removes the Node from the Indexer, linked to the Provided Index.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Index} & The Index to Remove from the Indexer, and its Linked Node.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00184}{184}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00185 \{}
+\DoxyCodeLine{00186     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}.Contains(InIndex))}
+\DoxyCodeLine{00187     \{}
+\DoxyCodeLine{00188         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Provided Index is not recognised"{}}))}
+\DoxyCodeLine{00189     \}}
+\DoxyCodeLine{00190     }
+\DoxyCodeLine{00191     \textcolor{keyword}{const} UEdGraphNode* Node = \mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}[InIndex];}
+\DoxyCodeLine{00192 }
+\DoxyCodeLine{00193     \textcolor{keywordflow}{if} (Node-\/>IsValidLowLevelFast())}
+\DoxyCodeLine{00194     \{}
+\DoxyCodeLine{00195         \mbox{\hyperlink{classFGraphIndexer_af326872f3d3e372e90e3763302d47aba}{NodeSet}}.Remove(Node-\/>GetUniqueID());}
+\DoxyCodeLine{00196         \mbox{\hyperlink{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}{IndexMap}}.Remove(InIndex);}
+\DoxyCodeLine{00197         \mbox{\hyperlink{classFGraphIndexer_a331470f63727a15c6399ad4e99f1895a}{AvailableIndices}}.Enqueue(InIndex);}
+\DoxyCodeLine{00198     \}}
+\DoxyCodeLine{00199     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00200     \{}
+\DoxyCodeLine{00201         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Stored Node in IndexMap is not vaild."{}}))}
+\DoxyCodeLine{00202     \}}
+\DoxyCodeLine{00203 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFGraphIndexer_aee509f79de6ecec47c9a5ae939e770f7}\label{classFGraphIndexer_aee509f79de6ecec47c9a5ae939e770f7}} 
+\index{FGraphIndexer@{FGraphIndexer}!RemoveNode@{RemoveNode}}
+\index{RemoveNode@{RemoveNode}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{RemoveNode()}{RemoveNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void FGraph\+Indexer\+::\+Remove\+Node (\begin{DoxyParamCaption}\item[{const UEd\+Graph\+Node $\ast$}]{In\+Node }\end{DoxyParamCaption})}
+
+
+
+Removes the Node from the Indexer, finds the Index in the Process.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node} & The Node To Remove from the Indexer, and its Linked Index.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8cpp_source_l00205}{205}} of file \mbox{\hyperlink{GraphIndexer_8cpp_source}{Graph\+Indexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00206 \{}
+\DoxyCodeLine{00207     check(InNode != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00208 }
+\DoxyCodeLine{00209     \textcolor{keywordtype}{int} Key = \mbox{\hyperlink{classFGraphIndexer_a27b35d445390c74cd4d4939e17536f17}{GetKey}}(InNode);}
+\DoxyCodeLine{00210     \textcolor{keywordflow}{if} (Key == -\/1)}
+\DoxyCodeLine{00211     \{}
+\DoxyCodeLine{00212         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Node does not exist in IndexMap."{}}))}
+\DoxyCodeLine{00213         return;}
+\DoxyCodeLine{00214     \}}
+\DoxyCodeLine{00215 }
+\DoxyCodeLine{00216     \mbox{\hyperlink{classFGraphIndexer_ac1ef6ef472f50489d82cfec46d59b909}{RemoveNode}}(Key);}
+\DoxyCodeLine{00217 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classFGraphIndexer_a331470f63727a15c6399ad4e99f1895a}\label{classFGraphIndexer_a331470f63727a15c6399ad4e99f1895a}} 
+\index{FGraphIndexer@{FGraphIndexer}!AvailableIndices@{AvailableIndices}}
+\index{AvailableIndices@{AvailableIndices}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{AvailableIndices}{AvailableIndices}}
+{\footnotesize\ttfamily TQueue$<$int32$>$ FGraph\+Indexer\+::\+Available\+Indices\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.  
+
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8h_source_l00173}{173}} of file \mbox{\hyperlink{GraphIndexer_8h_source}{Graph\+Indexer.\+h}}.
+
+\mbox{\Hypertarget{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}\label{classFGraphIndexer_ae050cb6280c81878fb8175670020b60f}} 
+\index{FGraphIndexer@{FGraphIndexer}!IndexMap@{IndexMap}}
+\index{IndexMap@{IndexMap}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{IndexMap}{IndexMap}}
+{\footnotesize\ttfamily TMap$<$int, UEd\+Graph\+Node$\ast$$>$ FGraph\+Indexer\+::\+Index\+Map\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Map of the Index to the Node.  
+
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8h_source_l00163}{163}} of file \mbox{\hyperlink{GraphIndexer_8h_source}{Graph\+Indexer.\+h}}.
+
+\mbox{\Hypertarget{classFGraphIndexer_a2c316f3ca2135b295bd5f7e6b2ebc392}\label{classFGraphIndexer_a2c316f3ca2135b295bd5f7e6b2ebc392}} 
+\index{FGraphIndexer@{FGraphIndexer}!LinkedGraph@{LinkedGraph}}
+\index{LinkedGraph@{LinkedGraph}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{LinkedGraph}{LinkedGraph}}
+{\footnotesize\ttfamily UEd\+Graph$\ast$ FGraph\+Indexer\+::\+Linked\+Graph\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Graph Being Indexed By This Indexer.  
+
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8h_source_l00178}{178}} of file \mbox{\hyperlink{GraphIndexer_8h_source}{Graph\+Indexer.\+h}}.
+
+\mbox{\Hypertarget{classFGraphIndexer_af326872f3d3e372e90e3763302d47aba}\label{classFGraphIndexer_af326872f3d3e372e90e3763302d47aba}} 
+\index{FGraphIndexer@{FGraphIndexer}!NodeSet@{NodeSet}}
+\index{NodeSet@{NodeSet}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{NodeSet}{NodeSet}}
+{\footnotesize\ttfamily TSet$<$int32$>$ FGraph\+Indexer\+::\+Node\+Set\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Look-\/\+Up Set of the Nodes Contained in the Indexer.  
+
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8h_source_l00168}{168}} of file \mbox{\hyperlink{GraphIndexer_8h_source}{Graph\+Indexer.\+h}}.
+
+\mbox{\Hypertarget{classFGraphIndexer_a7d56566f451dec106e2b6767596e2835}\label{classFGraphIndexer_a7d56566f451dec106e2b6767596e2835}} 
+\index{FGraphIndexer@{FGraphIndexer}!OnGraphChangedHandle@{OnGraphChangedHandle}}
+\index{OnGraphChangedHandle@{OnGraphChangedHandle}!FGraphIndexer@{FGraphIndexer}}
+\doxysubsubsection{\texorpdfstring{OnGraphChangedHandle}{OnGraphChangedHandle}}
+{\footnotesize\ttfamily FDelegate\+Handle FGraph\+Indexer\+::\+On\+Graph\+Changed\+Handle\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{GraphIndexer_8h_source_l00180}{180}} of file \mbox{\hyperlink{GraphIndexer_8h_source}{Graph\+Indexer.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility/\+Public/Graph\+Indexer.\+h\item 
+Source/\+Open\+Accessibility/\+Private/Graph\+Indexer.\+cpp\end{DoxyCompactItemize}

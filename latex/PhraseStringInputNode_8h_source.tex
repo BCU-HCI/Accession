@@ -1,0 +1,35 @@
+\hypertarget{PhraseStringInputNode_8h_source}{}\doxysection{Phrase\+String\+Input\+Node.\+h}
+\label{PhraseStringInputNode_8h_source}\index{Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseStringInputNode.h@{Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseStringInputNode.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00003}00003 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00006}00006 \textcolor{preprocessor}{\#include "{}PhraseInputNode.h"{}}}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00011}\mbox{\hyperlink{classFPhraseStringInputNode}{00011}} \textcolor{keyword}{class }OPENACCESSIBILITYCOMMUNICATION\_API \mbox{\hyperlink{classFPhraseStringInputNode}{FPhraseStringInputNode}} : \textcolor{keyword}{public} \mbox{\hyperlink{classFPhraseInputNode}{FPhraseInputNode}}<FString>}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00012}00012 \{}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00013}00013 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00015}00015     \mbox{\hyperlink{classFPhraseStringInputNode}{FPhraseStringInputNode}}(\textcolor{keyword}{const} TCHAR* InInputString);}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00016}00016     \mbox{\hyperlink{classFPhraseStringInputNode}{FPhraseStringInputNode}}(\textcolor{keyword}{const} TCHAR* InInputString, TPhraseNodeArray InChildNodes);}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00017}00017     \mbox{\hyperlink{classFPhraseStringInputNode}{FPhraseStringInputNode}}(\textcolor{keyword}{const} TCHAR* InInputString, TDelegate<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes);}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00018}00018     \mbox{\hyperlink{classFPhraseStringInputNode}{FPhraseStringInputNode}}(\textcolor{keyword}{const} TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate<\textcolor{keywordtype}{void}(FString Input)> InOnInputRecieved);}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00019}00019     \mbox{\hyperlink{classFPhraseStringInputNode}{FPhraseStringInputNode}}(\textcolor{keyword}{const} TCHAR* InInputString, TDelegate<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<\textcolor{keywordtype}{void}(FString Input)> InOnInputRecieved);}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00021}00021     \mbox{\hyperlink{classFPhraseStringInputNode}{\string~FPhraseStringInputNode}}();}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00023}00023 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00025}00025     \textcolor{comment}{// FPhraseInputNode Implementation}}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00027}00027     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseInputNode_a4db63d4ca6bf5ace09c3dda2f19c7e78}{MeetsInputRequirements}}(\textcolor{keyword}{const} FString\& InPhrase) \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00029}00029     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseInputNode_af938609ba4a21d785543851c2b511f7f}{RecordInput}}(\textcolor{keyword}{const} FString\& InInput, \mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& OutParseRecord) \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00031}00031     \textcolor{comment}{// End FPhraseInputNode Implementation}}
+\DoxyCodeLine{\Hypertarget{PhraseStringInputNode_8h_source_l00032}00032 \};}
+
+\end{DoxyCode}

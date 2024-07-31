@@ -1,0 +1,251 @@
+\hypertarget{classFPhraseEventNode}{}\doxysection{FPhrase\+Event\+Node Class Reference}
+\label{classFPhraseEventNode}\index{FPhraseEventNode@{FPhraseEventNode}}
+Inheritance diagram for FPhrase\+Event\+Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classFPhraseEventNode}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFPhraseEventNode_ae6e46a7c172ed062a7911e68f48862a0}{FPhrase\+Event\+Node}} (TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&)$>$ In\+Event)
+\item 
+\mbox{\hyperlink{classFPhraseEventNode_a568edf19eebaf300b1f9a94d278bc23e}{FPhrase\+Event\+Node}} (TFunction$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&)$>$ In\+Event\+Function)
+\item 
+virtual bool \mbox{\hyperlink{classFPhraseEventNode_ae107fcda29c78bd9cfba761906090460}{Is\+Leaf\+Node}} () const override
+\begin{DoxyCompactList}\small\item\em Checks if the Node is a Leaf Node.  \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classFPhraseEventNode_a0f0d538bb4f1836dea0a337a42f91b2c}{Requires\+Phrase}} (const FString In\+Phrase) override
+\begin{DoxyCompactList}\small\item\em Checks if the Node Requires the Given Phrase.  \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classFPhraseEventNode_a5f150cf1aa4719e02fe00178cf2e3b02}{Requires\+Phrase}} (const FString In\+Phrase, int32 \&Out\+Distance)
+\begin{DoxyCompactList}\small\item\em Checks if the Node Requires the Given Phrase, and Returns the Distance of the Phrase.  \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classFPhraseEventNode_a14c76a68138b843355fe528d6fdcef91}{Parse\+Phrase}} (TArray$<$ FString $>$ \&In\+Phrase\+Array, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&In\+Parse\+Record) override
+\begin{DoxyCompactList}\small\item\em Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{PhraseEventNode_8h_source_l00011}{11}} of file \mbox{\hyperlink{PhraseEventNode_8h_source}{Phrase\+Event\+Node.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFPhraseEventNode_a7d5a94fd9cac74580f0408e377d53b36}\label{classFPhraseEventNode_a7d5a94fd9cac74580f0408e377d53b36}} 
+\index{FPhraseEventNode@{FPhraseEventNode}!FPhraseEventNode@{FPhraseEventNode}}
+\index{FPhraseEventNode@{FPhraseEventNode}!FPhraseEventNode@{FPhraseEventNode}}
+\doxysubsubsection{\texorpdfstring{FPhraseEventNode()}{FPhraseEventNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily FPhrase\+Event\+Node\+::\+FPhrase\+Event\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseEventNode_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{PhraseEventNode_8cpp_source}{Phrase\+Event\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00008     : \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}(TEXT(\textcolor{stringliteral}{"{}EVENT\_NODE"{}}))}
+\DoxyCodeLine{00009 \{}
+\DoxyCodeLine{00010     OnPhraseParsed = TDelegate<void(FParseRecord\&)>();}
+\DoxyCodeLine{00011 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseEventNode_ae6e46a7c172ed062a7911e68f48862a0}\label{classFPhraseEventNode_ae6e46a7c172ed062a7911e68f48862a0}} 
+\index{FPhraseEventNode@{FPhraseEventNode}!FPhraseEventNode@{FPhraseEventNode}}
+\index{FPhraseEventNode@{FPhraseEventNode}!FPhraseEventNode@{FPhraseEventNode}}
+\doxysubsubsection{\texorpdfstring{FPhraseEventNode()}{FPhraseEventNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily FPhrase\+Event\+Node\+::\+FPhrase\+Event\+Node (\begin{DoxyParamCaption}\item[{TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&)$>$}]{In\+Event }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseEventNode_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{PhraseEventNode_8cpp_source}{Phrase\+Event\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014     : \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}(TEXT(\textcolor{stringliteral}{"{}EVENT\_NODE"{}}), InEvent)}
+\DoxyCodeLine{00015 \{}
+\DoxyCodeLine{00016 }
+\DoxyCodeLine{00017 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseEventNode_a568edf19eebaf300b1f9a94d278bc23e}\label{classFPhraseEventNode_a568edf19eebaf300b1f9a94d278bc23e}} 
+\index{FPhraseEventNode@{FPhraseEventNode}!FPhraseEventNode@{FPhraseEventNode}}
+\index{FPhraseEventNode@{FPhraseEventNode}!FPhraseEventNode@{FPhraseEventNode}}
+\doxysubsubsection{\texorpdfstring{FPhraseEventNode()}{FPhraseEventNode()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily FPhrase\+Event\+Node\+::\+FPhrase\+Event\+Node (\begin{DoxyParamCaption}\item[{TFunction$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&)$>$}]{In\+Event\+Function }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseEventNode_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{PhraseEventNode_8cpp_source}{Phrase\+Event\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020     : \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}(TEXT(\textcolor{stringliteral}{"{}EVENT\_NODE"{}}), TDelegate<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\&)>::CreateLambda(InEventFunction))}
+\DoxyCodeLine{00021 \{}
+\DoxyCodeLine{00022 }
+\DoxyCodeLine{00023 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseEventNode_abface0c0d435e8dfc13dffc76d6d979f}\label{classFPhraseEventNode_abface0c0d435e8dfc13dffc76d6d979f}} 
+\index{FPhraseEventNode@{FPhraseEventNode}!````~FPhraseEventNode@{$\sim$FPhraseEventNode}}
+\index{````~FPhraseEventNode@{$\sim$FPhraseEventNode}!FPhraseEventNode@{FPhraseEventNode}}
+\doxysubsubsection{\texorpdfstring{$\sim$FPhraseEventNode()}{~FPhraseEventNode()}}
+{\footnotesize\ttfamily FPhrase\+Event\+Node\+::$\sim$\+FPhrase\+Event\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseEventNode_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{PhraseEventNode_8cpp_source}{Phrase\+Event\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026 \{}
+\DoxyCodeLine{00027 }
+\DoxyCodeLine{00028 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFPhraseEventNode_ae107fcda29c78bd9cfba761906090460}\label{classFPhraseEventNode_ae107fcda29c78bd9cfba761906090460}} 
+\index{FPhraseEventNode@{FPhraseEventNode}!IsLeafNode@{IsLeafNode}}
+\index{IsLeafNode@{IsLeafNode}!FPhraseEventNode@{FPhraseEventNode}}
+\doxysubsubsection{\texorpdfstring{IsLeafNode()}{IsLeafNode()}}
+{\footnotesize\ttfamily virtual bool FPhrase\+Event\+Node\+::\+Is\+Leaf\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Checks if the Node is a Leaf Node.  
+
+\begin{DoxyReturn}{Returns}
+True, if the Node is a Leaf Node. Otherwise False.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classFPhraseNode_aa3cb40c43957d0e5f281d7be77b8b246}{FPhrase\+Node}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseEventNode_8h_source_l00021}{21}} of file \mbox{\hyperlink{PhraseEventNode_8h_source}{Phrase\+Event\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021 \{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseEventNode_a14c76a68138b843355fe528d6fdcef91}\label{classFPhraseEventNode_a14c76a68138b843355fe528d6fdcef91}} 
+\index{FPhraseEventNode@{FPhraseEventNode}!ParsePhrase@{ParsePhrase}}
+\index{ParsePhrase@{ParsePhrase}!FPhraseEventNode@{FPhraseEventNode}}
+\doxysubsubsection{\texorpdfstring{ParsePhrase()}{ParsePhrase()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFParseResult}{FParse\+Result}} FPhrase\+Event\+Node\+::\+Parse\+Phrase (\begin{DoxyParamCaption}\item[{TArray$<$ FString $>$ \&}]{In\+Phrase\+Word\+Array,  }\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{In\+Parse\+Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase\+Word\+Array} & -\/ The Current Array of Transcription Phrases.\\
+\hline
+{\em In\+Parse\+Record} & -\/ The Parse Record of the Current Propagation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Result of the Parsing of the Phrase, and any Propagation.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classFPhraseNode_a9e108bf1a2f579ed03277540c01a36da}{FPhrase\+Node}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseEventNode_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{PhraseEventNode_8cpp_source}{Phrase\+Event\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042 \{}
+\DoxyCodeLine{00043     \textcolor{keywordflow}{if} (OnPhraseParsed.ExecuteIfBound(InParseRecord))}
+\DoxyCodeLine{00044     \{}
+\DoxyCodeLine{00045         \textcolor{keywordflow}{return} \mbox{\hyperlink{structFParseResult}{FParseResult}}(PHRASE\_PARSED\_AND\_EXECUTED);}
+\DoxyCodeLine{00046     \}}
+\DoxyCodeLine{00047 }
+\DoxyCodeLine{00048     UE\_LOG(LogOpenAccessibilityCom, Warning, TEXT(\textcolor{stringliteral}{"{}|| Unable to Execute Event ||"{}}))}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050     return \mbox{\hyperlink{structFParseResult}{FParseResult}}(PHRASE\_UNABLE\_TO\_PARSE, AsShared());}
+\DoxyCodeLine{00051 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseEventNode_a0f0d538bb4f1836dea0a337a42f91b2c}\label{classFPhraseEventNode_a0f0d538bb4f1836dea0a337a42f91b2c}} 
+\index{FPhraseEventNode@{FPhraseEventNode}!RequiresPhrase@{RequiresPhrase}}
+\index{RequiresPhrase@{RequiresPhrase}!FPhraseEventNode@{FPhraseEventNode}}
+\doxysubsubsection{\texorpdfstring{RequiresPhrase()}{RequiresPhrase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool FPhrase\+Event\+Node\+::\+Requires\+Phrase (\begin{DoxyParamCaption}\item[{const FString}]{In\+Phrase }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Checks if the Node Requires the Given Phrase.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase} & -\/ The Phrase To Check if Required By The Node.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Phrase is Required. Otherwise False.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classFPhraseNode_a15b600afd86bb99477af360a5c169246}{FPhrase\+Node}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseEventNode_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{PhraseEventNode_8cpp_source}{Phrase\+Event\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031 \{}
+\DoxyCodeLine{00032     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00033 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseEventNode_a5f150cf1aa4719e02fe00178cf2e3b02}\label{classFPhraseEventNode_a5f150cf1aa4719e02fe00178cf2e3b02}} 
+\index{FPhraseEventNode@{FPhraseEventNode}!RequiresPhrase@{RequiresPhrase}}
+\index{RequiresPhrase@{RequiresPhrase}!FPhraseEventNode@{FPhraseEventNode}}
+\doxysubsubsection{\texorpdfstring{RequiresPhrase()}{RequiresPhrase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool FPhrase\+Event\+Node\+::\+Requires\+Phrase (\begin{DoxyParamCaption}\item[{const FString}]{In\+Phrase,  }\item[{int32 \&}]{Out\+Distance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Checks if the Node Requires the Given Phrase, and Returns the Distance of the Phrase.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase} & -\/ The Phrase To Check if Required By The Node.\\
+\hline
+{\em Out\+Distance} & -\/ The Returned Distancing from the Target Phrase To The Bound\+Phrase.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Phrase is Required. Otherwise False.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classFPhraseNode_a27bb33f57c44482793806a71fcd7baf1}{FPhrase\+Node}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseEventNode_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{PhraseEventNode_8cpp_source}{Phrase\+Event\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036 \{}
+\DoxyCodeLine{00037     OutDistance = 0;}
+\DoxyCodeLine{00038     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00039 \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility\+Communication/\+Public/\+Phrase\+Tree/Phrase\+Event\+Node.\+h\item 
+Source/\+Open\+Accessibility\+Communication/\+Private/\+Phrase\+Tree/Phrase\+Event\+Node.\+cpp\end{DoxyCompactItemize}

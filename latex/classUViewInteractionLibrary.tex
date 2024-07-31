@@ -1,0 +1,323 @@
+\hypertarget{classUViewInteractionLibrary}{}\doxysection{UView\+Interaction\+Library Class Reference}
+\label{classUViewInteractionLibrary}\index{UViewInteractionLibrary@{UViewInteractionLibrary}}
+Inheritance diagram for UView\+Interaction\+Library\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classUViewInteractionLibrary}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUViewInteractionLibrary_a4892c261b572427a49d5cfef19b1ba42}{UView\+Interaction\+Library}} (const FObject\+Initializer \&Object\+Initializer)
+\item 
+void \mbox{\hyperlink{classUViewInteractionLibrary_a3c1753822a53047bbeb6a4e6dbc79880}{Bind\+Branches}} (TShared\+Ref$<$ \mbox{\hyperlink{classFPhraseTree}{FPhrase\+Tree}} $>$ Phrase\+Tree) override
+\item 
+void \mbox{\hyperlink{classUViewInteractionLibrary_a4ef057b326b49e181f872220762db1d5}{Move\+Viewport}} (\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)
+\item 
+void \mbox{\hyperlink{classUViewInteractionLibrary_a101a1fc37a876c1d5a58c0eae924e457}{Zoom\+Viewport}} (\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)
+\item 
+void \mbox{\hyperlink{classUViewInteractionLibrary_a42e597117b431a8e8412df2c6270245d}{Index\+Focus}} (\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ViewInteractionLibrary_8h_source_l00012}{12}} of file \mbox{\hyperlink{ViewInteractionLibrary_8h_source}{View\+Interaction\+Library.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classUViewInteractionLibrary_a4892c261b572427a49d5cfef19b1ba42}\label{classUViewInteractionLibrary_a4892c261b572427a49d5cfef19b1ba42}} 
+\index{UViewInteractionLibrary@{UViewInteractionLibrary}!UViewInteractionLibrary@{UViewInteractionLibrary}}
+\index{UViewInteractionLibrary@{UViewInteractionLibrary}!UViewInteractionLibrary@{UViewInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{UViewInteractionLibrary()}{UViewInteractionLibrary()}}
+{\footnotesize\ttfamily UView\+Interaction\+Library\+::\+UView\+Interaction\+Library (\begin{DoxyParamCaption}\item[{const FObject\+Initializer \&}]{Object\+Initializer }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source}{View\+Interaction\+Library.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013     : Super(ObjectInitializer)}
+\DoxyCodeLine{00014 \{}
+\DoxyCodeLine{00015 }
+\DoxyCodeLine{00016 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUViewInteractionLibrary_a9dab535b5eed14aa7bc7d192a9c9736d}\label{classUViewInteractionLibrary_a9dab535b5eed14aa7bc7d192a9c9736d}} 
+\index{UViewInteractionLibrary@{UViewInteractionLibrary}!````~UViewInteractionLibrary@{$\sim$UViewInteractionLibrary}}
+\index{````~UViewInteractionLibrary@{$\sim$UViewInteractionLibrary}!UViewInteractionLibrary@{UViewInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{$\sim$UViewInteractionLibrary()}{~UViewInteractionLibrary()}}
+{\footnotesize\ttfamily UView\+Interaction\+Library\+::$\sim$\+UView\+Interaction\+Library (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source}{View\+Interaction\+Library.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00019 \{}
+\DoxyCodeLine{00020 }
+\DoxyCodeLine{00021 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classUViewInteractionLibrary_a3c1753822a53047bbeb6a4e6dbc79880}\label{classUViewInteractionLibrary_a3c1753822a53047bbeb6a4e6dbc79880}} 
+\index{UViewInteractionLibrary@{UViewInteractionLibrary}!BindBranches@{BindBranches}}
+\index{BindBranches@{BindBranches}!UViewInteractionLibrary@{UViewInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{BindBranches()}{BindBranches()}}
+{\footnotesize\ttfamily void UView\+Interaction\+Library\+::\+Bind\+Branches (\begin{DoxyParamCaption}\item[{TShared\+Ref$<$ \mbox{\hyperlink{classFPhraseTree}{FPhrase\+Tree}} $>$}]{Phrase\+Tree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Binds Branches originating from this Library onto the provided Phrase Tree. 
+\begin{DoxyParams}{Parameters}
+{\em Phrase\+Tree} & Reference to the Phrase\+Tree to Bind this Library to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classUPhraseTreeFunctionLibrary}{UPhrase\+Tree\+Function\+Library}}.
+
+
+
+Definition at line \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source}{View\+Interaction\+Library.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024 \{}
+\DoxyCodeLine{00025     PhraseTree-\/>BindBranch(}
+\DoxyCodeLine{00026         MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}VIEW"{}}), }
+\DoxyCodeLine{00027         TPhraseNodeArray \{}
+\DoxyCodeLine{00028             }
+\DoxyCodeLine{00029             MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}MOVE"{}}),}
+\DoxyCodeLine{00030             TPhraseNodeArray \{}
+\DoxyCodeLine{00031 }
+\DoxyCodeLine{00032                 MakeShared<FPhrase2DDirectionalInputNode>(TEXT(\textcolor{stringliteral}{"{}DIRECTION"{}}), }
+\DoxyCodeLine{00033                 TPhraseNodeArray \{}
+\DoxyCodeLine{00034                 }
+\DoxyCodeLine{00035                     MakeShared<FPhraseInputNode<int32>>(TEXT(\textcolor{stringliteral}{"{}AMOUNT"{}}),}
+\DoxyCodeLine{00036                     TPhraseNodeArray \{}
+\DoxyCodeLine{00037                     }
+\DoxyCodeLine{00038                         MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUViewInteractionLibrary_a4ef057b326b49e181f872220762db1d5}{UViewInteractionLibrary::MoveViewport}}))}
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040                     \})}
+\DoxyCodeLine{00041 }
+\DoxyCodeLine{00042                 \})}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044             \}),}
+\DoxyCodeLine{00045 }
+\DoxyCodeLine{00046             MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}ZOOM"{}}), }
+\DoxyCodeLine{00047             TPhraseNodeArray \{}
+\DoxyCodeLine{00048             }
+\DoxyCodeLine{00049                 MakeShared<FPhrase2DDirectionalInputNode>(TEXT(\textcolor{stringliteral}{"{}DIRECTION"{}}), }
+\DoxyCodeLine{00050                 TPhraseNodeArray \{}
+\DoxyCodeLine{00051                 }
+\DoxyCodeLine{00052                     MakeShared<FPhraseInputNode<int32>>(TEXT(\textcolor{stringliteral}{"{}AMOUNT"{}}), }
+\DoxyCodeLine{00053                     TPhraseNodeArray \{}
+\DoxyCodeLine{00054                     }
+\DoxyCodeLine{00055                         MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUViewInteractionLibrary_a101a1fc37a876c1d5a58c0eae924e457}{UViewInteractionLibrary::ZoomViewport}}))}
+\DoxyCodeLine{00056                     }
+\DoxyCodeLine{00057                     \})}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059                 \})}
+\DoxyCodeLine{00060             }
+\DoxyCodeLine{00061             \}),}
+\DoxyCodeLine{00062 }
+\DoxyCodeLine{00063             MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}FOCUS"{}}), }
+\DoxyCodeLine{00064             TPhraseNodeArray \{}
+\DoxyCodeLine{00065                 }
+\DoxyCodeLine{00066                 MakeShared<FPhraseInputNode<int32>>(TEXT(\textcolor{stringliteral}{"{}INDEX"{}}), }
+\DoxyCodeLine{00067                 TPhraseNodeArray \{}
+\DoxyCodeLine{00068                 }
+\DoxyCodeLine{00069                     MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUViewInteractionLibrary_a42e597117b431a8e8412df2c6270245d}{UViewInteractionLibrary::IndexFocus}}))}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071                 \})}
+\DoxyCodeLine{00072 }
+\DoxyCodeLine{00073             \})}
+\DoxyCodeLine{00074 }
+\DoxyCodeLine{00075         \})}
+\DoxyCodeLine{00076     );}
+\DoxyCodeLine{00077 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUViewInteractionLibrary_a42e597117b431a8e8412df2c6270245d}\label{classUViewInteractionLibrary_a42e597117b431a8e8412df2c6270245d}} 
+\index{UViewInteractionLibrary@{UViewInteractionLibrary}!IndexFocus@{IndexFocus}}
+\index{IndexFocus@{IndexFocus}!UViewInteractionLibrary@{UViewInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{IndexFocus()}{IndexFocus()}}
+{\footnotesize\ttfamily void UView\+Interaction\+Library\+::\+Index\+Focus (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{Record }\end{DoxyParamCaption})}
+
+Phrase Event for Focusing on the Active Viewports Indexed Item, if one is apparent. 
+\begin{DoxyParams}{Parameters}
+{\em Record} & The Parse Record accumulated until this Event. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source_l00165}{165}} of file \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source}{View\+Interaction\+Library.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00166 \{}
+\DoxyCodeLine{00167     GET\_ACTIVE\_TAB(ActiveTab)}
+\DoxyCodeLine{00168 }
+\DoxyCodeLine{00169     FString TabType = ActiveTab-\/>GetTypeAsString();}
+\DoxyCodeLine{00170 }
+\DoxyCodeLine{00171     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* IndexInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}INDEX"{}}));}
+\DoxyCodeLine{00172     \textcolor{keywordflow}{if} (IndexInput == \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00173         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00174 }
+\DoxyCodeLine{00175     \textcolor{keywordflow}{if} (TabType == \textcolor{stringliteral}{"{}SGraphEditor"{}})}
+\DoxyCodeLine{00176     \{}
+\DoxyCodeLine{00177         TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);}
+\DoxyCodeLine{00178         \textcolor{keywordflow}{if} (!GraphEditor.IsValid())}
+\DoxyCodeLine{00179             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00180 }
+\DoxyCodeLine{00181         TSharedRef<FAssetAccessibilityRegistry> AssetRegistry = GetAssetRegistry();}
+\DoxyCodeLine{00182 }
+\DoxyCodeLine{00183         TSharedRef<FGraphIndexer> GraphIndexer = AssetRegistry-\/>GetGraphIndexer(GraphEditor-\/>GetCurrentGraph());}
+\DoxyCodeLine{00184 }
+\DoxyCodeLine{00185         UEdGraphNode* Node = GraphIndexer-\/>GetNode(IndexInput-\/>\mbox{\hyperlink{classUParseIntInput_a25393db97da6e72a5fc1f9efb127f0bf}{GetValue}}());}
+\DoxyCodeLine{00186         \textcolor{keywordflow}{if} (Node == \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00187         \{}
+\DoxyCodeLine{00188             UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}IndexFocus: INVALID INDEX INPUT"{}}))}
+\DoxyCodeLine{00189             return;}
+\DoxyCodeLine{00190         \}}
+\DoxyCodeLine{00191 }
+\DoxyCodeLine{00192         GraphEditor-\/>JumpToNode(Node);}
+\DoxyCodeLine{00193     \}}
+\DoxyCodeLine{00194 }
+\DoxyCodeLine{00195     \textcolor{comment}{// Further ViewportS Specific Implementation Here}}
+\DoxyCodeLine{00196 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUViewInteractionLibrary_a4ef057b326b49e181f872220762db1d5}\label{classUViewInteractionLibrary_a4ef057b326b49e181f872220762db1d5}} 
+\index{UViewInteractionLibrary@{UViewInteractionLibrary}!MoveViewport@{MoveViewport}}
+\index{MoveViewport@{MoveViewport}!UViewInteractionLibrary@{UViewInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{MoveViewport()}{MoveViewport()}}
+{\footnotesize\ttfamily void UView\+Interaction\+Library\+::\+Move\+Viewport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{Record }\end{DoxyParamCaption})}
+
+Phrase Event for Moving the Active Viewport. 
+\begin{DoxyParams}{Parameters}
+{\em Record} & The Parse Record accumulated until this Event. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source_l00079}{79}} of file \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source}{View\+Interaction\+Library.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00079                                                                \{}
+\DoxyCodeLine{00080     GET\_ACTIVE\_TAB(ActiveTab)}
+\DoxyCodeLine{00081 }
+\DoxyCodeLine{00082     FString TabType = ActiveTab-\/>GetTypeAsString();}
+\DoxyCodeLine{00083 }
+\DoxyCodeLine{00084     \mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}* DirectionInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}>(TEXT(\textcolor{stringliteral}{"{}DIRECTION"{}}));}
+\DoxyCodeLine{00085     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* AmountInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}AMOUNT"{}}));}
+\DoxyCodeLine{00086     \textcolor{keywordflow}{if} (DirectionInput == \textcolor{keyword}{nullptr} || AmountInput == \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00087         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00088 }
+\DoxyCodeLine{00089     \textcolor{keywordflow}{if} (TabType == \textcolor{stringliteral}{"{}SGraphEditor"{}})}
+\DoxyCodeLine{00090     \{}
+\DoxyCodeLine{00091         TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);}
+\DoxyCodeLine{00092 }
+\DoxyCodeLine{00093         FVector2D ViewLocation;}
+\DoxyCodeLine{00094         \textcolor{keywordtype}{float} ZoomAmount;        }
+\DoxyCodeLine{00095         GraphEditor-\/>GetViewLocation(ViewLocation, ZoomAmount);}
+\DoxyCodeLine{00096 }
+\DoxyCodeLine{00097         \textcolor{keywordflow}{switch} (EPhrase2DDirectionalInput(DirectionInput-\/>\mbox{\hyperlink{classUParseIntInput_a25393db97da6e72a5fc1f9efb127f0bf}{GetValue}}()))}
+\DoxyCodeLine{00098         \{}
+\DoxyCodeLine{00099             \textcolor{keywordflow}{case} EPhrase2DDirectionalInput::UP:}
+\DoxyCodeLine{00100                 ViewLocation.Y -\/= AmountInput-\/>GetValue();}
+\DoxyCodeLine{00101                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00102 }
+\DoxyCodeLine{00103             \textcolor{keywordflow}{case} EPhrase2DDirectionalInput::DOWN:}
+\DoxyCodeLine{00104                 ViewLocation.Y += AmountInput-\/>GetValue();}
+\DoxyCodeLine{00105                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00106 }
+\DoxyCodeLine{00107             \textcolor{keywordflow}{case} EPhrase2DDirectionalInput::LEFT:}
+\DoxyCodeLine{00108                 ViewLocation.X -\/= AmountInput-\/>GetValue();}
+\DoxyCodeLine{00109                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00110 }
+\DoxyCodeLine{00111             \textcolor{keywordflow}{case} EPhrase2DDirectionalInput::RIGHT:}
+\DoxyCodeLine{00112                 ViewLocation.X += AmountInput-\/>GetValue();}
+\DoxyCodeLine{00113                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00114 }
+\DoxyCodeLine{00115             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00116                 UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}MoveViewport: INVALID DIRECTION INPUT"{}}));}
+\DoxyCodeLine{00117                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00118         \}}
+\DoxyCodeLine{00119 }
+\DoxyCodeLine{00120         GraphEditor-\/>SetViewLocation(ViewLocation, ZoomAmount);}
+\DoxyCodeLine{00121     \}}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123     \textcolor{comment}{// Further Viewport Implementation Here}}
+\DoxyCodeLine{00124 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUViewInteractionLibrary_a101a1fc37a876c1d5a58c0eae924e457}\label{classUViewInteractionLibrary_a101a1fc37a876c1d5a58c0eae924e457}} 
+\index{UViewInteractionLibrary@{UViewInteractionLibrary}!ZoomViewport@{ZoomViewport}}
+\index{ZoomViewport@{ZoomViewport}!UViewInteractionLibrary@{UViewInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{ZoomViewport()}{ZoomViewport()}}
+{\footnotesize\ttfamily void UView\+Interaction\+Library\+::\+Zoom\+Viewport (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{Record }\end{DoxyParamCaption})}
+
+Phrase Event for Zooming the Active Viewport. 
+\begin{DoxyParams}{Parameters}
+{\em Record} & The Parse Record accumulated until this Event. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source_l00126}{126}} of file \mbox{\hyperlink{ViewInteractionLibrary_8cpp_source}{View\+Interaction\+Library.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00127 \{}
+\DoxyCodeLine{00128     GET\_ACTIVE\_TAB(ActiveTab)}
+\DoxyCodeLine{00129 }
+\DoxyCodeLine{00130     FString TabType = ActiveTab-\/>GetTypeAsString();}
+\DoxyCodeLine{00131 }
+\DoxyCodeLine{00132     \mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}* DirectionInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}>(TEXT(\textcolor{stringliteral}{"{}DIRECTION"{}}));}
+\DoxyCodeLine{00133     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* AmountInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}AMOUNT"{}}));}
+\DoxyCodeLine{00134     \textcolor{keywordflow}{if} (DirectionInput == \textcolor{keyword}{nullptr} || AmountInput == \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00135         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00136 }
+\DoxyCodeLine{00137     \textcolor{keywordflow}{if} (TabType == \textcolor{stringliteral}{"{}SGraphEditor"{}})}
+\DoxyCodeLine{00138     \{}
+\DoxyCodeLine{00139         TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);}
+\DoxyCodeLine{00140 }
+\DoxyCodeLine{00141         FVector2D ViewLocation;}
+\DoxyCodeLine{00142         \textcolor{keywordtype}{float} ZoomAmount;}
+\DoxyCodeLine{00143         GraphEditor-\/>GetViewLocation(ViewLocation, ZoomAmount);}
+\DoxyCodeLine{00144 }
+\DoxyCodeLine{00145         \textcolor{keywordflow}{switch} (EPhrase2DDirectionalInput(DirectionInput-\/>\mbox{\hyperlink{classUParseIntInput_a25393db97da6e72a5fc1f9efb127f0bf}{GetValue}}())) \{}
+\DoxyCodeLine{00146             \textcolor{keywordflow}{case} EPhrase2DDirectionalInput::UP:}
+\DoxyCodeLine{00147                 ZoomAmount += AmountInput-\/>GetValue();}
+\DoxyCodeLine{00148                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00149 }
+\DoxyCodeLine{00150             \textcolor{keywordflow}{case} EPhrase2DDirectionalInput::DOWN:}
+\DoxyCodeLine{00151                 ZoomAmount -\/= AmountInput-\/>GetValue();}
+\DoxyCodeLine{00152                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00153 }
+\DoxyCodeLine{00154             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00155                 UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}ZoomViewport: INVALID DIRECTION INPUT"{}}));}
+\DoxyCodeLine{00156                 \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00157         \}}
+\DoxyCodeLine{00158 }
+\DoxyCodeLine{00159         GraphEditor-\/>SetViewLocation(ViewLocation, ZoomAmount);}
+\DoxyCodeLine{00160     \}}
+\DoxyCodeLine{00161 }
+\DoxyCodeLine{00162     \textcolor{comment}{// Further Viewport Specific Implementation Here}}
+\DoxyCodeLine{00163 \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility/\+Public/\+Phrase\+Events/View\+Interaction\+Library.\+h\item 
+Source/\+Open\+Accessibility/\+Private/\+Phrase\+Events/View\+Interaction\+Library.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,291 @@
+\hypertarget{AccessibilityWindowToolbar_8cpp_source}{}\doxysection{Accessibility\+Window\+Toolbar.\+cpp}
+\label{AccessibilityWindowToolbar_8cpp_source}\index{Source/OpenAccessibility/Private/AccessibilityWrappers/AccessibilityWindowToolbar.cpp@{Source/OpenAccessibility/Private/AccessibilityWrappers/AccessibilityWindowToolbar.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include "{}AccessibilityWrappers/AccessibilityWindowToolbar.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00004}00004 \textcolor{preprocessor}{\#include "{}AccessibilityWidgets/SContentIndexer.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00006}00006 \textcolor{preprocessor}{\#include "{}PhraseTree/Containers/ParseRecord.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00007}00007 \textcolor{preprocessor}{\#include "{}PhraseTree/Containers/Input/UParseIntInput.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00009}00009 UAccessibilityWindowToolbar::UAccessibilityWindowToolbar() : UObject()}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00010}00010 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00011}00011     LastToolkit = TWeakPtr<SWidget>();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00012}00012     LastTopWindow = TWeakPtr<SWindow>();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00013}00013     LastToolkitParent = TWeakPtr<SBorder>();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00015}00015     ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00016}00016         TEXT(\textcolor{stringliteral}{"{}OpenAccessibiliy.ToolBar.ShowIndexerStats"{}}), }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00017}00017         TEXT(\textcolor{stringliteral}{"{}Displays the Indexer Stats for the Toolbar."{}}),}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00019}00019         FConsoleCommandDelegate::CreateLambda([\textcolor{keyword}{this}]() \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00020}00020             UE\_LOG(LogOpenAccessibility, Display, TEXT(\textcolor{stringliteral}{"{}| ToolBar Indexer Stats | Indexed Amount: \%d | "{}}), ToolbarIndex.Num())}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00021}00021         \})}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00022}00022     ));}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00024}00024     BindTicker();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00025}00025 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00027}00027 UAccessibilityWindowToolbar::\string~UAccessibilityWindowToolbar()}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00028}00028 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00029}00029     UE\_LOG(LogOpenAccessibility, Log, TEXT(\textcolor{stringliteral}{"{}AccessibilityToolBar: Destroyed."{}}));}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00031}00031     UnbindTicker();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00032}00032 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00034}00034 \textcolor{keywordtype}{bool} UAccessibilityWindowToolbar::Tick(\textcolor{keywordtype}{float} DeltaTime)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00035}00035 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00036}00036     TSharedPtr<SWindow> TopWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00037}00037     \textcolor{keywordflow}{if} (!TopWindow.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00038}00038     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00039}00039         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00040}00040     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00042}00042     TSharedPtr<SBorder> ContentContainer;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00043}00043     \textcolor{keywordflow}{if} (TopWindow != LastTopWindow)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00044}00044         ContentContainer = GetWindowContentContainer(TopWindow.ToSharedRef());}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00045}00045     \textcolor{keywordflow}{else} ContentContainer = LastToolkitParent.Pin();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00047}00047     \textcolor{keywordflow}{if} (!ContentContainer.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00048}00048     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00049}00049         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00050}00050     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00053}00053     TSharedPtr<SWidget> Toolkit = ContentContainer-\/>GetContent();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00054}00054     \textcolor{keywordflow}{if} (!Toolkit.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00055}00055     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00056}00056         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00057}00057     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00059}00059     \textcolor{keywordflow}{if} (ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef())) }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00060}00060     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00061}00061         LastToolkit = Toolkit;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00062}00062         \textcolor{comment}{//UE\_LOG(LogOpenAccessibility, Log, TEXT("{}AccessibilityToolBar: Toolkit Indexing Applied To \%s"{}), *Toolkit-\/>GetTypeAsString());}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00063}00063     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00065}00065     LastTopWindow = TopWindow;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00066}00066     LastToolkitParent = ContentContainer;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00068}00068     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00069}00069 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00071}00071 \textcolor{keywordtype}{bool} UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00072}00072 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00073}00073     TSharedPtr<SWidget> ToolBarContainer;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00074}00074     \textcolor{keywordflow}{if} (!GetToolKitToolBar(ToolkitWidget, ToolBarContainer))}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00075}00075     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00076}00076         UE\_LOG(LogOpenAccessibility, Log, TEXT(\textcolor{stringliteral}{"{}Failed to get Toolbar."{}}));}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00077}00077         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00078}00078     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00080}00080     \textcolor{keywordflow}{if} (!ToolBarContainer.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00081}00081     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00082}00082         UE\_LOG(LogOpenAccessibility, Log, TEXT(\textcolor{stringliteral}{"{}Toolbar Container Is Not Valid."{}}));}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00083}00083         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00084}00084     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00086}00086     TArray<FChildren*> ChildrenToFilter = TArray<FChildren*> \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00087}00087         ToolBarContainer-\/>GetChildren()}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00088}00088     \};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00090}00090     FString WidgetType;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00091}00091     TSet<FString> AllowedWidgetTypes = TSet<FString>\{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00092}00092         TEXT(\textcolor{stringliteral}{"{}SToolBarButtonBlock"{}}),}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00093}00093         TEXT(\textcolor{stringliteral}{"{}SToolBarComboButtonBlock"{}}),}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00094}00094         TEXT(\textcolor{stringliteral}{"{}SToolBarStackButtonBlock"{}}),}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00095}00095         TEXT(\textcolor{stringliteral}{"{}SUniformToolBarButtonBlock"{}})}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00096}00096     \};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00097}00097 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00098}00098     ToolbarIndex.\mbox{\hyperlink{classFIndexer_a45afff0f31ce192512461a3adf5508af}{Reset}}();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00100}00100     int32 Index = -\/1;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00101}00101     \textcolor{keywordflow}{while} (ChildrenToFilter.Num() > 0)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00102}00102     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00103}00103         FChildren* Children = ChildrenToFilter[0];}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00104}00104         ChildrenToFilter.RemoveAt(0);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00105}00105 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00106}00106         \textcolor{comment}{// To-\/Do: Learn How to Write Readable Code.}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00107}00107         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < Children-\/>NumSlot(); i++)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00108}00108         \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00109}00109             FSlotBase\& ChildSlot = \textcolor{keyword}{const\_cast<}FSlotBase\&\textcolor{keyword}{>}(Children-\/>GetSlotAt(i));}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00111}00111             TSharedPtr<SWidget> ChildWidget = Children-\/>GetChildAt(i);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00112}00112             \textcolor{keywordflow}{if} (!ChildWidget.IsValid() || ChildWidget-\/>GetDesiredSize() == FVector2D::ZeroVector)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00113}00113                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00115}00115             WidgetType = ChildWidget-\/>GetTypeAsString();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00116}00116             }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00117}00117             \textcolor{keywordflow}{if} (ChildWidget.IsValid() \&\& AllowedWidgetTypes.Contains(WidgetType))}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00118}00118             \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00119}00119                 TSharedPtr<SMultiBlockBaseWidget> ToolBarButtonWidget = StaticCastSharedPtr<SMultiBlockBaseWidget>(ChildWidget);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00121}00121                 ChildSlot.DetachWidget();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00122}00122 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00123}00123                 ToolbarIndex.\mbox{\hyperlink{classFIndexer_add99df3d11c1a1fec339db1d4d51e2e0}{GetKeyOrAddValue}}(}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00124}00124                     ToolBarButtonWidget.Get(), }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00125}00125                     Index}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00126}00126                 );}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00128}00128                 ChildSlot.AttachWidget(}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00129}00129                     SNew(\mbox{\hyperlink{classSContentIndexer}{SContentIndexer}})}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00130}00130                     .IndexValue(Index)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00131}00131                     .IndexPositionToContent(EIndexerPosition::Bottom)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00132}00132                     .ContentToIndex(ToolBarButtonWidget)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00133}00133                     .IndexVisibility\_Lambda([ToolkitWindow]() -\/> EVisibility \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00134}00134                         \textcolor{keywordflow}{if} (FSlateApplication::Get().GetActiveTopLevelRegularWindow() == ToolkitWindow)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00135}00135                             \textcolor{keywordflow}{return} EVisibility::Visible;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00136}00136                         \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} EVisibility::Hidden;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00137}00137                     \})}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00138}00138                 );}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00139}00139             \} }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00140}00140             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (ChildWidget.IsValid() \&\& WidgetType == \textcolor{stringliteral}{"{}SContentIndexer"{}})}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00141}00141             \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00142}00142                 TSharedPtr<SContentIndexer> IndexerWidget = StaticCastSharedPtr<SContentIndexer>(ChildWidget);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00143}00143 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00144}00144                 TSharedPtr<SMultiBlockBaseWidget> IndexedContent = StaticCastSharedRef<SMultiBlockBaseWidget>(IndexerWidget-\/>GetContent());}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00145}00145                 \textcolor{keywordflow}{if} (!IndexedContent.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00146}00146                     \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00147}00147 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00148}00148                 ToolbarIndex.\mbox{\hyperlink{classFIndexer_add99df3d11c1a1fec339db1d4d51e2e0}{GetKeyOrAddValue}}(}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00149}00149                     IndexedContent.Get(),}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00150}00150                     Index}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00151}00151                 );}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00152}00152 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00153}00153                 IndexerWidget-\/>UpdateIndex(Index);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00154}00154             \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00155}00155             \textcolor{keywordflow}{else} ChildrenToFilter.Add(ChildWidget-\/>GetChildren());}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00156}00156         \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00157}00157     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00158}00158 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00159}00159     \textcolor{comment}{//UE\_LOG(LogOpenAccessibility, Log, TEXT("{}AccessibilityToolBar: Indexed \%d Items."{}), ToolbarIndex.Num());}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00160}00160 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00161}00161     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00162}00162 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00163}00163 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00164}00164 \textcolor{comment}{// -\/-\/ Util Widget Function -\/-\/ }}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00165}00165 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00166}00166 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T = SW\textcolor{keywordtype}{id}get>}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00167}00167 FORCEINLINE TSharedPtr<T> GetWidgetDescendantOfType(TSharedRef<SWidget> Widget, FName TypeName)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00168}00168 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00169}00169     \textcolor{keywordflow}{if} (Widget-\/>GetType() == TypeName)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00170}00170     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00171}00171         \textcolor{keywordflow}{return} Widget;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00172}00172     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00173}00173 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00174}00174     TArray<FChildren*> ChildrenToFilter;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00175}00175     ChildrenToFilter.Add(Widget-\/>GetChildren());}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00176}00176 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00177}00177     \textcolor{keywordflow}{while} (ChildrenToFilter.Num() > 0)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00178}00178     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00179}00179         FChildren* Children = ChildrenToFilter.Pop();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00180}00180 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00181}00181         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < Children-\/>Num(); i++)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00182}00182         \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00183}00183             TSharedRef<SWidget> Child = Children-\/>GetChildAt(i);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00184}00184 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00185}00185             ChildrenToFilter.Add(Child-\/>GetChildren());}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00186}00186 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00187}00187             \textcolor{keywordflow}{if} (Child-\/>GetType() == TypeName)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00188}00188             \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00189}00189                 \textcolor{keywordflow}{return} StaticCastSharedPtr<T>(Child.ToSharedPtr());}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00190}00190             \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00191}00191         \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00192}00192     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00193}00193 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00194}00194     \textcolor{keywordflow}{return} \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00195}00195 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00196}00196 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00197}00197 \textcolor{comment}{// -\/-\/  -\/-\/}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00198}00198 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00199}\mbox{\hyperlink{classUAccessibilityWindowToolbar_aa2945392855b85a4095b1452893466f2}{00199}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityWindowToolbar_aa2945392855b85a4095b1452893466f2}{UAccessibilityWindowToolbar::SelectToolbarItem}}(int32 Index)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00200}00200 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00201}00201     \textcolor{keywordflow}{if} (ToolbarIndex.\mbox{\hyperlink{classFIndexer_aa8a1d7138172e74508d46bde9337cec2}{IsEmpty}}()) }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00202}00202     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00203}00203         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}ToolBar Index is Empty."{}}))}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00204}00204         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00205}00205     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00206}00206 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00207}00207     SMultiBlockBaseWidget* LinkedButton;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00208}00208     \textcolor{keywordflow}{if} (!ToolbarIndex.\mbox{\hyperlink{classFIndexer_a652f29cc3a92728609383e06a708f0dd}{GetValue}}(Index, LinkedButton)) }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00209}00209     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00210}00210         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Provided Index is Not Linked to a ToolBar Button."{}}))}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00211}00211         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00212}00212     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00213}00213 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00214}00214     TSharedPtr<const FMultiBlock> MultiBlock = LinkedButton-\/>GetBlock();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00215}00215     \textcolor{keywordflow}{if} (!MultiBlock.IsValid()) }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00216}00216     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00217}00217         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Provided ToolBar MultiBlock is Not Valid."{}}))}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00218}00218     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00219}00219 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00220}00220     TSharedPtr<const FUICommandList> ActionList = MultiBlock-\/>GetActionList();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00221}00221     TSharedPtr<const FUICommandInfo> Action = MultiBlock-\/>GetAction();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00222}00222 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00223}00223     \textcolor{keywordflow}{if} (ActionList.IsValid() \&\& Action.IsValid()) }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00224}00224     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00225}00225         ActionList-\/>ExecuteAction( Action.ToSharedRef() );    }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00226}00226     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00227}00227     \textcolor{keywordflow}{else} }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00228}00228     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00229}00229         \textcolor{keyword}{const} FUIAction\& DirectAction = MultiBlock-\/>GetDirectActions();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00230}00230 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00231}00231         DirectAction.Execute();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00232}00232     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00233}00233 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00234}00234 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00235}00235 TSharedPtr<SBorder> UAccessibilityWindowToolbar::GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00236}00236 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00237}00237     \textcolor{comment}{// Find SDockingTabStack}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00238}00238     TSharedPtr<SWidget> DockingTabStack = GetWidgetDescendantOfType(WindowToFindContainer, \textcolor{stringliteral}{"{}SDockingTabStack"{}});}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00239}00239     \textcolor{keywordflow}{if} (!DockingTabStack.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00240}00240     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00241}00241         UE\_LOG(LogOpenAccessibility, Log, TEXT(\textcolor{stringliteral}{"{}DockingTabStack is not Valid"{}}));}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00242}00242         \textcolor{keywordflow}{return} \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00243}00243     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00244}00244 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00245}00245     \textcolor{keywordflow}{return} StaticCastSharedRef<SBorder>(}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00246}00246         DockingTabStack}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00247}00247             -\/>GetChildren()-\/>GetChildAt(0) \textcolor{comment}{// SVerticalBox}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00248}00248             -\/>GetChildren()-\/>GetChildAt(1) \textcolor{comment}{// SOverlay}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00249}00249             -\/>GetChildren()-\/>GetChildAt(0) \textcolor{comment}{// SBorder}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00250}00250     );}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00251}00251 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00252}00252 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00253}00253 \textcolor{keywordtype}{bool} UAccessibilityWindowToolbar::GetToolKitToolBar(TSharedRef<SWidget> ToolKitWidget, TSharedPtr<SWidget>\& OutToolBar)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00254}00254 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00255}00255     TSharedPtr<SWidget> CurrChild;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00256}00256     FChildren* CurrChildren = ToolKitWidget-\/>GetChildren();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00257}00257     \textcolor{keywordflow}{if} (CurrChildren-\/>Num() == 0) }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00258}00258         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00259}00259 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00260}00260     CurrChild = CurrChildren-\/>GetChildAt(0); \textcolor{comment}{// Get SVerticalBox}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00261}00261     CurrChildren = CurrChild-\/>GetChildren();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00262}00262     \textcolor{keywordflow}{if} (CurrChildren-\/>Num() == 0)}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00263}00263         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00264}00264 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00265}00265     OutToolBar = CurrChildren-\/>GetChildAt(0); \textcolor{comment}{// Get SHorizontalBox}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00266}00266     \textcolor{keywordflow}{if} (!OutToolBar.IsValid()) }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00267}00267         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00268}00268 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00269}00269     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00270}00270 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00271}00271 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00272}00272 \textcolor{keywordtype}{void} UAccessibilityWindowToolbar::BindTicker()}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00273}00273 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00274}00274     FTickerDelegate TickDelegate = FTickerDelegate::CreateUObject(\textcolor{keyword}{this}, \&UAccessibilityWindowToolbar::Tick);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00275}00275     }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00276}00276     TickDelegateHandle = FTSTicker::GetCoreTicker()}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00277}00277         .AddTicker(TickDelegate);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00278}00278 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00279}00279 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00280}00280 \textcolor{keywordtype}{void} UAccessibilityWindowToolbar::UnbindTicker()}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00281}00281 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00282}00282     FTSTicker::GetCoreTicker()}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00283}00283         .RemoveTicker(TickDelegateHandle);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00284}00284  }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8cpp_source_l00285}00285 \}}
+
+\end{DoxyCode}

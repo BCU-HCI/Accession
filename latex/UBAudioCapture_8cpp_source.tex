@@ -1,0 +1,60 @@
+\hypertarget{UBAudioCapture_8cpp_source}{}\doxysection{UBAudio\+Capture.\+cpp}
+\label{UBAudioCapture_8cpp_source}\index{Source/OpenAccessibilityCommunication/Private/UBAudioCapture.cpp@{Source/OpenAccessibilityCommunication/Private/UBAudioCapture.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00004}00004 \textcolor{preprocessor}{\#include "{}UBAudioCapture.h"{}}}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00006}00006 UBAudioCapture::UBAudioCapture() : UAudioCapture()}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00007}00007 \{}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00009}00009 \}}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00011}00011 UBAudioCapture::\string~UBAudioCapture()}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00012}00012 \{}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00013}00013 \}}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00015}\mbox{\hyperlink{classUBAudioCapture_ad7ab2a794748b6a309bfcc8d3d20f289}{00015}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classUBAudioCapture_ad7ab2a794748b6a309bfcc8d3d20f289}{UBAudioCapture::OpenDefaultAudioStream}}(int32 OverrideSampleRate, int32 OverrideInputChannels)}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00016}00016 \{}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00017}00017     \textcolor{keywordflow}{if} (!AudioCapture.IsStreamOpen())}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00018}00018     \{}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00019}00019         \textcolor{keywordflow}{if} (!AudioCapture.IsStreamOpen())}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00020}00020         \{}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00021}00021             Audio::FOnAudioCaptureFunction OnCapture = [\textcolor{keyword}{this}](\textcolor{keyword}{const} \textcolor{keywordtype}{void}* AudioData, int32 NumFrames, int32 InNumChannels, int32 InSampleRate, \textcolor{keywordtype}{double} StreamTime, \textcolor{keywordtype}{bool} bOverFlow)}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00022}00022                 \{}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00023}00023                     OnGeneratedAudio((\textcolor{keyword}{const} \textcolor{keywordtype}{float}*)AudioData, NumFrames * InNumChannels);}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00024}00024                 \};}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00026}00026             \textcolor{comment}{// Start the stream here to avoid hitching the audio render thread. }}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00027}00027             Audio::FAudioCaptureDeviceParams Params;}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00028}00028             \textcolor{keywordflow}{if} (OverrideSampleRate != NULL)}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00029}00029                 Params.SampleRate = OverrideSampleRate;}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00030}00030             \textcolor{keywordflow}{if} (OverrideInputChannels != NULL)}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00031}00031                 Params.NumInputChannels = OverrideInputChannels;}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00034}00034             \textcolor{keywordflow}{if} (AudioCapture.OpenAudioCaptureStream(Params, MoveTemp(OnCapture), 1024))}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00035}00035             \{}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00036}00036                 \textcolor{comment}{// If we opened the capture stream succesfully, get the capture device info and initialize the UAudioGenerator}}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00037}00037                 Audio::FCaptureDeviceInfo Info;}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00038}00038                 \textcolor{keywordflow}{if} (AudioCapture.GetCaptureDeviceInfo(Info))}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00039}00039                 \{}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00040}00040                     Init(}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00041}00041                         OverrideSampleRate != NULL ? OverrideSampleRate : Info.PreferredSampleRate , }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00042}00042                         OverrideInputChannels != NULL ? OverrideInputChannels : Info.InputChannels}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00043}00043                     );}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00045}00045                     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00046}00046                 \}}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00047}00047             \}}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00048}00048         \}}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00050}00050         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00051}00051     \}}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00053}00053     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{UBAudioCapture_8cpp_source_l00054}00054 \}}
+
+\end{DoxyCode}

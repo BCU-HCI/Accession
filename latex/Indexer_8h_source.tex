@@ -1,0 +1,220 @@
+\hypertarget{Indexer_8h_source}{}\doxysection{Indexer.\+h}
+\label{Indexer_8h_source}\index{Source/OpenAccessibility/Public/Indexers/Indexer.h@{Source/OpenAccessibility/Public/Indexers/Indexer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00003}00003 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00007}00007 \textcolor{preprocessor}{\#include "{}OpenAccessibilityLogging.h"{}}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00014}00014 \textcolor{keyword}{template} <\textcolor{keyword}{typename} KeyType, \textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00015}\mbox{\hyperlink{classFIndexer}{00015}} \textcolor{keyword}{class }\mbox{\hyperlink{classFIndexer}{FIndexer}}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00016}00016 \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00017}00017 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00019}00019     \mbox{\hyperlink{classFIndexer}{FIndexer}}()}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00020}00020     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00022}00022     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00024}00024     \textcolor{keyword}{virtual} \mbox{\hyperlink{classFIndexer}{\string~FIndexer}}() }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00025}00025     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00026}00026     }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00027}00027     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00028}00028     }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00034}\mbox{\hyperlink{classFIndexer_aa8a1d7138172e74508d46bde9337cec2}{00034}}     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFIndexer_aa8a1d7138172e74508d46bde9337cec2}{IsEmpty}}()\textcolor{keyword}{ const }}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00035}00035 \textcolor{keyword}{    }\{ }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00036}00036         \textcolor{keywordflow}{return} \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.IsEmpty();}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00037}00037     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00042}\mbox{\hyperlink{classFIndexer_a45afff0f31ce192512461a3adf5508af}{00042}}     \textcolor{keywordtype}{void} \mbox{\hyperlink{classFIndexer_a45afff0f31ce192512461a3adf5508af}{Reset}}() }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00043}00043     \{ }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00044}00044         \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Reset();}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00045}00045         \mbox{\hyperlink{classFIndexer_a723c23dcda42f9748fb00b5e13708578}{AvailableIndexes}}.Empty();}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00046}00046     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00051}\mbox{\hyperlink{classFIndexer_a65309d397e678f5216a7e2a63c973744}{00051}}     \textcolor{keywordtype}{void} \mbox{\hyperlink{classFIndexer_a65309d397e678f5216a7e2a63c973744}{Empty}}()}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00052}00052     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00053}00053         \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Empty();}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00054}00054         \mbox{\hyperlink{classFIndexer_a723c23dcda42f9748fb00b5e13708578}{AvailableIndexes}}.Empty();}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00055}00055     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00056}00056 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00061}\mbox{\hyperlink{classFIndexer_a9b1342e14c46c45747416fad8fa014c2}{00061}}     int32 \mbox{\hyperlink{classFIndexer_a9b1342e14c46c45747416fad8fa014c2}{Num}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00062}00062 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00063}00063         \textcolor{keywordflow}{return} \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Num();}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00064}00064     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00070}\mbox{\hyperlink{classFIndexer_a7aba69b829da24d22800a32b389c2f36}{00070}}     \textcolor{keywordtype}{void} \mbox{\hyperlink{classFIndexer_a7aba69b829da24d22800a32b389c2f36}{Num}}(int32\& OutNum)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00071}00071 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00072}00072         OutNum = \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Num();}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00073}00073     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00080}\mbox{\hyperlink{classFIndexer_a6b1885c147160c9efee6b5ade982d348}{00080}}     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFIndexer_a6b1885c147160c9efee6b5ade982d348}{ContainsKey}}(\textcolor{keyword}{const} KeyType\& InKey)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00081}00081     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00082}00082         \textcolor{keywordflow}{return} \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Contains(InKey);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00083}00083     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00090}\mbox{\hyperlink{classFIndexer_ad25d80b2aef02d3935f9daf6b82e6437}{00090}}     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFIndexer_ad25d80b2aef02d3935f9daf6b82e6437}{ContainsValue}}(\textcolor{keyword}{const} ValueType\& InValue)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00091}00091     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00092}00092         check(InValue != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00094}00094         \textcolor{keyword}{const} KeyType* FoundKey = \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.FindKey(InValue);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00096}00096         \textcolor{keywordflow}{return} FoundKey != \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00097}00097     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00104}\mbox{\hyperlink{classFIndexer_a8a51595492e7f19946f9e40acd3a54b0}{00104}}     \textcolor{keyword}{const} KeyType \mbox{\hyperlink{classFIndexer_a8a51595492e7f19946f9e40acd3a54b0}{GetKey}}(\textcolor{keyword}{const} ValueType\& InValue)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00105}00105     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00106}00106         check(InValue != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00108}00108         \textcolor{keywordflow}{return} *\mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.FindKey(InValue);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00109}00109     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00117}\mbox{\hyperlink{classFIndexer_a2e95d9145f69d3e92971866a5680e4f2}{00117}}     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFIndexer_a2e95d9145f69d3e92971866a5680e4f2}{GetKey}}(\textcolor{keyword}{const} ValueType\& InValue, KeyType\& OutKey)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00118}00118     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00119}00119         check(InValue != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00120}00120 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00121}00121         \textcolor{keyword}{const} KeyType* FoundKey = \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.FindKey(InValue);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00122}00122 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00123}00123         \textcolor{keywordflow}{if} (FoundKey != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00124}00124         \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00125}00125             OutKey = *FoundKey;}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00126}00126 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00127}00127             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00128}00128         \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00129}00129         \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00130}00130     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00131}00131 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00137}\mbox{\hyperlink{classFIndexer_a652f29cc3a92728609383e06a708f0dd}{00137}}     ValueType \mbox{\hyperlink{classFIndexer_a652f29cc3a92728609383e06a708f0dd}{GetValue}}(\textcolor{keyword}{const} KeyType\& InKey)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00138}00138     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00139}00139         \textcolor{keywordflow}{return} *\mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Find(InKey);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00140}00140     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00141}00141 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00148}\mbox{\hyperlink{classFIndexer_a7a5b3218bb6cf62abca4468bbc4e53db}{00148}}     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFIndexer_a7a5b3218bb6cf62abca4468bbc4e53db}{GetValue}}(\textcolor{keyword}{const} KeyType\& InKey, ValueType\& OutValue)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00149}00149     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00150}00150         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Contains(InKey))}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00151}00151         \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00152}00152             UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Provided Key is not recognised."{}}));}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00153}00153             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00154}00154         \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00155}00155 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00156}00156         OutValue = *\mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Find(InKey);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00158}00158         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00159}00159     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00160}00160 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00166}\mbox{\hyperlink{classFIndexer_aa8bb1e6e18fd1ebebb8a8f200113de11}{00166}}     KeyType \mbox{\hyperlink{classFIndexer_aa8bb1e6e18fd1ebebb8a8f200113de11}{AddValue}}(\textcolor{keyword}{const} ValueType\& InValue)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00167}00167     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00168}00168         check(InValue != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00169}00169 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00170}00170         \textcolor{keywordflow}{if} (\mbox{\hyperlink{classFIndexer_ad25d80b2aef02d3935f9daf6b82e6437}{ContainsValue}}(InValue))}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00171}00171         \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00172}00172             \textcolor{keywordflow}{return} \mbox{\hyperlink{classFIndexer_a8a51595492e7f19946f9e40acd3a54b0}{GetKey}}(InValue);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00173}00173         \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00174}00174 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00175}00175         KeyType NewKey;}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00176}00176         \mbox{\hyperlink{classFIndexer_ab5608e93138c4c7f3438c0fa3d3b0c88}{GetAvailableKey}}(NewKey);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00177}00177 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00178}00178         \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Add(NewKey, InValue);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00179}00179 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00180}00180         \textcolor{keywordflow}{return} NewKey;}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00181}00181     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00182}00182 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00188}\mbox{\hyperlink{classFIndexer_af68089697df550af36551b43cecbe1eb}{00188}}     \textcolor{keywordtype}{void} \mbox{\hyperlink{classFIndexer_af68089697df550af36551b43cecbe1eb}{AddValue}}(\textcolor{keyword}{const} ValueType\& InValue, KeyType\& OutKey)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00189}00189     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00190}00190         check(InValue != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00191}00191 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00192}00192         \textcolor{keywordflow}{if} (\mbox{\hyperlink{classFIndexer_ad25d80b2aef02d3935f9daf6b82e6437}{ContainsValue}}(InValue))}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00193}00193         \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00194}00194             OutKey = \mbox{\hyperlink{classFIndexer_a8a51595492e7f19946f9e40acd3a54b0}{GetKey}}(InValue);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00195}00195             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00196}00196         \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00197}00197 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00198}00198         OutKey = \mbox{\hyperlink{classFIndexer_ab5608e93138c4c7f3438c0fa3d3b0c88}{GetAvailableKey}}();}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00200}00200         \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Add(OutKey, InValue);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00201}00201     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00202}00202 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00208}\mbox{\hyperlink{classFIndexer_add99df3d11c1a1fec339db1d4d51e2e0}{00208}}     KeyType \mbox{\hyperlink{classFIndexer_add99df3d11c1a1fec339db1d4d51e2e0}{GetKeyOrAddValue}}(\textcolor{keyword}{const} ValueType\& InValue)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00209}00209     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00210}00210         check(InValue != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00211}00211 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00212}00212         KeyType FoundKey;}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00213}00213         \textcolor{keywordflow}{if} (\mbox{\hyperlink{classFIndexer_a8a51595492e7f19946f9e40acd3a54b0}{GetKey}}(InValue, FoundKey))}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00214}00214             \textcolor{keywordflow}{return} FoundKey;}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00215}00215 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00216}00216         \textcolor{keywordflow}{return} \mbox{\hyperlink{classFIndexer_aa8bb1e6e18fd1ebebb8a8f200113de11}{AddValue}}(InValue);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00217}00217     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00218}00218 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00224}\mbox{\hyperlink{classFIndexer_a31cbc4210fd99b91cdcdc5e6449d3dd5}{00224}}     \textcolor{keywordtype}{void} \mbox{\hyperlink{classFIndexer_a31cbc4210fd99b91cdcdc5e6449d3dd5}{GetKeyOrAddValue}}(\textcolor{keyword}{const} ValueType\& InValue, KeyType\& OutKey)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00225}00225     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00226}00226         check(InValue != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00227}00227 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00228}00228         \textcolor{keywordflow}{if} (\mbox{\hyperlink{classFIndexer_a8a51595492e7f19946f9e40acd3a54b0}{GetKey}}(InValue, OutKey))}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00229}00229             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00230}00230 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00231}00231         OutKey = \mbox{\hyperlink{classFIndexer_aa8bb1e6e18fd1ebebb8a8f200113de11}{AddValue}}(InValue);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00232}00232     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00233}00233 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00238}\mbox{\hyperlink{classFIndexer_ae599a6536a65042d0ce3b0d14c34b611}{00238}}     \textcolor{keywordtype}{void} \mbox{\hyperlink{classFIndexer_ae599a6536a65042d0ce3b0d14c34b611}{RemoveValue}}(\textcolor{keyword}{const} KeyType\& InKey)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00239}00239     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00240}00240         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Contains(InKey))}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00241}00241         \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00242}00242             UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Provided Key Has No Pair in Index."{}}));}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00243}00243             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00244}00244         \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00245}00245 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00246}00246         \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Remove(InKey);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00247}00247         \mbox{\hyperlink{classFIndexer_a723c23dcda42f9748fb00b5e13708578}{AvailableIndexes}}.Enqueue(InKey);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00248}00248     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00249}00249     }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00254}\mbox{\hyperlink{classFIndexer_ab564d9de7fe99ecd830d679578b32ba4}{00254}}     \textcolor{keywordtype}{void} \mbox{\hyperlink{classFIndexer_ab564d9de7fe99ecd830d679578b32ba4}{RemoveValue}}(\textcolor{keyword}{const} ValueType\& InValue)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00255}00255     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00256}00256         check(InValue != \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00257}00257 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00258}00258         KeyType FoundKey;}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00259}00259         \textcolor{keywordflow}{if} (\mbox{\hyperlink{classFIndexer_a8a51595492e7f19946f9e40acd3a54b0}{GetKey}}(InValue, FoundKey))}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00260}00260         \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00261}00261             \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Remove(FoundKey);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00262}00262             \mbox{\hyperlink{classFIndexer_a723c23dcda42f9748fb00b5e13708578}{AvailableIndexes}}.Enqueue(FoundKey);}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00263}00263         \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00264}00264         \textcolor{keywordflow}{else} UE\_LOG(LogOpenAccessibility, Log, TEXT(\textcolor{stringliteral}{"{}Provided Value Had No Associated Key."{}}));}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00265}00265     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00266}00266 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00267}00267 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00268}00268 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00273}\mbox{\hyperlink{classFIndexer_a5a1e2b6d42db31dc10af5935fad48cd9}{00273}}     \textcolor{keywordtype}{void} \mbox{\hyperlink{classFIndexer_a5a1e2b6d42db31dc10af5935fad48cd9}{GetAvailableKey}}(KeyType\& OutKey)}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00274}00274     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00275}00275         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFIndexer_a723c23dcda42f9748fb00b5e13708578}{AvailableIndexes}}.IsEmpty() \&\& \mbox{\hyperlink{classFIndexer_a723c23dcda42f9748fb00b5e13708578}{AvailableIndexes}}.Dequeue(OutKey))}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00276}00276             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00277}00277 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00278}00278         OutKey = \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Num();}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00279}00279     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00280}00280 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00285}\mbox{\hyperlink{classFIndexer_ab5608e93138c4c7f3438c0fa3d3b0c88}{00285}}     KeyType \mbox{\hyperlink{classFIndexer_ab5608e93138c4c7f3438c0fa3d3b0c88}{GetAvailableKey}}()}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00286}00286     \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00287}00287         \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFIndexer_a723c23dcda42f9748fb00b5e13708578}{AvailableIndexes}}.IsEmpty())}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00288}00288         \{}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00289}00289             KeyType OutKey;}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00290}00290             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classFIndexer_a723c23dcda42f9748fb00b5e13708578}{AvailableIndexes}}.Dequeue(OutKey))}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00291}00291                 \textcolor{keywordflow}{return} OutKey;}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00292}00292         \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00293}00293 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00294}00294         \textcolor{keywordflow}{return} \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}}.Num();}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00295}00295     \}}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00296}00296 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00297}00297 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00298}00298 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00299}00299 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00300}00300 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00301}00301 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00305}\mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{00305}}     TMap<KeyType, ValueType> \mbox{\hyperlink{classFIndexer_ad3524a9fd34d62096addfc9ab115913a}{IndexMap}};}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00306}00306 }
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00310}\mbox{\hyperlink{classFIndexer_a723c23dcda42f9748fb00b5e13708578}{00310}}     TQueue<KeyType> \mbox{\hyperlink{classFIndexer_a723c23dcda42f9748fb00b5e13708578}{AvailableIndexes}};}
+\DoxyCodeLine{\Hypertarget{Indexer_8h_source_l00311}00311 \};}
+
+\end{DoxyCode}

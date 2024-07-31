@@ -1,0 +1,362 @@
+\hypertarget{AccessibilityGraphEditorContext_8cpp_source}{}\doxysection{Accessibility\+Graph\+Editor\+Context.\+cpp}
+\label{AccessibilityGraphEditorContext_8cpp_source}\index{Source/OpenAccessibility/Private/AccessibilityWrappers/AccessibilityGraphEditorContext.cpp@{Source/OpenAccessibility/Private/AccessibilityWrappers/AccessibilityGraphEditorContext.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include "{}AccessibilityWrappers/AccessibilityGraphEditorContext.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00005}00005 \textcolor{preprocessor}{\#include "{}OpenAccessibilityLogging.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00006}00006 \textcolor{preprocessor}{\#include "{}AccessibilityWidgets/SIndexer.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00007}00007 \textcolor{preprocessor}{\#include "{}AccessibilityWidgets/SContentIndexer.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00008}00008 \textcolor{preprocessor}{\#include "{}Utils/WidgetUtils.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00010}00010 \textcolor{preprocessor}{\#include "{}Widgets/SWindow.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00011}00011 \textcolor{preprocessor}{\#include "{}Widgets/Input/SEditableTextBox.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00013}00013 UAccessibilityGraphEditorContext::UAccessibilityGraphEditorContext()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00014}00014     : Super()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00015}00015 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00017}00017 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00019}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a62dd8d4f2cd989dbb43afed3317cef45}{00019}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a62dd8d4f2cd989dbb43afed3317cef45}{UAccessibilityGraphEditorContext::Init}}(TSharedRef<IMenu> InMenu, TSharedRef<FPhraseNode> InContextRoot)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00020}00020 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00021}00021     Super::Init(InMenu, InContextRoot);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00023}00023     TSharedRef<SWindow> WindowRef = \mbox{\hyperlink{classUPhraseTreeContextMenuObject_aed946d4b51e601cfc3bdb36c1ba373b5}{Window}}.Pin().ToSharedRef();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00025}00025     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a0512af8042d69a333871dc753ab70a27}{FindGraphActionMenu}}(WindowRef))}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00026}00026     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00027}00027         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}GraphEditorContext: Cannot Find a SGraphActionMenu Widget"{}}));}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00028}00028     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00030}00030     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classUAccessibilityGraphEditorContext_adfaf05c63df713b21c45e64588a1561d}{FindStaticComponents}}(WindowRef))}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00031}00031     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00032}00032         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}GraphEditorContext: Cannot Find Any Static Components"{}}));}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00033}00033     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00035}00035     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classUAccessibilityGraphEditorContext_aca9bd03d073403a68c2ad64ab347d756}{FindTreeView}}(WindowRef))}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00036}00036     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00037}00037         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}GraphEditorContext: Cannot Find a STreeView Widget"{}}));}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00038}00038     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00039}00039     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00040}00040     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00041}00041         TreeViewTickRequirements = \mbox{\hyperlink{structUAccessibilityGraphEditorContext_1_1FTreeViewTickRequirements}{FTreeViewTickRequirements}}();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00042}00042     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00043}00043 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00045}00045 \textcolor{keywordtype}{bool} UAccessibilityGraphEditorContext::Tick(\textcolor{keywordtype}{float} DeltaTime)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00046}00046 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00047}00047     Super::Tick(DeltaTime);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00049}00049     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a9a464ed1d2edf9ecdea71476558dbaf4}{TreeViewCanTick}}())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00050}00050     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00051}00051         \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a2bfc9eabccb29e43d0a888b80e79baa5}{TickTreeViewAccessibility}}();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00053}00053         TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00055}00055         TreeViewTickRequirements.PrevSearchText = FilterTextBox.Pin()-\/>GetText().ToString();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00056}00056         TreeViewTickRequirements.PrevNumGeneratedChildren = TreeViewPtr-\/>GetNumGeneratedChildren();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00057}00057         TreeViewTickRequirements.PrevNumItemsBeingObserved = TreeViewPtr-\/>GetNumItemsBeingObserved();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00058}00058         TreeViewTickRequirements.PrevScrollDistance = TreeViewPtr-\/>GetScrollDistance().Y;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00059}00059     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00061}00061     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00062}00062 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00064}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a13701389121880f89b2a5a04b9920799}{00064}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a13701389121880f89b2a5a04b9920799}{UAccessibilityGraphEditorContext::Close}}()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00065}00065 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00066}00066     Super::Close();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00068}00068     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00069}00069 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00071}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a41cb52e4f463a9de95f1354c1c013640}{00071}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a41cb52e4f463a9de95f1354c1c013640}{UAccessibilityGraphEditorContext::ScaleMenu}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} ScaleFactor)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00072}00072 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00073}00073     Super::ScaleMenu(ScaleFactor);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00075}00075     \textcolor{comment}{// Scale TreeView}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00076}00076     \textcolor{keywordflow}{if} (TreeView.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00077}00077     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00078}00078         TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00080}00080         TreeViewPtr-\/>SetItemHeight(16 * ScaleFactor);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00081}00081     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00083}00083     \textcolor{comment}{// Scale Window Element}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00084}00084     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classUPhraseTreeContextMenuObject_aed946d4b51e601cfc3bdb36c1ba373b5}{Window}}.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00085}00085     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00086}00086         TSharedPtr<SWindow> WindowPtr = \mbox{\hyperlink{classUPhraseTreeContextMenuObject_aed946d4b51e601cfc3bdb36c1ba373b5}{Window}}.Pin();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00088}00088         WindowPtr-\/>SetSizingRule(ESizingRule::UserSized);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00089}00089         WindowPtr-\/>Resize(WindowPtr-\/>GetSizeInScreen() * ScaleFactor);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00090}00090     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00091}00091 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00093}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a4c1763876584330e97903358011c7420}{00093}} TSharedPtr<FGraphActionNode> \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a4c1763876584330e97903358011c7420}{UAccessibilityGraphEditorContext::GetTreeViewAction}}(\textcolor{keyword}{const} int32\& InIndex)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00094}00094 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00095}00095     TArrayView<const TSharedPtr<FGraphActionNode>> Items = TreeView.Pin()-\/>GetItems();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00097}00097     \textcolor{keywordflow}{if} (TreeView.IsValid() \&\& Items.Num() > InIndex \&\& InIndex >= 0)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00098}00098         \textcolor{keywordflow}{return} TreeView.Pin()-\/>GetItems()[InIndex];}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00100}00100     \textcolor{keywordflow}{return} TSharedPtr<FGraphActionNode>();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00101}00101 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00103}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_ac6c54b3aa5158cd7a0e2b297f43b9fb6}{00103}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_ac6c54b3aa5158cd7a0e2b297f43b9fb6}{UAccessibilityGraphEditorContext::SelectAction}}(\textcolor{keyword}{const} int32\& InIndex)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00104}00104 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00105}00105     \textcolor{keywordflow}{if} (InIndex < 0)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00106}00106         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00108}00108     \textcolor{keywordflow}{if} (!CheckBoxes.IsEmpty() \&\& InIndex < CheckBoxes.Num())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00109}00109     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00110}00110         \textcolor{keywordflow}{if} (CheckBoxes[InIndex].IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00111}00111         \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00112}00112             CheckBoxes[InIndex].Pin()-\/>ToggleCheckedState();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00113}00113             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00114}00114         \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00115}00115     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00116}00116 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00117}00117     TSharedPtr<FGraphActionNode> ChosenTreeViewAction = \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a4c1763876584330e97903358011c7420}{GetTreeViewAction}}(InIndex -\/ \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a23eebaefe79f5c8085b60d16906440b4}{GetStaticIndexOffset}}());}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00118}00118     \textcolor{keywordflow}{if} (!ChosenTreeViewAction.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00119}00119     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00120}00120         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}SelectGraphAction: Provided TreeView Action is Invalid"{}}))}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00121}00121         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00122}00122     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00123}00123 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00124}00124     \textcolor{keyword}{auto} TreeViewPtr = TreeView.Pin();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00125}00125     \textcolor{keywordflow}{if} (ChosenTreeViewAction-\/>IsActionNode())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00126}00126     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00127}00127         TreeViewPtr-\/>Private\_ClearSelection();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00128}00128         TreeViewPtr-\/>Private\_SetItemSelection(ChosenTreeViewAction, \textcolor{keyword}{true}, \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00129}00129         TreeViewPtr-\/>Private\_SignalSelectionChanged(ESelectInfo::Type::OnMouseClick);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00130}00130     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00131}00131     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00132}00132     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00133}00133         TreeViewPtr-\/>Private\_OnItemDoubleClicked(ChosenTreeViewAction);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00134}00134     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00135}00135 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00136}00136 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00137}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_abffdbc908f7d38e50b8add75233baf83}{00137}} FString \mbox{\hyperlink{classUAccessibilityGraphEditorContext_abffdbc908f7d38e50b8add75233baf83}{UAccessibilityGraphEditorContext::GetFilterText}}()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00138}00138 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00139}00139     \textcolor{keywordflow}{return} FilterTextBox.IsValid() ? FilterTextBox.Pin()-\/>GetText().ToString() : FString();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00140}00140 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00141}00141 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00142}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_ad5a5dc0a0f9aedf5d468d9d592f50198}{00142}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_ad5a5dc0a0f9aedf5d468d9d592f50198}{UAccessibilityGraphEditorContext::SetFilterText}}(\textcolor{keyword}{const} FString\& NewString)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00143}00143 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00144}00144     \textcolor{keywordflow}{if} (!FilterTextBox.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00145}00145         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00146}00146 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00147}00147     FilterTextBox.Pin()-\/>SetText(}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00148}00148         FText::FromString(NewString)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00149}00149     );}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00150}00150 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00151}00151 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00152}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_aff02a60b289e800943b3894e4a170696}{00152}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_aff02a60b289e800943b3894e4a170696}{UAccessibilityGraphEditorContext::AppendFilterText}}(\textcolor{keyword}{const} FString\& StringToAdd)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00153}00153 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00154}00154     \textcolor{keywordflow}{if} (!FilterTextBox.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00155}00155         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00156}00156 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00157}00157     TSharedPtr<SEditableTextBox> FilterTextBoxPtr = FilterTextBox.Pin();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00158}00158 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00159}00159     FilterTextBoxPtr-\/>SetText(}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00160}00160         FText::FromString( FilterTextBoxPtr-\/>GetText().ToString() + TEXT(\textcolor{stringliteral}{"{} "{}}) + StringToAdd )}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00161}00161     );}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00162}00162 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00163}00163 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00164}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a482b375e2182abec52383415e563c08f}{00164}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a482b375e2182abec52383415e563c08f}{UAccessibilityGraphEditorContext::SetScrollDistance}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} NewDistance)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00165}00165 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00166}00166     \textcolor{keywordflow}{if} (TreeView.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00167}00167         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00168}00168 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00169}00169     TreeView.Pin()-\/>SetScrollOffset(NewDistance);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00170}00170 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00171}00171 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00172}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_aa221ce1c93abaf6326c09d4690284bdb}{00172}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_aa221ce1c93abaf6326c09d4690284bdb}{UAccessibilityGraphEditorContext::AppendScrollDistance}}(\textcolor{keyword}{const} \textcolor{keywordtype}{float} DistanceToAdd)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00173}00173 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00174}00174     \textcolor{keyword}{auto} TreeViewPtr = TreeView.Pin();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00175}00175 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00176}00176     \textcolor{keywordflow}{if} (TreeViewPtr-\/>GetScrollOffset() + DistanceToAdd < 0.0f)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00177}00177     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00178}00178         TreeViewPtr-\/>SetScrollOffset(0.0f);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00179}00179         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00180}00180     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00181}00181 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00182}00182     TreeViewPtr-\/>AddScrollOffset(DistanceToAdd);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00183}00183 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00184}00184 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00185}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a51340da0a4af7e334babb78c51eb6423}{00185}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a51340da0a4af7e334babb78c51eb6423}{UAccessibilityGraphEditorContext::SetScrollDistanceTop}}()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00186}00186 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00187}00187     TreeView.Pin()-\/>ScrollToTop();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00188}00188 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00189}00189 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00190}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_af2aa9285fbfbf0574e641eee73e1b20d}{00190}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_af2aa9285fbfbf0574e641eee73e1b20d}{UAccessibilityGraphEditorContext::SetScrollDistanceBottom}}()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00191}00191 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00192}00192     TreeView.Pin()-\/>ScrollToBottom();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00193}00193 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00194}00194 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00195}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a23eebaefe79f5c8085b60d16906440b4}{00195}} \textcolor{keyword}{const} int32 \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a23eebaefe79f5c8085b60d16906440b4}{UAccessibilityGraphEditorContext::GetStaticIndexOffset}}()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00196}00196 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00197}00197     \textcolor{keywordflow}{return} CheckBoxes.Num();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00198}00198 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00200}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a0512af8042d69a333871dc753ab70a27}{00200}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a0512af8042d69a333871dc753ab70a27}{UAccessibilityGraphEditorContext::FindGraphActionMenu}}(\textcolor{keyword}{const} TSharedRef<SWidget>\& SearchRoot)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00201}00201 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00202}00202     TSharedPtr<SGraphActionMenu> GraphActionMenu = GetWidgetDescendant<SGraphActionMenu>(SearchRoot, TEXT(\textcolor{stringliteral}{"{}SGraphActionMenu"{}}));}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00203}00203     \textcolor{keywordflow}{if} (GraphActionMenu.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00204}00204     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00205}00205         GraphMenu = GraphActionMenu;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00206}00206         FilterTextBox = GraphActionMenu-\/>GetFilterTextBox();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00207}00207 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00208}00208         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00209}00209     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00210}00210 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00211}00211     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00212}00212 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00213}00213 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00214}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_aca9bd03d073403a68c2ad64ab347d756}{00214}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_aca9bd03d073403a68c2ad64ab347d756}{UAccessibilityGraphEditorContext::FindTreeView}}(\textcolor{keyword}{const} TSharedRef<SWidget>\& SearchRoot)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00215}00215 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00216}00216     TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> ContextTreeView = GetWidgetDescendant<STreeView<TSharedPtr<FGraphActionNode>>>(}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00217}00217         SearchRoot,}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00218}00218         TEXT(\textcolor{stringliteral}{"{}STreeView<TSharedPtr<FGraphActionNode>>"{}})}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00219}00219     );}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00220}00220     \textcolor{keywordflow}{if} (ContextTreeView.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00221}00221     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00222}00222         TreeView = ContextTreeView;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00223}00223 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00224}00224         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00225}00225     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00226}00226 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00227}00227     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00228}00228 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00229}00229 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00230}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_adfaf05c63df713b21c45e64588a1561d}{00230}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_adfaf05c63df713b21c45e64588a1561d}{UAccessibilityGraphEditorContext::FindStaticComponents}}(\textcolor{keyword}{const} TSharedRef<SWidget>\& SearchRoot)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00231}00231 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00232}00232     TArray<FSlotBase*> FoundComponentSlots = GetWidgetSlotsByType(}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00233}00233         SearchRoot, }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00234}00234         TSet<FString> \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00235}00235             TEXT(\textcolor{stringliteral}{"{}SCheckBox"{}})}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00236}00236         \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00237}00237     );}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00238}00238 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00239}00239     \textcolor{keywordflow}{if} (!FoundComponentSlots.IsEmpty())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00240}00240     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00241}00241         \textcolor{comment}{// Sort and Index the Static Components.}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00242}00242         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < FoundComponentSlots.Num(); i++)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00243}00243         \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00244}00244             FSlotBase* FoundComponentSlot = FoundComponentSlots[i];}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00245}00245 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00246}00246             TSharedPtr<SWidget> DetachedWidget = FoundComponentSlot-\/>DetachWidget();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00247}00247             \textcolor{keywordflow}{if} (!DetachedWidget.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00248}00248                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00249}00249 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00250}00250             int32 ComponentIndex = -\/1;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00251}00251             FString ComponentType = DetachedWidget-\/>GetTypeAsString();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00252}00252 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00253}00253             \textcolor{keywordflow}{if} (ComponentType == \textcolor{stringliteral}{"{}SCheckBox"{}})}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00254}00254             \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00255}00255                 ComponentIndex = CheckBoxes.Num();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00256}00256                 CheckBoxes.Add(StaticCastSharedPtr<SCheckBox>(DetachedWidget));}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00257}00257             \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00258}00258 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00259}00259             FoundComponentSlot-\/>AttachWidget(}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00260}00260                 SNew(\mbox{\hyperlink{classSContentIndexer}{SContentIndexer}})}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00261}00261                 .IndexValue(ComponentIndex)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00262}00262                 .IndexPositionToContent(EIndexerPosition::Left)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00263}00263                 .ContentToIndex(DetachedWidget)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00264}00264             );}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00265}00265         \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00266}00266 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00267}00267         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00268}00268     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00269}00269 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00270}00270     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00271}00271 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00272}00272 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00273}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a9a464ed1d2edf9ecdea71476558dbaf4}{00273}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a9a464ed1d2edf9ecdea71476558dbaf4}{UAccessibilityGraphEditorContext::TreeViewCanTick}}()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00274}00274 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00275}00275     \textcolor{keywordflow}{return} TreeView.IsValid() \&\& GraphMenu.IsValid();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00276}00276 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00277}00277 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00278}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a4113dc2a038164e28aa65ffd2973121c}{00278}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a4113dc2a038164e28aa65ffd2973121c}{UAccessibilityGraphEditorContext::TreeViewRequiresTick}}()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00279}00279 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00280}00280     \textcolor{keywordflow}{if} (!TreeView.IsValid() || !GraphMenu.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00281}00281         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00282}00282 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00283}00283     \textcolor{keywordtype}{bool} bFilterTextChange = FilterTextBox.IsValid()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00284}00284         ? FilterTextBox.Pin()-\/>GetText().ToString() != TreeViewTickRequirements.PrevSearchText}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00285}00285         : \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00286}00286 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00287}00287     TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00288}00288 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00289}00289     \textcolor{keywordflow}{return} (}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00290}00290         bFilterTextChange ||}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00291}00291         TreeViewPtr-\/>GetNumItemsBeingObserved() != TreeViewTickRequirements.PrevNumItemsBeingObserved ||}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00292}00292         TreeViewPtr-\/>GetNumGeneratedChildren() != TreeViewTickRequirements.PrevNumGeneratedChildren ||}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00293}00293         TreeViewPtr-\/>GetScrollDistance().Y != TreeViewTickRequirements.PrevScrollDistance}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00294}00294     );}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00295}00295 \} }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00296}00296 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00297}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a2bfc9eabccb29e43d0a888b80e79baa5}{00297}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a2bfc9eabccb29e43d0a888b80e79baa5}{UAccessibilityGraphEditorContext::TickTreeViewAccessibility}}()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00298}00298 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00299}00299     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a4113dc2a038164e28aa65ffd2973121c}{TreeViewRequiresTick}}())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00300}00300         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00301}00301 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00302}00302     TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00303}00303 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00304}00304     TArray<TSharedPtr<FGraphActionNode>> Items = TArray<TSharedPtr<FGraphActionNode>>(}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00305}00305         TreeViewPtr-\/>GetRootItems()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00306}00306     );}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00307}00307 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00308}00308 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00309}00309     TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00310}00310     \textcolor{keyword}{const} int32 IndexOffset = \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a23eebaefe79f5c8085b60d16906440b4}{GetStaticIndexOffset}}();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00311}00311 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00312}00312     \textcolor{keywordflow}{while} (Items.Num() > 0)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00313}00313     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00314}00314         \textcolor{keyword}{const} TSharedPtr<FGraphActionNode> Item = Items[0];}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00315}00315         Items.RemoveAt(0);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00316}00316 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00317}00317         \textcolor{keywordflow}{if} (TreeViewPtr-\/>IsItemExpanded(Item))}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00318}00318             Items.Append(Item-\/>Children);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00319}00319 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00320}00320         ItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00321}00321             TreeViewPtr-\/>WidgetFromItem(Item)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00322}00322         );}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00323}00323         \textcolor{keywordflow}{if} (!ItemWidget.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00324}00324             \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00325}00325 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00326}00326         TSharedPtr<SWidget> ItemContent = ItemWidget-\/>GetContent();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00327}00327 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00328}00328         \textcolor{keywordflow}{if} (ItemContent-\/>GetType() == \textcolor{stringliteral}{"{}SContentIndexer"{}})}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00329}00329         \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00330}00330             \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a3e6db9078cd4a9f02207c9f113e9e4d6}{UpdateAccessibilityWidget}}(}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00331}00331                 StaticCastSharedRef<SContentIndexer>(ItemContent.ToSharedRef()), }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00332}00332                 IndexOffset + ItemWidget-\/>GetIndexInList()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00333}00333             );}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00334}00334         \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00335}00335         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00336}00336         \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00337}00337             ItemWidget-\/>SetContent(}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00338}00338                 \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a42cd73b7b2d1529e3e5eb8f625b00a72}{CreateAccessibilityWrapper}}(ItemContent.ToSharedRef(), IndexOffset + ItemWidget-\/>GetIndexInList())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00339}00339             );}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00340}00340         \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00341}00341     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00342}00342 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00343}00343 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00344}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a3e6db9078cd4a9f02207c9f113e9e4d6}{00344}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a3e6db9078cd4a9f02207c9f113e9e4d6}{UAccessibilityGraphEditorContext::UpdateAccessibilityWidget}}(\textcolor{keyword}{const} TSharedRef<SContentIndexer>\& ContentIndexer, \textcolor{keyword}{const} int32\& NewIndex)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00345}00345 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00346}00346     ContentIndexer-\/>UpdateIndex(NewIndex);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00347}00347 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00348}00348 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00349}\mbox{\hyperlink{classUAccessibilityGraphEditorContext_a42cd73b7b2d1529e3e5eb8f625b00a72}{00349}} \textcolor{keyword}{const} TSharedRef<SContentIndexer> \mbox{\hyperlink{classUAccessibilityGraphEditorContext_a42cd73b7b2d1529e3e5eb8f625b00a72}{UAccessibilityGraphEditorContext::CreateAccessibilityWrapper}}(\textcolor{keyword}{const} TSharedRef<SWidget>\& ContentToWrap, \textcolor{keyword}{const} int32\& Index)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00350}00350 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00351}00351     \textcolor{keywordflow}{return} SNew(\mbox{\hyperlink{classSContentIndexer}{SContentIndexer}})}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00352}00352         .IndexValue(Index)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00353}00353         .IndexPositionToContent(EIndexerPosition::Left)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00354}00354         .ContentToIndex(ContentToWrap);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00355}00355 \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphEditorContext_8cpp_source_l00356}00356 }
+
+\end{DoxyCode}

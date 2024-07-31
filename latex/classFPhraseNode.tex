@@ -1,0 +1,768 @@
+\hypertarget{classFPhraseNode}{}\doxysection{FPhrase\+Node Class Reference}
+\label{classFPhraseNode}\index{FPhraseNode@{FPhraseNode}}
+Inheritance diagram for FPhrase\+Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.766703cm]{classFPhraseNode}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFPhraseNode_a2dec29c747d8fb57d0d8e97265f35e37}{FPhrase\+Node}} (const TCHAR $\ast$In\+Bound\+Phrase)
+\item 
+\mbox{\hyperlink{classFPhraseNode_a713308a8ea72fa266d7ce7b4940d02c9}{FPhrase\+Node}} (const TCHAR $\ast$In\+Bound\+Phrase, TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$ In\+On\+Phrase\+Parsed)
+\item 
+\mbox{\hyperlink{classFPhraseNode_a4798feedd5889135f9f73dc861f65e2c}{FPhrase\+Node}} (const TCHAR $\ast$In\+Bound\+Phrase, TPhrase\+Node\+Array In\+Child\+Nodes)
+\item 
+\mbox{\hyperlink{classFPhraseNode_a24ee38c3faafbe59847e4b7ba8bf6fde}{FPhrase\+Node}} (const TCHAR $\ast$In\+Bound\+Phrase, TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$ In\+On\+Phrase\+Parsed, TPhrase\+Node\+Array In\+Child\+Nodes)
+\item 
+virtual bool \mbox{\hyperlink{classFPhraseNode_aa3cb40c43957d0e5f281d7be77b8b246}{Is\+Leaf\+Node}} () const
+\begin{DoxyCompactList}\small\item\em Checks if the Node is a Leaf Node.  \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classFPhraseNode_a95136850f46bb5757f9f5a7358d1d04f}{Has\+Leaf\+Child}} () const
+\item 
+virtual bool \mbox{\hyperlink{classFPhraseNode_a15b600afd86bb99477af360a5c169246}{Requires\+Phrase}} (const FString In\+Phrase)
+\begin{DoxyCompactList}\small\item\em Checks if the Node Requires the Given Phrase.  \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classFPhraseNode_a27bb33f57c44482793806a71fcd7baf1}{Requires\+Phrase}} (const FString In\+Phrase, int32 \&Out\+Distance)
+\begin{DoxyCompactList}\small\item\em Checks if the Node Requires the Given Phrase, and Returns the Distance of the Phrase.  \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classFPhraseNode_a9e108bf1a2f579ed03277540c01a36da}{Parse\+Phrase}} (TArray$<$ FString $>$ \&In\+Phrase\+Word\+Array, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&In\+Parse\+Record)
+\begin{DoxyCompactList}\small\item\em Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.  \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classFPhraseNode_a3c3269f4a2bcacfe4f45a6993299827f}{Parse\+Phrase\+As\+Context}} (TArray$<$ FString $>$ \&In\+Phrase\+Word\+Array, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&In\+Parse\+Record)
+\begin{DoxyCompactList}\small\item\em Parses the Phrase Down This Node, Propagating Down Any Child Nodes If Required. Does not Pop the Phrase Array.  \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classFPhraseNode_ad66d060073d2506e70cf8323c3e8f6e9}{Parse\+Phrase\+If\+Required}} (TArray$<$ FString $>$ \&In\+Phrase\+Word\+Array, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&In\+Parse\+Record)
+\begin{DoxyCompactList}\small\item\em If the Phrase If Required, Parses the Phrase Down This Node, Propagating Down Any Child Nodes If Required.  \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classFPhraseNode_a671f4121e9df6769775bae880a845765}{Parse\+Children}} (TArray$<$ FString $>$ \&In\+Phrase\+Array, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&In\+Parse\+Record)
+\begin{DoxyCompactList}\small\item\em Parses The Children Node of this Node.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classFPhraseNode_afdf46d2c9022337855f2d8be5939ad06}{Can\+Bind\+Child}} (TPhrase\+Node \&In\+Node)
+\begin{DoxyCompactList}\small\item\em Checks if the Given Node Can Be Bound as a Child Node.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classFPhraseNode_a973a890061b08395184ec6f368e2def4}{Bind\+Child\+Node}} (TPhrase\+Node In\+Node)
+\begin{DoxyCompactList}\small\item\em Binds the Given Node as a Child Node.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classFPhraseNode_a4a07a3c5fb70559b6c008fa565a6cfe0}{Bind\+Child\+Node\+Force}} (TPhrase\+Node In\+Node)
+\begin{DoxyCompactList}\small\item\em Forcefully Binds the Given Node as a Child, performing no checks.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classFPhraseNode_a5a1f01926e39e8a917ce41d37990cc84}{Bind\+Children\+Nodes}} (TPhrase\+Node\+Array In\+Nodes)
+\begin{DoxyCompactList}\small\item\em Binds an Array of Nodes as Children of this Node.  \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classFPhraseNode_a26cbdec222c5fc38d8bdf1a3859daca1}{Bind\+Children\+Nodes\+Force}} (TPhrase\+Node\+Array In\+Nodes)
+\begin{DoxyCompactList}\small\item\em Forcefully Binds an Array of Nodes as Children of this Node, performing no checks.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TWeak\+Ptr$<$ \mbox{\hyperlink{classFPhraseNode}{FPhrase\+Node}} $>$ \mbox{\hyperlink{classFPhraseNode_a7c256616eb1d07592922d51d0ee1b38b}{Parent\+Node}}
+\begin{DoxyCompactList}\small\item\em This Nodes Parent Node.  \end{DoxyCompactList}\item 
+TPhrase\+Node\+Array \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{Child\+Nodes}}
+\begin{DoxyCompactList}\small\item\em The Child Nodes of the Node.  \end{DoxyCompactList}\item 
+FString \mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{Bound\+Phrase}}
+\begin{DoxyCompactList}\small\item\em The Phrase Bound to this  \end{DoxyCompactList}\item 
+TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$ \mbox{\hyperlink{classFPhraseNode_a485f745d7335c10d1c9c03e0de5ee291}{On\+Phrase\+Parsed}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classFPhraseNode_ae22f5df5250868321eeb62b6c4ecf01a}{Has\+Leaf\+Child}} ()
+\begin{DoxyCompactList}\small\item\em Filters through the children, to check if it contains a Leaf Child.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classFPhraseNode_a3350020f1380ad08f2d9aa5d354137ec}{b\+Has\+Leaf\+Child}}
+\begin{DoxyCompactList}\small\item\em Records if the Node has a Leaf Child.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8h_source_l00054}{54}} of file \mbox{\hyperlink{PhraseNode_8h_source}{Phrase\+Node.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFPhraseNode_a2dec29c747d8fb57d0d8e97265f35e37}\label{classFPhraseNode_a2dec29c747d8fb57d0d8e97265f35e37}} 
+\index{FPhraseNode@{FPhraseNode}!FPhraseNode@{FPhraseNode}}
+\index{FPhraseNode@{FPhraseNode}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{FPhraseNode()}{FPhraseNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily FPhrase\+Node\+::\+FPhrase\+Node (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Bound\+Phrase }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010 \{}
+\DoxyCodeLine{00011     \mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}} = InBoundPhrase;}
+\DoxyCodeLine{00012     \mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}}.ToUpperInline();}
+\DoxyCodeLine{00013 }
+\DoxyCodeLine{00014     \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}} = TArray<TSharedPtr<FPhraseNode>>();}
+\DoxyCodeLine{00015 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a713308a8ea72fa266d7ce7b4940d02c9}\label{classFPhraseNode_a713308a8ea72fa266d7ce7b4940d02c9}} 
+\index{FPhraseNode@{FPhraseNode}!FPhraseNode@{FPhraseNode}}
+\index{FPhraseNode@{FPhraseNode}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{FPhraseNode()}{FPhraseNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily FPhrase\+Node\+::\+FPhrase\+Node (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Bound\+Phrase,  }\item[{TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$}]{In\+On\+Phrase\+Parsed }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018 \{}
+\DoxyCodeLine{00019     \mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}} = InBoundPhrase;}
+\DoxyCodeLine{00020     \mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}}.ToUpperInline();}
+\DoxyCodeLine{00021 }
+\DoxyCodeLine{00022     OnPhraseParsed = InOnPhraseParsed;}
+\DoxyCodeLine{00023     \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}} = TArray<TSharedPtr<FPhraseNode>>();}
+\DoxyCodeLine{00024 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a4798feedd5889135f9f73dc861f65e2c}\label{classFPhraseNode_a4798feedd5889135f9f73dc861f65e2c}} 
+\index{FPhraseNode@{FPhraseNode}!FPhraseNode@{FPhraseNode}}
+\index{FPhraseNode@{FPhraseNode}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{FPhraseNode()}{FPhraseNode()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily FPhrase\+Node\+::\+FPhrase\+Node (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Bound\+Phrase,  }\item[{TPhrase\+Node\+Array}]{In\+Child\+Nodes }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00026}{26}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027 \{}
+\DoxyCodeLine{00028     \mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}} = InBoundPhrase;}
+\DoxyCodeLine{00029     \mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}}.ToUpperInline();}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031     \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}} = InChildNodes;}
+\DoxyCodeLine{00032 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a24ee38c3faafbe59847e4b7ba8bf6fde}\label{classFPhraseNode_a24ee38c3faafbe59847e4b7ba8bf6fde}} 
+\index{FPhraseNode@{FPhraseNode}!FPhraseNode@{FPhraseNode}}
+\index{FPhraseNode@{FPhraseNode}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{FPhraseNode()}{FPhraseNode()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily FPhrase\+Node\+::\+FPhrase\+Node (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Bound\+Phrase,  }\item[{TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$}]{In\+On\+Phrase\+Parsed,  }\item[{TPhrase\+Node\+Array}]{In\+Child\+Nodes }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035 \{}
+\DoxyCodeLine{00036     \mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}} = InBoundPhrase;}
+\DoxyCodeLine{00037     \mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}}.ToUpperInline();}
+\DoxyCodeLine{00038 }
+\DoxyCodeLine{00039     OnPhraseParsed = InOnPhraseParsed;}
+\DoxyCodeLine{00040     \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}} = InChildNodes;}
+\DoxyCodeLine{00041 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a54bd3f226272a0896c5f46256ac561ac}\label{classFPhraseNode_a54bd3f226272a0896c5f46256ac561ac}} 
+\index{FPhraseNode@{FPhraseNode}!````~FPhraseNode@{$\sim$FPhraseNode}}
+\index{````~FPhraseNode@{$\sim$FPhraseNode}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{$\sim$FPhraseNode()}{~FPhraseNode()}}
+{\footnotesize\ttfamily FPhrase\+Node\+::$\sim$\+FPhrase\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044 \{}
+\DoxyCodeLine{00045 }
+\DoxyCodeLine{00046 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFPhraseNode_a973a890061b08395184ec6f368e2def4}\label{classFPhraseNode_a973a890061b08395184ec6f368e2def4}} 
+\index{FPhraseNode@{FPhraseNode}!BindChildNode@{BindChildNode}}
+\index{BindChildNode@{BindChildNode}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{BindChildNode()}{BindChildNode()}}
+{\footnotesize\ttfamily bool FPhrase\+Node\+::\+Bind\+Child\+Node (\begin{DoxyParamCaption}\item[{TPhrase\+Node}]{In\+Node }\end{DoxyParamCaption})}
+
+
+
+Binds the Given Node as a Child Node.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node} & -\/ The Node To Bind as a Child of This Node.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Node was Successfully Bound. Otherwise False.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00124}{124}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00125 \{}
+\DoxyCodeLine{00126     \textcolor{keywordflow}{if} (!InNode.IsValid())}
+\DoxyCodeLine{00127         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00128     }
+\DoxyCodeLine{00129     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& ChildNode : \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}})}
+\DoxyCodeLine{00130     \{}
+\DoxyCodeLine{00131         \textcolor{keywordflow}{if} (ChildNode-\/>RequiresPhrase(InNode-\/>BoundPhrase))}
+\DoxyCodeLine{00132         \{}
+\DoxyCodeLine{00133             \textcolor{keywordflow}{return} ChildNode-\/>BindChildrenNodes(InNode-\/>ChildNodes);}
+\DoxyCodeLine{00134         \}}
+\DoxyCodeLine{00135         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00136         \{}
+\DoxyCodeLine{00137             \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}}.AddUnique(ChildNode);}
+\DoxyCodeLine{00138             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00139         \}}
+\DoxyCodeLine{00140     \}}
+\DoxyCodeLine{00141 }
+\DoxyCodeLine{00142     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00143 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a4a07a3c5fb70559b6c008fa565a6cfe0}\label{classFPhraseNode_a4a07a3c5fb70559b6c008fa565a6cfe0}} 
+\index{FPhraseNode@{FPhraseNode}!BindChildNodeForce@{BindChildNodeForce}}
+\index{BindChildNodeForce@{BindChildNodeForce}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{BindChildNodeForce()}{BindChildNodeForce()}}
+{\footnotesize\ttfamily bool FPhrase\+Node\+::\+Bind\+Child\+Node\+Force (\begin{DoxyParamCaption}\item[{TPhrase\+Node}]{In\+Node }\end{DoxyParamCaption})}
+
+
+
+Forcefully Binds the Given Node as a Child, performing no checks.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node} & -\/ The Node To Foce Bind as a Child.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Node was Successfully Bound. Otherwise False.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00145}{145}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00146 \{}
+\DoxyCodeLine{00147     \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}}.AddUnique(InNode);}
+\DoxyCodeLine{00148 }
+\DoxyCodeLine{00149     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00150 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a5a1f01926e39e8a917ce41d37990cc84}\label{classFPhraseNode_a5a1f01926e39e8a917ce41d37990cc84}} 
+\index{FPhraseNode@{FPhraseNode}!BindChildrenNodes@{BindChildrenNodes}}
+\index{BindChildrenNodes@{BindChildrenNodes}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{BindChildrenNodes()}{BindChildrenNodes()}}
+{\footnotesize\ttfamily bool FPhrase\+Node\+::\+Bind\+Children\+Nodes (\begin{DoxyParamCaption}\item[{TPhrase\+Node\+Array}]{In\+Nodes }\end{DoxyParamCaption})}
+
+
+
+Binds an Array of Nodes as Children of this Node.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Nodes} & -\/ The Array of Nodes To Bind as Children.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Nodes were Successfully Bound. Otherwise False.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00152}{152}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00153 \{}
+\DoxyCodeLine{00154     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& InNode : InNodes)}
+\DoxyCodeLine{00155     \{}
+\DoxyCodeLine{00156         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& ChildNode : \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}})}
+\DoxyCodeLine{00157         \{}
+\DoxyCodeLine{00158             \textcolor{keywordflow}{if} (ChildNode-\/>RequiresPhrase(InNode-\/>BoundPhrase))}
+\DoxyCodeLine{00159             \{}
+\DoxyCodeLine{00160                 \textcolor{keywordflow}{return} ChildNode-\/>BindChildrenNodes(InNode-\/>ChildNodes);}
+\DoxyCodeLine{00161             \}}
+\DoxyCodeLine{00162             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00163             \{}
+\DoxyCodeLine{00164                 \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}}.AddUnique(ChildNode);}
+\DoxyCodeLine{00165                 \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00166             \}}
+\DoxyCodeLine{00167         \}}
+\DoxyCodeLine{00168     \}}
+\DoxyCodeLine{00169 }
+\DoxyCodeLine{00170     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00171 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a26cbdec222c5fc38d8bdf1a3859daca1}\label{classFPhraseNode_a26cbdec222c5fc38d8bdf1a3859daca1}} 
+\index{FPhraseNode@{FPhraseNode}!BindChildrenNodesForce@{BindChildrenNodesForce}}
+\index{BindChildrenNodesForce@{BindChildrenNodesForce}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{BindChildrenNodesForce()}{BindChildrenNodesForce()}}
+{\footnotesize\ttfamily bool FPhrase\+Node\+::\+Bind\+Children\+Nodes\+Force (\begin{DoxyParamCaption}\item[{TPhrase\+Node\+Array}]{In\+Nodes }\end{DoxyParamCaption})}
+
+
+
+Forcefully Binds an Array of Nodes as Children of this Node, performing no checks.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Nodes} & -\/ The Array of Nodes To Bind sa Children.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Nodes were successfully bound. Otherwise False.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00173}{173}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00174 \{}
+\DoxyCodeLine{00175     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& InNode : InNodes)}
+\DoxyCodeLine{00176     \{}
+\DoxyCodeLine{00177         \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}}.AddUnique(InNode);}
+\DoxyCodeLine{00178     \}}
+\DoxyCodeLine{00179 }
+\DoxyCodeLine{00180     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00181 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_afdf46d2c9022337855f2d8be5939ad06}\label{classFPhraseNode_afdf46d2c9022337855f2d8be5939ad06}} 
+\index{FPhraseNode@{FPhraseNode}!CanBindChild@{CanBindChild}}
+\index{CanBindChild@{CanBindChild}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{CanBindChild()}{CanBindChild()}}
+{\footnotesize\ttfamily bool FPhrase\+Node\+::\+Can\+Bind\+Child (\begin{DoxyParamCaption}\item[{TPhrase\+Node \&}]{In\+Node }\end{DoxyParamCaption})}
+
+
+
+Checks if the Given Node Can Be Bound as a Child Node.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node} & -\/ The Node To Check If It Can Be Bound.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Node Can Be Bound as a Child. Otherwise False.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00111}{111}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00112 \{}
+\DoxyCodeLine{00113     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& ChildNode : \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}})}
+\DoxyCodeLine{00114     \{}
+\DoxyCodeLine{00115         \textcolor{keywordflow}{if} (ChildNode-\/>RequiresPhrase(InNode-\/>BoundPhrase) || ChildNode-\/>IsLeafNode())}
+\DoxyCodeLine{00116         \{}
+\DoxyCodeLine{00117             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00118         \}}
+\DoxyCodeLine{00119     \}}
+\DoxyCodeLine{00120 }
+\DoxyCodeLine{00121     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00122 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_ae22f5df5250868321eeb62b6c4ecf01a}\label{classFPhraseNode_ae22f5df5250868321eeb62b6c4ecf01a}} 
+\index{FPhraseNode@{FPhraseNode}!HasLeafChild@{HasLeafChild}}
+\index{HasLeafChild@{HasLeafChild}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{HasLeafChild()}{HasLeafChild()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool FPhrase\+Node\+::\+Has\+Leaf\+Child (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Filters through the children, to check if it contains a Leaf Child.  
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00183}{183}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00184 \{}
+\DoxyCodeLine{00185     \textcolor{keywordflow}{return} \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}}.Num() == 1 \&\& \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}}[0]-\/>IsLeafNode();}
+\DoxyCodeLine{00186 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a95136850f46bb5757f9f5a7358d1d04f}\label{classFPhraseNode_a95136850f46bb5757f9f5a7358d1d04f}} 
+\index{FPhraseNode@{FPhraseNode}!HasLeafChild@{HasLeafChild}}
+\index{HasLeafChild@{HasLeafChild}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{HasLeafChild()}{HasLeafChild()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool FPhrase\+Node\+::\+Has\+Leaf\+Child (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00049 \{}
+\DoxyCodeLine{00050     \textcolor{keywordflow}{return} \mbox{\hyperlink{classFPhraseNode_a3350020f1380ad08f2d9aa5d354137ec}{bHasLeafChild}};}
+\DoxyCodeLine{00051 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_aa3cb40c43957d0e5f281d7be77b8b246}\label{classFPhraseNode_aa3cb40c43957d0e5f281d7be77b8b246}} 
+\index{FPhraseNode@{FPhraseNode}!IsLeafNode@{IsLeafNode}}
+\index{IsLeafNode@{IsLeafNode}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{IsLeafNode()}{IsLeafNode()}}
+{\footnotesize\ttfamily virtual bool FPhrase\+Node\+::\+Is\+Leaf\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Checks if the Node is a Leaf Node.  
+
+\begin{DoxyReturn}{Returns}
+True, if the Node is a Leaf Node. Otherwise False.
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classFPhraseEventNode_ae107fcda29c78bd9cfba761906090460}{FPhrase\+Event\+Node}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8h_source_l00069}{69}} of file \mbox{\hyperlink{PhraseNode_8h_source}{Phrase\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00069 \{ \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a671f4121e9df6769775bae880a845765}\label{classFPhraseNode_a671f4121e9df6769775bae880a845765}} 
+\index{FPhraseNode@{FPhraseNode}!ParseChildren@{ParseChildren}}
+\index{ParseChildren@{ParseChildren}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{ParseChildren()}{ParseChildren()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFParseResult}{FParse\+Result}} FPhrase\+Node\+::\+Parse\+Children (\begin{DoxyParamCaption}\item[{TArray$<$ FString $>$ \&}]{In\+Phrase\+Array,  }\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{In\+Parse\+Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Parses The Children Node of this Node.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase\+Array} & -\/ The Current Array of Transcription Phrases.\\
+\hline
+{\em In\+Parse\+Record} & -\/ The Parse Record of the Current Propagation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Result of the Parsing of the Phrase, and any Propagation.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00188}{188}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00189 \{}
+\DoxyCodeLine{00190     \textcolor{keywordflow}{if} (HasLeafChild())}
+\DoxyCodeLine{00191         \textcolor{keywordflow}{return} \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}}[0]-\/>ParsePhrase(InPhraseArray, InParseRecord);}
+\DoxyCodeLine{00192     \textcolor{keywordflow}{if} (InPhraseArray.IsEmpty()) }
+\DoxyCodeLine{00193         \textcolor{keywordflow}{return} \mbox{\hyperlink{structFParseResult}{FParseResult}}(PHRASE\_REQUIRES\_MORE, AsShared());}
+\DoxyCodeLine{00194 }
+\DoxyCodeLine{00195     \textcolor{comment}{// Below Can Be Optimized.}}
+\DoxyCodeLine{00196     \textcolor{comment}{// Maybe bypass the loop if Distance == 0 and Sort ChildNodes with Derrived PhraseNodes Last?}}
+\DoxyCodeLine{00197 }
+\DoxyCodeLine{00198     \textcolor{keywordtype}{int} FoundChildIndex = -\/1;}
+\DoxyCodeLine{00199     \{}
+\DoxyCodeLine{00200         int32 FoundChildDistance = INT32\_MAX, CurrentDistance = INT32\_MAX;}
+\DoxyCodeLine{00201 }
+\DoxyCodeLine{00202         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}}.Num(); i++)}
+\DoxyCodeLine{00203         \{}
+\DoxyCodeLine{00204             \textcolor{comment}{// Child Nodes Require Unique Phrases to Siblings.}}
+\DoxyCodeLine{00205             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}}[i]-\/>\mbox{\hyperlink{classFPhraseNode_a15b600afd86bb99477af360a5c169246}{RequiresPhrase}}(InPhraseArray.Last(), CurrentDistance))}
+\DoxyCodeLine{00206             \{}
+\DoxyCodeLine{00207                 \textcolor{keywordflow}{if} (FoundChildDistance > CurrentDistance)}
+\DoxyCodeLine{00208                 \{}
+\DoxyCodeLine{00209                     FoundChildIndex = i;}
+\DoxyCodeLine{00210                     FoundChildDistance = CurrentDistance;}
+\DoxyCodeLine{00211                 \}}
+\DoxyCodeLine{00212             \}}
+\DoxyCodeLine{00213         \}}
+\DoxyCodeLine{00214     \}}
+\DoxyCodeLine{00215 }
+\DoxyCodeLine{00216     \textcolor{keywordflow}{if} (FoundChildIndex != -\/1)}
+\DoxyCodeLine{00217     \{}
+\DoxyCodeLine{00218         \textcolor{keywordflow}{return} \mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}}[FoundChildIndex]-\/>ParsePhrase(InPhraseArray, InParseRecord);}
+\DoxyCodeLine{00219     \}}
+\DoxyCodeLine{00220 }
+\DoxyCodeLine{00221     \textcolor{comment}{/*else if (!InPhraseArray.IsEmpty())}}
+\DoxyCodeLine{00222 \textcolor{comment}{    \{}}
+\DoxyCodeLine{00223 \textcolor{comment}{        return FParseResult(PHRASE\_REQUIRES\_MORE\_CORRECT\_PHRASES, AsShared());}}
+\DoxyCodeLine{00224 \textcolor{comment}{    \}*/}}
+\DoxyCodeLine{00225 }
+\DoxyCodeLine{00226     \textcolor{keywordflow}{return} \mbox{\hyperlink{structFParseResult}{FParseResult}}(PHRASE\_UNABLE\_TO\_PARSE, AsShared());}
+\DoxyCodeLine{00227 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a9e108bf1a2f579ed03277540c01a36da}\label{classFPhraseNode_a9e108bf1a2f579ed03277540c01a36da}} 
+\index{FPhraseNode@{FPhraseNode}!ParsePhrase@{ParsePhrase}}
+\index{ParsePhrase@{ParsePhrase}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{ParsePhrase()}{ParsePhrase()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFParseResult}{FParse\+Result}} FPhrase\+Node\+::\+Parse\+Phrase (\begin{DoxyParamCaption}\item[{TArray$<$ FString $>$ \&}]{In\+Phrase\+Word\+Array,  }\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{In\+Parse\+Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase\+Word\+Array} & -\/ The Current Array of Transcription Phrases.\\
+\hline
+{\em In\+Parse\+Record} & -\/ The Parse Record of the Current Propagation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Result of the Parsing of the Phrase, and any Propagation.
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classFPhraseEventNode_a14c76a68138b843355fe528d6fdcef91}{FPhrase\+Event\+Node}}, \mbox{\hyperlink{classFPhraseInputNode_a2789bf16d12a24c036157efeca2fb84b}{FPhrase\+Input\+Node$<$ Input\+Type $>$}}, \mbox{\hyperlink{classFPhraseInputNode_a2789bf16d12a24c036157efeca2fb84b}{FPhrase\+Input\+Node$<$ int32 $>$}}, \mbox{\hyperlink{classFPhraseInputNode_a2789bf16d12a24c036157efeca2fb84b}{FPhrase\+Input\+Node$<$ FString $>$}}, \mbox{\hyperlink{classFPhraseTree_af9f8e635d85ce7fed5a4f782f88a3ba8}{FPhrase\+Tree}}, \mbox{\hyperlink{classFPhraseContextMenuNode_adf2f7046bea69db7f20577b00d9a0b7d}{FPhrase\+Context\+Menu\+Node$<$ Context\+Menu\+Type $>$}}, and \mbox{\hyperlink{classFPhraseContextNode_a43403680a2324f8461aea97c2627c8b8}{FPhrase\+Context\+Node$<$ Context\+Type $>$}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00065}{65}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00066                                                                    \{}
+\DoxyCodeLine{00067     \textcolor{keywordflow}{if} (InPhraseArray.IsEmpty())}
+\DoxyCodeLine{00068     \{}
+\DoxyCodeLine{00069         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}|| Emptied Phrase Array ||"{}}))}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071         return \mbox{\hyperlink{structFParseResult}{FParseResult}}(PHRASE\_REQUIRES\_MORE, AsShared());}
+\DoxyCodeLine{00072     \}}
+\DoxyCodeLine{00073 }
+\DoxyCodeLine{00074     \textcolor{comment}{// Pop the Phrase Linked to this Node.}}
+\DoxyCodeLine{00075     \textcolor{comment}{// Apply to the Record.}}
+\DoxyCodeLine{00076     FString LinkedPhrase = InPhraseArray.Pop();}
+\DoxyCodeLine{00077     }
+\DoxyCodeLine{00078     \textcolor{comment}{// Append Removed Phrase To Record.}}
+\DoxyCodeLine{00079     InParseRecord.AddPhraseString(LinkedPhrase);}
+\DoxyCodeLine{00080     }
+\DoxyCodeLine{00081     OnPhraseParsed.ExecuteIfBound(InParseRecord);}
+\DoxyCodeLine{00082 }
+\DoxyCodeLine{00083     \textcolor{comment}{// Pass }}
+\DoxyCodeLine{00084     return \mbox{\hyperlink{classFPhraseNode_a671f4121e9df6769775bae880a845765}{ParseChildren}}(InPhraseArray, InParseRecord);}
+\DoxyCodeLine{00085 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a3c3269f4a2bcacfe4f45a6993299827f}\label{classFPhraseNode_a3c3269f4a2bcacfe4f45a6993299827f}} 
+\index{FPhraseNode@{FPhraseNode}!ParsePhraseAsContext@{ParsePhraseAsContext}}
+\index{ParsePhraseAsContext@{ParsePhraseAsContext}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{ParsePhraseAsContext()}{ParsePhraseAsContext()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFParseResult}{FParse\+Result}} FPhrase\+Node\+::\+Parse\+Phrase\+As\+Context (\begin{DoxyParamCaption}\item[{TArray$<$ FString $>$ \&}]{In\+Phrase\+Word\+Array,  }\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{In\+Parse\+Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Parses the Phrase Down This Node, Propagating Down Any Child Nodes If Required. Does not Pop the Phrase Array.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase\+Word\+Array} & -\/ The Current Array of Transcription Phrases.\\
+\hline
+{\em In\+Parse\+Record} & -\/ The Parse Record of the Current Propagation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Result of the Parsing of the Phrase, and any Propagation.
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classFPhraseContextMenuNode_a1f7f0d30a92224a5c38ef7f75e2a7c28}{FPhrase\+Context\+Menu\+Node$<$ Context\+Menu\+Type $>$}}, and \mbox{\hyperlink{classFPhraseContextNode_a9235b5a4884ae83439b0d1b2272284ba}{FPhrase\+Context\+Node$<$ Context\+Type $>$}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00087}{87}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00088 \{}
+\DoxyCodeLine{00089     \textcolor{keywordflow}{if} (InPhraseWordArray.IsEmpty())}
+\DoxyCodeLine{00090     \{}
+\DoxyCodeLine{00091         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}|| Emptied Phrase Array ||"{}}))}
+\DoxyCodeLine{00092 }
+\DoxyCodeLine{00093             return \mbox{\hyperlink{structFParseResult}{FParseResult}}(PHRASE\_REQUIRES\_MORE, AsShared());}
+\DoxyCodeLine{00094     \}}
+\DoxyCodeLine{00095 }
+\DoxyCodeLine{00096     OnPhraseParsed.ExecuteIfBound(InParseRecord);}
+\DoxyCodeLine{00097 }
+\DoxyCodeLine{00098     return \mbox{\hyperlink{classFPhraseNode_a671f4121e9df6769775bae880a845765}{ParseChildren}}(InPhraseWordArray, InParseRecord);}
+\DoxyCodeLine{00099 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_ad66d060073d2506e70cf8323c3e8f6e9}\label{classFPhraseNode_ad66d060073d2506e70cf8323c3e8f6e9}} 
+\index{FPhraseNode@{FPhraseNode}!ParsePhraseIfRequired@{ParsePhraseIfRequired}}
+\index{ParsePhraseIfRequired@{ParsePhraseIfRequired}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{ParsePhraseIfRequired()}{ParsePhraseIfRequired()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFParseResult}{FParse\+Result}} FPhrase\+Node\+::\+Parse\+Phrase\+If\+Required (\begin{DoxyParamCaption}\item[{TArray$<$ FString $>$ \&}]{In\+Phrase\+Word\+Array,  }\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{In\+Parse\+Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+If the Phrase If Required, Parses the Phrase Down This Node, Propagating Down Any Child Nodes If Required.  
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00101}{101}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00102 \{}
+\DoxyCodeLine{00103     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classFPhraseNode_a15b600afd86bb99477af360a5c169246}{RequiresPhrase}}(InPhraseWordArray.Last()))}
+\DoxyCodeLine{00104     \{}
+\DoxyCodeLine{00105         \textcolor{keywordflow}{return} \mbox{\hyperlink{classFPhraseNode_a9e108bf1a2f579ed03277540c01a36da}{ParsePhrase}}(InPhraseWordArray, InParseRecord);}
+\DoxyCodeLine{00106     \}}
+\DoxyCodeLine{00107 }
+\DoxyCodeLine{00108     \textcolor{keywordflow}{return} \mbox{\hyperlink{structFParseResult}{FParseResult}}(PHRASE\_UNABLE\_TO\_PARSE);}
+\DoxyCodeLine{00109 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a15b600afd86bb99477af360a5c169246}\label{classFPhraseNode_a15b600afd86bb99477af360a5c169246}} 
+\index{FPhraseNode@{FPhraseNode}!RequiresPhrase@{RequiresPhrase}}
+\index{RequiresPhrase@{RequiresPhrase}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{RequiresPhrase()}{RequiresPhrase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool FPhrase\+Node\+::\+Requires\+Phrase (\begin{DoxyParamCaption}\item[{const FString}]{In\+Phrase }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Checks if the Node Requires the Given Phrase.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase} & -\/ The Phrase To Check if Required By The Node.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Phrase is Required. Otherwise False.
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classFPhraseEventNode_a0f0d538bb4f1836dea0a337a42f91b2c}{FPhrase\+Event\+Node}}, \mbox{\hyperlink{classFPhraseInputNode_a320d0a32dbb9b603b684d03a39be4d6e}{FPhrase\+Input\+Node$<$ Input\+Type $>$}}, \mbox{\hyperlink{classFPhraseInputNode_a320d0a32dbb9b603b684d03a39be4d6e}{FPhrase\+Input\+Node$<$ int32 $>$}}, and \mbox{\hyperlink{classFPhraseInputNode_a320d0a32dbb9b603b684d03a39be4d6e}{FPhrase\+Input\+Node$<$ FString $>$}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00053}{53}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054 \{}
+\DoxyCodeLine{00055     \textcolor{keywordflow}{return} InPhrase.Equals(\mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}}, ESearchCase::IgnoreCase) || Algo::LevenshteinDistance(\mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}}, InPhrase) < 3;}
+\DoxyCodeLine{00056 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseNode_a27bb33f57c44482793806a71fcd7baf1}\label{classFPhraseNode_a27bb33f57c44482793806a71fcd7baf1}} 
+\index{FPhraseNode@{FPhraseNode}!RequiresPhrase@{RequiresPhrase}}
+\index{RequiresPhrase@{RequiresPhrase}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{RequiresPhrase()}{RequiresPhrase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool FPhrase\+Node\+::\+Requires\+Phrase (\begin{DoxyParamCaption}\item[{const FString}]{In\+Phrase,  }\item[{int32 \&}]{Out\+Distance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Checks if the Node Requires the Given Phrase, and Returns the Distance of the Phrase.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase} & -\/ The Phrase To Check if Required By The Node.\\
+\hline
+{\em Out\+Distance} & -\/ The Returned Distancing from the Target Phrase To The Bound\+Phrase.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Phrase is Required. Otherwise False.
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classFPhraseEventNode_a5f150cf1aa4719e02fe00178cf2e3b02}{FPhrase\+Event\+Node}}, \mbox{\hyperlink{classFPhraseInputNode_a8f84d569e4900f11631094bc7d889564}{FPhrase\+Input\+Node$<$ Input\+Type $>$}}, \mbox{\hyperlink{classFPhraseInputNode_a8f84d569e4900f11631094bc7d889564}{FPhrase\+Input\+Node$<$ int32 $>$}}, and \mbox{\hyperlink{classFPhraseInputNode_a8f84d569e4900f11631094bc7d889564}{FPhrase\+Input\+Node$<$ FString $>$}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8cpp_source_l00058}{58}} of file \mbox{\hyperlink{PhraseNode_8cpp_source}{Phrase\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00059 \{}
+\DoxyCodeLine{00060     OutDistance = Algo::LevenshteinDistance(\mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}}, InPhrase);}
+\DoxyCodeLine{00061 }
+\DoxyCodeLine{00062     \textcolor{keywordflow}{return} InPhrase.Equals(\mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}}, ESearchCase::IgnoreCase) || OutDistance < 3;}
+\DoxyCodeLine{00063 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classFPhraseNode_a3350020f1380ad08f2d9aa5d354137ec}\label{classFPhraseNode_a3350020f1380ad08f2d9aa5d354137ec}} 
+\index{FPhraseNode@{FPhraseNode}!bHasLeafChild@{bHasLeafChild}}
+\index{bHasLeafChild@{bHasLeafChild}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{bHasLeafChild}{bHasLeafChild}}
+{\footnotesize\ttfamily bool FPhrase\+Node\+::b\+Has\+Leaf\+Child\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Records if the Node has a Leaf Child.  
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8h_source_l00185}{185}} of file \mbox{\hyperlink{PhraseNode_8h_source}{Phrase\+Node.\+h}}.
+
+\mbox{\Hypertarget{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}\label{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}} 
+\index{FPhraseNode@{FPhraseNode}!BoundPhrase@{BoundPhrase}}
+\index{BoundPhrase@{BoundPhrase}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{BoundPhrase}{BoundPhrase}}
+{\footnotesize\ttfamily FString FPhrase\+Node\+::\+Bound\+Phrase}
+
+
+
+The Phrase Bound to this  
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8h_source_l00175}{175}} of file \mbox{\hyperlink{PhraseNode_8h_source}{Phrase\+Node.\+h}}.
+
+\mbox{\Hypertarget{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}\label{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}} 
+\index{FPhraseNode@{FPhraseNode}!ChildNodes@{ChildNodes}}
+\index{ChildNodes@{ChildNodes}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{ChildNodes}{ChildNodes}}
+{\footnotesize\ttfamily TPhrase\+Node\+Array FPhrase\+Node\+::\+Child\+Nodes}
+
+
+
+The Child Nodes of the Node.  
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8h_source_l00170}{170}} of file \mbox{\hyperlink{PhraseNode_8h_source}{Phrase\+Node.\+h}}.
+
+\mbox{\Hypertarget{classFPhraseNode_a485f745d7335c10d1c9c03e0de5ee291}\label{classFPhraseNode_a485f745d7335c10d1c9c03e0de5ee291}} 
+\index{FPhraseNode@{FPhraseNode}!OnPhraseParsed@{OnPhraseParsed}}
+\index{OnPhraseParsed@{OnPhraseParsed}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{OnPhraseParsed}{OnPhraseParsed}}
+{\footnotesize\ttfamily TDelegate$<$void (\mbox{\hyperlink{structFParseRecord}{FParse\+Record}}\& Record)$>$ FPhrase\+Node\+::\+On\+Phrase\+Parsed}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8h_source_l00178}{178}} of file \mbox{\hyperlink{PhraseNode_8h_source}{Phrase\+Node.\+h}}.
+
+\mbox{\Hypertarget{classFPhraseNode_a7c256616eb1d07592922d51d0ee1b38b}\label{classFPhraseNode_a7c256616eb1d07592922d51d0ee1b38b}} 
+\index{FPhraseNode@{FPhraseNode}!ParentNode@{ParentNode}}
+\index{ParentNode@{ParentNode}!FPhraseNode@{FPhraseNode}}
+\doxysubsubsection{\texorpdfstring{ParentNode}{ParentNode}}
+{\footnotesize\ttfamily TWeak\+Ptr$<$\mbox{\hyperlink{classFPhraseNode}{FPhrase\+Node}}$>$ FPhrase\+Node\+::\+Parent\+Node}
+
+
+
+This Nodes Parent Node.  
+
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8h_source_l00165}{165}} of file \mbox{\hyperlink{PhraseNode_8h_source}{Phrase\+Node.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility\+Communication/\+Public/\+Phrase\+Tree/Phrase\+Node.\+h\item 
+Source/\+Open\+Accessibility\+Communication/\+Private/\+Phrase\+Tree/Phrase\+Node.\+cpp\end{DoxyCompactItemize}

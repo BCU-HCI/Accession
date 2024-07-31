@@ -1,0 +1,111 @@
+\hypertarget{AccessibilityAddNodeContextMenu_8h_source}{}\doxysection{Accessibility\+Add\+Node\+Context\+Menu.\+h}
+\label{AccessibilityAddNodeContextMenu_8h_source}\index{Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityAddNodeContextMenu.h@{Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityAddNodeContextMenu.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00003}00003 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00007}00007 \textcolor{preprocessor}{\#include "{}PhraseTree/Containers/ContextMenuObject.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00009}00009 \textcolor{preprocessor}{\#include "{}SGraphActionMenu.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00010}00010 \textcolor{preprocessor}{\#include "{}GraphActionNode.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00012}00012 \textcolor{preprocessor}{\#include "{}AccessibilityAddNodeContextMenu.generated.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00014}00014 \textcolor{keyword}{struct }FGraphActionNode;}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00016}00016 UCLASS()}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00017}\mbox{\hyperlink{classUAccessibilityAddNodeContextMenu}{00017}} class OPENACCESSIBILITY\_API \mbox{\hyperlink{classUAccessibilityAddNodeContextMenu}{UAccessibilityAddNodeContextMenu}} : public \mbox{\hyperlink{classUPhraseTreeContextMenuObject}{UPhraseTreeContextMenuObject}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00018}00018 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00019}00019     GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00021}00021 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00023}00023     \mbox{\hyperlink{classUAccessibilityAddNodeContextMenu}{UAccessibilityAddNodeContextMenu}}();}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00024}00024     \mbox{\hyperlink{classUAccessibilityAddNodeContextMenu}{UAccessibilityAddNodeContextMenu}}(TSharedRef<IMenu> Menu);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00025}00025     \mbox{\hyperlink{classUAccessibilityAddNodeContextMenu}{UAccessibilityAddNodeContextMenu}}(TSharedRef<IMenu> Menu, TSharedRef<SGraphActionMenu> GraphMenu);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00026}00026     \mbox{\hyperlink{classUAccessibilityAddNodeContextMenu}{UAccessibilityAddNodeContextMenu}}(TSharedRef<IMenu> Menu, TSharedRef<SGraphActionMenu> GraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> TreeView);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00027}00027 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00028}00028     \mbox{\hyperlink{classUAccessibilityAddNodeContextMenu}{\string~UAccessibilityAddNodeContextMenu}}();}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00035}00035     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Init(TSharedRef<IMenu> InMenu, TSharedRef<FPhraseNode> InContextRoot) \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00043}00043     \textcolor{keywordtype}{void} Init(TSharedRef<IMenu> InMenu, TSharedRef<SGraphActionMenu> InGraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> InTreeView);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00045}00045     \textcolor{comment}{// -\/-\/ UAccessibilityContextMenu Implementation}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00051}00051     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} Init(TSharedRef<IMenu> InMenu) \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00053}00053     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Tick(\textcolor{keywordtype}{float} DeltaTime) \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00059}00059     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Close() \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00065}00065     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} ScaleMenu(\textcolor{keyword}{const} \textcolor{keywordtype}{float} ScaleFactor = 1.5f) \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00067}00067     \textcolor{comment}{// -\/-\/ End UAccessibilityContextMenu Implementation}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00073}00073     \textcolor{keywordtype}{bool} DoesItemsRequireRefresh();}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00078}00078     \textcolor{keywordtype}{void} RefreshAccessibilityWidgets();}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00080}00080     \textcolor{comment}{// Utility Interactions}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00081}00081     \textcolor{comment}{// Useful for simplifying common interactions.}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00088}00088     \textcolor{keywordtype}{void} GetGraphActionFromIndex(\textcolor{keyword}{const} int32 InIndex, FGraphActionNode* OutGraphAction);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00095}00095     FGraphActionNode* GetGraphActionFromIndex(\textcolor{keyword}{const} int32 InIndex);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00096}00096     }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00102}00102     TSharedPtr<FGraphActionNode> GetGraphActionFromIndexSP(\textcolor{keyword}{const} int32 InIndex);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00103}00103 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00108}00108     \textcolor{keywordtype}{void} SelectGraphAction(\textcolor{keyword}{const} int32 InIndex);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00109}00109     }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00114}00114     \textcolor{keywordtype}{void} PerformGraphAction(\textcolor{keyword}{const} int32 InIndex);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00120}00120     FString GetFilterText();}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00121}00121 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00126}00126     \textcolor{keywordtype}{void} SetFilterText(\textcolor{keyword}{const} FString\& InFilterText);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00132}00132     \textcolor{keywordtype}{void} AppendFilterText(\textcolor{keyword}{const} FString\& InFilterText);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00137}00137     \textcolor{keywordtype}{void} ResetFilterText();}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00138}00138 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00143}00143     \textcolor{keywordtype}{void} SetScrollDistance(\textcolor{keyword}{const} \textcolor{keywordtype}{float} InScrollDistance);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00144}00144 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00149}00149     \textcolor{keywordtype}{void} AppendScrollDistance(\textcolor{keyword}{const} \textcolor{keywordtype}{float} InScrollDistance);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00150}00150 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00154}00154     \textcolor{keywordtype}{void} SetScrollDistanceTop();}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00155}00155 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00159}00159     \textcolor{keywordtype}{void} SetScrollDistanceBottom();}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00160}00160 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00164}00164     \textcolor{keywordtype}{void} ToggleContextAwareness();}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00165}00165 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00166}00166 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00173}00173     \textcolor{keywordtype}{void} ApplyAccessibilityWidget(TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00174}00174 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00179}00179     \textcolor{keywordtype}{void} UpdateAccessibilityWidget(TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00180}00180 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00181}00181 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00182}00182 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00183}00183     \textcolor{comment}{// Menu Components}}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00184}00184 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00188}\mbox{\hyperlink{classUAccessibilityAddNodeContextMenu_a7201d7c1ee4819f626243ae08f52243e}{00188}}     TWeakPtr<SGraphActionMenu> \mbox{\hyperlink{classUAccessibilityAddNodeContextMenu_a7201d7c1ee4819f626243ae08f52243e}{GraphMenu}};}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00189}00189 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00193}\mbox{\hyperlink{classUAccessibilityAddNodeContextMenu_ab685c4b348b2842631789a570bb2c488}{00193}}     TWeakPtr<STreeView<TSharedPtr<FGraphActionNode>>> \mbox{\hyperlink{classUAccessibilityAddNodeContextMenu_ab685c4b348b2842631789a570bb2c488}{TreeView}};}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00194}00194 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00198}\mbox{\hyperlink{classUAccessibilityAddNodeContextMenu_a63e09c69c35ce5cccd0106b652cd6c50}{00198}}     TWeakPtr<SEditableTextBox> \mbox{\hyperlink{classUAccessibilityAddNodeContextMenu_a63e09c69c35ce5cccd0106b652cd6c50}{FilterTextBox}};}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00203}\mbox{\hyperlink{classUAccessibilityAddNodeContextMenu_a4d835458617fa75556e87a3e3f082dea}{00203}}     TWeakPtr<SCheckBox> \mbox{\hyperlink{classUAccessibilityAddNodeContextMenu_a4d835458617fa75556e87a3e3f082dea}{ContextAwarenessCheckBox}};}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00204}00204 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00205}00205 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00206}00206 }
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00207}00207     FString PrevFilterString;}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00208}00208     int32 PrevNumItemsBeingObserved;}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00209}00209     int32 PrevNumGeneratedChildren;}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00210}00210     \textcolor{keywordtype}{double} PrevScrollDistance;}
+\DoxyCodeLine{\Hypertarget{AccessibilityAddNodeContextMenu_8h_source_l00211}00211 \};}
+
+\end{DoxyCode}

@@ -1,0 +1,171 @@
+\hypertarget{AccessibilityGraphLocomotionContext_8h_source}{}\doxysection{Accessibility\+Graph\+Locomotion\+Context.\+h}
+\label{AccessibilityGraphLocomotionContext_8h_source}\index{Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityGraphLocomotionContext.h@{Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityGraphLocomotionContext.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00003}00003 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00006}00006 \textcolor{preprocessor}{\#include "{}PhraseTree/Containers/ContextObject.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00008}00008 \textcolor{preprocessor}{\#include "{}Widgets/Layout/SUniformGridPanel.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00010}00010 \textcolor{preprocessor}{\#include "{}AccessibilityGraphLocomotionContext.generated.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00011}00011 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00012}00012 USTRUCT()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00013}\mbox{\hyperlink{structFGraphLocomotionChunk}{00013}} struct \mbox{\hyperlink{structFGraphLocomotionChunk}{FGraphLocomotionChunk}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00014}00014 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00015}00015     GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00017}00017 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00019}00019     \textcolor{keywordtype}{void} SetChunkBounds(FVector2D InTopLeft, FVector2D InBottomRight)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00020}00020     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00021}00021         TopLeft = InTopLeft;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00022}00022         BottomRight = InBottomRight;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00023}00023     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00025}00025     \textcolor{keywordtype}{void} GetChunkBounds(FVector2D\& OutTopLeft, FVector2D\& OutBottomRight)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00026}00026 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00027}00027         OutTopLeft = TopLeft;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00028}00028         OutBottomRight = BottomRight;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00029}00029     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00031}00031     FVector2D GetChunkTopLeft()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} TopLeft; \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00033}00033     FVector2D GetChunkBottomRight()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} BottomRight; \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00035}00035     \textcolor{keywordtype}{void} SetVisColor(\textcolor{keyword}{const} FLinearColor\& NewColor)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00036}00036 \textcolor{keyword}{    }\{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00037}00037         \textcolor{keywordflow}{if} (ChunkVisWidget.IsValid())}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00038}00038             ChunkVisWidget.Pin()-\/>SetBorderBackgroundColor(NewColor);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00039}00039     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00041}00041 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00046}\mbox{\hyperlink{structFGraphLocomotionChunk_a8dc029954ce81fe0507c4bffa0975b69}{00046}}     FVector2D \mbox{\hyperlink{structFGraphLocomotionChunk_a8dc029954ce81fe0507c4bffa0975b69}{TopLeft}};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00051}\mbox{\hyperlink{structFGraphLocomotionChunk_ae08b6cb9e9337f155fd3abf0b8691881}{00051}}     FVector2D \mbox{\hyperlink{structFGraphLocomotionChunk_ae08b6cb9e9337f155fd3abf0b8691881}{BottomRight}};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00056}\mbox{\hyperlink{structFGraphLocomotionChunk_a6de8891465070e7f2d8756373c4e239d}{00056}}     TWeakPtr<SBox> \mbox{\hyperlink{structFGraphLocomotionChunk_a6de8891465070e7f2d8756373c4e239d}{ChunkWidget}};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00061}\mbox{\hyperlink{structFGraphLocomotionChunk_ad2f132167591c17279e1e36c0c4144fe}{00061}}     TWeakPtr<SBorder> \mbox{\hyperlink{structFGraphLocomotionChunk_ad2f132167591c17279e1e36c0c4144fe}{ChunkVisWidget}};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00066}\mbox{\hyperlink{structFGraphLocomotionChunk_ac760f224349fd994da0110f3910a6800}{00066}}     TWeakPtr<class SIndexer> \mbox{\hyperlink{structFGraphLocomotionChunk_ac760f224349fd994da0110f3910a6800}{ChunkIndexer}};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00068}00068 \};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00070}\mbox{\hyperlink{structFPanelViewPosition}{00070}} \textcolor{keyword}{struct }\mbox{\hyperlink{structFPanelViewPosition}{FPanelViewPosition}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00071}00071 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00072}00072 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00074}00074     \mbox{\hyperlink{structFPanelViewPosition}{FPanelViewPosition}}()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00075}00075         : TopLeft(FVector2D::ZeroVector)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00076}00076         , BotRight(FVector2D::ZeroVector)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00077}00077     \{ \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00079}00079     \mbox{\hyperlink{structFPanelViewPosition}{FPanelViewPosition}}(FVector2D InTopLeft, FVector2D InBotRight)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00080}00080         : TopLeft(InTopLeft)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00081}00081         , BotRight(InBotRight)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00082}00082     \{ \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00084}00084     \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} FVector2D\& Other)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00085}00085     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00086}00086         \textcolor{keywordflow}{return} TopLeft != Other || BotRight != Other;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00087}00087     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00088}00088 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00089}00089     \textcolor{keywordtype}{bool} operator!=(\textcolor{keyword}{const} \mbox{\hyperlink{structFPanelViewPosition}{FPanelViewPosition}}\& Other)}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00090}00090     \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00091}00091         \textcolor{keywordflow}{return} TopLeft != Other.TopLeft || BotRight != Other.BotRight;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00092}00092     \}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00094}00094     FVector2D TopLeft;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00095}00095     FVector2D BotRight;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00096}00096 \};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00097}00097 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00098}00098 UCLASS()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00099}\mbox{\hyperlink{classUAccessibilityGraphLocomotionContext}{00099}} class OPENACCESSIBILITY\_API \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext}{UAccessibilityGraphLocomotionContext}} : public \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00100}00100 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00101}00101     GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00103}00103 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00104}00104 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00105}00105     \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext}{UAccessibilityGraphLocomotionContext}}(\textcolor{keyword}{const} FObjectInitializer\& ObjectInitializer);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00106}00106     }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00107}00107     \textcolor{keyword}{virtual} \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext}{\string~UAccessibilityGraphLocomotionContext}}();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00108}00108 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00109}00109     \textcolor{keywordtype}{void} Init();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00110}00110     \textcolor{keywordtype}{void} Init(TSharedRef<SGraphEditor> InGraphEditor);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00111}00111 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00112}00112     \textcolor{keywordtype}{bool} SelectChunk(\textcolor{keyword}{const} int32\& Index);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00113}00113 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00114}00114     \textcolor{keywordtype}{bool} RevertToPreviousView();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00116}00116     \textcolor{keywordtype}{void} ConfirmSelection();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00117}00117 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00118}00118     \textcolor{keywordtype}{void} CancelLocomotion();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00119}00119 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00120}00120     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} Close() \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00121}00121 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00122}00122 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00123}00123 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00124}00124     \textcolor{keywordtype}{bool} MoveViewport(\textcolor{keyword}{const} FVector2D\& InTopLeft, \textcolor{keyword}{const} FVector2D\& InBottomRight) \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00125}00125 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00126}00126     \textcolor{keywordtype}{bool} MoveViewport(\textcolor{keyword}{const} \mbox{\hyperlink{structFPanelViewPosition}{FPanelViewPosition}}\& NewViewPosition) \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00127}00127 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00128}00128     \textcolor{comment}{// Visuals Methods}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00129}00129 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00130}00130     \textcolor{keywordtype}{void} ChangeChunkVis(\textcolor{keyword}{const} int32\& Index, \textcolor{keyword}{const} FLinearColor\& NewColor = FLinearColor::Yellow);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00131}00131 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00132}00132     \textcolor{keywordtype}{void} CreateVisualGrid(\textcolor{keyword}{const} TSharedRef<SGraphEditor> InGraphEditor);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00134}00134     \textcolor{keywordtype}{void} GenerateVisualChunks(\textcolor{keyword}{const} TSharedRef<SGraphEditor> InGraphEditor, FIntVector2 InVisualChunkSize = FIntVector2(10));}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00135}00135 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00136}00136     \textcolor{keywordtype}{void} CalculateVisualChunksBounds();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00137}00137 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00138}00138     \textcolor{keywordtype}{void} RemoveVisualGrid();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00139}00139 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00140}00140     \textcolor{keywordtype}{void} HideNativeVisuals();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00141}00141 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00142}00142     \textcolor{keywordtype}{void} UnHideNativeVisuals();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00143}00143 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00144}00144     \textcolor{keywordtype}{void} OnFocusChanged(\textcolor{keyword}{const} FFocusEvent\& FocusEvent, \textcolor{keyword}{const} FWeakWidgetPath\& OldFocusedWidgetPath, \textcolor{keyword}{const} TSharedPtr<SWidget>\& OldFocusedWidget, \textcolor{keyword}{const} FWidgetPath\& NewFocusedWidgetPath, \textcolor{keyword}{const} TSharedPtr<SWidget>\& NewFocusedWidget);}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00145}00145 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00146}00146 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00147}00147     \textcolor{keywordtype}{void} BindFocusChangedEvent();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00148}00148 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00149}00149     \textcolor{keywordtype}{void} UnbindFocusChangedEvent();}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00150}00150 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00151}00151 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00152}00152 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00153}00153     FVector2D StartViewPosition; \textcolor{keywordtype}{float} StartViewZoom;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00154}00154 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00155}00155     \mbox{\hyperlink{structFPanelViewPosition}{FPanelViewPosition}} CurrentViewPosition;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00156}00156     TArray<FPanelViewPosition> PreviousPositions;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00158}00158     \textcolor{comment}{// Chunking References}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00159}00159 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00160}00160     TArray<FGraphLocomotionChunk> ChunkArray;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00161}00161 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00162}00162     FIntVector2 ChunkSize;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00163}00163 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00164}00164 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00165}00165     \textcolor{comment}{// Container References}}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00166}00166 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00167}00167     TWeakPtr<SUniformGridPanel> GridContainer;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00168}00168 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00169}00169     TWeakPtr<SOverlay> GridParent;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00170}00170 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00171}00171     TWeakPtr<SGraphEditor> LinkedEditor;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00172}00172 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00173}00173 \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00174}00174 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00175}00175     FTimerHandle SelectionTimerHandle;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00176}00176 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00177}00177     TMap<SWidget*, EVisibility> NativeWidgetVisibility;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00178}00178 }
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00179}00179     FDelegateHandle FocusChangedHandle;}
+\DoxyCodeLine{\Hypertarget{AccessibilityGraphLocomotionContext_8h_source_l00180}00180 \};}
+
+\end{DoxyCode}

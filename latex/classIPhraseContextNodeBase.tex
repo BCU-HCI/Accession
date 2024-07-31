@@ -1,0 +1,95 @@
+\hypertarget{classIPhraseContextNodeBase}{}\doxysection{IPhrase\+Context\+Node\+Base Class Reference}
+\label{classIPhraseContextNodeBase}\index{IPhraseContextNodeBase@{IPhraseContextNodeBase}}
+
+
+Base Abstract Class For Phrase Context Nodes, that are required to have a Context Node.   
+
+
+
+
+{\ttfamily \#include $<$IPhrase\+Context\+Node.\+h$>$}
+
+Inheritance diagram for IPhrase\+Context\+Node\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.879195cm]{classIPhraseContextNodeBase}
+\end{center}
+\end{figure}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classIPhraseContextNodeBase_a7cd16a514b9ae55a293078bccb3816a6}{Has\+Context\+Object}} (TArray$<$ \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ $>$ In\+Context\+Objects) const =0
+\begin{DoxyCompactList}\small\item\em Checks if the Given Context Array Contains Context Objects.  \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ \mbox{\hyperlink{classIPhraseContextNodeBase_ab76ed702f9c1f709f37976fd7e6c7067}{Create\+Context\+Object}} (\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)=0
+\begin{DoxyCompactList}\small\item\em Creates a Context Object, using Record Inputs.  \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classIPhraseContextNodeBase_adec997b4c9fc11b839739483ce73095c}{Construct\+Context\+Children}} (TArray$<$ TShared\+Ptr$<$ class \mbox{\hyperlink{classFPhraseNode}{FPhrase\+Node}} $>$ $>$ \&In\+Child\+Nodes)=0
+\begin{DoxyCompactList}\small\item\em Constructs the Context Nodes Children, from Given Child Nodes. Allowing for Inclusion of Utility Nodes in relation to the Context.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base Abstract Class For Phrase Context Nodes, that are required to have a Context Node.  
+
+Definition at line \mbox{\hyperlink{IPhraseContextNode_8h_source_l00012}{12}} of file \mbox{\hyperlink{IPhraseContextNode_8h_source}{IPhrase\+Context\+Node.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classIPhraseContextNodeBase_adec997b4c9fc11b839739483ce73095c}\label{classIPhraseContextNodeBase_adec997b4c9fc11b839739483ce73095c}} 
+\index{IPhraseContextNodeBase@{IPhraseContextNodeBase}!ConstructContextChildren@{ConstructContextChildren}}
+\index{ConstructContextChildren@{ConstructContextChildren}!IPhraseContextNodeBase@{IPhraseContextNodeBase}}
+\doxysubsubsection{\texorpdfstring{ConstructContextChildren()}{ConstructContextChildren()}}
+{\footnotesize\ttfamily virtual void IPhrase\+Context\+Node\+Base\+::\+Construct\+Context\+Children (\begin{DoxyParamCaption}\item[{TArray$<$ TShared\+Ptr$<$ class \mbox{\hyperlink{classFPhraseNode}{FPhrase\+Node}} $>$ $>$ \&}]{In\+Child\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Constructs the Context Nodes Children, from Given Child Nodes. Allowing for Inclusion of Utility Nodes in relation to the Context.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Child\+Nodes} & -\/ An Array of the Nodes Children.\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classIPhraseContextNodeBase_ab76ed702f9c1f709f37976fd7e6c7067}\label{classIPhraseContextNodeBase_ab76ed702f9c1f709f37976fd7e6c7067}} 
+\index{IPhraseContextNodeBase@{IPhraseContextNodeBase}!CreateContextObject@{CreateContextObject}}
+\index{CreateContextObject@{CreateContextObject}!IPhraseContextNodeBase@{IPhraseContextNodeBase}}
+\doxysubsubsection{\texorpdfstring{CreateContextObject()}{CreateContextObject()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ IPhrase\+Context\+Node\+Base\+::\+Create\+Context\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Creates a Context Object, using Record Inputs.  
+
+\begin{DoxyReturn}{Returns}
+The Created Context Object, otherwise nullptr
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classFPhraseContextNode_a97c5324f3167c5065269e999c507292c}{FPhrase\+Context\+Node$<$ Context\+Type $>$}}, and \mbox{\hyperlink{classFPhraseContextMenuNode_a00d8705419e4ec7ddbe0d9a36e9456a4}{FPhrase\+Context\+Menu\+Node$<$ Context\+Menu\+Type $>$}}.
+
+\mbox{\Hypertarget{classIPhraseContextNodeBase_a7cd16a514b9ae55a293078bccb3816a6}\label{classIPhraseContextNodeBase_a7cd16a514b9ae55a293078bccb3816a6}} 
+\index{IPhraseContextNodeBase@{IPhraseContextNodeBase}!HasContextObject@{HasContextObject}}
+\index{HasContextObject@{HasContextObject}!IPhraseContextNodeBase@{IPhraseContextNodeBase}}
+\doxysubsubsection{\texorpdfstring{HasContextObject()}{HasContextObject()}}
+{\footnotesize\ttfamily virtual bool IPhrase\+Context\+Node\+Base\+::\+Has\+Context\+Object (\begin{DoxyParamCaption}\item[{TArray$<$ \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ $>$}]{In\+Context\+Objects }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Checks if the Given Context Array Contains Context Objects.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Context\+Objects} & -\/ The Array To Check For Context Objects.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if their is Context Objects in the Given Array.
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classFPhraseContextNode_a7c64d4f2ac308181e4df28662db8e2f9}{FPhrase\+Context\+Node$<$ Context\+Type $>$}}, and \mbox{\hyperlink{classFPhraseContextMenuNode_a0fdc541b1ddf5f8cc796381d097a9eca}{FPhrase\+Context\+Menu\+Node$<$ Context\+Menu\+Type $>$}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility\+Communication/\+Public/\+Phrase\+Tree/IPhrase\+Context\+Node.\+h\end{DoxyCompactItemize}

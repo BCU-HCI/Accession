@@ -1,0 +1,509 @@
+\hypertarget{classFPhraseContextMenuNode}{}\doxysection{FPhrase\+Context\+Menu\+Node\texorpdfstring{$<$}{<} Context\+Menu\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classFPhraseContextMenuNode}\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+Inheritance diagram for FPhrase\+Context\+Menu\+Node\texorpdfstring{$<$}{<} Context\+Menu\+Type \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.818792cm]{classFPhraseContextMenuNode}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFPhraseContextMenuNode_a21b94027feb16de79e20e5a07a8eceef}{FPhrase\+Context\+Menu\+Node}} (const TCHAR $\ast$In\+Input\+String)
+\item 
+\mbox{\hyperlink{classFPhraseContextMenuNode_aa954df7c8ff1bfe70fb9148a35fdb5cb}{FPhrase\+Context\+Menu\+Node}} (const TCHAR $\ast$In\+Input\+String, TPhrase\+Node\+Array In\+Child\+Nodes)
+\item 
+\mbox{\hyperlink{classFPhraseContextMenuNode_ab546b3e875323984a7f6c2e1897c878f}{FPhrase\+Context\+Menu\+Node}} (const TCHAR $\ast$In\+Input\+String, TDelegate$<$ TShared\+Ptr$<$ IMenu $>$(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$ In\+On\+Get\+Menu, TPhrase\+Node\+Array In\+Child\+Nodes)
+\item 
+\mbox{\hyperlink{classFPhraseContextMenuNode_ae97e63bb31b3ee48b18b467734cbb2d0}{FPhrase\+Context\+Menu\+Node}} (const TCHAR $\ast$In\+Input\+String, const float In\+Menu\+Scalar, TPhrase\+Node\+Array In\+Child\+Nodes)
+\item 
+\mbox{\hyperlink{classFPhraseContextMenuNode_a3b98d80f862faa1eeea4c64d5903c1ed}{FPhrase\+Context\+Menu\+Node}} (const TCHAR $\ast$In\+Input\+String, const float In\+Menu\+Scalar, TDelegate$<$ TShared\+Ptr$<$ IMenu $>$(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$ In\+On\+Get\+Menu, TPhrase\+Node\+Array In\+Child\+Nodes)
+\item 
+\mbox{\hyperlink{classFPhraseContextMenuNode_a0fd6dfe43706cf2048c2dfd0ccd554f2}{FPhrase\+Context\+Menu\+Node}} (const TCHAR $\ast$In\+Input\+String, const float In\+Menu\+Scalar, TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$ In\+On\+Phrase\+Parsed, TPhrase\+Node\+Array In\+Child\+Nodes)
+\item 
+\mbox{\hyperlink{classFPhraseContextMenuNode_a2e45d3772ee7d34e0a77cc956b6328a6}{FPhrase\+Context\+Menu\+Node}} (const TCHAR $\ast$In\+Input\+String, const float In\+Menu\+Scalar, TDelegate$<$ TShared\+Ptr$<$ IMenu $>$(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$ In\+On\+Get\+Menu, TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$ In\+On\+Phrase\+Parsed, TPhrase\+Node\+Array In\+Child\+Nodes)
+\item 
+virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classFPhraseContextMenuNode_adf2f7046bea69db7f20577b00d9a0b7d}{Parse\+Phrase}} (TArray$<$ FString $>$ \&In\+Phrase\+Word\+Array, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&In\+Parse\+Record) override
+\begin{DoxyCompactList}\small\item\em Parses the phrase down the given Node, propagating down child nodes if required.  \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classFPhraseContextMenuNode_a1f7f0d30a92224a5c38ef7f75e2a7c28}{Parse\+Phrase\+As\+Context}} (TArray$<$ FString $>$ \&In\+Phrase\+Word\+Array, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&In\+Parse\+Record) override
+\begin{DoxyCompactList}\small\item\em Parses the phrase down the given node, propagating down child nodes if required. Missed Pop of the Phrase Array from this Node.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classFPhraseContextMenuNode_a0fdc541b1ddf5f8cc796381d097a9eca}{Has\+Context\+Object}} (TArray$<$ \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ $>$ In\+Context\+Objects) const override
+\begin{DoxyCompactList}\small\item\em Checks if the Given Context Array Contains Context Objects.  \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ \mbox{\hyperlink{classFPhraseContextMenuNode_a00d8705419e4ec7ddbe0d9a36e9456a4}{Create\+Context\+Object}} (\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record) override
+\begin{DoxyCompactList}\small\item\em Creates a Context Object, using Record Inputs.  \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classFPhraseContextMenuNode_a896ba83015b43bec72c03e6583c74210}{Construct\+Context\+Children}} (TPhrase\+Node\+Array \&In\+Child\+Nodes) override
+\begin{DoxyCompactList}\small\item\em Constructs the Context Nodes Children, from Given Child Nodes. Allowing for Inclusion of Utility Nodes in relation to the Context.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const float \mbox{\hyperlink{classFPhraseContextMenuNode_a0ba5aaebbdba9cfc621248eb1d7d8ee9}{Context\+Menu\+Scalar}}
+\begin{DoxyCompactList}\small\item\em Scalar for the Initialized Menu Elements.  \end{DoxyCompactList}\item 
+TDelegate$<$ TShared\+Ptr$<$ IMenu $>$(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$ \mbox{\hyperlink{classFPhraseContextMenuNode_aa9c492fa2c2c6b27abdb674585b5016c}{On\+Get\+Menu}}
+\begin{DoxyCompactList}\small\item\em Delegate for Initializing of the Menu.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Context\+Menu\+Type = UPhrase\+Tree\+Context\+Menu\+Object$>$\newline
+class FPhrase\+Context\+Menu\+Node$<$ Context\+Menu\+Type $>$}
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00014}{14}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_a21b94027feb16de79e20e5a07a8eceef}\label{classFPhraseContextMenuNode_a21b94027feb16de79e20e5a07a8eceef}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!FPhraseContextMenuNode@{FPhraseContextMenuNode}}
+\index{FPhraseContextMenuNode@{FPhraseContextMenuNode}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{FPhraseContextMenuNode()}{FPhraseContextMenuNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type  = UPhrase\+Tree\+Context\+Menu\+Object$>$ \\
+\mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\mbox{\hyperlink{classFPhraseContextMenuNode}{\+::\+FPhrase\+Context\+Menu\+Node}} (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Input\+String }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00020}{20}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021         : \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}(InInputString)}
+\DoxyCodeLine{00022         , \mbox{\hyperlink{classFPhraseContextMenuNode_a0ba5aaebbdba9cfc621248eb1d7d8ee9}{ContextMenuScalar}}(1.0f)}
+\DoxyCodeLine{00023     \{}
+\DoxyCodeLine{00024         this-\/>\mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}} = TPhraseNodeArray();}
+\DoxyCodeLine{00025     \};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_aa954df7c8ff1bfe70fb9148a35fdb5cb}\label{classFPhraseContextMenuNode_aa954df7c8ff1bfe70fb9148a35fdb5cb}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!FPhraseContextMenuNode@{FPhraseContextMenuNode}}
+\index{FPhraseContextMenuNode@{FPhraseContextMenuNode}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{FPhraseContextMenuNode()}{FPhraseContextMenuNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type  = UPhrase\+Tree\+Context\+Menu\+Object$>$ \\
+\mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\mbox{\hyperlink{classFPhraseContextMenuNode}{\+::\+FPhrase\+Context\+Menu\+Node}} (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Input\+String,  }\item[{TPhrase\+Node\+Array}]{In\+Child\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00027}{27}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00028         : \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}(InInputString)}
+\DoxyCodeLine{00029         , \mbox{\hyperlink{classFPhraseContextMenuNode_a0ba5aaebbdba9cfc621248eb1d7d8ee9}{ContextMenuScalar}}(1.0f)}
+\DoxyCodeLine{00030     \{}
+\DoxyCodeLine{00031         \mbox{\hyperlink{classFPhraseContextMenuNode_a896ba83015b43bec72c03e6583c74210}{ConstructContextChildren}}(InChildNodes);}
+\DoxyCodeLine{00032     \};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_ab546b3e875323984a7f6c2e1897c878f}\label{classFPhraseContextMenuNode_ab546b3e875323984a7f6c2e1897c878f}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!FPhraseContextMenuNode@{FPhraseContextMenuNode}}
+\index{FPhraseContextMenuNode@{FPhraseContextMenuNode}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{FPhraseContextMenuNode()}{FPhraseContextMenuNode()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type  = UPhrase\+Tree\+Context\+Menu\+Object$>$ \\
+\mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\mbox{\hyperlink{classFPhraseContextMenuNode}{\+::\+FPhrase\+Context\+Menu\+Node}} (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Input\+String,  }\item[{TDelegate$<$ TShared\+Ptr$<$ IMenu $>$(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$}]{In\+On\+Get\+Menu,  }\item[{TPhrase\+Node\+Array}]{In\+Child\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00034}{34}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035         : \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}(InInputString)}
+\DoxyCodeLine{00036         , \mbox{\hyperlink{classFPhraseContextMenuNode_a0ba5aaebbdba9cfc621248eb1d7d8ee9}{ContextMenuScalar}}(1.0f)}
+\DoxyCodeLine{00037         , \mbox{\hyperlink{classFPhraseContextMenuNode_aa9c492fa2c2c6b27abdb674585b5016c}{OnGetMenu}}(InOnGetMenu)}
+\DoxyCodeLine{00038     \{}
+\DoxyCodeLine{00039         \mbox{\hyperlink{classFPhraseContextMenuNode_a896ba83015b43bec72c03e6583c74210}{ConstructContextChildren}}(InChildNodes);}
+\DoxyCodeLine{00040     \};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_ae97e63bb31b3ee48b18b467734cbb2d0}\label{classFPhraseContextMenuNode_ae97e63bb31b3ee48b18b467734cbb2d0}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!FPhraseContextMenuNode@{FPhraseContextMenuNode}}
+\index{FPhraseContextMenuNode@{FPhraseContextMenuNode}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{FPhraseContextMenuNode()}{FPhraseContextMenuNode()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type  = UPhrase\+Tree\+Context\+Menu\+Object$>$ \\
+\mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\mbox{\hyperlink{classFPhraseContextMenuNode}{\+::\+FPhrase\+Context\+Menu\+Node}} (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Input\+String,  }\item[{const float}]{In\+Menu\+Scalar,  }\item[{TPhrase\+Node\+Array}]{In\+Child\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00042}{42}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043         : \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}(InInputString)}
+\DoxyCodeLine{00044         , \mbox{\hyperlink{classFPhraseContextMenuNode_a0ba5aaebbdba9cfc621248eb1d7d8ee9}{ContextMenuScalar}}(InMenuScalar)}
+\DoxyCodeLine{00045     \{}
+\DoxyCodeLine{00046         \mbox{\hyperlink{classFPhraseContextMenuNode_a896ba83015b43bec72c03e6583c74210}{ConstructContextChildren}}(InChildNodes);}
+\DoxyCodeLine{00047     \};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_a3b98d80f862faa1eeea4c64d5903c1ed}\label{classFPhraseContextMenuNode_a3b98d80f862faa1eeea4c64d5903c1ed}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!FPhraseContextMenuNode@{FPhraseContextMenuNode}}
+\index{FPhraseContextMenuNode@{FPhraseContextMenuNode}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{FPhraseContextMenuNode()}{FPhraseContextMenuNode()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type  = UPhrase\+Tree\+Context\+Menu\+Object$>$ \\
+\mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\mbox{\hyperlink{classFPhraseContextMenuNode}{\+::\+FPhrase\+Context\+Menu\+Node}} (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Input\+String,  }\item[{const float}]{In\+Menu\+Scalar,  }\item[{TDelegate$<$ TShared\+Ptr$<$ IMenu $>$(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$}]{In\+On\+Get\+Menu,  }\item[{TPhrase\+Node\+Array}]{In\+Child\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00049}{49}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050         : \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}(InInputString)}
+\DoxyCodeLine{00051         , \mbox{\hyperlink{classFPhraseContextMenuNode_a0ba5aaebbdba9cfc621248eb1d7d8ee9}{ContextMenuScalar}}(InMenuScalar)}
+\DoxyCodeLine{00052         , \mbox{\hyperlink{classFPhraseContextMenuNode_aa9c492fa2c2c6b27abdb674585b5016c}{OnGetMenu}}(InOnGetMenu)}
+\DoxyCodeLine{00053     \{}
+\DoxyCodeLine{00054         \mbox{\hyperlink{classFPhraseContextMenuNode_a896ba83015b43bec72c03e6583c74210}{ConstructContextChildren}}(InChildNodes);}
+\DoxyCodeLine{00055     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_a0fd6dfe43706cf2048c2dfd0ccd554f2}\label{classFPhraseContextMenuNode_a0fd6dfe43706cf2048c2dfd0ccd554f2}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!FPhraseContextMenuNode@{FPhraseContextMenuNode}}
+\index{FPhraseContextMenuNode@{FPhraseContextMenuNode}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{FPhraseContextMenuNode()}{FPhraseContextMenuNode()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type  = UPhrase\+Tree\+Context\+Menu\+Object$>$ \\
+\mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\mbox{\hyperlink{classFPhraseContextMenuNode}{\+::\+FPhrase\+Context\+Menu\+Node}} (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Input\+String,  }\item[{const float}]{In\+Menu\+Scalar,  }\item[{TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$}]{In\+On\+Phrase\+Parsed,  }\item[{TPhrase\+Node\+Array}]{In\+Child\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00057}{57}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058         : \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}(InInputString, InOnPhraseParsed)}
+\DoxyCodeLine{00059         , \mbox{\hyperlink{classFPhraseContextMenuNode_a0ba5aaebbdba9cfc621248eb1d7d8ee9}{ContextMenuScalar}}(InMenuScalar)}
+\DoxyCodeLine{00060     \{}
+\DoxyCodeLine{00061         \mbox{\hyperlink{classFPhraseContextMenuNode_a896ba83015b43bec72c03e6583c74210}{ConstructContextChildren}}(InChildNodes);}
+\DoxyCodeLine{00062     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_a2e45d3772ee7d34e0a77cc956b6328a6}\label{classFPhraseContextMenuNode_a2e45d3772ee7d34e0a77cc956b6328a6}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!FPhraseContextMenuNode@{FPhraseContextMenuNode}}
+\index{FPhraseContextMenuNode@{FPhraseContextMenuNode}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{FPhraseContextMenuNode()}{FPhraseContextMenuNode()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type  = UPhrase\+Tree\+Context\+Menu\+Object$>$ \\
+\mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\mbox{\hyperlink{classFPhraseContextMenuNode}{\+::\+FPhrase\+Context\+Menu\+Node}} (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Input\+String,  }\item[{const float}]{In\+Menu\+Scalar,  }\item[{TDelegate$<$ TShared\+Ptr$<$ IMenu $>$(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$}]{In\+On\+Get\+Menu,  }\item[{TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$}]{In\+On\+Phrase\+Parsed,  }\item[{TPhrase\+Node\+Array}]{In\+Child\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00064}{64}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00065         : \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}(InInputString, InOnPhraseParsed)}
+\DoxyCodeLine{00066         , \mbox{\hyperlink{classFPhraseContextMenuNode_a0ba5aaebbdba9cfc621248eb1d7d8ee9}{ContextMenuScalar}}(InMenuScalar)}
+\DoxyCodeLine{00067         , \mbox{\hyperlink{classFPhraseContextMenuNode_aa9c492fa2c2c6b27abdb674585b5016c}{OnGetMenu}}(InOnGetMenu)}
+\DoxyCodeLine{00068     \{}
+\DoxyCodeLine{00069         \mbox{\hyperlink{classFPhraseContextMenuNode_a896ba83015b43bec72c03e6583c74210}{ConstructContextChildren}}(InChildNodes);}
+\DoxyCodeLine{00070     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_ab4832c2a3eed83ac93d7a10da2f47673}\label{classFPhraseContextMenuNode_ab4832c2a3eed83ac93d7a10da2f47673}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!````~FPhraseContextMenuNode@{$\sim$FPhraseContextMenuNode}}
+\index{````~FPhraseContextMenuNode@{$\sim$FPhraseContextMenuNode}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{$\sim$FPhraseContextMenuNode()}{~FPhraseContextMenuNode()}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type  = UPhrase\+Tree\+Context\+Menu\+Object$>$ \\
+\mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\+::$\sim$\mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00072}{72}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073     \{}
+\DoxyCodeLine{00074 }
+\DoxyCodeLine{00075     \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_a896ba83015b43bec72c03e6583c74210}\label{classFPhraseContextMenuNode_a896ba83015b43bec72c03e6583c74210}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!ConstructContextChildren@{ConstructContextChildren}}
+\index{ConstructContextChildren@{ConstructContextChildren}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{ConstructContextChildren()}{ConstructContextChildren()}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type $>$ \\
+void \mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\+::\+Construct\+Context\+Children (\begin{DoxyParamCaption}\item[{TPhrase\+Node\+Array \&}]{In\+Child\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Constructs the Context Nodes Children, from Given Child Nodes. Allowing for Inclusion of Utility Nodes in relation to the Context.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Child\+Nodes} & -\/ An Array of the Nodes Children.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00225}{225}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00226 \{}
+\DoxyCodeLine{00227     \textcolor{comment}{// Construct Context Specific Children Nodes,}}
+\DoxyCodeLine{00228     \textcolor{comment}{// With Linked Functionality to the Context Menu Object and Root Node.}}
+\DoxyCodeLine{00229     TSharedPtr<FPhraseEventNode> CloseContextNode = MakeShared<FPhraseEventNode>();}
+\DoxyCodeLine{00230     CloseContextNode-\/>OnPhraseParsed.BindLambda(}
+\DoxyCodeLine{00231         [\textcolor{keyword}{this}](\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record) \{}
+\DoxyCodeLine{00232 }
+\DoxyCodeLine{00233             \mbox{\hyperlink{classUPhraseTreeContextMenuObject}{UPhraseTreeContextMenuObject}}* ContextMenu = Record.\mbox{\hyperlink{structFParseRecord_aefcadd27a097c7f866d751f077531194}{GetContextObj}}<\mbox{\hyperlink{classUPhraseTreeContextMenuObject}{UPhraseTreeContextMenuObject}}>();}
+\DoxyCodeLine{00234             \textcolor{keywordflow}{if} (ContextMenu-\/>\mbox{\hyperlink{classUPhraseTreeContextObject_a116232bfa7163d2f5617b3f3df4c577c}{GetContextRoot}}() == this-\/>AsShared())}
+\DoxyCodeLine{00235             \{}
+\DoxyCodeLine{00236                 ContextMenu-\/>\mbox{\hyperlink{classUPhraseTreeContextMenuObject_a25e9ca57fe8f18a3f65bf30a5e72a0b8}{Close}}();}
+\DoxyCodeLine{00237                 ContextMenu-\/>RemoveFromRoot();}
+\DoxyCodeLine{00238 }
+\DoxyCodeLine{00239                 Record.\mbox{\hyperlink{structFParseRecord_af3912683ff8d26af1c0e5b45f6cc39c3}{PopContextObj}}();}
+\DoxyCodeLine{00240             \}}
+\DoxyCodeLine{00241         \}}
+\DoxyCodeLine{00242     );}
+\DoxyCodeLine{00243 }
+\DoxyCodeLine{00244     this-\/>\mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}} = TPhraseNodeArray\{}
+\DoxyCodeLine{00245         MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}CLOSE"{}}),}
+\DoxyCodeLine{00246         TPhraseNodeArray \{}
+\DoxyCodeLine{00247             CloseContextNode}
+\DoxyCodeLine{00248         \})}
+\DoxyCodeLine{00249     \};}
+\DoxyCodeLine{00250 }
+\DoxyCodeLine{00251     this-\/>\mbox{\hyperlink{classFPhraseNode_aa7c9b4c7858aef32bee676639238bd3c}{ChildNodes}}.Append(InChildNodes);}
+\DoxyCodeLine{00252 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_a00d8705419e4ec7ddbe0d9a36e9456a4}\label{classFPhraseContextMenuNode_a00d8705419e4ec7ddbe0d9a36e9456a4}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!CreateContextObject@{CreateContextObject}}
+\index{CreateContextObject@{CreateContextObject}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateContextObject()}{CreateContextObject()}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type $>$ \\
+\mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ \mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\+::\+Create\+Context\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Creates a Context Object, using Record Inputs.  
+
+\begin{DoxyReturn}{Returns}
+The Created Context Object, otherwise nullptr
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIPhraseContextNodeBase_ab76ed702f9c1f709f37976fd7e6c7067}{IPhrase\+Context\+Node\+Base}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00200}{200}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00201 \{}
+\DoxyCodeLine{00202     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFPhraseContextMenuNode_aa9c492fa2c2c6b27abdb674585b5016c}{OnGetMenu}}.IsBound())}
+\DoxyCodeLine{00203     \{}
+\DoxyCodeLine{00204         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}OnGetMenu Delegate Not Bound. Cannot Create Context Object, linked to a Menu."{}}));}
+\DoxyCodeLine{00205         \textcolor{keywordflow}{return} \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00206     \}}
+\DoxyCodeLine{00207 }
+\DoxyCodeLine{00208     TSharedPtr<IMenu> NewMenu = \mbox{\hyperlink{classFPhraseContextMenuNode_aa9c492fa2c2c6b27abdb674585b5016c}{OnGetMenu}}.Execute(Record);}
+\DoxyCodeLine{00209 }
+\DoxyCodeLine{00210     \textcolor{keywordflow}{if} (!NewMenu.IsValid())}
+\DoxyCodeLine{00211     \{}
+\DoxyCodeLine{00212         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}OnGetMenu Delegate Returned Invalid Menu. Cannot Create Context Object."{}}));}
+\DoxyCodeLine{00213         \textcolor{keywordflow}{return} \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00214     \}}
+\DoxyCodeLine{00215 }
+\DoxyCodeLine{00216     ContextMenuType* NewContextObject = NewObject<ContextMenuType>();}
+\DoxyCodeLine{00217     NewContextObject-\/>Init(NewMenu.ToSharedRef(), this-\/>AsShared());}
+\DoxyCodeLine{00218 }
+\DoxyCodeLine{00219     NewContextObject-\/>ScaleMenu(\mbox{\hyperlink{classFPhraseContextMenuNode_a0ba5aaebbdba9cfc621248eb1d7d8ee9}{ContextMenuScalar}});}
+\DoxyCodeLine{00220 }
+\DoxyCodeLine{00221     \textcolor{keywordflow}{return} NewContextObject;}
+\DoxyCodeLine{00222 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_a0fdc541b1ddf5f8cc796381d097a9eca}\label{classFPhraseContextMenuNode_a0fdc541b1ddf5f8cc796381d097a9eca}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!HasContextObject@{HasContextObject}}
+\index{HasContextObject@{HasContextObject}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{HasContextObject()}{HasContextObject()}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type $>$ \\
+bool \mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\+::\+Has\+Context\+Object (\begin{DoxyParamCaption}\item[{TArray$<$ \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ $>$}]{In\+Context\+Objects }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Checks if the Given Context Array Contains Context Objects.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Context\+Objects} & -\/ The Array To Check For Context Objects.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if their is Context Objects in the Given Array.
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIPhraseContextNodeBase_a7cd16a514b9ae55a293078bccb3816a6}{IPhrase\+Context\+Node\+Base}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00186}{186}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00187 \{}
+\DoxyCodeLine{00188     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& ContextObject : InContextObjects)}
+\DoxyCodeLine{00189     \{}
+\DoxyCodeLine{00190         \textcolor{keywordflow}{if} (ContextObject-\/>IsA(ContextMenuType::StaticClass()) \&\& ContextObject-\/>GetContextRoot() == AsShared())}
+\DoxyCodeLine{00191         \{}
+\DoxyCodeLine{00192             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00193         \}}
+\DoxyCodeLine{00194     \}}
+\DoxyCodeLine{00195 }
+\DoxyCodeLine{00196     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00197 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_adf2f7046bea69db7f20577b00d9a0b7d}\label{classFPhraseContextMenuNode_adf2f7046bea69db7f20577b00d9a0b7d}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!ParsePhrase@{ParsePhrase}}
+\index{ParsePhrase@{ParsePhrase}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{ParsePhrase()}{ParsePhrase()}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type $>$ \\
+\mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\+::\+Parse\+Phrase (\begin{DoxyParamCaption}\item[{TArray$<$ FString $>$ \&}]{In\+Phrase\+Word\+Array,  }\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{In\+Parse\+Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Parses the phrase down the given Node, propagating down child nodes if required.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase\+Word\+Array} & The Array of Phrase Strings to Propogate against.\\
+\hline
+{\em In\+Parse\+Record} & The Record of Propagation of collected context\textquotesingle{}s and inputs.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the Result of the propogation, including any key nodes met.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classFPhraseNode_a9e108bf1a2f579ed03277540c01a36da}{FPhrase\+Node}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00138}{138}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00139 \{}
+\DoxyCodeLine{00140     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFPhraseContextMenuNode_a0fdc541b1ddf5f8cc796381d097a9eca}{HasContextObject}}(InParseRecord.\mbox{\hyperlink{structFParseRecord_a5d774b3ca0de6844931b79d2670fb3ce}{GetContextStack}}()))}
+\DoxyCodeLine{00141     \{}
+\DoxyCodeLine{00142         \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}* NewObject = \mbox{\hyperlink{classFPhraseContextMenuNode_a00d8705419e4ec7ddbe0d9a36e9456a4}{CreateContextObject}}(InParseRecord);}
+\DoxyCodeLine{00143 }
+\DoxyCodeLine{00144         InParseRecord.\mbox{\hyperlink{structFParseRecord_ac0ecc5d268763c231cb4be57faabaf6d}{PushContextObj}}(NewObject);}
+\DoxyCodeLine{00145     \}}
+\DoxyCodeLine{00146 }
+\DoxyCodeLine{00147     \textcolor{keywordflow}{if} (InPhraseWordArray.IsEmpty())}
+\DoxyCodeLine{00148     \{}
+\DoxyCodeLine{00149         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}|| Emptied Phrase Array ||"{}}))}
+\DoxyCodeLine{00150 }
+\DoxyCodeLine{00151         return \mbox{\hyperlink{structFParseResult}{FParseResult}}(PHRASE\_REQUIRES\_MORE, AsShared());}
+\DoxyCodeLine{00152     \}}
+\DoxyCodeLine{00153 }
+\DoxyCodeLine{00154     InPhraseWordArray.Pop();}
+\DoxyCodeLine{00155 }
+\DoxyCodeLine{00156     OnPhraseParsed.ExecuteIfBound(InParseRecord);}
+\DoxyCodeLine{00157 }
+\DoxyCodeLine{00158     return \mbox{\hyperlink{classFPhraseNode_a671f4121e9df6769775bae880a845765}{ParseChildren}}(InPhraseWordArray, InParseRecord);}
+\DoxyCodeLine{00159 }
+\DoxyCodeLine{00160     return \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}::\mbox{\hyperlink{classFPhraseContextMenuNode_adf2f7046bea69db7f20577b00d9a0b7d}{ParsePhrase}}(InPhraseWordArray, InParseRecord);}
+\DoxyCodeLine{00161 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_a1f7f0d30a92224a5c38ef7f75e2a7c28}\label{classFPhraseContextMenuNode_a1f7f0d30a92224a5c38ef7f75e2a7c28}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!ParsePhraseAsContext@{ParsePhraseAsContext}}
+\index{ParsePhraseAsContext@{ParsePhraseAsContext}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{ParsePhraseAsContext()}{ParsePhraseAsContext()}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type $>$ \\
+\mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\+::\+Parse\+Phrase\+As\+Context (\begin{DoxyParamCaption}\item[{TArray$<$ FString $>$ \&}]{In\+Phrase\+Word\+Array,  }\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{In\+Parse\+Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Parses the phrase down the given node, propagating down child nodes if required. Missed Pop of the Phrase Array from this Node.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase\+Word\+Array} & \\
+\hline
+{\em In\+Parse\+Record} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the Result of the propogation, including any key nodes met.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classFPhraseNode_a3c3269f4a2bcacfe4f45a6993299827f}{FPhrase\+Node}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00164}{164}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00165 \{}
+\DoxyCodeLine{00166     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFPhraseContextMenuNode_a0fdc541b1ddf5f8cc796381d097a9eca}{HasContextObject}}(InParseRecord.\mbox{\hyperlink{structFParseRecord_a5d774b3ca0de6844931b79d2670fb3ce}{GetContextStack}}()))}
+\DoxyCodeLine{00167     \{}
+\DoxyCodeLine{00168         \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}* NewObject = \mbox{\hyperlink{classFPhraseContextMenuNode_a00d8705419e4ec7ddbe0d9a36e9456a4}{CreateContextObject}}(InParseRecord);}
+\DoxyCodeLine{00169 }
+\DoxyCodeLine{00170         InParseRecord.\mbox{\hyperlink{structFParseRecord_ac0ecc5d268763c231cb4be57faabaf6d}{PushContextObj}}(NewObject);}
+\DoxyCodeLine{00171     \}}
+\DoxyCodeLine{00172 }
+\DoxyCodeLine{00173     \textcolor{keywordflow}{if} (InPhraseWordArray.IsEmpty())}
+\DoxyCodeLine{00174     \{}
+\DoxyCodeLine{00175         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}|| Emptied Phrase Array ||"{}}))}
+\DoxyCodeLine{00176 }
+\DoxyCodeLine{00177         return \mbox{\hyperlink{structFParseResult}{FParseResult}}(PHRASE\_REQUIRES\_MORE, AsShared());}
+\DoxyCodeLine{00178     \}}
+\DoxyCodeLine{00179 }
+\DoxyCodeLine{00180     OnPhraseParsed.ExecuteIfBound(InParseRecord);}
+\DoxyCodeLine{00181 }
+\DoxyCodeLine{00182     return \mbox{\hyperlink{classFPhraseNode_a671f4121e9df6769775bae880a845765}{ParseChildren}}(InPhraseWordArray, InParseRecord);}
+\DoxyCodeLine{00183 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classFPhraseContextMenuNode_a0ba5aaebbdba9cfc621248eb1d7d8ee9}\label{classFPhraseContextMenuNode_a0ba5aaebbdba9cfc621248eb1d7d8ee9}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!ContextMenuScalar@{ContextMenuScalar}}
+\index{ContextMenuScalar@{ContextMenuScalar}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{ContextMenuScalar}{ContextMenuScalar}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type  = UPhrase\+Tree\+Context\+Menu\+Object$>$ \\
+const float \mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\+::\+Context\+Menu\+Scalar\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Scalar for the Initialized Menu Elements.  
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00129}{129}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+\mbox{\Hypertarget{classFPhraseContextMenuNode_aa9c492fa2c2c6b27abdb674585b5016c}\label{classFPhraseContextMenuNode_aa9c492fa2c2c6b27abdb674585b5016c}} 
+\index{FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}!OnGetMenu@{OnGetMenu}}
+\index{OnGetMenu@{OnGetMenu}!FPhraseContextMenuNode$<$ ContextMenuType $>$@{FPhraseContextMenuNode$<$ ContextMenuType $>$}}
+\doxysubsubsection{\texorpdfstring{OnGetMenu}{OnGetMenu}}
+{\footnotesize\ttfamily template$<$typename Context\+Menu\+Type  = UPhrase\+Tree\+Context\+Menu\+Object$>$ \\
+TDelegate$<$TShared\+Ptr$<$IMenu$>$(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}}\& Record)$>$ \mbox{\hyperlink{classFPhraseContextMenuNode}{FPhrase\+Context\+Menu\+Node}}$<$ Context\+Menu\+Type $>$\+::\+On\+Get\+Menu\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Delegate for Initializing of the Menu.  
+
+
+
+Definition at line \mbox{\hyperlink{PhraseContextMenuNode_8h_source_l00134}{134}} of file \mbox{\hyperlink{PhraseContextMenuNode_8h_source}{Phrase\+Context\+Menu\+Node.\+h}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility\+Communication/\+Public/\+Phrase\+Tree/Phrase\+Context\+Menu\+Node.\+h\end{DoxyCompactItemize}

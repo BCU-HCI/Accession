@@ -1,0 +1,270 @@
+\hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy}{}\doxysection{Open\+Accessibility\+Py.\+Open\+Accessibility\+Py Class Reference}
+\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy}\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_af1747adc8f8aa74f41908797d223dc40}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int worker\+\_\+count=2, str whisper\+\_\+model=\char`\"{}distil-\/small.\+en\char`\"{}, str device=\char`\"{}auto\char`\"{}, str compute\+\_\+type=\char`\"{}default\char`\"{}, int poll\+\_\+timeout=10)
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_ae2bfd242fd7ab3bc71871ebea73606a3}{\+\_\+\+\_\+del\+\_\+\+\_\+}} (self)
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a5e271ef54ada389050f98033b0b12247}{Tick}} (self, float delta\+\_\+time)
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a6753aa5011f95f9f4d6c8370a088f5ae}{Handle\+Transcription\+Request}} (self, np.\+ndarray recv\+\_\+message, dict metadata=None)
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a4aa10c43b77ddb5fb9604a47f693e6cf}{Shutdown}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a5e9b9d7b855eebc968d9ff1cc2a1eea9}{worker\+\_\+pool}}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a03b485a6b095df0e86edbfc08676e1b5}{whisper\+\_\+interface}}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_ae29bd3c655fa38cd3447135609afd887}{com\+\_\+server}}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_acfd3c259252cdcf47514073bec48894e}{audio\+\_\+resampler}}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a85932dcfeb230e39deaaaf52ed2012aa}{tick\+\_\+handle}}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a174cc3cc690fc56cf3f71711cbe86fa8}{pyshutdown\+\_\+handle}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00034}{34}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_af1747adc8f8aa74f41908797d223dc40}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_af1747adc8f8aa74f41908797d223dc40}} 
+\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int }]{worker\+\_\+count = {\ttfamily 2},  }\item[{str }]{whisper\+\_\+model = {\ttfamily \char`\"{}distil-\/small.en\char`\"{}},  }\item[{str }]{device = {\ttfamily \char`\"{}auto\char`\"{}},  }\item[{str }]{compute\+\_\+type = {\ttfamily \char`\"{}default\char`\"{}},  }\item[{int }]{poll\+\_\+timeout = {\ttfamily 10} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00035}{35}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045     ):}
+\DoxyCodeLine{00046         self.worker\_pool = ThreadPool(}
+\DoxyCodeLine{00047             max\_workers=worker\_count, thread\_name\_prefix=\textcolor{stringliteral}{"{}TranscriptionWorker"{}}}
+\DoxyCodeLine{00048         )}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050         self.whisper\_interface = WhisperInterface(}
+\DoxyCodeLine{00051             model\_name=whisper\_model,}
+\DoxyCodeLine{00052             device=device,}
+\DoxyCodeLine{00053             compute\_type=compute\_type,}
+\DoxyCodeLine{00054             transcribe\_workers=worker\_count,}
+\DoxyCodeLine{00055         )}
+\DoxyCodeLine{00056         self.com\_server = CommunicationServer(}
+\DoxyCodeLine{00057             send\_socket\_type=zmq.PUSH,}
+\DoxyCodeLine{00058             recv\_socket\_type=zmq.PULL,}
+\DoxyCodeLine{00059             poll\_timeout=poll\_timeout,}
+\DoxyCodeLine{00060         )}
+\DoxyCodeLine{00061         self.audio\_resampler = AudioResampler(target\_sample\_rate=16000)}
+\DoxyCodeLine{00062 }
+\DoxyCodeLine{00063         self.tick\_handle = ue.register\_slate\_post\_tick\_callback(self.Tick)}
+\DoxyCodeLine{00064 }
+\DoxyCodeLine{00065         self.pyshutdown\_handle = ue.register\_python\_shutdown\_callback(self.Shutdown)}
+\DoxyCodeLine{00066 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_ae2bfd242fd7ab3bc71871ebea73606a3}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_ae2bfd242fd7ab3bc71871ebea73606a3}} 
+\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!\_\_del\_\_@{\_\_del\_\_}}
+\index{\_\_del\_\_@{\_\_del\_\_}!OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsubsection{\texorpdfstring{\_\_del\_\_()}{\_\_del\_\_()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+\_\+\+\_\+del\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00067}{67}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00067     \textcolor{keyword}{def }\_\_del\_\_(self):}
+\DoxyCodeLine{00068         self.Shutdown()}
+\DoxyCodeLine{00069 }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a6753aa5011f95f9f4d6c8370a088f5ae}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a6753aa5011f95f9f4d6c8370a088f5ae}} 
+\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!HandleTranscriptionRequest@{HandleTranscriptionRequest}}
+\index{HandleTranscriptionRequest@{HandleTranscriptionRequest}!OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsubsection{\texorpdfstring{HandleTranscriptionRequest()}{HandleTranscriptionRequest()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+Handle\+Transcription\+Request (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{np.\+ndarray}]{recv\+\_\+message,  }\item[{dict }]{metadata = {\ttfamily None} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00079}{79}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00081     ):}
+\DoxyCodeLine{00082 }
+\DoxyCodeLine{00083         Log(}
+\DoxyCodeLine{00084             f\textcolor{stringliteral}{"{}Handling Transcription Request | Message: \{recv\_message\} | Size: \{recv\_message.size\} | Shape: \{recv\_message.shape\}"{}}}
+\DoxyCodeLine{00085         )}
+\DoxyCodeLine{00086 }
+\DoxyCodeLine{00087         sample\_rate = metadata.get(\textcolor{stringliteral}{"{}sample\_rate"{}}, 48000)}
+\DoxyCodeLine{00088         num\_channels = metadata.get(\textcolor{stringliteral}{"{}num\_channels"{}}, 2)}
+\DoxyCodeLine{00089 }
+\DoxyCodeLine{00090         message\_ndarray = self.audio\_resampler.resample(}
+\DoxyCodeLine{00091             recv\_message, sample\_rate, num\_channels}
+\DoxyCodeLine{00092         )}
+\DoxyCodeLine{00093 }
+\DoxyCodeLine{00094         trans\_segments, trans\_metadata = self.whisper\_interface.process\_audio\_buffer(}
+\DoxyCodeLine{00095             message\_ndarray}
+\DoxyCodeLine{00096         )}
+\DoxyCodeLine{00097 }
+\DoxyCodeLine{00098         encoded\_segments = [}
+\DoxyCodeLine{00099             transcription.text.encode() \textcolor{keywordflow}{for} transcription \textcolor{keywordflow}{in} trans\_segments}
+\DoxyCodeLine{00100         ]}
+\DoxyCodeLine{00101 }
+\DoxyCodeLine{00102         Log(f\textcolor{stringliteral}{"{}Encoded Segments: \{encoded\_segments\}"{}})}
+\DoxyCodeLine{00103 }
+\DoxyCodeLine{00104         \textcolor{keywordflow}{if} len(encoded\_segments) > 0:}
+\DoxyCodeLine{00105             \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00106                 self.com\_server.SendMultipartWithMeta(}
+\DoxyCodeLine{00107                     message=encoded\_segments, meta=trans\_metadata}
+\DoxyCodeLine{00108                 )}
+\DoxyCodeLine{00109 }
+\DoxyCodeLine{00110             \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{00111                 Log(\textcolor{stringliteral}{"{}Error Sending Encoded Transcription Segments"{}}, LogLevel.ERROR)}
+\DoxyCodeLine{00112 }
+\DoxyCodeLine{00113         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00114             Log(\textcolor{stringliteral}{"{}No Transcription Segments Returned"{}}, LogLevel.WARNING)}
+\DoxyCodeLine{00115 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a4aa10c43b77ddb5fb9604a47f693e6cf}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a4aa10c43b77ddb5fb9604a47f693e6cf}} 
+\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!Shutdown@{Shutdown}}
+\index{Shutdown@{Shutdown}!OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsubsection{\texorpdfstring{Shutdown()}{Shutdown()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+Shutdown (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00116}{116}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00116     \textcolor{keyword}{def }Shutdown(self):}
+\DoxyCodeLine{00117         \textcolor{keywordflow}{if} self.tick\_handle:}
+\DoxyCodeLine{00118             ue.unregister\_slate\_post\_tick\_callback(self.tick\_handle)}
+\DoxyCodeLine{00119             del self.tick\_handle}
+\DoxyCodeLine{00120 }
+\DoxyCodeLine{00121         \textcolor{keywordflow}{if} self.worker\_pool:}
+\DoxyCodeLine{00122             self.worker\_pool.shutdown(wait=\textcolor{keyword}{False}, cancel\_futures=\textcolor{keyword}{True})}
+\DoxyCodeLine{00123             del self.worker\_pool}
+\DoxyCodeLine{00124 }
+\DoxyCodeLine{00125         \textcolor{keywordflow}{if} self.audio\_resampler:}
+\DoxyCodeLine{00126             del self.audio\_resampler}
+\DoxyCodeLine{00127 }
+\DoxyCodeLine{00128         \textcolor{keywordflow}{if} self.com\_server:}
+\DoxyCodeLine{00129             del self.com\_server}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131         \textcolor{keywordflow}{if} self.whisper\_interface:}
+\DoxyCodeLine{00132             del self.whisper\_interface}
+\DoxyCodeLine{00133 }
+\DoxyCodeLine{00134         \textcolor{comment}{\# Force a Garbage Collection}}
+\DoxyCodeLine{00135         gc\_collect()}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a5e271ef54ada389050f98033b0b12247}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a5e271ef54ada389050f98033b0b12247}} 
+\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!Tick@{Tick}}
+\index{Tick@{Tick}!OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+Tick (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{float}]{delta\+\_\+time }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00070}{70}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070     \textcolor{keyword}{def }Tick(self, delta\_time: float):}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072         \textcolor{keywordflow}{if} self.com\_server.EventOccured():}
+\DoxyCodeLine{00073             Log(\textcolor{stringliteral}{"{}Event Occured"{}})}
+\DoxyCodeLine{00074 }
+\DoxyCodeLine{00075             message, metadata = self.com\_server.ReceiveNDArrayWithMeta(dtype=np.float32)}
+\DoxyCodeLine{00076 }
+\DoxyCodeLine{00077             self.worker\_pool.submit(self.HandleTranscriptionRequest, message, metadata)}
+\DoxyCodeLine{00078 }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_acfd3c259252cdcf47514073bec48894e}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_acfd3c259252cdcf47514073bec48894e}} 
+\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!audio\_resampler@{audio\_resampler}}
+\index{audio\_resampler@{audio\_resampler}!OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsubsection{\texorpdfstring{audio\_resampler}{audio\_resampler}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+audio\+\_\+resampler}
+
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00061}{61}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_ae29bd3c655fa38cd3447135609afd887}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_ae29bd3c655fa38cd3447135609afd887}} 
+\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!com\_server@{com\_server}}
+\index{com\_server@{com\_server}!OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsubsection{\texorpdfstring{com\_server}{com\_server}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+com\+\_\+server}
+
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00056}{56}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a174cc3cc690fc56cf3f71711cbe86fa8}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a174cc3cc690fc56cf3f71711cbe86fa8}} 
+\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!pyshutdown\_handle@{pyshutdown\_handle}}
+\index{pyshutdown\_handle@{pyshutdown\_handle}!OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsubsection{\texorpdfstring{pyshutdown\_handle}{pyshutdown\_handle}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+pyshutdown\+\_\+handle}
+
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00065}{65}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a85932dcfeb230e39deaaaf52ed2012aa}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a85932dcfeb230e39deaaaf52ed2012aa}} 
+\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!tick\_handle@{tick\_handle}}
+\index{tick\_handle@{tick\_handle}!OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsubsection{\texorpdfstring{tick\_handle}{tick\_handle}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+tick\+\_\+handle}
+
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00063}{63}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a03b485a6b095df0e86edbfc08676e1b5}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a03b485a6b095df0e86edbfc08676e1b5}} 
+\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!whisper\_interface@{whisper\_interface}}
+\index{whisper\_interface@{whisper\_interface}!OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsubsection{\texorpdfstring{whisper\_interface}{whisper\_interface}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+whisper\+\_\+interface}
+
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00050}{50}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a5e9b9d7b855eebc968d9ff1cc2a1eea9}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a5e9b9d7b855eebc968d9ff1cc2a1eea9}} 
+\index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!worker\_pool@{worker\_pool}}
+\index{worker\_pool@{worker\_pool}!OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}}
+\doxysubsubsection{\texorpdfstring{worker\_pool}{worker\_pool}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+worker\+\_\+pool}
+
+
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00046}{46}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Content/\+Python/\+Open\+Accessibility\+Py/\+\_\+\+\_\+init\+\_\+\+\_\+.\+py\end{DoxyCompactItemize}

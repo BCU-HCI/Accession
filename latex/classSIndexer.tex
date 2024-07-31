@@ -1,0 +1,269 @@
+\hypertarget{classSIndexer}{}\doxysection{SIndexer Class Reference}
+\label{classSIndexer}\index{SIndexer@{SIndexer}}
+Inheritance diagram for SIndexer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classSIndexer}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSIndexer_a1b6ed4215c79bebc13942c78bb9c5de2}{SLATE\+\_\+\+BEGIN\+\_\+\+ARGS}} (\mbox{\hyperlink{classSIndexer}{SIndexer}})
+\item 
+\mbox{\Hypertarget{classSIndexer_a4a8d12f81d91e2debb658801ee15d50a}\label{classSIndexer_a4a8d12f81d91e2debb658801ee15d50a}} 
+{\bfseries SLATE\+\_\+\+PRIVATE\+\_\+\+ARGUMENT\+\_\+\+VARIABLE} (int32, Index\+Value)
+\item 
+\mbox{\Hypertarget{classSIndexer_aee5d5eb2594ff84e3b02c40e738e9175}\label{classSIndexer_aee5d5eb2594ff84e3b02c40e738e9175}} 
+{\bfseries SLATE\+\_\+\+PRIVATE\+\_\+\+ATTRIBUTE\+\_\+\+VARIABLE} (EVisibility, Index\+Visibility)
+\item 
+virtual void \mbox{\hyperlink{classSIndexer_ad7cea8e3db84f0f776a06eaa6b58e9b4}{Tick}} (const FGeometry \&Alloted\+Geometry, const double In\+Current\+Time, const float In\+Delta\+Time) override
+\item 
+void \mbox{\hyperlink{classSIndexer_ae48ec08b74de04a8c0647b874e1271e2}{Construct}} (const FArguments \&In\+Args)
+\item 
+void \mbox{\hyperlink{classSIndexer_a5d4256030024e60ebe2292d97920a94a}{Update\+Index}} (const int32 New\+Index)
+\begin{DoxyCompactList}\small\item\em Updates the Index Widget with the New Index Value.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSIndexer_ad860e43280fda9dab899c5f7701b7225}{Update\+Index}} (const FString \&New\+Index)
+\begin{DoxyCompactList}\small\item\em Updates the Index Widget with the New String Index Value.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSIndexer_a360b6d134d774cc3c6dd90cb061e239b}{Update\+Index}} (const FText \&New\+Index)
+\begin{DoxyCompactList}\small\item\em Updates the Index Widget with the New Text Index Value.  \end{DoxyCompactList}\item 
+TShared\+Ptr$<$ SText\+Block $>$ \mbox{\hyperlink{classSIndexer_a8609b26d46011de4ee48fc413b0554b1}{Get\+Index\+Text}} () const
+\begin{DoxyCompactList}\small\item\em Gets the Index Text\+Block Widget.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TWeak\+Ptr$<$ SText\+Block $>$ \mbox{\hyperlink{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}{Index\+Text\+Block}}
+\begin{DoxyCompactList}\small\item\em Weak Pointer to the Main Text\+Block Widget.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{SIndexer_8h_source_l00007}{7}} of file \mbox{\hyperlink{SIndexer_8h_source}{SIndexer.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSIndexer_ab1e24a22dd8d707956ef97c3e0cc99bb}\label{classSIndexer_ab1e24a22dd8d707956ef97c3e0cc99bb}} 
+\index{SIndexer@{SIndexer}!````~SIndexer@{$\sim$SIndexer}}
+\index{````~SIndexer@{$\sim$SIndexer}!SIndexer@{SIndexer}}
+\doxysubsubsection{\texorpdfstring{$\sim$SIndexer()}{~SIndexer()}}
+{\footnotesize\ttfamily SIndexer\+::$\sim$\+SIndexer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{SIndexer_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{SIndexer_8cpp_source}{SIndexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00006 \{}
+\DoxyCodeLine{00007 }
+\DoxyCodeLine{00008 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSIndexer_ae48ec08b74de04a8c0647b874e1271e2}\label{classSIndexer_ae48ec08b74de04a8c0647b874e1271e2}} 
+\index{SIndexer@{SIndexer}!Construct@{Construct}}
+\index{Construct@{Construct}!SIndexer@{SIndexer}}
+\doxysubsubsection{\texorpdfstring{Construct()}{Construct()}}
+{\footnotesize\ttfamily void SIndexer\+::\+Construct (\begin{DoxyParamCaption}\item[{const FArguments \&}]{In\+Args }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{SIndexer_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{SIndexer_8cpp_source}{SIndexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016 \{}
+\DoxyCodeLine{00017     ChildSlot}
+\DoxyCodeLine{00018     [}
+\DoxyCodeLine{00019         SNew(SBorder)}
+\DoxyCodeLine{00020         .HAlign(HAlign\_Center)}
+\DoxyCodeLine{00021         .VAlign(VAlign\_Center)}
+\DoxyCodeLine{00022         .Visibility(InArgs.\_IndexVisibility)}
+\DoxyCodeLine{00023         .Padding(FMargin(4.f, 2.f))}
+\DoxyCodeLine{00024         .BorderBackgroundColor( FSlateColor(InArgs.\_BorderColor) )}
+\DoxyCodeLine{00025         [}
+\DoxyCodeLine{00026             SAssignNew(\mbox{\hyperlink{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}{IndexTextBlock}}, STextBlock)}
+\DoxyCodeLine{00027             .Text( FText::FromString(FString::FromInt(InArgs.\_IndexValue)) )}
+\DoxyCodeLine{00028             .TextShapingMethod( ETextShapingMethod::KerningOnly )}
+\DoxyCodeLine{00029             .ColorAndOpacity( FSlateColor(InArgs.\_TextColor) )}
+\DoxyCodeLine{00030         ]}
+\DoxyCodeLine{00031     ];}
+\DoxyCodeLine{00032 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSIndexer_a8609b26d46011de4ee48fc413b0554b1}\label{classSIndexer_a8609b26d46011de4ee48fc413b0554b1}} 
+\index{SIndexer@{SIndexer}!GetIndexText@{GetIndexText}}
+\index{GetIndexText@{GetIndexText}!SIndexer@{SIndexer}}
+\doxysubsubsection{\texorpdfstring{GetIndexText()}{GetIndexText()}}
+{\footnotesize\ttfamily TShared\+Ptr$<$ SText\+Block $>$ SIndexer\+::\+Get\+Index\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the Index Text\+Block Widget.  
+
+\begin{DoxyReturn}{Returns}
+A Valid Text\+Block Widget, if it is still found. Otherwise In\+Valid Shared\+Ptr.
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{SIndexer_8h_source_l00055}{55}} of file \mbox{\hyperlink{SIndexer_8h_source}{SIndexer.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056     \{}
+\DoxyCodeLine{00057         \textcolor{keywordflow}{return} \mbox{\hyperlink{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}{IndexTextBlock}}.IsValid() ? \mbox{\hyperlink{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}{IndexTextBlock}}.Pin() : TSharedPtr<STextBlock>();}
+\DoxyCodeLine{00058     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSIndexer_a1b6ed4215c79bebc13942c78bb9c5de2}\label{classSIndexer_a1b6ed4215c79bebc13942c78bb9c5de2}} 
+\index{SIndexer@{SIndexer}!SLATE\_BEGIN\_ARGS@{SLATE\_BEGIN\_ARGS}}
+\index{SLATE\_BEGIN\_ARGS@{SLATE\_BEGIN\_ARGS}!SIndexer@{SIndexer}}
+\doxysubsubsection{\texorpdfstring{SLATE\_BEGIN\_ARGS()}{SLATE\_BEGIN\_ARGS()}}
+{\footnotesize\ttfamily SIndexer\+::\+SLATE\+\_\+\+BEGIN\+\_\+\+ARGS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSIndexer}{SIndexer}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{SIndexer_8h_source_l00010}{10}} of file \mbox{\hyperlink{SIndexer_8h_source}{SIndexer.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011     : \_TextColor(FLinearColor::White)}
+\DoxyCodeLine{00012     , \_BorderColor(FLinearColor::Black)}
+\DoxyCodeLine{00013     \{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSIndexer_ad7cea8e3db84f0f776a06eaa6b58e9b4}\label{classSIndexer_ad7cea8e3db84f0f776a06eaa6b58e9b4}} 
+\index{SIndexer@{SIndexer}!Tick@{Tick}}
+\index{Tick@{Tick}!SIndexer@{SIndexer}}
+\doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
+{\footnotesize\ttfamily void SIndexer\+::\+Tick (\begin{DoxyParamCaption}\item[{const FGeometry \&}]{Alloted\+Geometry,  }\item[{const double}]{In\+Current\+Time,  }\item[{const float}]{In\+Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{SIndexer_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{SIndexer_8cpp_source}{SIndexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011 \{}
+\DoxyCodeLine{00012     SBox::Tick(AllotedGeometry, InCurrentTime, InDeltaTime);}
+\DoxyCodeLine{00013 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSIndexer_ad860e43280fda9dab899c5f7701b7225}\label{classSIndexer_ad860e43280fda9dab899c5f7701b7225}} 
+\index{SIndexer@{SIndexer}!UpdateIndex@{UpdateIndex}}
+\index{UpdateIndex@{UpdateIndex}!SIndexer@{SIndexer}}
+\doxysubsubsection{\texorpdfstring{UpdateIndex()}{UpdateIndex()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void SIndexer\+::\+Update\+Index (\begin{DoxyParamCaption}\item[{const FString \&}]{New\+Index }\end{DoxyParamCaption})}
+
+
+
+Updates the Index Widget with the New String Index Value.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em New\+Index} & -\/ The New Index Value, in String Form.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{SIndexer_8cpp_source_l00044}{44}} of file \mbox{\hyperlink{SIndexer_8cpp_source}{SIndexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00045 \{}
+\DoxyCodeLine{00046     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}{IndexTextBlock}}.IsValid())}
+\DoxyCodeLine{00047         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00048 }
+\DoxyCodeLine{00049     \mbox{\hyperlink{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}{IndexTextBlock}}.Pin()-\/>SetText(}
+\DoxyCodeLine{00050         FText::FromString(NewIndex)}
+\DoxyCodeLine{00051     );}
+\DoxyCodeLine{00052 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSIndexer_a360b6d134d774cc3c6dd90cb061e239b}\label{classSIndexer_a360b6d134d774cc3c6dd90cb061e239b}} 
+\index{SIndexer@{SIndexer}!UpdateIndex@{UpdateIndex}}
+\index{UpdateIndex@{UpdateIndex}!SIndexer@{SIndexer}}
+\doxysubsubsection{\texorpdfstring{UpdateIndex()}{UpdateIndex()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void SIndexer\+::\+Update\+Index (\begin{DoxyParamCaption}\item[{const FText \&}]{New\+Index }\end{DoxyParamCaption})}
+
+
+
+Updates the Index Widget with the New Text Index Value.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em New\+Index} & -\/ The New Index Value, in Text Form.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{SIndexer_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{SIndexer_8cpp_source}{SIndexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00055 \{}
+\DoxyCodeLine{00056     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}{IndexTextBlock}}.IsValid())}
+\DoxyCodeLine{00057         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059     \mbox{\hyperlink{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}{IndexTextBlock}}.Pin()-\/>SetText(NewIndex);}
+\DoxyCodeLine{00060 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSIndexer_a5d4256030024e60ebe2292d97920a94a}\label{classSIndexer_a5d4256030024e60ebe2292d97920a94a}} 
+\index{SIndexer@{SIndexer}!UpdateIndex@{UpdateIndex}}
+\index{UpdateIndex@{UpdateIndex}!SIndexer@{SIndexer}}
+\doxysubsubsection{\texorpdfstring{UpdateIndex()}{UpdateIndex()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void SIndexer\+::\+Update\+Index (\begin{DoxyParamCaption}\item[{const int32}]{New\+Index }\end{DoxyParamCaption})}
+
+
+
+Updates the Index Widget with the New Index Value.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em New\+Index} & -\/ The New Index Value.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{SIndexer_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{SIndexer_8cpp_source}{SIndexer.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035 \{}
+\DoxyCodeLine{00036     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}{IndexTextBlock}}.IsValid())}
+\DoxyCodeLine{00037         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00038 }
+\DoxyCodeLine{00039     \mbox{\hyperlink{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}{IndexTextBlock}}.Pin()-\/>SetText(}
+\DoxyCodeLine{00040         FText::FromString( FString::FromInt(NewIndex) )}
+\DoxyCodeLine{00041     );}
+\DoxyCodeLine{00042 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}\label{classSIndexer_ae1060a0a04a4383f01ff166d953212f8}} 
+\index{SIndexer@{SIndexer}!IndexTextBlock@{IndexTextBlock}}
+\index{IndexTextBlock@{IndexTextBlock}!SIndexer@{SIndexer}}
+\doxysubsubsection{\texorpdfstring{IndexTextBlock}{IndexTextBlock}}
+{\footnotesize\ttfamily TWeak\+Ptr$<$SText\+Block$>$ SIndexer\+::\+Index\+Text\+Block\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Weak Pointer to the Main Text\+Block Widget.  
+
+
+
+Definition at line \mbox{\hyperlink{SIndexer_8h_source_l00065}{65}} of file \mbox{\hyperlink{SIndexer_8h_source}{SIndexer.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility/\+Public/\+Accessibility\+Widgets/SIndexer.\+h\item 
+Source/\+Open\+Accessibility/\+Private/\+Accessibility\+Widgets/SIndexer.\+cpp\end{DoxyCompactItemize}

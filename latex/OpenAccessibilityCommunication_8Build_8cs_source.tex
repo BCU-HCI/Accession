@@ -1,0 +1,85 @@
+\hypertarget{OpenAccessibilityCommunication_8Build_8cs_source}{}\doxysection{Open\+Accessibility\+Communication.\+Build.\+cs}
+\label{OpenAccessibilityCommunication_8Build_8cs_source}\index{Source/OpenAccessibilityCommunication/OpenAccessibilityCommunication.Build.cs@{Source/OpenAccessibilityCommunication/OpenAccessibilityCommunication.Build.cs}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00001}00001 \textcolor{comment}{// Copyright Epic Games, Inc. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00003}00003 \textcolor{keyword}{using }System.IO;}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00004}00004 \textcolor{keyword}{using }UnrealBuildTool;}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00005}00005 \textcolor{keyword}{using }UnrealBuildTool.Rules;}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00007}\mbox{\hyperlink{classOpenAccessibilityCommunication}{00007}} \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{classOpenAccessibilityCommunication}{OpenAccessibilityCommunication}} : ModuleRules}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00008}00008 \{}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00009}00009     \textcolor{keyword}{public} \mbox{\hyperlink{classOpenAccessibilityCommunication}{OpenAccessibilityCommunication}}(ReadOnlyTargetRules Target) : base(Target)}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00010}00010     \{}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00011}00011         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00012}00012         }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00013}00013         PublicIncludePaths.AddRange(}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00014}00014             \textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00015}00015                 \textcolor{comment}{// ... add public include paths required here ...}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00016}00016             \}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00017}00017             );}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00019}00019         PrivateIncludePaths.AddRange(}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00020}00020             \textcolor{keyword}{new} \textcolor{keywordtype}{string}[] \{}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00021}00021                 \textcolor{comment}{// ... add other private include paths required here ...}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00022}00022             \}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00023}00023             );}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00024}00024             }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00025}00025         }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00026}00026         PublicDependencyModuleNames.AddRange(}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00027}00027             \textcolor{keyword}{new} \textcolor{keywordtype}{string}[]}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00028}00028             \{}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00029}00029                 \textcolor{stringliteral}{"{}Core"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00030}00030                 \textcolor{comment}{// ... add other public dependencies that you statically link with here ...}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00031}00031             \}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00032}00032             );}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00033}00033             }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00034}00034         PrivateDependencyModuleNames.AddRange(}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00035}00035             \textcolor{keyword}{new} \textcolor{keywordtype}{string}[]}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00036}00036             \{}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00037}00037                 \textcolor{comment}{// Internal Plugin Dependencies}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00038}00038                 \textcolor{stringliteral}{"{}OpenAccessibilityAnalytics"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00040}00040                 \textcolor{comment}{// Internal ThirdParty Dependencies}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00041}00041                 \textcolor{stringliteral}{"{}ZeroMQ"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00043}00043                 \textcolor{comment}{// Core Modules}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00044}00044                 \textcolor{stringliteral}{"{}CoreUObject"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00045}00045                 \textcolor{stringliteral}{"{}Engine"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00046}00046                 \textcolor{stringliteral}{"{}Json"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00048}00048                 \textcolor{comment}{// Editor Modules}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00049}00049                 \textcolor{stringliteral}{"{}UnrealEd"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00050}00050                 \textcolor{stringliteral}{"{}Projects"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00052}00052                 \textcolor{comment}{// Slate UI Modules}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00053}00053                 \textcolor{stringliteral}{"{}Slate"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00054}00054                 \textcolor{stringliteral}{"{}SlateCore"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00056}00056                 \textcolor{comment}{// Audio Modules}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00057}00057                 \textcolor{stringliteral}{"{}AudioMixer"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00058}00058                 \textcolor{stringliteral}{"{}AudioCaptureCore"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00059}00059                 \textcolor{stringliteral}{"{}AudioCapture"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00060}00060                 \textcolor{stringliteral}{"{}InputCore"{}},}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00061}00061             \}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00062}00062             );}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00063}00063         }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00064}00064         }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00065}00065         DynamicallyLoadedModuleNames.AddRange(}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00066}00066             \textcolor{keyword}{new} \textcolor{keywordtype}{string}[]}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00067}00067             \{}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00068}00068                 \textcolor{comment}{// ... add any modules that your module loads dynamically here ...}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00069}00069             \}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00070}00070             );}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00072}00072         CircularlyReferencedDependentModules.AddRange(}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00073}00073             \textcolor{keyword}{new} \textcolor{keywordtype}{string}[]}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00074}00074             \{}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00076}00076             \}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00077}00077         );}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00078}00078     \}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8Build_8cs_source_l00079}00079 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,167 @@
+\hypertarget{SContentIndexer_8cpp_source}{}\doxysection{SContent\+Indexer.\+cpp}
+\label{SContentIndexer_8cpp_source}\index{Source/OpenAccessibility/Private/AccessibilityWidgets/SContentIndexer.cpp@{Source/OpenAccessibility/Private/AccessibilityWidgets/SContentIndexer.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include "{}AccessibilityWidgets/SContentIndexer.h"{}}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00004}00004 \textcolor{preprocessor}{\#include "{}AccessibilityWidgets/SIndexer.h"{}}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00006}00006 SContentIndexer::\string~SContentIndexer()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00007}00007 \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00008}00008 \}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00010}00010 \textcolor{keywordtype}{void} SContentIndexer::Construct(\textcolor{keyword}{const} FArguments\& InArgs)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00011}00011 \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00012}00012     TSharedPtr<SWidget> Content;}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00014}00014     \textcolor{keywordflow}{switch} (InArgs.\_IndexPositionToContent)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00015}00015     \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00016}00016         \textcolor{keywordflow}{case} EIndexerPosition::Top:}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00017}00017             Content = \mbox{\hyperlink{classSContentIndexer_a5c17cd24b068d9ce483584566ca1d6b7}{ConstructTopIndexer}}(InArgs);}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00018}00018             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00020}00020         \textcolor{keywordflow}{case} EIndexerPosition::Bottom:}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00021}00021             Content = \mbox{\hyperlink{classSContentIndexer_aa6d2017344d22d633db24fedfcac4768}{ConstructBottomIndexer}}(InArgs);}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00022}00022             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00024}00024         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00025}00025         \textcolor{keywordflow}{case} EIndexerPosition::Left:}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00026}00026             Content = \mbox{\hyperlink{classSContentIndexer_a44a911118feec95e6fab3898e8d7d637}{ConstructLeftIndexer}}(InArgs);}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00027}00027             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00029}00029         \textcolor{keywordflow}{case} EIndexerPosition::Right:}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00030}00030             Content = \mbox{\hyperlink{classSContentIndexer_a038dc288a7ae53e3ecee556c5ebde41a}{ConstructRightIndexer}}(InArgs);}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00031}00031             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00032}00032     \}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00034}00034     ChildSlot}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00035}00035     [}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00036}00036         Content.ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00037}00037     ];}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00038}00038 \}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00040}00040 \textcolor{keywordtype}{void} SContentIndexer::Tick(\textcolor{keyword}{const} FGeometry\& AllottedGeometry, \textcolor{keyword}{const} \textcolor{keywordtype}{double} InCurrentTime, \textcolor{keyword}{const} \textcolor{keywordtype}{float} InDeltaTime)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00041}00041 \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00042}00042     SBox::Tick(AllottedGeometry, InCurrentTime, InDeltaTime);}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00043}00043 \}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00045}\mbox{\hyperlink{classSContentIndexer_ae6b83bb9523a7425501a2d9a5d04b3c7}{00045}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classSContentIndexer_ae6b83bb9523a7425501a2d9a5d04b3c7}{SContentIndexer::UpdateIndex}}(\textcolor{keyword}{const} int32 IndexValue)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00046}00046 \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00047}00047     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classSContentIndexer_ab642317228e65988e4c1873c2ae77d5f}{IndexerWidget}}.IsValid())}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00048}00048         \mbox{\hyperlink{classSContentIndexer_ab642317228e65988e4c1873c2ae77d5f}{IndexerWidget}}.Pin()-\/>UpdateIndex( IndexValue );}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00049}00049 \}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00051}\mbox{\hyperlink{classSContentIndexer_a5c17cd24b068d9ce483584566ca1d6b7}{00051}} TSharedPtr<SWidget> \mbox{\hyperlink{classSContentIndexer_a5c17cd24b068d9ce483584566ca1d6b7}{SContentIndexer::ConstructTopIndexer}}(\textcolor{keyword}{const} FArguments\& InArgs)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00052}00052 \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00053}00053     \textcolor{keywordflow}{return} SNew(SVerticalBox)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00054}00054     .Visibility(AccessWidgetVisibilityAttribute(InArgs.\_ContentToIndex.ToSharedRef()))}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00056}00056         + SVerticalBox::Slot()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00057}00057         .HAlign(HAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00058}00058         .VAlign(VAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00059}00059         .AutoHeight()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00060}00060         .Padding(.1f, .25f)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00061}00061         [}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00062}00062             \mbox{\hyperlink{classSContentIndexer_afc8b83253d8254bf8bb5fdba290806c7}{ConstructIndexContainer}}(InArgs).ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00063}00063         ]}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00065}00065         + SVerticalBox::Slot()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00066}00066         .HAlign(HAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00067}00067         .VAlign(VAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00068}00068         .AutoHeight()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00069}00069         [}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00070}00070             \mbox{\hyperlink{classSContentIndexer_a681c349b8af0774d37243f7c6936de39}{ConstructContentContainer}}(InArgs.\_ContentToIndex.ToSharedRef()).ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00071}00071         ];}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00072}00072 \}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00074}\mbox{\hyperlink{classSContentIndexer_aa6d2017344d22d633db24fedfcac4768}{00074}} TSharedPtr<SWidget> \mbox{\hyperlink{classSContentIndexer_aa6d2017344d22d633db24fedfcac4768}{SContentIndexer::ConstructBottomIndexer}}(\textcolor{keyword}{const} FArguments\& InArgs)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00075}00075 \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00076}00076     \textcolor{keywordflow}{return} SNew(SVerticalBox)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00077}00077     .Visibility(AccessWidgetVisibilityAttribute(InArgs.\_ContentToIndex.ToSharedRef()))}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00079}00079         + SVerticalBox::Slot()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00080}00080         .HAlign(HAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00081}00081         .VAlign(VAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00082}00082         .AutoHeight()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00083}00083         [}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00084}00084             \mbox{\hyperlink{classSContentIndexer_a681c349b8af0774d37243f7c6936de39}{ConstructContentContainer}}(InArgs.\_ContentToIndex.ToSharedRef()).ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00085}00085         ]}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00086}00086 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00087}00087         + SVerticalBox::Slot()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00088}00088         .HAlign(HAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00089}00089         .VAlign(VAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00090}00090         .AutoHeight()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00091}00091         .Padding(.1f, .25f)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00092}00092         [}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00093}00093             \mbox{\hyperlink{classSContentIndexer_afc8b83253d8254bf8bb5fdba290806c7}{ConstructIndexContainer}}(InArgs).ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00094}00094         ];}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00095}00095 \}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00096}00096 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00097}\mbox{\hyperlink{classSContentIndexer_a44a911118feec95e6fab3898e8d7d637}{00097}} TSharedPtr<SWidget> \mbox{\hyperlink{classSContentIndexer_a44a911118feec95e6fab3898e8d7d637}{SContentIndexer::ConstructLeftIndexer}}(\textcolor{keyword}{const} FArguments\& InArgs)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00098}00098 \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00099}00099     \textcolor{keywordflow}{return} SNew(SHorizontalBox)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00100}00100     .Visibility(AccessWidgetVisibilityAttribute(InArgs.\_ContentToIndex.ToSharedRef()))}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00102}00102         + SHorizontalBox::Slot()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00103}00103         .VAlign(VAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00104}00104         .HAlign(HAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00105}00105         .AutoWidth()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00106}00106         .Padding(.25f, .1f)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00107}00107         [}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00108}00108             \mbox{\hyperlink{classSContentIndexer_afc8b83253d8254bf8bb5fdba290806c7}{ConstructIndexContainer}}(InArgs).ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00109}00109         ]}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00111}00111         + SHorizontalBox::Slot()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00112}00112         .VAlign(VAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00113}00113         .HAlign(HAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00114}00114         .AutoWidth()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00115}00115         [}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00116}00116             \mbox{\hyperlink{classSContentIndexer_a681c349b8af0774d37243f7c6936de39}{ConstructContentContainer}}(InArgs.\_ContentToIndex.ToSharedRef()).ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00117}00117         ];}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00118}00118 \}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00119}00119 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00120}\mbox{\hyperlink{classSContentIndexer_a038dc288a7ae53e3ecee556c5ebde41a}{00120}} TSharedPtr<SWidget> \mbox{\hyperlink{classSContentIndexer_a038dc288a7ae53e3ecee556c5ebde41a}{SContentIndexer::ConstructRightIndexer}}(\textcolor{keyword}{const} FArguments\& InArgs)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00121}00121 \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00122}00122     \textcolor{keywordflow}{return} SNew(SHorizontalBox)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00123}00123     .Visibility(AccessWidgetVisibilityAttribute(InArgs.\_ContentToIndex.ToSharedRef()))}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00124}00124 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00125}00125         + SHorizontalBox::Slot()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00126}00126         .VAlign(VAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00127}00127         .HAlign(HAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00128}00128         .AutoWidth()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00129}00129         [}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00130}00130             \mbox{\hyperlink{classSContentIndexer_a681c349b8af0774d37243f7c6936de39}{ConstructContentContainer}}(InArgs.\_ContentToIndex.ToSharedRef()).ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00131}00131         ]}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00132}00132 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00133}00133         + SHorizontalBox::Slot()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00134}00134         .VAlign(VAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00135}00135         .HAlign(HAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00136}00136         .AutoWidth()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00137}00137         .Padding(.25f, .1f)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00138}00138         [}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00139}00139             \mbox{\hyperlink{classSContentIndexer_afc8b83253d8254bf8bb5fdba290806c7}{ConstructIndexContainer}}(InArgs).ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00140}00140         ];}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00141}00141 \}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00142}00142 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00143}\mbox{\hyperlink{classSContentIndexer_a681c349b8af0774d37243f7c6936de39}{00143}} TSharedPtr<SWidget> \mbox{\hyperlink{classSContentIndexer_a681c349b8af0774d37243f7c6936de39}{SContentIndexer::ConstructContentContainer}}(TSharedRef<SWidget> ContentToIndex)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00144}00144 \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00145}00145     \mbox{\hyperlink{classSContentIndexer_a4795b675d25c3f432eb79d74b6723ae5}{IndexedContent}} = ContentToIndex;}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00146}00146     \textcolor{keywordflow}{return} ContentToIndex;}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00147}00147 \}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00148}00148 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00149}\mbox{\hyperlink{classSContentIndexer_afc8b83253d8254bf8bb5fdba290806c7}{00149}} TSharedPtr<SWidget> \mbox{\hyperlink{classSContentIndexer_afc8b83253d8254bf8bb5fdba290806c7}{SContentIndexer::ConstructIndexContainer}}(\textcolor{keyword}{const} FArguments\& InArgs, FLinearColor TextColor)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00150}00150 \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00151}00151     \textcolor{keywordflow}{return} SAssignNew(\mbox{\hyperlink{classSContentIndexer_ab642317228e65988e4c1873c2ae77d5f}{IndexerWidget}}, \mbox{\hyperlink{classSIndexer}{SIndexer}})}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00152}00152     .TextColor(TextColor)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00153}00153     .BorderColor(FLinearColor::Gray)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00154}00154     .IndexValue(InArgs.\_IndexValue)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00155}00155     .IndexVisibility(InArgs.\_IndexVisibility);}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00156}00156 \}}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00157}00157 }
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00158}\mbox{\hyperlink{classSContentIndexer_a4b89e88284cd38828a834e9865d09864}{00158}} FText \mbox{\hyperlink{classSContentIndexer_a4b89e88284cd38828a834e9865d09864}{SContentIndexer::ConstructIndexText}}(int32 Index)}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00159}00159 \{}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00160}00160     \textcolor{keywordflow}{return} FText::FromString(FString::FromInt(Index));}
+\DoxyCodeLine{\Hypertarget{SContentIndexer_8cpp_source_l00161}00161 \}}
+
+\end{DoxyCode}

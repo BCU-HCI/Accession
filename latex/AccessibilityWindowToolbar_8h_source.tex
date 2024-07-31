@@ -1,0 +1,64 @@
+\hypertarget{AccessibilityWindowToolbar_8h_source}{}\doxysection{Accessibility\+Window\+Toolbar.\+h}
+\label{AccessibilityWindowToolbar_8h_source}\index{Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityWindowToolbar.h@{Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityWindowToolbar.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00003}00003 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00007}00007 \textcolor{preprocessor}{\#include "{}Indexers/Indexer.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00009}00009 \textcolor{preprocessor}{\#include "{}AccessibilityWindowToolbar.generated.h"{}}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00014}00014 UCLASS()}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00015}\mbox{\hyperlink{classUAccessibilityWindowToolbar}{00015}} class OPENACCESSIBILITY\_API \mbox{\hyperlink{classUAccessibilityWindowToolbar}{UAccessibilityWindowToolbar}} : public UObject}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00016}00016 \{}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00017}00017     GENERATED\_BODY()}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00019}00019 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00021}00021     \mbox{\hyperlink{classUAccessibilityWindowToolbar}{UAccessibilityWindowToolbar}}();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00023}00023     \textcolor{keyword}{virtual} \mbox{\hyperlink{classUAccessibilityWindowToolbar}{\string~UAccessibilityWindowToolbar}}();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00025}00025     \textcolor{keywordtype}{bool} Tick(\textcolor{keywordtype}{float} DeltaTime);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00027}00027     \textcolor{comment}{// -\/-\/ Parse Events -\/-\/}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00033}00033     \textcolor{keywordtype}{void} SelectToolbarItem(int32 Index);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00035}00035 \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00043}00043     \textcolor{keywordtype}{bool} ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00045}00045     \textcolor{comment}{// Widget Getters}}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00052}00052     TSharedPtr<SBorder> GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00060}00060     \textcolor{keywordtype}{bool} GetToolKitToolBar(TSharedRef<SWidget> ToolKitWidget, TSharedPtr<SWidget>\& OutToolBar);}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00065}00065     \textcolor{keywordtype}{void} BindTicker();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00070}00070     \textcolor{keywordtype}{void} UnbindTicker();}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00072}00072 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00074}00074 \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00079}00079     TWeakPtr<SWindow> LastTopWindow;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00084}00084     TWeakPtr<SBorder> LastToolkitParent;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00089}00089     TWeakPtr<SWidget> LastToolkit;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00090}00090 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00094}00094     \mbox{\hyperlink{classFIndexer}{FIndexer<int32, SMultiBlockBaseWidget*>}} ToolbarIndex;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00099}00099     FTSTicker::FDelegateHandle TickDelegateHandle;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00104}00104     TArray<IConsoleCommand*> ConsoleCommands;}
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00105}00105 }
+\DoxyCodeLine{\Hypertarget{AccessibilityWindowToolbar_8h_source_l00106}00106 \};}
+
+\end{DoxyCode}

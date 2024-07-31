@@ -1,0 +1,93 @@
+\hypertarget{ContextMenuObject_8cpp_source}{}\doxysection{Context\+Menu\+Object.\+cpp}
+\label{ContextMenuObject_8cpp_source}\index{Source/OpenAccessibilityCommunication/Private/PhraseTree/Containers/ContextMenuObject.cpp@{Source/OpenAccessibilityCommunication/Private/PhraseTree/Containers/ContextMenuObject.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include "{}PhraseTree/Containers/ContextMenuObject.h"{}}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00005}00005 \textcolor{preprocessor}{\#include "{}OpenAccessibilityComLogging.h"{}}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00007}00007 UPhraseTreeContextMenuObject::UPhraseTreeContextMenuObject()}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00008}00008     : \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}()}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00009}00009 \{}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00011}00011 \}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00013}00013 UPhraseTreeContextMenuObject::UPhraseTreeContextMenuObject(TSharedRef<IMenu> Menu) }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00014}00014     : \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}()}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00015}00015 \{}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00017}00017 \}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00019}00019 UPhraseTreeContextMenuObject::\string~UPhraseTreeContextMenuObject()}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00020}00020 \{}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00021}00021     \textcolor{comment}{// Unbind Tick Delegate}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00022}00022     \mbox{\hyperlink{classUPhraseTreeContextMenuObject_ac645ce3426079466d4b934e78ee76f05}{RemoveTickDelegate}}();}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00024}00024     \textcolor{keywordflow}{if} (\mbox{\hyperlink{classUPhraseTreeContextMenuObject_a0f3c5bd08fb8ec5b7d4fe36db763aab9}{Menu}}.IsValid())}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00025}00025         \mbox{\hyperlink{classUPhraseTreeContextMenuObject_a52b49d911f30a144c9aac2e148b1561d}{RemoveMenuDismissed}}(\mbox{\hyperlink{classUPhraseTreeContextMenuObject_a0f3c5bd08fb8ec5b7d4fe36db763aab9}{Menu}}.Pin().ToSharedRef());}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00027}00027     UE\_LOG(LogOpenAccessibilityCom, Warning, TEXT(\textcolor{stringliteral}{"{}|| Context Menu || Destroyed ||"{}}))}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00028}00028 \}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00030}\mbox{\hyperlink{classUPhraseTreeContextMenuObject_a8e3b57352b3c5dbbfa757030e16aa380}{00030}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUPhraseTreeContextMenuObject_a8e3b57352b3c5dbbfa757030e16aa380}{UPhraseTreeContextMenuObject::Init}}(TSharedRef<IMenu> InMenu)}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00031}00031 \{}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00032}00032     this-\/>\mbox{\hyperlink{classUPhraseTreeContextMenuObject_a0f3c5bd08fb8ec5b7d4fe36db763aab9}{Menu}} = InMenu;}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00033}00033     this-\/>\mbox{\hyperlink{classUPhraseTreeContextMenuObject_aed946d4b51e601cfc3bdb36c1ba373b5}{Window}} = FSlateApplication::Get().FindWidgetWindow(}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00034}00034         InMenu-\/>GetContent().ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00035}00035     );}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00037}00037     \mbox{\hyperlink{classUPhraseTreeContextMenuObject_a0e148da93beca9bf1ccb55d2d8eba041}{BindMenuDismissed}}(InMenu);}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00038}00038     \mbox{\hyperlink{classUPhraseTreeContextMenuObject_ad4ce5528f81985b8b615ca545f759ed9}{BindTickDelegate}}();}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00039}00039 \}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00041}\mbox{\hyperlink{classUPhraseTreeContextMenuObject_a6de4857e042740e8273c20b3bdb03773}{00041}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUPhraseTreeContextMenuObject_a8e3b57352b3c5dbbfa757030e16aa380}{UPhraseTreeContextMenuObject::Init}}(TSharedRef<IMenu> InMenu, TSharedRef<FPhraseNode> InContextRoot)}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00042}00042 \{}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00043}00043     this-\/>\mbox{\hyperlink{classUPhraseTreeContextMenuObject_a0f3c5bd08fb8ec5b7d4fe36db763aab9}{Menu}} = InMenu;}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00044}00044     this-\/>\mbox{\hyperlink{classUPhraseTreeContextMenuObject_aed946d4b51e601cfc3bdb36c1ba373b5}{Window}} = FSlateApplication::Get().FindWidgetWindow(}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00045}00045         InMenu-\/>GetContent().ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00046}00046     );}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00048}00048     this-\/>\mbox{\hyperlink{classUPhraseTreeContextObject_a8560a9dd89e00f081ec53acfe98e41bf}{ContextRoot}} = InContextRoot;}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00050}00050     \mbox{\hyperlink{classUPhraseTreeContextMenuObject_a0e148da93beca9bf1ccb55d2d8eba041}{BindMenuDismissed}}(InMenu);}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00051}00051     \mbox{\hyperlink{classUPhraseTreeContextMenuObject_ad4ce5528f81985b8b615ca545f759ed9}{BindTickDelegate}}();}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00052}00052 \}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00054}\mbox{\hyperlink{classUPhraseTreeContextMenuObject_ad4ce5528f81985b8b615ca545f759ed9}{00054}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUPhraseTreeContextMenuObject_ad4ce5528f81985b8b615ca545f759ed9}{UPhraseTreeContextMenuObject::BindTickDelegate}}()}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00055}00055 \{}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00056}00056     TickDelegate = FTickerDelegate::CreateUObject(\textcolor{keyword}{this}, \&UPhraseTreeContextMenuObject::Tick);}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00057}00057     TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00058}00058 \}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00059}00059 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00060}\mbox{\hyperlink{classUPhraseTreeContextMenuObject_ac645ce3426079466d4b934e78ee76f05}{00060}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUPhraseTreeContextMenuObject_ac645ce3426079466d4b934e78ee76f05}{UPhraseTreeContextMenuObject::RemoveTickDelegate}}()}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00061}00061 \{}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00062}00062     \textcolor{keywordflow}{if} (TickDelegateHandle != NULL)}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00063}00063         FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00064}00064 \}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00066}\mbox{\hyperlink{classUPhraseTreeContextMenuObject_a0e148da93beca9bf1ccb55d2d8eba041}{00066}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUPhraseTreeContextMenuObject_a0e148da93beca9bf1ccb55d2d8eba041}{UPhraseTreeContextMenuObject::BindMenuDismissed}}(TSharedRef<IMenu> InMenu)}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00067}00067 \{}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00068}00068     MenuDismissedHandle = InMenu-\/>GetOnMenuDismissed()}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00069}00069         .AddUObject(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUPhraseTreeContextMenuObject_a093a322da1f8bb6ba57755f374ef327b}{UPhraseTreeContextMenuObject::OnMenuDismissed}});}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00070}00070 \}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00072}\mbox{\hyperlink{classUPhraseTreeContextMenuObject_a52b49d911f30a144c9aac2e148b1561d}{00072}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUPhraseTreeContextMenuObject_a52b49d911f30a144c9aac2e148b1561d}{UPhraseTreeContextMenuObject::RemoveMenuDismissed}}(TSharedRef<IMenu> InMenu)}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00073}00073 \{}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00074}00074     \mbox{\hyperlink{classUPhraseTreeContextMenuObject_a0f3c5bd08fb8ec5b7d4fe36db763aab9}{Menu}}.Pin()-\/>GetOnMenuDismissed().Remove(MenuDismissedHandle);}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00075}00075 \}}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00077}\mbox{\hyperlink{classUPhraseTreeContextMenuObject_a093a322da1f8bb6ba57755f374ef327b}{00077}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUPhraseTreeContextMenuObject_a093a322da1f8bb6ba57755f374ef327b}{UPhraseTreeContextMenuObject::OnMenuDismissed}}(TSharedRef<IMenu> InMenu)}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00078}00078 \{}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00079}00079     \mbox{\hyperlink{classUPhraseTreeContextMenuObject_ac645ce3426079466d4b934e78ee76f05}{RemoveTickDelegate}}();}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00081}00081     RemoveFromRoot();}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00082}00082     MarkAsGarbage();}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00084}00084     \mbox{\hyperlink{classUPhraseTreeContextObject_a2cba304de4e6f40576d7f62d10a57472}{bIsActive}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00086}00086     UE\_LOG(LogOpenAccessibilityCom, Warning, TEXT(\textcolor{stringliteral}{"{}|| Context Menu || Dismissed ||"{}}))}
+\DoxyCodeLine{\Hypertarget{ContextMenuObject_8cpp_source_l00087}00087 \}}
+
+\end{DoxyCode}

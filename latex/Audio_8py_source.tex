@@ -1,0 +1,93 @@
+\hypertarget{Audio_8py_source}{}\doxysection{Audio.\+py}
+\label{Audio_8py_source}\index{Content/Python/OpenAccessibilityPy/Audio.py@{Content/Python/OpenAccessibilityPy/Audio.py}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00001}00001 \textcolor{keyword}{import} gc}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00002}00002 \textcolor{keyword}{from} itertools \textcolor{keyword}{import} chain \textcolor{keyword}{as} iter\_chain}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00003}00003 \textcolor{keyword}{from} multiprocessing \textcolor{keyword}{import} Lock}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00005}00005 \textcolor{keyword}{import} numpy \textcolor{keyword}{as} np}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00006}00006 \textcolor{keyword}{import} av}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00009}00009 \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00010}00010     \textcolor{keyword}{from} .Logging \textcolor{keyword}{import} Log}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00011}00011 \textcolor{keywordflow}{except} ImportError:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00012}00012     \textcolor{keyword}{from} Logging \textcolor{keyword}{import} Log}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00015}\mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler}{00015}} \textcolor{keyword}{class }\mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler}{AudioResampler}}:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00017}00017     \textcolor{keyword}{def }\_\_init\_\_(self, target\_sample\_rate: int = 16000):}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00018}00018         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a0a63ba72935ecfde9afc81786d1c52ed}{\_audio\_resampler}} = av.AudioResampler(}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00019}00019             format=\textcolor{stringliteral}{"{}s16"{}}, layout=\textcolor{stringliteral}{"{}mono"{}}, rate=target\_sample\_rate}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00020}00020         )}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00021}00021         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a9aaaadbea7073e5b7a48042dc9bd1611}{\_resample\_mutex}} = Lock()}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00023}00023     \textcolor{keyword}{def }\_\_del\_\_(self):}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00024}00024         \textcolor{comment}{\# Try Deleting the resampler object to cleanly free up memory}}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00025}00025         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00026}00026             del self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a0a63ba72935ecfde9afc81786d1c52ed}{\_audio\_resampler}}}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00027}00027         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00028}00028             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00030}00030         \textcolor{keywordflow}{try}:  \textcolor{comment}{\# Delete the mutex}}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00031}00031             del self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a9aaaadbea7073e5b7a48042dc9bd1611}{\_resample\_mutex}}}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00032}00032         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00033}00033             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00035}00035         \textcolor{comment}{\# Force Garbage Collection, due to resampler not being properly deleted otherwise.}}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00036}00036         gc.collect()}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00038}00038     \textcolor{keyword}{def }resample(}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00039}00039         self,}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00040}00040         audio\_data: np.ndarray,}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00041}00041         buffer\_sample\_rate: int = 48000,  \textcolor{comment}{\# Defaults to 48KHz, as more common}}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00042}00042         buffer\_num\_channels: int = 2,  \textcolor{comment}{\# Defaults To Stereo, as more common}}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00043}00043     ) -\/> np.ndarray:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00045}00045         audio\_data = self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_acc84ae86c0fc50d75eb69d51b2cfc926}{\_convert\_to\_s16}}(audio\_data).reshape(-\/1, 1)}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00047}00047         frame: av.AudioFrame = av.AudioFrame.from\_ndarray(}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00048}00048             audio\_data.T,}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00049}00049             format=\textcolor{stringliteral}{"{}s16"{}},}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00050}00050             layout=\textcolor{stringliteral}{"{}stereo"{}} \textcolor{keywordflow}{if} buffer\_num\_channels == 2 \textcolor{keywordflow}{else} \textcolor{stringliteral}{"{}mono"{}},}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00051}00051         )}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00053}00053         frame.sample\_rate = buffer\_sample\_rate}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00055}00055         resampled\_frames: list[av.AudioFrame] = []}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00056}00056         \textcolor{keyword}{with} self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a9aaaadbea7073e5b7a48042dc9bd1611}{\_resample\_mutex}}:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00057}00057             resampled\_frames = self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a0a63ba72935ecfde9afc81786d1c52ed}{\_audio\_resampler}}.resample(frame)}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00059}00059         \textcolor{keywordflow}{return} self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_aedd3dabf73b9007f68bdf6ecb0f0354f}{\_convert\_to\_float32}}(resampled\_frames[0].to\_ndarray()).reshape(}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00060}00060             -\/1,}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00061}00061         )}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00063}00063     \textcolor{keyword}{def }\_resample\_frames(self, frames):}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00064}00064         \textcolor{keywordflow}{for} frame \textcolor{keywordflow}{in} iter\_chain(frames, [\textcolor{keywordtype}{None}]):}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00065}00065             \textcolor{keywordflow}{yield} \textcolor{keyword}{from} self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler_a0a63ba72935ecfde9afc81786d1c52ed}{\_audio\_resampler}}.resample(frame)}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00067}00067     \textcolor{keyword}{def }\_convert\_to\_float32(self, audio\_data: np.ndarray) -\/> np.ndarray:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00069}00069         \textcolor{keywordflow}{if} audio\_data.dtype == np.float32:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00070}00070             \textcolor{keywordflow}{return} audio\_data}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00072}00072         \textcolor{keywordflow}{elif} audio\_data.dtype == np.int16:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00073}00073             \textcolor{keywordflow}{return} audio\_data.astype(np.float32) / 32768.0}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00075}00075         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00076}00076             \textcolor{keywordflow}{raise} ValueError(\textcolor{stringliteral}{"{}Unsupported data type"{}})}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00078}00078     \textcolor{keyword}{def }\_convert\_to\_s16(self, audio\_data: np.ndarray) -\/> np.ndarray:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00080}00080         \textcolor{keywordflow}{if} audio\_data.dtype == np.int16:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00081}00081             \textcolor{keywordflow}{return} audio\_data}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00083}00083         \textcolor{keywordflow}{elif} audio\_data.dtype == np.float32:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00084}00084             \textcolor{keywordflow}{return} (audio\_data * 32768.0).astype(np.int16)}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00086}00086         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{Audio_8py_source_l00087}00087             \textcolor{keywordflow}{raise} ValueError(\textcolor{stringliteral}{"{}Unsupported data type"{}})}
+
+\end{DoxyCode}

@@ -1,0 +1,88 @@
+\hypertarget{classNumericParser}{}\doxysection{Numeric\+Parser Class Reference}
+\label{classNumericParser}\index{NumericParser@{NumericParser}}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classNumericParser_a120339ff998f4d21fd86f65490bf711f}{Is\+Valid\+Numeric}} (const FString \&String\+To\+Check, bool Convert\+To\+Upper=true)
+\begin{DoxyCompactList}\small\item\em Checks if the String is a Valid Numeric in Comparison to its String Permutations.  \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classNumericParser_ab26286f6004a5ce409ee0f915daca8ea}{String\+To\+Numeric}} (FString \&Numeric\+String, bool Convert\+To\+Upper=true)
+\begin{DoxyCompactList}\small\item\em Converts a String to its Numeric Permutation.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{ommunication_2Public_2PhraseTree_2Utils_8h_source_l00007}{7}} of file \mbox{\hyperlink{ommunication_2Public_2PhraseTree_2Utils_8h_source}{Utils.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classNumericParser_a120339ff998f4d21fd86f65490bf711f}\label{classNumericParser_a120339ff998f4d21fd86f65490bf711f}} 
+\index{NumericParser@{NumericParser}!IsValidNumeric@{IsValidNumeric}}
+\index{IsValidNumeric@{IsValidNumeric}!NumericParser@{NumericParser}}
+\doxysubsubsection{\texorpdfstring{IsValidNumeric()}{IsValidNumeric()}}
+{\footnotesize\ttfamily bool Numeric\+Parser\+::\+Is\+Valid\+Numeric (\begin{DoxyParamCaption}\item[{const FString \&}]{String\+To\+Check,  }\item[{bool}]{Convert\+To\+Upper = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Checks if the String is a Valid Numeric in Comparison to its String Permutations.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em String\+To\+Check} & -\/ The String To Check if it is a Numeric.\\
+\hline
+{\em Convert\+To\+Upper} & -\/ Should The String Be Converted To Upper before Comparison.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{Utils_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{Utils_8cpp_source}{Utils.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00008 \{}
+\DoxyCodeLine{00009     \textcolor{keywordflow}{return} StringMappings.Contains(ConvertToUpper ? StringToCheck.ToUpper() : StringToCheck);}
+\DoxyCodeLine{00010 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classNumericParser_ab26286f6004a5ce409ee0f915daca8ea}\label{classNumericParser_ab26286f6004a5ce409ee0f915daca8ea}} 
+\index{NumericParser@{NumericParser}!StringToNumeric@{StringToNumeric}}
+\index{StringToNumeric@{StringToNumeric}!NumericParser@{NumericParser}}
+\doxysubsubsection{\texorpdfstring{StringToNumeric()}{StringToNumeric()}}
+{\footnotesize\ttfamily void Numeric\+Parser\+::\+String\+To\+Numeric (\begin{DoxyParamCaption}\item[{FString \&}]{Numeric\+String,  }\item[{bool}]{Convert\+To\+Upper = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Converts a String to its Numeric Permutation.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em Numeric\+String} & -\/ The String To Convert To Numeric.\\
+\hline
+{\em Convert\+To\+Upper} & -\/ Should The String Be Converted To Upper before Conversion.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{Utils_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{Utils_8cpp_source}{Utils.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00013 \{}
+\DoxyCodeLine{00014     \textcolor{keywordflow}{if} (\textcolor{keyword}{const} FString* FoundMapping = StringMappings.Find(NumericString))}
+\DoxyCodeLine{00015     \{}
+\DoxyCodeLine{00016         NumericString = ConvertToUpper ? *FoundMapping-\/>ToUpper() : *FoundMapping;}
+\DoxyCodeLine{00017     \}}
+\DoxyCodeLine{00018     \textcolor{keywordflow}{else} UE\_LOG(LogOpenAccessibilityCom, Warning, TEXT(\textcolor{stringliteral}{"{}|| Numeric Parser || No Mapping Found for String: \%s ||"{}}), *NumericString);}
+\DoxyCodeLine{00019 \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility\+Communication/\+Public/\+Phrase\+Tree/Utils.\+h\item 
+Source/\+Open\+Accessibility\+Communication/\+Private/\+Phrase\+Tree/Utils.\+cpp\end{DoxyCompactItemize}

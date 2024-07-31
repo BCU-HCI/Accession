@@ -1,0 +1,395 @@
+\hypertarget{classFPhraseTree}{}\doxysection{FPhrase\+Tree Class Reference}
+\label{classFPhraseTree}\index{FPhraseTree@{FPhraseTree}}
+Inheritance diagram for FPhrase\+Tree\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classFPhraseTree}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structFPhraseTreeContextManager}{FPhrase\+Tree\+Context\+Manager}} \& \mbox{\hyperlink{classFPhraseTree_a99717a6cd1dd0cea63e2297a946c3ada}{Get\+Context\+Manager}} ()
+\item 
+bool \mbox{\hyperlink{classFPhraseTree_a6d93a6d55d5dd92c5f9a38da1e053698}{Tick}} (float Delta\+Time)
+\item 
+virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classFPhraseTree_af9f8e635d85ce7fed5a4f782f88a3ba8}{Parse\+Phrase}} (TArray$<$ FString $>$ \&In\+Phrase\+Word\+Array, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&In\+Parse\+Record) override
+\begin{DoxyCompactList}\small\item\em Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFPhraseTree_aadd641aaeee910e7a366a68322f01593}{Bind\+Branch}} (const TPhrase\+Node \&In\+Node)
+\begin{DoxyCompactList}\small\item\em Bind a branch to the tree. Attaching to any overlapping nodes.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFPhraseTree_ac8252b9734b00519858ecde6c70f5a93}{Bind\+Branches}} (const TPhrase\+Node\+Array \&In\+Nodes)
+\begin{DoxyCompactList}\small\item\em Bind Multiple Branches to the Tree, that are not connected.  \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFPhraseTree_af915498384e11d4c9b1e9f0125e9a615}{Parse\+Transcription}} (TArray$<$ FString $>$ In\+Transcription\+Segments)
+\begin{DoxyCompactList}\small\item\em Parses and Propogates the given Transcription Segments down the tree.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{PhraseTree_8h_source_l00227}{227}} of file \mbox{\hyperlink{PhraseTree_8h_source}{Phrase\+Tree.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFPhraseTree_aa151c7fa68349dd4292cc8cd6a3c5e23}\label{classFPhraseTree_aa151c7fa68349dd4292cc8cd6a3c5e23}} 
+\index{FPhraseTree@{FPhraseTree}!FPhraseTree@{FPhraseTree}}
+\index{FPhraseTree@{FPhraseTree}!FPhraseTree@{FPhraseTree}}
+\doxysubsubsection{\texorpdfstring{FPhraseTree()}{FPhraseTree()}}
+{\footnotesize\ttfamily FPhrase\+Tree\+::\+FPhrase\+Tree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseTree_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{PhraseTree_8cpp_source}{Phrase\+Tree.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00012                          : \mbox{\hyperlink{classFPhraseNode}{FPhraseNode}}(TEXT(\textcolor{stringliteral}{"{}ROOT\_NODE"{}}))}
+\DoxyCodeLine{00013 \{}
+\DoxyCodeLine{00014     ContextManager = \mbox{\hyperlink{structFPhraseTreeContextManager}{FPhraseTreeContextManager}}();}
+\DoxyCodeLine{00015 }
+\DoxyCodeLine{00016     FTickerDelegate TickDelegate = FTickerDelegate::CreateRaw(\textcolor{keyword}{this}, \&FPhraseTree::Tick);}
+\DoxyCodeLine{00017     TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);}
+\DoxyCodeLine{00018 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseTree_a01d6321f0421575c978973aa3af77e8b}\label{classFPhraseTree_a01d6321f0421575c978973aa3af77e8b}} 
+\index{FPhraseTree@{FPhraseTree}!````~FPhraseTree@{$\sim$FPhraseTree}}
+\index{````~FPhraseTree@{$\sim$FPhraseTree}!FPhraseTree@{FPhraseTree}}
+\doxysubsubsection{\texorpdfstring{$\sim$FPhraseTree()}{~FPhraseTree()}}
+{\footnotesize\ttfamily FPhrase\+Tree\+::$\sim$\+FPhrase\+Tree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseTree_8cpp_source_l00020}{20}} of file \mbox{\hyperlink{PhraseTree_8cpp_source}{Phrase\+Tree.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00021 \{}
+\DoxyCodeLine{00022     FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);}
+\DoxyCodeLine{00023 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFPhraseTree_aadd641aaeee910e7a366a68322f01593}\label{classFPhraseTree_aadd641aaeee910e7a366a68322f01593}} 
+\index{FPhraseTree@{FPhraseTree}!BindBranch@{BindBranch}}
+\index{BindBranch@{BindBranch}!FPhraseTree@{FPhraseTree}}
+\doxysubsubsection{\texorpdfstring{BindBranch()}{BindBranch()}}
+{\footnotesize\ttfamily void FPhrase\+Tree\+::\+Bind\+Branch (\begin{DoxyParamCaption}\item[{const TPhrase\+Node \&}]{In\+Node }\end{DoxyParamCaption})}
+
+
+
+Bind a branch to the tree. Attaching to any overlapping nodes.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Node} & The constructed branch to attach to the tree.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{PhraseTree_8cpp_source_l00182}{182}} of file \mbox{\hyperlink{PhraseTree_8cpp_source}{Phrase\+Tree.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00183 \{}
+\DoxyCodeLine{00184     TArray<FPhraseTreeBranchBind> ToBindArray = TArray<FPhraseTreeBranchBind>();}
+\DoxyCodeLine{00185 }
+\DoxyCodeLine{00186     ToBindArray.Add(\mbox{\hyperlink{structFPhraseTreeBranchBind}{FPhraseTreeBranchBind}}(AsShared(), InNode));}
+\DoxyCodeLine{00187 }
+\DoxyCodeLine{00188     \textcolor{keywordflow}{while} (!ToBindArray.IsEmpty())}
+\DoxyCodeLine{00189     \{}
+\DoxyCodeLine{00190         \mbox{\hyperlink{structFPhraseTreeBranchBind}{FPhraseTreeBranchBind}} BranchToBind = ToBindArray.Pop();}
+\DoxyCodeLine{00191 }
+\DoxyCodeLine{00192         \textcolor{comment}{// Check all ChildNodes to see if they are similar in purpose.}}
+\DoxyCodeLine{00193         \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& ChildNode : BranchToBind.\mbox{\hyperlink{structFPhraseTreeBranchBind_ab8d30df40e30af23f51dd0f4d03c2d90}{StartNode}}-\/>ChildNodes)}
+\DoxyCodeLine{00194         \{}
+\DoxyCodeLine{00195             \textcolor{comment}{// If a ChildNode meets the same requirements as the BranchRoot,}}
+\DoxyCodeLine{00196             \textcolor{comment}{// then Split Bind Process to the ChildNodes.}}
+\DoxyCodeLine{00197             \textcolor{keywordflow}{if} (ChildNode-\/>RequiresPhrase(BranchToBind.\mbox{\hyperlink{structFPhraseTreeBranchBind_a49265ea6bb0bc84c20f12a07e070c539}{BranchRoot}}-\/>BoundPhrase))}
+\DoxyCodeLine{00198             \{}
+\DoxyCodeLine{00199                 \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& BranchChildNode : BranchToBind.\mbox{\hyperlink{structFPhraseTreeBranchBind_a49265ea6bb0bc84c20f12a07e070c539}{BranchRoot}}-\/>ChildNodes)}
+\DoxyCodeLine{00200                 \{}
+\DoxyCodeLine{00201                     ToBindArray.Add(\mbox{\hyperlink{structFPhraseTreeBranchBind}{FPhraseTreeBranchBind}}(ChildNode, BranchChildNode));}
+\DoxyCodeLine{00202                 \}}
+\DoxyCodeLine{00203 }
+\DoxyCodeLine{00204                 \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00205             \}}
+\DoxyCodeLine{00206         \}}
+\DoxyCodeLine{00207 }
+\DoxyCodeLine{00208         \textcolor{comment}{// If the Start Node has no similar children, then bind the branch to the start node.}}
+\DoxyCodeLine{00209         \textcolor{comment}{// Can force bind, as previous checks show no child is similar.}}
+\DoxyCodeLine{00210         BranchToBind.\mbox{\hyperlink{structFPhraseTreeBranchBind_ab8d30df40e30af23f51dd0f4d03c2d90}{StartNode}}-\/>BindChildNodeForce(BranchToBind.\mbox{\hyperlink{structFPhraseTreeBranchBind_a49265ea6bb0bc84c20f12a07e070c539}{BranchRoot}});}
+\DoxyCodeLine{00211     \}}
+\DoxyCodeLine{00212 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseTree_ac8252b9734b00519858ecde6c70f5a93}\label{classFPhraseTree_ac8252b9734b00519858ecde6c70f5a93}} 
+\index{FPhraseTree@{FPhraseTree}!BindBranches@{BindBranches}}
+\index{BindBranches@{BindBranches}!FPhraseTree@{FPhraseTree}}
+\doxysubsubsection{\texorpdfstring{BindBranches()}{BindBranches()}}
+{\footnotesize\ttfamily void FPhrase\+Tree\+::\+Bind\+Branches (\begin{DoxyParamCaption}\item[{const TPhrase\+Node\+Array \&}]{In\+Nodes }\end{DoxyParamCaption})}
+
+
+
+Bind Multiple Branches to the Tree, that are not connected.  
+
+
+
+Definition at line \mbox{\hyperlink{PhraseTree_8cpp_source_l00214}{214}} of file \mbox{\hyperlink{PhraseTree_8cpp_source}{Phrase\+Tree.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00215 \{}
+\DoxyCodeLine{00216     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} TSharedPtr<FPhraseNode>\& Node : InNodes)}
+\DoxyCodeLine{00217     \{}
+\DoxyCodeLine{00218         \mbox{\hyperlink{classFPhraseTree_aadd641aaeee910e7a366a68322f01593}{BindBranch}}(Node);}
+\DoxyCodeLine{00219     \}}
+\DoxyCodeLine{00220 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseTree_a99717a6cd1dd0cea63e2297a946c3ada}\label{classFPhraseTree_a99717a6cd1dd0cea63e2297a946c3ada}} 
+\index{FPhraseTree@{FPhraseTree}!GetContextManager@{GetContextManager}}
+\index{GetContextManager@{GetContextManager}!FPhraseTree@{FPhraseTree}}
+\doxysubsubsection{\texorpdfstring{GetContextManager()}{GetContextManager()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFPhraseTreeContextManager}{FPhrase\+Tree\+Context\+Manager}} \& FPhrase\+Tree\+::\+Get\+Context\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseTree_8h_source_l00233}{233}} of file \mbox{\hyperlink{PhraseTree_8h_source}{Phrase\+Tree.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00233                                                    \{}
+\DoxyCodeLine{00234         \textcolor{keywordflow}{return} ContextManager;}
+\DoxyCodeLine{00235     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseTree_af9f8e635d85ce7fed5a4f782f88a3ba8}\label{classFPhraseTree_af9f8e635d85ce7fed5a4f782f88a3ba8}} 
+\index{FPhraseTree@{FPhraseTree}!ParsePhrase@{ParsePhrase}}
+\index{ParsePhrase@{ParsePhrase}!FPhraseTree@{FPhraseTree}}
+\doxysubsubsection{\texorpdfstring{ParsePhrase()}{ParsePhrase()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFParseResult}{FParse\+Result}} FPhrase\+Tree\+::\+Parse\+Phrase (\begin{DoxyParamCaption}\item[{TArray$<$ FString $>$ \&}]{In\+Phrase\+Word\+Array,  }\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{In\+Parse\+Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase\+Word\+Array} & -\/ The Current Array of Transcription Phrases.\\
+\hline
+{\em In\+Parse\+Record} & -\/ The Parse Record of the Current Propagation.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The Result of the Parsing of the Phrase, and any Propagation.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classFPhraseNode_a9e108bf1a2f579ed03277540c01a36da}{FPhrase\+Node}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseTree_8cpp_source_l00141}{141}} of file \mbox{\hyperlink{PhraseTree_8cpp_source}{Phrase\+Tree.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00142 \{}
+\DoxyCodeLine{00143     \textcolor{keywordflow}{if} (InPhraseWordArray.IsEmpty())}
+\DoxyCodeLine{00144     \{}
+\DoxyCodeLine{00145         UE\_LOG(LogOpenAccessibilityCom, Warning, TEXT(\textcolor{stringliteral}{"{}|| Phrase Tree || Provided Transcription Segment is Empty ||"{}}));}
+\DoxyCodeLine{00146 }
+\DoxyCodeLine{00147         \textcolor{keywordflow}{return} \mbox{\hyperlink{structFParseResult}{FParseResult}}(PHRASE\_NOT\_PARSED);}
+\DoxyCodeLine{00148     \}}
+\DoxyCodeLine{00149 }
+\DoxyCodeLine{00150     \textcolor{comment}{// First give the last visited node a chance to parse the phrase.}}
+\DoxyCodeLine{00151     \textcolor{comment}{// due to the possibility of connecting phrases over different transcription segments.}}
+\DoxyCodeLine{00152     \textcolor{keywordflow}{if} (LastVistedNode != \textcolor{keyword}{nullptr} \&\& LastVistedNode.IsValid())}
+\DoxyCodeLine{00153     \{}
+\DoxyCodeLine{00154         TArray<FString> PhraseWordArrayCopy = TArray(InPhraseWordArray);}
+\DoxyCodeLine{00155 }
+\DoxyCodeLine{00156         \mbox{\hyperlink{structFParseResult}{FParseResult}} ParseResult = LastVistedNode-\/>ParseChildren(PhraseWordArrayCopy, LastVistedParseRecord);}
+\DoxyCodeLine{00157         \textcolor{keywordflow}{if} (ParseResult.\mbox{\hyperlink{structFParseResult_afd7eb42878c0d7cb3877b48fc93d4580}{Result}} == PHRASE\_PARSED)}
+\DoxyCodeLine{00158         \{}
+\DoxyCodeLine{00159             LastVistedNode.Reset();}
+\DoxyCodeLine{00160             InParseRecord = LastVistedParseRecord;}
+\DoxyCodeLine{00161             LastVistedParseRecord = \mbox{\hyperlink{structFParseRecord}{FParseRecord}}();}
+\DoxyCodeLine{00162 }
+\DoxyCodeLine{00163             \textcolor{keywordflow}{return} ParseResult;}
+\DoxyCodeLine{00164         \}}
+\DoxyCodeLine{00165         \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (ParseResult.\mbox{\hyperlink{structFParseResult_afd7eb42878c0d7cb3877b48fc93d4580}{Result}} != PHRASE\_UNABLE\_TO\_PARSE)}
+\DoxyCodeLine{00166         \{ }
+\DoxyCodeLine{00167             \textcolor{keywordflow}{return} ParseResult;}
+\DoxyCodeLine{00168         \}}
+\DoxyCodeLine{00169     \}}
+\DoxyCodeLine{00170 }
+\DoxyCodeLine{00171     \textcolor{comment}{// Check if the Context Stack has Objects, if so propagation from the Context Root.}}
+\DoxyCodeLine{00172     \textcolor{keywordflow}{if} (ContextManager.\mbox{\hyperlink{structFPhraseTreeContextManager_a028433f8424f7c4e21cc6107bb2ee6c9}{HasContextObjects}}())}
+\DoxyCodeLine{00173     \{}
+\DoxyCodeLine{00174         \textcolor{comment}{// Propagate from the Context Root, that is the Top of the Context Stack.}}
+\DoxyCodeLine{00175         \textcolor{keywordflow}{return} ContextManager.\mbox{\hyperlink{structFPhraseTreeContextManager_aa402440624f976fd50ad9008bd52017a}{PeekContextObject}}()-\/>GetContextRoot()-\/>ParsePhraseAsContext(InPhraseWordArray, InParseRecord);}
+\DoxyCodeLine{00176     \}}
+\DoxyCodeLine{00177 }
+\DoxyCodeLine{00178     \textcolor{comment}{// Otherwise, start a new propagation entirely from the Tree Root.}}
+\DoxyCodeLine{00179     \textcolor{keywordflow}{return} \mbox{\hyperlink{classFPhraseNode_a671f4121e9df6769775bae880a845765}{ParseChildren}}(InPhraseWordArray, InParseRecord);}
+\DoxyCodeLine{00180 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseTree_af915498384e11d4c9b1e9f0125e9a615}\label{classFPhraseTree_af915498384e11d4c9b1e9f0125e9a615}} 
+\index{FPhraseTree@{FPhraseTree}!ParseTranscription@{ParseTranscription}}
+\index{ParseTranscription@{ParseTranscription}!FPhraseTree@{FPhraseTree}}
+\doxysubsubsection{\texorpdfstring{ParseTranscription()}{ParseTranscription()}}
+{\footnotesize\ttfamily void FPhrase\+Tree\+::\+Parse\+Transcription (\begin{DoxyParamCaption}\item[{TArray$<$ FString $>$}]{In\+Transcription\+Segments }\end{DoxyParamCaption})}
+
+
+
+Parses and Propogates the given Transcription Segments down the tree.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Transcription\+Segments} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{PhraseTree_8cpp_source_l00033}{33}} of file \mbox{\hyperlink{PhraseTree_8cpp_source}{Phrase\+Tree.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034 \{}
+\DoxyCodeLine{00035     \textcolor{keywordflow}{if} (InTranscriptionSegments.IsEmpty())}
+\DoxyCodeLine{00036     \{}
+\DoxyCodeLine{00037         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}|| Phrase Tree || Provided Transcription is Empty ||"{}}))}
+\DoxyCodeLine{00038         return;}
+\DoxyCodeLine{00039     \}}
+\DoxyCodeLine{00040 }
+\DoxyCodeLine{00041     TArray<FString> SegmentWordArray = TArray<FString>();}
+\DoxyCodeLine{00042     \textcolor{keywordtype}{int} SegmentCount = 0;}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044     \textcolor{comment}{// Loop over any Transcription Segments.}}
+\DoxyCodeLine{00045     for (FString\& TranscriptionSegment : InTranscriptionSegments)}
+\DoxyCodeLine{00046     \{}
+\DoxyCodeLine{00047         \textcolor{keywordflow}{if} (TranscriptionSegment.IsEmpty())}
+\DoxyCodeLine{00048         \{}
+\DoxyCodeLine{00049             UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}|| Phrase Tree || Transcription Segment is Empty ||"{}}))}
+\DoxyCodeLine{00050             continue;}
+\DoxyCodeLine{00051         \}}
+\DoxyCodeLine{00052 }
+\DoxyCodeLine{00053         \textcolor{comment}{// Filter the Transcription Segment, to remove any unwanted characters.}}
+\DoxyCodeLine{00054         TranscriptionSegment.TrimStartAndEndInline();}
+\DoxyCodeLine{00055         TranscriptionSegment.ReplaceInline(TEXT("{}."{}), TEXT("{}"{}), ESearchCase::IgnoreCase);}
+\DoxyCodeLine{00056         TranscriptionSegment.ReplaceInline(TEXT("{},"{}), TEXT("{}"{}), ESearchCase::IgnoreCase);}
+\DoxyCodeLine{00057         TranscriptionSegment.ToUpperInline();}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT("{}|| Phrase Tree || Filtered Transcription Segment: \{ \%s \} ||\textcolor{stringliteral}{"{}), *TranscriptionSegment)}}
+\DoxyCodeLine{00060 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00061 \textcolor{stringliteral}{        // Parse the Transcription Segment into an Array of Words, removing any white space.}}
+\DoxyCodeLine{00062 \textcolor{stringliteral}{        TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray);}}
+\DoxyCodeLine{00063 \textcolor{stringliteral}{        if (SegmentWordArray.Num() == 0)}}
+\DoxyCodeLine{00064 \textcolor{stringliteral}{        \{}}
+\DoxyCodeLine{00065 \textcolor{stringliteral}{            UE\_LOG(LogOpenAccessibilityCom, Log, TEXT("{}}|| Phrase Tree || Transcription Segment has no Word Content ||\textcolor{stringliteral}{"{}))}}
+\DoxyCodeLine{00066 \textcolor{stringliteral}{            continue;}}
+\DoxyCodeLine{00067 \textcolor{stringliteral}{        \}}}
+\DoxyCodeLine{00068 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00069 \textcolor{stringliteral}{        Algo::Reverse(SegmentWordArray);}}
+\DoxyCodeLine{00070 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00071 \textcolor{stringliteral}{        // Loop until the Segment is Empty}}
+\DoxyCodeLine{00072 \textcolor{stringliteral}{        while (!SegmentWordArray.IsEmpty())}}
+\DoxyCodeLine{00073 \textcolor{stringliteral}{        \{}}
+\DoxyCodeLine{00074 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00075 \textcolor{stringliteral}{            FParseRecord ParseRecord = FParseRecord(ContextManager.GetContextStack());}}
+\DoxyCodeLine{00076 \textcolor{stringliteral}{            FParseResult ParseResult = ParsePhrase(SegmentWordArray, ParseRecord);}}
+\DoxyCodeLine{00077 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00078 \textcolor{stringliteral}{            ContextManager.UpdateContextStack(ParseRecord.ContextObjectStack);}}
+\DoxyCodeLine{00079 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00080 \textcolor{stringliteral}{            UE\_LOGFMT(LogOpenAccessibilityCom, Log, "{}}|| Phrase Tree || Segment: \{0\} | Result: \{1\} ||\textcolor{stringliteral}{"{}, SegmentCount, ParseResult.Result);}}
+\DoxyCodeLine{00081 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00082 \textcolor{stringliteral}{            switch (ParseResult.Result)}}
+\DoxyCodeLine{00083 \textcolor{stringliteral}{            \{}}
+\DoxyCodeLine{00084 \textcolor{stringliteral}{                case PHRASE\_PARSED:}}
+\DoxyCodeLine{00085 \textcolor{stringliteral}{                case PHRASE\_PARSED\_AND\_EXECUTED:}}
+\DoxyCodeLine{00086 \textcolor{stringliteral}{                \{}}
+\DoxyCodeLine{00087 \textcolor{stringliteral}{                    OA\_LOG(LogOpenAccessibilityCom, Log, TEXT("{}}PhraseTree Propagation\textcolor{stringliteral}{"{}), TEXT("{}}\{Success\} Phrase Tree Parsed Correctly (\%s)\textcolor{stringliteral}{"{}),}}
+\DoxyCodeLine{00088 \textcolor{stringliteral}{                        *ParseRecord.GetPhraseString())}}
+\DoxyCodeLine{00089 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00090 \textcolor{stringliteral}{                    LastVistedNode.Reset();}}
+\DoxyCodeLine{00091 \textcolor{stringliteral}{                    LastVistedParseRecord = FParseRecord();}}
+\DoxyCodeLine{00092 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00093 \textcolor{stringliteral}{                    break;}}
+\DoxyCodeLine{00094 \textcolor{stringliteral}{                \}}}
+\DoxyCodeLine{00095 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00096 \textcolor{stringliteral}{                case PHRASE\_REQUIRES\_MORE:}}
+\DoxyCodeLine{00097 \textcolor{stringliteral}{                \{}}
+\DoxyCodeLine{00098 \textcolor{stringliteral}{                    OA\_LOG(LogOpenAccessibilityCom, Log, TEXT("{}}PhraseTree Propagation\textcolor{stringliteral}{"{}), TEXT("{}}\{Failed\} Phrase Tree Propagation Requires More Segments. (\%s)\textcolor{stringliteral}{"{}), }}
+\DoxyCodeLine{00099 \textcolor{stringliteral}{                        *ParseRecord.GetPhraseString());}}
+\DoxyCodeLine{00100 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00101 \textcolor{stringliteral}{                    // Store Reach Nodes, and the ParseRecord for future propagation attempts.}}
+\DoxyCodeLine{00102 \textcolor{stringliteral}{                    LastVistedNode = ParseResult.ReachedNode;}}
+\DoxyCodeLine{00103 \textcolor{stringliteral}{                    LastVistedParseRecord = ParseRecord;}}
+\DoxyCodeLine{00104 \textcolor{stringliteral}{                \}}}
+\DoxyCodeLine{00105 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00106 \textcolor{stringliteral}{                case PHRASE\_REQUIRES\_MORE\_CORRECT\_PHRASES:}}
+\DoxyCodeLine{00107 \textcolor{stringliteral}{                \{}}
+\DoxyCodeLine{00108 \textcolor{stringliteral}{                    OA\_LOG(LogOpenAccessibilityCom, Log, TEXT("{}}PhraseTree Propagation\textcolor{stringliteral}{"{}), TEXT("{}}\{Failed\} Phrase Tree Propagation Requires More Correct Segments. (\%s)\textcolor{stringliteral}{"{}),}}
+\DoxyCodeLine{00109 \textcolor{stringliteral}{                        *ParseRecord.GetPhraseString())}}
+\DoxyCodeLine{00110 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00111 \textcolor{stringliteral}{                    LastVistedNode = ParseResult.ReachedNode;}}
+\DoxyCodeLine{00112 \textcolor{stringliteral}{                    LastVistedParseRecord = ParseRecord;}}
+\DoxyCodeLine{00113 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00114 \textcolor{stringliteral}{                    // Dirty Way of Ensuring all Segments in Transcription are Attempted.}}
+\DoxyCodeLine{00115 \textcolor{stringliteral}{                    if (!SegmentWordArray.IsEmpty())  }}
+\DoxyCodeLine{00116 \textcolor{stringliteral}{                        SegmentWordArray.Pop();}}
+\DoxyCodeLine{00117 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00118 \textcolor{stringliteral}{                    break;}}
+\DoxyCodeLine{00119 \textcolor{stringliteral}{                \}}}
+\DoxyCodeLine{00120 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00121 \textcolor{stringliteral}{                default:}}
+\DoxyCodeLine{00122 \textcolor{stringliteral}{                case PHRASE\_UNABLE\_TO\_PARSE:}}
+\DoxyCodeLine{00123 \textcolor{stringliteral}{                \{}}
+\DoxyCodeLine{00124 \textcolor{stringliteral}{                    OA\_LOG(LogOpenAccessibilityCom, Log, TEXT("{}}PhraseTree Propagation\textcolor{stringliteral}{"{}), TEXT("{}}\{Failed\} Phrase Tree Propagation Failed. (\%s)\textcolor{stringliteral}{"{}),}}
+\DoxyCodeLine{00125 \textcolor{stringliteral}{                        *ParseRecord.GetPhraseString())}}
+\DoxyCodeLine{00126 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00127 \textcolor{stringliteral}{                    // Dirty Way of Ensuring all Segments in Transcription are Attempted.}}
+\DoxyCodeLine{00128 \textcolor{stringliteral}{                    if (!SegmentWordArray.IsEmpty())}}
+\DoxyCodeLine{00129 \textcolor{stringliteral}{                        SegmentWordArray.Pop();}}
+\DoxyCodeLine{00130 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00131 \textcolor{stringliteral}{                    break;}}
+\DoxyCodeLine{00132 \textcolor{stringliteral}{                \}}}
+\DoxyCodeLine{00133 \textcolor{stringliteral}{            \}}}
+\DoxyCodeLine{00134 \textcolor{stringliteral}{        \}}}
+\DoxyCodeLine{00135 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00136 \textcolor{stringliteral}{        SegmentCount++;}}
+\DoxyCodeLine{00137 \textcolor{stringliteral}{        SegmentWordArray.Reset();}}
+\DoxyCodeLine{00138 \textcolor{stringliteral}{    \}}}
+\DoxyCodeLine{00139 \textcolor{stringliteral}{\}}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseTree_a6d93a6d55d5dd92c5f9a38da1e053698}\label{classFPhraseTree_a6d93a6d55d5dd92c5f9a38da1e053698}} 
+\index{FPhraseTree@{FPhraseTree}!Tick@{Tick}}
+\index{Tick@{Tick}!FPhraseTree@{FPhraseTree}}
+\doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
+{\footnotesize\ttfamily bool FPhrase\+Tree\+::\+Tick (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseTree_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{PhraseTree_8cpp_source}{Phrase\+Tree.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026 \{}
+\DoxyCodeLine{00027     \textcolor{comment}{// Filter InActive Context Objects out of the stack.}}
+\DoxyCodeLine{00028     ContextManager.FilterContextStack();}
+\DoxyCodeLine{00029 }
+\DoxyCodeLine{00030     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00031 \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility\+Communication/\+Public/Phrase\+Tree.\+h\item 
+Source/\+Open\+Accessibility\+Communication/\+Private/Phrase\+Tree.\+cpp\end{DoxyCompactItemize}

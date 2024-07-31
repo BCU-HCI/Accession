@@ -1,0 +1,33 @@
+\hypertarget{PhraseEnumInputNode_8h_source}{}\doxysection{Phrase\+Enum\+Input\+Node.\+h}
+\label{PhraseEnumInputNode_8h_source}\index{Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseEnumInputNode.h@{Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseEnumInputNode.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00003}00003 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00006}00006 \textcolor{preprocessor}{\#include "{}PhraseInputNode.h"{}}}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00007}00007 \textcolor{preprocessor}{\#include "{}Containers/Input/InputContainers.h"{}}}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00012}00012 \textcolor{keyword}{template}<\textcolor{keyword}{typename} TEnum>}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00013}\mbox{\hyperlink{classFPhraseEnumInputNode}{00013}} \textcolor{keyword}{class }OPENACCESSIBILITYCOMMUNICATION\_API \mbox{\hyperlink{classFPhraseEnumInputNode}{FPhraseEnumInputNode}} : \textcolor{keyword}{public} \mbox{\hyperlink{classFPhraseInputNode}{FPhraseInputNode}}<int32>}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00014}00014 \{}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00015}00015 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00017}00017     \mbox{\hyperlink{classFPhraseEnumInputNode}{FPhraseEnumInputNode}}(\textcolor{keyword}{const} TCHAR* InInputString);}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00018}00018     \mbox{\hyperlink{classFPhraseEnumInputNode}{FPhraseEnumInputNode}}(\textcolor{keyword}{const} TCHAR* InInputString, TPhraseNodeArray InChildNodes);}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00019}00019     \mbox{\hyperlink{classFPhraseEnumInputNode}{FPhraseEnumInputNode}}(\textcolor{keyword}{const} TCHAR* InInputString, TDelegate<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes);}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00020}00020     \mbox{\hyperlink{classFPhraseEnumInputNode}{FPhraseEnumInputNode}}(\textcolor{keyword}{const} TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate<\textcolor{keywordtype}{void}(int32 Input)> InOnInputRecieved);}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00021}00021     \mbox{\hyperlink{classFPhraseEnumInputNode}{FPhraseEnumInputNode}}(\textcolor{keyword}{const} TCHAR* InInputString, TDelegate<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<\textcolor{keywordtype}{void}(int32 Input)> InOnInputRecieved);}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00023}00023     \mbox{\hyperlink{classFPhraseEnumInputNode}{\string~FPhraseEnumInputNode}}();}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00025}00025 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00033}00033     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseInputNode_a4db63d4ca6bf5ace09c3dda2f19c7e78}{MeetsInputRequirements}}(\textcolor{keyword}{const} FString\& InPhrase) \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00034}00034     }
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00041}00041     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseInputNode_af938609ba4a21d785543851c2b511f7f}{RecordInput}}(\textcolor{keyword}{const} FString\& InInput, \mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& OutParseRecord) \textcolor{keyword}{override};}
+\DoxyCodeLine{\Hypertarget{PhraseEnumInputNode_8h_source_l00042}00042 \};}
+
+\end{DoxyCode}

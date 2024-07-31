@@ -1,0 +1,475 @@
+\hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer}{}\doxysection{Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server Class Reference}
+\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer}\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aafbb802f6fee1eaf838ab7734487c7ca}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, int send\+\_\+socket\+\_\+type, int recv\+\_\+socket\+\_\+type, str send\+\_\+socket\+\_\+addr=\char`\"{}tcp\+://127.\+0.\+0.\+1\+:5556\char`\"{}, str recv\+\_\+socket\+\_\+addr=\char`\"{}tcp\+://127.\+0.\+0.\+1\+:5555\char`\"{}, int poll\+\_\+timeout=10)
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aa7da8ca35a1f5ee67d3f969befe710f2}{\+\_\+\+\_\+del\+\_\+\+\_\+}} (self)
+\item 
+bool \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae9d0c57711e1beb9159ec5e945477945}{Event\+Occured}} (self)
+\item 
+bool \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a1f35be61401535d658ab2d0c8b89962b}{Send\+String}} (self, str message, flags=0)
+\item 
+bool \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aef8225a5bbc2593062475f41b30baf2e}{Send\+JSON}} (self, dict message)
+\item 
+bool \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8f932de58526af62ddcb4d941601abe4}{Send\+NDArray}} (self, np.\+ndarray message)
+\item 
+bool \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a7ea8b2e51311d8d7391c4d537e9d63b2}{Send\+NDArray\+With\+Meta}} (self, np.\+ndarray message, dict meta)
+\item 
+bool \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a3e6aa594de761f927bf985a912f3238b}{Send\+Multipart}} (self, list message)
+\item 
+bool \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae610fa5c06f198cc625593a08bdee2f8}{Send\+Multipart\+With\+Meta}} (self, list message, dict meta)
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a96709b75c16dca64a71c68ec4c4d43fb}{Recieve\+Raw}} (self)
+\item 
+str \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a69b86f54892d04df50572ad8d0646f00}{Receive\+String}} (self)
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae01a2857b018b25ec4065d8721b2f57e}{Receive\+JSON}} (self)
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae8db7352189c650c1927c66877e27009}{Receive\+NDArray}} (self, dtype=np.\+float32)
+\item 
+tuple\mbox{[}np.\+ndarray, dict\mbox{]} \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ac9b6226247f8c5948560c0252216fbf5}{Receive\+NDArray\+With\+Meta}} (self, dtype=np.\+float32)
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ac3278ebfdfa8a9430fd14e3fbadfcf5c}{Receive\+Multipart}} (self)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a4252135cb0899e9f897c0179de69e7df}{context}}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a592648523de2e7c4dff41cc74c584071}{send\+\_\+socket\+\_\+context}}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\+\_\+socket}}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae039b5afc37f927883632f2c589f4253}{recv\+\_\+socket\+\_\+context}}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_afe92681571bcc6a30bdc5af8706d1031}{poller}}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_adfe669b1d0235921325d240e01019b09}{poller\+\_\+timeout\+\_\+time}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00011}{11}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aafbb802f6fee1eaf838ab7734487c7ca}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aafbb802f6fee1eaf838ab7734487c7ca}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int}]{send\+\_\+socket\+\_\+type,  }\item[{int}]{recv\+\_\+socket\+\_\+type,  }\item[{str }]{send\+\_\+socket\+\_\+addr = {\ttfamily \char`\"{}tcp\+://127.0.0.1\+:5556\char`\"{}},  }\item[{str }]{recv\+\_\+socket\+\_\+addr = {\ttfamily \char`\"{}tcp\+://127.0.0.1\+:5555\char`\"{}},  }\item[{int }]{poll\+\_\+timeout = {\ttfamily 10} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00013}{13}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020     ):}
+\DoxyCodeLine{00021         \textcolor{comment}{\# Create the Context}}
+\DoxyCodeLine{00022         self.context = zmq.Context()}
+\DoxyCodeLine{00023 }
+\DoxyCodeLine{00024         \textcolor{comment}{\# Create a Socket}}
+\DoxyCodeLine{00025         self.send\_socket: zmq.Socket = self.context.socket(send\_socket\_type)}
+\DoxyCodeLine{00026         self.send\_socket\_context = self.send\_socket.connect(send\_socket\_addr)}
+\DoxyCodeLine{00027 }
+\DoxyCodeLine{00028         self.recv\_socket = self.context.socket(recv\_socket\_type)}
+\DoxyCodeLine{00029         self.recv\_socket\_context = self.recv\_socket.bind(recv\_socket\_addr)}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031         self.poller = zmq.Poller()}
+\DoxyCodeLine{00032         self.poller.register(self.recv\_socket, zmq.POLLIN)}
+\DoxyCodeLine{00033         self.poller\_timeout\_time = poll\_timeout}
+\DoxyCodeLine{00034 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aa7da8ca35a1f5ee67d3f969befe710f2}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aa7da8ca35a1f5ee67d3f969befe710f2}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!\_\_del\_\_@{\_\_del\_\_}}
+\index{\_\_del\_\_@{\_\_del\_\_}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{\_\_del\_\_()}{\_\_del\_\_()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+\_\+\+\_\+del\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00035}{35}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035     \textcolor{keyword}{def }\_\_del\_\_(self):}
+\DoxyCodeLine{00036 }
+\DoxyCodeLine{00037         self.send\_socket.close()}
+\DoxyCodeLine{00038         self.recv\_socket.close()}
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040         self.context.term()}
+\DoxyCodeLine{00041 }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae9d0c57711e1beb9159ec5e945477945}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae9d0c57711e1beb9159ec5e945477945}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!EventOccured@{EventOccured}}
+\index{EventOccured@{EventOccured}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{EventOccured()}{EventOccured()}}
+{\footnotesize\ttfamily  bool Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Event\+Occured (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00042}{42}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042     \textcolor{keyword}{def }EventOccured(self) -\/> bool:}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044         polled\_events = dict(self.poller.poll(self.poller\_timeout\_time))}
+\DoxyCodeLine{00045         \textcolor{keywordflow}{if} len(polled\_events) > 0 \textcolor{keywordflow}{and} polled\_events.get(self.recv\_socket) == zmq.POLLIN:}
+\DoxyCodeLine{00046             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{00047         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00048             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{00049 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae01a2857b018b25ec4065d8721b2f57e}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae01a2857b018b25ec4065d8721b2f57e}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!ReceiveJSON@{ReceiveJSON}}
+\index{ReceiveJSON@{ReceiveJSON}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{ReceiveJSON()}{ReceiveJSON()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Receive\+JSON (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00121}{121}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00121     \textcolor{keyword}{def }ReceiveJSON(self):}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123         \textcolor{keywordflow}{return} json.loads(self.recv\_socket.recv\_json(zmq.DONTWAIT))}
+\DoxyCodeLine{00124 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ac3278ebfdfa8a9430fd14e3fbadfcf5c}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ac3278ebfdfa8a9430fd14e3fbadfcf5c}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!ReceiveMultipart@{ReceiveMultipart}}
+\index{ReceiveMultipart@{ReceiveMultipart}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{ReceiveMultipart()}{ReceiveMultipart()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Receive\+Multipart (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00151}{151}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00151     \textcolor{keyword}{def }ReceiveMultipart(self):}
+\DoxyCodeLine{00152 }
+\DoxyCodeLine{00153         \textcolor{keywordflow}{return} self.recv\_socket.recv\_multipart(zmq.DONTWAIT)}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae8db7352189c650c1927c66877e27009}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae8db7352189c650c1927c66877e27009}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!ReceiveNDArray@{ReceiveNDArray}}
+\index{ReceiveNDArray@{ReceiveNDArray}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{ReceiveNDArray()}{ReceiveNDArray()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Receive\+NDArray (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{dtype = {\ttfamily np.float32} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00125}{125}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00125     \textcolor{keyword}{def }ReceiveNDArray(self, dtype=np.float32):}
+\DoxyCodeLine{00126 }
+\DoxyCodeLine{00127         \textcolor{keywordflow}{return} np.frombuffer(}
+\DoxyCodeLine{00128             self.recv\_socket.recv(zmq.DONTWAIT),}
+\DoxyCodeLine{00129             dtype=dtype,}
+\DoxyCodeLine{00130         )}
+\DoxyCodeLine{00131 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ac9b6226247f8c5948560c0252216fbf5}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ac9b6226247f8c5948560c0252216fbf5}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!ReceiveNDArrayWithMeta@{ReceiveNDArrayWithMeta}}
+\index{ReceiveNDArrayWithMeta@{ReceiveNDArrayWithMeta}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{ReceiveNDArrayWithMeta()}{ReceiveNDArrayWithMeta()}}
+{\footnotesize\ttfamily  tuple\mbox{[}np.\+ndarray, dict\mbox{]} Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Receive\+NDArray\+With\+Meta (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{dtype = {\ttfamily np.float32} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00132}{132}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00132     \textcolor{keyword}{def }ReceiveNDArrayWithMeta(self, dtype=np.float32) -\/> tuple[np.ndarray, dict]:}
+\DoxyCodeLine{00133 }
+\DoxyCodeLine{00134         recv\_message = self.recv\_socket.recv\_multipart(zmq.DONTWAIT)}
+\DoxyCodeLine{00135 }
+\DoxyCodeLine{00136         \textcolor{keywordflow}{if} len(recv\_message) > 1:}
+\DoxyCodeLine{00137             \textcolor{keywordflow}{return} (}
+\DoxyCodeLine{00138                 np.frombuffer(recv\_message[1], dtype=dtype),}
+\DoxyCodeLine{00139                 json.loads(recv\_message[0]),}
+\DoxyCodeLine{00140             )}
+\DoxyCodeLine{00141 }
+\DoxyCodeLine{00142         \textcolor{keywordflow}{elif} len(recv\_message) == 1:}
+\DoxyCodeLine{00143             Log(}
+\DoxyCodeLine{00144                 \textcolor{stringliteral}{"{}CommunicationServer | Error Receiving NDArray With Meta. Only Contains One Message, Assumed Data."{}},}
+\DoxyCodeLine{00145                 LogLevel.WARNING,}
+\DoxyCodeLine{00146             )}
+\DoxyCodeLine{00147             \textcolor{keywordflow}{return} (np.frombuffer(recv\_message[0], dtype=dtype), \{\})}
+\DoxyCodeLine{00148 }
+\DoxyCodeLine{00149         Log(\textcolor{stringliteral}{"{}CommunicationServer | Error Receiving NDArray With Meta"{}}, LogLevel.WARNING)}
+\DoxyCodeLine{00150 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a69b86f54892d04df50572ad8d0646f00}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a69b86f54892d04df50572ad8d0646f00}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!ReceiveString@{ReceiveString}}
+\index{ReceiveString@{ReceiveString}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{ReceiveString()}{ReceiveString()}}
+{\footnotesize\ttfamily  str Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Receive\+String (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00117}{117}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00117     \textcolor{keyword}{def }ReceiveString(self) -\/> str:}
+\DoxyCodeLine{00118 }
+\DoxyCodeLine{00119         \textcolor{keywordflow}{return} self.recv\_socket.recv\_string(zmq.DONTWAIT)}
+\DoxyCodeLine{00120 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a96709b75c16dca64a71c68ec4c4d43fb}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a96709b75c16dca64a71c68ec4c4d43fb}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!RecieveRaw@{RecieveRaw}}
+\index{RecieveRaw@{RecieveRaw}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{RecieveRaw()}{RecieveRaw()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Recieve\+Raw (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00114}{114}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00114     \textcolor{keyword}{def }RecieveRaw(self):}
+\DoxyCodeLine{00115         \textcolor{keywordflow}{return} self.recv\_socket.recv(zmq.DONTWAIT)}
+\DoxyCodeLine{00116 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aef8225a5bbc2593062475f41b30baf2e}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aef8225a5bbc2593062475f41b30baf2e}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!SendJSON@{SendJSON}}
+\index{SendJSON@{SendJSON}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{SendJSON()}{SendJSON()}}
+{\footnotesize\ttfamily  bool Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Send\+JSON (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{dict}]{message }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00058}{58}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00058     \textcolor{keyword}{def }SendJSON(self, message: dict) -\/> bool:}
+\DoxyCodeLine{00059         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00060             self.send\_socket.send\_json(message)}
+\DoxyCodeLine{00061             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{00062         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{00063             Log(}
+\DoxyCodeLine{00064                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending JSON Message"{}},}
+\DoxyCodeLine{00065                 LogLevel.WARNING,}
+\DoxyCodeLine{00066             )}
+\DoxyCodeLine{00067             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{00068 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a3e6aa594de761f927bf985a912f3238b}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a3e6aa594de761f927bf985a912f3238b}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!SendMultipart@{SendMultipart}}
+\index{SendMultipart@{SendMultipart}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{SendMultipart()}{SendMultipart()}}
+{\footnotesize\ttfamily  bool Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Send\+Multipart (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{list}]{message }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00092}{92}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00092     \textcolor{keyword}{def }SendMultipart(self, message: list) -\/> bool:}
+\DoxyCodeLine{00093         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00094             self.send\_socket.send\_multipart(message)}
+\DoxyCodeLine{00095             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{00096         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{00097             Log(}
+\DoxyCodeLine{00098                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending Multipart Message"{}},}
+\DoxyCodeLine{00099                 LogLevel.WARNING,}
+\DoxyCodeLine{00100             )}
+\DoxyCodeLine{00101             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{00102 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae610fa5c06f198cc625593a08bdee2f8}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae610fa5c06f198cc625593a08bdee2f8}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!SendMultipartWithMeta@{SendMultipartWithMeta}}
+\index{SendMultipartWithMeta@{SendMultipartWithMeta}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{SendMultipartWithMeta()}{SendMultipartWithMeta()}}
+{\footnotesize\ttfamily  bool Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Send\+Multipart\+With\+Meta (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{list}]{message,  }\item[{dict}]{meta }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00103}{103}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00103     \textcolor{keyword}{def }SendMultipartWithMeta(self, message: list, meta: dict) -\/> bool:}
+\DoxyCodeLine{00104         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00105             self.send\_socket.send\_multipart([json.dumps(meta).encode(), *message])}
+\DoxyCodeLine{00106             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{00107         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{00108             Log(}
+\DoxyCodeLine{00109                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending Multipart With Meta Message"{}},}
+\DoxyCodeLine{00110                 LogLevel.WARNING,}
+\DoxyCodeLine{00111             )}
+\DoxyCodeLine{00112             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{00113 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8f932de58526af62ddcb4d941601abe4}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8f932de58526af62ddcb4d941601abe4}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!SendNDArray@{SendNDArray}}
+\index{SendNDArray@{SendNDArray}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{SendNDArray()}{SendNDArray()}}
+{\footnotesize\ttfamily  bool Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Send\+NDArray (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{np.\+ndarray}]{message }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00069}{69}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00069     \textcolor{keyword}{def }SendNDArray(self, message: np.ndarray) -\/> bool:}
+\DoxyCodeLine{00070         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00071             self.send\_socket.send(message)}
+\DoxyCodeLine{00072             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{00073         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{00074             Log(}
+\DoxyCodeLine{00075                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending NDArray Message"{}},}
+\DoxyCodeLine{00076                 LogLevel.WARNING,}
+\DoxyCodeLine{00077             )}
+\DoxyCodeLine{00078             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{00079 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a7ea8b2e51311d8d7391c4d537e9d63b2}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a7ea8b2e51311d8d7391c4d537e9d63b2}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!SendNDArrayWithMeta@{SendNDArrayWithMeta}}
+\index{SendNDArrayWithMeta@{SendNDArrayWithMeta}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{SendNDArrayWithMeta()}{SendNDArrayWithMeta()}}
+{\footnotesize\ttfamily  bool Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Send\+NDArray\+With\+Meta (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{np.\+ndarray}]{message,  }\item[{dict}]{meta }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00080}{80}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00080     \textcolor{keyword}{def }SendNDArrayWithMeta(self, message: np.ndarray, meta: dict) -\/> bool:}
+\DoxyCodeLine{00081         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00082             self.send\_socket.send\_multipart([json.dumps(meta).encode(), message.data])}
+\DoxyCodeLine{00083 }
+\DoxyCodeLine{00084             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{00085         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{00086             Log(}
+\DoxyCodeLine{00087                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending NDArray With Meta Message"{}},}
+\DoxyCodeLine{00088                 LogLevel.WARNING,}
+\DoxyCodeLine{00089             )}
+\DoxyCodeLine{00090             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{00091 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a1f35be61401535d658ab2d0c8b89962b}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a1f35be61401535d658ab2d0c8b89962b}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!SendString@{SendString}}
+\index{SendString@{SendString}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{SendString()}{SendString()}}
+{\footnotesize\ttfamily  bool Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+Send\+String (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{message,  }\item[{}]{flags = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00050}{50}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050     \textcolor{keyword}{def }SendString(self, message: str, flags=0) -\/> bool:}
+\DoxyCodeLine{00051         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00052             self.send\_socket.send\_string(message)}
+\DoxyCodeLine{00053             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{00054         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{00055             Log(\textcolor{stringliteral}{"{}CommunicationServer | Error Sending String Message"{}}, LogLevel.WARNING)}
+\DoxyCodeLine{00056             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{00057 }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a4252135cb0899e9f897c0179de69e7df}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a4252135cb0899e9f897c0179de69e7df}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!context@{context}}
+\index{context@{context}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{context}{context}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+context}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00022}{22}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_afe92681571bcc6a30bdc5af8706d1031}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_afe92681571bcc6a30bdc5af8706d1031}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!poller@{poller}}
+\index{poller@{poller}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{poller}{poller}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+poller}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00031}{31}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_adfe669b1d0235921325d240e01019b09}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_adfe669b1d0235921325d240e01019b09}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!poller\_timeout\_time@{poller\_timeout\_time}}
+\index{poller\_timeout\_time@{poller\_timeout\_time}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{poller\_timeout\_time}{poller\_timeout\_time}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+poller\+\_\+timeout\+\_\+time}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00033}{33}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!recv\_socket@{recv\_socket}}
+\index{recv\_socket@{recv\_socket}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{recv\_socket}{recv\_socket}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+recv\+\_\+socket}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00028}{28}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae039b5afc37f927883632f2c589f4253}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae039b5afc37f927883632f2c589f4253}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!recv\_socket\_context@{recv\_socket\_context}}
+\index{recv\_socket\_context@{recv\_socket\_context}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{recv\_socket\_context}{recv\_socket\_context}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+recv\+\_\+socket\+\_\+context}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00029}{29}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a592648523de2e7c4dff41cc74c584071}\label{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a592648523de2e7c4dff41cc74c584071}} 
+\index{OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}!send\_socket\_context@{send\_socket\_context}}
+\index{send\_socket\_context@{send\_socket\_context}!OpenAccessibilityPy.CommunicationServer.CommunicationServer@{OpenAccessibilityPy.CommunicationServer.CommunicationServer}}
+\doxysubsubsection{\texorpdfstring{send\_socket\_context}{send\_socket\_context}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Communication\+Server.\+Communication\+Server.\+send\+\_\+socket\+\_\+context}
+
+
+
+Definition at line \mbox{\hyperlink{CommunicationServer_8py_source_l00026}{26}} of file \mbox{\hyperlink{CommunicationServer_8py_source}{Communication\+Server.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Content/\+Python/\+Open\+Accessibility\+Py/Communication\+Server.\+py\end{DoxyCompactItemize}

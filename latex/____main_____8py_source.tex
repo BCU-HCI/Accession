@@ -1,0 +1,139 @@
+\hypertarget{____main_____8py_source}{}\doxysection{\+\_\+\+\_\+main\+\_\+\+\_\+.\+py}
+\label{____main_____8py_source}\index{Content/Python/OpenAccessibilityPy/\_\_main\_\_.py@{Content/Python/OpenAccessibilityPy/\_\_main\_\_.py}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00001}00001 \textcolor{keyword}{import} numpy \textcolor{keyword}{as} np}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00002}00002 \textcolor{keyword}{from} zmq \textcolor{keyword}{import} PUSH \textcolor{keyword}{as} zmq\_PUSH, PULL \textcolor{keyword}{as} zmq\_PULL}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00003}00003 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00004}00004 \textcolor{keyword}{from} faster\_whisper.transcribe \textcolor{keyword}{import} decode\_audio}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00006}00006 \textcolor{keyword}{from} CommunicationServer \textcolor{keyword}{import} CommunicationServer}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00007}00007 \textcolor{keyword}{from} WhisperInterface \textcolor{keyword}{import} WhisperInterface}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00008}00008 \textcolor{keyword}{from} Audio \textcolor{keyword}{import} AudioResampler}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00009}00009 \textcolor{keyword}{import} LibUtils}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00011}00011 \textcolor{keyword}{from} Logging \textcolor{keyword}{import} Log, LogLevel}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00014}00014 PERFORM\_COMPARE = \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00017}00017 \textcolor{keyword}{def }PlotAudioBuffers(}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00018}00018     recv\_audio\_buffer: np.ndarray,}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00019}00019     decoded\_audio\_buffer: np.ndarray,}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00020}00020     name: str = \textcolor{stringliteral}{"{}BufferComparison"{}},}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00021}00021 ):}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00022}00022     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00023}00023 \textcolor{stringliteral}{    Plots the received audio buffer }\textcolor{keywordflow}{and} the decoded audio buffer to compare the two.}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00024}00024     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00025}00025 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00026}00026 \textcolor{stringliteral}{    }\textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00027}00027         \textcolor{keyword}{import} matplotlib \textcolor{keyword}{as} mpl}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00028}00028         \textcolor{keyword}{from} matplotlib \textcolor{keyword}{import} pyplot \textcolor{keyword}{as} plt}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00030}00030         mpl.interactive(\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00031}00031 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00032}00032         fig, axs = plt.subplots(3)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00034}00034         axs[0].plot(recv\_audio\_buffer)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00035}00035 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00036}00036         axs[1].plot(decoded\_audio\_buffer)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00038}00038         axs[2].plot(recv\_audio\_buffer)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00039}00039         axs[2].plot(decoded\_audio\_buffer)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00040}00040         axs[2].set\_title(\textcolor{stringliteral}{"{}Buffer Comparison"{}})}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00042}00042         fig.savefig(}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00043}00043             f\textcolor{stringliteral}{"{}D:/dev/Unreal Engine/AccessibilityProject/Saved/Debug/OpenAccessibility/\{name\}.png"{}},}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00044}00044             dpi=300,}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00045}00045         )}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00047}00047         fig.clear()}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00049}00049     \textcolor{keywordflow}{except} Exception \textcolor{keyword}{as} e:}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00050}00050         Log(f\textcolor{stringliteral}{"{}Error Plotting Audio Buffers: \{e\}"{}}, LogLevel.ERROR)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00051}00051 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00053}00053 \textcolor{keyword}{def }main():}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00055}00055     whisper\_interface = WhisperInterface(\textcolor{stringliteral}{"{}distil-\/small.en"{}})}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00056}00056     com\_server = CommunicationServer(}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00057}00057         send\_socket\_type=zmq\_PUSH, recv\_socket\_type=zmq\_PULL, poll\_timeout=10}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00058}00058     )}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00059}00059     audio\_resampler = AudioResampler(target\_sample\_rate=16000)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00061}00061     should\_run = \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00063}00063     print(\textcolor{stringliteral}{"{}Starting Run Loop"{}})}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00065}00065     \textcolor{keywordflow}{while} should\_run:}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00067}00067         \textcolor{keywordflow}{if} com\_server.EventOccured():}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00068}00068             Log(\textcolor{stringliteral}{"{}Event Occured"{}})}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00070}00070             recv\_message, metadata = com\_server.ReceiveNDArrayWithMeta()}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00072}00072             message\_ndarray: np.ndarray = np.frombuffer(recv\_message, dtype=np.float32)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00074}00074             sample\_rate = metadata.get(\textcolor{stringliteral}{"{}sample\_rate"{}}, 48000)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00075}00075             num\_channels = metadata.get(\textcolor{stringliteral}{"{}num\_channels"{}}, 1)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00077}00077             \textcolor{keywordflow}{if} PERFORM\_COMPARE:}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00078}00078                 decoded\_ndarray = decode\_audio(}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00079}00079                     \textcolor{stringliteral}{"{}D:/dev/Unreal Engine/AccessibilityProject/Saved/BouncedWavFiles/OpenAccessibility/Audioclips/Captured\_User\_Audio.wav"{}},}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00080}00080                     sampling\_rate=16000,}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00081}00081                 )}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00083}00083                 PlotAudioBuffers(message\_ndarray, decoded\_ndarray)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00085}00085                 isSame = np.array\_equal(message\_ndarray, decoded\_ndarray)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00086}00086                 \textcolor{comment}{\# isClose = np.allclose(message\_ndarray, decoded\_ndarray)}}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00088}00088                 \textcolor{comment}{\# difference = np.subtract(message\_ndarray, decoded\_ndarray)}}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00090}00090                 Log(}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00091}00091                     f\textcolor{stringliteral}{"{}Recieved Buffer | \{message\_ndarray\} | Shape: \{message\_ndarray.shape\}"{}}}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00092}00092                 )}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00093}00093 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00094}00094                 Log(}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00095}00095                     f\textcolor{stringliteral}{"{}Decoded Buffer | \{decoded\_ndarray\} | Shape: \{decoded\_ndarray.shape\}"{}}}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00096}00096                 )}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00097}00097                 Log(f\textcolor{stringliteral}{"{}Comparisons | Is Same: \{isSame\}"{}})}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00099}00099             \textcolor{comment}{\# Apply Resampling to the Audio Buffer, to match samplerate of 16000Hz}}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00100}00100             message\_ndarray = audio\_resampler.resample(message\_ndarray, sample\_rate)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00102}00102             \textcolor{keywordflow}{if} PERFORM\_COMPARE:}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00103}00103                 PlotAudioBuffers(}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00104}00104                     message\_ndarray, decoded\_ndarray, name=\textcolor{stringliteral}{"{}ResampledBufferComparison"{}}}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00105}00105                 )}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00107}00107             transcription\_segments, metadata = whisper\_interface.process\_audio\_buffer(}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00108}00108                 message\_ndarray}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00109}00109             )}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00111}00111             encoded\_segments = [}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00112}00112                 transcription.text.encode() \textcolor{keywordflow}{for} transcription \textcolor{keywordflow}{in} transcription\_segments}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00113}00113             ]}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00114}00114 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00115}00115             mock\_encoded\_segments = [}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00116}00116                 \textcolor{stringliteral}{"{}VIEW NODE 0"{}}.encode(),}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00117}00117                 \textcolor{stringliteral}{"{}NODE 0 MOVE UP 50"{}}.encode(),}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00118}00118             ]}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00119}00119 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00120}00120             Log(f\textcolor{stringliteral}{"{}Encoded Segments: \{encoded\_segments\}"{}})}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00121}00121             Log(f\textcolor{stringliteral}{"{}Encoded Mock Segments: \{mock\_encoded\_segments\}"{}})}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00122}00122 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00123}00123             \textcolor{keywordflow}{if} len(encoded\_segments) > 0:}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00124}00124                 \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00125}00125                     com\_server.SendMultipartWithMeta(encoded\_segments, metadata)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00126}00126                 \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00127}00127                     Log(\textcolor{stringliteral}{"{}Error Sending Encoded Transcription Segments"{}}, LogLevel.ERROR)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00128}00128             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00129}00129                 Log(\textcolor{stringliteral}{"{}No Transcription Segments Returned"{}}, LogLevel.WARNING)}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00131}00131 }
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00132}00132 \textcolor{keywordflow}{if} \_\_name\_\_ == \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{____main_____8py_source_l00133}00133     main()}
+
+\end{DoxyCode}

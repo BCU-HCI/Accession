@@ -1,0 +1,173 @@
+\hypertarget{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface}{}\doxysection{Open\+Accessibility\+Py.\+Whisper\+Interface.\+Whisper\+Interface Class Reference}
+\label{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface}\index{OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a1ad0163d20eccfe3cfe53a5429439c81}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, str model\+\_\+name=\char`\"{}distil-\/small.\+en\char`\"{}, str device=\char`\"{}auto\char`\"{}, int cpu\+\_\+threads=4, int transcribe\+\_\+workers=2, str compute\+\_\+type=\char`\"{}default\char`\"{})
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a985f6d04116ed2267306a40583e8d574}{\+\_\+\+\_\+del\+\_\+\+\_\+}} (self)
+\item 
+def \mbox{\hyperlink{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a31890d94170946f043c39b82fa023723}{process\+\_\+file\+\_\+from\+\_\+dir}} (self, str filepath)
+\item 
+tuple\mbox{[}list\mbox{[}Segment\mbox{]}, dict\mbox{]} \mbox{\hyperlink{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a8f73248120668faffa15af7e179f1704}{process\+\_\+audio\+\_\+buffer}} (self, np.\+ndarray audio\+\_\+buffer)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a96b55c7a69bb69d66ff8074256891373}{whisper\+\_\+model}}
+\item 
+\mbox{\hyperlink{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a742c06519e747e542d6a2297fa46f8a9}{beam\+\_\+size}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00013}{13}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a1ad0163d20eccfe3cfe53a5429439c81}\label{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a1ad0163d20eccfe3cfe53a5429439c81}} 
+\index{OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Whisper\+Interface.\+Whisper\+Interface.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str }]{model\+\_\+name = {\ttfamily \char`\"{}distil-\/small.en\char`\"{}},  }\item[{str }]{device = {\ttfamily \char`\"{}auto\char`\"{}},  }\item[{int }]{cpu\+\_\+threads = {\ttfamily 4},  }\item[{int }]{transcribe\+\_\+workers = {\ttfamily 2},  }\item[{str }]{compute\+\_\+type = {\ttfamily \char`\"{}default\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00015}{15}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022     ):}
+\DoxyCodeLine{00023         \textcolor{comment}{\# Whisper Focused Variables}}
+\DoxyCodeLine{00024         self.whisper\_model = WhisperModel(}
+\DoxyCodeLine{00025             model\_name,}
+\DoxyCodeLine{00026             device=device,}
+\DoxyCodeLine{00027             compute\_type=compute\_type,}
+\DoxyCodeLine{00028             num\_workers=transcribe\_workers,}
+\DoxyCodeLine{00029             cpu\_threads=cpu\_threads,}
+\DoxyCodeLine{00030             local\_files\_only=\textcolor{keyword}{True},}
+\DoxyCodeLine{00031         )}
+\DoxyCodeLine{00032         self.beam\_size = 5}
+\DoxyCodeLine{00033 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a985f6d04116ed2267306a40583e8d574}\label{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a985f6d04116ed2267306a40583e8d574}} 
+\index{OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}!\_\_del\_\_@{\_\_del\_\_}}
+\index{\_\_del\_\_@{\_\_del\_\_}!OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}}
+\doxysubsubsection{\texorpdfstring{\_\_del\_\_()}{\_\_del\_\_()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Whisper\+Interface.\+Whisper\+Interface.\+\_\+\+\_\+del\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00034}{34}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034     \textcolor{keyword}{def }\_\_del\_\_(self):}
+\DoxyCodeLine{00035         del self.whisper\_model}
+\DoxyCodeLine{00036 }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a8f73248120668faffa15af7e179f1704}\label{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a8f73248120668faffa15af7e179f1704}} 
+\index{OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}!process\_audio\_buffer@{process\_audio\_buffer}}
+\index{process\_audio\_buffer@{process\_audio\_buffer}!OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}}
+\doxysubsubsection{\texorpdfstring{process\_audio\_buffer()}{process\_audio\_buffer()}}
+{\footnotesize\ttfamily  tuple\mbox{[}list\mbox{[}Segment\mbox{]}, dict\mbox{]} Open\+Accessibility\+Py.\+Whisper\+Interface.\+Whisper\+Interface.\+process\+\_\+audio\+\_\+buffer (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{np.\+ndarray     }]{audio\+\_\+buffer }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00059}{59}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061     ) -\/> tuple[list[Segment], dict]:}
+\DoxyCodeLine{00062 }
+\DoxyCodeLine{00063         segments, info = self.whisper\_model.transcribe(}
+\DoxyCodeLine{00064             audio\_buffer,}
+\DoxyCodeLine{00065             beam\_size=self.beam\_size,}
+\DoxyCodeLine{00066             language=\textcolor{stringliteral}{"{}en"{}},}
+\DoxyCodeLine{00067         )}
+\DoxyCodeLine{00068 }
+\DoxyCodeLine{00069         Log(}
+\DoxyCodeLine{00070             f\textcolor{stringliteral}{"{}WhisperInterface || Detected Language: \{info.language\} | Probability: \{info.language\_probability\} | Duration: \{info.duration\}"{}}}
+\DoxyCodeLine{00071         )}
+\DoxyCodeLine{00072 }
+\DoxyCodeLine{00073         collected\_metadata = \{}
+\DoxyCodeLine{00074             \textcolor{stringliteral}{"{}duration"{}}: info.duration,}
+\DoxyCodeLine{00075             \textcolor{stringliteral}{"{}language"{}}: info.language,}
+\DoxyCodeLine{00076             \textcolor{stringliteral}{"{}language\_probability"{}}: info.language\_probability,}
+\DoxyCodeLine{00077         \}}
+\DoxyCodeLine{00078 }
+\DoxyCodeLine{00079         \textcolor{keywordflow}{return} list(segments), collected\_metadata}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a31890d94170946f043c39b82fa023723}\label{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a31890d94170946f043c39b82fa023723}} 
+\index{OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}!process\_file\_from\_dir@{process\_file\_from\_dir}}
+\index{process\_file\_from\_dir@{process\_file\_from\_dir}!OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}}
+\doxysubsubsection{\texorpdfstring{process\_file\_from\_dir()}{process\_file\_from\_dir()}}
+{\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Whisper\+Interface.\+Whisper\+Interface.\+process\+\_\+file\+\_\+from\+\_\+dir (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{filepath }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00037}{37}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037     \textcolor{keyword}{def }process\_file\_from\_dir(self, filepath: str):}
+\DoxyCodeLine{00038 }
+\DoxyCodeLine{00039         segments, info = self.whisper\_model.transcribe(}
+\DoxyCodeLine{00040             filepath,}
+\DoxyCodeLine{00041             beam\_size=self.beam\_size,}
+\DoxyCodeLine{00042             language=\textcolor{stringliteral}{"{}en"{}},}
+\DoxyCodeLine{00043             prepend\_punctuations=\textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00044             append\_punctuations=\textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00045             vad\_filter=\textcolor{keyword}{True},}
+\DoxyCodeLine{00046         )}
+\DoxyCodeLine{00047 }
+\DoxyCodeLine{00048         Log(}
+\DoxyCodeLine{00049             f\textcolor{stringliteral}{"{}WhisperInterface | Detected Language: \{info.language\} | Probability: \{info.language\_probability\} | Duration: \{info.duration\}"{}}}
+\DoxyCodeLine{00050         )}
+\DoxyCodeLine{00051 }
+\DoxyCodeLine{00052         \textcolor{keywordflow}{for} segment \textcolor{keywordflow}{in} segments:}
+\DoxyCodeLine{00053             Log(}
+\DoxyCodeLine{00054                 f\textcolor{stringliteral}{"{}WhisperInterface | Segment : \{segment.text\} | Start: \{segment.start\} | End: \{segment.end\}"{}}}
+\DoxyCodeLine{00055             )}
+\DoxyCodeLine{00056 }
+\DoxyCodeLine{00057         \textcolor{keywordflow}{return} list(segments)}
+\DoxyCodeLine{00058 }
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a742c06519e747e542d6a2297fa46f8a9}\label{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a742c06519e747e542d6a2297fa46f8a9}} 
+\index{OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}!beam\_size@{beam\_size}}
+\index{beam\_size@{beam\_size}!OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}}
+\doxysubsubsection{\texorpdfstring{beam\_size}{beam\_size}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Whisper\+Interface.\+Whisper\+Interface.\+beam\+\_\+size}
+
+
+
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00032}{32}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+
+\mbox{\Hypertarget{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a96b55c7a69bb69d66ff8074256891373}\label{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a96b55c7a69bb69d66ff8074256891373}} 
+\index{OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}!whisper\_model@{whisper\_model}}
+\index{whisper\_model@{whisper\_model}!OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}}
+\doxysubsubsection{\texorpdfstring{whisper\_model}{whisper\_model}}
+{\footnotesize\ttfamily Open\+Accessibility\+Py.\+Whisper\+Interface.\+Whisper\+Interface.\+whisper\+\_\+model}
+
+
+
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00024}{24}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Content/\+Python/\+Open\+Accessibility\+Py/Whisper\+Interface.\+py\end{DoxyCompactItemize}

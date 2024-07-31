@@ -1,0 +1,58 @@
+\hypertarget{ParseResult_8h_source}{}\doxysection{Parse\+Result.\+h}
+\label{ParseResult_8h_source}\index{Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/ParseResult.h@{Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/ParseResult.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00003}00003 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00005}00005 \textcolor{preprocessor}{\#include "{}CoreMinimal.h"{}}}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00006}00006 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00007}00007 \textcolor{keyword}{class }\mbox{\hyperlink{classFPhraseNode}{FPhraseNode}};}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00009}00009 \textcolor{keyword}{typedef} TSharedPtr<FPhraseNode> TPhraseNode;}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00011}00011 \textcolor{keyword}{typedef} TArray<TPhraseNode> TPhraseNodeArray;}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00012}00012 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00014}00014 \textcolor{keyword}{enum} OPENACCESSIBILITYCOMMUNICATION\_API PhrasePropogationType : uint8\_t}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00015}00015 \{}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00019}00019     PHRASE\_NOT\_PARSED = 0,}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00024}00024     PHRASE\_UNABLE\_TO\_PARSE = 1,}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00029}00029     PHRASE\_REQUIRES\_MORE = 2,}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00030}00030 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00035}00035     PHRASE\_REQUIRES\_MORE\_CORRECT\_PHRASES = 3,}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00040}00040     PHRASE\_PARSED = 4,}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00045}00045     PHRASE\_PARSED\_AND\_EXECUTED = 5,}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00046}00046 \};}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00047}00047 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00051}\mbox{\hyperlink{structFParseResult}{00051}} \textcolor{keyword}{struct }OPENACCESSIBILITYCOMMUNICATION\_API \mbox{\hyperlink{structFParseResult}{FParseResult}}}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00052}00052 \{}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00053}00053     \mbox{\hyperlink{structFParseResult}{FParseResult}}()}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00054}00054     \{}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00055}00055         Result = PHRASE\_NOT\_PARSED;}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00056}00056     \}}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00058}00058     \mbox{\hyperlink{structFParseResult}{FParseResult}}(PhrasePropogationType InResult)}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00059}00059     \{}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00060}00060         Result = InResult;}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00061}00061     \}}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00063}00063     \mbox{\hyperlink{structFParseResult}{FParseResult}}(PhrasePropogationType InResult, TSharedPtr<FPhraseNode> InReachedNode)}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00064}00064     \{}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00065}00065         Result = InResult;}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00066}00066         ReachedNode = InReachedNode;}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00067}00067     \}}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00069}00069 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00074}\mbox{\hyperlink{structFParseResult_afd7eb42878c0d7cb3877b48fc93d4580}{00074}}     uint8\_t \mbox{\hyperlink{structFParseResult_afd7eb42878c0d7cb3877b48fc93d4580}{Result}};}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00079}\mbox{\hyperlink{structFParseResult_abf7b09c62489fb07c96ece01ca591765}{00079}}     TSharedPtr<FPhraseNode> \mbox{\hyperlink{structFParseResult_abf7b09c62489fb07c96ece01ca591765}{ReachedNode}};}
+\DoxyCodeLine{\Hypertarget{ParseResult_8h_source_l00080}00080 \};}
+
+\end{DoxyCode}

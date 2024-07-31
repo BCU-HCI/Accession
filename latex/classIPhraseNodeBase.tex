@@ -1,0 +1,114 @@
+\hypertarget{classIPhraseNodeBase}{}\doxysection{IPhrase\+Node\+Base Class Reference}
+\label{classIPhraseNodeBase}\index{IPhraseNodeBase@{IPhraseNodeBase}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classIPhraseNodeBase_a581159e5f6582bf49b17edcfb64801bc}{Is\+Leaf\+Node}} () const =0
+\begin{DoxyCompactList}\small\item\em States if the Phrase Node is a Leaf\+Node.  \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classIPhraseNodeBase_a8b5ed0dd70aa17562f4c1e5ded1ccc6c}{Has\+Leaf\+Child}} () const =0
+\begin{DoxyCompactList}\small\item\em States if the the Single Child Node is a Leaf Node, if it exists.  \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classIPhraseNodeBase_a6ce43b8b4118b85bb1bde48f0332a273}{Requires\+Phrase}} (const FString In\+Phrase)=0
+\begin{DoxyCompactList}\small\item\em Checks if the Given Phrase is Bound to the Node.  \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classIPhraseNodeBase_aa9847c731dc4cb2623801638c8048935}{Parse\+Phrase}} (TArray$<$ FString $>$ \&In\+Phrase\+Word\+Array, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&In\+Parse\+Record)=0
+\begin{DoxyCompactList}\small\item\em Parses the phrase down the given Node, propagating down child nodes if required.  \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classIPhraseNodeBase_a9c5533a27db3ecf9cf8dbcf8bdae6e95}{Parse\+Phrase\+As\+Context}} (TArray$<$ FString $>$ \&In\+Phrase\+Word\+Array, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&In\+Parse\+Record)=0
+\begin{DoxyCompactList}\small\item\em Parses the phrase down the given node, propagating down child nodes if required. Missed Pop of the Phrase Array from this Node.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{PhraseNode_8h_source_l00010}{10}} of file \mbox{\hyperlink{PhraseNode_8h_source}{Phrase\+Node.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classIPhraseNodeBase_a8b5ed0dd70aa17562f4c1e5ded1ccc6c}\label{classIPhraseNodeBase_a8b5ed0dd70aa17562f4c1e5ded1ccc6c}} 
+\index{IPhraseNodeBase@{IPhraseNodeBase}!HasLeafChild@{HasLeafChild}}
+\index{HasLeafChild@{HasLeafChild}!IPhraseNodeBase@{IPhraseNodeBase}}
+\doxysubsubsection{\texorpdfstring{HasLeafChild()}{HasLeafChild()}}
+{\footnotesize\ttfamily virtual bool IPhrase\+Node\+Base\+::\+Has\+Leaf\+Child (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+States if the the Single Child Node is a Leaf Node, if it exists.  
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classIPhraseNodeBase_a581159e5f6582bf49b17edcfb64801bc}\label{classIPhraseNodeBase_a581159e5f6582bf49b17edcfb64801bc}} 
+\index{IPhraseNodeBase@{IPhraseNodeBase}!IsLeafNode@{IsLeafNode}}
+\index{IsLeafNode@{IsLeafNode}!IPhraseNodeBase@{IPhraseNodeBase}}
+\doxysubsubsection{\texorpdfstring{IsLeafNode()}{IsLeafNode()}}
+{\footnotesize\ttfamily virtual bool IPhrase\+Node\+Base\+::\+Is\+Leaf\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+States if the Phrase Node is a Leaf\+Node.  
+
+\begin{DoxyReturn}{Returns}
+true, if the Node is a Leaf Node otherwise false.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classIPhraseNodeBase_aa9847c731dc4cb2623801638c8048935}\label{classIPhraseNodeBase_aa9847c731dc4cb2623801638c8048935}} 
+\index{IPhraseNodeBase@{IPhraseNodeBase}!ParsePhrase@{ParsePhrase}}
+\index{ParsePhrase@{ParsePhrase}!IPhraseNodeBase@{IPhraseNodeBase}}
+\doxysubsubsection{\texorpdfstring{ParsePhrase()}{ParsePhrase()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} IPhrase\+Node\+Base\+::\+Parse\+Phrase (\begin{DoxyParamCaption}\item[{TArray$<$ FString $>$ \&}]{In\+Phrase\+Word\+Array,  }\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{In\+Parse\+Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Parses the phrase down the given Node, propagating down child nodes if required.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase\+Word\+Array} & The Array of Phrase Strings to Propogate against.\\
+\hline
+{\em In\+Parse\+Record} & The Record of Propagation of collected context\textquotesingle{}s and inputs.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the Result of the propogation, including any key nodes met.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classIPhraseNodeBase_a9c5533a27db3ecf9cf8dbcf8bdae6e95}\label{classIPhraseNodeBase_a9c5533a27db3ecf9cf8dbcf8bdae6e95}} 
+\index{IPhraseNodeBase@{IPhraseNodeBase}!ParsePhraseAsContext@{ParsePhraseAsContext}}
+\index{ParsePhraseAsContext@{ParsePhraseAsContext}!IPhraseNodeBase@{IPhraseNodeBase}}
+\doxysubsubsection{\texorpdfstring{ParsePhraseAsContext()}{ParsePhraseAsContext()}}
+{\footnotesize\ttfamily virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} IPhrase\+Node\+Base\+::\+Parse\+Phrase\+As\+Context (\begin{DoxyParamCaption}\item[{TArray$<$ FString $>$ \&}]{In\+Phrase\+Word\+Array,  }\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{In\+Parse\+Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Parses the phrase down the given node, propagating down child nodes if required. Missed Pop of the Phrase Array from this Node.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase\+Word\+Array} & \\
+\hline
+{\em In\+Parse\+Record} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the Result of the propogation, including any key nodes met.
+\end{DoxyReturn}
+\mbox{\Hypertarget{classIPhraseNodeBase_a6ce43b8b4118b85bb1bde48f0332a273}\label{classIPhraseNodeBase_a6ce43b8b4118b85bb1bde48f0332a273}} 
+\index{IPhraseNodeBase@{IPhraseNodeBase}!RequiresPhrase@{RequiresPhrase}}
+\index{RequiresPhrase@{RequiresPhrase}!IPhraseNodeBase@{IPhraseNodeBase}}
+\doxysubsubsection{\texorpdfstring{RequiresPhrase()}{RequiresPhrase()}}
+{\footnotesize\ttfamily virtual bool IPhrase\+Node\+Base\+::\+Requires\+Phrase (\begin{DoxyParamCaption}\item[{const FString}]{In\+Phrase }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Checks if the Given Phrase is Bound to the Node.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase} & The Phrase String to Compare Against.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Node requires the given phrase string otherwise false.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility\+Communication/\+Public/\+Phrase\+Tree/Phrase\+Node.\+h\end{DoxyCompactItemize}

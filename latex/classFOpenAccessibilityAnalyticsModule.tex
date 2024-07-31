@@ -1,0 +1,185 @@
+\hypertarget{classFOpenAccessibilityAnalyticsModule}{}\doxysection{FOpen\+Accessibility\+Analytics\+Module Class Reference}
+\label{classFOpenAccessibilityAnalyticsModule}\index{FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}}
+Inheritance diagram for FOpen\+Accessibility\+Analytics\+Module\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classFOpenAccessibilityAnalyticsModule}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classFOpenAccessibilityAnalyticsModule_abc569ef39a03bca5a52603b27f11d90c}{Startup\+Module}} () override
+\item 
+virtual void \mbox{\hyperlink{classFOpenAccessibilityAnalyticsModule_a612eac44f129127f3fd1f44a67e0d46b}{Shutdown\+Module}} () override
+\item 
+virtual bool \mbox{\hyperlink{classFOpenAccessibilityAnalyticsModule_a6eff1437bb94d82391d2690999f17dd6}{Supports\+Dynamic\+Reloading}} () override
+\item 
+bool \mbox{\hyperlink{classFOpenAccessibilityAnalyticsModule_a383b35b64b8a7feba4dd7e28951ed830}{Dump\+Tick}} (float Delta\+Time)
+\item 
+void \mbox{\hyperlink{classFOpenAccessibilityAnalyticsModule_ae25cc948b4acd04863f5f20347569f0c}{Log\+Event}} (const TCHAR $\ast$Event\+Title, const TCHAR $\ast$Log\+String,...)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{classFOpenAccessibilityAnalyticsModule}{FOpen\+Accessibility\+Analytics\+Module}} \& \mbox{\hyperlink{classFOpenAccessibilityAnalyticsModule_ac96451d214e5cbb871f4e853dc3804c3}{Get}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{OpenAccessibilityAnalytics_8h_source_l00015}{15}} of file \mbox{\hyperlink{OpenAccessibilityAnalytics_8h_source}{Open\+Accessibility\+Analytics.\+h}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFOpenAccessibilityAnalyticsModule_a383b35b64b8a7feba4dd7e28951ed830}\label{classFOpenAccessibilityAnalyticsModule_a383b35b64b8a7feba4dd7e28951ed830}} 
+\index{FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}!DumpTick@{DumpTick}}
+\index{DumpTick@{DumpTick}!FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}}
+\doxysubsubsection{\texorpdfstring{DumpTick()}{DumpTick()}}
+{\footnotesize\ttfamily bool FOpen\+Accessibility\+Analytics\+Module\+::\+Dump\+Tick (\begin{DoxyParamCaption}\item[{float}]{Delta\+Time }\end{DoxyParamCaption})}
+
+The Tick Event for Handling the Dump Event. 
+\begin{DoxyParams}{Parameters}
+{\em Delta\+Time} & Time since last Tick. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{OpenAccessibilityAnalytics_8cpp_source_l00023}{23}} of file \mbox{\hyperlink{OpenAccessibilityAnalytics_8cpp_source}{Open\+Accessibility\+Analytics.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024 \{}
+\DoxyCodeLine{00025     \textcolor{keywordflow}{if} (EventBuffer.IsEmpty())}
+\DoxyCodeLine{00026         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00027 }
+\DoxyCodeLine{00028     \textcolor{keywordflow}{if} (SessionBufferFile.IsEmpty())}
+\DoxyCodeLine{00029         SessionBufferFile = GenerateFileForSessionLog();}
+\DoxyCodeLine{00030 }
+\DoxyCodeLine{00031     UE\_LOG(LogOpenAccessibilityAnalytics, Log, TEXT(\textcolor{stringliteral}{"{}Dumping Event Log To File."{}}));}
+\DoxyCodeLine{00032 }
+\DoxyCodeLine{00033     \textcolor{keywordflow}{if} (!WriteBufferToFile())}
+\DoxyCodeLine{00034     \{}
+\DoxyCodeLine{00035         UE\_LOG(LogOpenAccessibilityAnalytics, Warning, TEXT(\textcolor{stringliteral}{"{}EventLog Dumping Failed."{}}));}
+\DoxyCodeLine{00036     \}}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00039 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFOpenAccessibilityAnalyticsModule_ac96451d214e5cbb871f4e853dc3804c3}\label{classFOpenAccessibilityAnalyticsModule_ac96451d214e5cbb871f4e853dc3804c3}} 
+\index{FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}!Get@{Get}}
+\index{Get@{Get}!FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}}
+\doxysubsubsection{\texorpdfstring{Get()}{Get()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{classFOpenAccessibilityAnalyticsModule}{FOpen\+Accessibility\+Analytics\+Module}} \& FOpen\+Accessibility\+Analytics\+Module\+::\+Get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+End IModule\+Interface Implementation 
+
+Definition at line \mbox{\hyperlink{OpenAccessibilityAnalytics_8h_source_l00028}{28}} of file \mbox{\hyperlink{OpenAccessibilityAnalytics_8h_source}{Open\+Accessibility\+Analytics.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00029     \{}
+\DoxyCodeLine{00030         \textcolor{keywordflow}{return} FModuleManager::GetModuleChecked<FOpenAccessibilityAnalyticsModule>(\textcolor{stringliteral}{"{}OpenAccessibilityAnalytics"{}});}
+\DoxyCodeLine{00031     \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFOpenAccessibilityAnalyticsModule_ae25cc948b4acd04863f5f20347569f0c}\label{classFOpenAccessibilityAnalyticsModule_ae25cc948b4acd04863f5f20347569f0c}} 
+\index{FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}!LogEvent@{LogEvent}}
+\index{LogEvent@{LogEvent}!FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}}
+\doxysubsubsection{\texorpdfstring{LogEvent()}{LogEvent()}}
+{\footnotesize\ttfamily FORCEINLINE void FOpen\+Accessibility\+Analytics\+Module\+::\+Log\+Event (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{Event\+Title,  }\item[{const TCHAR $\ast$}]{Log\+String,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+Logs the Event to the Analytics Module. 
+\begin{DoxyParams}{Parameters}
+{\em Event\+Title} & Title of the Log Event. \\
+\hline
+{\em Log\+String} & Body of the Log Event \\
+\hline
+{\em ...} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{OpenAccessibilityAnalytics_8h_source_l00135}{135}} of file \mbox{\hyperlink{OpenAccessibilityAnalytics_8h_source}{Open\+Accessibility\+Analytics.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00136 \{}
+\DoxyCodeLine{00137     va\_list Args;}
+\DoxyCodeLine{00138 }
+\DoxyCodeLine{00139     va\_start(Args, LogString);}
+\DoxyCodeLine{00140     TStringBuilder<1024> Message;}
+\DoxyCodeLine{00141     Message.AppendV(LogString, Args);}
+\DoxyCodeLine{00142     va\_end(Args);}
+\DoxyCodeLine{00143 }
+\DoxyCodeLine{00144     EventBuffer.Add(}
+\DoxyCodeLine{00145         LoggedEvent(EventTitle, *Message)}
+\DoxyCodeLine{00146     );}
+\DoxyCodeLine{00147 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFOpenAccessibilityAnalyticsModule_a612eac44f129127f3fd1f44a67e0d46b}\label{classFOpenAccessibilityAnalyticsModule_a612eac44f129127f3fd1f44a67e0d46b}} 
+\index{FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}!ShutdownModule@{ShutdownModule}}
+\index{ShutdownModule@{ShutdownModule}!FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}}
+\doxysubsubsection{\texorpdfstring{ShutdownModule()}{ShutdownModule()}}
+{\footnotesize\ttfamily void FOpen\+Accessibility\+Analytics\+Module\+::\+Shutdown\+Module (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{OpenAccessibilityAnalytics_8cpp_source_l00017}{17}} of file \mbox{\hyperlink{OpenAccessibilityAnalytics_8cpp_source}{Open\+Accessibility\+Analytics.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018 \{}
+\DoxyCodeLine{00019     DisableDumpTick();}
+\DoxyCodeLine{00020     RemoveConsoleCommands();}
+\DoxyCodeLine{00021 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFOpenAccessibilityAnalyticsModule_abc569ef39a03bca5a52603b27f11d90c}\label{classFOpenAccessibilityAnalyticsModule_abc569ef39a03bca5a52603b27f11d90c}} 
+\index{FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}!StartupModule@{StartupModule}}
+\index{StartupModule@{StartupModule}!FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}}
+\doxysubsubsection{\texorpdfstring{StartupModule()}{StartupModule()}}
+{\footnotesize\ttfamily void FOpen\+Accessibility\+Analytics\+Module\+::\+Startup\+Module (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+IModule\+Interface Implementation 
+
+Definition at line \mbox{\hyperlink{OpenAccessibilityAnalytics_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{OpenAccessibilityAnalytics_8cpp_source}{Open\+Accessibility\+Analytics.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010 \{}
+\DoxyCodeLine{00011     SessionBufferFile = GenerateFileForSessionLog();}
+\DoxyCodeLine{00012 }
+\DoxyCodeLine{00013     EnableDumpTick();}
+\DoxyCodeLine{00014     AddConsoleCommands();}
+\DoxyCodeLine{00015 \} }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFOpenAccessibilityAnalyticsModule_a6eff1437bb94d82391d2690999f17dd6}\label{classFOpenAccessibilityAnalyticsModule_a6eff1437bb94d82391d2690999f17dd6}} 
+\index{FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}!SupportsDynamicReloading@{SupportsDynamicReloading}}
+\index{SupportsDynamicReloading@{SupportsDynamicReloading}!FOpenAccessibilityAnalyticsModule@{FOpenAccessibilityAnalyticsModule}}
+\doxysubsubsection{\texorpdfstring{SupportsDynamicReloading()}{SupportsDynamicReloading()}}
+{\footnotesize\ttfamily virtual bool FOpen\+Accessibility\+Analytics\+Module\+::\+Supports\+Dynamic\+Reloading (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{OpenAccessibilityAnalytics_8h_source_l00024}{24}} of file \mbox{\hyperlink{OpenAccessibilityAnalytics_8h_source}{Open\+Accessibility\+Analytics.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00024 \{ \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility\+Analytics/\+Public/Open\+Accessibility\+Analytics.\+h\item 
+Source/\+Open\+Accessibility\+Analytics/\+Private/Open\+Accessibility\+Analytics.\+cpp\end{DoxyCompactItemize}

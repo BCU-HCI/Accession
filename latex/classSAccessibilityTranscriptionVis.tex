@@ -1,0 +1,231 @@
+\hypertarget{classSAccessibilityTranscriptionVis}{}\doxysection{SAccessibility\+Transcription\+Vis Class Reference}
+\label{classSAccessibilityTranscriptionVis}\index{SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}}
+Inheritance diagram for SAccessibility\+Transcription\+Vis\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classSAccessibilityTranscriptionVis}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSAccessibilityTranscriptionVis_a4119300efdb3ffe4878c2f35e86f0db7}{SLATE\+\_\+\+BEGIN\+\_\+\+ARGS}} (\mbox{\hyperlink{classSAccessibilityTranscriptionVis}{SAccessibility\+Transcription\+Vis}})
+\item 
+void \mbox{\hyperlink{classSAccessibilityTranscriptionVis_ab09040e8b3ab16d167f826fb07d0a914}{Construct}} (const FArguments \&In\+Args)
+\item 
+virtual void \mbox{\hyperlink{classSAccessibilityTranscriptionVis_a7aa9c906c65adc173f78e73da55d6cbb}{Tick}} (const FGeometry \&Allotted\+Geometry, const double In\+Current\+Time, const float In\+Delta\+Time) override
+\item 
+void \mbox{\hyperlink{classSAccessibilityTranscriptionVis_ac8a6beffcccf1c28e39c28ce9f80646a}{Update\+Top\+Transcription}} (const FString \&In\+Top\+Transcription)
+\begin{DoxyCompactList}\small\item\em Updates the Top Transcription Text, shifting all current transcriptions down.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TWeak\+Ptr$<$ SVertical\+Box $>$ \mbox{\hyperlink{classSAccessibilityTranscriptionVis_a252aa6d658e15a1e272e6cc995fbbf9c}{Transcription\+Container}}
+\begin{DoxyCompactList}\small\item\em The Container of the Transcription Slots.  \end{DoxyCompactList}\item 
+TArray$<$ TWeak\+Ptr$<$ SText\+Block $>$ $>$ \mbox{\hyperlink{classSAccessibilityTranscriptionVis_a2033256c83d4acf28b59c6da9c85a95b}{Transcription\+Slots}}
+\begin{DoxyCompactList}\small\item\em Array of the created Transcription Slots, displaying recieved transcriptions.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{SAccessibilityTranscriptionVis_8h_source_l00009}{9}} of file \mbox{\hyperlink{SAccessibilityTranscriptionVis_8h_source}{SAccessibility\+Transcription\+Vis.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classSAccessibilityTranscriptionVis_afec5cf6f25847f61fbf2da0e583e3355}\label{classSAccessibilityTranscriptionVis_afec5cf6f25847f61fbf2da0e583e3355}} 
+\index{SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}!````~SAccessibilityTranscriptionVis@{$\sim$SAccessibilityTranscriptionVis}}
+\index{````~SAccessibilityTranscriptionVis@{$\sim$SAccessibilityTranscriptionVis}!SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}}
+\doxysubsubsection{\texorpdfstring{$\sim$SAccessibilityTranscriptionVis()}{~SAccessibilityTranscriptionVis()}}
+{\footnotesize\ttfamily SAccessibility\+Transcription\+Vis\+::$\sim$\+SAccessibility\+Transcription\+Vis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{SAccessibilityTranscriptionVis_8cpp_source_l00005}{5}} of file \mbox{\hyperlink{SAccessibilityTranscriptionVis_8cpp_source}{SAccessibility\+Transcription\+Vis.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00006 \{}
+\DoxyCodeLine{00007 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSAccessibilityTranscriptionVis_ab09040e8b3ab16d167f826fb07d0a914}\label{classSAccessibilityTranscriptionVis_ab09040e8b3ab16d167f826fb07d0a914}} 
+\index{SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}!Construct@{Construct}}
+\index{Construct@{Construct}!SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}}
+\doxysubsubsection{\texorpdfstring{Construct()}{Construct()}}
+{\footnotesize\ttfamily void SAccessibility\+Transcription\+Vis\+::\+Construct (\begin{DoxyParamCaption}\item[{const FArguments \&}]{In\+Args }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{SAccessibilityTranscriptionVis_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{SAccessibilityTranscriptionVis_8cpp_source}{SAccessibility\+Transcription\+Vis.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010 \{}
+\DoxyCodeLine{00011     \textcolor{comment}{// Transcription Holder}}
+\DoxyCodeLine{00012     TSharedPtr<SVerticalBox> TranscriptionHolder = SNew(SVerticalBox)}
+\DoxyCodeLine{00013         + SVerticalBox::Slot()}
+\DoxyCodeLine{00014         .Padding(4.0f)}
+\DoxyCodeLine{00015         .AutoHeight();}
+\DoxyCodeLine{00016 }
+\DoxyCodeLine{00017     \textcolor{comment}{// Verify a least one slot will be constructed}}
+\DoxyCodeLine{00018     \textcolor{keywordtype}{int} TranscriptionSlotAmount = FMath::Max(1, InArgs.\_VisAmount);}
+\DoxyCodeLine{00019 }
+\DoxyCodeLine{00020     FSlateFontInfo FontInfo = FAppStyle::GetFontStyle(\textcolor{stringliteral}{"{}NormalText"{}});}
+\DoxyCodeLine{00021     FontInfo.Size = 12;}
+\DoxyCodeLine{00022 }
+\DoxyCodeLine{00023     TSharedPtr<STextBlock> CurrentTranscriptionSlot;}
+\DoxyCodeLine{00024     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < TranscriptionSlotAmount; i++)}
+\DoxyCodeLine{00025     \{}
+\DoxyCodeLine{00026         TranscriptionHolder-\/>AddSlot()}
+\DoxyCodeLine{00027             .HAlign(HAlign\_Center)}
+\DoxyCodeLine{00028             .Padding(4.0f)}
+\DoxyCodeLine{00029             .AutoHeight()}
+\DoxyCodeLine{00030             [}
+\DoxyCodeLine{00031                 SAssignNew(CurrentTranscriptionSlot, STextBlock)}
+\DoxyCodeLine{00032                     .Text(FText::GetEmpty())}
+\DoxyCodeLine{00033                     .Font(FontInfo)}
+\DoxyCodeLine{00034                     .SimpleTextMode(\textcolor{keyword}{true})}
+\DoxyCodeLine{00035                     .ColorAndOpacity(i == 0 ? FSlateColor(FLinearColor(1.0f, 1.0f, 0, 1.0f)) : FSlateColor(FLinearColor(0.5f, 0.5f, 0.5f, 1.0f)))}
+\DoxyCodeLine{00036             ];}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038         \mbox{\hyperlink{classSAccessibilityTranscriptionVis_a2033256c83d4acf28b59c6da9c85a95b}{TranscriptionSlots}}.Add(CurrentTranscriptionSlot);}
+\DoxyCodeLine{00039     \}}
+\DoxyCodeLine{00040 }
+\DoxyCodeLine{00041     \textcolor{comment}{// Construct the Main Component}}
+\DoxyCodeLine{00042 }
+\DoxyCodeLine{00043     ChildSlot}
+\DoxyCodeLine{00044     .Padding(FMargin(5.0f))}
+\DoxyCodeLine{00045     [}
+\DoxyCodeLine{00046         SNew(SOverlay)}
+\DoxyCodeLine{00047         + SOverlay::Slot()}
+\DoxyCodeLine{00048         .ZOrder(1)}
+\DoxyCodeLine{00049         [}
+\DoxyCodeLine{00050             SNew(SBorder)}
+\DoxyCodeLine{00051             .BorderBackgroundColor(FSlateColor(FLinearColor::Gray))}
+\DoxyCodeLine{00052             [}
+\DoxyCodeLine{00053                 SNew(SBox)}
+\DoxyCodeLine{00054                 .MinDesiredWidth(250.0f)}
+\DoxyCodeLine{00055                 .MinDesiredHeight(60.0f)}
+\DoxyCodeLine{00056                 [}
+\DoxyCodeLine{00057                     TranscriptionHolder.ToSharedRef()}
+\DoxyCodeLine{00058                 ]}
+\DoxyCodeLine{00059             ]}
+\DoxyCodeLine{00060         ]}
+\DoxyCodeLine{00061     ];}
+\DoxyCodeLine{00062 }
+\DoxyCodeLine{00063     this-\/>\mbox{\hyperlink{classSAccessibilityTranscriptionVis_a252aa6d658e15a1e272e6cc995fbbf9c}{TranscriptionContainer}} = TranscriptionHolder;}
+\DoxyCodeLine{00064 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSAccessibilityTranscriptionVis_a4119300efdb3ffe4878c2f35e86f0db7}\label{classSAccessibilityTranscriptionVis_a4119300efdb3ffe4878c2f35e86f0db7}} 
+\index{SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}!SLATE\_BEGIN\_ARGS@{SLATE\_BEGIN\_ARGS}}
+\index{SLATE\_BEGIN\_ARGS@{SLATE\_BEGIN\_ARGS}!SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}}
+\doxysubsubsection{\texorpdfstring{SLATE\_BEGIN\_ARGS()}{SLATE\_BEGIN\_ARGS()}}
+{\footnotesize\ttfamily SAccessibility\+Transcription\+Vis\+::\+SLATE\+\_\+\+BEGIN\+\_\+\+ARGS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classSAccessibilityTranscriptionVis}{SAccessibility\+Transcription\+Vis}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{SAccessibilityTranscriptionVis_8h_source_l00013}{13}} of file \mbox{\hyperlink{SAccessibilityTranscriptionVis_8h_source}{SAccessibility\+Transcription\+Vis.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014     : \_VisAmount(1)}
+\DoxyCodeLine{00015     \{\}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSAccessibilityTranscriptionVis_a7aa9c906c65adc173f78e73da55d6cbb}\label{classSAccessibilityTranscriptionVis_a7aa9c906c65adc173f78e73da55d6cbb}} 
+\index{SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}!Tick@{Tick}}
+\index{Tick@{Tick}!SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}}
+\doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
+{\footnotesize\ttfamily void SAccessibility\+Transcription\+Vis\+::\+Tick (\begin{DoxyParamCaption}\item[{const FGeometry \&}]{Allotted\+Geometry,  }\item[{const double}]{In\+Current\+Time,  }\item[{const float}]{In\+Delta\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{SAccessibilityTranscriptionVis_8cpp_source_l00066}{66}} of file \mbox{\hyperlink{SAccessibilityTranscriptionVis_8cpp_source}{SAccessibility\+Transcription\+Vis.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00067 \{}
+\DoxyCodeLine{00068     SBox::Tick(AllottedGeometry, InCurrentTime, InDeltaTime);}
+\DoxyCodeLine{00069 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classSAccessibilityTranscriptionVis_ac8a6beffcccf1c28e39c28ce9f80646a}\label{classSAccessibilityTranscriptionVis_ac8a6beffcccf1c28e39c28ce9f80646a}} 
+\index{SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}!UpdateTopTranscription@{UpdateTopTranscription}}
+\index{UpdateTopTranscription@{UpdateTopTranscription}!SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}}
+\doxysubsubsection{\texorpdfstring{UpdateTopTranscription()}{UpdateTopTranscription()}}
+{\footnotesize\ttfamily void SAccessibility\+Transcription\+Vis\+::\+Update\+Top\+Transcription (\begin{DoxyParamCaption}\item[{const FString \&}]{In\+Top\+Transcription }\end{DoxyParamCaption})}
+
+
+
+Updates the Top Transcription Text, shifting all current transcriptions down.  
+
+
+
+Definition at line \mbox{\hyperlink{SAccessibilityTranscriptionVis_8cpp_source_l00071}{71}} of file \mbox{\hyperlink{SAccessibilityTranscriptionVis_8cpp_source}{SAccessibility\+Transcription\+Vis.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00072 \{}
+\DoxyCodeLine{00073     FString LastTopText = InTopTranscription;}
+\DoxyCodeLine{00074     FString TempText;}
+\DoxyCodeLine{00075 }
+\DoxyCodeLine{00076     TSharedPtr<STextBlock> CurrentTranscriptionSlot;}
+\DoxyCodeLine{00077     \textcolor{keywordflow}{for} (TWeakPtr<STextBlock>\& TranscriptionSlot : \mbox{\hyperlink{classSAccessibilityTranscriptionVis_a2033256c83d4acf28b59c6da9c85a95b}{TranscriptionSlots}})}
+\DoxyCodeLine{00078     \{}
+\DoxyCodeLine{00079         CurrentTranscriptionSlot = TranscriptionSlot.Pin();}
+\DoxyCodeLine{00080 }
+\DoxyCodeLine{00081         TempText = FString(CurrentTranscriptionSlot-\/>GetText().ToString());}
+\DoxyCodeLine{00082         CurrentTranscriptionSlot-\/>SetText(FText::FromString(LastTopText));}
+\DoxyCodeLine{00083 }
+\DoxyCodeLine{00084         CurrentTranscriptionSlot-\/>Invalidate(EInvalidateWidgetReason::PaintAndVolatility);}
+\DoxyCodeLine{00085 }
+\DoxyCodeLine{00086         LastTopText = TempText;}
+\DoxyCodeLine{00087     \}}
+\DoxyCodeLine{00088 }
+\DoxyCodeLine{00089     \mbox{\hyperlink{classSAccessibilityTranscriptionVis_a252aa6d658e15a1e272e6cc995fbbf9c}{TranscriptionContainer}}.Pin()-\/>Invalidate(EInvalidateWidget::Layout);}
+\DoxyCodeLine{00090 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classSAccessibilityTranscriptionVis_a252aa6d658e15a1e272e6cc995fbbf9c}\label{classSAccessibilityTranscriptionVis_a252aa6d658e15a1e272e6cc995fbbf9c}} 
+\index{SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}!TranscriptionContainer@{TranscriptionContainer}}
+\index{TranscriptionContainer@{TranscriptionContainer}!SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}}
+\doxysubsubsection{\texorpdfstring{TranscriptionContainer}{TranscriptionContainer}}
+{\footnotesize\ttfamily TWeak\+Ptr$<$SVertical\+Box$>$ SAccessibility\+Transcription\+Vis\+::\+Transcription\+Container\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The Container of the Transcription Slots.  
+
+
+
+Definition at line \mbox{\hyperlink{SAccessibilityTranscriptionVis_8h_source_l00039}{39}} of file \mbox{\hyperlink{SAccessibilityTranscriptionVis_8h_source}{SAccessibility\+Transcription\+Vis.\+h}}.
+
+\mbox{\Hypertarget{classSAccessibilityTranscriptionVis_a2033256c83d4acf28b59c6da9c85a95b}\label{classSAccessibilityTranscriptionVis_a2033256c83d4acf28b59c6da9c85a95b}} 
+\index{SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}!TranscriptionSlots@{TranscriptionSlots}}
+\index{TranscriptionSlots@{TranscriptionSlots}!SAccessibilityTranscriptionVis@{SAccessibilityTranscriptionVis}}
+\doxysubsubsection{\texorpdfstring{TranscriptionSlots}{TranscriptionSlots}}
+{\footnotesize\ttfamily TArray$<$TWeak\+Ptr$<$SText\+Block$>$ $>$ SAccessibility\+Transcription\+Vis\+::\+Transcription\+Slots\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Array of the created Transcription Slots, displaying recieved transcriptions.  
+
+
+
+Definition at line \mbox{\hyperlink{SAccessibilityTranscriptionVis_8h_source_l00044}{44}} of file \mbox{\hyperlink{SAccessibilityTranscriptionVis_8h_source}{SAccessibility\+Transcription\+Vis.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility/\+Public/\+Accessibility\+Widgets/SAccessibility\+Transcription\+Vis.\+h\item 
+Source/\+Open\+Accessibility/\+Private/\+Accessibility\+Widgets/SAccessibility\+Transcription\+Vis.\+cpp\end{DoxyCompactItemize}

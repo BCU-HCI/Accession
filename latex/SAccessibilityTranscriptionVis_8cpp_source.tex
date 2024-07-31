@@ -1,0 +1,96 @@
+\hypertarget{SAccessibilityTranscriptionVis_8cpp_source}{}\doxysection{SAccessibility\+Transcription\+Vis.\+cpp}
+\label{SAccessibilityTranscriptionVis_8cpp_source}\index{Source/OpenAccessibility/Private/AccessibilityWidgets/SAccessibilityTranscriptionVis.cpp@{Source/OpenAccessibility/Private/AccessibilityWidgets/SAccessibilityTranscriptionVis.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00001}00001 \textcolor{comment}{// Copyright F-\/Dudley. All Rights Reserved.}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include "{}AccessibilityWidgets/SAccessibilityTranscriptionVis.h"{}}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00005}00005 SAccessibilityTranscriptionVis::\string~SAccessibilityTranscriptionVis()}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00006}00006 \{}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00007}00007 \}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00009}00009 \textcolor{keywordtype}{void} SAccessibilityTranscriptionVis::Construct(\textcolor{keyword}{const} FArguments\& InArgs)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00010}00010 \{}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00011}00011     \textcolor{comment}{// Transcription Holder}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00012}00012     TSharedPtr<SVerticalBox> TranscriptionHolder = SNew(SVerticalBox)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00013}00013         + SVerticalBox::Slot()}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00014}00014         .Padding(4.0f)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00015}00015         .AutoHeight();}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00017}00017     \textcolor{comment}{// Verify a least one slot will be constructed}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00018}00018     \textcolor{keywordtype}{int} TranscriptionSlotAmount = FMath::Max(1, InArgs.\_VisAmount);}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00020}00020     FSlateFontInfo FontInfo = FAppStyle::GetFontStyle(\textcolor{stringliteral}{"{}NormalText"{}});}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00021}00021     FontInfo.Size = 12;}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00023}00023     TSharedPtr<STextBlock> CurrentTranscriptionSlot;}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00024}00024     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < TranscriptionSlotAmount; i++)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00025}00025     \{}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00026}00026         TranscriptionHolder-\/>AddSlot()}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00027}00027             .HAlign(HAlign\_Center)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00028}00028             .Padding(4.0f)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00029}00029             .AutoHeight()}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00030}00030             [}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00031}00031                 SAssignNew(CurrentTranscriptionSlot, STextBlock)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00032}00032                     .Text(FText::GetEmpty())}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00033}00033                     .Font(FontInfo)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00034}00034                     .SimpleTextMode(\textcolor{keyword}{true})}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00035}00035                     .ColorAndOpacity(i == 0 ? FSlateColor(FLinearColor(1.0f, 1.0f, 0, 1.0f)) : FSlateColor(FLinearColor(0.5f, 0.5f, 0.5f, 1.0f)))}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00036}00036             ];}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00038}00038         \mbox{\hyperlink{classSAccessibilityTranscriptionVis_a2033256c83d4acf28b59c6da9c85a95b}{TranscriptionSlots}}.Add(CurrentTranscriptionSlot);}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00039}00039     \}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00041}00041     \textcolor{comment}{// Construct the Main Component}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00043}00043     ChildSlot}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00044}00044     .Padding(FMargin(5.0f))}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00045}00045     [}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00046}00046         SNew(SOverlay)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00047}00047         + SOverlay::Slot()}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00048}00048         .ZOrder(1)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00049}00049         [}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00050}00050             SNew(SBorder)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00051}00051             .BorderBackgroundColor(FSlateColor(FLinearColor::Gray))}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00052}00052             [}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00053}00053                 SNew(SBox)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00054}00054                 .MinDesiredWidth(250.0f)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00055}00055                 .MinDesiredHeight(60.0f)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00056}00056                 [}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00057}00057                     TranscriptionHolder.ToSharedRef()}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00058}00058                 ]}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00059}00059             ]}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00060}00060         ]}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00061}00061     ];}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00063}00063     this-\/>\mbox{\hyperlink{classSAccessibilityTranscriptionVis_a252aa6d658e15a1e272e6cc995fbbf9c}{TranscriptionContainer}} = TranscriptionHolder;}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00064}00064 \}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00066}00066 \textcolor{keywordtype}{void} SAccessibilityTranscriptionVis::Tick(\textcolor{keyword}{const} FGeometry\& AllottedGeometry, \textcolor{keyword}{const} \textcolor{keywordtype}{double} InCurrentTime, \textcolor{keyword}{const} \textcolor{keywordtype}{float} InDeltaTime)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00067}00067 \{}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00068}00068     SBox::Tick(AllottedGeometry, InCurrentTime, InDeltaTime);}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00069}00069 \}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00071}\mbox{\hyperlink{classSAccessibilityTranscriptionVis_ac8a6beffcccf1c28e39c28ce9f80646a}{00071}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classSAccessibilityTranscriptionVis_ac8a6beffcccf1c28e39c28ce9f80646a}{SAccessibilityTranscriptionVis::UpdateTopTranscription}}(\textcolor{keyword}{const} FString\& InTopTranscription)}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00072}00072 \{}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00073}00073     FString LastTopText = InTopTranscription;}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00074}00074     FString TempText;}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00075}00075 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00076}00076     TSharedPtr<STextBlock> CurrentTranscriptionSlot;}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00077}00077     \textcolor{keywordflow}{for} (TWeakPtr<STextBlock>\& TranscriptionSlot : \mbox{\hyperlink{classSAccessibilityTranscriptionVis_a2033256c83d4acf28b59c6da9c85a95b}{TranscriptionSlots}})}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00078}00078     \{}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00079}00079         CurrentTranscriptionSlot = TranscriptionSlot.Pin();}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00081}00081         TempText = FString(CurrentTranscriptionSlot-\/>GetText().ToString());}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00082}00082         CurrentTranscriptionSlot-\/>SetText(FText::FromString(LastTopText));}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00084}00084         CurrentTranscriptionSlot-\/>Invalidate(EInvalidateWidgetReason::PaintAndVolatility);}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00086}00086         LastTopText = TempText;}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00087}00087     \}}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00088}00088 }
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00089}00089     \mbox{\hyperlink{classSAccessibilityTranscriptionVis_a252aa6d658e15a1e272e6cc995fbbf9c}{TranscriptionContainer}}.Pin()-\/>Invalidate(EInvalidateWidget::Layout);}
+\DoxyCodeLine{\Hypertarget{SAccessibilityTranscriptionVis_8cpp_source_l00090}00090 \}}
+
+\end{DoxyCode}

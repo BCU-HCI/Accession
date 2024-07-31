@@ -1,0 +1,808 @@
+\hypertarget{classUAccessibilityGraphLocomotionContext}{}\doxysection{UAccessibility\+Graph\+Locomotion\+Context Class Reference}
+\label{classUAccessibilityGraphLocomotionContext}\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+Inheritance diagram for UAccessibility\+Graph\+Locomotion\+Context\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classUAccessibilityGraphLocomotionContext}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a82d4ef916bbb81f1acd27e27cb818758}{UAccessibility\+Graph\+Locomotion\+Context}} (const FObject\+Initializer \&Object\+Initializer)
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_af29e1da0bab6f82dbb885e9d5422200d}{Init}} ()
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_af4b0a1a6fc76df294cc637729e1038b9}{Init}} (TShared\+Ref$<$ SGraph\+Editor $>$ In\+Graph\+Editor)
+\item 
+bool \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a323c9e21b634855c358ae5d493d3dec5}{Select\+Chunk}} (const int32 \&Index)
+\item 
+bool \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_ad53e6d251aa7066aa2c27585df247e5d}{Revert\+To\+Previous\+View}} ()
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_ad0ac8ea4a3fb71e4783e722e29dd2ba8}{Confirm\+Selection}} ()
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a8b1646da67dc5339787d245f9e1998a3}{Cancel\+Locomotion}} ()
+\item 
+virtual bool \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_ae996ffcd1a40a9252c418d97be53e7ff}{Close}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a84c01eb2bd97a57b0db7aa02790824c4}{Move\+Viewport}} (const FVector2D \&In\+Top\+Left, const FVector2D \&In\+Bottom\+Right) const
+\item 
+bool \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_af94d06d4af2a3a407ea3cea1f293bd9c}{Move\+Viewport}} (const \mbox{\hyperlink{structFPanelViewPosition}{FPanel\+View\+Position}} \&New\+View\+Position) const
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a9df4044587b2dc7e7c56e321ba48b062}{Change\+Chunk\+Vis}} (const int32 \&Index, const FLinear\+Color \&New\+Color=FLinear\+Color\+::\+Yellow)
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_ab7bdc1a29a537cb8a49be9b6234386d1}{Create\+Visual\+Grid}} (const TShared\+Ref$<$ SGraph\+Editor $>$ In\+Graph\+Editor)
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_ad2ac44c98d893572335ea93031be6136}{Generate\+Visual\+Chunks}} (const TShared\+Ref$<$ SGraph\+Editor $>$ In\+Graph\+Editor, FInt\+Vector2 In\+Visual\+Chunk\+Size=FInt\+Vector2(10))
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_ae7eddc332328ec063a6a5ef6a31f2c4c}{Calculate\+Visual\+Chunks\+Bounds}} ()
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a2c23dc7b460a8d26db2c05f376cac325}{Remove\+Visual\+Grid}} ()
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_ac67412eb3986ab501cbe81a537d8663b}{Hide\+Native\+Visuals}} ()
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_ab4276812f8510288d43b56517262709d}{Un\+Hide\+Native\+Visuals}} ()
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a564dd3fe4201d75a10fc1d21180e288e}{On\+Focus\+Changed}} (const FFocus\+Event \&Focus\+Event, const FWeak\+Widget\+Path \&Old\+Focused\+Widget\+Path, const TShared\+Ptr$<$ SWidget $>$ \&Old\+Focused\+Widget, const FWidget\+Path \&New\+Focused\+Widget\+Path, const TShared\+Ptr$<$ SWidget $>$ \&New\+Focused\+Widget)
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a132595f3752ddfd5bbbe4b91426536cb}{Bind\+Focus\+Changed\+Event}} ()
+\item 
+void \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a1fa4e04373e415b9864fb4d4ab3fcd6f}{Unbind\+Focus\+Changed\+Event}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+FVector2D \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a48549c081c2e16ac9d1cd18f96f0de9e}{Start\+View\+Position}}
+\item 
+float \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_acebb1b21e1bd8ae3b5c5bed246e7102c}{Start\+View\+Zoom}}
+\item 
+\mbox{\hyperlink{structFPanelViewPosition}{FPanel\+View\+Position}} \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a1a3eaf400a55820f041d06fa0aa4e7db}{Current\+View\+Position}}
+\item 
+TArray$<$ \mbox{\hyperlink{structFPanelViewPosition}{FPanel\+View\+Position}} $>$ \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a337380fced5cf88c361b58ddc26850d0}{Previous\+Positions}}
+\item 
+TArray$<$ \mbox{\hyperlink{structFGraphLocomotionChunk}{FGraph\+Locomotion\+Chunk}} $>$ \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a8950755c4b2544511bd9ffad054a3651}{Chunk\+Array}}
+\item 
+FInt\+Vector2 \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a7dceb16edc66c0c17758acc16e35895f}{Chunk\+Size}}
+\item 
+TWeak\+Ptr$<$ SUniform\+Grid\+Panel $>$ \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a383928eb2503e41740a720694675d18a}{Grid\+Container}}
+\item 
+TWeak\+Ptr$<$ SOverlay $>$ \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_a5e3618971d0cf93b260d9115fa16b420}{Grid\+Parent}}
+\item 
+TWeak\+Ptr$<$ SGraph\+Editor $>$ \mbox{\hyperlink{classUAccessibilityGraphLocomotionContext_ac320b4fbb045740a38622e3a50403852}{Linked\+Editor}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00099}{99}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a82d4ef916bbb81f1acd27e27cb818758}\label{classUAccessibilityGraphLocomotionContext_a82d4ef916bbb81f1acd27e27cb818758}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{UAccessibilityGraphLocomotionContext()}{UAccessibilityGraphLocomotionContext()}}
+{\footnotesize\ttfamily UAccessibility\+Graph\+Locomotion\+Context\+::\+UAccessibility\+Graph\+Locomotion\+Context (\begin{DoxyParamCaption}\item[{const FObject\+Initializer \&}]{Object\+Initializer }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010     : \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}()}
+\DoxyCodeLine{00011 \{}
+\DoxyCodeLine{00012     LinkedEditor = TWeakPtr<SGraphEditor>();}
+\DoxyCodeLine{00013 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_afef085da1f3b272c30c72906b8416533}\label{classUAccessibilityGraphLocomotionContext_afef085da1f3b272c30c72906b8416533}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!````~UAccessibilityGraphLocomotionContext@{$\sim$UAccessibilityGraphLocomotionContext}}
+\index{````~UAccessibilityGraphLocomotionContext@{$\sim$UAccessibilityGraphLocomotionContext}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{$\sim$UAccessibilityGraphLocomotionContext()}{~UAccessibilityGraphLocomotionContext()}}
+{\footnotesize\ttfamily UAccessibility\+Graph\+Locomotion\+Context\+::$\sim$\+UAccessibility\+Graph\+Locomotion\+Context (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016 \{}
+\DoxyCodeLine{00017     Close();}
+\DoxyCodeLine{00018 }
+\DoxyCodeLine{00019     UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}GraphLocomotion: CONTEXT DESTROYED."{}}));}
+\DoxyCodeLine{00020 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a132595f3752ddfd5bbbe4b91426536cb}\label{classUAccessibilityGraphLocomotionContext_a132595f3752ddfd5bbbe4b91426536cb}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!BindFocusChangedEvent@{BindFocusChangedEvent}}
+\index{BindFocusChangedEvent@{BindFocusChangedEvent}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{BindFocusChangedEvent()}{BindFocusChangedEvent()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Bind\+Focus\+Changed\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00364}{364}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00365 \{}
+\DoxyCodeLine{00366     FocusChangedHandle = FSlateApplication::Get().OnFocusChanging()}
+\DoxyCodeLine{00367         .AddUObject(\textcolor{keyword}{this}, \&UAccessibilityGraphLocomotionContext::OnFocusChanged);}
+\DoxyCodeLine{00368 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_ae7eddc332328ec063a6a5ef6a31f2c4c}\label{classUAccessibilityGraphLocomotionContext_ae7eddc332328ec063a6a5ef6a31f2c4c}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!CalculateVisualChunksBounds@{CalculateVisualChunksBounds}}
+\index{CalculateVisualChunksBounds@{CalculateVisualChunksBounds}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{CalculateVisualChunksBounds()}{CalculateVisualChunksBounds()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Calculate\+Visual\+Chunks\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00248}{248}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00249 \{}
+\DoxyCodeLine{00250     \textcolor{keywordflow}{if} (!LinkedEditor.IsValid())}
+\DoxyCodeLine{00251         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00252 }
+\DoxyCodeLine{00253     SGraphPanel* LinkedPanel = LinkedEditor.Pin()-\/>GetGraphPanel();}
+\DoxyCodeLine{00254     FVector2D PanelGeoSize = LinkedPanel-\/>GetTickSpaceGeometry().GetLocalSize();}
+\DoxyCodeLine{00255 }
+\DoxyCodeLine{00256     \textcolor{keywordtype}{double} ChunkWidgetSizeX = PanelGeoSize.X / ChunkSize.X;}
+\DoxyCodeLine{00257     \textcolor{keywordtype}{double} ChunkWidgetSizeY = PanelGeoSize.Y / ChunkSize.Y;}
+\DoxyCodeLine{00258 }
+\DoxyCodeLine{00259     \mbox{\hyperlink{structFGraphLocomotionChunk}{FGraphLocomotionChunk}} Chunk;}
+\DoxyCodeLine{00260     \textcolor{keywordtype}{double} ChunkX, ChunkY;}
+\DoxyCodeLine{00261 }
+\DoxyCodeLine{00262     int32 ArrIndex;}
+\DoxyCodeLine{00263     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} Y = 0; Y < ChunkSize.Y; Y++)}
+\DoxyCodeLine{00264     \{}
+\DoxyCodeLine{00265         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} X = 0; X < ChunkSize.X; X++)}
+\DoxyCodeLine{00266         \{}
+\DoxyCodeLine{00267             ArrIndex = (Y * ChunkSize.X) + X;}
+\DoxyCodeLine{00268 }
+\DoxyCodeLine{00269             Chunk = ChunkArray[ArrIndex];}
+\DoxyCodeLine{00270 }
+\DoxyCodeLine{00271             ChunkX = X * ChunkWidgetSizeX;}
+\DoxyCodeLine{00272             ChunkY = Y * ChunkWidgetSizeY;}
+\DoxyCodeLine{00273 }
+\DoxyCodeLine{00274             Chunk.SetChunkBounds(}
+\DoxyCodeLine{00275                 FVector2D(ChunkX, ChunkY), }
+\DoxyCodeLine{00276                 FVector2D(ChunkWidgetSizeX + ChunkX, ChunkWidgetSizeY + ChunkY)}
+\DoxyCodeLine{00277             );}
+\DoxyCodeLine{00278 }
+\DoxyCodeLine{00279             ChunkArray[ArrIndex] = Chunk;}
+\DoxyCodeLine{00280         \}}
+\DoxyCodeLine{00281     \}}
+\DoxyCodeLine{00282 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a8b1646da67dc5339787d245f9e1998a3}\label{classUAccessibilityGraphLocomotionContext_a8b1646da67dc5339787d245f9e1998a3}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!CancelLocomotion@{CancelLocomotion}}
+\index{CancelLocomotion@{CancelLocomotion}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{CancelLocomotion()}{CancelLocomotion()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Cancel\+Locomotion (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00121}{121}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00122 \{}
+\DoxyCodeLine{00123     \textcolor{keywordflow}{if} (LinkedEditor.IsValid())}
+\DoxyCodeLine{00124     \{}
+\DoxyCodeLine{00125         LinkedEditor.Pin()-\/>SetViewLocation(StartViewPosition, StartViewZoom);}
+\DoxyCodeLine{00126 }
+\DoxyCodeLine{00127         Close();}
+\DoxyCodeLine{00128     \}}
+\DoxyCodeLine{00129 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a9df4044587b2dc7e7c56e321ba48b062}\label{classUAccessibilityGraphLocomotionContext_a9df4044587b2dc7e7c56e321ba48b062}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!ChangeChunkVis@{ChangeChunkVis}}
+\index{ChangeChunkVis@{ChangeChunkVis}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{ChangeChunkVis()}{ChangeChunkVis()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Change\+Chunk\+Vis (\begin{DoxyParamCaption}\item[{const int32 \&}]{Index,  }\item[{const FLinear\+Color \&}]{New\+Color = {\ttfamily FLinearColor\+:\+:Yellow} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00172}{172}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00173 \{}
+\DoxyCodeLine{00174     check(Index < ChunkArray.Num() \&\& Index >= 0)}
+\DoxyCodeLine{00175 }
+\DoxyCodeLine{00176     ChunkArray[Index].SetVisColor(NewColor);}
+\DoxyCodeLine{00177 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_ae996ffcd1a40a9252c418d97be53e7ff}\label{classUAccessibilityGraphLocomotionContext_ae996ffcd1a40a9252c418d97be53e7ff}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!Close@{Close}}
+\index{Close@{Close}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{Close()}{Close()}}
+{\footnotesize\ttfamily bool UAccessibility\+Graph\+Locomotion\+Context\+::\+Close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}}.
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00131}{131}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00132 \{}
+\DoxyCodeLine{00133     UnbindFocusChangedEvent();}
+\DoxyCodeLine{00134 }
+\DoxyCodeLine{00135     \textcolor{keywordflow}{if} (SelectionTimerHandle.IsValid())}
+\DoxyCodeLine{00136         GEditor-\/>GetTimerManager()-\/>ClearTimer(SelectionTimerHandle);}
+\DoxyCodeLine{00137 }
+\DoxyCodeLine{00138     RemoveVisualGrid();}
+\DoxyCodeLine{00139     UnHideNativeVisuals();}
+\DoxyCodeLine{00140 }
+\DoxyCodeLine{00141     \mbox{\hyperlink{classUPhraseTreeContextObject_a2cba304de4e6f40576d7f62d10a57472}{bIsActive}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{00142 }
+\DoxyCodeLine{00143     RemoveFromRoot();}
+\DoxyCodeLine{00144     MarkAsGarbage();}
+\DoxyCodeLine{00145 }
+\DoxyCodeLine{00146     UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}GraphLocomotion: CONTEXT CLOSED."{}}));}
+\DoxyCodeLine{00147 }
+\DoxyCodeLine{00148     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00149 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_ad0ac8ea4a3fb71e4783e722e29dd2ba8}\label{classUAccessibilityGraphLocomotionContext_ad0ac8ea4a3fb71e4783e722e29dd2ba8}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!ConfirmSelection@{ConfirmSelection}}
+\index{ConfirmSelection@{ConfirmSelection}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{ConfirmSelection()}{ConfirmSelection()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Confirm\+Selection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00116}{116}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00117 \{}
+\DoxyCodeLine{00118     Close();}
+\DoxyCodeLine{00119 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_ab7bdc1a29a537cb8a49be9b6234386d1}\label{classUAccessibilityGraphLocomotionContext_ab7bdc1a29a537cb8a49be9b6234386d1}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!CreateVisualGrid@{CreateVisualGrid}}
+\index{CreateVisualGrid@{CreateVisualGrid}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{CreateVisualGrid()}{CreateVisualGrid()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Create\+Visual\+Grid (\begin{DoxyParamCaption}\item[{const TShared\+Ref$<$ SGraph\+Editor $>$}]{In\+Graph\+Editor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00179}{179}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00180 \{}
+\DoxyCodeLine{00181     TSharedPtr<SOverlay> GraphViewport = StaticCastSharedPtr<SOverlay>(InGraphEditor-\/>GetGraphPanel()-\/>GetParentWidget());}
+\DoxyCodeLine{00182     \textcolor{keywordflow}{if} (!GraphViewport.IsValid()) }
+\DoxyCodeLine{00183     \{}
+\DoxyCodeLine{00184         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}GraphLocomotion: NO GRAPH VIEWPORT FOUND."{}}));}
+\DoxyCodeLine{00185         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00186     \}}
+\DoxyCodeLine{00187 }
+\DoxyCodeLine{00188     GridParent = GraphViewport;}
+\DoxyCodeLine{00189 }
+\DoxyCodeLine{00190     GraphViewport-\/>AddSlot()}
+\DoxyCodeLine{00191     .ZOrder(1)}
+\DoxyCodeLine{00192     .VAlign(VAlign\_Fill)}
+\DoxyCodeLine{00193     .HAlign(HAlign\_Fill)}
+\DoxyCodeLine{00194     [}
+\DoxyCodeLine{00195         SAssignNew(GridContainer, SUniformGridPanel)}
+\DoxyCodeLine{00196     ];}
+\DoxyCodeLine{00197 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_ad2ac44c98d893572335ea93031be6136}\label{classUAccessibilityGraphLocomotionContext_ad2ac44c98d893572335ea93031be6136}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!GenerateVisualChunks@{GenerateVisualChunks}}
+\index{GenerateVisualChunks@{GenerateVisualChunks}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{GenerateVisualChunks()}{GenerateVisualChunks()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Generate\+Visual\+Chunks (\begin{DoxyParamCaption}\item[{const TShared\+Ref$<$ SGraph\+Editor $>$}]{In\+Graph\+Editor,  }\item[{FInt\+Vector2}]{In\+Visual\+Chunk\+Size = {\ttfamily FIntVector2(10)} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00199}{199}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00200 \{}
+\DoxyCodeLine{00201     ChunkArray.Reset(InVisualChunkSize.X * InVisualChunkSize.Y);}
+\DoxyCodeLine{00202     ChunkSize = InVisualChunkSize;}
+\DoxyCodeLine{00203 }
+\DoxyCodeLine{00204     TSharedPtr<SUniformGridPanel> GridContainerPtr = GridContainer.Pin();}
+\DoxyCodeLine{00205 }
+\DoxyCodeLine{00206     int32 ChunkIndex = -\/1;}
+\DoxyCodeLine{00207     TSharedPtr<SBox> ChunkWidget;}
+\DoxyCodeLine{00208     TSharedPtr<SBorder> ChunkVisWidget;}
+\DoxyCodeLine{00209     TSharedPtr<SIndexer> ChunkIndexer;}
+\DoxyCodeLine{00210 }
+\DoxyCodeLine{00211     \textcolor{keywordflow}{for} (int32 Y = 0; Y < InVisualChunkSize.Y; Y++)}
+\DoxyCodeLine{00212     \{}
+\DoxyCodeLine{00213         \textcolor{keywordflow}{for} (int32 X = 0; X < InVisualChunkSize.X; X++)}
+\DoxyCodeLine{00214         \{}
+\DoxyCodeLine{00215             ChunkIndex = X + (Y * InVisualChunkSize.X);}
+\DoxyCodeLine{00216             \mbox{\hyperlink{structFGraphLocomotionChunk}{FGraphLocomotionChunk}}\& GraphChunk = ChunkArray.EmplaceAt\_GetRef(ChunkIndex);}
+\DoxyCodeLine{00217 }
+\DoxyCodeLine{00218             GridContainerPtr-\/>AddSlot(X, Y)}
+\DoxyCodeLine{00219             [}
+\DoxyCodeLine{00220                 SAssignNew(ChunkWidget, SBox)}
+\DoxyCodeLine{00221                 [}
+\DoxyCodeLine{00222                     SAssignNew(ChunkVisWidget, SBorder)}
+\DoxyCodeLine{00223                     .Padding(0.5f)}
+\DoxyCodeLine{00224                     .BorderBackgroundColor(FLinearColor::Yellow)}
+\DoxyCodeLine{00225                     [}
+\DoxyCodeLine{00226                         SNew(SBorder)}
+\DoxyCodeLine{00227                         .HAlign(HAlign\_Center)}
+\DoxyCodeLine{00228                         .VAlign(VAlign\_Center)}
+\DoxyCodeLine{00229                         .BorderBackgroundColor(FLinearColor::Yellow)}
+\DoxyCodeLine{00230                         [}
+\DoxyCodeLine{00231                             SAssignNew(ChunkIndexer, \mbox{\hyperlink{classSIndexer}{SIndexer}})}
+\DoxyCodeLine{00232                             .TextColor(FLinearColor::Yellow)}
+\DoxyCodeLine{00233                             .IndexValue(ChunkIndex)}
+\DoxyCodeLine{00234                         ]}
+\DoxyCodeLine{00235                     ]}
+\DoxyCodeLine{00236                 ]}
+\DoxyCodeLine{00237             ];}
+\DoxyCodeLine{00238 }
+\DoxyCodeLine{00239             GraphChunk.ChunkWidget = ChunkWidget;}
+\DoxyCodeLine{00240             GraphChunk.ChunkVisWidget = ChunkVisWidget;}
+\DoxyCodeLine{00241             GraphChunk.ChunkIndexer = ChunkIndexer;}
+\DoxyCodeLine{00242         \}}
+\DoxyCodeLine{00243     \}}
+\DoxyCodeLine{00244 }
+\DoxyCodeLine{00245     CalculateVisualChunksBounds();}
+\DoxyCodeLine{00246 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_ac67412eb3986ab501cbe81a537d8663b}\label{classUAccessibilityGraphLocomotionContext_ac67412eb3986ab501cbe81a537d8663b}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!HideNativeVisuals@{HideNativeVisuals}}
+\index{HideNativeVisuals@{HideNativeVisuals}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{HideNativeVisuals()}{HideNativeVisuals()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Hide\+Native\+Visuals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00302}{302}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00303 \{}
+\DoxyCodeLine{00304     NativeWidgetVisibility.Empty();}
+\DoxyCodeLine{00305 }
+\DoxyCodeLine{00306     TSharedPtr<SOverlay> GraphViewport = GridParent.Pin();}
+\DoxyCodeLine{00307     TSharedPtr<SUniformGridPanel> VisualGrid = GridContainer.Pin();}
+\DoxyCodeLine{00308     SGraphPanel* GraphPanel = LinkedEditor.Pin()-\/>GetGraphPanel();}
+\DoxyCodeLine{00309 }
+\DoxyCodeLine{00310     FChildren* ViewportChildren = GraphViewport-\/>GetChildren();}
+\DoxyCodeLine{00311 }
+\DoxyCodeLine{00312     TSharedPtr<SWidget> ChildWidget;}
+\DoxyCodeLine{00313     \textcolor{keywordflow}{for} (int32 i = 0; i < ViewportChildren-\/>Num(); i++)}
+\DoxyCodeLine{00314     \{}
+\DoxyCodeLine{00315         ChildWidget = ViewportChildren-\/>GetChildAt(i);}
+\DoxyCodeLine{00316 }
+\DoxyCodeLine{00317         \textcolor{keywordflow}{if} (ChildWidget != VisualGrid \&\& ChildWidget.Get() != GraphPanel)}
+\DoxyCodeLine{00318         \{}
+\DoxyCodeLine{00319             NativeWidgetVisibility.Add(ChildWidget.Get(), ChildWidget-\/>GetVisibility());}
+\DoxyCodeLine{00320 }
+\DoxyCodeLine{00321             ChildWidget-\/>SetVisibility(EVisibility::Hidden);}
+\DoxyCodeLine{00322         \}}
+\DoxyCodeLine{00323     \}}
+\DoxyCodeLine{00324 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_af29e1da0bab6f82dbb885e9d5422200d}\label{classUAccessibilityGraphLocomotionContext_af29e1da0bab6f82dbb885e9d5422200d}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!Init@{Init}}
+\index{Init@{Init}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023 \{}
+\DoxyCodeLine{00024     \{}
+\DoxyCodeLine{00025         TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()-\/>GetActiveTab();}
+\DoxyCodeLine{00026         \textcolor{keywordflow}{if} (!ActiveTab.IsValid())}
+\DoxyCodeLine{00027         \{}
+\DoxyCodeLine{00028             UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}GraphLocomotion: NO ACTIVE TAB FOUND."{}}));}
+\DoxyCodeLine{00029             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00030         \}}
+\DoxyCodeLine{00031 }
+\DoxyCodeLine{00032         LinkedEditor = StaticCastSharedRef<SGraphEditor>(ActiveTab-\/>GetContent());}
+\DoxyCodeLine{00033         \textcolor{keywordflow}{if} (!LinkedEditor.IsValid()) }
+\DoxyCodeLine{00034         \{}
+\DoxyCodeLine{00035             UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}GraphLocomotion: CURRENT ACTIVE TAB IS NOT OF TYPE -\/ SGraphEditor"{}}));}
+\DoxyCodeLine{00036             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00037         \}}
+\DoxyCodeLine{00038     \}}
+\DoxyCodeLine{00039 }
+\DoxyCodeLine{00040     TSharedPtr<SGraphEditor> LinkedEditorPtr = LinkedEditor.Pin();}
+\DoxyCodeLine{00041 }
+\DoxyCodeLine{00042     Init(LinkedEditorPtr.ToSharedRef());}
+\DoxyCodeLine{00043 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_af4b0a1a6fc76df294cc637729e1038b9}\label{classUAccessibilityGraphLocomotionContext_af4b0a1a6fc76df294cc637729e1038b9}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!Init@{Init}}
+\index{Init@{Init}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{Init()}{Init()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Init (\begin{DoxyParamCaption}\item[{TShared\+Ref$<$ SGraph\+Editor $>$}]{In\+Graph\+Editor }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00045}{45}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046 \{}
+\DoxyCodeLine{00047     LinkedEditor = InGraphEditor;}
+\DoxyCodeLine{00048 }
+\DoxyCodeLine{00049     InGraphEditor-\/>GetViewLocation(StartViewPosition, StartViewZoom);}
+\DoxyCodeLine{00050     InGraphEditor-\/>ZoomToFit(\textcolor{keyword}{false});}
+\DoxyCodeLine{00051 }
+\DoxyCodeLine{00052     CreateVisualGrid(InGraphEditor);}
+\DoxyCodeLine{00053     GenerateVisualChunks(InGraphEditor, FIntVector2(6, 4));}
+\DoxyCodeLine{00054 }
+\DoxyCodeLine{00055     HideNativeVisuals();}
+\DoxyCodeLine{00056 }
+\DoxyCodeLine{00057     BindFocusChangedEvent();}
+\DoxyCodeLine{00058 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_af94d06d4af2a3a407ea3cea1f293bd9c}\label{classUAccessibilityGraphLocomotionContext_af94d06d4af2a3a407ea3cea1f293bd9c}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!MoveViewport@{MoveViewport}}
+\index{MoveViewport@{MoveViewport}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{MoveViewport()}{MoveViewport()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool UAccessibility\+Graph\+Locomotion\+Context\+::\+Move\+Viewport (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structFPanelViewPosition}{FPanel\+View\+Position}} \&}]{New\+View\+Position }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00162}{162}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00163 \{}
+\DoxyCodeLine{00164     \textcolor{keywordflow}{if} (!LinkedEditor.IsValid())}
+\DoxyCodeLine{00165         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00166 }
+\DoxyCodeLine{00167     SGraphPanel* LinkedPanel = LinkedEditor.Pin()-\/>GetGraphPanel();}
+\DoxyCodeLine{00168 }
+\DoxyCodeLine{00169     \textcolor{keywordflow}{return} LinkedPanel-\/>JumpToRect(NewViewPosition.TopLeft, NewViewPosition.BotRight);}
+\DoxyCodeLine{00170 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a84c01eb2bd97a57b0db7aa02790824c4}\label{classUAccessibilityGraphLocomotionContext_a84c01eb2bd97a57b0db7aa02790824c4}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!MoveViewport@{MoveViewport}}
+\index{MoveViewport@{MoveViewport}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{MoveViewport()}{MoveViewport()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool UAccessibility\+Graph\+Locomotion\+Context\+::\+Move\+Viewport (\begin{DoxyParamCaption}\item[{const FVector2D \&}]{In\+Top\+Left,  }\item[{const FVector2D \&}]{In\+Bottom\+Right }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00151}{151}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00152 \{}
+\DoxyCodeLine{00153     \textcolor{keywordflow}{if} (!LinkedEditor.IsValid())}
+\DoxyCodeLine{00154         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00155 }
+\DoxyCodeLine{00156     TSharedPtr<SGraphEditor> LinkedEditorPtr = LinkedEditor.Pin();}
+\DoxyCodeLine{00157     SGraphPanel* LinkedPanel = LinkedEditorPtr-\/>GetGraphPanel();}
+\DoxyCodeLine{00158 }
+\DoxyCodeLine{00159     \textcolor{keywordflow}{return} LinkedPanel-\/>JumpToRect(InTopLeft, InBottomRight);}
+\DoxyCodeLine{00160 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a564dd3fe4201d75a10fc1d21180e288e}\label{classUAccessibilityGraphLocomotionContext_a564dd3fe4201d75a10fc1d21180e288e}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!OnFocusChanged@{OnFocusChanged}}
+\index{OnFocusChanged@{OnFocusChanged}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{OnFocusChanged()}{OnFocusChanged()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+On\+Focus\+Changed (\begin{DoxyParamCaption}\item[{const FFocus\+Event \&}]{Focus\+Event,  }\item[{const FWeak\+Widget\+Path \&}]{Old\+Focused\+Widget\+Path,  }\item[{const TShared\+Ptr$<$ SWidget $>$ \&}]{Old\+Focused\+Widget,  }\item[{const FWidget\+Path \&}]{New\+Focused\+Widget\+Path,  }\item[{const TShared\+Ptr$<$ SWidget $>$ \&}]{New\+Focused\+Widget }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00344}{344}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00349 \{}
+\DoxyCodeLine{00350     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classUPhraseTreeContextObject_a2cba304de4e6f40576d7f62d10a57472}{bIsActive}})}
+\DoxyCodeLine{00351         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00352 }
+\DoxyCodeLine{00353     UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}GraphLocomotion: FOCUS CHANGED."{}}));}
+\DoxyCodeLine{00354 }
+\DoxyCodeLine{00355     TSharedPtr<SGraphEditor> LinkedEditorPtr = LinkedEditor.Pin();}
+\DoxyCodeLine{00356 }
+\DoxyCodeLine{00357     \textcolor{keywordflow}{if} (!NewFocusedWidgetPath.ContainsWidget(LinkedEditorPtr.ToSharedRef()))}
+\DoxyCodeLine{00358     \{}
+\DoxyCodeLine{00359         \mbox{\hyperlink{classUPhraseTreeContextObject_a2cba304de4e6f40576d7f62d10a57472}{bIsActive}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{00360         Close();}
+\DoxyCodeLine{00361     \}}
+\DoxyCodeLine{00362 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a2c23dc7b460a8d26db2c05f376cac325}\label{classUAccessibilityGraphLocomotionContext_a2c23dc7b460a8d26db2c05f376cac325}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!RemoveVisualGrid@{RemoveVisualGrid}}
+\index{RemoveVisualGrid@{RemoveVisualGrid}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{RemoveVisualGrid()}{RemoveVisualGrid()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Remove\+Visual\+Grid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00284}{284}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00285 \{}
+\DoxyCodeLine{00286     TSharedPtr<SUniformGridPanel> GridContainerPtr = GridContainer.Pin();}
+\DoxyCodeLine{00287     \textcolor{keywordflow}{if} (GridContainerPtr.IsValid()) }
+\DoxyCodeLine{00288     \{}
+\DoxyCodeLine{00289         TSharedPtr<SOverlay> ParentWidget = StaticCastSharedPtr<SOverlay>(}
+\DoxyCodeLine{00290             GridContainerPtr-\/>GetParentWidget()}
+\DoxyCodeLine{00291         );}
+\DoxyCodeLine{00292                 }
+\DoxyCodeLine{00293         \textcolor{keywordflow}{if} (ParentWidget.IsValid()) \{}
+\DoxyCodeLine{00294             ParentWidget-\/>RemoveSlot(GridContainerPtr.ToSharedRef());}
+\DoxyCodeLine{00295 }
+\DoxyCodeLine{00296             GridParent = ParentWidget;}
+\DoxyCodeLine{00297         \}}
+\DoxyCodeLine{00298         \textcolor{keywordflow}{else} UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}GraphLocomotion: PARENT WIDGET NOT FOUND, CANNOT REMOVE LOCOMOTION WIDGETS."{}}))}
+\DoxyCodeLine{00299     \}}
+\DoxyCodeLine{00300 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_ad53e6d251aa7066aa2c27585df247e5d}\label{classUAccessibilityGraphLocomotionContext_ad53e6d251aa7066aa2c27585df247e5d}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!RevertToPreviousView@{RevertToPreviousView}}
+\index{RevertToPreviousView@{RevertToPreviousView}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{RevertToPreviousView()}{RevertToPreviousView()}}
+{\footnotesize\ttfamily bool UAccessibility\+Graph\+Locomotion\+Context\+::\+Revert\+To\+Previous\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00100}{100}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00101 \{}
+\DoxyCodeLine{00102     \textcolor{keywordflow}{if} (PreviousPositions.IsEmpty())}
+\DoxyCodeLine{00103     \{}
+\DoxyCodeLine{00104         LinkedEditor.Pin()-\/>ZoomToFit(\textcolor{keyword}{false});}
+\DoxyCodeLine{00105         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00106     \}}
+\DoxyCodeLine{00107 }
+\DoxyCodeLine{00108     \textcolor{keywordflow}{if} (!MoveViewport(PreviousPositions.Pop()))}
+\DoxyCodeLine{00109     \{}
+\DoxyCodeLine{00110         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00111     \}}
+\DoxyCodeLine{00112 }
+\DoxyCodeLine{00113     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00114 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a323c9e21b634855c358ae5d493d3dec5}\label{classUAccessibilityGraphLocomotionContext_a323c9e21b634855c358ae5d493d3dec5}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!SelectChunk@{SelectChunk}}
+\index{SelectChunk@{SelectChunk}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{SelectChunk()}{SelectChunk()}}
+{\footnotesize\ttfamily bool UAccessibility\+Graph\+Locomotion\+Context\+::\+Select\+Chunk (\begin{DoxyParamCaption}\item[{const int32 \&}]{Index }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061 \{}
+\DoxyCodeLine{00062     \textcolor{keywordflow}{if} (Index > ChunkArray.Num() || Index < 0)}
+\DoxyCodeLine{00063         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00064 }
+\DoxyCodeLine{00065     \textcolor{keyword}{const} \mbox{\hyperlink{structFGraphLocomotionChunk}{FGraphLocomotionChunk}} SelectedChunk = ChunkArray[Index];}
+\DoxyCodeLine{00066 }
+\DoxyCodeLine{00067     \textcolor{keyword}{const} SGraphPanel* LinkedPanel = LinkedEditor.Pin()-\/>GetGraphPanel();}
+\DoxyCodeLine{00068 }
+\DoxyCodeLine{00069     \textcolor{keyword}{const} FVector2D GraphTopLeftCoord = LinkedPanel-\/>PanelCoordToGraphCoord(SelectedChunk.GetChunkTopLeft());}
+\DoxyCodeLine{00070     \textcolor{keyword}{const} FVector2D GraphBottomRightCoord = LinkedPanel-\/>PanelCoordToGraphCoord(SelectedChunk.GetChunkBottomRight());}
+\DoxyCodeLine{00071 }
+\DoxyCodeLine{00072     ChangeChunkVis(Index, FLinearColor::Red);}
+\DoxyCodeLine{00073 }
+\DoxyCodeLine{00074     GEditor-\/>GetTimerManager()-\/>SetTimer(}
+\DoxyCodeLine{00075         SelectionTimerHandle,}
+\DoxyCodeLine{00076         [\textcolor{keyword}{this}, Index, GraphTopLeftCoord, GraphBottomRightCoord]()}
+\DoxyCodeLine{00077         \{}
+\DoxyCodeLine{00078             ChangeChunkVis(Index);}
+\DoxyCodeLine{00079 }
+\DoxyCodeLine{00080             \textcolor{keywordflow}{if} (MoveViewport(GraphTopLeftCoord, GraphBottomRightCoord))}
+\DoxyCodeLine{00081             \{}
+\DoxyCodeLine{00082                 \textcolor{keywordflow}{if} (CurrentViewPosition != FVector2D::ZeroVector)}
+\DoxyCodeLine{00083                     PreviousPositions.Push(CurrentViewPosition);}
+\DoxyCodeLine{00084 }
+\DoxyCodeLine{00085                 CurrentViewPosition = \mbox{\hyperlink{structFPanelViewPosition}{FPanelViewPosition}}(GraphTopLeftCoord, GraphBottomRightCoord);}
+\DoxyCodeLine{00086             \}}
+\DoxyCodeLine{00087             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00088             \{}
+\DoxyCodeLine{00089                 UE\_LOG(LogOpenAccessibility, Log, TEXT(\textcolor{stringliteral}{"{}Failed To Jump To Viewport Coords (TopLeft: \%s | BottomRight: \%s)"{}}), }
+\DoxyCodeLine{00090                     *GraphTopLeftCoord.ToString(), *GraphBottomRightCoord.ToString());}
+\DoxyCodeLine{00091             \}}
+\DoxyCodeLine{00092         \},}
+\DoxyCodeLine{00093         0.5f,}
+\DoxyCodeLine{00094         false}
+\DoxyCodeLine{00095     );}
+\DoxyCodeLine{00096 }
+\DoxyCodeLine{00097     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00098 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a1fa4e04373e415b9864fb4d4ab3fcd6f}\label{classUAccessibilityGraphLocomotionContext_a1fa4e04373e415b9864fb4d4ab3fcd6f}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!UnbindFocusChangedEvent@{UnbindFocusChangedEvent}}
+\index{UnbindFocusChangedEvent@{UnbindFocusChangedEvent}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{UnbindFocusChangedEvent()}{UnbindFocusChangedEvent()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Unbind\+Focus\+Changed\+Event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00370}{370}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00371 \{}
+\DoxyCodeLine{00372     \textcolor{keywordflow}{if} (FocusChangedHandle.IsValid()) }
+\DoxyCodeLine{00373     \{}
+\DoxyCodeLine{00374         FSlateApplication::Get().OnFocusChanging().Remove(FocusChangedHandle);}
+\DoxyCodeLine{00375     \}}
+\DoxyCodeLine{00376 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_ab4276812f8510288d43b56517262709d}\label{classUAccessibilityGraphLocomotionContext_ab4276812f8510288d43b56517262709d}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!UnHideNativeVisuals@{UnHideNativeVisuals}}
+\index{UnHideNativeVisuals@{UnHideNativeVisuals}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{UnHideNativeVisuals()}{UnHideNativeVisuals()}}
+{\footnotesize\ttfamily void UAccessibility\+Graph\+Locomotion\+Context\+::\+Un\+Hide\+Native\+Visuals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source_l00326}{326}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8cpp_source}{Accessibility\+Graph\+Locomotion\+Context.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00327 \{}
+\DoxyCodeLine{00328     FChildren* ViewportChildren = GridParent.Pin()-\/>GetChildren();}
+\DoxyCodeLine{00329 }
+\DoxyCodeLine{00330     TSharedPtr<SWidget> ChildWidget;}
+\DoxyCodeLine{00331     \textcolor{keywordflow}{for} (int32 i = 0; i < ViewportChildren-\/>Num(); i++) }
+\DoxyCodeLine{00332     \{}
+\DoxyCodeLine{00333         ChildWidget = ViewportChildren-\/>GetChildAt(i);}
+\DoxyCodeLine{00334     }
+\DoxyCodeLine{00335         \textcolor{keywordflow}{if} (NativeWidgetVisibility.Contains(ChildWidget.Get()))}
+\DoxyCodeLine{00336         \{}
+\DoxyCodeLine{00337             ChildWidget-\/>SetVisibility(NativeWidgetVisibility[ChildWidget.Get()]);}
+\DoxyCodeLine{00338         \}}
+\DoxyCodeLine{00339     \}}
+\DoxyCodeLine{00340 }
+\DoxyCodeLine{00341     NativeWidgetVisibility.Empty();}
+\DoxyCodeLine{00342 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a8950755c4b2544511bd9ffad054a3651}\label{classUAccessibilityGraphLocomotionContext_a8950755c4b2544511bd9ffad054a3651}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!ChunkArray@{ChunkArray}}
+\index{ChunkArray@{ChunkArray}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{ChunkArray}{ChunkArray}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{structFGraphLocomotionChunk}{FGraph\+Locomotion\+Chunk}}$>$ UAccessibility\+Graph\+Locomotion\+Context\+::\+Chunk\+Array\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00160}{160}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a7dceb16edc66c0c17758acc16e35895f}\label{classUAccessibilityGraphLocomotionContext_a7dceb16edc66c0c17758acc16e35895f}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!ChunkSize@{ChunkSize}}
+\index{ChunkSize@{ChunkSize}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{ChunkSize}{ChunkSize}}
+{\footnotesize\ttfamily FInt\+Vector2 UAccessibility\+Graph\+Locomotion\+Context\+::\+Chunk\+Size\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00162}{162}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a1a3eaf400a55820f041d06fa0aa4e7db}\label{classUAccessibilityGraphLocomotionContext_a1a3eaf400a55820f041d06fa0aa4e7db}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!CurrentViewPosition@{CurrentViewPosition}}
+\index{CurrentViewPosition@{CurrentViewPosition}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{CurrentViewPosition}{CurrentViewPosition}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFPanelViewPosition}{FPanel\+View\+Position}} UAccessibility\+Graph\+Locomotion\+Context\+::\+Current\+View\+Position\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00155}{155}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a383928eb2503e41740a720694675d18a}\label{classUAccessibilityGraphLocomotionContext_a383928eb2503e41740a720694675d18a}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!GridContainer@{GridContainer}}
+\index{GridContainer@{GridContainer}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{GridContainer}{GridContainer}}
+{\footnotesize\ttfamily TWeak\+Ptr$<$SUniform\+Grid\+Panel$>$ UAccessibility\+Graph\+Locomotion\+Context\+::\+Grid\+Container\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00167}{167}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a5e3618971d0cf93b260d9115fa16b420}\label{classUAccessibilityGraphLocomotionContext_a5e3618971d0cf93b260d9115fa16b420}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!GridParent@{GridParent}}
+\index{GridParent@{GridParent}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{GridParent}{GridParent}}
+{\footnotesize\ttfamily TWeak\+Ptr$<$SOverlay$>$ UAccessibility\+Graph\+Locomotion\+Context\+::\+Grid\+Parent\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00169}{169}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_ac320b4fbb045740a38622e3a50403852}\label{classUAccessibilityGraphLocomotionContext_ac320b4fbb045740a38622e3a50403852}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!LinkedEditor@{LinkedEditor}}
+\index{LinkedEditor@{LinkedEditor}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{LinkedEditor}{LinkedEditor}}
+{\footnotesize\ttfamily TWeak\+Ptr$<$SGraph\+Editor$>$ UAccessibility\+Graph\+Locomotion\+Context\+::\+Linked\+Editor\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00171}{171}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a337380fced5cf88c361b58ddc26850d0}\label{classUAccessibilityGraphLocomotionContext_a337380fced5cf88c361b58ddc26850d0}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!PreviousPositions@{PreviousPositions}}
+\index{PreviousPositions@{PreviousPositions}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{PreviousPositions}{PreviousPositions}}
+{\footnotesize\ttfamily TArray$<$\mbox{\hyperlink{structFPanelViewPosition}{FPanel\+View\+Position}}$>$ UAccessibility\+Graph\+Locomotion\+Context\+::\+Previous\+Positions\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00156}{156}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_a48549c081c2e16ac9d1cd18f96f0de9e}\label{classUAccessibilityGraphLocomotionContext_a48549c081c2e16ac9d1cd18f96f0de9e}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!StartViewPosition@{StartViewPosition}}
+\index{StartViewPosition@{StartViewPosition}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{StartViewPosition}{StartViewPosition}}
+{\footnotesize\ttfamily FVector2D UAccessibility\+Graph\+Locomotion\+Context\+::\+Start\+View\+Position\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00153}{153}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+\mbox{\Hypertarget{classUAccessibilityGraphLocomotionContext_acebb1b21e1bd8ae3b5c5bed246e7102c}\label{classUAccessibilityGraphLocomotionContext_acebb1b21e1bd8ae3b5c5bed246e7102c}} 
+\index{UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}!StartViewZoom@{StartViewZoom}}
+\index{StartViewZoom@{StartViewZoom}!UAccessibilityGraphLocomotionContext@{UAccessibilityGraphLocomotionContext}}
+\doxysubsubsection{\texorpdfstring{StartViewZoom}{StartViewZoom}}
+{\footnotesize\ttfamily float UAccessibility\+Graph\+Locomotion\+Context\+::\+Start\+View\+Zoom\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source_l00153}{153}} of file \mbox{\hyperlink{AccessibilityGraphLocomotionContext_8h_source}{Accessibility\+Graph\+Locomotion\+Context.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility/\+Public/\+Accessibility\+Wrappers/Accessibility\+Graph\+Locomotion\+Context.\+h\item 
+Source/\+Open\+Accessibility/\+Private/\+Accessibility\+Wrappers/Accessibility\+Graph\+Locomotion\+Context.\+cpp\end{DoxyCompactItemize}

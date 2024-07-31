@@ -1,0 +1,218 @@
+\hypertarget{classFPhraseStringInputNode}{}\doxysection{FPhrase\+String\+Input\+Node Class Reference}
+\label{classFPhraseStringInputNode}\index{FPhraseStringInputNode@{FPhraseStringInputNode}}
+Inheritance diagram for FPhrase\+String\+Input\+Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classFPhraseStringInputNode}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFPhraseStringInputNode_a7b115593abe17160efddbc0909241ced}{FPhrase\+String\+Input\+Node}} (const TCHAR $\ast$In\+Input\+String)
+\item 
+\mbox{\hyperlink{classFPhraseStringInputNode_a6448c71b5cd6689f9c00a2a75677cbd7}{FPhrase\+String\+Input\+Node}} (const TCHAR $\ast$In\+Input\+String, TPhrase\+Node\+Array In\+Child\+Nodes)
+\item 
+\mbox{\hyperlink{classFPhraseStringInputNode_af5a992d65a9664ed738fd8879f308657}{FPhrase\+String\+Input\+Node}} (const TCHAR $\ast$In\+Input\+String, TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$ In\+On\+Phrase\+Parsed, TPhrase\+Node\+Array In\+Child\+Nodes)
+\item 
+\mbox{\hyperlink{classFPhraseStringInputNode_a8ebd5643d2cbcf5d2074092b46709322}{FPhrase\+String\+Input\+Node}} (const TCHAR $\ast$In\+Input\+String, TPhrase\+Node\+Array In\+Child\+Nodes, TDelegate$<$ void(FString Input)$>$ In\+On\+Input\+Recieved)
+\item 
+\mbox{\Hypertarget{classFPhraseStringInputNode_a9e019f91b40087e31ebfbe9a3f60ee82}\label{classFPhraseStringInputNode_a9e019f91b40087e31ebfbe9a3f60ee82}} 
+{\bfseries FPhrase\+String\+Input\+Node} (const TCHAR $\ast$In\+Input\+String, TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$ In\+On\+Phrase\+Parsed, TPhrase\+Node\+Array In\+Child\+Nodes, TDelegate$<$ void(FString Input)$>$ In\+On\+Input\+Recieved)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classFPhraseStringInputNode_adc7ca43b878f34dc239bb654be1da184}{Meets\+Input\+Requirements}} (const FString \&In\+Phrase) override
+\begin{DoxyCompactList}\small\item\em Checks if the Given Phrase Meets Requirements for usage as Input. In Correlation to this Nodes Input Specifications.  \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classFPhraseStringInputNode_a543b68d2d8da9bc900c9ffa9968a2995}{Record\+Input}} (const FString \&In\+Input, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Out\+Parse\+Record) override
+\begin{DoxyCompactList}\small\item\em Records the Input onto the Parse Record.  \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{PhraseStringInputNode_8h_source_l00011}{11}} of file \mbox{\hyperlink{PhraseStringInputNode_8h_source}{Phrase\+String\+Input\+Node.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFPhraseStringInputNode_a7b115593abe17160efddbc0909241ced}\label{classFPhraseStringInputNode_a7b115593abe17160efddbc0909241ced}} 
+\index{FPhraseStringInputNode@{FPhraseStringInputNode}!FPhraseStringInputNode@{FPhraseStringInputNode}}
+\index{FPhraseStringInputNode@{FPhraseStringInputNode}!FPhraseStringInputNode@{FPhraseStringInputNode}}
+\doxysubsubsection{\texorpdfstring{FPhraseStringInputNode()}{FPhraseStringInputNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily FPhrase\+String\+Input\+Node\+::\+FPhrase\+String\+Input\+Node (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Input\+String }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseStringInputNode_8cpp_source_l00007}{7}} of file \mbox{\hyperlink{PhraseStringInputNode_8cpp_source}{Phrase\+String\+Input\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00008     : \mbox{\hyperlink{classFPhraseInputNode}{FPhraseInputNode}}(InInputString)}
+\DoxyCodeLine{00009 \{}
+\DoxyCodeLine{00010 }
+\DoxyCodeLine{00011 \};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseStringInputNode_a6448c71b5cd6689f9c00a2a75677cbd7}\label{classFPhraseStringInputNode_a6448c71b5cd6689f9c00a2a75677cbd7}} 
+\index{FPhraseStringInputNode@{FPhraseStringInputNode}!FPhraseStringInputNode@{FPhraseStringInputNode}}
+\index{FPhraseStringInputNode@{FPhraseStringInputNode}!FPhraseStringInputNode@{FPhraseStringInputNode}}
+\doxysubsubsection{\texorpdfstring{FPhraseStringInputNode()}{FPhraseStringInputNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily FPhrase\+String\+Input\+Node\+::\+FPhrase\+String\+Input\+Node (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Input\+String,  }\item[{TPhrase\+Node\+Array}]{In\+Child\+Nodes }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseStringInputNode_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{PhraseStringInputNode_8cpp_source}{Phrase\+String\+Input\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014     : \mbox{\hyperlink{classFPhraseInputNode}{FPhraseInputNode}}(InInputString, InChildNodes)}
+\DoxyCodeLine{00015 \{}
+\DoxyCodeLine{00016 }
+\DoxyCodeLine{00017 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseStringInputNode_af5a992d65a9664ed738fd8879f308657}\label{classFPhraseStringInputNode_af5a992d65a9664ed738fd8879f308657}} 
+\index{FPhraseStringInputNode@{FPhraseStringInputNode}!FPhraseStringInputNode@{FPhraseStringInputNode}}
+\index{FPhraseStringInputNode@{FPhraseStringInputNode}!FPhraseStringInputNode@{FPhraseStringInputNode}}
+\doxysubsubsection{\texorpdfstring{FPhraseStringInputNode()}{FPhraseStringInputNode()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily FPhrase\+String\+Input\+Node\+::\+FPhrase\+String\+Input\+Node (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Input\+String,  }\item[{TDelegate$<$ void(\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)$>$}]{In\+On\+Phrase\+Parsed,  }\item[{TPhrase\+Node\+Array}]{In\+Child\+Nodes }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseStringInputNode_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{PhraseStringInputNode_8cpp_source}{Phrase\+String\+Input\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020     : \mbox{\hyperlink{classFPhraseInputNode}{FPhraseInputNode}}(InInputString, InOnPhraseParse, InChildNodes)}
+\DoxyCodeLine{00021 \{}
+\DoxyCodeLine{00022 }
+\DoxyCodeLine{00023 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseStringInputNode_a8ebd5643d2cbcf5d2074092b46709322}\label{classFPhraseStringInputNode_a8ebd5643d2cbcf5d2074092b46709322}} 
+\index{FPhraseStringInputNode@{FPhraseStringInputNode}!FPhraseStringInputNode@{FPhraseStringInputNode}}
+\index{FPhraseStringInputNode@{FPhraseStringInputNode}!FPhraseStringInputNode@{FPhraseStringInputNode}}
+\doxysubsubsection{\texorpdfstring{FPhraseStringInputNode()}{FPhraseStringInputNode()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily FPhrase\+String\+Input\+Node\+::\+FPhrase\+String\+Input\+Node (\begin{DoxyParamCaption}\item[{const TCHAR $\ast$}]{In\+Input\+String,  }\item[{TPhrase\+Node\+Array}]{In\+Child\+Nodes,  }\item[{TDelegate$<$ void(FString Input)$>$}]{In\+On\+Input\+Recieved }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseStringInputNode_8cpp_source_l00025}{25}} of file \mbox{\hyperlink{PhraseStringInputNode_8cpp_source}{Phrase\+String\+Input\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026     : \mbox{\hyperlink{classFPhraseInputNode}{FPhraseInputNode}}(InInputString, InChildNodes, InOnInputRecieved)}
+\DoxyCodeLine{00027 \{}
+\DoxyCodeLine{00028 }
+\DoxyCodeLine{00029 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseStringInputNode_a2284b5cef4298a5dd52464c5c1b3e7f3}\label{classFPhraseStringInputNode_a2284b5cef4298a5dd52464c5c1b3e7f3}} 
+\index{FPhraseStringInputNode@{FPhraseStringInputNode}!````~FPhraseStringInputNode@{$\sim$FPhraseStringInputNode}}
+\index{````~FPhraseStringInputNode@{$\sim$FPhraseStringInputNode}!FPhraseStringInputNode@{FPhraseStringInputNode}}
+\doxysubsubsection{\texorpdfstring{$\sim$FPhraseStringInputNode()}{~FPhraseStringInputNode()}}
+{\footnotesize\ttfamily FPhrase\+String\+Input\+Node\+::$\sim$\+FPhrase\+String\+Input\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{PhraseStringInputNode_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{PhraseStringInputNode_8cpp_source}{Phrase\+String\+Input\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032 \{}
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00034 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFPhraseStringInputNode_adc7ca43b878f34dc239bb654be1da184}\label{classFPhraseStringInputNode_adc7ca43b878f34dc239bb654be1da184}} 
+\index{FPhraseStringInputNode@{FPhraseStringInputNode}!MeetsInputRequirements@{MeetsInputRequirements}}
+\index{MeetsInputRequirements@{MeetsInputRequirements}!FPhraseStringInputNode@{FPhraseStringInputNode}}
+\doxysubsubsection{\texorpdfstring{MeetsInputRequirements()}{MeetsInputRequirements()}}
+{\footnotesize\ttfamily bool FPhrase\+String\+Input\+Node\+::\+Meets\+Input\+Requirements (\begin{DoxyParamCaption}\item[{const FString \&}]{In\+Phrase }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Checks if the Given Phrase Meets Requirements for usage as Input. In Correlation to this Nodes Input Specifications.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Phrase} & -\/ The Phrase To Check If It Meets Requirements.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Phrase Meets Requirements. Otherwise False.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classFPhraseInputNode_a4db63d4ca6bf5ace09c3dda2f19c7e78}{FPhrase\+Input\+Node$<$ FString $>$}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseStringInputNode_8cpp_source_l00036}{36}} of file \mbox{\hyperlink{PhraseStringInputNode_8cpp_source}{Phrase\+String\+Input\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037 \{}
+\DoxyCodeLine{00038     \textcolor{keywordflow}{if} (InPhrase.IsEmpty())}
+\DoxyCodeLine{00039         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00040     \textcolor{keywordflow}{else} \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00041 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classFPhraseStringInputNode_a543b68d2d8da9bc900c9ffa9968a2995}\label{classFPhraseStringInputNode_a543b68d2d8da9bc900c9ffa9968a2995}} 
+\index{FPhraseStringInputNode@{FPhraseStringInputNode}!RecordInput@{RecordInput}}
+\index{RecordInput@{RecordInput}!FPhraseStringInputNode@{FPhraseStringInputNode}}
+\doxysubsubsection{\texorpdfstring{RecordInput()}{RecordInput()}}
+{\footnotesize\ttfamily bool FPhrase\+String\+Input\+Node\+::\+Record\+Input (\begin{DoxyParamCaption}\item[{const FString \&}]{In\+Input,  }\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{Out\+Parse\+Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Records the Input onto the Parse Record.  
+
+
+\begin{DoxyParams}{Parameters}
+{\em In\+Input} & -\/ The Phrase To Record onto the Parse Record.\\
+\hline
+{\em Out\+Parse\+Record} & -\/ Returns the Updated Parse\+Record.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True, if the Input Was Successful in Recording. Otherwise False.
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classFPhraseInputNode_af938609ba4a21d785543851c2b511f7f}{FPhrase\+Input\+Node$<$ FString $>$}}.
+
+
+
+Definition at line \mbox{\hyperlink{PhraseStringInputNode_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{PhraseStringInputNode_8cpp_source}{Phrase\+String\+Input\+Node.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044 \{}
+\DoxyCodeLine{00045     \textcolor{keywordflow}{if} (InInput.IsEmpty())}
+\DoxyCodeLine{00046         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{00047 }
+\DoxyCodeLine{00048     \mbox{\hyperlink{classUParseStringInput}{UParseStringInput}}* ParseInput = MakeParseInput<UParseStringInput>();}
+\DoxyCodeLine{00049     ParseInput-\/>\mbox{\hyperlink{classUParseStringInput_a5da3e409acdc615ebc1c21632fce8a4e}{SetValue}}(InInput);}
+\DoxyCodeLine{00050 }
+\DoxyCodeLine{00051     OutParseRecord.\mbox{\hyperlink{structFParseRecord_ae15c154b890b7ac8e73cf85e7c5eed7b}{AddPhraseInput}}(\mbox{\hyperlink{classFPhraseNode_aab82e92732204d8f0c712b7e68b3fbc5}{BoundPhrase}}, ParseInput);}
+\DoxyCodeLine{00052 }
+\DoxyCodeLine{00053     OnInputReceived.ExecuteIfBound(InInput);}
+\DoxyCodeLine{00054 }
+\DoxyCodeLine{00055     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{00056 \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility\+Communication/\+Public/\+Phrase\+Tree/Phrase\+String\+Input\+Node.\+h\item 
+Source/\+Open\+Accessibility\+Communication/\+Private/\+Phrase\+Tree/Phrase\+String\+Input\+Node.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,214 @@
+\hypertarget{classUWindowInteractionLibrary}{}\doxysection{UWindow\+Interaction\+Library Class Reference}
+\label{classUWindowInteractionLibrary}\index{UWindowInteractionLibrary@{UWindowInteractionLibrary}}
+Inheritance diagram for UWindow\+Interaction\+Library\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classUWindowInteractionLibrary}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classUWindowInteractionLibrary_a381b0437c9c4dcd1605ba4b490f1c281}{UWindow\+Interaction\+Library}} (const FObject\+Initializer \&Object\+Initializer)
+\item 
+void \mbox{\hyperlink{classUWindowInteractionLibrary_a069591b3d95773a6d2ace6008a1cf78a}{Bind\+Branches}} (TShared\+Ref$<$ \mbox{\hyperlink{classFPhraseTree}{FPhrase\+Tree}} $>$ Phrase\+Tree) override
+\item 
+void \mbox{\hyperlink{classUWindowInteractionLibrary_acfeba58b5649ef353f0fbb673542db29}{Close\+Active\+Window}} (\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)
+\item 
+void \mbox{\hyperlink{classUWindowInteractionLibrary_a2aca2357e9f72c00a0e78166fe0c4f5f}{Select\+Tool\+Bar\+Item}} (\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classUAccessibilityWindowToolbar}{UAccessibility\+Window\+Toolbar}} $\ast$ \mbox{\hyperlink{classUWindowInteractionLibrary_ac2f024c57bf6929aa6a401801a82a8d7}{Window\+Tool\+Bar}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{WindowInteractionLibrary_8h_source_l00012}{12}} of file \mbox{\hyperlink{WindowInteractionLibrary_8h_source}{Window\+Interaction\+Library.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classUWindowInteractionLibrary_a381b0437c9c4dcd1605ba4b490f1c281}\label{classUWindowInteractionLibrary_a381b0437c9c4dcd1605ba4b490f1c281}} 
+\index{UWindowInteractionLibrary@{UWindowInteractionLibrary}!UWindowInteractionLibrary@{UWindowInteractionLibrary}}
+\index{UWindowInteractionLibrary@{UWindowInteractionLibrary}!UWindowInteractionLibrary@{UWindowInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{UWindowInteractionLibrary()}{UWindowInteractionLibrary()}}
+{\footnotesize\ttfamily UWindow\+Interaction\+Library\+::\+UWindow\+Interaction\+Library (\begin{DoxyParamCaption}\item[{const FObject\+Initializer \&}]{Object\+Initializer }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{WindowInteractionLibrary_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{WindowInteractionLibrary_8cpp_source}{Window\+Interaction\+Library.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00011     : Super(ObjectInitializer)}
+\DoxyCodeLine{00012 \{}
+\DoxyCodeLine{00013     WindowToolBar = NewObject<UAccessibilityWindowToolbar>();}
+\DoxyCodeLine{00014 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUWindowInteractionLibrary_adfb0522b2804c48f2c2573c078983cb1}\label{classUWindowInteractionLibrary_adfb0522b2804c48f2c2573c078983cb1}} 
+\index{UWindowInteractionLibrary@{UWindowInteractionLibrary}!````~UWindowInteractionLibrary@{$\sim$UWindowInteractionLibrary}}
+\index{````~UWindowInteractionLibrary@{$\sim$UWindowInteractionLibrary}!UWindowInteractionLibrary@{UWindowInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{$\sim$UWindowInteractionLibrary()}{~UWindowInteractionLibrary()}}
+{\footnotesize\ttfamily UWindow\+Interaction\+Library\+::$\sim$\+UWindow\+Interaction\+Library (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line \mbox{\hyperlink{WindowInteractionLibrary_8cpp_source_l00016}{16}} of file \mbox{\hyperlink{WindowInteractionLibrary_8cpp_source}{Window\+Interaction\+Library.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00017 \{}
+\DoxyCodeLine{00018 }
+\DoxyCodeLine{00019 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classUWindowInteractionLibrary_a069591b3d95773a6d2ace6008a1cf78a}\label{classUWindowInteractionLibrary_a069591b3d95773a6d2ace6008a1cf78a}} 
+\index{UWindowInteractionLibrary@{UWindowInteractionLibrary}!BindBranches@{BindBranches}}
+\index{BindBranches@{BindBranches}!UWindowInteractionLibrary@{UWindowInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{BindBranches()}{BindBranches()}}
+{\footnotesize\ttfamily void UWindow\+Interaction\+Library\+::\+Bind\+Branches (\begin{DoxyParamCaption}\item[{TShared\+Ref$<$ \mbox{\hyperlink{classFPhraseTree}{FPhrase\+Tree}} $>$}]{Phrase\+Tree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Binds Branches originating from this Library onto the provided Phrase Tree. 
+\begin{DoxyParams}{Parameters}
+{\em Phrase\+Tree} & Reference to the Phrase\+Tree to Bind this Library to. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{classUPhraseTreeFunctionLibrary}{UPhrase\+Tree\+Function\+Library}}.
+
+
+
+Definition at line \mbox{\hyperlink{WindowInteractionLibrary_8cpp_source_l00021}{21}} of file \mbox{\hyperlink{WindowInteractionLibrary_8cpp_source}{Window\+Interaction\+Library.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022 \{}
+\DoxyCodeLine{00023     PhraseTree-\/>BindBranches(}
+\DoxyCodeLine{00024         TPhraseNodeArray\{}
+\DoxyCodeLine{00025 }
+\DoxyCodeLine{00026             MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}WINDOW"{}}),}
+\DoxyCodeLine{00027             TPhraseNodeArray\{}
+\DoxyCodeLine{00028 }
+\DoxyCodeLine{00029                 MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}CLOSE"{}}),}
+\DoxyCodeLine{00030                 TPhraseNodeArray \{}
+\DoxyCodeLine{00031 }
+\DoxyCodeLine{00032                     MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUWindowInteractionLibrary_acfeba58b5649ef353f0fbb673542db29}{UWindowInteractionLibrary::CloseActiveWindow}}))}
+\DoxyCodeLine{00033 }
+\DoxyCodeLine{00034                 \}),}
+\DoxyCodeLine{00035 }
+\DoxyCodeLine{00036             \}),}
+\DoxyCodeLine{00037 }
+\DoxyCodeLine{00038             MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}TOOLBAR"{}}),}
+\DoxyCodeLine{00039             TPhraseNodeArray \{}
+\DoxyCodeLine{00040 }
+\DoxyCodeLine{00041                 MakeShared<FPhraseInputNode<int32>>(TEXT(\textcolor{stringliteral}{"{}ITEM\_INDEX"{}}),}
+\DoxyCodeLine{00042                 TPhraseNodeArray \{}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044                     MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUWindowInteractionLibrary_a2aca2357e9f72c00a0e78166fe0c4f5f}{UWindowInteractionLibrary::SelectToolBarItem}}))}
+\DoxyCodeLine{00045 }
+\DoxyCodeLine{00046                 \})}
+\DoxyCodeLine{00047 }
+\DoxyCodeLine{00048             \})}
+\DoxyCodeLine{00049 }
+\DoxyCodeLine{00050         \}}
+\DoxyCodeLine{00051     );}
+\DoxyCodeLine{00052 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUWindowInteractionLibrary_acfeba58b5649ef353f0fbb673542db29}\label{classUWindowInteractionLibrary_acfeba58b5649ef353f0fbb673542db29}} 
+\index{UWindowInteractionLibrary@{UWindowInteractionLibrary}!CloseActiveWindow@{CloseActiveWindow}}
+\index{CloseActiveWindow@{CloseActiveWindow}!UWindowInteractionLibrary@{UWindowInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{CloseActiveWindow()}{CloseActiveWindow()}}
+{\footnotesize\ttfamily void UWindow\+Interaction\+Library\+::\+Close\+Active\+Window (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{Record }\end{DoxyParamCaption})}
+
+Closes the Top Most Active Window, if it is not the Root Application Window. 
+\begin{DoxyParams}{Parameters}
+{\em Record} & The Parse Record accumulated until this Event. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{WindowInteractionLibrary_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{WindowInteractionLibrary_8cpp_source}{Window\+Interaction\+Library.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00054                                                                       \{}
+\DoxyCodeLine{00055     FSlateApplication\& SlateApp = FSlateApplication::Get();}
+\DoxyCodeLine{00056     \textcolor{keywordflow}{if} (!SlateApp.CanDisplayWindows())}
+\DoxyCodeLine{00057     \{}
+\DoxyCodeLine{00058         UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}CloseActiveWindow: Slate Application cannot display windows."{}}));}
+\DoxyCodeLine{00059         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00060     \}}
+\DoxyCodeLine{00061 }
+\DoxyCodeLine{00062     TSharedPtr<SWindow> ActiveWindow = SlateApp.GetActiveTopLevelWindow();}
+\DoxyCodeLine{00063     \textcolor{keywordflow}{if} (!ActiveWindow.IsValid())}
+\DoxyCodeLine{00064     \{}
+\DoxyCodeLine{00065         UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}CloseActiveWindow: No Active Window Found."{}}));}
+\DoxyCodeLine{00066         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00067     \}}
+\DoxyCodeLine{00068 }
+\DoxyCodeLine{00069     TSharedPtr<SWindow> RootWindow = FGlobalTabmanager::Get()-\/>GetRootWindow();}
+\DoxyCodeLine{00070     \textcolor{keywordflow}{if} (ActiveWindow-\/>IsVisible() \&\& ActiveWindow != RootWindow)}
+\DoxyCodeLine{00071     \{}
+\DoxyCodeLine{00072         ActiveWindow-\/>RequestDestroyWindow();}
+\DoxyCodeLine{00073     \}}
+\DoxyCodeLine{00074 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUWindowInteractionLibrary_a2aca2357e9f72c00a0e78166fe0c4f5f}\label{classUWindowInteractionLibrary_a2aca2357e9f72c00a0e78166fe0c4f5f}} 
+\index{UWindowInteractionLibrary@{UWindowInteractionLibrary}!SelectToolBarItem@{SelectToolBarItem}}
+\index{SelectToolBarItem@{SelectToolBarItem}!UWindowInteractionLibrary@{UWindowInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{SelectToolBarItem()}{SelectToolBarItem()}}
+{\footnotesize\ttfamily void UWindow\+Interaction\+Library\+::\+Select\+Tool\+Bar\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{Record }\end{DoxyParamCaption})}
+
+Selects the Item from the Active Windows Tool\+Bar. 
+\begin{DoxyParams}{Parameters}
+{\em Record} & The Parse Record accumulated until this Event. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{WindowInteractionLibrary_8cpp_source_l00076}{76}} of file \mbox{\hyperlink{WindowInteractionLibrary_8cpp_source}{Window\+Interaction\+Library.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00077 \{}
+\DoxyCodeLine{00078     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* ItemIndexInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}ITEM\_INDEX"{}}));}
+\DoxyCodeLine{00079     \textcolor{keywordflow}{if} (ItemIndexInput == \textcolor{keyword}{nullptr}) }
+\DoxyCodeLine{00080     \{}
+\DoxyCodeLine{00081         UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}SelectToolBarItem: No Item Index Found."{}}));}
+\DoxyCodeLine{00082         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00083     \}}
+\DoxyCodeLine{00084 }
+\DoxyCodeLine{00085     WindowToolBar-\/>\mbox{\hyperlink{classUAccessibilityWindowToolbar_aa2945392855b85a4095b1452893466f2}{SelectToolbarItem}}(ItemIndexInput-\/>\mbox{\hyperlink{classUParseIntInput_a25393db97da6e72a5fc1f9efb127f0bf}{GetValue}}());}
+\DoxyCodeLine{00086 \}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classUWindowInteractionLibrary_ac2f024c57bf6929aa6a401801a82a8d7}\label{classUWindowInteractionLibrary_ac2f024c57bf6929aa6a401801a82a8d7}} 
+\index{UWindowInteractionLibrary@{UWindowInteractionLibrary}!WindowToolBar@{WindowToolBar}}
+\index{WindowToolBar@{WindowToolBar}!UWindowInteractionLibrary@{UWindowInteractionLibrary}}
+\doxysubsubsection{\texorpdfstring{WindowToolBar}{WindowToolBar}}
+{\footnotesize\ttfamily class \mbox{\hyperlink{classUAccessibilityWindowToolbar}{UAccessibility\+Window\+Toolbar}}$\ast$ UWindow\+Interaction\+Library\+::\+Window\+Tool\+Bar\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{WindowInteractionLibrary_8h_source_l00058}{58}} of file \mbox{\hyperlink{WindowInteractionLibrary_8h_source}{Window\+Interaction\+Library.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Source/\+Open\+Accessibility/\+Public/\+Phrase\+Events/Window\+Interaction\+Library.\+h\item 
+Source/\+Open\+Accessibility/\+Private/\+Phrase\+Events/Window\+Interaction\+Library.\+cpp\end{DoxyCompactItemize}
