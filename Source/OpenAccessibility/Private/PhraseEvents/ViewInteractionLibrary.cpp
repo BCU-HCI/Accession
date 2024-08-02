@@ -77,7 +77,7 @@ void UViewInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 }
 
 void UViewInteractionLibrary::MoveViewport(FParseRecord &Record) {
-	GET_ACTIVE_TAB(ActiveTab)
+	GET_ACTIVE_TAB_CONTENT(ActiveTab)
 
 	FString TabType = ActiveTab->GetTypeAsString();
 
@@ -125,7 +125,7 @@ void UViewInteractionLibrary::MoveViewport(FParseRecord &Record) {
 
 void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record) 
 {
-	GET_ACTIVE_TAB(ActiveTab)
+	GET_ACTIVE_TAB_CONTENT(ActiveTab)
 
     FString TabType = ActiveTab->GetTypeAsString();
 
@@ -164,7 +164,7 @@ void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record)
 
 void UViewInteractionLibrary::IndexFocus(FParseRecord& Record) 
 {
-	GET_ACTIVE_TAB(ActiveTab)
+	GET_ACTIVE_TAB_CONTENT(ActiveTab)
 
 	FString TabType = ActiveTab->GetTypeAsString();
 

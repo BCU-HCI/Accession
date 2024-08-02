@@ -312,7 +312,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 
 void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
 	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
 	UParseEnumInput* DirectionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
@@ -394,7 +394,7 @@ void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 
 void UNodeInteractionLibrary::DeleteNode(FParseRecord& Record)
 {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
 	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
 	if (IndexInput == nullptr)
@@ -416,7 +416,7 @@ void UNodeInteractionLibrary::DeleteNode(FParseRecord& Record)
 
 void UNodeInteractionLibrary::NodeIndexFocus(int32 Index)
 {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
 	TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(
 		ActiveGraphEditor->GetCurrentGraph()
@@ -434,7 +434,7 @@ void UNodeInteractionLibrary::NodeIndexFocus(int32 Index)
 
 void UNodeInteractionLibrary::PinConnect(FParseRecord& Record) 
 {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
 	UEdGraph* Graph = ActiveGraphEditor->GetCurrentGraph();
 
@@ -473,7 +473,7 @@ void UNodeInteractionLibrary::PinConnect(FParseRecord& Record)
 
 void UNodeInteractionLibrary::PinDisconnect(FParseRecord& Record) 
 {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
 	UEdGraph* Graph = ActiveGraphEditor->GetCurrentGraph();
 
@@ -509,7 +509,7 @@ void UNodeInteractionLibrary::PinDisconnect(FParseRecord& Record)
 
 TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record) 
 {
-	GET_CAST_ACTIVE_TAB_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())
+	GET_CAST_ACTIVE_TAB_CONTENT_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())
 
 	SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
     
@@ -565,7 +565,7 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record)
 
 TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddPinMenu(FParseRecord &Record) 
 {
-	GET_CAST_ACTIVE_TAB_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())
+	GET_CAST_ACTIVE_TAB_CONTENT_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())
 
 	SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
     
@@ -713,7 +713,7 @@ void UNodeInteractionLibrary::NodeAddScroll(FParseRecord& Record)
 
 void UNodeInteractionLibrary::SelectionNodeToggle(FParseRecord& Record)
 {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor);
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor);
 
 	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
 	if (IndexInput == nullptr)
@@ -737,14 +737,14 @@ void UNodeInteractionLibrary::SelectionNodeToggle(FParseRecord& Record)
 }
 
 void UNodeInteractionLibrary::SelectionReset(FParseRecord &Record) {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
 	ActiveGraphEditor->ClearSelectionSet();
 }
 
 void UNodeInteractionLibrary::SelectionMove(FParseRecord& Record)
 {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
 	UParseEnumInput* Direction = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
 	UParseIntInput* Amount = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
@@ -784,7 +784,7 @@ void UNodeInteractionLibrary::SelectionMove(FParseRecord& Record)
 
 void UNodeInteractionLibrary::SelectionAlignment(FParseRecord& Record)
 {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
 	UParseEnumInput* PositionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("POSITION"));
 	if (PositionInput == nullptr)
@@ -820,14 +820,14 @@ void UNodeInteractionLibrary::SelectionAlignment(FParseRecord& Record)
 
 void UNodeInteractionLibrary::SelectionStraighten(FParseRecord& Record)
 {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
 	ActiveGraphEditor->OnStraightenConnections();
 }
 
 void UNodeInteractionLibrary::SelectionComment(FParseRecord& Record)
 {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
 	UEdGraph* Graph = ActiveGraphEditor->GetCurrentGraph();
 	
@@ -879,7 +879,7 @@ void UNodeInteractionLibrary::LocomotionCancel(FParseRecord& Record)
 
 void UNodeInteractionLibrary::BlueprintCompile(FParseRecord& Record)
 {
-	GET_CAST_ACTIVE_TAB(ActiveGraphEditor, SGraphEditor)
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
     UEdGraph* ActiveGraph = ActiveGraphEditor->GetCurrentGraph();
 	if (ActiveGraph == nullptr)

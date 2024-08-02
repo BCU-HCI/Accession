@@ -31,7 +31,7 @@
  * @param ActiveContainerName Name of the Container to Store the Active Tabs Content.
  * @param ReturnObject The Object to Return Upon Failure.
  */
-#define GET_ACTIVE_TAB_RETURN(ActiveContainerName, ReturnObject)                \
+#define GET_ACTIVE_TAB_CONTENT_RETURN(ActiveContainerName, ReturnObject)                \
   TSharedPtr<SWidget> ActiveContainerName;                                      \
   {                                                                             \
     TSharedPtr<SDockTab> _AT = FGlobalTabmanager::Get()->GetActiveTab();        \
@@ -53,8 +53,8 @@
  * Gets the Active Tabs Content, and stores it in the provided container name.
  * @param ActiveContainerName Name of the Container to Store the Active Tabs Content.
  */
-#define GET_ACTIVE_TAB(ActiveContainerName) \
-    GET_ACTIVE_TAB_RETURN(ActiveContainerName, EMPTY_ARG)
+#define GET_ACTIVE_TAB_CONTENT(ActiveContainerName) \
+    GET_ACTIVE_TAB_CONTENT_RETURN(ActiveContainerName, EMPTY_ARG)
 
 /**
  * Gets and Casts the Active Tabs Content, and Stores it in the provided container name.
@@ -62,11 +62,11 @@
  * @param ActiveTabType Type of Widget to Cast the Active Tabs Content To.
  * @param ReturnObject The Object To Return Upon Failure.
  */
-#define GET_CAST_ACTIVE_TAB_RETURN(ActiveContainerName, ActiveTabType, ReturnObject)                             \
+#define GET_CAST_ACTIVE_TAB_CONTENT_RETURN(ActiveContainerName, ActiveTabType, ReturnObject)                             \
     static_assert(TIsDerivedFrom<ActiveTabType, SWidget>::IsDerived, "Provided Type Is Not a Valid Widget Type");\
 	TSharedPtr<ActiveTabType> ActiveContainerName;                                                               \
 	{                                                                                                            \
-		GET_ACTIVE_TAB_RETURN(_PreCastContainer, ReturnObject);                                                  \
+		GET_ACTIVE_TAB_CONTENT_RETURN(_PreCastContainer, ReturnObject);                                                  \
 	    ActiveContainerName = StaticCastSharedPtr<ActiveTabType>(_PreCastContainer);                             \
 	    if (!ActiveContainerName.IsValid() || ActiveContainerName->GetType() != #ActiveTabType) {                \
 	      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                                                       \
@@ -80,8 +80,8 @@
  * @param ActiveContainerName Name of the Container to Store the Active Tabs Content.
  * @param ActiveTabType Type of Widget to Cast the Active Tabs Content To.
  */
-#define GET_CAST_ACTIVE_TAB(ActiveContainerName, ActiveTabType) \
-	GET_CAST_ACTIVE_TAB_RETURN(ActiveContainerName, ActiveTabType, EMPTY_ARG)
+#define GET_CAST_ACTIVE_TAB_CONTENT(ActiveContainerName, ActiveTabType) \
+	GET_CAST_ACTIVE_TAB_CONTENT_RETURN(ActiveContainerName, ActiveTabType, EMPTY_ARG)
 
 /**
  * Gets the Active Keyboard Widget on the Application.
