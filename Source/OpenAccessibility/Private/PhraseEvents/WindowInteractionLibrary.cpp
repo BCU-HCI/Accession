@@ -6,6 +6,7 @@
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 
 #include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
+#include "Runtime/Slate/Private/Framework/Docking/SDockingTabStack.h"
 
 UWindowInteractionLibrary::UWindowInteractionLibrary(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)
@@ -49,6 +50,25 @@ void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 			}),
 
+			MakeShared<FPhraseNode>(TEXT("TAB"),
+			TPhraseNodeArray {
+
+				MakeShared<FPhraseNode>(TEXT("NEXT"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchNextTabInStack))
+
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("PREVIOUS"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchPrevTabInStack))
+
+				})
+
+			}),
+
 			MakeShared<FPhraseNode>(TEXT("TOOLBAR"),
 			TPhraseNodeArray {
 
@@ -59,7 +79,7 @@ void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 				})
 
-			})
+			}),
 
 		}
 	);
@@ -149,24 +169,56 @@ void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord& Record)
 {
 	GET_ACTIVE_TAB(ActiveTab);
 
-	TSharedPtr<FTabManager> ActiveTabManager = FGlobalTabmanager::Get()->GetTabManagerForMajorTab(ActiveTab);
-	if (!ActiveTabManager.IsValid())
+	/*
+	TSharedPtr<SDockingTabStack> ActiveTabStack = ActiveTab->GetParentDockTabStack();
+	if (!ActiveTabStack.IsValid())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Cannot Find Valid Tab Manager"))
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: No Parent Tab Stack Found."))
 		return;
 	}
+
+	TArray<TSharedRef<SDockTab>> AllTabs = ActiveTabStack->GetAllChildTabs();
+
+	int32 FoundIndex;
+	if (!AllTabs.Find(ActiveTab.ToSharedRef(), FoundIndex))
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Active Tab Not Found In Tab Stack."))
+		return;
+	}
+
+	TSharedRef<SDockTab> NextTab = AllTabs[FoundIndex + 1 % AllTabs.Num()];
+
+	FGlobalTabmanager::Get()->SetActiveTab(NextTab);
+	*/
 }
 
 void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
 {
 	GET_ACTIVE_TAB(ActiveTab);
 
-	TSharedPtr<FTabManager> ActiveTabManager = FGlobalTabmanager::Get()->GetTabManagerForMajorTab(ActiveTab);
-	if (!ActiveTabManager.IsValid())
+	/*
+	TSharedPtr<SDockingTabStack> ActiveTabStack = ActiveTab->GetParentDockTabStack();
+	if (!ActiveTabStack.IsValid())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: Cannot Find Valid Tab Manager"))
-		return;
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: No Parent Tab Stack Found."))
+			return;
 	}
 
+	TArray<TSharedRef<SDockTab>> AllTabs = ActiveTabStack->GetAllChildTabs();
 
+	int32 FoundIndex;
+	if (!AllTabs.Find(ActiveTab.ToSharedRef(), FoundIndex))
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: Active Tab Not Found In Tab Stack."))
+			return;
+	}
+
+	TSharedRef<SDockTab> PrevTab = AllTabs[
+		FoundIndex - 1 < 0
+			? AllTabs.Num() - 1
+			: FoundIndex - 1
+	];
+
+	FGlobalTabmanager::Get()->SetActiveTab(PrevTab);
+	*/
 }
