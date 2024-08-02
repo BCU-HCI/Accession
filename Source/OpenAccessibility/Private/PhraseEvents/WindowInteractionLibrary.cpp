@@ -26,6 +26,20 @@ void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 			MakeShared<FPhraseNode>(TEXT("WINDOW"),
 			TPhraseNodeArray{
 
+				MakeShared<FPhraseNode>(TEXT("NEXT"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchNextActiveWindow))
+
+				}),
+
+				MakeShared<FPhraseNode>(TEXT("PREVIOUS"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchPrevActiveWindow))
+
+				}),
+
 				MakeShared<FPhraseNode>(TEXT("CLOSE"),
 				TPhraseNodeArray {
 
@@ -53,11 +67,12 @@ void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 void UWindowInteractionLibrary::SwitchNextActiveWindow(FParseRecord& Record)
 {
-	GET_ACTIVE_WINDOW(ActiveWindow)
+	GET_ACTIVE_REGULAR_WINDOW(ActiveWindow)
 
-	const TArray<TSharedRef<SWindow>> AllWindows = FSlateApplication::Get().GetTopLevelWindows();
+	TArray<TSharedRef<SWindow>> AllWindows;
+	FSlateApplication::Get().GetAllVisibleWindowsOrdered(AllWindows);
 
-	int32 FoundIndex = -1;
+	int32 FoundIndex;
 	if (!AllWindows.Find(ActiveWindow.ToSharedRef(), FoundIndex))
 	{
 		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SwitchNextActiveWindow: Cannot Find the Current Active Window."))
@@ -66,20 +81,23 @@ void UWindowInteractionLibrary::SwitchNextActiveWindow(FParseRecord& Record)
 
 	TSharedRef<SWindow> NextWindow = AllWindows[FoundIndex + 1 % AllWindows.Num()];
 
-	FSlateApplication::Get().SetAllUserFocus(NextWindow, EFocusCause::SetDirectly);
+	NextWindow->BringToFront(true);
+
+	// Set Window Major Tab Focus?
 }
 
 void UWindowInteractionLibrary::SwitchPrevActiveWindow(FParseRecord& Record)
 {
-	GET_ACTIVE_WINDOW(ActiveWindow)
+	GET_ACTIVE_REGULAR_WINDOW(ActiveWindow)
 
-	const TArray<TSharedRef<SWindow>> AllWindows = FSlateApplication::Get().GetTopLevelWindows();
+	TArray<TSharedRef<SWindow>> AllWindows;
+	FSlateApplication::Get().GetAllVisibleWindowsOrdered(AllWindows);
 
-	int32 FoundIndex = -1;
+	int32 FoundIndex;
 	if (!AllWindows.Find(ActiveWindow.ToSharedRef(), FoundIndex))
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SwitchPrevActiveWindow: Cannot Find the Current Active Window"))
-		return;
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SwitchPrevActiveWindow: Cannot Find the Current Active Window."))
+			return;
 	}
 
 	TSharedRef<SWindow> PrevWindow = AllWindows[
@@ -88,7 +106,9 @@ void UWindowInteractionLibrary::SwitchPrevActiveWindow(FParseRecord& Record)
 			: FoundIndex - 1
 	];
 
-	FSlateApplication::Get().SetAllUserFocus(PrevWindow, EFocusCause::SetDirectly);
+	PrevWindow->BringToFront(true);
+
+	// Set Window Major Tab Focus?
 }
 
 void UWindowInteractionLibrary::CloseActiveWindow(FParseRecord &Record) {
@@ -127,5 +147,26 @@ void UWindowInteractionLibrary::SelectToolBarItem(FParseRecord& Record)
 
 void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord& Record)
 {
+	GET_ACTIVE_TAB(ActiveTab);
+
+	TSharedPtr<FTabManager> ActiveTabManager = FGlobalTabmanager::Get()->GetTabManagerForMajorTab(ActiveTab);
+	if (!ActiveTabManager.IsValid())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Cannot Find Valid Tab Manager"))
+		return;
+	}
+}
+
+void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
+{
+	GET_ACTIVE_TAB(ActiveTab);
+
+	TSharedPtr<FTabManager> ActiveTabManager = FGlobalTabmanager::Get()->GetTabManagerForMajorTab(ActiveTab);
+	if (!ActiveTabManager.IsValid())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: Cannot Find Valid Tab Manager"))
+		return;
+	}
+
 
 }
