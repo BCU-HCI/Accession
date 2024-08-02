@@ -11,6 +11,21 @@
 
 #define EMPTY_ARG
 
+#define GET_ACTIVE_WINDOW_RETURN(ActiveContainerName, ReturnObject) \
+    TSharedPtr<SWindow> ActiveContainerName; \
+    {\
+      ActiveContainerName = FSlateApplication::Get().GetActiveTopLevelWindow(); \
+      if (!ActiveContainerName.IsValid()) \
+      { \
+      UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("GET_ACTIVE_WINDOW: No Active Window Was Found")) \
+      return ReturnObject; \
+      } \
+    };
+
+#define GET_ACTIVE_WINDOW(ActiveContainerName) \
+    GET_ACTIVE_WINDOW_RETURN(ActiveContainerName, EMPTY_ARG)
+	
+
 /**
  * Gets the Active Tabs Content, and stores it in the provided container name.
  * @param ActiveContainerName Name of the Container to Store the Active Tabs Content.

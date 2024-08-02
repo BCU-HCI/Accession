@@ -51,6 +51,46 @@ void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 	);
 }
 
+void UWindowInteractionLibrary::SwitchNextActiveWindow(FParseRecord& Record)
+{
+	GET_ACTIVE_WINDOW(ActiveWindow)
+
+	const TArray<TSharedRef<SWindow>> AllWindows = FSlateApplication::Get().GetTopLevelWindows();
+
+	int32 FoundIndex = -1;
+	if (!AllWindows.Find(ActiveWindow.ToSharedRef(), FoundIndex))
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SwitchNextActiveWindow: Cannot Find the Current Active Window."))
+		return;
+	}
+
+	TSharedRef<SWindow> NextWindow = AllWindows[FoundIndex + 1 % AllWindows.Num()];
+
+	FSlateApplication::Get().SetAllUserFocus(NextWindow, EFocusCause::SetDirectly);
+}
+
+void UWindowInteractionLibrary::SwitchPrevActiveWindow(FParseRecord& Record)
+{
+	GET_ACTIVE_WINDOW(ActiveWindow)
+
+	const TArray<TSharedRef<SWindow>> AllWindows = FSlateApplication::Get().GetTopLevelWindows();
+
+	int32 FoundIndex = -1;
+	if (!AllWindows.Find(ActiveWindow.ToSharedRef(), FoundIndex))
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SwitchPrevActiveWindow: Cannot Find the Current Active Window"))
+		return;
+	}
+
+	TSharedRef<SWindow> PrevWindow = AllWindows[
+		FoundIndex - 1 < 0
+			? AllWindows.Num() - 1
+			: FoundIndex - 1
+	];
+
+	FSlateApplication::Get().SetAllUserFocus(PrevWindow, EFocusCause::SetDirectly);
+}
+
 void UWindowInteractionLibrary::CloseActiveWindow(FParseRecord &Record) {
 	FSlateApplication& SlateApp = FSlateApplication::Get();
 	if (!SlateApp.CanDisplayWindows())
@@ -83,4 +123,9 @@ void UWindowInteractionLibrary::SelectToolBarItem(FParseRecord& Record)
 	}
 
 	WindowToolBar->SelectToolbarItem(ItemIndexInput->GetValue());
+}
+
+void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord& Record)
+{
+
 }
