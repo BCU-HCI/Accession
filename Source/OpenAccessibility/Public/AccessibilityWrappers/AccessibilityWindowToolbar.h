@@ -34,8 +34,17 @@ public:
 
 	// -- End of Parse Events --
 
+	/**
+	 * Checks to see if the Active Toolkit being Indexed is the provided Toolkit Widget.
+	 * @param ToolkitWidget Toolkit Widget to Check if it is the active toolkit being Indexed.
+	 * @return True if the provided toolkit is the active widget, otherwise False.
+	 */
 	bool IsActiveToolbar(const TSharedRef<SWidget>& ToolkitWidget);
 
+	/**
+	 * Gets the Stored Active Toolkit Widget.
+	 * @return Shared Pointer to the Active Toolkit Widget, otherwise Invalid Pointer.
+	 */
 	TSharedPtr<SWidget> GetActiveToolkitWidget() const;
 
 private:
