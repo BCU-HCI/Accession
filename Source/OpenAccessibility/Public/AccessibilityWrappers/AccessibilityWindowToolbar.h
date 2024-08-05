@@ -32,6 +32,12 @@ public:
 	 */
 	void SelectToolbarItem(int32 Index);
 
+	// -- End of Parse Events --
+
+	bool IsActiveToolbar(const TSharedRef<SWidget>& ToolkitWidget);
+
+	TSharedPtr<SWidget> GetActiveToolkitWidget() const;
+
 private:
 
 	/**
