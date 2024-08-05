@@ -40,6 +40,7 @@ public class OpenAccessibility : ModuleRules
 				// Core Modules
 				"CoreUObject",
 				"Engine",
+				"Json",
 
 				// Editor Modules
 				"UnrealEd",
