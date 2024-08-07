@@ -56,7 +56,7 @@ bool UAccessibilityWindowToolbar::Tick(float DeltaTime)
 		return true;
 	}
 
-	if (ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef())) 
+	if (ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef()))
 	{
 		LastToolkit = Toolkit;
 		//UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Toolkit Indexing Applied To %s"), *Toolkit->GetTypeAsString());
@@ -130,10 +130,10 @@ bool UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 					.IndexValue(Index)
 					.IndexPositionToContent(EIndexerPosition::Bottom)
 					.ContentToIndex(ToolBarButtonWidget)
-					.IndexVisibility_Lambda([ToolkitWindow]() -> EVisibility {
-						if (FSlateApplication::Get().GetActiveTopLevelRegularWindow() == ToolkitWindow)
-							return EVisibility::Visible;
-						else return EVisibility::Hidden;
+					.IndexVisibility_Lambda([this, ToolkitWidget]() -> EVisibility {
+							return (this->IsActiveToolbar(ToolkitWidget))
+							? EVisibility::Visible
+							: EVisibility::Hidden;
 					})
 				);
 			} 
@@ -155,8 +155,6 @@ bool UAccessibilityWindowToolbar::ApplyToolbarIndexing(TSharedRef<SWidget> Toolk
 			else ChildrenToFilter.Add(ChildWidget->GetChildren());
 		}
 	}
-
-	//UE_LOG(LogOpenAccessibility, Log, TEXT("AccessibilityToolBar: Indexed %d Items."), ToolbarIndex.Num());
 
 	return true;
 }
@@ -230,6 +228,21 @@ void UAccessibilityWindowToolbar::SelectToolbarItem(int32 Index)
 
 		DirectAction.Execute();
 	}
+}
+
+bool UAccessibilityWindowToolbar::IsActiveToolbar(const TSharedRef<SWidget>& ToolkitWidget)
+{
+	return LastToolkit.IsValid()
+		? LastToolkit.Pin() == ToolkitWidget
+		: false;
+}
+
+TSharedPtr<SWidget> UAccessibilityWindowToolbar::GetActiveToolkitWidget() const
+{
+	if (LastToolkit.IsValid())
+		return LastToolkit.Pin();
+
+	return TSharedPtr<SWidget>();
 }
 
 TSharedPtr<SBorder> UAccessibilityWindowToolbar::GetWindowContentContainer(TSharedRef<SWindow> WindowToFindContainer)

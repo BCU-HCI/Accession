@@ -6,14 +6,35 @@ using UnrealBuildTool;
 
 public class ZeroMQ : ModuleRules
 {
+	bool IsDebug
+	{
+		get
+		{
+			return Target.Configuration == UnrealTargetConfiguration.Debug ||
+			       Target.Configuration == UnrealTargetConfiguration.DebugGame;
+		}
+	}
+
+	protected virtual string PlatformLibDir
+	{
+		get { return Path.Combine(ModuleDirectory, "lib", Target.Platform.ToString()); }
+	}
+
+	protected virtual string PlatformBinariesDir
+	{
+		get { return Path.Combine(PluginDirectory, "Binaries", "ThirdParty", "ZeroMQ", Target.Platform.ToString());  }
+	}
+
     public ZeroMQ(ReadOnlyTargetRules Target) : base(Target)
     {
         Type = ModuleType.External;
         PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-        PublicSystemIncludePaths.Add(Path.Combine(ModuleDirectory, "include"));
+        PublicSystemIncludePaths.Add(
+            Path.Combine(ModuleDirectory, "include")
+        );
 
-        if (AddZeroMQLib())
+        if (AddPlatformLib())
         {
             // Internal ZeroMQ Definitions,
             // required for ZeroMQ to work.
@@ -29,57 +50,76 @@ public class ZeroMQ : ModuleRules
         }
     }
 
-    private bool AddZeroMQLib()
+    private bool AddPlatformLib()
     {
         if (Target.Platform == UnrealTargetPlatform.Win64)
 	    {
-		    string FileName = (Target.Configuration == UnrealTargetConfiguration.Debug)
-			    ? "libzmq-mt-gd-4_3_5"
-			    : "libzmq-mt-4_3_5";
-
-		    string PlatformLibDir = Path.Combine(ModuleDirectory, "lib", Target.Platform.ToString());
-
-            // Add Import Library
-            {
-			    string LibPath = Path.Combine(PlatformLibDir, FileName + ".lib");
-			    Console.WriteLine("|| ZEROMQ BUILD || Lib-Path: " + LibPath);
-
-			    PublicAdditionalLibraries.Add(LibPath);
-            }
-
-            {
-	            string DllName = FileName + ".dll";
-
-                // Delay-Load the DLL
-	            Console.WriteLine("|| ZEROMQ BUILD || Delay-DLL-Name: " + DllName);
-
-                PublicDelayLoadDLLs.Add(DllName);
-
-                // Ensure that the DLL is staged with the executable
-                RuntimeDependencies.Add(
-	                Path.Combine(ModuleDirectory, 
-								 "Binaries\\ThirdParty\\ZeroMQ", 
-								 Target.Platform.ToString(),
-								 DllName
-                    )
-				);
-            }
-
+            AddWindowsLib();
 		    return true;
 	    }
         else if (Target.Platform == UnrealTargetPlatform.Linux)
         {
-
-
+            AddLinuxLib();
 	        return true;
         }
         else if (Target.Platform == UnrealTargetPlatform.Mac)
         {
-
-
+            AddMacLib();
 	        return true;
         }
 
 	    return false;
+    }
+
+    private void AddWindowsLib()
+    {
+        string fileName = IsDebug
+	        ? "libzmq-mt-gd-4_3_5"
+	        : "libzmq-mt-4_3_5";
+
+        string WindowsLibDir = IsDebug
+	        ? Path.Combine(PlatformLibDir, "debug")
+	        : PlatformLibDir;
+
+        PublicAdditionalLibraries.Add(
+	        Path.Combine(WindowsLibDir, fileName + ".lib")
+		);
+
+        PublicDelayLoadDLLs.Add(fileName + ".dll");
+
+        RuntimeDependencies.Add(
+            Path.Combine(PlatformBinariesDir, fileName + ".dll"),
+            Path.Combine(WindowsLibDir, fileName + ".dll")
+        );
+    }
+
+    private void AddLinuxLib()
+    {
+	    string soFile = "libzmq-mt-4_3_5.so";
+
+        PublicAdditionalLibraries.Add(
+	        Path.Combine(PlatformLibDir, soFile)
+		);
+
+        PublicDelayLoadDLLs.Add(soFile);
+
+        RuntimeDependencies.Add(
+	        Path.Combine(PlatformBinariesDir, soFile), 
+	        Path.Combine(PlatformLibDir, soFile)
+		);
+    }
+
+    private void AddMacLib()
+    {
+	    string dylibName = "libzmq-mt-4_3_5.dylib";
+
+        PublicDelayLoadDLLs.Add(
+			Path.Combine(PlatformLibDir, dylibName)    
+		);
+
+        RuntimeDependencies.Add(
+	        Path.Combine(PlatformBinariesDir, dylibName),
+            Path.Combine(PlatformLibDir, dylibName)
+		);
     }
 }

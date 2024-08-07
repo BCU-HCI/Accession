@@ -192,28 +192,23 @@ void FOpenAccessibilityCommunicationModule::UnregisterConsoleCommands()
 
 void FOpenAccessibilityCommunicationModule::LoadZMQDLL()
 {
-	FString ZMQBinaries = FPaths::Combine(IPluginManager::Get().FindPlugin("OpenAccessibility")->GetBaseDir(), TEXT("Binaries/ThirdParty/ZeroMQ/"));
+	FString BaseDir = IPluginManager::Get().FindPlugin("OpenAccessibility")->GetBaseDir();
 
-	FString DllPath;
+	FString LibraryPath;
 #if PLATFORM_WINDOWS
-
 	#if UE_BUILD_DEBUG
-	DllPath = FPaths::Combine(*ZMQBinaries, TEXT("Win64/libzmq-mt-gd-4_3_5.dll"));
+	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Binaries/ThirdParty/ZeroMQ/Win64/libzmq-mt-gd-4_3_5.dll"));
 	#else
-	DllPath = FPaths::Combine(*ZMQBinaries, TEXT("Win64/libzmq-mt-4_3_5.dll"));
+	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Binaries/ThirdParty/ZeroMQ/Win64/libzmq-mt-4_3_5.dll"));
 	#endif
-
 #elif PLATFORM_LINUX
-
-	// Not Implemented Yet
-
+	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Binaries/ThirdParty/ZeroMQ/Linux/libzmq-mt-4_3_5.so"))
 #elif PLATFORM_MAC
-
-	// Not Implemented Yet
-
+	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Source/ThirdParty/ZeroMQ/Mac/libzmq-mt-4_3_5.dylib"))
 #endif
 
-	ZMQDllHandle = FPlatformProcess::GetDllHandle(*DllPath);
+	ZMQDllHandle = !LibraryPath.IsEmpty() ? FPlatformProcess::GetDllHandle(*LibraryPath) : nullptr;
+
 	if (ZMQDllHandle)
 	{
 		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| LoadZMQDLL || Successfully Loaded ZMQ DLL ||"));
