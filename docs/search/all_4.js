@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['empty_0',['Empty',['../classFIndexer.html#a65309d397e678f5216a7e2a63c973744',1,'FIndexer']]],
-  ['eventoccured_1',['EventOccured',['../classFSocketCommunicationServer.html#a988e47081a3910dc8aacda97601d0592',1,'FSocketCommunicationServer']]]
+  ['deletenode_0',['DeleteNode',['../classUNodeInteractionLibrary.html#a4f5fdd80642cfb68c4063fad6c2ebee0',1,'UNodeInteractionLibrary']]],
+  ['deserializejson_1',['DeserializeJSON',['../classFSocketCommunicationServer.html#adc77da28c05c225cdd1c4723570229e7',1,'FSocketCommunicationServer']]],
+  ['doesitemsrequirerefresh_2',['DoesItemsRequireRefresh',['../classUAccessibilityAddNodeContextMenu.html#afa62e469fa1948a4685f2a1fc4e6aca3',1,'UAccessibilityAddNodeContextMenu']]],
+  ['dumptick_3',['DumpTick',['../classFOpenAccessibilityAnalyticsModule.html#a383b35b64b8a7feba4dd7e28951ed830',1,'FOpenAccessibilityAnalyticsModule']]]
 ];

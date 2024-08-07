@@ -12,23 +12,32 @@
 \DoxyCodeLine{\Hypertarget{Logging_8py_source_l00008}00008 }
 \DoxyCodeLine{\Hypertarget{Logging_8py_source_l00009}00009 }
 \DoxyCodeLine{\Hypertarget{Logging_8py_source_l00010}00010 \textcolor{keyword}{def }Log(message: str, log\_level: LogLevel = LogLevel.INFO):}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00011}00011 }
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00012}00012     message = f\textcolor{stringliteral}{"{}|| LogOpenAccessibilityPy || \{message\} ||"{}}}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00013}00013 }
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00014}00014     \textcolor{keywordflow}{try}:}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00015}00015         \textcolor{keyword}{from} unreal \textcolor{keyword}{import} log, log\_warning, log\_error}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00016}00016 }
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00017}00017         \textcolor{keywordflow}{if} log\_level == LogLevel.INFO:}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00018}00018             log(message)}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00019}00019         \textcolor{keywordflow}{elif} log\_level == LogLevel.WARNING:}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00020}00020             log\_warning(message)}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00021}00021         \textcolor{keywordflow}{elif} log\_level == LogLevel.ERROR:}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00022}00022             log\_error(message)}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00023}00023         \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00024}00024             log(message)}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00011}00011     \textcolor{stringliteral}{"{}"{}"{}Logs a Message to the Unreal Engine Console.}}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00012}00012 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00013}00013 \textcolor{stringliteral}{    Displays the given message }\textcolor{keywordflow}{in} the Unreal Engine Console, \textcolor{keyword}{with} the given log level.}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00014}00014     If the Unreal Engine Python API \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} available, the message \textcolor{keywordflow}{is} printed to the python terminal.}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00016}00016     Args:}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00017}00017         message (str): Message to Log.}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00018}00018         log\_level (LogLevel, optional): Log Level of the Message. Defaults to LogLevel.INFO.}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00019}00019     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00020}00020 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00021}00021 \textcolor{stringliteral}{    message = f"{}|| LogOpenAccessibilityPy || \{message\} ||"{}}}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00023}00023     \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00024}00024         \textcolor{keyword}{from} unreal \textcolor{keyword}{import} log, log\_warning, log\_error}
 \DoxyCodeLine{\Hypertarget{Logging_8py_source_l00025}00025 }
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00026}00026     \textcolor{keywordflow}{except} ImportError:}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00027}00027         print(message)}
-\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00028}00028         \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00026}00026         \textcolor{keywordflow}{if} log\_level == LogLevel.INFO:}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00027}00027             log(message)}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00028}00028         \textcolor{keywordflow}{elif} log\_level == LogLevel.WARNING:}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00029}00029             log\_warning(message)}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00030}00030         \textcolor{keywordflow}{elif} log\_level == LogLevel.ERROR:}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00031}00031             log\_error(message)}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00032}00032         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00033}00033             log(message)}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00035}00035     \textcolor{keywordflow}{except} ImportError:}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00036}00036         print(message)}
+\DoxyCodeLine{\Hypertarget{Logging_8py_source_l00037}00037         \textcolor{keywordflow}{pass}}
 
 \end{DoxyCode}

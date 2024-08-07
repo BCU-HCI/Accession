@@ -196,46 +196,41 @@
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00192}00192 }
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00193}00193 \textcolor{keywordtype}{void} FOpenAccessibilityCommunicationModule::LoadZMQDLL()}
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00194}00194 \{}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00195}00195     FString ZMQBinaries = FPaths::Combine(IPluginManager::Get().FindPlugin(\textcolor{stringliteral}{"{}OpenAccessibility"{}})-\/>GetBaseDir(), TEXT(\textcolor{stringliteral}{"{}Binaries/ThirdParty/ZeroMQ/"{}}));}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00195}00195     FString BaseDir = IPluginManager::Get().FindPlugin(\textcolor{stringliteral}{"{}OpenAccessibility"{}})-\/>GetBaseDir();}
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00196}00196 }
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00197}00197     FString DllPath;}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00197}00197     FString LibraryPath;}
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00198}00198 \textcolor{preprocessor}{\#if PLATFORM\_WINDOWS}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00199}00199 }
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00200}00200 \textcolor{preprocessor}{    \#if UE\_BUILD\_DEBUG}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00201}00201     DllPath = FPaths::Combine(*ZMQBinaries, TEXT(\textcolor{stringliteral}{"{}Win64/libzmq-\/mt-\/gd-\/4\_3\_5.dll"{}}));}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00202}00202 \textcolor{preprocessor}{    \#else}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00203}00203     DllPath = FPaths::Combine(*ZMQBinaries, TEXT(\textcolor{stringliteral}{"{}Win64/libzmq-\/mt-\/4\_3\_5.dll"{}}));}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00204}00204 \textcolor{preprocessor}{    \#endif}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00205}00205 }
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00206}00206 \textcolor{preprocessor}{\#elif PLATFORM\_LINUX}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00207}00207 }
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00208}00208     \textcolor{comment}{// Not Implemented Yet}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00199}00199 \textcolor{preprocessor}{    \#if UE\_BUILD\_DEBUG}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00200}00200     LibraryPath = FPaths::Combine(*BaseDir, TEXT(\textcolor{stringliteral}{"{}Binaries/ThirdParty/ZeroMQ/Win64/libzmq-\/mt-\/gd-\/4\_3\_5.dll"{}}));}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00201}00201 \textcolor{preprocessor}{    \#else}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00202}00202     LibraryPath = FPaths::Combine(*BaseDir, TEXT(\textcolor{stringliteral}{"{}Binaries/ThirdParty/ZeroMQ/Win64/libzmq-\/mt-\/4\_3\_5.dll"{}}));}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00203}00203 \textcolor{preprocessor}{    \#endif}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00204}00204 \textcolor{preprocessor}{\#elif PLATFORM\_LINUX}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00205}00205     LibraryPath = FPaths::Combine(*BaseDir, TEXT(\textcolor{stringliteral}{"{}Binaries/ThirdParty/ZeroMQ/Linux/libzmq-\/mt-\/4\_3\_5.so"{}}))}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00206}00206 \textcolor{preprocessor}{\#elif PLATFORM\_MAC}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00207}00207     LibraryPath = FPaths::Combine(*BaseDir, TEXT(\textcolor{stringliteral}{"{}Source/ThirdParty/ZeroMQ/Mac/libzmq-\/mt-\/4\_3\_5.dylib"{}}))}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00208}00208 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00209}00209 }
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00210}00210 \textcolor{preprocessor}{\#elif PLATFORM\_MAC}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00210}00210     ZMQDllHandle = !LibraryPath.IsEmpty() ? FPlatformProcess::GetDllHandle(*LibraryPath) : nullptr;}
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00211}00211 }
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00212}00212     \textcolor{comment}{// Not Implemented Yet}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00213}00213 }
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00214}00214 \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00215}00215 }
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00216}00216     ZMQDllHandle = FPlatformProcess::GetDllHandle(*DllPath);}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00217}00217     \textcolor{keywordflow}{if} (ZMQDllHandle)}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00218}00218     \{}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00219}00219         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}|| LoadZMQDLL || Successfully Loaded ZMQ DLL ||"{}}));}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00220}00220     \}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00221}00221     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00222}00222     \{}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00223}00223         UE\_LOG(LogOpenAccessibilityCom, Error, TEXT(\textcolor{stringliteral}{"{}|| LoadZMQDLL || Failed to Load ZMQ DLL ||"{}}));}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00224}00224     \}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00225}00225 \}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00226}00226 }
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00227}00227 \textcolor{keywordtype}{void} FOpenAccessibilityCommunicationModule::UnloadZMQDLL()}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00228}00228 \{}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00229}00229     FPlatformProcess::FreeDllHandle(ZMQDllHandle);}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00230}00230     ZMQDllHandle = \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00231}00231 \}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00232}00232 }
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00233}00233 \textcolor{preprocessor}{\#undef LOCTEXT\_NAMESPACE}}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00234}00234 }
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00235}00235 IMPLEMENT\_MODULE(\mbox{\hyperlink{classFOpenAccessibilityCommunicationModule}{FOpenAccessibilityCommunicationModule}}, \mbox{\hyperlink{classOpenAccessibility}{OpenAccessibility}})}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00212}00212     \textcolor{keywordflow}{if} (ZMQDllHandle)}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00213}00213     \{}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00214}00214         UE\_LOG(LogOpenAccessibilityCom, Log, TEXT(\textcolor{stringliteral}{"{}|| LoadZMQDLL || Successfully Loaded ZMQ DLL ||"{}}));}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00215}00215     \}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00216}00216     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00217}00217     \{}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00218}00218         UE\_LOG(LogOpenAccessibilityCom, Error, TEXT(\textcolor{stringliteral}{"{}|| LoadZMQDLL || Failed to Load ZMQ DLL ||"{}}));}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00219}00219     \}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00220}00220 \}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00221}00221 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00222}00222 \textcolor{keywordtype}{void} FOpenAccessibilityCommunicationModule::UnloadZMQDLL()}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00223}00223 \{}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00224}00224     FPlatformProcess::FreeDllHandle(ZMQDllHandle);}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00225}00225     ZMQDllHandle = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00226}00226 \}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00227}00227 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00228}00228 \textcolor{preprocessor}{\#undef LOCTEXT\_NAMESPACE}}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00229}00229 }
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityCommunication_8cpp_source_l00230}00230 IMPLEMENT\_MODULE(\mbox{\hyperlink{classFOpenAccessibilityCommunicationModule}{FOpenAccessibilityCommunicationModule}}, \mbox{\hyperlink{classOpenAccessibility}{OpenAccessibility}})}
 
 \end{DoxyCode}

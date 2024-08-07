@@ -31,7 +31,8 @@ def \mbox{\hyperlink{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a4aa10c43b7
 
 
 \doxysubsection{Detailed Description}
-
+\begin{DoxyVerb}Python Runtime Class for Open Accessbility Plugin\end{DoxyVerb}
+ 
 
 Definition at line \mbox{\hyperlink{____init_____8py_source_l00034}{34}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
@@ -44,34 +45,53 @@ Definition at line \mbox{\hyperlink{____init_____8py_source_l00034}{34}} of file
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
 {\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{int }]{worker\+\_\+count = {\ttfamily 2},  }\item[{str }]{whisper\+\_\+model = {\ttfamily \char`\"{}distil-\/small.en\char`\"{}},  }\item[{str }]{device = {\ttfamily \char`\"{}auto\char`\"{}},  }\item[{str }]{compute\+\_\+type = {\ttfamily \char`\"{}default\char`\"{}},  }\item[{int }]{poll\+\_\+timeout = {\ttfamily 10} }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Constructor of Python Runtime Class for Open Accessibility Plugin
 
+Args:
+    worker_count (int, optional): Amount of Thread Workers for Audio Transcription. Defaults to 2.
+    whisper_model (str, optional): Hugging-Face Model Specifier for CTranslate Compatible Models. Defaults to "distil-small.en".
+    device (str, optional): Device host for the Whisper Model (Can be "auto", "cpu", "cuda"). Defaults to "auto".
+    compute_type (str, optional): Data Structure for Whisper Compute. Defaults to "default".
+    poll_timeout (int, optional): Amount of time (ms) for event polling on the Transcription Socket. Defaults to 10.
+\end{DoxyVerb}
+ 
 
-Definition at line \mbox{\hyperlink{____init_____8py_source_l00035}{35}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00037}{37}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00045     ):}
-\DoxyCodeLine{00046         self.worker\_pool = ThreadPool(}
-\DoxyCodeLine{00047             max\_workers=worker\_count, thread\_name\_prefix=\textcolor{stringliteral}{"{}TranscriptionWorker"{}}}
-\DoxyCodeLine{00048         )}
-\DoxyCodeLine{00049 }
-\DoxyCodeLine{00050         self.whisper\_interface = WhisperInterface(}
-\DoxyCodeLine{00051             model\_name=whisper\_model,}
-\DoxyCodeLine{00052             device=device,}
-\DoxyCodeLine{00053             compute\_type=compute\_type,}
-\DoxyCodeLine{00054             transcribe\_workers=worker\_count,}
-\DoxyCodeLine{00055         )}
-\DoxyCodeLine{00056         self.com\_server = CommunicationServer(}
-\DoxyCodeLine{00057             send\_socket\_type=zmq.PUSH,}
-\DoxyCodeLine{00058             recv\_socket\_type=zmq.PULL,}
-\DoxyCodeLine{00059             poll\_timeout=poll\_timeout,}
+\DoxyCodeLine{00047     ):}
+\DoxyCodeLine{00048         \textcolor{stringliteral}{"{}"{}"{}Constructor of Python Runtime Class for Open Accessibility Plugin}}
+\DoxyCodeLine{00049 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00050 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{00051 \textcolor{stringliteral}{            worker\_count (int, optional): Amount of Thread Workers }\textcolor{keywordflow}{for} Audio Transcription. Defaults to 2.}
+\DoxyCodeLine{00052             whisper\_model (str, optional): Hugging-\/Face Model Specifier \textcolor{keywordflow}{for} CTranslate Compatible Models. Defaults to \textcolor{stringliteral}{"{}distil-\/small.en"{}}.}
+\DoxyCodeLine{00053             device (str, optional): Device host \textcolor{keywordflow}{for} the Whisper Model (Can be \textcolor{stringliteral}{"{}auto"{}}, \textcolor{stringliteral}{"{}cpu"{}}, \textcolor{stringliteral}{"{}cuda"{}}). Defaults to \textcolor{stringliteral}{"{}auto"{}}.}
+\DoxyCodeLine{00054             compute\_type (str, optional): Data Structure \textcolor{keywordflow}{for} Whisper Compute. Defaults to \textcolor{stringliteral}{"{}default"{}}.}
+\DoxyCodeLine{00055             poll\_timeout (int, optional): Amount of time (ms) \textcolor{keywordflow}{for} event polling on the Transcription Socket. Defaults to 10.}
+\DoxyCodeLine{00056         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00057 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00058 \textcolor{stringliteral}{        self.worker\_pool = ThreadPool(}}
+\DoxyCodeLine{00059 \textcolor{stringliteral}{            max\_workers=worker\_count, thread\_name\_prefix="{}TranscriptionWorker"{}}}
 \DoxyCodeLine{00060         )}
-\DoxyCodeLine{00061         self.audio\_resampler = AudioResampler(target\_sample\_rate=16000)}
-\DoxyCodeLine{00062 }
-\DoxyCodeLine{00063         self.tick\_handle = ue.register\_slate\_post\_tick\_callback(self.Tick)}
-\DoxyCodeLine{00064 }
-\DoxyCodeLine{00065         self.pyshutdown\_handle = ue.register\_python\_shutdown\_callback(self.Shutdown)}
-\DoxyCodeLine{00066 }
+\DoxyCodeLine{00061 }
+\DoxyCodeLine{00062         self.whisper\_interface = WhisperInterface(}
+\DoxyCodeLine{00063             model\_name=whisper\_model,}
+\DoxyCodeLine{00064             device=device,}
+\DoxyCodeLine{00065             compute\_type=compute\_type,}
+\DoxyCodeLine{00066             transcribe\_workers=worker\_count,}
+\DoxyCodeLine{00067         )}
+\DoxyCodeLine{00068         self.com\_server = CommunicationServer(}
+\DoxyCodeLine{00069             send\_socket\_type=zmq.PUSH,}
+\DoxyCodeLine{00070             recv\_socket\_type=zmq.PULL,}
+\DoxyCodeLine{00071             poll\_timeout=poll\_timeout,}
+\DoxyCodeLine{00072         )}
+\DoxyCodeLine{00073         self.audio\_resampler = AudioResampler(target\_sample\_rate=16000)}
+\DoxyCodeLine{00074 }
+\DoxyCodeLine{00075         self.tick\_handle = ue.register\_slate\_post\_tick\_callback(self.Tick)}
+\DoxyCodeLine{00076 }
+\DoxyCodeLine{00077         self.pyshutdown\_handle = ue.register\_python\_shutdown\_callback(self.Shutdown)}
+\DoxyCodeLine{00078 }
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_ae2bfd242fd7ab3bc71871ebea73606a3}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_ae2bfd242fd7ab3bc71871ebea73606a3}} 
@@ -80,15 +100,18 @@ Definition at line \mbox{\hyperlink{____init_____8py_source_l00035}{35}} of file
 \doxysubsubsection{\texorpdfstring{\_\_del\_\_()}{\_\_del\_\_()}}
 {\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+\_\+\+\_\+del\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Destructor of Python Runtime Class for Open Accessibility Plugin\end{DoxyVerb}
+ 
 
-
-Definition at line \mbox{\hyperlink{____init_____8py_source_l00067}{67}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00079}{79}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00067     \textcolor{keyword}{def }\_\_del\_\_(self):}
-\DoxyCodeLine{00068         self.Shutdown()}
-\DoxyCodeLine{00069 }
+\DoxyCodeLine{00079     \textcolor{keyword}{def }\_\_del\_\_(self):}
+\DoxyCodeLine{00080         \textcolor{stringliteral}{"{}"{}"{}Destructor of Python Runtime Class for Open Accessibility Plugin"{}"{}"{}}}
+\DoxyCodeLine{00081 }
+\DoxyCodeLine{00082         self.Shutdown()}
+\DoxyCodeLine{00083 }
 
 \end{DoxyCode}
 
@@ -100,47 +123,63 @@ Definition at line \mbox{\hyperlink{____init_____8py_source_l00067}{67}} of file
 \doxysubsubsection{\texorpdfstring{HandleTranscriptionRequest()}{HandleTranscriptionRequest()}}
 {\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+Handle\+Transcription\+Request (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{np.\+ndarray}]{recv\+\_\+message,  }\item[{dict }]{metadata = {\ttfamily None} }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Handles Incoming Transcription Requests
 
+Takes the Incoming AudioBuffer, Resamples it to 16kHz and Transcribes it using Whisper.
 
-Definition at line \mbox{\hyperlink{____init_____8py_source_l00079}{79}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+Args:
+    recv_message (np.ndarray): ndarray of the incoming audio buffer.
+    metadata (dict, optional): metadata of the incoming audio buffer, if any is recieved. Defaults to None.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00100}{100}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00081     ):}
-\DoxyCodeLine{00082 }
-\DoxyCodeLine{00083         Log(}
-\DoxyCodeLine{00084             f\textcolor{stringliteral}{"{}Handling Transcription Request | Message: \{recv\_message\} | Size: \{recv\_message.size\} | Shape: \{recv\_message.shape\}"{}}}
-\DoxyCodeLine{00085         )}
-\DoxyCodeLine{00086 }
-\DoxyCodeLine{00087         sample\_rate = metadata.get(\textcolor{stringliteral}{"{}sample\_rate"{}}, 48000)}
-\DoxyCodeLine{00088         num\_channels = metadata.get(\textcolor{stringliteral}{"{}num\_channels"{}}, 2)}
-\DoxyCodeLine{00089 }
-\DoxyCodeLine{00090         message\_ndarray = self.audio\_resampler.resample(}
-\DoxyCodeLine{00091             recv\_message, sample\_rate, num\_channels}
-\DoxyCodeLine{00092         )}
-\DoxyCodeLine{00093 }
-\DoxyCodeLine{00094         trans\_segments, trans\_metadata = self.whisper\_interface.process\_audio\_buffer(}
-\DoxyCodeLine{00095             message\_ndarray}
-\DoxyCodeLine{00096         )}
-\DoxyCodeLine{00097 }
-\DoxyCodeLine{00098         encoded\_segments = [}
-\DoxyCodeLine{00099             transcription.text.encode() \textcolor{keywordflow}{for} transcription \textcolor{keywordflow}{in} trans\_segments}
-\DoxyCodeLine{00100         ]}
-\DoxyCodeLine{00101 }
-\DoxyCodeLine{00102         Log(f\textcolor{stringliteral}{"{}Encoded Segments: \{encoded\_segments\}"{}})}
-\DoxyCodeLine{00103 }
-\DoxyCodeLine{00104         \textcolor{keywordflow}{if} len(encoded\_segments) > 0:}
-\DoxyCodeLine{00105             \textcolor{keywordflow}{try}:}
-\DoxyCodeLine{00106                 self.com\_server.SendMultipartWithMeta(}
-\DoxyCodeLine{00107                     message=encoded\_segments, meta=trans\_metadata}
-\DoxyCodeLine{00108                 )}
-\DoxyCodeLine{00109 }
-\DoxyCodeLine{00110             \textcolor{keywordflow}{except}:}
-\DoxyCodeLine{00111                 Log(\textcolor{stringliteral}{"{}Error Sending Encoded Transcription Segments"{}}, LogLevel.ERROR)}
-\DoxyCodeLine{00112 }
-\DoxyCodeLine{00113         \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{00114             Log(\textcolor{stringliteral}{"{}No Transcription Segments Returned"{}}, LogLevel.WARNING)}
+\DoxyCodeLine{00102     ):}
+\DoxyCodeLine{00103         \textcolor{stringliteral}{"{}"{}"{}Handles Incoming Transcription Requests}}
+\DoxyCodeLine{00104 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00105 \textcolor{stringliteral}{        Takes the Incoming AudioBuffer, Resamples it to 16kHz }\textcolor{keywordflow}{and} Transcribes it using Whisper.}
+\DoxyCodeLine{00106 }
+\DoxyCodeLine{00107         Args:}
+\DoxyCodeLine{00108             recv\_message (np.ndarray): ndarray of the incoming audio buffer.}
+\DoxyCodeLine{00109             metadata (dict, optional): metadata of the incoming audio buffer, \textcolor{keywordflow}{if} any \textcolor{keywordflow}{is} recieved. Defaults to \textcolor{keywordtype}{None}.}
+\DoxyCodeLine{00110         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00111 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00112 \textcolor{stringliteral}{        Log(}}
+\DoxyCodeLine{00113 \textcolor{stringliteral}{            f"{}Handling Transcription Request | Message: \{recv\_message\} | Size: \{recv\_message.size\} | Shape: \{recv\_message.shape\}"{}}}
+\DoxyCodeLine{00114         )}
 \DoxyCodeLine{00115 }
+\DoxyCodeLine{00116         sample\_rate = metadata.get(\textcolor{stringliteral}{"{}sample\_rate"{}}, 48000)}
+\DoxyCodeLine{00117         num\_channels = metadata.get(\textcolor{stringliteral}{"{}num\_channels"{}}, 2)}
+\DoxyCodeLine{00118 }
+\DoxyCodeLine{00119         message\_ndarray = self.audio\_resampler.resample(}
+\DoxyCodeLine{00120             recv\_message, sample\_rate, num\_channels}
+\DoxyCodeLine{00121         )}
+\DoxyCodeLine{00122 }
+\DoxyCodeLine{00123         trans\_segments, trans\_metadata = self.whisper\_interface.process\_audio\_buffer(}
+\DoxyCodeLine{00124             message\_ndarray}
+\DoxyCodeLine{00125         )}
+\DoxyCodeLine{00126 }
+\DoxyCodeLine{00127         encoded\_segments = [}
+\DoxyCodeLine{00128             transcription.text.encode() \textcolor{keywordflow}{for} transcription \textcolor{keywordflow}{in} trans\_segments}
+\DoxyCodeLine{00129         ]}
+\DoxyCodeLine{00130 }
+\DoxyCodeLine{00131         Log(f\textcolor{stringliteral}{"{}Encoded Segments: \{encoded\_segments\}"{}})}
+\DoxyCodeLine{00132 }
+\DoxyCodeLine{00133         \textcolor{keywordflow}{if} len(encoded\_segments) > 0:}
+\DoxyCodeLine{00134             \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00135                 self.com\_server.SendMultipartWithMeta(}
+\DoxyCodeLine{00136                     message=encoded\_segments, meta=trans\_metadata}
+\DoxyCodeLine{00137                 )}
+\DoxyCodeLine{00138 }
+\DoxyCodeLine{00139             \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{00140                 Log(\textcolor{stringliteral}{"{}Error Sending Encoded Transcription Segments"{}}, LogLevel.ERROR)}
+\DoxyCodeLine{00141 }
+\DoxyCodeLine{00142         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00143             Log(\textcolor{stringliteral}{"{}No Transcription Segments Returned"{}}, LogLevel.WARNING)}
+\DoxyCodeLine{00144 }
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a4aa10c43b77ddb5fb9604a47f693e6cf}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a4aa10c43b77ddb5fb9604a47f693e6cf}} 
@@ -149,32 +188,35 @@ Definition at line \mbox{\hyperlink{____init_____8py_source_l00079}{79}} of file
 \doxysubsubsection{\texorpdfstring{Shutdown()}{Shutdown()}}
 {\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+Shutdown (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Shutsdown the Python Runtime Components, and Forces a Garbage Collection.\end{DoxyVerb}
+ 
 
-
-Definition at line \mbox{\hyperlink{____init_____8py_source_l00116}{116}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00145}{145}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00116     \textcolor{keyword}{def }Shutdown(self):}
-\DoxyCodeLine{00117         \textcolor{keywordflow}{if} self.tick\_handle:}
-\DoxyCodeLine{00118             ue.unregister\_slate\_post\_tick\_callback(self.tick\_handle)}
-\DoxyCodeLine{00119             del self.tick\_handle}
-\DoxyCodeLine{00120 }
-\DoxyCodeLine{00121         \textcolor{keywordflow}{if} self.worker\_pool:}
-\DoxyCodeLine{00122             self.worker\_pool.shutdown(wait=\textcolor{keyword}{False}, cancel\_futures=\textcolor{keyword}{True})}
-\DoxyCodeLine{00123             del self.worker\_pool}
-\DoxyCodeLine{00124 }
-\DoxyCodeLine{00125         \textcolor{keywordflow}{if} self.audio\_resampler:}
-\DoxyCodeLine{00126             del self.audio\_resampler}
-\DoxyCodeLine{00127 }
-\DoxyCodeLine{00128         \textcolor{keywordflow}{if} self.com\_server:}
-\DoxyCodeLine{00129             del self.com\_server}
-\DoxyCodeLine{00130 }
-\DoxyCodeLine{00131         \textcolor{keywordflow}{if} self.whisper\_interface:}
-\DoxyCodeLine{00132             del self.whisper\_interface}
-\DoxyCodeLine{00133 }
-\DoxyCodeLine{00134         \textcolor{comment}{\# Force a Garbage Collection}}
-\DoxyCodeLine{00135         gc\_collect()}
+\DoxyCodeLine{00145     \textcolor{keyword}{def }Shutdown(self):}
+\DoxyCodeLine{00146         \textcolor{stringliteral}{"{}"{}"{}Shutsdown the Python Runtime Components, and Forces a Garbage Collection."{}"{}"{}}}
+\DoxyCodeLine{00147 }
+\DoxyCodeLine{00148         \textcolor{keywordflow}{if} self.tick\_handle:}
+\DoxyCodeLine{00149             ue.unregister\_slate\_post\_tick\_callback(self.tick\_handle)}
+\DoxyCodeLine{00150             del self.tick\_handle}
+\DoxyCodeLine{00151 }
+\DoxyCodeLine{00152         \textcolor{keywordflow}{if} self.worker\_pool:}
+\DoxyCodeLine{00153             self.worker\_pool.shutdown(wait=\textcolor{keyword}{False}, cancel\_futures=\textcolor{keyword}{True})}
+\DoxyCodeLine{00154             del self.worker\_pool}
+\DoxyCodeLine{00155 }
+\DoxyCodeLine{00156         \textcolor{keywordflow}{if} self.audio\_resampler:}
+\DoxyCodeLine{00157             del self.audio\_resampler}
+\DoxyCodeLine{00158 }
+\DoxyCodeLine{00159         \textcolor{keywordflow}{if} self.com\_server:}
+\DoxyCodeLine{00160             del self.com\_server}
+\DoxyCodeLine{00161 }
+\DoxyCodeLine{00162         \textcolor{keywordflow}{if} self.whisper\_interface:}
+\DoxyCodeLine{00163             del self.whisper\_interface}
+\DoxyCodeLine{00164 }
+\DoxyCodeLine{00165         \textcolor{comment}{\# Force a Garbage Collection}}
+\DoxyCodeLine{00166         gc\_collect()}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a5e271ef54ada389050f98033b0b12247}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a5e271ef54ada389050f98033b0b12247}} 
@@ -183,21 +225,35 @@ Definition at line \mbox{\hyperlink{____init_____8py_source_l00116}{116}} of fil
 \doxysubsubsection{\texorpdfstring{Tick()}{Tick()}}
 {\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Open\+Accessibility\+Py.\+Tick (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{float}]{delta\+\_\+time }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Tick Callback for Unreal Engine Slate Post Tick.
 
+Detecting Incoming Transcription Requests and Handling them, through the Worker Pool.
 
-Definition at line \mbox{\hyperlink{____init_____8py_source_l00070}{70}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+Args:
+    delta_time (float): Time since last tick
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00084}{84}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00070     \textcolor{keyword}{def }Tick(self, delta\_time: float):}
-\DoxyCodeLine{00071 }
-\DoxyCodeLine{00072         \textcolor{keywordflow}{if} self.com\_server.EventOccured():}
-\DoxyCodeLine{00073             Log(\textcolor{stringliteral}{"{}Event Occured"{}})}
-\DoxyCodeLine{00074 }
-\DoxyCodeLine{00075             message, metadata = self.com\_server.ReceiveNDArrayWithMeta(dtype=np.float32)}
-\DoxyCodeLine{00076 }
-\DoxyCodeLine{00077             self.worker\_pool.submit(self.HandleTranscriptionRequest, message, metadata)}
-\DoxyCodeLine{00078 }
+\DoxyCodeLine{00084     \textcolor{keyword}{def }Tick(self, delta\_time: float):}
+\DoxyCodeLine{00085         \textcolor{stringliteral}{"{}"{}"{}Tick Callback for Unreal Engine Slate Post Tick.}}
+\DoxyCodeLine{00086 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00087 \textcolor{stringliteral}{        Detecting Incoming Transcription Requests }\textcolor{keywordflow}{and} Handling them, through the Worker Pool.}
+\DoxyCodeLine{00088 }
+\DoxyCodeLine{00089         Args:}
+\DoxyCodeLine{00090             delta\_time (float): Time since last tick}
+\DoxyCodeLine{00091         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00092 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00093 \textcolor{stringliteral}{        }\textcolor{keywordflow}{if} self.com\_server.EventOccured():}
+\DoxyCodeLine{00094             Log(\textcolor{stringliteral}{"{}Event Occured"{}})}
+\DoxyCodeLine{00095 }
+\DoxyCodeLine{00096             message, metadata = self.com\_server.ReceiveNDArrayWithMeta(dtype=np.float32)}
+\DoxyCodeLine{00097 }
+\DoxyCodeLine{00098             self.worker\_pool.submit(self.HandleTranscriptionRequest, message, metadata)}
+\DoxyCodeLine{00099 }
 
 \end{DoxyCode}
 
@@ -211,7 +267,7 @@ Definition at line \mbox{\hyperlink{____init_____8py_source_l00070}{70}} of file
 
 
 
-Definition at line \mbox{\hyperlink{____init_____8py_source_l00061}{61}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00073}{73}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
 \mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_ae29bd3c655fa38cd3447135609afd887}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_ae29bd3c655fa38cd3447135609afd887}} 
 \index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!com\_server@{com\_server}}
@@ -221,7 +277,7 @@ Definition at line \mbox{\hyperlink{____init_____8py_source_l00061}{61}} of file
 
 
 
-Definition at line \mbox{\hyperlink{____init_____8py_source_l00056}{56}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00068}{68}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
 \mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a174cc3cc690fc56cf3f71711cbe86fa8}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a174cc3cc690fc56cf3f71711cbe86fa8}} 
 \index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!pyshutdown\_handle@{pyshutdown\_handle}}
@@ -231,7 +287,7 @@ Definition at line \mbox{\hyperlink{____init_____8py_source_l00056}{56}} of file
 
 
 
-Definition at line \mbox{\hyperlink{____init_____8py_source_l00065}{65}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00077}{77}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
 \mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a85932dcfeb230e39deaaaf52ed2012aa}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a85932dcfeb230e39deaaaf52ed2012aa}} 
 \index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!tick\_handle@{tick\_handle}}
@@ -241,7 +297,7 @@ Definition at line \mbox{\hyperlink{____init_____8py_source_l00065}{65}} of file
 
 
 
-Definition at line \mbox{\hyperlink{____init_____8py_source_l00063}{63}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00075}{75}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
 \mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a03b485a6b095df0e86edbfc08676e1b5}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a03b485a6b095df0e86edbfc08676e1b5}} 
 \index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!whisper\_interface@{whisper\_interface}}
@@ -251,7 +307,7 @@ Definition at line \mbox{\hyperlink{____init_____8py_source_l00063}{63}} of file
 
 
 
-Definition at line \mbox{\hyperlink{____init_____8py_source_l00050}{50}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00062}{62}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
 \mbox{\Hypertarget{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a5e9b9d7b855eebc968d9ff1cc2a1eea9}\label{classOpenAccessibilityPy_1_1OpenAccessibilityPy_a5e9b9d7b855eebc968d9ff1cc2a1eea9}} 
 \index{OpenAccessibilityPy.OpenAccessibilityPy@{OpenAccessibilityPy.OpenAccessibilityPy}!worker\_pool@{worker\_pool}}
@@ -261,7 +317,7 @@ Definition at line \mbox{\hyperlink{____init_____8py_source_l00050}{50}} of file
 
 
 
-Definition at line \mbox{\hyperlink{____init_____8py_source_l00046}{46}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
+Definition at line \mbox{\hyperlink{____init_____8py_source_l00058}{58}} of file \mbox{\hyperlink{____init_____8py_source}{\+\_\+\+\_\+init\+\_\+\+\_\+.\+py}}.
 
 
 

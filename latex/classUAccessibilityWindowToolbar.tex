@@ -16,6 +16,10 @@ Inheritance diagram for UAccessibility\+Window\+Toolbar\+:\begin{figure}[H]
 bool \mbox{\hyperlink{classUAccessibilityWindowToolbar_ab53b05c83597927b9053666da4111b05}{Tick}} (float Delta\+Time)
 \item 
 void \mbox{\hyperlink{classUAccessibilityWindowToolbar_aa2945392855b85a4095b1452893466f2}{Select\+Toolbar\+Item}} (int32 Index)
+\item 
+bool \mbox{\hyperlink{classUAccessibilityWindowToolbar_a5d0764f5ddba04c38af99d8b1d8a5bf8}{Is\+Active\+Toolbar}} (const TShared\+Ref$<$ SWidget $>$ \&Toolkit\+Widget)
+\item 
+TShared\+Ptr$<$ SWidget $>$ \mbox{\hyperlink{classUAccessibilityWindowToolbar_a4000afce09cb11093904c3e3b7c63fc8}{Get\+Active\+Toolkit\+Widget}} () const
 \end{DoxyCompactItemize}
 
 
@@ -80,6 +84,56 @@ Definition at line \mbox{\hyperlink{AccessibilityWindowToolbar_8cpp_source_l0002
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classUAccessibilityWindowToolbar_a4000afce09cb11093904c3e3b7c63fc8}\label{classUAccessibilityWindowToolbar_a4000afce09cb11093904c3e3b7c63fc8}} 
+\index{UAccessibilityWindowToolbar@{UAccessibilityWindowToolbar}!GetActiveToolkitWidget@{GetActiveToolkitWidget}}
+\index{GetActiveToolkitWidget@{GetActiveToolkitWidget}!UAccessibilityWindowToolbar@{UAccessibilityWindowToolbar}}
+\doxysubsubsection{\texorpdfstring{GetActiveToolkitWidget()}{GetActiveToolkitWidget()}}
+{\footnotesize\ttfamily TShared\+Ptr$<$ SWidget $>$ UAccessibility\+Window\+Toolbar\+::\+Get\+Active\+Toolkit\+Widget (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Gets the Stored Active Toolkit Widget. \begin{DoxyReturn}{Returns}
+Shared Pointer to the Active Toolkit Widget, otherwise Invalid Pointer. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{AccessibilityWindowToolbar_8cpp_source_l00240}{240}} of file \mbox{\hyperlink{AccessibilityWindowToolbar_8cpp_source}{Accessibility\+Window\+Toolbar.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00241 \{}
+\DoxyCodeLine{00242     \textcolor{keywordflow}{if} (LastToolkit.IsValid())}
+\DoxyCodeLine{00243         \textcolor{keywordflow}{return} LastToolkit.Pin();}
+\DoxyCodeLine{00244 }
+\DoxyCodeLine{00245     \textcolor{keywordflow}{return} TSharedPtr<SWidget>();}
+\DoxyCodeLine{00246 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classUAccessibilityWindowToolbar_a5d0764f5ddba04c38af99d8b1d8a5bf8}\label{classUAccessibilityWindowToolbar_a5d0764f5ddba04c38af99d8b1d8a5bf8}} 
+\index{UAccessibilityWindowToolbar@{UAccessibilityWindowToolbar}!IsActiveToolbar@{IsActiveToolbar}}
+\index{IsActiveToolbar@{IsActiveToolbar}!UAccessibilityWindowToolbar@{UAccessibilityWindowToolbar}}
+\doxysubsubsection{\texorpdfstring{IsActiveToolbar()}{IsActiveToolbar()}}
+{\footnotesize\ttfamily bool UAccessibility\+Window\+Toolbar\+::\+Is\+Active\+Toolbar (\begin{DoxyParamCaption}\item[{const TShared\+Ref$<$ SWidget $>$ \&}]{Toolkit\+Widget }\end{DoxyParamCaption})}
+
+Checks to see if the Active Toolkit being Indexed is the provided Toolkit Widget. 
+\begin{DoxyParams}{Parameters}
+{\em Toolkit\+Widget} & Toolkit Widget to Check if it is the active toolkit being Indexed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the provided toolkit is the active widget, otherwise False. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{AccessibilityWindowToolbar_8cpp_source_l00233}{233}} of file \mbox{\hyperlink{AccessibilityWindowToolbar_8cpp_source}{Accessibility\+Window\+Toolbar.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00234 \{}
+\DoxyCodeLine{00235     \textcolor{keywordflow}{return} LastToolkit.IsValid()}
+\DoxyCodeLine{00236         ? LastToolkit.Pin() == ToolkitWidget}
+\DoxyCodeLine{00237         : \textcolor{keyword}{false};}
+\DoxyCodeLine{00238 \}}
+
+\end{DoxyCode}
 \mbox{\Hypertarget{classUAccessibilityWindowToolbar_aa2945392855b85a4095b1452893466f2}\label{classUAccessibilityWindowToolbar_aa2945392855b85a4095b1452893466f2}} 
 \index{UAccessibilityWindowToolbar@{UAccessibilityWindowToolbar}!SelectToolbarItem@{SelectToolbarItem}}
 \index{SelectToolbarItem@{SelectToolbarItem}!UAccessibilityWindowToolbar@{UAccessibilityWindowToolbar}}
@@ -93,44 +147,44 @@ Selects the Active Tool\+Bars Element, based on the provided Index.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{AccessibilityWindowToolbar_8cpp_source_l00199}{199}} of file \mbox{\hyperlink{AccessibilityWindowToolbar_8cpp_source}{Accessibility\+Window\+Toolbar.\+cpp}}.
+Definition at line \mbox{\hyperlink{AccessibilityWindowToolbar_8cpp_source_l00197}{197}} of file \mbox{\hyperlink{AccessibilityWindowToolbar_8cpp_source}{Accessibility\+Window\+Toolbar.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00200 \{}
-\DoxyCodeLine{00201     \textcolor{keywordflow}{if} (ToolbarIndex.\mbox{\hyperlink{classFIndexer_aa8a1d7138172e74508d46bde9337cec2}{IsEmpty}}()) }
-\DoxyCodeLine{00202     \{}
-\DoxyCodeLine{00203         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}ToolBar Index is Empty."{}}))}
-\DoxyCodeLine{00204         return;}
-\DoxyCodeLine{00205     \}}
-\DoxyCodeLine{00206 }
-\DoxyCodeLine{00207     SMultiBlockBaseWidget* LinkedButton;}
-\DoxyCodeLine{00208     if (!ToolbarIndex.GetValue(Index, LinkedButton)) }
-\DoxyCodeLine{00209     \{}
-\DoxyCodeLine{00210         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Provided Index is Not Linked to a ToolBar Button."{}}))}
-\DoxyCodeLine{00211         return;}
-\DoxyCodeLine{00212     \}}
-\DoxyCodeLine{00213 }
-\DoxyCodeLine{00214     TSharedPtr<const FMultiBlock> MultiBlock = LinkedButton-\/>GetBlock();}
-\DoxyCodeLine{00215     if (!MultiBlock.IsValid()) }
-\DoxyCodeLine{00216     \{}
-\DoxyCodeLine{00217         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Provided ToolBar MultiBlock is Not Valid."{}}))}
-\DoxyCodeLine{00218     \}}
-\DoxyCodeLine{00219 }
-\DoxyCodeLine{00220     TSharedPtr<const FUICommandList> ActionList = MultiBlock-\/>GetActionList();}
-\DoxyCodeLine{00221     TSharedPtr<const FUICommandInfo> Action = MultiBlock-\/>GetAction();}
-\DoxyCodeLine{00222 }
-\DoxyCodeLine{00223     \textcolor{keywordflow}{if} (ActionList.IsValid() \&\& Action.IsValid()) }
-\DoxyCodeLine{00224     \{}
-\DoxyCodeLine{00225         ActionList-\/>ExecuteAction( Action.ToSharedRef() );    }
-\DoxyCodeLine{00226     \}}
-\DoxyCodeLine{00227     \textcolor{keywordflow}{else} }
-\DoxyCodeLine{00228     \{}
-\DoxyCodeLine{00229         \textcolor{keyword}{const} FUIAction\& DirectAction = MultiBlock-\/>GetDirectActions();}
-\DoxyCodeLine{00230 }
-\DoxyCodeLine{00231         DirectAction.Execute();}
-\DoxyCodeLine{00232     \}}
-\DoxyCodeLine{00233 \}}
+\DoxyCodeLine{00198 \{}
+\DoxyCodeLine{00199     \textcolor{keywordflow}{if} (ToolbarIndex.\mbox{\hyperlink{classFIndexer_aa8a1d7138172e74508d46bde9337cec2}{IsEmpty}}()) }
+\DoxyCodeLine{00200     \{}
+\DoxyCodeLine{00201         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}ToolBar Index is Empty."{}}))}
+\DoxyCodeLine{00202         return;}
+\DoxyCodeLine{00203     \}}
+\DoxyCodeLine{00204 }
+\DoxyCodeLine{00205     SMultiBlockBaseWidget* LinkedButton;}
+\DoxyCodeLine{00206     if (!ToolbarIndex.GetValue(Index, LinkedButton)) }
+\DoxyCodeLine{00207     \{}
+\DoxyCodeLine{00208         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Provided Index is Not Linked to a ToolBar Button."{}}))}
+\DoxyCodeLine{00209         return;}
+\DoxyCodeLine{00210     \}}
+\DoxyCodeLine{00211 }
+\DoxyCodeLine{00212     TSharedPtr<const FMultiBlock> MultiBlock = LinkedButton-\/>GetBlock();}
+\DoxyCodeLine{00213     if (!MultiBlock.IsValid()) }
+\DoxyCodeLine{00214     \{}
+\DoxyCodeLine{00215         UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}Provided ToolBar MultiBlock is Not Valid."{}}))}
+\DoxyCodeLine{00216     \}}
+\DoxyCodeLine{00217 }
+\DoxyCodeLine{00218     TSharedPtr<const FUICommandList> ActionList = MultiBlock-\/>GetActionList();}
+\DoxyCodeLine{00219     TSharedPtr<const FUICommandInfo> Action = MultiBlock-\/>GetAction();}
+\DoxyCodeLine{00220 }
+\DoxyCodeLine{00221     \textcolor{keywordflow}{if} (ActionList.IsValid() \&\& Action.IsValid()) }
+\DoxyCodeLine{00222     \{}
+\DoxyCodeLine{00223         ActionList-\/>ExecuteAction( Action.ToSharedRef() );    }
+\DoxyCodeLine{00224     \}}
+\DoxyCodeLine{00225     \textcolor{keywordflow}{else} }
+\DoxyCodeLine{00226     \{}
+\DoxyCodeLine{00227         \textcolor{keyword}{const} FUIAction\& DirectAction = MultiBlock-\/>GetDirectActions();}
+\DoxyCodeLine{00228 }
+\DoxyCodeLine{00229         DirectAction.Execute();}
+\DoxyCodeLine{00230     \}}
+\DoxyCodeLine{00231 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classUAccessibilityWindowToolbar_ab53b05c83597927b9053666da4111b05}\label{classUAccessibilityWindowToolbar_ab53b05c83597927b9053666da4111b05}} 
@@ -169,7 +223,7 @@ Definition at line \mbox{\hyperlink{AccessibilityWindowToolbar_8cpp_source_l0003
 \DoxyCodeLine{00056         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
 \DoxyCodeLine{00057     \}}
 \DoxyCodeLine{00058 }
-\DoxyCodeLine{00059     \textcolor{keywordflow}{if} (ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef())) }
+\DoxyCodeLine{00059     \textcolor{keywordflow}{if} (ApplyToolbarIndexing(Toolkit.ToSharedRef(), TopWindow.ToSharedRef()))}
 \DoxyCodeLine{00060     \{}
 \DoxyCodeLine{00061         LastToolkit = Toolkit;}
 \DoxyCodeLine{00062         \textcolor{comment}{//UE\_LOG(LogOpenAccessibility, Log, TEXT("{}AccessibilityToolBar: Toolkit Indexing Applied To \%s"{}), *Toolkit-\/>GetTypeAsString());}}

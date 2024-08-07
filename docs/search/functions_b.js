@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['meetsinputrequirements_0',['MeetsInputRequirements',['../classFPhraseEnumInputNode.html#a331faf8f6863751d7f38e56d8e286c18',1,'FPhraseEnumInputNode::MeetsInputRequirements()'],['../classFPhraseInputNode.html#a4db63d4ca6bf5ace09c3dda2f19c7e78',1,'FPhraseInputNode::MeetsInputRequirements()'],['../classFPhraseStringInputNode.html#adc7ca43b878f34dc239bb654be1da184',1,'FPhraseStringInputNode::MeetsInputRequirements()']]],
-  ['movenode_1',['MoveNode',['../classUNodeInteractionLibrary.html#a11b47ab03e06a454483df3864e8f9aa0',1,'UNodeInteractionLibrary']]],
-  ['moveviewport_2',['MoveViewport',['../classUViewInteractionLibrary.html#a4ef057b326b49e181f872220762db1d5',1,'UViewInteractionLibrary']]],
-  ['movevisualizer_3',['MoveVisualizer',['../classFTranscriptionVisualizer.html#aef576bc9c2423d9f0246ccc6b005c95d',1,'FTranscriptionVisualizer']]]
+  ['locomotioncancel_0',['LocomotionCancel',['../classUNodeInteractionLibrary.html#a24236354705c8dd6a0405047f780bf7f',1,'UNodeInteractionLibrary']]],
+  ['locomotionconfirm_1',['LocomotionConfirm',['../classUNodeInteractionLibrary.html#a2934262cc71c6535679b105699b4d7c4',1,'UNodeInteractionLibrary']]],
+  ['locomotionrevert_2',['LocomotionRevert',['../classUNodeInteractionLibrary.html#a7b04b9de427ec89ef330ccf02184c808',1,'UNodeInteractionLibrary']]],
+  ['locomotionselect_3',['LocomotionSelect',['../classUNodeInteractionLibrary.html#a49c69260ebcb64c73eccea24ea5942f9',1,'UNodeInteractionLibrary']]],
+  ['logevent_4',['LogEvent',['../classFOpenAccessibilityAnalyticsModule.html#ae25cc948b4acd04863f5f20347569f0c',1,'FOpenAccessibilityAnalyticsModule']]]
 ];

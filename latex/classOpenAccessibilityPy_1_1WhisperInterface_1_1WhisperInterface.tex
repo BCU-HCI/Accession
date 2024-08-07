@@ -21,7 +21,8 @@ tuple\mbox{[}list\mbox{[}Segment\mbox{]}, dict\mbox{]} \mbox{\hyperlink{classOpe
 
 
 \doxysubsection{Detailed Description}
-
+\begin{DoxyVerb}Interface Class for Interacting with the CTranslate2 Faster Whisper Model.\end{DoxyVerb}
+ 
 
 Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00013}{13}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
 
@@ -34,24 +35,43 @@ Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00013}{13}} of 
 \doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
 {\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Whisper\+Interface.\+Whisper\+Interface.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str }]{model\+\_\+name = {\ttfamily \char`\"{}distil-\/small.en\char`\"{}},  }\item[{str }]{device = {\ttfamily \char`\"{}auto\char`\"{}},  }\item[{int }]{cpu\+\_\+threads = {\ttfamily 4},  }\item[{int }]{transcribe\+\_\+workers = {\ttfamily 2},  }\item[{str }]{compute\+\_\+type = {\ttfamily \char`\"{}default\char`\"{}} }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Constructor of Whisper Interface Class
 
+Args:
+    model_name (str, optional): Hugging-Face Model Specifier for CTranslate Compatible Models. Defaults to "distil-small.en".
+    device (str, optional): Device host for the Whisper Model (Can be "auto", "cpu", "cuda"). Defaults to "auto".
+    cpu_threads (int, optional): Amount of CPU Threads to use, if Hosting the Model on a CPU. Defaults to 4.
+    transcribe_workers (int, optional): Amount of Thread Workers for Audio Transcription. Defaults to 2.
+    compute_type (str, optional): Data Structure for Whisper Compute. Defaults to "default".
+\end{DoxyVerb}
+ 
 
-Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00015}{15}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00016}{16}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00022     ):}
-\DoxyCodeLine{00023         \textcolor{comment}{\# Whisper Focused Variables}}
-\DoxyCodeLine{00024         self.whisper\_model = WhisperModel(}
-\DoxyCodeLine{00025             model\_name,}
-\DoxyCodeLine{00026             device=device,}
-\DoxyCodeLine{00027             compute\_type=compute\_type,}
-\DoxyCodeLine{00028             num\_workers=transcribe\_workers,}
-\DoxyCodeLine{00029             cpu\_threads=cpu\_threads,}
-\DoxyCodeLine{00030             local\_files\_only=\textcolor{keyword}{True},}
-\DoxyCodeLine{00031         )}
-\DoxyCodeLine{00032         self.beam\_size = 5}
-\DoxyCodeLine{00033 }
+\DoxyCodeLine{00023     ):}
+\DoxyCodeLine{00024         \textcolor{stringliteral}{"{}"{}"{}Constructor of Whisper Interface Class}}
+\DoxyCodeLine{00025 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00026 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{00027 \textcolor{stringliteral}{            model\_name (str, optional): Hugging-\/Face Model Specifier }\textcolor{keywordflow}{for} CTranslate Compatible Models. Defaults to \textcolor{stringliteral}{"{}distil-\/small.en"{}}.}
+\DoxyCodeLine{00028             device (str, optional): Device host \textcolor{keywordflow}{for} the Whisper Model (Can be \textcolor{stringliteral}{"{}auto"{}}, \textcolor{stringliteral}{"{}cpu"{}}, \textcolor{stringliteral}{"{}cuda"{}}). Defaults to \textcolor{stringliteral}{"{}auto"{}}.}
+\DoxyCodeLine{00029             cpu\_threads (int, optional): Amount of CPU Threads to use, \textcolor{keywordflow}{if} Hosting the Model on a CPU. Defaults to 4.}
+\DoxyCodeLine{00030             transcribe\_workers (int, optional): Amount of Thread Workers \textcolor{keywordflow}{for} Audio Transcription. Defaults to 2.}
+\DoxyCodeLine{00031             compute\_type (str, optional): Data Structure \textcolor{keywordflow}{for} Whisper Compute. Defaults to \textcolor{stringliteral}{"{}default"{}}.}
+\DoxyCodeLine{00032         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00033 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00034 \textcolor{stringliteral}{        }\textcolor{comment}{\# Whisper Focused Variables}}
+\DoxyCodeLine{00035         self.whisper\_model = WhisperModel(}
+\DoxyCodeLine{00036             model\_name,}
+\DoxyCodeLine{00037             device=device,}
+\DoxyCodeLine{00038             compute\_type=compute\_type,}
+\DoxyCodeLine{00039             num\_workers=transcribe\_workers,}
+\DoxyCodeLine{00040             cpu\_threads=cpu\_threads,}
+\DoxyCodeLine{00041             local\_files\_only=\textcolor{keyword}{True},}
+\DoxyCodeLine{00042         )}
+\DoxyCodeLine{00043         self.beam\_size = 5}
+\DoxyCodeLine{00044 }
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a985f6d04116ed2267306a40583e8d574}\label{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a985f6d04116ed2267306a40583e8d574}} 
@@ -60,15 +80,18 @@ Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00015}{15}} of 
 \doxysubsubsection{\texorpdfstring{\_\_del\_\_()}{\_\_del\_\_()}}
 {\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Whisper\+Interface.\+Whisper\+Interface.\+\_\+\+\_\+del\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Destructor of Whisper Interface Class.\end{DoxyVerb}
+ 
 
-
-Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00034}{34}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00045}{45}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00034     \textcolor{keyword}{def }\_\_del\_\_(self):}
-\DoxyCodeLine{00035         del self.whisper\_model}
-\DoxyCodeLine{00036 }
+\DoxyCodeLine{00045     \textcolor{keyword}{def }\_\_del\_\_(self):}
+\DoxyCodeLine{00046         \textcolor{stringliteral}{"{}"{}"{}Destructor of Whisper Interface Class."{}"{}"{}}}
+\DoxyCodeLine{00047 }
+\DoxyCodeLine{00048         del self.whisper\_model}
+\DoxyCodeLine{00049 }
 
 \end{DoxyCode}
 
@@ -80,31 +103,47 @@ Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00034}{34}} of 
 \doxysubsubsection{\texorpdfstring{process\_audio\_buffer()}{process\_audio\_buffer()}}
 {\footnotesize\ttfamily  tuple\mbox{[}list\mbox{[}Segment\mbox{]}, dict\mbox{]} Open\+Accessibility\+Py.\+Whisper\+Interface.\+Whisper\+Interface.\+process\+\_\+audio\+\_\+buffer (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{np.\+ndarray     }]{audio\+\_\+buffer }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Transcribes an NDArray AudioBuffer.
 
+Args:
+    audio_buffer (np.ndarray): AudioBuffer to Transcribe.
 
-Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00059}{59}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+Returns:
+    tuple[list[Segment], dict]: Tuple Containing a List of Transcription Segments and a Dictionary of Collected Metadata.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00080}{80}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00061     ) -\/> tuple[list[Segment], dict]:}
-\DoxyCodeLine{00062 }
-\DoxyCodeLine{00063         segments, info = self.whisper\_model.transcribe(}
-\DoxyCodeLine{00064             audio\_buffer,}
-\DoxyCodeLine{00065             beam\_size=self.beam\_size,}
-\DoxyCodeLine{00066             language=\textcolor{stringliteral}{"{}en"{}},}
-\DoxyCodeLine{00067         )}
-\DoxyCodeLine{00068 }
-\DoxyCodeLine{00069         Log(}
-\DoxyCodeLine{00070             f\textcolor{stringliteral}{"{}WhisperInterface || Detected Language: \{info.language\} | Probability: \{info.language\_probability\} | Duration: \{info.duration\}"{}}}
-\DoxyCodeLine{00071         )}
-\DoxyCodeLine{00072 }
-\DoxyCodeLine{00073         collected\_metadata = \{}
-\DoxyCodeLine{00074             \textcolor{stringliteral}{"{}duration"{}}: info.duration,}
-\DoxyCodeLine{00075             \textcolor{stringliteral}{"{}language"{}}: info.language,}
-\DoxyCodeLine{00076             \textcolor{stringliteral}{"{}language\_probability"{}}: info.language\_probability,}
-\DoxyCodeLine{00077         \}}
-\DoxyCodeLine{00078 }
-\DoxyCodeLine{00079         \textcolor{keywordflow}{return} list(segments), collected\_metadata}
+\DoxyCodeLine{00082     ) -\/> tuple[list[Segment], dict]:}
+\DoxyCodeLine{00083         \textcolor{stringliteral}{"{}"{}"{}Transcribes an NDArray AudioBuffer.}}
+\DoxyCodeLine{00084 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00085 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{00086 \textcolor{stringliteral}{            audio\_buffer (np.ndarray): AudioBuffer to Transcribe.}}
+\DoxyCodeLine{00087 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00088 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{00089 \textcolor{stringliteral}{            tuple[list[Segment], dict]: Tuple Containing a List of Transcription Segments }\textcolor{keywordflow}{and} a Dictionary of Collected Metadata.}
+\DoxyCodeLine{00090         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00091 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00092 \textcolor{stringliteral}{        segments, info = self.whisper\_model.transcribe(}}
+\DoxyCodeLine{00093 \textcolor{stringliteral}{            audio\_buffer,}}
+\DoxyCodeLine{00094 \textcolor{stringliteral}{            beam\_size=self.beam\_size,}}
+\DoxyCodeLine{00095 \textcolor{stringliteral}{            language="{}en"{}},}
+\DoxyCodeLine{00096         )}
+\DoxyCodeLine{00097 }
+\DoxyCodeLine{00098         Log(}
+\DoxyCodeLine{00099             f\textcolor{stringliteral}{"{}WhisperInterface || Detected Language: \{info.language\} | Probability: \{info.language\_probability\} | Duration: \{info.duration\}"{}}}
+\DoxyCodeLine{00100         )}
+\DoxyCodeLine{00101 }
+\DoxyCodeLine{00102         collected\_metadata = \{}
+\DoxyCodeLine{00103             \textcolor{stringliteral}{"{}duration"{}}: info.duration,}
+\DoxyCodeLine{00104             \textcolor{stringliteral}{"{}language"{}}: info.language,}
+\DoxyCodeLine{00105             \textcolor{stringliteral}{"{}language\_probability"{}}: info.language\_probability,}
+\DoxyCodeLine{00106         \}}
+\DoxyCodeLine{00107 }
+\DoxyCodeLine{00108         \textcolor{keywordflow}{return} list(segments), collected\_metadata}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a31890d94170946f043c39b82fa023723}\label{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a31890d94170946f043c39b82fa023723}} 
@@ -113,34 +152,50 @@ Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00059}{59}} of 
 \doxysubsubsection{\texorpdfstring{process\_file\_from\_dir()}{process\_file\_from\_dir()}}
 {\footnotesize\ttfamily def Open\+Accessibility\+Py.\+Whisper\+Interface.\+Whisper\+Interface.\+process\+\_\+file\+\_\+from\+\_\+dir (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{str}]{filepath }\end{DoxyParamCaption})}
 
+\begin{DoxyVerb}Transcribes an Audio Files from a Given WAV File Path.
 
+Args:
+    filepath (str): Path to the Audio Files to Transcribe.
 
-Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00037}{37}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+Returns:
+    A List of Segments containing the Transcribed Text and their Time Stamps.
+\end{DoxyVerb}
+ 
+
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00050}{50}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00037     \textcolor{keyword}{def }process\_file\_from\_dir(self, filepath: str):}
-\DoxyCodeLine{00038 }
-\DoxyCodeLine{00039         segments, info = self.whisper\_model.transcribe(}
-\DoxyCodeLine{00040             filepath,}
-\DoxyCodeLine{00041             beam\_size=self.beam\_size,}
-\DoxyCodeLine{00042             language=\textcolor{stringliteral}{"{}en"{}},}
-\DoxyCodeLine{00043             prepend\_punctuations=\textcolor{stringliteral}{"{}"{}},}
-\DoxyCodeLine{00044             append\_punctuations=\textcolor{stringliteral}{"{}"{}},}
-\DoxyCodeLine{00045             vad\_filter=\textcolor{keyword}{True},}
-\DoxyCodeLine{00046         )}
-\DoxyCodeLine{00047 }
-\DoxyCodeLine{00048         Log(}
-\DoxyCodeLine{00049             f\textcolor{stringliteral}{"{}WhisperInterface | Detected Language: \{info.language\} | Probability: \{info.language\_probability\} | Duration: \{info.duration\}"{}}}
-\DoxyCodeLine{00050         )}
-\DoxyCodeLine{00051 }
-\DoxyCodeLine{00052         \textcolor{keywordflow}{for} segment \textcolor{keywordflow}{in} segments:}
-\DoxyCodeLine{00053             Log(}
-\DoxyCodeLine{00054                 f\textcolor{stringliteral}{"{}WhisperInterface | Segment : \{segment.text\} | Start: \{segment.start\} | End: \{segment.end\}"{}}}
-\DoxyCodeLine{00055             )}
-\DoxyCodeLine{00056 }
-\DoxyCodeLine{00057         \textcolor{keywordflow}{return} list(segments)}
-\DoxyCodeLine{00058 }
+\DoxyCodeLine{00050     \textcolor{keyword}{def }process\_file\_from\_dir(self, filepath: str):}
+\DoxyCodeLine{00051         \textcolor{stringliteral}{"{}"{}"{}Transcribes an Audio Files from a Given WAV File Path.}}
+\DoxyCodeLine{00052 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00053 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{00054 \textcolor{stringliteral}{            filepath (str): Path to the Audio Files to Transcribe.}}
+\DoxyCodeLine{00055 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00056 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{00057 \textcolor{stringliteral}{            A List of Segments containing the Transcribed Text }\textcolor{keywordflow}{and} their Time Stamps.}
+\DoxyCodeLine{00058         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00059 \textcolor{stringliteral}{}}
+\DoxyCodeLine{00060 \textcolor{stringliteral}{        segments, info = self.whisper\_model.transcribe(}}
+\DoxyCodeLine{00061 \textcolor{stringliteral}{            filepath,}}
+\DoxyCodeLine{00062 \textcolor{stringliteral}{            beam\_size=self.beam\_size,}}
+\DoxyCodeLine{00063 \textcolor{stringliteral}{            language="{}en"{}},}
+\DoxyCodeLine{00064             prepend\_punctuations=\textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00065             append\_punctuations=\textcolor{stringliteral}{"{}"{}},}
+\DoxyCodeLine{00066             vad\_filter=\textcolor{keyword}{True},}
+\DoxyCodeLine{00067         )}
+\DoxyCodeLine{00068 }
+\DoxyCodeLine{00069         Log(}
+\DoxyCodeLine{00070             f\textcolor{stringliteral}{"{}WhisperInterface | Detected Language: \{info.language\} | Probability: \{info.language\_probability\} | Duration: \{info.duration\}"{}}}
+\DoxyCodeLine{00071         )}
+\DoxyCodeLine{00072 }
+\DoxyCodeLine{00073         \textcolor{keywordflow}{for} segment \textcolor{keywordflow}{in} segments:}
+\DoxyCodeLine{00074             Log(}
+\DoxyCodeLine{00075                 f\textcolor{stringliteral}{"{}WhisperInterface | Segment : \{segment.text\} | Start: \{segment.start\} | End: \{segment.end\}"{}}}
+\DoxyCodeLine{00076             )}
+\DoxyCodeLine{00077 }
+\DoxyCodeLine{00078         \textcolor{keywordflow}{return} list(segments)}
+\DoxyCodeLine{00079 }
 
 \end{DoxyCode}
 
@@ -154,7 +209,7 @@ Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00037}{37}} of 
 
 
 
-Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00032}{32}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00043}{43}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
 
 \mbox{\Hypertarget{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a96b55c7a69bb69d66ff8074256891373}\label{classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface_a96b55c7a69bb69d66ff8074256891373}} 
 \index{OpenAccessibilityPy.WhisperInterface.WhisperInterface@{OpenAccessibilityPy.WhisperInterface.WhisperInterface}!whisper\_model@{whisper\_model}}
@@ -164,7 +219,7 @@ Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00032}{32}} of 
 
 
 
-Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00024}{24}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
+Definition at line \mbox{\hyperlink{WhisperInterface_8py_source_l00035}{35}} of file \mbox{\hyperlink{WhisperInterface_8py_source}{Whisper\+Interface.\+py}}.
 
 
 

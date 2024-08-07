@@ -1,16 +1,14 @@
 var searchData=
 [
-  ['oaeditoraccessibilitymanager_0',['OAEditorAccessibilityManager',['../classOAEditorAccessibilityManager.html',1,'']]],
-  ['onaudioreadyfortranscription_1',['OnAudioReadyForTranscription',['../classUAudioManager.html#a5eb5bc3ec0e84cb2f4b3a1c8666b0abe',1,'UAudioManager']]],
-  ['ondefaultdevicechanged_2',['OnDefaultDeviceChanged',['../classUAudioManager.html#a4415e515a1e70915c3edee4a57382668',1,'UAudioManager']]],
-  ['ongetmenu_3',['OnGetMenu',['../classFPhraseContextMenuNode.html#aa9c492fa2c2c6b27abdb674585b5016c',1,'FPhraseContextMenuNode']]],
-  ['ongraphevent_4',['OnGraphEvent',['../classFGraphIndexer.html#a5b8b8c88fd0d2e906cf3d358bee48fcf',1,'FGraphIndexer']]],
-  ['ongraphrebuild_5',['OnGraphRebuild',['../classFGraphIndexer.html#a763e1b74402f235dfcf33647018d0ac9',1,'FGraphIndexer']]],
-  ['onmenudismissed_6',['OnMenuDismissed',['../classUPhraseTreeContextMenuObject.html#a093a322da1f8bb6ba57755f374ef327b',1,'UPhraseTreeContextMenuObject']]],
-  ['ontranscriptionrecieved_7',['OnTranscriptionRecieved',['../classFOpenAccessibilityCommunicationModule.html#ae37e1243a57b9774b84cfcfd3c4b2374',1,'FOpenAccessibilityCommunicationModule::OnTranscriptionRecieved()'],['../classFTranscriptionVisualizer.html#a78fc9829cc85a00d71a2cf81d9acb4d1',1,'FTranscriptionVisualizer::OnTranscriptionRecieved()']]],
-  ['openaccessibility_8',['OpenAccessibility',['../classOpenAccessibility.html',1,'']]],
-  ['openaccessibilityanalytics_9',['OpenAccessibilityAnalytics',['../classOpenAccessibilityAnalytics.html',1,'']]],
-  ['openaccessibilitycommunication_10',['OpenAccessibilityCommunication',['../classOpenAccessibilityCommunication.html',1,'']]],
-  ['openaccessibilitypy_11',['OpenAccessibilityPy',['../classOpenAccessibilityPy_1_1OpenAccessibilityPy.html',1,'OpenAccessibilityPy']]],
-  ['opendefaultaudiostream_12',['OpenDefaultAudioStream',['../classUBAudioCapture.html#ad7ab2a794748b6a309bfcc8d3d20f289',1,'UBAudioCapture']]]
+  ['nodeaddmenu_0',['NodeAddMenu',['../classUNodeInteractionLibrary.html#a851ad48a033235befddc2513cc1670d8',1,'UNodeInteractionLibrary']]],
+  ['nodeaddpinmenu_1',['NodeAddPinMenu',['../classUNodeInteractionLibrary.html#a1f22e6ed7da4356db68b75470ed3535a',1,'UNodeInteractionLibrary']]],
+  ['nodeaddscroll_2',['NodeAddScroll',['../classUNodeInteractionLibrary.html#a049c9c02707e480754801ebf6fbafb71',1,'UNodeInteractionLibrary']]],
+  ['nodeaddsearchadd_3',['NodeAddSearchAdd',['../classUNodeInteractionLibrary.html#a60f3b69964aeb5fdd9cc5b85095434b0',1,'UNodeInteractionLibrary']]],
+  ['nodeaddsearchremove_4',['NodeAddSearchRemove',['../classUNodeInteractionLibrary.html#a93bb8fac21d6b701e6b506af1bc71d02',1,'UNodeInteractionLibrary']]],
+  ['nodeaddsearchreset_5',['NodeAddSearchReset',['../classUNodeInteractionLibrary.html#a75969662bd20c943186fd44844e1399e',1,'UNodeInteractionLibrary']]],
+  ['nodeaddselect_6',['NodeAddSelect',['../classUNodeInteractionLibrary.html#ae507492440ad657f872fb9e8e8055f92',1,'UNodeInteractionLibrary']]],
+  ['nodeindexfocus_7',['NodeIndexFocus',['../classUNodeInteractionLibrary.html#aae20db1587bbbad836cdfe2f9e4508d1',1,'UNodeInteractionLibrary']]],
+  ['nodeset_8',['NodeSet',['../classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba',1,'FGraphIndexer']]],
+  ['num_9',['Num',['../classFIndexer.html#a9b1342e14c46c45747416fad8fa014c2',1,'FIndexer::Num() const'],['../classFIndexer.html#a7aba69b829da24d22800a32b389c2f36',1,'FIndexer::Num(int32 &amp;OutNum) const']]],
+  ['numericparser_10',['NumericParser',['../classNumericParser.html',1,'']]]
 ];

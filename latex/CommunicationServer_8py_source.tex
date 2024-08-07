@@ -13,147 +13,263 @@
 \DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00009}00009 }
 \DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00010}00010 }
 \DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00011}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer}{00011}} \textcolor{keyword}{class }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer}{CommunicationServer}}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00012}00012 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00013}00013     \textcolor{keyword}{def }\_\_init\_\_(}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00014}00014         self,}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00015}00015         send\_socket\_type: int,}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00016}00016         recv\_socket\_type: int,}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00017}00017         send\_socket\_addr: str = \textcolor{stringliteral}{"{}tcp://127.0.0.1:5556"{}},}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00018}00018         recv\_socket\_addr: str = \textcolor{stringliteral}{"{}tcp://127.0.0.1:5555"{}},}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00019}00019         poll\_timeout: int = 10,}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00020}00020     ):}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00021}00021         \textcolor{comment}{\# Create the Context}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00022}00022         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a4252135cb0899e9f897c0179de69e7df}{context}} = zmq.Context()}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00023}00023 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00024}00024         \textcolor{comment}{\# Create a Socket}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00025}00025         self.send\_socket: zmq.Socket = self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a4252135cb0899e9f897c0179de69e7df}{context}}.socket(send\_socket\_type)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00026}00026         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a592648523de2e7c4dff41cc74c584071}{send\_socket\_context}} = self.send\_socket.connect(send\_socket\_addr)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00027}00027 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00028}00028         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}} = self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a4252135cb0899e9f897c0179de69e7df}{context}}.socket(recv\_socket\_type)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00029}00029         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae039b5afc37f927883632f2c589f4253}{recv\_socket\_context}} = self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.bind(recv\_socket\_addr)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00030}00030 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00031}00031         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_afe92681571bcc6a30bdc5af8706d1031}{poller}} = zmq.Poller()}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00032}00032         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_afe92681571bcc6a30bdc5af8706d1031}{poller}}.register(self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}, zmq.POLLIN)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00033}00033         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_adfe669b1d0235921325d240e01019b09}{poller\_timeout\_time}} = poll\_timeout}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00034}00034 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00035}00035     \textcolor{keyword}{def }\_\_del\_\_(self):}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00036}00036 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00037}00037         self.send\_socket.close()}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00038}00038         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.close()}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00039}00039 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00040}00040         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a4252135cb0899e9f897c0179de69e7df}{context}}.term()}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00012}00012     \textcolor{stringliteral}{"{}"{}"{}Communication Server Class for Handling Communication Between Python and C++.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00013}00013 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00014}00014 \textcolor{stringliteral}{    Using ZeroMQ }\textcolor{keywordflow}{for} Socket Communication. (Push / PULL Architecture)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00015}00015     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00016}00016 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00017}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aafbb802f6fee1eaf838ab7734487c7ca}{00017}} \textcolor{stringliteral}{    }\textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aafbb802f6fee1eaf838ab7734487c7ca}{\_\_init\_\_}}(}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00018}00018         self,}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00019}00019         send\_socket\_type: int,}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00020}00020         recv\_socket\_type: int,}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00021}00021         send\_socket\_addr: str = \textcolor{stringliteral}{"{}tcp://127.0.0.1:5556"{}},}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00022}00022         recv\_socket\_addr: str = \textcolor{stringliteral}{"{}tcp://127.0.0.1:5555"{}},}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00023}00023         poll\_timeout: int = 10,}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00024}00024     ):}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00025}00025         \textcolor{stringliteral}{"{}"{}"{}Constructor of Communication Server Class}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00026}00026 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00027}00027 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00028}00028 \textcolor{stringliteral}{            send\_socket\_type (int): ZeroMQ Socket Type }\textcolor{keywordflow}{for} Sending Messages.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00029}00029             recv\_socket\_type (int): ZeroMQ Socket Type \textcolor{keywordflow}{for} Receiving Messages.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00030}00030             send\_socket\_addr (str, optional): Local Address / Port \textcolor{keywordflow}{for} Sending Communication Data. Defaults to \textcolor{stringliteral}{"{}tcp://127.0.0.1:5556"{}}.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00031}00031             recv\_socket\_addr (str, optional): Local Address / Port \textcolor{keywordflow}{for} Receiving Communication Data. Defaults to \textcolor{stringliteral}{"{}tcp://127.0.0.1:5555"{}}.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00032}00032             poll\_timeout (int, optional): Amount of time (ms) \textcolor{keywordflow}{for} event polling on the Receive Socket. Defaults to 10.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00033}00033         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00034}00034 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00035}00035 \textcolor{stringliteral}{        }\textcolor{comment}{\# Create the Context}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00036}00036         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a4252135cb0899e9f897c0179de69e7df}{context}} = zmq.Context()}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00038}00038         \textcolor{comment}{\# Create a Socket}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00039}00039         self.send\_socket: zmq.Socket = self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a4252135cb0899e9f897c0179de69e7df}{context}}.socket(send\_socket\_type)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00040}00040         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a592648523de2e7c4dff41cc74c584071}{send\_socket\_context}} = self.send\_socket.connect(send\_socket\_addr)}
 \DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00041}00041 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00042}00042     \textcolor{keyword}{def }EventOccured(self) -\/> bool:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00043}00043 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00044}00044         polled\_events = dict(self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_afe92681571bcc6a30bdc5af8706d1031}{poller}}.poll(self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_adfe669b1d0235921325d240e01019b09}{poller\_timeout\_time}}))}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00045}00045         \textcolor{keywordflow}{if} len(polled\_events) > 0 \textcolor{keywordflow}{and} polled\_events.get(self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}) == zmq.POLLIN:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00046}00046             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00047}00047         \textcolor{keywordflow}{else}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00048}00048             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00049}00049 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00050}00050     \textcolor{keyword}{def }SendString(self, message: str, flags=0) -\/> bool:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00051}00051         \textcolor{keywordflow}{try}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00052}00052             self.send\_socket.send\_string(message)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00053}00053             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00054}00054         \textcolor{keywordflow}{except}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00055}00055             Log(\textcolor{stringliteral}{"{}CommunicationServer | Error Sending String Message"{}}, LogLevel.WARNING)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00056}00056             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00057}00057 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00058}00058     \textcolor{keyword}{def }SendJSON(self, message: dict) -\/> bool:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00059}00059         \textcolor{keywordflow}{try}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00060}00060             self.send\_socket.send\_json(message)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00061}00061             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00062}00062         \textcolor{keywordflow}{except}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00063}00063             Log(}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00064}00064                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending JSON Message"{}},}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00065}00065                 LogLevel.WARNING,}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00066}00066             )}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00067}00067             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00068}00068 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00069}00069     \textcolor{keyword}{def }SendNDArray(self, message: np.ndarray) -\/> bool:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00070}00070         \textcolor{keywordflow}{try}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00071}00071             self.send\_socket.send(message)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00072}00072             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00073}00073         \textcolor{keywordflow}{except}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00074}00074             Log(}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00075}00075                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending NDArray Message"{}},}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00076}00076                 LogLevel.WARNING,}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00077}00077             )}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00078}00078             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00079}00079 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00080}00080     \textcolor{keyword}{def }SendNDArrayWithMeta(self, message: np.ndarray, meta: dict) -\/> bool:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00081}00081         \textcolor{keywordflow}{try}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00082}00082             self.send\_socket.send\_multipart([json.dumps(meta).encode(), message.data])}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00083}00083 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00084}00084             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00085}00085         \textcolor{keywordflow}{except}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00086}00086             Log(}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00087}00087                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending NDArray With Meta Message"{}},}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00088}00088                 LogLevel.WARNING,}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00089}00089             )}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00090}00090             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00091}00091 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00092}00092     \textcolor{keyword}{def }SendMultipart(self, message: list) -\/> bool:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00093}00093         \textcolor{keywordflow}{try}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00094}00094             self.send\_socket.send\_multipart(message)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00095}00095             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00096}00096         \textcolor{keywordflow}{except}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00097}00097             Log(}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00098}00098                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending Multipart Message"{}},}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00099}00099                 LogLevel.WARNING,}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00100}00100             )}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00101}00101             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00102}00102 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00103}00103     \textcolor{keyword}{def }SendMultipartWithMeta(self, message: list, meta: dict) -\/> bool:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00104}00104         \textcolor{keywordflow}{try}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00105}00105             self.send\_socket.send\_multipart([json.dumps(meta).encode(), *message])}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00106}00106             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00107}00107         \textcolor{keywordflow}{except}:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00108}00108             Log(}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00109}00109                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending Multipart With Meta Message"{}},}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00110}00110                 LogLevel.WARNING,}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00111}00111             )}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00112}00112             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00113}00113 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00114}00114     \textcolor{keyword}{def }RecieveRaw(self):}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00115}00115         \textcolor{keywordflow}{return} self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv(zmq.DONTWAIT)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00116}00116 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00117}00117     \textcolor{keyword}{def }ReceiveString(self) -\/> str:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00118}00118 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00119}00119         \textcolor{keywordflow}{return} self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv\_string(zmq.DONTWAIT)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00120}00120 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00121}00121     \textcolor{keyword}{def }ReceiveJSON(self):}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00122}00122 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00123}00123         \textcolor{keywordflow}{return} json.loads(self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv\_json(zmq.DONTWAIT))}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00124}00124 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00125}00125     \textcolor{keyword}{def }ReceiveNDArray(self, dtype=np.float32):}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00126}00126 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00127}00127         \textcolor{keywordflow}{return} np.frombuffer(}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00128}00128             self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv(zmq.DONTWAIT),}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00129}00129             dtype=dtype,}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00130}00130         )}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00131}00131 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00132}00132     \textcolor{keyword}{def }ReceiveNDArrayWithMeta(self, dtype=np.float32) -\/> tuple[np.ndarray, dict]:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00133}00133 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00134}00134         recv\_message = self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv\_multipart(zmq.DONTWAIT)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00135}00135 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00136}00136         \textcolor{keywordflow}{if} len(recv\_message) > 1:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00137}00137             \textcolor{keywordflow}{return} (}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00138}00138                 np.frombuffer(recv\_message[1], dtype=dtype),}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00139}00139                 json.loads(recv\_message[0]),}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00140}00140             )}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00141}00141 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00142}00142         \textcolor{keywordflow}{elif} len(recv\_message) == 1:}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00143}00143             Log(}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00144}00144                 \textcolor{stringliteral}{"{}CommunicationServer | Error Receiving NDArray With Meta. Only Contains One Message, Assumed Data."{}},}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00145}00145                 LogLevel.WARNING,}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00146}00146             )}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00147}00147             \textcolor{keywordflow}{return} (np.frombuffer(recv\_message[0], dtype=dtype), \{\})}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00148}00148 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00149}00149         Log(\textcolor{stringliteral}{"{}CommunicationServer | Error Receiving NDArray With Meta"{}}, LogLevel.WARNING)}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00150}00150 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00151}00151     \textcolor{keyword}{def }ReceiveMultipart(self):}
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00152}00152 }
-\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00153}00153         \textcolor{keywordflow}{return} self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv\_multipart(zmq.DONTWAIT)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00042}00042         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}} = self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a4252135cb0899e9f897c0179de69e7df}{context}}.socket(recv\_socket\_type)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00043}00043         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae039b5afc37f927883632f2c589f4253}{recv\_socket\_context}} = self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.bind(recv\_socket\_addr)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00044}00044 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00045}00045         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_afe92681571bcc6a30bdc5af8706d1031}{poller}} = zmq.Poller()}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00046}00046         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_afe92681571bcc6a30bdc5af8706d1031}{poller}}.register(self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}, zmq.POLLIN)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00047}00047         self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_adfe669b1d0235921325d240e01019b09}{poller\_timeout\_time}} = poll\_timeout}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00049}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aa7da8ca35a1f5ee67d3f969befe710f2}{00049}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aa7da8ca35a1f5ee67d3f969befe710f2}{\_\_del\_\_}}(self):}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00050}00050         \textcolor{stringliteral}{"{}"{}"{}Destructor of Communication Server Class.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00051}00051 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00052}00052 \textcolor{stringliteral}{        Closes the Sockets }\textcolor{keywordflow}{and} Terminates the ZeroMQ Context.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00053}00053         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00054}00054 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00055}00055 \textcolor{stringliteral}{        self.send\_socket.close()}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00056}00056 \textcolor{stringliteral}{        self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.close()}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00057}00057 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00058}00058 \textcolor{stringliteral}{        self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a4252135cb0899e9f897c0179de69e7df}{context}}.term()}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00059}00059 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00060}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae9d0c57711e1beb9159ec5e945477945}{00060}} \textcolor{stringliteral}{    }\textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae9d0c57711e1beb9159ec5e945477945}{EventOccured}}(self) -\/> bool:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00061}00061         \textcolor{stringliteral}{"{}"{}"{}Checks if a Receive Event has Occured on the Receive Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00062}00062 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00063}00063 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00064}00064 \textcolor{stringliteral}{            bool: }\textcolor{keyword}{True} \textcolor{keywordflow}{if} an Event has Occured, \textcolor{keyword}{False} Otherwise.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00065}00065         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00066}00066 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00067}00067 \textcolor{stringliteral}{        polled\_events = dict(self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_afe92681571bcc6a30bdc5af8706d1031}{poller}}.poll(self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_adfe669b1d0235921325d240e01019b09}{poller\_timeout\_time}}))}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00068}00068 \textcolor{stringliteral}{        }\textcolor{keywordflow}{if} len(polled\_events) > 0 \textcolor{keywordflow}{and} polled\_events.get(self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}) == zmq.POLLIN:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00069}00069             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00070}00070         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00071}00071             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00073}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a09d9014a7e11dc071915aec130b61513}{00073}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a09d9014a7e11dc071915aec130b61513}{SendString}}(self, message: str) -\/> bool:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00074}00074         \textcolor{stringliteral}{"{}"{}"{}Sends a String Message on the Send Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00075}00075 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00076}00076 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00077}00077 \textcolor{stringliteral}{            message (str): String Message to Send.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00078}00078 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00079}00079 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00080}00080 \textcolor{stringliteral}{            bool: }\textcolor{keyword}{True} \textcolor{keywordflow}{if} the Message was Sent Successfully, \textcolor{keyword}{False} Otherwise.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00081}00081         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00082}00082 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00083}00083 \textcolor{stringliteral}{        }\textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00084}00084             self.send\_socket.send\_string(message)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00085}00085             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00086}00086         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00087}00087             Log(\textcolor{stringliteral}{"{}CommunicationServer | Error Sending String Message"{}}, LogLevel.WARNING)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00088}00088             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00089}00089 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00090}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aef8225a5bbc2593062475f41b30baf2e}{00090}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_aef8225a5bbc2593062475f41b30baf2e}{SendJSON}}(self, message: dict) -\/> bool:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00091}00091         \textcolor{stringliteral}{"{}"{}"{}Sends a JSON Message on the Send Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00092}00092 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00093}00093 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00094}00094 \textcolor{stringliteral}{            message (dict): Stringified JSON Message to Send.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00095}00095 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00096}00096 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00097}00097 \textcolor{stringliteral}{            bool: }\textcolor{keyword}{True} \textcolor{keywordflow}{if} the Message was Sent Successfully, \textcolor{keyword}{False} Otherwise.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00098}00098         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00099}00099 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00100}00100 \textcolor{stringliteral}{        }\textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00101}00101             self.send\_socket.send\_json(message)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00102}00102             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00103}00103         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00104}00104             Log(}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00105}00105                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending JSON Message"{}},}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00106}00106                 LogLevel.WARNING,}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00107}00107             )}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00108}00108             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00109}00109 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00110}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8f932de58526af62ddcb4d941601abe4}{00110}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8f932de58526af62ddcb4d941601abe4}{SendNDArray}}(self, message: np.ndarray) -\/> bool:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00111}00111         \textcolor{stringliteral}{"{}"{}"{}Sends a Numpy NDArray Message on the Send Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00112}00112 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00113}00113 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00114}00114 \textcolor{stringliteral}{            message (np.ndarray): NDArray of Data to Send.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00115}00115 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00116}00116 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00117}00117 \textcolor{stringliteral}{            bool: }\textcolor{keyword}{True} \textcolor{keywordflow}{if} the Data was Sent Successfully, \textcolor{keyword}{False} Otherwise.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00118}00118         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00119}00119 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00120}00120 \textcolor{stringliteral}{        }\textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00121}00121             self.send\_socket.send(message)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00122}00122             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00123}00123         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00124}00124             Log(}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00125}00125                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending NDArray Message"{}},}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00126}00126                 LogLevel.WARNING,}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00127}00127             )}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00128}00128             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00129}00129 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00130}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a7ea8b2e51311d8d7391c4d537e9d63b2}{00130}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a7ea8b2e51311d8d7391c4d537e9d63b2}{SendNDArrayWithMeta}}(self, message: np.ndarray, meta: dict) -\/> bool:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00131}00131         \textcolor{stringliteral}{"{}"{}"{}Sends a Numpy NDArray Message with Metadata on the Send Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00132}00132 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00133}00133 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00134}00134 \textcolor{stringliteral}{            message (np.ndarray): NDArray of Data to Send.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00135}00135 \textcolor{stringliteral}{            meta (dict): A Dictionary of Metadata to Send.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00136}00136 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00137}00137 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00138}00138 \textcolor{stringliteral}{            bool: }\textcolor{keyword}{True} \textcolor{keywordflow}{if} the Data was Sent Successfully, \textcolor{keyword}{False} Otherwise.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00139}00139         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00140}00140 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00141}00141 \textcolor{stringliteral}{        }\textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00142}00142             self.send\_socket.send\_multipart([json.dumps(meta).encode(), message.data])}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00143}00143 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00144}00144             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00145}00145         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00146}00146             Log(}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00147}00147                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending NDArray With Meta Message"{}},}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00148}00148                 LogLevel.WARNING,}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00149}00149             )}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00150}00150             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00151}00151 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00152}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a3e6aa594de761f927bf985a912f3238b}{00152}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a3e6aa594de761f927bf985a912f3238b}{SendMultipart}}(self, message: list) -\/> bool:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00153}00153         \textcolor{stringliteral}{"{}"{}"{}Sends a Multipart Message on the Send Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00154}00154 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00155}00155 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00156}00156 \textcolor{stringliteral}{            message (list): List of Messages to Send.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00157}00157 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00158}00158 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00159}00159 \textcolor{stringliteral}{            bool: }\textcolor{keyword}{True} \textcolor{keywordflow}{if} the MultiPart Message was Sent Successfully, \textcolor{keyword}{False} Otherwise.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00160}00160         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00161}00161 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00162}00162 \textcolor{stringliteral}{        }\textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00163}00163             self.send\_socket.send\_multipart(message)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00164}00164             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00165}00165         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00166}00166             Log(}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00167}00167                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending Multipart Message"{}},}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00168}00168                 LogLevel.WARNING,}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00169}00169             )}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00170}00170             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00171}00171 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00172}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae610fa5c06f198cc625593a08bdee2f8}{00172}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae610fa5c06f198cc625593a08bdee2f8}{SendMultipartWithMeta}}(self, message: list, meta: dict) -\/> bool:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00173}00173         \textcolor{stringliteral}{"{}"{}"{}Sends a Multipart Message with Metadata on the Send Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00174}00174 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00175}00175 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00176}00176 \textcolor{stringliteral}{            message (list): List of Messages to Send.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00177}00177 \textcolor{stringliteral}{            meta (dict): Metadata to Send.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00178}00178 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00179}00179 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00180}00180 \textcolor{stringliteral}{            bool: }\textcolor{keyword}{True} \textcolor{keywordflow}{if} the MultiPart Message \textcolor{keyword}{with} Metadata was Sent Successfully, \textcolor{keyword}{False} Otherwise.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00181}00181         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00182}00182 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00183}00183 \textcolor{stringliteral}{        }\textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00184}00184             self.send\_socket.send\_multipart([json.dumps(meta).encode(), *message])}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00185}00185             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00186}00186         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00187}00187             Log(}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00188}00188                 \textcolor{stringliteral}{"{}CommunicationServer | Error Sending Multipart With Meta Message"{}},}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00189}00189                 LogLevel.WARNING,}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00190}00190             )}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00191}00191             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00192}00192 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00193}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a96709b75c16dca64a71c68ec4c4d43fb}{00193}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a96709b75c16dca64a71c68ec4c4d43fb}{RecieveRaw}}(self):}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00194}00194         \textcolor{stringliteral}{"{}"{}"{}Receives a Raw Message of Bytes from the Receive Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00195}00195 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00196}00196 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00197}00197 \textcolor{stringliteral}{            bytes: Raw Received Bytes }\textcolor{keyword}{from} the Receive Socket.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00198}00198         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00199}00199 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00200}00200 \textcolor{stringliteral}{        }\textcolor{keywordflow}{return} self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv(zmq.DONTWAIT)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00201}00201 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00202}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a69b86f54892d04df50572ad8d0646f00}{00202}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a69b86f54892d04df50572ad8d0646f00}{ReceiveString}}(self) -\/> str:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00203}00203         \textcolor{stringliteral}{"{}"{}"{}Receives a String Message from the Receive Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00204}00204 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00205}00205 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00206}00206 \textcolor{stringliteral}{            str: Received String Message.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00207}00207 \textcolor{stringliteral}{        "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00208}00208 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00209}00209 \textcolor{stringliteral}{        }\textcolor{keywordflow}{return} self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv\_string(zmq.DONTWAIT)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00210}00210 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00211}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae01a2857b018b25ec4065d8721b2f57e}{00211}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae01a2857b018b25ec4065d8721b2f57e}{ReceiveJSON}}(self):}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00212}00212         \textcolor{stringliteral}{"{}"{}"{}Receive a JSON Message from the Receive Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00213}00213 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00214}00214 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00215}00215 \textcolor{stringliteral}{            dict: Dictionary of the Received JSON Message.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00216}00216 \textcolor{stringliteral}{        "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00217}00217 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00218}00218 \textcolor{stringliteral}{        }\textcolor{keywordflow}{return} json.loads(self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv\_json(zmq.DONTWAIT))}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00219}00219 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00220}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a905c958e92807e8ed08040f9e915514a}{00220}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a905c958e92807e8ed08040f9e915514a}{ReceiveNDArray}}(self, dtype=np.float32) -\/> np.ndarray:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00221}00221         \textcolor{stringliteral}{"{}"{}"{}Receives a Numpy NDArray from the Receive Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00222}00222 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00223}00223 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00224}00224 \textcolor{stringliteral}{            dtype (optional): Type of NDArray of Received Data. Defaults to np.float32.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00225}00225 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00226}00226 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00227}00227 \textcolor{stringliteral}{            np.ndarray: Receieved NDArray Message.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00228}00228 \textcolor{stringliteral}{        "{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00229}00229 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00230}00230 \textcolor{stringliteral}{        }\textcolor{keywordflow}{return} np.frombuffer(}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00231}00231             self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv(zmq.DONTWAIT),}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00232}00232             dtype=dtype,}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00233}00233         )}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00234}00234 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00235}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ac9b6226247f8c5948560c0252216fbf5}{00235}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ac9b6226247f8c5948560c0252216fbf5}{ReceiveNDArrayWithMeta}}(self, dtype=np.float32) -\/> tuple[np.ndarray, dict]:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00236}00236         \textcolor{stringliteral}{"{}"{}"{}Receives a Numpy NDArray with Metadata from the Receive Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00237}00237 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00238}00238 \textcolor{stringliteral}{        Args:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00239}00239 \textcolor{stringliteral}{            dtype (optional): Type of NDArray of Received Data. Defaults to np.float32.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00240}00240 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00241}00241 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00242}00242 \textcolor{stringliteral}{            tuple[np.ndarray, dict]: Tuple of Received NDArray }\textcolor{keywordflow}{and} Dict Metadata Object.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00243}00243         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00244}00244 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00245}00245 \textcolor{stringliteral}{        recv\_message = self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv\_multipart(zmq.DONTWAIT)}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00246}00246 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00247}00247 \textcolor{stringliteral}{        }\textcolor{keywordflow}{if} len(recv\_message) > 1:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00248}00248             \textcolor{keywordflow}{return} (}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00249}00249                 np.frombuffer(recv\_message[1], dtype=dtype),}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00250}00250                 json.loads(recv\_message[0]),}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00251}00251             )}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00252}00252 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00253}00253         \textcolor{keywordflow}{elif} len(recv\_message) == 1:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00254}00254             Log(}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00255}00255                 \textcolor{stringliteral}{"{}CommunicationServer | Error Receiving NDArray With Meta. Only Contains One Message, Assumed Data."{}},}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00256}00256                 LogLevel.WARNING,}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00257}00257             )}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00258}00258             \textcolor{keywordflow}{return} (np.frombuffer(recv\_message[0], dtype=dtype), \{\})}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00259}00259 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00260}00260         Log(\textcolor{stringliteral}{"{}CommunicationServer | Error Receiving NDArray With Meta"{}}, LogLevel.WARNING)}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00261}00261 }
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00262}\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae9a7d184074e17ee5158bb57bb692128}{00262}}     \textcolor{keyword}{def }\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_ae9a7d184074e17ee5158bb57bb692128}{ReceiveMultipart}}(self) -\/> list[bytes]:}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00263}00263         \textcolor{stringliteral}{"{}"{}"{}Receieved a Raw Multipart Message from the Receive Socket.}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00264}00264 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00265}00265 \textcolor{stringliteral}{        Returns:}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00266}00266 \textcolor{stringliteral}{            list[bytes]: Raw List of Bytes }\textcolor{keyword}{from} the Received Multipart Message.}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00267}00267         \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00268}00268 \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{CommunicationServer_8py_source_l00269}00269 \textcolor{stringliteral}{        }\textcolor{keywordflow}{return} self.\mbox{\hyperlink{classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer_a8c664921c0a74a50db0f5e960b193aeb}{recv\_socket}}.recv\_multipart(zmq.DONTWAIT)}
 
 \end{DoxyCode}
