@@ -6,7 +6,7 @@
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 
 #include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
-#include "Runtime/Slate/Private/Framework/Docking/SDockingTabStack.h"
+#include "Framework/Docking/TabManager.h"
 
 UWindowInteractionLibrary::UWindowInteractionLibrary(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)
@@ -165,11 +165,120 @@ void UWindowInteractionLibrary::SelectToolBarItem(FParseRecord& Record)
 	WindowToolBar->SelectToolbarItem(ItemIndexInput->GetValue());
 }
 
+namespace TabUtils
+{
+	class FOpenArea : public FTabManager::FArea
+	{
+	public:
+		const TArray<TSharedRef<FLayoutNode>>& GetChildNodes()
+		{
+			return ChildNodes;
+		}
+	};
+
+	class FOpenStack : public FTabManager::FStack
+	{
+	public:
+		const TArray<FTabManager::FTab> GetTabs()
+		{
+			return Tabs;
+		}
+	};
+
+	class FOpenSplitter : public FTabManager::FSplitter
+	{
+	public:
+		const TArray<TSharedRef<FLayoutNode>>& GetChildNodes()
+		{
+			return ChildNodes;
+		}
+		
+	};
+
+	[[nodiscard]] TArray<FTabManager::FTab> CollectManagedTabs(const TSharedRef<FTabManager>& TabManager)
+	{
+		TArray<FTabManager::FTab> ManagedTabs = TArray<FTabManager::FTab>();
+
+		const TSharedRef<FTabManager::FLayout> Layout = TabManager->PersistLayout();
+		const TSharedPtr<FOpenArea> MainArea = StaticCastSharedPtr<FOpenArea>(Layout->GetPrimaryArea().Pin());
+		if (!MainArea.IsValid())
+		{
+			UE_LOG(LogOpenAccessibility, Warning, TEXT("CollectManagedTabs: Primary Area is Not Valid"))
+			return ManagedTabs;
+		}
+
+		TSharedPtr<FTabManager::FLayoutNode> CurrentNode = nullptr;
+		TArray<TSharedRef<FTabManager::FLayoutNode>> NodesToCheck = TArray{
+			MainArea->GetChildNodes()
+		};
+
+		while(!NodesToCheck.IsEmpty())
+		{
+			CurrentNode = NodesToCheck[0];
+			NodesToCheck.RemoveAt(0);
+
+			if (TSharedPtr<FTabManager::FStack> AsStack = CurrentNode->AsStack())
+			{
+				ManagedTabs.Append(StaticCastSharedPtr<FOpenStack>(AsStack)->GetTabs());
+			}
+			else if (TSharedPtr<FTabManager::FArea> AsArea = CurrentNode->AsArea())
+			{
+				NodesToCheck.Append(StaticCastSharedPtr<FOpenArea>(AsArea)->GetChildNodes());
+			}
+			else if (TSharedPtr<FTabManager::FSplitter> AsSplitter = CurrentNode->AsSplitter())
+			{
+				NodesToCheck.Append(StaticCastSharedPtr<FOpenArea>(AsSplitter)->GetChildNodes());
+			}
+			else
+			{
+				UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("CollectManagedTabs: Unknown Node Type."))
+			}
+		}
+
+		return ManagedTabs;
+	}
+}
+
 void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord& Record)
 {
 	GET_ACTIVE_TAB(ActiveTab);
 
+	TSharedPtr<FTabManager> ActiveTabManager = ActiveTab->GetTabManagerPtr();
+	if (!ActiveTabManager.IsValid())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Cannot Find Active Tab Manager"))
+		return;
+	}
+
+	TArray<FTabManager::FTab> FoundTabs = TabUtils::CollectManagedTabs(ActiveTabManager.ToSharedRef());
+
+	const FTabId ActiveTabId = ActiveTab->GetLayoutIdentifier();
+	for (int32 i = 0; i < FoundTabs.Num(); i++)
+	{
+		if (FoundTabs[i].TabId == ActiveTabId)
+		{
+			const FTabManager::FTab NextTab = FoundTabs[i + 1 % FoundTabs.Num()];
+
+			const TSharedPtr<SDockTab> NextTabWidget = ActiveTabManager->FindExistingLiveTab(
+				NextTab.TabId
+			);
+
+			if (!NextTabWidget.IsValid())
+			{
+				UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Found Next Tab is Invalid."))
+				return;
+			}
+
+			FGlobalTabmanager::Get()->SetActiveTab(NextTabWidget);
+			NextTabWidget->ActivateInParent(SetDirectly);
+
+			break;
+		}
+	}
+
 	/*
+	// Most Straightforward Implementation, But Requires Private Core Tab Classes
+	
 	TSharedPtr<SDockingTabStack> ActiveTabStack = ActiveTab->GetParentDockTabStack();
 	if (!ActiveTabStack.IsValid())
 	{
@@ -189,6 +298,7 @@ void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord& Record)
 	TSharedRef<SDockTab> NextTab = AllTabs[FoundIndex + 1 % AllTabs.Num()];
 
 	FGlobalTabmanager::Get()->SetActiveTab(NextTab);
+	NextTab->ActivateInParent(SetDirectly);
 	*/
 }
 
@@ -196,7 +306,46 @@ void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
 {
 	GET_ACTIVE_TAB(ActiveTab);
 
+	TSharedPtr<FTabManager> ActiveTabManager = ActiveTab->GetTabManagerPtr();
+	if (!ActiveTabManager.IsValid())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: Cannot Find Active Tab Manager"))
+			return;
+	}
+
+	TArray<FTabManager::FTab> FoundTabs = TabUtils::CollectManagedTabs(ActiveTabManager.ToSharedRef());
+
+	const FTabId ActiveTabId = ActiveTab->GetLayoutIdentifier();
+	for (int32 i = 0; i < FoundTabs.Num(); i++)
+	{
+		if (FoundTabs[i].TabId == ActiveTabId)
+		{
+			const FTabManager::FTab NextTab = FoundTabs[
+				i - 1 < 0
+				? FoundTabs.Num() - 1
+				: i - 1
+			];
+
+			const TSharedPtr<SDockTab> NextTabWidget = ActiveTabManager->FindExistingLiveTab(
+				NextTab.TabId
+			);
+
+			if (!NextTabWidget.IsValid())
+			{
+				UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Found Next Tab is Invalid."))
+					return;
+			}
+
+			FGlobalTabmanager::Get()->SetActiveTab(NextTabWidget);
+			NextTabWidget->ActivateInParent(SetDirectly);
+
+			break;
+		}
+	}
+
 	/*
+	// Most Straightforward Implementation, But Requires Private Core Tab Classes
+
 	TSharedPtr<SDockingTabStack> ActiveTabStack = ActiveTab->GetParentDockTabStack();
 	if (!ActiveTabStack.IsValid())
 	{
@@ -220,5 +369,6 @@ void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
 	];
 
 	FGlobalTabmanager::Get()->SetActiveTab(PrevTab);
+	PrevTab->ActivateInParent(SetDirectly);
 	*/
 }
