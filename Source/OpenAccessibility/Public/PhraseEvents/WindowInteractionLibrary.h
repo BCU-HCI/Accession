@@ -33,6 +33,18 @@ public:
 	// Window Interaction
 
 	/**
+	 * Selects the Next Window in the Slate Application, and switches the Focus to it.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	void SwitchNextActiveWindow(FParseRecord& Record);
+
+	/**
+	 * Selects the Previous Window in the Slate Application, and switches the Focus to it.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	void SwitchPrevActiveWindow(FParseRecord& Record);
+
+	/**
 	 * Closes the Top Most Active Window, if it is not the Root Application Window.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
@@ -51,6 +63,22 @@ public:
 
 	// End Window ToolBar Interaction
 
+
+	// Window Tab Interaction
+
+	/**
+	 * Selects the Next Tab In The Active Tab Stack, and switches the Focus to it.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	void SwitchNextTabInStack(FParseRecord& Record);
+
+	/**
+	 * Selects the Prev Tab In The Active Tab Stack, and switches the Focus to it.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	void SwitchPrevTabInStack(FParseRecord& Record);
+
+	// End of Window Tab Interaction
 
 protected:
 
