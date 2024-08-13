@@ -165,35 +165,65 @@ void UWindowInteractionLibrary::SelectToolBarItem(FParseRecord& Record)
 	WindowToolBar->SelectToolbarItem(ItemIndexInput->GetValue());
 }
 
+/**
+ * [HACK] Utilities for Interacting with the Tab Manager Class.
+ */
 namespace TabUtils
 {
+
+	/**
+	 * Derived Area Class to Access Child Nodes, through Dynamic Casting.
+	 */
 	class FOpenArea : public FTabManager::FArea
 	{
 	public:
+		/**
+		 * Gets a Reference to the Areas Child Nodes Array.
+		 * @return A Reference to the FAreas Child Layout Nodes.
+		 */
 		const TArray<TSharedRef<FLayoutNode>>& GetChildNodes()
 		{
 			return ChildNodes;
 		}
 	};
 
+	/**
+	 * Derived Stack Class to Access Tabs, through Dynamic Casting.
+	 */
 	class FOpenStack : public FTabManager::FStack
 	{
 	public:
+		/**
+		 * Gets a Reference to the Stacks Child Tabs Array.
+		 * @return A Reference to the FStacks Child Tabs.
+		 */
 		const TArray<FTabManager::FTab>& GetTabs()
 		{
 			return Tabs;
 		}
 	};
 
+	/**
+	 * Derived Splitter Class to Access Child Nodes, through Dynamic Casting.
+	 */
 	class FOpenSplitter : public FTabManager::FSplitter
 	{
 	public:
+		/**
+		 * Gets a Reference to the Splitters Child Nodes Array.
+		 * @return A Reference to the FSplitter Child Layout Nodes.
+		 */
 		const TArray<TSharedRef<FLayoutNode>>& GetChildNodes()
 		{
 			return ChildNodes;
 		}
 	};
 
+	/**
+	 * Collects all Tabs Manager by this Tab Manager, through its Layout.
+	 * @param TabManager The Tab Manager to Collect Descendant Tabs from.  
+	 * @return An Array of Found Tabs from the Root Layout.
+	 */
 	[[nodiscard]] TArray<FTabManager::FTab> CollectManagedTabs(const TSharedRef<FTabManager>& TabManager)
 	{
 		TArray<FTabManager::FTab> ManagedTabs = TArray<FTabManager::FTab>();
