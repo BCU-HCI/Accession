@@ -44,7 +44,7 @@
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00040}00040         ConstructContextChildren(InChildNodes);}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00041}00041     \}}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00042}00042 }
-\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00043}00043     \mbox{\hyperlink{classFPhraseContextNode}{\string~FPhraseContextNode}}()}
+\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00043}00043     \textcolor{keyword}{virtual} \mbox{\hyperlink{classFPhraseContextNode}{\string~FPhraseContextNode}}()}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00044}00044     \{}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00045}00045 }
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00046}00046     \}}
@@ -61,11 +61,11 @@
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00057}00057 }
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00058}00058     \textcolor{comment}{// FPhraseContextNodeBase Implementation}}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00059}00059 }
-\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00060}00060     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseContextNode_a7c64d4f2ac308181e4df28662db8e2f9}{HasContextObject}}(TArray<UPhraseTreeContextObject*> InContextObjects) \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00060}00060     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseContextNode_ac625860d345fa58d4d9b1d3b2b0f268c}{HasContextObject}}(TArray<UPhraseTreeContextObject*> InContextObjects) \textcolor{keyword}{const override};}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00061}00061 }
-\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00062}00062     \textcolor{keyword}{virtual} \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}* \mbox{\hyperlink{classFPhraseContextNode_a97c5324f3167c5065269e999c507292c}{CreateContextObject}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record);}
+\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00062}00062     \textcolor{keyword}{virtual} \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}* \mbox{\hyperlink{classFPhraseContextNode_a039158a4a8ec7bf4496cf291126c2703}{CreateContextObject}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record) \textcolor{keyword}{override};}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00063}00063 }
-\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00064}00064     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} ConstructContextChildren(TPhraseNodeArray\& InChildNodes);}
+\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00064}00064     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} ConstructContextChildren(TPhraseNodeArray\& InChildNodes) \textcolor{keyword}{override};}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00065}00065 }
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00066}00066     \textcolor{comment}{// End FPhraseContextNodeBase Implementation}}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00067}00067 }
@@ -108,7 +108,7 @@
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00104}00104 \}}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00105}00105 }
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00106}00106 \textcolor{keyword}{template}<\textcolor{keyword}{class} ContextType>}
-\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00107}\mbox{\hyperlink{classFPhraseContextNode_a7c64d4f2ac308181e4df28662db8e2f9}{00107}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseContextNode_a7c64d4f2ac308181e4df28662db8e2f9}{FPhraseContextNode<ContextType>::HasContextObject}}(TArray<UPhraseTreeContextObject*> InContextObjects)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00107}\mbox{\hyperlink{classFPhraseContextNode_ac625860d345fa58d4d9b1d3b2b0f268c}{00107}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseContextNode_ac625860d345fa58d4d9b1d3b2b0f268c}{FPhraseContextNode<ContextType>::HasContextObject}}(TArray<UPhraseTreeContextObject*> InContextObjects)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00108}00108 \textcolor{keyword}{}\{}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00109}00109     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& ContextObject : InContextObjects)}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00110}00110     \{}
@@ -123,7 +123,7 @@
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00119}00119 }
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00120}00120 }
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00121}00121 \textcolor{keyword}{template}<\textcolor{keyword}{class} ContextType>}
-\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00122}\mbox{\hyperlink{classFPhraseContextNode_a97c5324f3167c5065269e999c507292c}{00122}} \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}* \mbox{\hyperlink{classFPhraseContextNode_a97c5324f3167c5065269e999c507292c}{FPhraseContextNode<ContextType>::CreateContextObject}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
+\DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00122}\mbox{\hyperlink{classFPhraseContextNode_a039158a4a8ec7bf4496cf291126c2703}{00122}} \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}* \mbox{\hyperlink{classFPhraseContextNode_a039158a4a8ec7bf4496cf291126c2703}{FPhraseContextNode<ContextType>::CreateContextObject}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00123}00123 \{}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00124}00124     ContextType* NewContextObject = NewObject<ContextType>();}
 \DoxyCodeLine{\Hypertarget{PhraseContextNode_8h_source_l00125}00125     NewContextObject-\/>Init();}

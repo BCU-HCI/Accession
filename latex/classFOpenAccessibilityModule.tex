@@ -62,15 +62,15 @@ Definition at line \mbox{\hyperlink{OpenAccessibility_8h_source_l00021}{21}} of 
 
 
 
-Definition at line \mbox{\hyperlink{OpenAccessibility_8cpp_source_l00073}{73}} of file \mbox{\hyperlink{OpenAccessibility_8cpp_source}{Open\+Accessibility.\+cpp}}.
+Definition at line \mbox{\hyperlink{OpenAccessibility_8cpp_source_l00075}{75}} of file \mbox{\hyperlink{OpenAccessibility_8cpp_source}{Open\+Accessibility.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00074 \{}
-\DoxyCodeLine{00075     UE\_LOG(LogOpenAccessibility, Display, TEXT(\textcolor{stringliteral}{"{}OpenAccessibilityModule::ShutdownModule()"{}}));}
-\DoxyCodeLine{00076 }
-\DoxyCodeLine{00077     UnregisterConsoleCommands();}
-\DoxyCodeLine{00078 \}}
+\DoxyCodeLine{00076 \{}
+\DoxyCodeLine{00077     UE\_LOG(LogOpenAccessibility, Display, TEXT(\textcolor{stringliteral}{"{}OpenAccessibilityModule::ShutdownModule()"{}}));}
+\DoxyCodeLine{00078 }
+\DoxyCodeLine{00079     UnregisterConsoleCommands();}
+\DoxyCodeLine{00080 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classFOpenAccessibilityModule_afc92a831fcfc92cf7cf04fbae7062251}\label{classFOpenAccessibilityModule_afc92a831fcfc92cf7cf04fbae7062251}} 
@@ -81,46 +81,46 @@ Definition at line \mbox{\hyperlink{OpenAccessibility_8cpp_source_l00073}{73}} o
 
 IModule\+Interface Implementation 
 
-Definition at line \mbox{\hyperlink{OpenAccessibility_8cpp_source_l00035}{35}} of file \mbox{\hyperlink{OpenAccessibility_8cpp_source}{Open\+Accessibility.\+cpp}}.
+Definition at line \mbox{\hyperlink{OpenAccessibility_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{OpenAccessibility_8cpp_source}{Open\+Accessibility.\+cpp}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00036 \{}
-\DoxyCodeLine{00037     UE\_LOG(LogOpenAccessibility, Display, TEXT(\textcolor{stringliteral}{"{}OpenAccessibilityModule::StartupModule()"{}}));}
-\DoxyCodeLine{00038 }
-\DoxyCodeLine{00039     \textcolor{comment}{// Create the Asset Registry}}
-\DoxyCodeLine{00040     \mbox{\hyperlink{classFOpenAccessibilityModule_a75dcc6c5db0b62b83bedfe20122a4b88}{AssetAccessibilityRegistry}} = MakeShared<FAssetAccessibilityRegistry, ESPMode::ThreadSafe>();}
-\DoxyCodeLine{00041 }
-\DoxyCodeLine{00042     \textcolor{comment}{// Register the Accessibility Node Factory}}
-\DoxyCodeLine{00043     \mbox{\hyperlink{classFOpenAccessibilityModule_ac49087016c9548055821dae5fedc1ea6}{AccessibilityNodeFactory}} = MakeShared<FAccessibilityNodeFactory, ESPMode::ThreadSafe>();}
-\DoxyCodeLine{00044     FEdGraphUtilities::RegisterVisualNodeFactory(\mbox{\hyperlink{classFOpenAccessibilityModule_ac49087016c9548055821dae5fedc1ea6}{AccessibilityNodeFactory}});}
-\DoxyCodeLine{00045 }
-\DoxyCodeLine{00046     \textcolor{comment}{// Construct Base Phrase Tree Libraries}}
-\DoxyCodeLine{00047     \mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_ab9a253dcab8c5f61a98bace34db23da3}{FOpenAccessibilityCommunicationModule::Get}}()}
-\DoxyCodeLine{00048     .\mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_a080774412e3bcedb141cd37bafc79c2d}{PhraseTreeUtils}}-\/>\mbox{\hyperlink{classUPhraseTreeUtils_a17f7ff31727a47fc27e67c57e93659bf}{RegisterFunctionLibrary}}(}
-\DoxyCodeLine{00049         NewObject<ULocalizedInputLibrary>()}
-\DoxyCodeLine{00050     );}
-\DoxyCodeLine{00051 }
-\DoxyCodeLine{00052     \mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_ab9a253dcab8c5f61a98bace34db23da3}{FOpenAccessibilityCommunicationModule::Get}}()}
-\DoxyCodeLine{00053     .\mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_a080774412e3bcedb141cd37bafc79c2d}{PhraseTreeUtils}}-\/>\mbox{\hyperlink{classUPhraseTreeUtils_a17f7ff31727a47fc27e67c57e93659bf}{RegisterFunctionLibrary}}(}
-\DoxyCodeLine{00054         NewObject<UWindowInteractionLibrary>()}
-\DoxyCodeLine{00055     );}
-\DoxyCodeLine{00056 }
-\DoxyCodeLine{00057     \mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_ab9a253dcab8c5f61a98bace34db23da3}{FOpenAccessibilityCommunicationModule::Get}}()}
-\DoxyCodeLine{00058     .\mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_a080774412e3bcedb141cd37bafc79c2d}{PhraseTreeUtils}}-\/>\mbox{\hyperlink{classUPhraseTreeUtils_a17f7ff31727a47fc27e67c57e93659bf}{RegisterFunctionLibrary}}(}
-\DoxyCodeLine{00059         NewObject<UViewInteractionLibrary>()}
-\DoxyCodeLine{00060     );}
-\DoxyCodeLine{00061 }
-\DoxyCodeLine{00062     \mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_ab9a253dcab8c5f61a98bace34db23da3}{FOpenAccessibilityCommunicationModule::Get}}()}
-\DoxyCodeLine{00063     .\mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_a080774412e3bcedb141cd37bafc79c2d}{PhraseTreeUtils}}-\/>\mbox{\hyperlink{classUPhraseTreeUtils_a17f7ff31727a47fc27e67c57e93659bf}{RegisterFunctionLibrary}}(}
-\DoxyCodeLine{00064         NewObject<UNodeInteractionLibrary>()}
-\DoxyCodeLine{00065     );}
-\DoxyCodeLine{00066 }
-\DoxyCodeLine{00067     CreateTranscriptionVisualization();}
+\DoxyCodeLine{00038 \{}
+\DoxyCodeLine{00039     UE\_LOG(LogOpenAccessibility, Display, TEXT(\textcolor{stringliteral}{"{}OpenAccessibilityModule::StartupModule()"{}}));}
+\DoxyCodeLine{00040 }
+\DoxyCodeLine{00041     \textcolor{comment}{// Create the Asset Registry}}
+\DoxyCodeLine{00042     \mbox{\hyperlink{classFOpenAccessibilityModule_a75dcc6c5db0b62b83bedfe20122a4b88}{AssetAccessibilityRegistry}} = MakeShared<FAssetAccessibilityRegistry, ESPMode::ThreadSafe>();}
+\DoxyCodeLine{00043 }
+\DoxyCodeLine{00044     \textcolor{comment}{// Register the Accessibility Node Factory}}
+\DoxyCodeLine{00045     \mbox{\hyperlink{classFOpenAccessibilityModule_ac49087016c9548055821dae5fedc1ea6}{AccessibilityNodeFactory}} = MakeShared<FAccessibilityNodeFactory, ESPMode::ThreadSafe>();}
+\DoxyCodeLine{00046     FEdGraphUtilities::RegisterVisualNodeFactory(\mbox{\hyperlink{classFOpenAccessibilityModule_ac49087016c9548055821dae5fedc1ea6}{AccessibilityNodeFactory}});}
+\DoxyCodeLine{00047 }
+\DoxyCodeLine{00048     \textcolor{comment}{// Construct Base Phrase Tree Libraries}}
+\DoxyCodeLine{00049     \mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_ab9a253dcab8c5f61a98bace34db23da3}{FOpenAccessibilityCommunicationModule::Get}}()}
+\DoxyCodeLine{00050     .\mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_a080774412e3bcedb141cd37bafc79c2d}{PhraseTreeUtils}}-\/>\mbox{\hyperlink{classUPhraseTreeUtils_a17f7ff31727a47fc27e67c57e93659bf}{RegisterFunctionLibrary}}(}
+\DoxyCodeLine{00051         NewObject<ULocalizedInputLibrary>()}
+\DoxyCodeLine{00052     );}
+\DoxyCodeLine{00053 }
+\DoxyCodeLine{00054     \mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_ab9a253dcab8c5f61a98bace34db23da3}{FOpenAccessibilityCommunicationModule::Get}}()}
+\DoxyCodeLine{00055     .\mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_a080774412e3bcedb141cd37bafc79c2d}{PhraseTreeUtils}}-\/>\mbox{\hyperlink{classUPhraseTreeUtils_a17f7ff31727a47fc27e67c57e93659bf}{RegisterFunctionLibrary}}(}
+\DoxyCodeLine{00056         NewObject<UWindowInteractionLibrary>()}
+\DoxyCodeLine{00057     );}
+\DoxyCodeLine{00058 }
+\DoxyCodeLine{00059     \mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_ab9a253dcab8c5f61a98bace34db23da3}{FOpenAccessibilityCommunicationModule::Get}}()}
+\DoxyCodeLine{00060     .\mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_a080774412e3bcedb141cd37bafc79c2d}{PhraseTreeUtils}}-\/>\mbox{\hyperlink{classUPhraseTreeUtils_a17f7ff31727a47fc27e67c57e93659bf}{RegisterFunctionLibrary}}(}
+\DoxyCodeLine{00061         NewObject<UViewInteractionLibrary>()}
+\DoxyCodeLine{00062     );}
+\DoxyCodeLine{00063 }
+\DoxyCodeLine{00064     \mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_ab9a253dcab8c5f61a98bace34db23da3}{FOpenAccessibilityCommunicationModule::Get}}()}
+\DoxyCodeLine{00065     .\mbox{\hyperlink{classFOpenAccessibilityCommunicationModule_a080774412e3bcedb141cd37bafc79c2d}{PhraseTreeUtils}}-\/>\mbox{\hyperlink{classUPhraseTreeUtils_a17f7ff31727a47fc27e67c57e93659bf}{RegisterFunctionLibrary}}(}
+\DoxyCodeLine{00066         NewObject<UNodeInteractionLibrary>()}
+\DoxyCodeLine{00067     );}
 \DoxyCodeLine{00068 }
-\DoxyCodeLine{00069     \textcolor{comment}{// Register Console Commands}}
-\DoxyCodeLine{00070     RegisterConsoleCommands();}
-\DoxyCodeLine{00071 \}}
+\DoxyCodeLine{00069     CreateTranscriptionVisualization();}
+\DoxyCodeLine{00070 }
+\DoxyCodeLine{00071     \textcolor{comment}{// Register Console Commands}}
+\DoxyCodeLine{00072     RegisterConsoleCommands();}
+\DoxyCodeLine{00073 \}}
 
 \end{DoxyCode}
 \mbox{\Hypertarget{classFOpenAccessibilityModule_a4815b19f589d8e966e2183219cd6f31a}\label{classFOpenAccessibilityModule_a4815b19f589d8e966e2183219cd6f31a}} 

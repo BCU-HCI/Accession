@@ -93,10 +93,18 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a381b0437c9c4dcd1605ba4b490f1c281"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a069591b3d95773a6d2ace6008a1cf78a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUWindowInteractionLibrary.html#a069591b3d95773a6d2ace6008a1cf78a">BindBranches</a> (TSharedRef&lt; <a class="el" href="classFPhraseTree.html">FPhraseTree</a> &gt; PhraseTree) override</td></tr>
 <tr class="separator:a069591b3d95773a6d2ace6008a1cf78a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc8b7c4b5a5d60f3f1b0c9eb7d919cc2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUWindowInteractionLibrary.html#adc8b7c4b5a5d60f3f1b0c9eb7d919cc2">SwitchNextActiveWindow</a> (<a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;Record)</td></tr>
+<tr class="separator:adc8b7c4b5a5d60f3f1b0c9eb7d919cc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f1dc79b355e41d75da5731cc451b58d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUWindowInteractionLibrary.html#a1f1dc79b355e41d75da5731cc451b58d">SwitchPrevActiveWindow</a> (<a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;Record)</td></tr>
+<tr class="separator:a1f1dc79b355e41d75da5731cc451b58d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfeba58b5649ef353f0fbb673542db29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUWindowInteractionLibrary.html#acfeba58b5649ef353f0fbb673542db29">CloseActiveWindow</a> (<a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;Record)</td></tr>
 <tr class="separator:acfeba58b5649ef353f0fbb673542db29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2aca2357e9f72c00a0e78166fe0c4f5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUWindowInteractionLibrary.html#a2aca2357e9f72c00a0e78166fe0c4f5f">SelectToolBarItem</a> (<a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;Record)</td></tr>
 <tr class="separator:a2aca2357e9f72c00a0e78166fe0c4f5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcf729c78b3e2f4766f2666882f88b21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUWindowInteractionLibrary.html#adcf729c78b3e2f4766f2666882f88b21">SwitchNextTabInStack</a> (<a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;Record)</td></tr>
+<tr class="separator:adcf729c78b3e2f4766f2666882f88b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2473e4da4a39f7bbe9d5089627cf08f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUWindowInteractionLibrary.html#a2473e4da4a39f7bbe9d5089627cf08f1">SwitchPrevTabInStack</a> (<a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;Record)</td></tr>
+<tr class="separator:a2473e4da4a39f7bbe9d5089627cf08f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4d597f987d6d8ac7013e48c9c789d73"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUPhraseTreeFunctionLibrary.html#ac4d597f987d6d8ac7013e48c9c789d73">BindBranches</a> (TSharedRef&lt; <a class="el" href="classFPhraseTree.html">FPhraseTree</a> &gt; PhraseTree)</td></tr>
 <tr class="separator:ac4d597f987d6d8ac7013e48c9c789d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -125,11 +133,11 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00010">10</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   11</span>    : Super(ObjectInitializer)</div>
-<div class="line"><span class="lineno">   12</span>{</div>
-<div class="line"><span class="lineno">   13</span>    WindowToolBar = NewObject&lt;UAccessibilityWindowToolbar&gt;();</div>
-<div class="line"><span class="lineno">   14</span>}</div>
+<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00011">11</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   12</span>    : Super(ObjectInitializer)</div>
+<div class="line"><span class="lineno">   13</span>{</div>
+<div class="line"><span class="lineno">   14</span>    WindowToolBar = NewObject&lt;UAccessibilityWindowToolbar&gt;();</div>
+<div class="line"><span class="lineno">   15</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -156,10 +164,10 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00016">16</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   17</span>{</div>
-<div class="line"><span class="lineno">   18</span> </div>
-<div class="line"><span class="lineno">   19</span>}</div>
+<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00017">17</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   18</span>{</div>
+<div class="line"><span class="lineno">   19</span> </div>
+<div class="line"><span class="lineno">   20</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -196,40 +204,77 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00021">21</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   22</span>{</div>
-<div class="line"><span class="lineno">   23</span>    PhraseTree-&gt;BindBranches(</div>
-<div class="line"><span class="lineno">   24</span>        TPhraseNodeArray{</div>
-<div class="line"><span class="lineno">   25</span> </div>
-<div class="line"><span class="lineno">   26</span>            MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;WINDOW&quot;</span>),</div>
-<div class="line"><span class="lineno">   27</span>            TPhraseNodeArray{</div>
-<div class="line"><span class="lineno">   28</span> </div>
-<div class="line"><span class="lineno">   29</span>                MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;CLOSE&quot;</span>),</div>
-<div class="line"><span class="lineno">   30</span>                TPhraseNodeArray {</div>
-<div class="line"><span class="lineno">   31</span> </div>
-<div class="line"><span class="lineno">   32</span>                    MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUWindowInteractionLibrary.html#acfeba58b5649ef353f0fbb673542db29">UWindowInteractionLibrary::CloseActiveWindow</a>))</div>
-<div class="line"><span class="lineno">   33</span> </div>
-<div class="line"><span class="lineno">   34</span>                }),</div>
-<div class="line"><span class="lineno">   35</span> </div>
-<div class="line"><span class="lineno">   36</span>            }),</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>            MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;TOOLBAR&quot;</span>),</div>
-<div class="line"><span class="lineno">   39</span>            TPhraseNodeArray {</div>
-<div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>                MakeShared&lt;FPhraseInputNode&lt;int32&gt;&gt;(TEXT(<span class="stringliteral">&quot;ITEM_INDEX&quot;</span>),</div>
-<div class="line"><span class="lineno">   42</span>                TPhraseNodeArray {</div>
+<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00022">22</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>{</div>
+<div class="line"><span class="lineno">   24</span>    PhraseTree-&gt;BindBranches(</div>
+<div class="line"><span class="lineno">   25</span>        TPhraseNodeArray{</div>
+<div class="line"><span class="lineno">   26</span> </div>
+<div class="line"><span class="lineno">   27</span>            MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;WINDOW&quot;</span>),</div>
+<div class="line"><span class="lineno">   28</span>            TPhraseNodeArray{</div>
+<div class="line"><span class="lineno">   29</span> </div>
+<div class="line"><span class="lineno">   30</span>                MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;NEXT&quot;</span>),</div>
+<div class="line"><span class="lineno">   31</span>                TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   32</span> </div>
+<div class="line"><span class="lineno">   33</span>                    MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUWindowInteractionLibrary.html#adc8b7c4b5a5d60f3f1b0c9eb7d919cc2">UWindowInteractionLibrary::SwitchNextActiveWindow</a>))</div>
+<div class="line"><span class="lineno">   34</span> </div>
+<div class="line"><span class="lineno">   35</span>                }),</div>
+<div class="line"><span class="lineno">   36</span> </div>
+<div class="line"><span class="lineno">   37</span>                MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;PREVIOUS&quot;</span>),</div>
+<div class="line"><span class="lineno">   38</span>                TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   39</span> </div>
+<div class="line"><span class="lineno">   40</span>                    MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUWindowInteractionLibrary.html#a1f1dc79b355e41d75da5731cc451b58d">UWindowInteractionLibrary::SwitchPrevActiveWindow</a>))</div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>                }),</div>
 <div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>                    MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUWindowInteractionLibrary.html#a2aca2357e9f72c00a0e78166fe0c4f5f">UWindowInteractionLibrary::SelectToolBarItem</a>))</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>                })</div>
-<div class="line"><span class="lineno">   47</span> </div>
-<div class="line"><span class="lineno">   48</span>            })</div>
-<div class="line"><span class="lineno">   49</span> </div>
-<div class="line"><span class="lineno">   50</span>        }</div>
-<div class="line"><span class="lineno">   51</span>    );</div>
-<div class="line"><span class="lineno">   52</span>}</div>
-<div class="ttc" id="aclassUWindowInteractionLibrary_html_a2aca2357e9f72c00a0e78166fe0c4f5f"><div class="ttname"><a href="classUWindowInteractionLibrary.html#a2aca2357e9f72c00a0e78166fe0c4f5f">UWindowInteractionLibrary::SelectToolBarItem</a></div><div class="ttdeci">void SelectToolBarItem(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="WindowInteractionLibrary_8cpp_source.html#l00076">WindowInteractionLibrary.cpp:76</a></div></div>
-<div class="ttc" id="aclassUWindowInteractionLibrary_html_acfeba58b5649ef353f0fbb673542db29"><div class="ttname"><a href="classUWindowInteractionLibrary.html#acfeba58b5649ef353f0fbb673542db29">UWindowInteractionLibrary::CloseActiveWindow</a></div><div class="ttdeci">void CloseActiveWindow(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="WindowInteractionLibrary_8cpp_source.html#l00054">WindowInteractionLibrary.cpp:54</a></div></div>
+<div class="line"><span class="lineno">   44</span>                MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;CLOSE&quot;</span>),</div>
+<div class="line"><span class="lineno">   45</span>                TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   46</span> </div>
+<div class="line"><span class="lineno">   47</span>                    MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUWindowInteractionLibrary.html#acfeba58b5649ef353f0fbb673542db29">UWindowInteractionLibrary::CloseActiveWindow</a>))</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>                }),</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>            }),</div>
+<div class="line"><span class="lineno">   52</span> </div>
+<div class="line"><span class="lineno">   53</span>            MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;TAB&quot;</span>),</div>
+<div class="line"><span class="lineno">   54</span>            TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>                MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;NEXT&quot;</span>),</div>
+<div class="line"><span class="lineno">   57</span>                TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   58</span> </div>
+<div class="line"><span class="lineno">   59</span>                    MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUWindowInteractionLibrary.html#adcf729c78b3e2f4766f2666882f88b21">UWindowInteractionLibrary::SwitchNextTabInStack</a>))</div>
+<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   61</span>                }),</div>
+<div class="line"><span class="lineno">   62</span> </div>
+<div class="line"><span class="lineno">   63</span>                MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;PREVIOUS&quot;</span>),</div>
+<div class="line"><span class="lineno">   64</span>                TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>                    MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUWindowInteractionLibrary.html#a2473e4da4a39f7bbe9d5089627cf08f1">UWindowInteractionLibrary::SwitchPrevTabInStack</a>))</div>
+<div class="line"><span class="lineno">   67</span> </div>
+<div class="line"><span class="lineno">   68</span>                })</div>
+<div class="line"><span class="lineno">   69</span> </div>
+<div class="line"><span class="lineno">   70</span>            }),</div>
+<div class="line"><span class="lineno">   71</span> </div>
+<div class="line"><span class="lineno">   72</span>            MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;TOOLBAR&quot;</span>),</div>
+<div class="line"><span class="lineno">   73</span>            TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   74</span> </div>
+<div class="line"><span class="lineno">   75</span>                MakeShared&lt;FPhraseInputNode&lt;int32&gt;&gt;(TEXT(<span class="stringliteral">&quot;ITEM_INDEX&quot;</span>),</div>
+<div class="line"><span class="lineno">   76</span>                TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>                    MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUWindowInteractionLibrary.html#a2aca2357e9f72c00a0e78166fe0c4f5f">UWindowInteractionLibrary::SelectToolBarItem</a>))</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>                })</div>
+<div class="line"><span class="lineno">   81</span> </div>
+<div class="line"><span class="lineno">   82</span>            }),</div>
+<div class="line"><span class="lineno">   83</span> </div>
+<div class="line"><span class="lineno">   84</span>        }</div>
+<div class="line"><span class="lineno">   85</span>    );</div>
+<div class="line"><span class="lineno">   86</span>}</div>
+<div class="ttc" id="aclassUWindowInteractionLibrary_html_a1f1dc79b355e41d75da5731cc451b58d"><div class="ttname"><a href="classUWindowInteractionLibrary.html#a1f1dc79b355e41d75da5731cc451b58d">UWindowInteractionLibrary::SwitchPrevActiveWindow</a></div><div class="ttdeci">void SwitchPrevActiveWindow(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="WindowInteractionLibrary_8cpp_source.html#l00109">WindowInteractionLibrary.cpp:109</a></div></div>
+<div class="ttc" id="aclassUWindowInteractionLibrary_html_a2473e4da4a39f7bbe9d5089627cf08f1"><div class="ttname"><a href="classUWindowInteractionLibrary.html#a2473e4da4a39f7bbe9d5089627cf08f1">UWindowInteractionLibrary::SwitchPrevTabInStack</a></div><div class="ttdeci">void SwitchPrevTabInStack(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="WindowInteractionLibrary_8cpp_source.html#l00315">WindowInteractionLibrary.cpp:315</a></div></div>
+<div class="ttc" id="aclassUWindowInteractionLibrary_html_a2aca2357e9f72c00a0e78166fe0c4f5f"><div class="ttname"><a href="classUWindowInteractionLibrary.html#a2aca2357e9f72c00a0e78166fe0c4f5f">UWindowInteractionLibrary::SelectToolBarItem</a></div><div class="ttdeci">void SelectToolBarItem(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="WindowInteractionLibrary_8cpp_source.html#l00156">WindowInteractionLibrary.cpp:156</a></div></div>
+<div class="ttc" id="aclassUWindowInteractionLibrary_html_acfeba58b5649ef353f0fbb673542db29"><div class="ttname"><a href="classUWindowInteractionLibrary.html#acfeba58b5649ef353f0fbb673542db29">UWindowInteractionLibrary::CloseActiveWindow</a></div><div class="ttdeci">void CloseActiveWindow(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="WindowInteractionLibrary_8cpp_source.html#l00134">WindowInteractionLibrary.cpp:134</a></div></div>
+<div class="ttc" id="aclassUWindowInteractionLibrary_html_adc8b7c4b5a5d60f3f1b0c9eb7d919cc2"><div class="ttname"><a href="classUWindowInteractionLibrary.html#adc8b7c4b5a5d60f3f1b0c9eb7d919cc2">UWindowInteractionLibrary::SwitchNextActiveWindow</a></div><div class="ttdeci">void SwitchNextActiveWindow(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="WindowInteractionLibrary_8cpp_source.html#l00088">WindowInteractionLibrary.cpp:88</a></div></div>
+<div class="ttc" id="aclassUWindowInteractionLibrary_html_adcf729c78b3e2f4766f2666882f88b21"><div class="ttname"><a href="classUWindowInteractionLibrary.html#adcf729c78b3e2f4766f2666882f88b21">UWindowInteractionLibrary::SwitchNextTabInStack</a></div><div class="ttdeci">void SwitchNextTabInStack(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="WindowInteractionLibrary_8cpp_source.html#l00241">WindowInteractionLibrary.cpp:241</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -255,28 +300,28 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00054">54</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   54</span>                                                                      {</div>
-<div class="line"><span class="lineno">   55</span>    FSlateApplication&amp; SlateApp = FSlateApplication::Get();</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">if</span> (!SlateApp.CanDisplayWindows())</div>
-<div class="line"><span class="lineno">   57</span>    {</div>
-<div class="line"><span class="lineno">   58</span>        UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;CloseActiveWindow: Slate Application cannot display windows.&quot;</span>));</div>
-<div class="line"><span class="lineno">   59</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   60</span>    }</div>
-<div class="line"><span class="lineno">   61</span> </div>
-<div class="line"><span class="lineno">   62</span>    TSharedPtr&lt;SWindow&gt; ActiveWindow = SlateApp.GetActiveTopLevelWindow();</div>
-<div class="line"><span class="lineno">   63</span>    <span class="keywordflow">if</span> (!ActiveWindow.IsValid())</div>
-<div class="line"><span class="lineno">   64</span>    {</div>
-<div class="line"><span class="lineno">   65</span>        UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;CloseActiveWindow: No Active Window Found.&quot;</span>));</div>
-<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   67</span>    }</div>
-<div class="line"><span class="lineno">   68</span> </div>
-<div class="line"><span class="lineno">   69</span>    TSharedPtr&lt;SWindow&gt; RootWindow = FGlobalTabmanager::Get()-&gt;GetRootWindow();</div>
-<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">if</span> (ActiveWindow-&gt;IsVisible() &amp;&amp; ActiveWindow != RootWindow)</div>
-<div class="line"><span class="lineno">   71</span>    {</div>
-<div class="line"><span class="lineno">   72</span>        ActiveWindow-&gt;RequestDestroyWindow();</div>
-<div class="line"><span class="lineno">   73</span>    }</div>
-<div class="line"><span class="lineno">   74</span>}</div>
+<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00134">134</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  134</span>                                                                      {</div>
+<div class="line"><span class="lineno">  135</span>    FSlateApplication&amp; SlateApp = FSlateApplication::Get();</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">if</span> (!SlateApp.CanDisplayWindows())</div>
+<div class="line"><span class="lineno">  137</span>    {</div>
+<div class="line"><span class="lineno">  138</span>        UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;CloseActiveWindow: Slate Application cannot display windows.&quot;</span>));</div>
+<div class="line"><span class="lineno">  139</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  140</span>    }</div>
+<div class="line"><span class="lineno">  141</span> </div>
+<div class="line"><span class="lineno">  142</span>    TSharedPtr&lt;SWindow&gt; ActiveWindow = SlateApp.GetActiveTopLevelWindow();</div>
+<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">if</span> (!ActiveWindow.IsValid())</div>
+<div class="line"><span class="lineno">  144</span>    {</div>
+<div class="line"><span class="lineno">  145</span>        UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;CloseActiveWindow: No Active Window Found.&quot;</span>));</div>
+<div class="line"><span class="lineno">  146</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  147</span>    }</div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span>    TSharedPtr&lt;SWindow&gt; RootWindow = FGlobalTabmanager::Get()-&gt;GetRootWindow();</div>
+<div class="line"><span class="lineno">  150</span>    <span class="keywordflow">if</span> (ActiveWindow-&gt;IsVisible() &amp;&amp; ActiveWindow != RootWindow)</div>
+<div class="line"><span class="lineno">  151</span>    {</div>
+<div class="line"><span class="lineno">  152</span>        ActiveWindow-&gt;RequestDestroyWindow();</div>
+<div class="line"><span class="lineno">  153</span>    }</div>
+<div class="line"><span class="lineno">  154</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -302,21 +347,318 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00076">76</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   77</span>{</div>
-<div class="line"><span class="lineno">   78</span>    <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>* ItemIndexInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>&gt;(TEXT(<span class="stringliteral">&quot;ITEM_INDEX&quot;</span>));</div>
-<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">if</span> (ItemIndexInput == <span class="keyword">nullptr</span>) </div>
-<div class="line"><span class="lineno">   80</span>    {</div>
-<div class="line"><span class="lineno">   81</span>        UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;SelectToolBarItem: No Item Index Found.&quot;</span>));</div>
-<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   83</span>    }</div>
-<div class="line"><span class="lineno">   84</span> </div>
-<div class="line"><span class="lineno">   85</span>    WindowToolBar-&gt;<a class="code hl_function" href="classUAccessibilityWindowToolbar.html#aa2945392855b85a4095b1452893466f2">SelectToolbarItem</a>(ItemIndexInput-&gt;<a class="code hl_function" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">GetValue</a>());</div>
-<div class="line"><span class="lineno">   86</span>}</div>
+<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00156">156</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  157</span>{</div>
+<div class="line"><span class="lineno">  158</span>    <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>* ItemIndexInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>&gt;(TEXT(<span class="stringliteral">&quot;ITEM_INDEX&quot;</span>));</div>
+<div class="line"><span class="lineno">  159</span>    <span class="keywordflow">if</span> (ItemIndexInput == <span class="keyword">nullptr</span>) </div>
+<div class="line"><span class="lineno">  160</span>    {</div>
+<div class="line"><span class="lineno">  161</span>        UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;SelectToolBarItem: No Item Index Found.&quot;</span>));</div>
+<div class="line"><span class="lineno">  162</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  163</span>    }</div>
+<div class="line"><span class="lineno">  164</span> </div>
+<div class="line"><span class="lineno">  165</span>    WindowToolBar-&gt;<a class="code hl_function" href="classUAccessibilityWindowToolbar.html#aa2945392855b85a4095b1452893466f2">SelectToolbarItem</a>(ItemIndexInput-&gt;<a class="code hl_function" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">GetValue</a>());</div>
+<div class="line"><span class="lineno">  166</span>}</div>
 <div class="ttc" id="aclassUAccessibilityWindowToolbar_html_aa2945392855b85a4095b1452893466f2"><div class="ttname"><a href="classUAccessibilityWindowToolbar.html#aa2945392855b85a4095b1452893466f2">UAccessibilityWindowToolbar::SelectToolbarItem</a></div><div class="ttdeci">void SelectToolbarItem(int32 Index)</div><div class="ttdef"><b>Definition:</b> <a href="AccessibilityWindowToolbar_8cpp_source.html#l00197">AccessibilityWindowToolbar.cpp:197</a></div></div>
 <div class="ttc" id="aclassUParseIntInput_html"><div class="ttname"><a href="classUParseIntInput.html">UParseIntInput</a></div><div class="ttdef"><b>Definition:</b> <a href="UParseIntInput_8h_source.html#l00011">UParseIntInput.h:12</a></div></div>
 <div class="ttc" id="aclassUParseIntInput_html_a25393db97da6e72a5fc1f9efb127f0bf"><div class="ttname"><a href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">UParseIntInput::GetValue</a></div><div class="ttdeci">void GetValue(int32 &amp;OutValue)</div><div class="ttdoc">Gets the Current Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseIntInput_8h_source.html#l00036">UParseIntInput.h:36</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_a5e3e314f8799790a43208473ce37207e"><div class="ttname"><a href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">FParseRecord::GetPhraseInput</a></div><div class="ttdeci">UParseInput * GetPhraseInput(const FString &amp;InString)</div><div class="ttdoc">Gets the Input for the Provided Phrase, if it exists.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00064">ParseRecord.h:64</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="adc8b7c4b5a5d60f3f1b0c9eb7d919cc2" name="adc8b7c4b5a5d60f3f1b0c9eb7d919cc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc8b7c4b5a5d60f3f1b0c9eb7d919cc2">&#9670;&#160;</a></span>SwitchNextActiveWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UWindowInteractionLibrary::SwitchNextActiveWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;&#160;</td>
+          <td class="paramname"><em>Record</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Selects the Next Window in the Slate Application, and switches the Focus to it. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Record</td><td>The Parse Record accumulated until this Event. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00088">88</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   89</span>{</div>
+<div class="line"><span class="lineno">   90</span>    GET_ACTIVE_REGULAR_WINDOW(ActiveWindow)</div>
+<div class="line"><span class="lineno">   91</span> </div>
+<div class="line"><span class="lineno">   92</span>    TArray&lt;TSharedRef&lt;SWindow&gt;&gt; AllWindows;</div>
+<div class="line"><span class="lineno">   93</span>    FSlateApplication::Get().GetAllVisibleWindowsOrdered(AllWindows);</div>
+<div class="line"><span class="lineno">   94</span> </div>
+<div class="line"><span class="lineno">   95</span>    int32 FoundIndex;</div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">if</span> (!AllWindows.Find(ActiveWindow.ToSharedRef(), FoundIndex))</div>
+<div class="line"><span class="lineno">   97</span>    {</div>
+<div class="line"><span class="lineno">   98</span>        UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;SwitchNextActiveWindow: Cannot Find the Current Active Window.&quot;</span>))</div>
+<div class="line"><span class="lineno">   99</span>        return;</div>
+<div class="line"><span class="lineno">  100</span>    }</div>
+<div class="line"><span class="lineno">  101</span> </div>
+<div class="line"><span class="lineno">  102</span>    TSharedRef&lt;SWindow&gt; NextWindow = AllWindows[FoundIndex + 1 % AllWindows.Num()];</div>
+<div class="line"><span class="lineno">  103</span> </div>
+<div class="line"><span class="lineno">  104</span>    NextWindow-&gt;BringToFront(true);</div>
+<div class="line"><span class="lineno">  105</span> </div>
+<div class="line"><span class="lineno">  106</span>    <span class="comment">// Set Window Major Tab Focus?</span></div>
+<div class="line"><span class="lineno">  107</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="adcf729c78b3e2f4766f2666882f88b21" name="adcf729c78b3e2f4766f2666882f88b21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcf729c78b3e2f4766f2666882f88b21">&#9670;&#160;</a></span>SwitchNextTabInStack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UWindowInteractionLibrary::SwitchNextTabInStack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;&#160;</td>
+          <td class="paramname"><em>Record</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Selects the Next Tab In The Active Tab Stack, and switches the Focus to it. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Record</td><td>The Parse Record accumulated until this Event. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00241">241</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  242</span>{</div>
+<div class="line"><span class="lineno">  243</span>    GET_ACTIVE_TAB(ActiveTab);</div>
+<div class="line"><span class="lineno">  244</span> </div>
+<div class="line"><span class="lineno">  245</span>    TSharedPtr&lt;FTabManager&gt; ActiveTabManager = ActiveTab-&gt;GetTabManagerPtr();</div>
+<div class="line"><span class="lineno">  246</span>    <span class="keywordflow">if</span> (!ActiveTabManager.IsValid())</div>
+<div class="line"><span class="lineno">  247</span>    {</div>
+<div class="line"><span class="lineno">  248</span>        UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(<span class="stringliteral">&quot;SwitchNextTabInStack: Cannot Find Active Tab Manager&quot;</span>))</div>
+<div class="line"><span class="lineno">  249</span>        return;</div>
+<div class="line"><span class="lineno">  250</span>    }</div>
+<div class="line"><span class="lineno">  251</span> </div>
+<div class="line"><span class="lineno">  252</span>    TArray&lt;FTabManager::FTab&gt; FoundTabs = TabUtils::CollectManagedTabs(ActiveTabManager.ToSharedRef());</div>
+<div class="line"><span class="lineno">  253</span> </div>
+<div class="line"><span class="lineno">  254</span>    const FTabId ActiveTabId = ActiveTab-&gt;GetLayoutIdentifier();</div>
+<div class="line"><span class="lineno">  255</span>    for (int32 i = 0; i &lt; FoundTabs.Num(); i++)</div>
+<div class="line"><span class="lineno">  256</span>    {</div>
+<div class="line"><span class="lineno">  257</span>        <span class="keywordflow">if</span> (FoundTabs[i].TabId == ActiveTabId)</div>
+<div class="line"><span class="lineno">  258</span>        {</div>
+<div class="line"><span class="lineno">  259</span>            TSharedPtr&lt;SDockTab&gt; NextTabWidget = TSharedPtr&lt;SDockTab&gt;();</div>
+<div class="line"><span class="lineno">  260</span> </div>
+<div class="line"><span class="lineno">  261</span>            <span class="keywordtype">int</span> CurrentTabIndex = i;</div>
+<div class="line"><span class="lineno">  262</span>            <span class="keywordflow">while</span> (!NextTabWidget.IsValid())</div>
+<div class="line"><span class="lineno">  263</span>            {</div>
+<div class="line"><span class="lineno">  264</span>                CurrentTabIndex += 1;</div>
+<div class="line"><span class="lineno">  265</span>                CurrentTabIndex %= FoundTabs.Num();</div>
+<div class="line"><span class="lineno">  266</span> </div>
+<div class="line"><span class="lineno">  267</span>                <span class="keyword">const</span> FTabManager::FTab NextTab = FoundTabs[</div>
+<div class="line"><span class="lineno">  268</span>                    CurrentTabIndex</div>
+<div class="line"><span class="lineno">  269</span>                ];</div>
+<div class="line"><span class="lineno">  270</span> </div>
+<div class="line"><span class="lineno">  271</span>                <span class="keywordflow">if</span> (NextTab.TabId == ActiveTabId)</div>
+<div class="line"><span class="lineno">  272</span>                {</div>
+<div class="line"><span class="lineno">  273</span>                    UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(<span class="stringliteral">&quot;SwitchNextTabInStack: No Next Tab Found.&quot;</span>))</div>
+<div class="line"><span class="lineno">  274</span>                    return;</div>
+<div class="line"><span class="lineno">  275</span>                }</div>
+<div class="line"><span class="lineno">  276</span> </div>
+<div class="line"><span class="lineno">  277</span>                NextTabWidget = ActiveTabManager-&gt;FindExistingLiveTab(</div>
+<div class="line"><span class="lineno">  278</span>                    NextTab.TabId</div>
+<div class="line"><span class="lineno">  279</span>                );</div>
+<div class="line"><span class="lineno">  280</span>            }</div>
+<div class="line"><span class="lineno">  281</span> </div>
+<div class="line"><span class="lineno">  282</span>            FGlobalTabmanager::Get()-&gt;SetActiveTab(NextTabWidget);</div>
+<div class="line"><span class="lineno">  283</span>            NextTabWidget-&gt;ActivateInParent(SetDirectly);</div>
+<div class="line"><span class="lineno">  284</span> </div>
+<div class="line"><span class="lineno">  285</span>            break;</div>
+<div class="line"><span class="lineno">  286</span>        }</div>
+<div class="line"><span class="lineno">  287</span>    }</div>
+<div class="line"><span class="lineno">  288</span> </div>
+<div class="line"><span class="lineno">  289</span>    <span class="comment">/*</span></div>
+<div class="line"><span class="lineno">  290</span><span class="comment">    // Most Straightforward Implementation, But Requires Private Core Tab Classes</span></div>
+<div class="line"><span class="lineno">  291</span><span class="comment">    </span></div>
+<div class="line"><span class="lineno">  292</span><span class="comment">    TSharedPtr&lt;SDockingTabStack&gt; ActiveTabStack = ActiveTab-&gt;GetParentDockTabStack();</span></div>
+<div class="line"><span class="lineno">  293</span><span class="comment">    if (!ActiveTabStack.IsValid())</span></div>
+<div class="line"><span class="lineno">  294</span><span class="comment">    {</span></div>
+<div class="line"><span class="lineno">  295</span><span class="comment">        UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(&quot;SwitchNextTabInStack: No Parent Tab Stack Found.&quot;))</span></div>
+<div class="line"><span class="lineno">  296</span><span class="comment">        return;</span></div>
+<div class="line"><span class="lineno">  297</span><span class="comment">    }</span></div>
+<div class="line"><span class="lineno">  298</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  299</span><span class="comment">    TArray&lt;TSharedRef&lt;SDockTab&gt;&gt; AllTabs = ActiveTabStack-&gt;GetAllChildTabs();</span></div>
+<div class="line"><span class="lineno">  300</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  301</span><span class="comment">    int32 FoundIndex;</span></div>
+<div class="line"><span class="lineno">  302</span><span class="comment">    if (!AllTabs.Find(ActiveTab.ToSharedRef(), FoundIndex))</span></div>
+<div class="line"><span class="lineno">  303</span><span class="comment">    {</span></div>
+<div class="line"><span class="lineno">  304</span><span class="comment">        UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(&quot;SwitchNextTabInStack: Active Tab Not Found In Tab Stack.&quot;))</span></div>
+<div class="line"><span class="lineno">  305</span><span class="comment">        return;</span></div>
+<div class="line"><span class="lineno">  306</span><span class="comment">    }</span></div>
+<div class="line"><span class="lineno">  307</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  308</span><span class="comment">    TSharedRef&lt;SDockTab&gt; NextTab = AllTabs[FoundIndex + 1 % AllTabs.Num()];</span></div>
+<div class="line"><span class="lineno">  309</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  310</span><span class="comment">    FGlobalTabmanager::Get()-&gt;SetActiveTab(NextTab);</span></div>
+<div class="line"><span class="lineno">  311</span><span class="comment">    NextTab-&gt;ActivateInParent(SetDirectly);</span></div>
+<div class="line"><span class="lineno">  312</span><span class="comment">    */</span></div>
+<div class="line"><span class="lineno">  313</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a1f1dc79b355e41d75da5731cc451b58d" name="a1f1dc79b355e41d75da5731cc451b58d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f1dc79b355e41d75da5731cc451b58d">&#9670;&#160;</a></span>SwitchPrevActiveWindow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UWindowInteractionLibrary::SwitchPrevActiveWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;&#160;</td>
+          <td class="paramname"><em>Record</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Selects the Previous Window in the Slate Application, and switches the Focus to it. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Record</td><td>The Parse Record accumulated until this Event. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00109">109</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  110</span>{</div>
+<div class="line"><span class="lineno">  111</span>    GET_ACTIVE_REGULAR_WINDOW(ActiveWindow)</div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>    TArray&lt;TSharedRef&lt;SWindow&gt;&gt; AllWindows;</div>
+<div class="line"><span class="lineno">  114</span>    FSlateApplication::Get().GetAllVisibleWindowsOrdered(AllWindows);</div>
+<div class="line"><span class="lineno">  115</span> </div>
+<div class="line"><span class="lineno">  116</span>    int32 FoundIndex;</div>
+<div class="line"><span class="lineno">  117</span>    <span class="keywordflow">if</span> (!AllWindows.Find(ActiveWindow.ToSharedRef(), FoundIndex))</div>
+<div class="line"><span class="lineno">  118</span>    {</div>
+<div class="line"><span class="lineno">  119</span>        UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;SwitchPrevActiveWindow: Cannot Find the Current Active Window.&quot;</span>))</div>
+<div class="line"><span class="lineno">  120</span>            return;</div>
+<div class="line"><span class="lineno">  121</span>    }</div>
+<div class="line"><span class="lineno">  122</span> </div>
+<div class="line"><span class="lineno">  123</span>    TSharedRef&lt;SWindow&gt; PrevWindow = AllWindows[</div>
+<div class="line"><span class="lineno">  124</span>        FoundIndex - 1 &lt; 0</div>
+<div class="line"><span class="lineno">  125</span>            ? AllWindows.Num() - 1</div>
+<div class="line"><span class="lineno">  126</span>            : FoundIndex - 1</div>
+<div class="line"><span class="lineno">  127</span>    ];</div>
+<div class="line"><span class="lineno">  128</span> </div>
+<div class="line"><span class="lineno">  129</span>    PrevWindow-&gt;BringToFront(true);</div>
+<div class="line"><span class="lineno">  130</span> </div>
+<div class="line"><span class="lineno">  131</span>    <span class="comment">// Set Window Major Tab Focus?</span></div>
+<div class="line"><span class="lineno">  132</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a2473e4da4a39f7bbe9d5089627cf08f1" name="a2473e4da4a39f7bbe9d5089627cf08f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2473e4da4a39f7bbe9d5089627cf08f1">&#9670;&#160;</a></span>SwitchPrevTabInStack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UWindowInteractionLibrary::SwitchPrevTabInStack </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;&#160;</td>
+          <td class="paramname"><em>Record</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Selects the Prev Tab In The Active Tab Stack, and switches the Focus to it. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Record</td><td>The Parse Record accumulated until this Event. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00315">315</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  316</span>{</div>
+<div class="line"><span class="lineno">  317</span>    GET_ACTIVE_TAB(ActiveTab);</div>
+<div class="line"><span class="lineno">  318</span> </div>
+<div class="line"><span class="lineno">  319</span>    TSharedPtr&lt;FTabManager&gt; ActiveTabManager = ActiveTab-&gt;GetTabManagerPtr();</div>
+<div class="line"><span class="lineno">  320</span>    <span class="keywordflow">if</span> (!ActiveTabManager.IsValid())</div>
+<div class="line"><span class="lineno">  321</span>    {</div>
+<div class="line"><span class="lineno">  322</span>        UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(<span class="stringliteral">&quot;SwitchPrevTabInStack: Cannot Find Active Tab Manager&quot;</span>))</div>
+<div class="line"><span class="lineno">  323</span>            return;</div>
+<div class="line"><span class="lineno">  324</span>    }</div>
+<div class="line"><span class="lineno">  325</span> </div>
+<div class="line"><span class="lineno">  326</span>    TArray&lt;FTabManager::FTab&gt; FoundTabs = TabUtils::CollectManagedTabs(ActiveTabManager.ToSharedRef());</div>
+<div class="line"><span class="lineno">  327</span> </div>
+<div class="line"><span class="lineno">  328</span>    const FTabId ActiveTabId = ActiveTab-&gt;GetLayoutIdentifier();</div>
+<div class="line"><span class="lineno">  329</span>    for (int32 i = 0; i &lt; FoundTabs.Num(); i++)</div>
+<div class="line"><span class="lineno">  330</span>    {</div>
+<div class="line"><span class="lineno">  331</span>        <span class="keywordflow">if</span> (FoundTabs[i].TabId == ActiveTabId)</div>
+<div class="line"><span class="lineno">  332</span>        {</div>
+<div class="line"><span class="lineno">  333</span>            TSharedPtr&lt;SDockTab&gt; PrevTabWidget = TSharedPtr&lt;SDockTab&gt;();</div>
+<div class="line"><span class="lineno">  334</span> </div>
+<div class="line"><span class="lineno">  335</span>            <span class="keywordtype">int</span> CurrentTabIndex = i;</div>
+<div class="line"><span class="lineno">  336</span>            <span class="keywordflow">while</span> (!PrevTabWidget.IsValid())</div>
+<div class="line"><span class="lineno">  337</span>            {</div>
+<div class="line"><span class="lineno">  338</span>                CurrentTabIndex -= 1;</div>
+<div class="line"><span class="lineno">  339</span>                <span class="keywordflow">if</span> (CurrentTabIndex &lt; 0)</div>
+<div class="line"><span class="lineno">  340</span>                {</div>
+<div class="line"><span class="lineno">  341</span>                    CurrentTabIndex = FoundTabs.Num() - 1;</div>
+<div class="line"><span class="lineno">  342</span>                }</div>
+<div class="line"><span class="lineno">  343</span> </div>
+<div class="line"><span class="lineno">  344</span>                <span class="keyword">const</span> FTabManager::FTab NextTab = FoundTabs[</div>
+<div class="line"><span class="lineno">  345</span>                    CurrentTabIndex</div>
+<div class="line"><span class="lineno">  346</span>                ];</div>
+<div class="line"><span class="lineno">  347</span> </div>
+<div class="line"><span class="lineno">  348</span>                <span class="keywordflow">if</span> (NextTab.TabId == ActiveTabId)</div>
+<div class="line"><span class="lineno">  349</span>                {</div>
+<div class="line"><span class="lineno">  350</span>                    UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(<span class="stringliteral">&quot;SwitchNextTabInStack: No Next Tab Found.&quot;</span>))</div>
+<div class="line"><span class="lineno">  351</span>                        return;</div>
+<div class="line"><span class="lineno">  352</span>                }</div>
+<div class="line"><span class="lineno">  353</span> </div>
+<div class="line"><span class="lineno">  354</span>                PrevTabWidget = ActiveTabManager-&gt;FindExistingLiveTab(</div>
+<div class="line"><span class="lineno">  355</span>                    NextTab.TabId</div>
+<div class="line"><span class="lineno">  356</span>                );</div>
+<div class="line"><span class="lineno">  357</span>            }</div>
+<div class="line"><span class="lineno">  358</span> </div>
+<div class="line"><span class="lineno">  359</span>            FGlobalTabmanager::Get()-&gt;SetActiveTab(PrevTabWidget);</div>
+<div class="line"><span class="lineno">  360</span>            PrevTabWidget-&gt;ActivateInParent(SetDirectly);</div>
+<div class="line"><span class="lineno">  361</span> </div>
+<div class="line"><span class="lineno">  362</span>            break;</div>
+<div class="line"><span class="lineno">  363</span>        }</div>
+<div class="line"><span class="lineno">  364</span>    }</div>
+<div class="line"><span class="lineno">  365</span> </div>
+<div class="line"><span class="lineno">  366</span>    <span class="comment">/*</span></div>
+<div class="line"><span class="lineno">  367</span><span class="comment">    // Most Straightforward Implementation, But Requires Private Core Tab Classes</span></div>
+<div class="line"><span class="lineno">  368</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  369</span><span class="comment">    TSharedPtr&lt;SDockingTabStack&gt; ActiveTabStack = ActiveTab-&gt;GetParentDockTabStack();</span></div>
+<div class="line"><span class="lineno">  370</span><span class="comment">    if (!ActiveTabStack.IsValid())</span></div>
+<div class="line"><span class="lineno">  371</span><span class="comment">    {</span></div>
+<div class="line"><span class="lineno">  372</span><span class="comment">        UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(&quot;SwitchPrevTabInStack: No Parent Tab Stack Found.&quot;))</span></div>
+<div class="line"><span class="lineno">  373</span><span class="comment">            return;</span></div>
+<div class="line"><span class="lineno">  374</span><span class="comment">    }</span></div>
+<div class="line"><span class="lineno">  375</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  376</span><span class="comment">    TArray&lt;TSharedRef&lt;SDockTab&gt;&gt; AllTabs = ActiveTabStack-&gt;GetAllChildTabs();</span></div>
+<div class="line"><span class="lineno">  377</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  378</span><span class="comment">    int32 FoundIndex;</span></div>
+<div class="line"><span class="lineno">  379</span><span class="comment">    if (!AllTabs.Find(ActiveTab.ToSharedRef(), FoundIndex))</span></div>
+<div class="line"><span class="lineno">  380</span><span class="comment">    {</span></div>
+<div class="line"><span class="lineno">  381</span><span class="comment">        UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(&quot;SwitchPrevTabInStack: Active Tab Not Found In Tab Stack.&quot;))</span></div>
+<div class="line"><span class="lineno">  382</span><span class="comment">            return;</span></div>
+<div class="line"><span class="lineno">  383</span><span class="comment">    }</span></div>
+<div class="line"><span class="lineno">  384</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  385</span><span class="comment">    TSharedRef&lt;SDockTab&gt; PrevTab = AllTabs[</span></div>
+<div class="line"><span class="lineno">  386</span><span class="comment">        FoundIndex - 1 &lt; 0</span></div>
+<div class="line"><span class="lineno">  387</span><span class="comment">            ? AllTabs.Num() - 1</span></div>
+<div class="line"><span class="lineno">  388</span><span class="comment">            : FoundIndex - 1</span></div>
+<div class="line"><span class="lineno">  389</span><span class="comment">    ];</span></div>
+<div class="line"><span class="lineno">  390</span><span class="comment"></span> </div>
+<div class="line"><span class="lineno">  391</span><span class="comment">    FGlobalTabmanager::Get()-&gt;SetActiveTab(PrevTab);</span></div>
+<div class="line"><span class="lineno">  392</span><span class="comment">    PrevTab-&gt;ActivateInParent(SetDirectly);</span></div>
+<div class="line"><span class="lineno">  393</span><span class="comment">    */</span></div>
+<div class="line"><span class="lineno">  394</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -341,7 +683,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8h_source.html#l00058">58</a> of file <a class="el" href="WindowInteractionLibrary_8h_source.html">WindowInteractionLibrary.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8h_source.html#l00086">86</a> of file <a class="el" href="WindowInteractionLibrary_8h_source.html">WindowInteractionLibrary.h</a>.</p>
 
 </div>
 </div>

@@ -166,12 +166,12 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="OpenAccessibility_8cpp_source.html#l00073">73</a> of file <a class="el" href="OpenAccessibility_8cpp_source.html">OpenAccessibility.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   74</span>{</div>
-<div class="line"><span class="lineno">   75</span>    UE_LOG(LogOpenAccessibility, Display, TEXT(<span class="stringliteral">&quot;OpenAccessibilityModule::ShutdownModule()&quot;</span>));</div>
-<div class="line"><span class="lineno">   76</span> </div>
-<div class="line"><span class="lineno">   77</span>    UnregisterConsoleCommands();</div>
-<div class="line"><span class="lineno">   78</span>}</div>
+<p class="definition">Definition at line <a class="el" href="OpenAccessibility_8cpp_source.html#l00075">75</a> of file <a class="el" href="OpenAccessibility_8cpp_source.html">OpenAccessibility.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>{</div>
+<div class="line"><span class="lineno">   77</span>    UE_LOG(LogOpenAccessibility, Display, TEXT(<span class="stringliteral">&quot;OpenAccessibilityModule::ShutdownModule()&quot;</span>));</div>
+<div class="line"><span class="lineno">   78</span> </div>
+<div class="line"><span class="lineno">   79</span>    UnregisterConsoleCommands();</div>
+<div class="line"><span class="lineno">   80</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -199,43 +199,43 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p >IModuleInterface Implementation </p>
 
-<p class="definition">Definition at line <a class="el" href="OpenAccessibility_8cpp_source.html#l00035">35</a> of file <a class="el" href="OpenAccessibility_8cpp_source.html">OpenAccessibility.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   36</span>{</div>
-<div class="line"><span class="lineno">   37</span>    UE_LOG(LogOpenAccessibility, Display, TEXT(<span class="stringliteral">&quot;OpenAccessibilityModule::StartupModule()&quot;</span>));</div>
-<div class="line"><span class="lineno">   38</span> </div>
-<div class="line"><span class="lineno">   39</span>    <span class="comment">// Create the Asset Registry</span></div>
-<div class="line"><span class="lineno">   40</span>    <a class="code hl_variable" href="classFOpenAccessibilityModule.html#a75dcc6c5db0b62b83bedfe20122a4b88">AssetAccessibilityRegistry</a> = MakeShared&lt;FAssetAccessibilityRegistry, ESPMode::ThreadSafe&gt;();</div>
-<div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>    <span class="comment">// Register the Accessibility Node Factory</span></div>
-<div class="line"><span class="lineno">   43</span>    <a class="code hl_variable" href="classFOpenAccessibilityModule.html#ac49087016c9548055821dae5fedc1ea6">AccessibilityNodeFactory</a> = MakeShared&lt;FAccessibilityNodeFactory, ESPMode::ThreadSafe&gt;();</div>
-<div class="line"><span class="lineno">   44</span>    FEdGraphUtilities::RegisterVisualNodeFactory(<a class="code hl_variable" href="classFOpenAccessibilityModule.html#ac49087016c9548055821dae5fedc1ea6">AccessibilityNodeFactory</a>);</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>    <span class="comment">// Construct Base Phrase Tree Libraries</span></div>
-<div class="line"><span class="lineno">   47</span>    <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab9a253dcab8c5f61a98bace34db23da3">FOpenAccessibilityCommunicationModule::Get</a>()</div>
-<div class="line"><span class="lineno">   48</span>    .<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
-<div class="line"><span class="lineno">   49</span>        NewObject&lt;ULocalizedInputLibrary&gt;()</div>
-<div class="line"><span class="lineno">   50</span>    );</div>
-<div class="line"><span class="lineno">   51</span> </div>
-<div class="line"><span class="lineno">   52</span>    <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab9a253dcab8c5f61a98bace34db23da3">FOpenAccessibilityCommunicationModule::Get</a>()</div>
-<div class="line"><span class="lineno">   53</span>    .<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
-<div class="line"><span class="lineno">   54</span>        NewObject&lt;UWindowInteractionLibrary&gt;()</div>
-<div class="line"><span class="lineno">   55</span>    );</div>
-<div class="line"><span class="lineno">   56</span> </div>
-<div class="line"><span class="lineno">   57</span>    <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab9a253dcab8c5f61a98bace34db23da3">FOpenAccessibilityCommunicationModule::Get</a>()</div>
-<div class="line"><span class="lineno">   58</span>    .<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
-<div class="line"><span class="lineno">   59</span>        NewObject&lt;UViewInteractionLibrary&gt;()</div>
-<div class="line"><span class="lineno">   60</span>    );</div>
-<div class="line"><span class="lineno">   61</span> </div>
-<div class="line"><span class="lineno">   62</span>    <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab9a253dcab8c5f61a98bace34db23da3">FOpenAccessibilityCommunicationModule::Get</a>()</div>
-<div class="line"><span class="lineno">   63</span>    .<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
-<div class="line"><span class="lineno">   64</span>        NewObject&lt;UNodeInteractionLibrary&gt;()</div>
-<div class="line"><span class="lineno">   65</span>    );</div>
-<div class="line"><span class="lineno">   66</span> </div>
-<div class="line"><span class="lineno">   67</span>    CreateTranscriptionVisualization();</div>
+<p class="definition">Definition at line <a class="el" href="OpenAccessibility_8cpp_source.html#l00037">37</a> of file <a class="el" href="OpenAccessibility_8cpp_source.html">OpenAccessibility.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   38</span>{</div>
+<div class="line"><span class="lineno">   39</span>    UE_LOG(LogOpenAccessibility, Display, TEXT(<span class="stringliteral">&quot;OpenAccessibilityModule::StartupModule()&quot;</span>));</div>
+<div class="line"><span class="lineno">   40</span> </div>
+<div class="line"><span class="lineno">   41</span>    <span class="comment">// Create the Asset Registry</span></div>
+<div class="line"><span class="lineno">   42</span>    <a class="code hl_variable" href="classFOpenAccessibilityModule.html#a75dcc6c5db0b62b83bedfe20122a4b88">AssetAccessibilityRegistry</a> = MakeShared&lt;FAssetAccessibilityRegistry, ESPMode::ThreadSafe&gt;();</div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>    <span class="comment">// Register the Accessibility Node Factory</span></div>
+<div class="line"><span class="lineno">   45</span>    <a class="code hl_variable" href="classFOpenAccessibilityModule.html#ac49087016c9548055821dae5fedc1ea6">AccessibilityNodeFactory</a> = MakeShared&lt;FAccessibilityNodeFactory, ESPMode::ThreadSafe&gt;();</div>
+<div class="line"><span class="lineno">   46</span>    FEdGraphUtilities::RegisterVisualNodeFactory(<a class="code hl_variable" href="classFOpenAccessibilityModule.html#ac49087016c9548055821dae5fedc1ea6">AccessibilityNodeFactory</a>);</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>    <span class="comment">// Construct Base Phrase Tree Libraries</span></div>
+<div class="line"><span class="lineno">   49</span>    <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab9a253dcab8c5f61a98bace34db23da3">FOpenAccessibilityCommunicationModule::Get</a>()</div>
+<div class="line"><span class="lineno">   50</span>    .<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
+<div class="line"><span class="lineno">   51</span>        NewObject&lt;ULocalizedInputLibrary&gt;()</div>
+<div class="line"><span class="lineno">   52</span>    );</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>    <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab9a253dcab8c5f61a98bace34db23da3">FOpenAccessibilityCommunicationModule::Get</a>()</div>
+<div class="line"><span class="lineno">   55</span>    .<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
+<div class="line"><span class="lineno">   56</span>        NewObject&lt;UWindowInteractionLibrary&gt;()</div>
+<div class="line"><span class="lineno">   57</span>    );</div>
+<div class="line"><span class="lineno">   58</span> </div>
+<div class="line"><span class="lineno">   59</span>    <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab9a253dcab8c5f61a98bace34db23da3">FOpenAccessibilityCommunicationModule::Get</a>()</div>
+<div class="line"><span class="lineno">   60</span>    .<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
+<div class="line"><span class="lineno">   61</span>        NewObject&lt;UViewInteractionLibrary&gt;()</div>
+<div class="line"><span class="lineno">   62</span>    );</div>
+<div class="line"><span class="lineno">   63</span> </div>
+<div class="line"><span class="lineno">   64</span>    <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab9a253dcab8c5f61a98bace34db23da3">FOpenAccessibilityCommunicationModule::Get</a>()</div>
+<div class="line"><span class="lineno">   65</span>    .<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
+<div class="line"><span class="lineno">   66</span>        NewObject&lt;UNodeInteractionLibrary&gt;()</div>
+<div class="line"><span class="lineno">   67</span>    );</div>
 <div class="line"><span class="lineno">   68</span> </div>
-<div class="line"><span class="lineno">   69</span>    <span class="comment">// Register Console Commands</span></div>
-<div class="line"><span class="lineno">   70</span>    RegisterConsoleCommands();</div>
-<div class="line"><span class="lineno">   71</span>}</div>
+<div class="line"><span class="lineno">   69</span>    CreateTranscriptionVisualization();</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>    <span class="comment">// Register Console Commands</span></div>
+<div class="line"><span class="lineno">   72</span>    RegisterConsoleCommands();</div>
+<div class="line"><span class="lineno">   73</span>}</div>
 <div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_a080774412e3bcedb141cd37bafc79c2d"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">FOpenAccessibilityCommunicationModule::PhraseTreeUtils</a></div><div class="ttdeci">class UPhraseTreeUtils * PhraseTreeUtils</div><div class="ttdoc">Phrase Tree Utility Class, For Dealing With Phrase Tree Function Libraries.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8h_source.html#l00097">OpenAccessibilityCommunication.h:97</a></div></div>
 <div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_ab9a253dcab8c5f61a98bace34db23da3"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#ab9a253dcab8c5f61a98bace34db23da3">FOpenAccessibilityCommunicationModule::Get</a></div><div class="ttdeci">static FOpenAccessibilityCommunicationModule &amp; Get()</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8h_source.html#l00031">OpenAccessibilityCommunication.h:31</a></div></div>
 <div class="ttc" id="aclassFOpenAccessibilityModule_html_a75dcc6c5db0b62b83bedfe20122a4b88"><div class="ttname"><a href="classFOpenAccessibilityModule.html#a75dcc6c5db0b62b83bedfe20122a4b88">FOpenAccessibilityModule::AssetAccessibilityRegistry</a></div><div class="ttdeci">TSharedPtr&lt; class FAssetAccessibilityRegistry &gt; AssetAccessibilityRegistry</div><div class="ttdoc">The Registry for Any Asset Accessibility Information.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibility_8h_source.html#l00086">OpenAccessibility.h:86</a></div></div>

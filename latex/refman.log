@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Alpine Linux) (preloaded format=pdflatex 2024.8.7)  7 AUG 2024 10:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Alpine Linux) (preloaded format=pdflatex 2024.8.13)  13 AUG 2024 14:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1000,7 +1000,7 @@ on[]Server.[]Communication[]Server.[]Receive[]
 
 [15] [16] [17] [18] [19]) (./classFAccessibilityNodeFactory.tex <./classFAccess
 ibilityNodeFactory.pdf>
-<classFAccessibilityNodeFactory.pdf, id=5929, 501.875pt x 232.07704pt>
+<classFAccessibilityNodeFactory.pdf, id=5991, 501.875pt x 232.07704pt>
 File: classFAccessibilityNodeFactory.pdf Graphic file (type pdf)
 <use classFAccessibilityNodeFactory.pdf>
 Package pdftex.def Info: classFAccessibilityNodeFactory.pdf  used on input line
@@ -1169,7 +1169,7 @@ Underfull \hbox (badness 10000) detected at line 536
 
 [57] [58]) (./classFOpenAccessibilityAnalyticsModule.tex <./classFOpenAccessibi
 lityAnalyticsModule.pdf>
-<classFOpenAccessibilityAnalyticsModule.pdf, id=6744, 501.875pt x 179.23964pt>
+<classFOpenAccessibilityAnalyticsModule.pdf, id=6806, 501.875pt x 179.23964pt>
 File: classFOpenAccessibilityAnalyticsModule.pdf Graphic file (type pdf)
 <use classFOpenAccessibilityAnalyticsModule.pdf>
 Package pdftex.def Info: classFOpenAccessibilityAnalyticsModule.pdf  used on in
@@ -1188,7 +1188,7 @@ s[]Dynamic[]Reloading ( ) [inline], [override],
 
 ) (./classFOpenAccessibilityCommunicationModule.tex <./classFOpenAccessibilityC
 ommunicationModule.pdf>
-<classFOpenAccessibilityCommunicationModule.pdf, id=6802, 501.875pt x 156.22365
+<classFOpenAccessibilityCommunicationModule.pdf, id=6865, 501.875pt x 156.22365
 pt>
 File: classFOpenAccessibilityCommunicationModule.pdf Graphic file (type pdf)
 <use classFOpenAccessibilityCommunicationModule.pdf>
@@ -1229,7 +1229,7 @@ it/8 >$ \T1/pcr/m/n/8 FOpen[]Accessibility[]Communication[]Module[]::[]Socket[]
  []
 
 ) (./classFOpenAccessibilityModule.tex <./classFOpenAccessibilityModule.pdf>
-<classFOpenAccessibilityModule.pdf, id=6938, 501.875pt x 233.4321pt>
+<classFOpenAccessibilityModule.pdf, id=7000, 501.875pt x 233.4321pt>
 File: classFOpenAccessibilityModule.pdf Graphic file (type pdf)
 <use classFOpenAccessibilityModule.pdf>
 Package pdftex.def Info: classFOpenAccessibilityModule.pdf  used on input line 
@@ -1248,8 +1248,31 @@ Underfull \hbox (badness 10000) in paragraph at lines 164--165
 it/8 >$ \T1/pcr/m/n/8 FOpen[]Accessibility[]Module[]::[]Asset[]Accessibility[]
  []
 
-[69]) (./structFPanelViewPosition.tex [70]) (./structFParseRecord.tex [71]
-[72] [73] [74]
+[69]) (./classTabUtils_1_1FOpenArea.tex <./classTabUtils_1_1FOpenArea.pdf>
+<classTabUtils_1_1FOpenArea.pdf, id=7079, 501.875pt x 282.74634pt>
+File: classTabUtils_1_1FOpenArea.pdf Graphic file (type pdf)
+<use classTabUtils_1_1FOpenArea.pdf>
+Package pdftex.def Info: classTabUtils_1_1FOpenArea.pdf  used on input line 6.
+(pdftex.def)             Requested size: 101.00117pt x 56.9055pt.
+)
+(./classTabUtils_1_1FOpenSplitter.tex <./classTabUtils_1_1FOpenSplitter.pdf>
+<classTabUtils_1_1FOpenSplitter.pdf, id=7090, 501.875pt x 262.4204pt>
+File: classTabUtils_1_1FOpenSplitter.pdf Graphic file (type pdf)
+<use classTabUtils_1_1FOpenSplitter.pdf>
+Package pdftex.def Info: classTabUtils_1_1FOpenSplitter.pdf  used on input line
+ 6.
+(pdftex.def)             Requested size: 108.82764pt x 56.9055pt.
+
+[70]) (./classTabUtils_1_1FOpenStack.tex <./classTabUtils_1_1FOpenStack.pdf>
+<classTabUtils_1_1FOpenStack.pdf, id=7111, 501.875pt x 276.89445pt>
+File: classTabUtils_1_1FOpenStack.pdf Graphic file (type pdf)
+<use classTabUtils_1_1FOpenStack.pdf>
+Package pdftex.def Info: classTabUtils_1_1FOpenStack.pdf  used on input line 6.
+
+(pdftex.def)             Requested size: 103.13774pt x 56.9055pt.
+
+[71]) (./structFPanelViewPosition.tex [72] [73]) (./structFParseRecord.tex
+[74] [75] [76]
 Underfull \hbox (badness 10000) detected at line 196
 [][][]
  []
@@ -1259,27 +1282,27 @@ Underfull \hbox (badness 10000) detected at line 229
 [][][]
  []
 
-[75]
+[77] [78]
 Underfull \hbox (badness 10000) detected at line 326
 [][][]
  []
 
-[76]
+[79]
 Underfull \hbox (badness 10000) detected at line 381
 [][][]
  []
 
-[77]
+
 Underfull \hbox (badness 10000) detected at line 420
 [][][]
  []
 
-[78]
+[80] [81]
 Underfull \hbox (badness 10000) detected at line 525
 [][][]
  []
 
-[79]
+[82]
 Underfull \hbox (badness 10000) detected at line 591
 [][][]
  []
@@ -1289,42 +1312,48 @@ Underfull \hbox (badness 10000) detected at line 615
 [][][]
  []
 
-[80]
+
 Underfull \hbox (badness 10000) detected at line 644
 [][][]
  []
 
-[81] [82]
+[83] [84]
 Overfull \hbox (50.10114pt too wide) in paragraph at lines 812--813
 \T1/pcr/m/n/8 TArray$\OML/cmm/m/it/8 <$[]$\OMS/cmsy/m/n/8 ^^C$$\OML/cmm/m/it/8 
 >$ \T1/pcr/m/n/8 FParse[]Record[]::[]Context[]Object[]Stack = TArray$\OML/cmm/m
 /it/8 <$[]$\OMS/cmsy/m/n/8 ^^C$$\OML/cmm/m/it/8 >$\T1/pcr/m/n/8 ()
  []
 
-) (./structFParseResult.tex [83] [84])
-(./classFPhrase2DDirectionalInputNode.tex <./classFPhrase2DDirectionalInputNode
-.pdf>
-<classFPhrase2DDirectionalInputNode.pdf, id=7401, 501.875pt x 302.32951pt>
+[85]) (./structFParseResult.tex [86]) (./classFPhrase2DDirectionalInputNode.tex
+ <./classFPhrase2DDirectionalInputNode.pdf>
+<classFPhrase2DDirectionalInputNode.pdf, id=7518, 501.875pt x 302.32951pt>
 File: classFPhrase2DDirectionalInputNode.pdf Graphic file (type pdf)
 <use classFPhrase2DDirectionalInputNode.pdf>
 Package pdftex.def Info: classFPhrase2DDirectionalInputNode.pdf  used on input 
 line 6.
 (pdftex.def)             Requested size: 236.15697pt x 142.26378pt.
- [85] [86]) (./classFPhraseContextMenuNode.tex <./classFPhraseContextMenuNode.p
-df>
-<classFPhraseContextMenuNode.pdf, id=7456, 501.875pt x 101.04752pt>
+ [87] [88])
+(./classFPhraseContextMenuNode.tex <./classFPhraseContextMenuNode.pdf>
+<classFPhraseContextMenuNode.pdf, id=7575, 501.875pt x 101.04752pt>
 File: classFPhraseContextMenuNode.pdf Graphic file (type pdf)
 <use classFPhraseContextMenuNode.pdf>
 Package pdftex.def Info: classFPhraseContextMenuNode.pdf  used on input line 6.
 
 (pdftex.def)             Requested size: 398.33778pt x 80.20224pt.
- [87]
+ [89]
 Underfull \hbox (badness 6332) in paragraph at lines 22--24
 [][] \T1/phv/m/n/10 (const TCHAR $\OMS/cmsy/m/n/10 ^^C$\T1/phv/m/n/10 In[]Input
 []String, const float In[]Menu[]Scalar, TDelegate$\OML/cmm/m/it/10 <$
  []
 
-[88] [89] [90] [91]
+[90] [91] [92]
+Underfull \hbox (badness 10000) in paragraph at lines 206--208
+\T1/pcr/m/n/8 virtual []$\OML/cmm/m/it/8 <$ \T1/pcr/m/n/8 Context[]Menu[]Type $
+\OML/cmm/m/it/8 >$[]\T1/pcr/m/n/8 ::$\OMS/cmsy/m/n/8 ^^X$[] \T1/pcr/m/n/8 ( ) [
+inline],
+ []
+
+[93]
 Underfull \hbox (badness 10000) detected at line 285
 [][][]
  []
@@ -1336,7 +1365,7 @@ Overfull \hbox (26.07002pt too wide) in paragraph at lines 326--328
 [protected],
  []
 
-[92]
+[94]
 Underfull \hbox (badness 10000) detected at line 338
 [][][]
  []
@@ -1346,12 +1375,12 @@ Underfull \hbox (badness 10000) detected at line 382
 [][][]
  []
 
-[93]
+[95]
 Underfull \hbox (badness 10000) detected at line 438
 [][][]
  []
 
-[94]
+[96]
 Underfull \hbox (badness 10000) in paragraph at lines 494--496
 \T1/pcr/m/n/8 TDelegate$\OML/cmm/m/it/8 <$\T1/pcr/m/n/8 TShared[]Ptr$\OML/cmm/m
 /it/8 <$\T1/pcr/m/n/8 IMenu$\OML/cmm/m/it/8 >$\T1/pcr/m/n/8 ([]& Record)$\OML/c
@@ -1359,22 +1388,22 @@ mm/m/it/8 >$ []$<$ \T1/pcr/m/n/8 Context[]Menu[]Type
  []
 
 ) (./classFPhraseContextNode.tex <./classFPhraseContextNode.pdf>
-<classFPhraseContextNode.pdf, id=7700, 501.875pt x 128.6908pt>
+<classFPhraseContextNode.pdf, id=7819, 501.875pt x 128.6908pt>
 File: classFPhraseContextNode.pdf Graphic file (type pdf)
 <use classFPhraseContextNode.pdf>
 Package pdftex.def Info: classFPhraseContextNode.pdf  used on input line 6.
 (pdftex.def)             Requested size: 332.88498pt x 85.35826pt.
- [95] [96]
-[97]
+ [97] [98]
+[99]
 Underfull \hbox (badness 10000) detected at line 180
 [][][]
  []
 
 
-Overfull \hbox (16.47002pt too wide) in paragraph at lines 206--208
+Overfull \hbox (26.07002pt too wide) in paragraph at lines 206--208
 |  \T1/pcr/m/n/8 TArray$\OML/cmm/m/it/8 <$ [] $\OMS/cmsy/m/n/8 ^^C$ $\OML/cmm/m
-/it/8 >$ \T1/pcr/m/sl/8 In[]Context[]Objects \T1/pcr/m/n/8 ) const [protected],
- [virtual] 
+/it/8 >$ \T1/pcr/m/sl/8 In[]Context[]Objects \T1/pcr/m/n/8 ) const [override], 
+[protected],
  []
 
 
@@ -1382,7 +1411,7 @@ Underfull \hbox (badness 10000) detected at line 218
 [][][]
  []
 
-[98]
+[100]
 Underfull \hbox (badness 10000) detected at line 262
 [][][]
  []
@@ -1392,17 +1421,17 @@ Underfull \hbox (badness 10000) detected at line 305
 [][][]
  []
 
-[99]) (./classFPhraseDirectionalInputNode.tex <./classFPhraseDirectionalInputNo
-de.pdf>
-<classFPhraseDirectionalInputNode.pdf, id=7839, 501.875pt x 317.64671pt>
+[101]) (./classFPhraseDirectionalInputNode.tex <./classFPhraseDirectionalInputN
+ode.pdf>
+<classFPhraseDirectionalInputNode.pdf, id=7958, 501.875pt x 317.64671pt>
 File: classFPhraseDirectionalInputNode.pdf Graphic file (type pdf)
 <use classFPhraseDirectionalInputNode.pdf>
 Package pdftex.def Info: classFPhraseDirectionalInputNode.pdf  used on input li
 ne 6.
 (pdftex.def)             Requested size: 224.77719pt x 142.26378pt.
- [100] [101]) (./classFPhraseEnumInputNode.tex <./classFPhraseEnumInputNode.pdf
+ [102] [103]) (./classFPhraseEnumInputNode.tex <./classFPhraseEnumInputNode.pdf
 >
-<classFPhraseEnumInputNode.pdf, id=7894, 501.875pt x 361.71133pt>
+<classFPhraseEnumInputNode.pdf, id=8013, 501.875pt x 361.71133pt>
 File: classFPhraseEnumInputNode.pdf Graphic file (type pdf)
 <use classFPhraseEnumInputNode.pdf>
 Package pdftex.def Info: classFPhraseEnumInputNode.pdf  used on input line 6.
@@ -1413,7 +1442,7 @@ Underfull \hbox (badness 866) in paragraph at lines 18--20
 []String, TPhrase[]Node[]Array In[]Child[]Nodes, TDelegate$\OML/cmm/m/it/10 <$
  []
 
-[102] [103] [104]
+[104] [105] [106]
 Underfull \hbox (badness 10000) detected at line 174
 [][][]
  []
@@ -1423,23 +1452,23 @@ Underfull \hbox (badness 10000) detected at line 217
 [][][]
  []
 
-[105]) (./classFPhraseEventNode.tex <./classFPhraseEventNode.pdf>
-<classFPhraseEventNode.pdf, id=8002, 501.875pt x 271.28351pt>
+[107]) (./classFPhraseEventNode.tex <./classFPhraseEventNode.pdf>
+<classFPhraseEventNode.pdf, id=8121, 501.875pt x 271.28351pt>
 File: classFPhraseEventNode.pdf Graphic file (type pdf)
 <use classFPhraseEventNode.pdf>
 Package pdftex.def Info: classFPhraseEventNode.pdf  used on input line 6.
 (pdftex.def)             Requested size: 157.90767pt x 85.35826pt.
- [106]
+ [108]
 Underfull \hbox (badness 10000) detected at line 119
 [][][]
  []
 
-[107]
+[109]
 Underfull \hbox (badness 10000) detected at line 152
 [][][]
  []
 
-[108]
+[110]
 Underfull \hbox (badness 10000) detected at line 192
 [][][]
  []
@@ -1450,12 +1479,12 @@ Underfull \hbox (badness 10000) detected at line 227
  []
 
 ) (./classFPhraseInputNode.tex <./classFPhraseInputNode.pdf>
-<classFPhraseInputNode.pdf, id=8086, 501.875pt x 271.28351pt>
+<classFPhraseInputNode.pdf, id=8205, 501.875pt x 271.28351pt>
 File: classFPhraseInputNode.pdf Graphic file (type pdf)
 <use classFPhraseInputNode.pdf>
 Package pdftex.def Info: classFPhraseInputNode.pdf  used on input line 6.
 (pdftex.def)             Requested size: 157.90767pt x 85.35826pt.
- [109]
+ [111]
 Underfull \hbox (badness 909) in paragraph at lines 16--18
 [][] \T1/phv/m/n/10 (const TCHAR $\OMS/cmsy/m/n/10 ^^C$\T1/phv/m/n/10 In[]Input
 []String, TDelegate$\OML/cmm/m/it/10 <$ \T1/phv/m/n/10 void([] &Record)$\OML/cm
@@ -1475,7 +1504,7 @@ Underfull \hbox (badness 909) in paragraph at lines 20--22
 m/m/it/10 >$ \T1/phv/m/n/10 In[]On[]
  []
 
-[110] [111] [112]
+[112] [113] [114]
 Underfull \hbox (badness 10000) detected at line 185
 [][][]
  []
@@ -1490,7 +1519,7 @@ Underfull \hbox (badness 10000) detected at line 221
 [][][]
  []
 
-[113]
+[115]
 Underfull \hbox (badness 10000) detected at line 289
 [][][]
  []
@@ -1500,7 +1529,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 294--295
 []\T1/phv/m/n/10 , [],
  []
 
-[114]
+[116]
 Underfull \hbox (badness 10000) detected at line 323
 [][][]
  []
@@ -1510,13 +1539,13 @@ Underfull \hbox (badness 10000) detected at line 359
 [][][]
  []
 
-[115]) (./classFPhraseNode.tex <./classFPhraseNode.pdf>
-<classFPhraseNode.pdf, id=8261, 501.875pt x 27.48268pt>
+[117]) (./classFPhraseNode.tex <./classFPhraseNode.pdf>
+<classFPhraseNode.pdf, id=8381, 501.875pt x 27.48268pt>
 File: classFPhraseNode.pdf Graphic file (type pdf)
 <use classFPhraseNode.pdf>
 Package pdftex.def Info: classFPhraseNode.pdf  used on input line 6.
 (pdftex.def)             Requested size: 398.37608pt x 21.81496pt.
- [116] [117] [118]
+ [118] [119] [120]
 Underfull \hbox (badness 10000) detected at line 194
 [][][]
  []
@@ -1526,12 +1555,12 @@ Underfull \hbox (badness 10000) detected at line 239
 [][][]
  []
 
-[119]
+[121]
 Underfull \hbox (badness 10000) detected at line 270
 [][][]
  []
 
-[120]
+[122]
 Underfull \hbox (badness 10000) detected at line 315
 [][][]
  []
@@ -1541,7 +1570,7 @@ Underfull \hbox (badness 10000) detected at line 349
 [][][]
  []
 
-[121]
+[123]
 Underfull \hbox (badness 10000) detected at line 419
 [][][]
  []
@@ -1551,7 +1580,7 @@ Underfull \hbox (badness 10000) detected at line 452
 [][][]
  []
 
-[122]
+[124]
 Underfull \hbox (badness 10000) detected at line 519
 [][][]
  []
@@ -1566,12 +1595,12 @@ Overfull \hbox (111.89754pt too wide) in paragraph at lines 524--525
 []\T1/phv/m/n/10 , [], [], and []. 
  []
 
-[123]
+[125]
 Underfull \hbox (badness 10000) detected at line 571
 [][][]
  []
 
-[124]
+[126]
 Underfull \hbox (badness 10000) detected at line 639
 [][][]
  []
@@ -1591,43 +1620,43 @@ Underfull \hbox (badness 1565) in paragraph at lines 679--680
 []\T1/phv/m/n/10 Reimplemented in [], [], [], and
  []
 
-[125]) (./classFPhrasePositionalInputNode.tex <./classFPhrasePositionalInputNod
+[127]) (./classFPhrasePositionalInputNode.tex <./classFPhrasePositionalInputNod
 e.pdf>
-<classFPhrasePositionalInputNode.pdf, id=8520, 501.875pt x 324.83357pt>
+<classFPhrasePositionalInputNode.pdf, id=8639, 501.875pt x 324.83357pt>
 File: classFPhrasePositionalInputNode.pdf Graphic file (type pdf)
 <use classFPhrasePositionalInputNode.pdf>
 Package pdftex.def Info: classFPhrasePositionalInputNode.pdf  used on input lin
 e 6.
 (pdftex.def)             Requested size: 219.7995pt x 142.26378pt.
- [126] [127]) (./classFPhraseScrollInputNode.tex <./classFPhraseScrollInputNode
+ [128] [129]) (./classFPhraseScrollInputNode.tex <./classFPhraseScrollInputNode
 .pdf>
-<classFPhraseScrollInputNode.pdf, id=8575, 501.875pt x 348.52208pt>
+<classFPhraseScrollInputNode.pdf, id=8695, 501.875pt x 348.52208pt>
 File: classFPhraseScrollInputNode.pdf Graphic file (type pdf)
 <use classFPhraseScrollInputNode.pdf>
 Package pdftex.def Info: classFPhraseScrollInputNode.pdf  used on input line 6.
 
 (pdftex.def)             Requested size: 204.85878pt x 142.26378pt.
- [128]
+ [130]
 Underfull \hbox (badness 2065) in paragraph at lines 18--20
 [][] \T1/phv/m/n/10 (const TCHAR $\OMS/cmsy/m/n/10 ^^C$\T1/phv/m/n/10 Node[]Nam
 e, TPhrase[]Node[]Array In[]Child[]Nodes, TDelegate$\OML/cmm/m/it/10 <$
  []
 
-[129]) (./classFPhraseStringInputNode.tex <./classFPhraseStringInputNode.pdf>
-<classFPhraseStringInputNode.pdf, id=8631, 501.875pt x 361.71133pt>
+[131]) (./classFPhraseStringInputNode.tex <./classFPhraseStringInputNode.pdf>
+<classFPhraseStringInputNode.pdf, id=8750, 501.875pt x 361.71133pt>
 File: classFPhraseStringInputNode.pdf Graphic file (type pdf)
 <use classFPhraseStringInputNode.pdf>
 Package pdftex.def Info: classFPhraseStringInputNode.pdf  used on input line 6.
 
 (pdftex.def)             Requested size: 157.91531pt x 113.81102pt.
 
-[130]
+[132]
 Underfull \hbox (badness 836) in paragraph at lines 18--20
 [][] \T1/phv/m/n/10 (const TCHAR $\OMS/cmsy/m/n/10 ^^C$\T1/phv/m/n/10 In[]Input
 []String, TPhrase[]Node[]Array In[]Child[]Nodes, TDelegate$\OML/cmm/m/it/10 <$
  []
 
-[131] [132]
+[133] [134]
 Underfull \hbox (badness 10000) detected at line 148
 [][][]
  []
@@ -1636,29 +1665,29 @@ Underfull \hbox (badness 10000) detected at line 148
 Overfull \vbox (1.07686pt too high) has occurred while \output is active []
 
 
-[133]
+[135]
 Underfull \hbox (badness 10000) detected at line 185
 [][][]
  []
 
 ) (./classFPhraseTree.tex <./classFPhraseTree.pdf>
-<classFPhraseTree.pdf, id=8714, 501.875pt x 271.28351pt>
+<classFPhraseTree.pdf, id=8834, 501.875pt x 271.28351pt>
 File: classFPhraseTree.pdf Graphic file (type pdf)
 <use classFPhraseTree.pdf>
 Package pdftex.def Info: classFPhraseTree.pdf  used on input line 6.
 (pdftex.def)             Requested size: 157.90767pt x 85.35826pt.
- [134] [135] [136]
+ [136] [137] [138]
 Underfull \hbox (badness 10000) detected at line 187
 [][][]
  []
 
-[137] [138]) (./structFPhraseTreeBranchBind.tex [139] [140])
-(./structFPhraseTreeContextManager.tex [141]
+[139] [140]) (./structFPhraseTreeBranchBind.tex [141] [142])
+(./structFPhraseTreeContextManager.tex [143]
 Underfull \hbox (badness 10000) detected at line 88
 [][][]
  []
 
-[142]
+[144]
 Underfull \hbox (badness 10000) detected at line 117
 [][][]
  []
@@ -1673,20 +1702,20 @@ Underfull \hbox (badness 10000) detected at line 186
 [][][]
  []
 
-[143] [144]) (./classFSocketCommunicationServer.tex
+[145] [146]) (./classFSocketCommunicationServer.tex
 Underfull \hbox (badness 2884) in paragraph at lines 6--8
 [][] \T1/phv/m/n/10 (const std[]::string Send[]Address="tcp[]://127.[]0.[]0.[]1
 []:5555", const std[]::string
  []
 
-[145]
+[147]
 Underfull \hbox (badness 2261) in paragraph at lines 45--46
 []\T1/phv/m/n/10 bool [] (std[]::vector$\OML/cmm/m/it/10 <$ \T1/phv/m/n/10 zmq[
 ]::message[]_[]t $\OML/cmm/m/it/10 >$ \T1/phv/m/n/10 &Out[]Multipart[]Messages,
  TShared[]Ptr$\OML/cmm/m/it/10 <$
  []
 
-[146] [147]
+[148] [149]
 Underfull \hbox (badness 10000) detected at line 177
 [][][]
  []
@@ -1696,17 +1725,17 @@ Underfull \hbox (badness 10000) detected at line 201
 [][][]
  []
 
-[148]
+[150]
 Underfull \hbox (badness 10000) detected at line 248
 [][][]
  []
 
-[149]
+[151]
 Underfull \hbox (badness 10000) detected at line 296
 [][][]
  []
 
-[150]
+[152]
 Underfull \hbox (badness 10000) detected at line 346
 [][][]
  []
@@ -1716,12 +1745,12 @@ Underfull \hbox (badness 10000) detected at line 402
 [][][]
  []
 
-[151]
+[153]
 Underfull \hbox (badness 10000) detected at line 451
 [][][]
  []
 
-[152]
+[154]
 Underfull \hbox (badness 10000) detected at line 504
 [][][]
  []
@@ -1731,12 +1760,12 @@ Underfull \hbox (badness 10000) detected at line 546
 [][][]
  []
 
-[153]
+[155]
 Underfull \hbox (badness 10000) detected at line 589
 [][][]
  []
 
-[154]
+[156]
 Underfull \hbox (badness 10000) detected at line 632
 [][][]
  []
@@ -1746,7 +1775,7 @@ Underfull \hbox (badness 10000) detected at line 677
 [][][]
  []
 
-[155]
+[157]
 Underfull \hbox (badness 10000) detected at line 720
 [][][]
  []
@@ -1755,7 +1784,7 @@ Underfull \hbox (badness 10000) detected at line 720
 Overfull \vbox (7.2551pt too high) has occurred while \output is active []
 
 
-[156]
+[158]
 Underfull \hbox (badness 10000) detected at line 763
 [][][]
  []
@@ -1765,17 +1794,17 @@ Underfull \hbox (badness 10000) detected at line 810
 [][][]
  []
 
-[157]
+[159]
 Underfull \hbox (badness 10000) detected at line 867
 [][][]
  []
 
-[158]
+[160]
 Underfull \hbox (badness 10000) detected at line 924
 [][][]
  []
 
-[159]
+[161]
 Underfull \hbox (badness 10000) detected at line 980
 [][][]
  []
@@ -1785,22 +1814,22 @@ Underfull \hbox (badness 10000) detected at line 1023
 [][][]
  []
 
-[160]
+[162]
 Underfull \hbox (badness 10000) detected at line 1066
 [][][]
  []
 
-[161]) (./classFTranscriptionVisualizer.tex [162] [163] [164] [165] [166]
-[167])
+[163]) (./classFTranscriptionVisualizer.tex [164] [165] [166] [167] [168]
+[169])
 (./structUAccessibilityGraphEditorContext_1_1FTreeViewTickRequirements.tex
-[168]
+[170]
 Underfull \hbox (badness 10000) in paragraph at lines 28--29
 \T1/pcr/m/n/8 UAccessibility[]Graph[]Editor[]Context[]::[]FTree[]View[]Tick[]Re
 quirements[]::[]FTree[]View[]Tick[]Requirements ( )
  []
 
-[169]) (./classIPhraseContextNodeBase.tex <./classIPhraseContextNodeBase.pdf>
-<classIPhraseContextNodeBase.pdf, id=9427, 501.875pt x 67.36166pt>
+[171]) (./classIPhraseContextNodeBase.tex <./classIPhraseContextNodeBase.pdf>
+<classIPhraseContextNodeBase.pdf, id=9547, 501.875pt x 67.36166pt>
 File: classIPhraseContextNodeBase.pdf Graphic file (type pdf)
 <use classIPhraseContextNodeBase.pdf>
 Package pdftex.def Info: classIPhraseContextNodeBase.pdf  used on input line 15
@@ -1813,7 +1842,7 @@ m/it/8 <$ \T1/pcr/m/n/8 class [] $\OML/cmm/m/it/8 >$ $>$ \T1/pcr/m/n/8 & \T1/pc
 r/m/sl/8 In[]Child[]Nodes \T1/pcr/m/n/8 ) [protected], [pure
  []
 
-[170]
+[172]
 Underfull \hbox (badness 10000) detected at line 62
 [][][]
  []
@@ -1825,7 +1854,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 73--74
  [pure
  []
 
-[171]
+[173]
 Underfull \hbox (badness 10000) detected at line 84
 [][][]
  []
@@ -1840,7 +1869,7 @@ Underfull \hbox (badness 10000) detected at line 49
 [][][]
  []
 
-[172]
+[174]
 Underfull \hbox (badness 10000) detected at line 69
 [][][]
  []
@@ -1850,14 +1879,14 @@ Underfull \hbox (badness 10000) detected at line 89
 [][][]
  []
 
-[173]
+[175]
 Underfull \hbox (badness 10000) detected at line 107
 [][][]
  []
 
 ) (./classOpenAccessibilityPy_1_1Logging_1_1LogLevel.tex <./classOpenAccessibil
 ityPy_1_1Logging_1_1LogLevel.pdf>
-<classOpenAccessibilityPy_1_1Logging_1_1LogLevel.pdf, id=9500, 501.875pt x 165.
+<classOpenAccessibilityPy_1_1Logging_1_1LogLevel.pdf, id=9618, 501.875pt x 165.
 90984pt>
 File: classOpenAccessibilityPy_1_1Logging_1_1LogLevel.pdf Graphic file (type pd
 f)
@@ -1865,38 +1894,36 @@ f)
 Package pdftex.def Info: classOpenAccessibilityPy_1_1Logging_1_1LogLevel.pdf  u
 sed on input line 6.
 (pdftex.def)             Requested size: 172.1362pt x 56.9055pt.
- [174]) (./classTestWhisper_1_1ModelInfo.tex)
-(./classNumericParser.tex [175]
+ [176]) (./classNumericParser.tex [177]
 Underfull \hbox (badness 10000) detected at line 37
 [][][]
  []
 
-[176]) (./classOAEditorAccessibilityManager.tex) (./classOpenAccessibility.tex 
-<./classOpenAccessibility.pdf>
-<classOpenAccessibility.pdf, id=9562, 501.875pt x 329.0995pt>
+) (./classOAEditorAccessibilityManager.tex [178]) (./classOpenAccessibility.tex
+ <./classOpenAccessibility.pdf>
+<classOpenAccessibility.pdf, id=9680, 501.875pt x 329.0995pt>
 File: classOpenAccessibility.pdf Graphic file (type pdf)
 <use classOpenAccessibility.pdf>
 Package pdftex.def Info: classOpenAccessibility.pdf  used on input line 6.
 (pdftex.def)             Requested size: 86.78029pt x 56.9055pt.
- [177] [178])
-(./classOpenAccessibilityAnalytics.tex <./classOpenAccessibilityAnalytics.pdf>
-<classOpenAccessibilityAnalytics.pdf, id=9593, 501.875pt x 230.75209pt>
+ [179]) (./classOpenAccessibilityAnalytics.tex <./classOpenAccessibilityAnalyti
+cs.pdf>
+<classOpenAccessibilityAnalytics.pdf, id=9703, 501.875pt x 230.75209pt>
 File: classOpenAccessibilityAnalytics.pdf Graphic file (type pdf)
 <use classOpenAccessibilityAnalytics.pdf>
 Package pdftex.def Info: classOpenAccessibilityAnalytics.pdf  used on input lin
 e 6.
 (pdftex.def)             Requested size: 123.7607pt x 56.9055pt.
-
-[179]) (./classOpenAccessibilityCommunication.tex <./classOpenAccessibilityComm
-unication.pdf>
-<classOpenAccessibilityCommunication.pdf, id=9613, 501.875pt x 193.96466pt>
+ [180] [181])
+(./classOpenAccessibilityCommunication.tex <./classOpenAccessibilityCommunicati
+on.pdf>
+<classOpenAccessibilityCommunication.pdf, id=9729, 501.875pt x 193.96466pt>
 File: classOpenAccessibilityCommunication.pdf Graphic file (type pdf)
 <use classOpenAccessibilityCommunication.pdf>
 Package pdftex.def Info: classOpenAccessibilityCommunication.pdf  used on input
  line 6.
 (pdftex.def)             Requested size: 147.24008pt x 56.9055pt.
- [180] [181])
-(./classOpenAccessibilityPy_1_1OpenAccessibilityPy.tex
+ [182]) (./classOpenAccessibilityPy_1_1OpenAccessibilityPy.tex [183]
 Overfull \hbox (15.15619pt too wide) in paragraph at lines 51--51
 []    \T1/pcr/m/n/8 worker_count (int, optional): Amount of Thread Workers for 
 Audio Transcription. Defaults to 2.[] 
@@ -1920,34 +1947,34 @@ Overfull \hbox (101.55624pt too wide) in paragraph at lines 55--55
  polling on the Transcription Socket. Defaults to 10.[] 
  []
 
-[182]
+[184]
 Overfull \hbox (58.35622pt too wide) in paragraph at lines 132--132
 []    \T1/pcr/m/n/8 metadata (dict, optional): metadata of the incoming audio b
 uffer, if any is recieved. Defaults to None.[] 
  []
 
-[183] [184] [185]) (./classSAccessibilityTranscriptionVis.tex <./classSAccessib
+[185] [186] [187]) (./classSAccessibilityTranscriptionVis.tex <./classSAccessib
 ilityTranscriptionVis.pdf>
-<classSAccessibilityTranscriptionVis.pdf, id=9710, 501.875pt x 210.20532pt>
+<classSAccessibilityTranscriptionVis.pdf, id=9825, 501.875pt x 210.20532pt>
 File: classSAccessibilityTranscriptionVis.pdf Graphic file (type pdf)
 <use classSAccessibilityTranscriptionVis.pdf>
 Package pdftex.def Info: classSAccessibilityTranscriptionVis.pdf  used on input
  line 6.
 (pdftex.def)             Requested size: 135.86032pt x 56.9055pt.
- [186] [187] [188]) (./classSContentIndexer.tex <./classSContentIndexer.pdf>
-<classSContentIndexer.pdf, id=9775, 501.875pt x 355.30743pt>
+ [188] [189] [190]) (./classSContentIndexer.tex <./classSContentIndexer.pdf>
+<classSContentIndexer.pdf, id=9892, 501.875pt x 355.30743pt>
 File: classSContentIndexer.pdf Graphic file (type pdf)
 <use classSContentIndexer.pdf>
 Package pdftex.def Info: classSContentIndexer.pdf  used on input line 6.
 (pdftex.def)             Requested size: 80.37822pt x 56.9055pt.
- [189]
+ [191]
 Underfull \hbox (badness 1577) in paragraph at lines 40--41
 []\T1/phv/m/n/10 TShared[]Ptr$\OML/cmm/m/it/10 <$ \T1/phv/m/n/10 SWid-get $\OML
 /cmm/m/it/10 >$ [] \T1/phv/m/n/10 (const FAr-gu-ments &In[]Args, FLinear[]Color
  Text[]
  []
 
-[190] [191]
+[192] [193]
 Underfull \hbox (badness 10000) detected at line 139
 [][][]
  []
@@ -1957,7 +1984,7 @@ Underfull \hbox (badness 10000) detected at line 186
 [][][]
  []
 
-[192]
+[194]
 Underfull \hbox (badness 10000) detected at line 218
 [][][]
  []
@@ -1967,7 +1994,7 @@ Underfull \hbox (badness 10000) detected at line 251
 [][][]
  []
 
-[193]
+[195]
 Underfull \hbox (badness 10000) detected at line 282
 [][][]
  []
@@ -1977,12 +2004,12 @@ Underfull \hbox (badness 10000) detected at line 331
 [][][]
  []
 
-[194]
+[196]
 Underfull \hbox (badness 10000) detected at line 380
 [][][]
  []
 
-[195]
+[197]
 Underfull \hbox (badness 10000) detected at line 422
 [][][]
  []
@@ -1992,50 +2019,50 @@ Underfull \hbox (badness 10000) detected at line 452
 [][][]
  []
 
-[196]) (./classSIndexer.tex <./classSIndexer.pdf>
-<classSIndexer.pdf, id=9935, 501.875pt x 573.57286pt>
+[198]) (./classSIndexer.tex <./classSIndexer.pdf>
+<classSIndexer.pdf, id=10051, 501.875pt x 573.57286pt>
 File: classSIndexer.pdf Graphic file (type pdf)
 <use classSIndexer.pdf>
 Package pdftex.def Info: classSIndexer.pdf  used on input line 6.
 (pdftex.def)             Requested size: 49.79222pt x 56.9055pt.
- [197] [198]
+ [199] [200]
 Underfull \hbox (badness 10000) detected at line 108
 [][][]
  []
 
-[199] [200]) (./classTGraphAccessibilityNodeFactory.tex <./classTGraphAccessibi
+[201] [202]) (./classTGraphAccessibilityNodeFactory.tex <./classTGraphAccessibi
 lityNodeFactory.pdf>
-<classTGraphAccessibilityNodeFactory.pdf, id=10026, 501.875pt x 168.70027pt>
+<classTGraphAccessibilityNodeFactory.pdf, id=10143, 501.875pt x 168.70027pt>
 File: classTGraphAccessibilityNodeFactory.pdf Graphic file (type pdf)
 <use classTGraphAccessibilityNodeFactory.pdf>
 Package pdftex.def Info: classTGraphAccessibilityNodeFactory.pdf  used on input
  line 6.
 (pdftex.def)             Requested size: 169.28743pt x 56.9055pt.
- [201]
+ [203]
 Underfull \hbox (badness 10000) in paragraph at lines 80--82
 \T1/pcr/m/n/8 virtual []$\OML/cmm/m/it/8 <$ \T1/pcr/m/n/8 T $\OML/cmm/m/it/8 >$
 []\T1/pcr/m/n/8 ::$\OMS/cmsy/m/n/8 ^^X$[] \T1/pcr/m/n/8 ( ) [inline],
  []
 
-[202]
+[204]
 Underfull \hbox (badness 10000) detected at line 109
 [][][]
  []
 
-[203]
+[205]
 Underfull \hbox (badness 10000) detected at line 197
 [][][]
  []
 
-[204]
+[206]
 Underfull \hbox (badness 10000) in paragraph at lines 288--290
 \T1/pcr/m/n/8 TShared[]Ref$\OML/cmm/m/it/8 <$[]$>$ []$<$ \T1/pcr/m/n/8 T $\OML/
 cmm/m/it/8 >$[]\T1/pcr/m/n/8 ::[]Accessibility[]
  []
 
-[205]) (./classUAccessibilityAddNodeContextMenu.tex <./classUAccessibilityAddNo
+[207]) (./classUAccessibilityAddNodeContextMenu.tex <./classUAccessibilityAddNo
 deContextMenu.pdf>
-<classUAccessibilityAddNodeContextMenu.pdf, id=10119, 501.875pt x 355.30743pt>
+<classUAccessibilityAddNodeContextMenu.pdf, id=10235, 501.875pt x 355.30743pt>
 File: classUAccessibilityAddNodeContextMenu.pdf Graphic file (type pdf)
 <use classUAccessibilityAddNodeContextMenu.pdf>
 Package pdftex.def Info: classUAccessibilityAddNodeContextMenu.pdf  used on inp
@@ -2045,12 +2072,12 @@ LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
 (Font)              Font shape `TS1/phv/m/sl' tried instead on input line 29.
 LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
 (Font)              scaled to size 8.09995pt on input line 29.
- [206] [207] [208] [209]
+ [208] [209] [210] [211]
 Underfull \hbox (badness 10000) detected at line 303
 [][][]
  []
 
-[210]
+[212]
 Underfull \hbox (badness 10000) detected at line 334
 [][][]
  []
@@ -2060,17 +2087,17 @@ Underfull \hbox (badness 10000) detected at line 365
 [][][]
  []
 
-[211]
+[213]
 Underfull \hbox (badness 10000) detected at line 394
 [][][]
  []
 
-[212]
+[214]
 Underfull \hbox (badness 10000) detected at line 461
 [][][]
  []
 
-[213] [214] [215] [216] [217] [218] [219]
+[215] [216] [217] [218] [219] [220] [221]
 Underfull \hbox (badness 10000) in paragraph at lines 1086--1087
 \T1/pcr/m/n/8 TWeak[]Ptr$\OML/cmm/m/it/8 <$\T1/pcr/m/n/8 STree[]View$\OML/cmm/m
 /it/8 <$\T1/pcr/m/n/8 TShared[]Ptr$\OML/cmm/m/it/8 <$\T1/pcr/m/n/8 FGraph[]Acti
@@ -2080,13 +2107,13 @@ ntext[]Menu[]::[]Tree[]
 
 ) (./classUAccessibilityGraphEditorContext.tex <./classUAccessibilityGraphEdito
 rContext.pdf>
-<classUAccessibilityGraphEditorContext.pdf, id=10478, 501.875pt x 384.21542pt>
+<classUAccessibilityGraphEditorContext.pdf, id=10594, 501.875pt x 384.21542pt>
 File: classUAccessibilityGraphEditorContext.pdf Graphic file (type pdf)
 <use classUAccessibilityGraphEditorContext.pdf>
 Package pdftex.def Info: classUAccessibilityGraphEditorContext.pdf  used on inp
 ut line 10.
 (pdftex.def)             Requested size: 148.66447pt x 113.81102pt.
- [220]
+ [222]
 Underfull \hbox (badness 874) in paragraph at lines 66--67
 []\T1/phv/m/n/10 const TShared[]Ref$\OML/cmm/m/it/10 <$ [] $>$ [] \T1/phv/m/n/1
 0 (const TShared[]Ref$\OML/cmm/m/it/10 <$ \T1/phv/m/n/10 SWid-get $\OML/cmm/m/i
@@ -2101,7 +2128,7 @@ FGraph[]Action[]Node $\OML/cmm/m/it/10 >$ $>$ $>$ [] \T1/phv/m/n/10 = TWeak[]Pt
 r$\OML/cmm/m/it/10 <$\T1/phv/m/n/10 STree[]
  []
 
-[221] [222]
+[223] [224]
 Underfull \hbox (badness 10000) detected at line 178
 [][][]
  []
@@ -2112,7 +2139,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 202--203
 sibility[]Graph[]Editor[]Context[]::[]Create[]Accessibility[]
  []
 
-[223]
+[225]
 Underfull \hbox (badness 10000) detected at line 211
 [][][]
  []
@@ -2122,12 +2149,12 @@ Underfull \hbox (badness 10000) detected at line 239
 [][][]
  []
 
-[224]
+[226]
 Underfull \hbox (badness 10000) detected at line 273
 [][][]
  []
 
-[225]
+[227]
 Underfull \hbox (badness 10000) detected at line 336
 [][][]
  []
@@ -2142,17 +2169,17 @@ Underfull \hbox (badness 10000) detected at line 387
 [][][]
  []
 
-[226]
+[228]
 Underfull \hbox (badness 10000) detected at line 412
 [][][]
  []
 
-[227] [228] [229] [230]
+[229] [230] [231] [232]
 Underfull \hbox (badness 10000) detected at line 760
 [][][]
  []
 
-[231]
+[233]
 Underfull \hbox (badness 10000) detected at line 780
 [][][]
  []
@@ -2165,7 +2192,7 @@ y[]Graph[]Editor[]Context[]::[]Check[]Boxes = TArray$\OML/cmm/m/it/8 <$\T1/pcr/
 m/n/8 TWeak[]
  []
 
-[232]
+[234]
 Overfull \hbox (15.1713pt too wide) in paragraph at lines 849--850
 \T1/pcr/m/n/8 TWeak[]Ptr$\OML/cmm/m/it/8 <$\T1/pcr/m/n/8 SEditable[]Text[]Box$\
 OML/cmm/m/it/8 >$ \T1/pcr/m/n/8 UAccessibility[]Graph[]Editor[]Context[]::[]Fil
@@ -2189,39 +2216,39 @@ on[]Node$\OML/cmm/m/it/8 >$ $>$ $>$ \T1/pcr/m/n/8 UAccessibility[]Graph[]Editor
 
 ) (./classUAccessibilityGraphLocomotionContext.tex <./classUAccessibilityGraphL
 ocomotionContext.pdf>
-<classUAccessibilityGraphLocomotionContext.pdf, id=10731, 501.875pt x 250.9375p
+<classUAccessibilityGraphLocomotionContext.pdf, id=10847, 501.875pt x 250.9375p
 t>
 File: classUAccessibilityGraphLocomotionContext.pdf Graphic file (type pdf)
 <use classUAccessibilityGraphLocomotionContext.pdf>
 Package pdftex.def Info: classUAccessibilityGraphLocomotionContext.pdf  used on
  input line 6.
 (pdftex.def)             Requested size: 170.71947pt x 85.35826pt.
- [233] [234] [235] [236] [237] [238] [239] [240] [241]
-[242]) (./classUAccessibilityWindowToolbar.tex <./classUAccessibilityWindowTool
+ [235] [236] [237] [238] [239] [240] [241] [242] [243]
+[244]) (./classUAccessibilityWindowToolbar.tex <./classUAccessibilityWindowTool
 bar.pdf>
-<classUAccessibilityWindowToolbar.pdf, id=10953, 501.875pt x 215.85645pt>
+<classUAccessibilityWindowToolbar.pdf, id=11070, 501.875pt x 215.85645pt>
 File: classUAccessibilityWindowToolbar.pdf Graphic file (type pdf)
 <use classUAccessibilityWindowToolbar.pdf>
 Package pdftex.def Info: classUAccessibilityWindowToolbar.pdf  used on input li
 ne 10.
 (pdftex.def)             Requested size: 132.30702pt x 56.9055pt.
- [243] [244]
+ [245] [246]
 Underfull \hbox (badness 10000) detected at line 93
 [][][]
  []
 
-[245]
+[247]
 Underfull \hbox (badness 10000) detected at line 121
 [][][]
  []
 
-[246]) (./classUAudioManager.tex <./classUAudioManager.pdf>
-<classUAudioManager.pdf, id=11019, 501.875pt x 358.4793pt>
+[248]) (./classUAudioManager.tex <./classUAudioManager.pdf>
+<classUAudioManager.pdf, id=11135, 501.875pt x 358.4793pt>
 File: classUAudioManager.pdf Graphic file (type pdf)
 <use classUAudioManager.pdf>
 Package pdftex.def Info: classUAudioManager.pdf  used on input line 6.
 (pdftex.def)             Requested size: 79.66602pt x 56.9055pt.
- [247] [248]
+ [249] [250]
 Underfull \hbox (badness 10000) detected at line 109
 [][][]
  []
@@ -2236,104 +2263,104 @@ Underfull \hbox (badness 10000) detected at line 153
 [][][]
  []
 
-[249] [250] [251]) (./classUBAudioCapture.tex <./classUBAudioCapture.pdf>
-<classUBAudioCapture.pdf, id=11118, 501.875pt x 352.1958pt>
+[251] [252] [253]) (./classUBAudioCapture.tex <./classUBAudioCapture.pdf>
+<classUBAudioCapture.pdf, id=11234, 501.875pt x 352.1958pt>
 File: classUBAudioCapture.pdf Graphic file (type pdf)
 <use classUBAudioCapture.pdf>
 Package pdftex.def Info: classUBAudioCapture.pdf  used on input line 6.
 (pdftex.def)             Requested size: 81.09041pt x 56.9055pt.
 
-[252]
+[254]
 Overfull \vbox (18.92163pt too high) has occurred while \output is active []
 
 
-[253]
+[255]
 Underfull \hbox (badness 10000) detected at line 78
 [][][]
  []
 
 ) (./classULocalizedInputLibrary.tex <./classULocalizedInputLibrary.pdf>
-<classULocalizedInputLibrary.pdf, id=11152, 501.875pt x 327.31284pt>
+<classULocalizedInputLibrary.pdf, id=11269, 501.875pt x 327.31284pt>
 File: classULocalizedInputLibrary.pdf Graphic file (type pdf)
 <use classULocalizedInputLibrary.pdf>
 Package pdftex.def Info: classULocalizedInputLibrary.pdf  used on input line 6.
 
 (pdftex.def)             Requested size: 130.88263pt x 85.35826pt.
 
-[254] [255] [256] [257] [258] [259]) (./classUNodeInteractionLibrary.tex <./cla
+[256] [257] [258] [259] [260] [261]) (./classUNodeInteractionLibrary.tex <./cla
 ssUNodeInteractionLibrary.pdf>
-<classUNodeInteractionLibrary.pdf, id=11265, 501.875pt x 327.31284pt>
+<classUNodeInteractionLibrary.pdf, id=11382, 501.875pt x 327.31284pt>
 File: classUNodeInteractionLibrary.pdf Graphic file (type pdf)
 <use classUNodeInteractionLibrary.pdf>
 Package pdftex.def Info: classUNodeInteractionLibrary.pdf  used on input line 6
 .
 (pdftex.def)             Requested size: 130.88263pt x 85.35826pt.
- [260] [261] [262] [263] [264] [265]
+ [262] [263] [264] [265] [266] [267]
 Overfull \hbox (19.35555pt too wide) in paragraph at lines 446--446
 \T1/pcr/m/n/7 StaticCastSharedPtr<FBlueprintEditor>(FKismetEditorUtilities::Get
 IBlueprintEditorForObject(FoundBlueprint, 
  []
 
-[266] [267] [268] [269]
+[268] [269] [270] [271]
 Underfull \hbox (badness 10000) detected at line 712
 [][][]
  []
 
-[270]
+[272]
 Underfull \hbox (badness 10000) detected at line 788
 [][][]
  []
 
-[271] [272] [273] [274] [275] [276] [277] [278]) (./classUParseEnumInput.tex <.
+[273] [274] [275] [276] [277] [278] [279] [280]) (./classUParseEnumInput.tex <.
 /classUParseEnumInput.pdf>
-<classUParseEnumInput.pdf, id=11655, 501.875pt x 674.79103pt>
+<classUParseEnumInput.pdf, id=11772, 501.875pt x 674.79103pt>
 File: classUParseEnumInput.pdf Graphic file (type pdf)
 <use classUParseEnumInput.pdf>
 Package pdftex.def Info: classUParseEnumInput.pdf  used on input line 6.
 (pdftex.def)             Requested size: 84.6437pt x 113.81102pt.
- [279]
+ [281]
 Underfull \hbox (badness 10000) detected at line 63
 [][][]
  []
 
-[280]) (./classUParseInput.tex <./classUParseInput.pdf>
-<classUParseInput.pdf, id=11700, 501.875pt x 331.81966pt>
+[282]) (./classUParseInput.tex <./classUParseInput.pdf>
+<classUParseInput.pdf, id=11815, 501.875pt x 331.81966pt>
 File: classUParseInput.pdf Graphic file (type pdf)
 <use classUParseInput.pdf>
 Package pdftex.def Info: classUParseInput.pdf  used on input line 6.
 (pdftex.def)             Requested size: 172.1362pt x 113.81102pt.
- [281])
+ [283])
 (./classUParseIntInput.tex <./classUParseIntInput.pdf>
-<classUParseIntInput.pdf, id=11719, 501.875pt x 674.79103pt>
+<classUParseIntInput.pdf, id=11835, 501.875pt x 674.79103pt>
 File: classUParseIntInput.pdf Graphic file (type pdf)
 <use classUParseIntInput.pdf>
 Package pdftex.def Info: classUParseIntInput.pdf  used on input line 6.
 (pdftex.def)             Requested size: 84.6437pt x 113.81102pt.
- [282]
-Underfull \hbox (badness 10000) detected at line 63
-[][][]
- []
-
-[283]) (./classUParseStringInput.tex <./classUParseStringInput.pdf>
-<classUParseStringInput.pdf, id=11762, 501.875pt x 497.7295pt>
-File: classUParseStringInput.pdf Graphic file (type pdf)
-<use classUParseStringInput.pdf>
-Package pdftex.def Info: classUParseStringInput.pdf  used on input line 6.
-(pdftex.def)             Requested size: 86.0681pt x 85.35826pt.
  [284]
 Underfull \hbox (badness 10000) detected at line 63
 [][][]
  []
 
-[285]) (./classUPhraseTreeContextMenuObject.tex <./classUPhraseTreeContextMenuO
+[285]) (./classUParseStringInput.tex <./classUParseStringInput.pdf>
+<classUParseStringInput.pdf, id=11879, 501.875pt x 497.7295pt>
+File: classUParseStringInput.pdf Graphic file (type pdf)
+<use classUParseStringInput.pdf>
+Package pdftex.def Info: classUParseStringInput.pdf  used on input line 6.
+(pdftex.def)             Requested size: 86.0681pt x 85.35826pt.
+ [286]
+Underfull \hbox (badness 10000) detected at line 63
+[][][]
+ []
+
+[287]) (./classUPhraseTreeContextMenuObject.tex <./classUPhraseTreeContextMenuO
 bject.pdf>
-<classUPhraseTreeContextMenuObject.pdf, id=11807, 501.875pt x 177.65372pt>
+<classUPhraseTreeContextMenuObject.pdf, id=11923, 501.875pt x 177.65372pt>
 File: classUPhraseTreeContextMenuObject.pdf Graphic file (type pdf)
 <use classUPhraseTreeContextMenuObject.pdf>
 Package pdftex.def Info: classUPhraseTreeContextMenuObject.pdf  used on input l
 ine 6.
 (pdftex.def)             Requested size: 321.52052pt x 113.81102pt.
- [286] [287] [288]
+ [288] [289] [290]
 Underfull \hbox (badness 10000) detected at line 180
 [][][]
  []
@@ -2343,15 +2370,15 @@ Underfull \hbox (badness 10000) detected at line 215
 [][][]
  []
 
-[289] [290] [291] [292]) (./classUPhraseTreeContextObject.tex <./classUPhraseTr
+[291] [292] [293] [294]) (./classUPhraseTreeContextObject.tex <./classUPhraseTr
 eeContextObject.pdf>
-<classUPhraseTreeContextObject.pdf, id=11973, 501.875pt x 111.52666pt>
+<classUPhraseTreeContextObject.pdf, id=12089, 501.875pt x 111.52666pt>
 File: classUPhraseTreeContextObject.pdf Graphic file (type pdf)
 <use classUPhraseTreeContextObject.pdf>
 Package pdftex.def Info: classUPhraseTreeContextObject.pdf  used on input line 
 6.
 (pdftex.def)             Requested size: 398.3531pt x 88.51978pt.
- [293]
+ [295]
 Overfull \hbox (58.7226pt too wide) in paragraph at lines 83--84
 []\T1/phv/m/n/10 Reimplemented in [], [], and []. 
  []
@@ -2366,45 +2393,45 @@ Underfull \hbox (badness 10000) detected at line 128
 [][][]
  []
 
-[294]) (./classUPhraseTreeFunctionLibrary.tex <./classUPhraseTreeFunctionLibrar
+[296]) (./classUPhraseTreeFunctionLibrary.tex <./classUPhraseTreeFunctionLibrar
 y.pdf>
-<classUPhraseTreeFunctionLibrary.pdf, id=12038, 501.875pt x 81.8257pt>
+<classUPhraseTreeFunctionLibrary.pdf, id=12154, 501.875pt x 81.8257pt>
 File: classUPhraseTreeFunctionLibrary.pdf Graphic file (type pdf)
 <use classUPhraseTreeFunctionLibrary.pdf>
 Package pdftex.def Info: classUPhraseTreeFunctionLibrary.pdf  used on input lin
 e 6.
 (pdftex.def)             Requested size: 398.36842pt x 64.94649pt.
- [295]
+ [297]
 Overfull \hbox (44.71068pt too wide) in paragraph at lines 32--33
 []\T1/phv/m/n/10 Reimplemented in [], [], [], and []. 
  []
 
 ) (./classUPhraseTreeUtils.tex <./classUPhraseTreeUtils.pdf>
-<classUPhraseTreeUtils.pdf, id=12063, 501.875pt x 343.16205pt>
+<classUPhraseTreeUtils.pdf, id=12180, 501.875pt x 343.16205pt>
 File: classUPhraseTreeUtils.pdf Graphic file (type pdf)
 <use classUPhraseTreeUtils.pdf>
 Package pdftex.def Info: classUPhraseTreeUtils.pdf  used on input line 6.
 (pdftex.def)             Requested size: 83.21933pt x 56.9055pt.
- [296] [297]
-[298] [299]) (./classUViewInteractionLibrary.tex <./classUViewInteractionLibrar
+ [298] [299]
+[300] [301]) (./classUViewInteractionLibrary.tex <./classUViewInteractionLibrar
 y.pdf>
-<classUViewInteractionLibrary.pdf, id=12139, 501.875pt x 327.31284pt>
+<classUViewInteractionLibrary.pdf, id=12255, 501.875pt x 327.31284pt>
 File: classUViewInteractionLibrary.pdf Graphic file (type pdf)
 <use classUViewInteractionLibrary.pdf>
 Package pdftex.def Info: classUViewInteractionLibrary.pdf  used on input line 6
 .
 (pdftex.def)             Requested size: 130.88263pt x 85.35826pt.
- [300] [301] [302] [303]) (./classUWindowInteractionLibrary.tex <./classUWindow
+ [302] [303] [304] [305]) (./classUWindowInteractionLibrary.tex <./classUWindow
 InteractionLibrary.pdf>
-<classUWindowInteractionLibrary.pdf, id=12231, 501.875pt x 327.31284pt>
+<classUWindowInteractionLibrary.pdf, id=12347, 501.875pt x 327.31284pt>
 File: classUWindowInteractionLibrary.pdf Graphic file (type pdf)
 <use classUWindowInteractionLibrary.pdf>
 Package pdftex.def Info: classUWindowInteractionLibrary.pdf  used on input line
  6.
 (pdftex.def)             Requested size: 130.88263pt x 85.35826pt.
- [304] [305] [306])
+ [306] [307] [308] [309] [310] [311] [312])
 (./classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface.tex
-[307]
+[313]
 Overfull \hbox (144.75627pt too wide) in paragraph at lines 41--41
 []    \T1/pcr/m/n/8 model_name (str, optional): Hugging-Face Model Specifier fo
 r CTranslate Compatible Models. Defaults to "distil-small.en".[] 
@@ -2428,7 +2455,7 @@ Overfull \hbox (43.9562pt too wide) in paragraph at lines 44--44
 s for Audio Transcription. Defaults to 2.[] 
  []
 
-[308]
+[314]
 Underfull \hbox (badness 10000) in paragraph at lines 104--105
 \T1/pcr/m/n/8 tuple[]list[]Segment[], dict[] Open[]Accessibility[]Py.[]Whisper[
 ]Interface.[]Whisper[]Interface.[]process[]_[]
@@ -2440,31 +2467,20 @@ Overfull \hbox (125.55626pt too wide) in paragraph at lines 112--112
 scription Segments and a Dictionary of Collected Metadata.[] 
  []
 
-[309]) [310]
+[315]) [316]
 Chapter 5.
-(./init__unreal_8py_source.tex [311
+(./init__unreal_8py_source.tex [317
 
-]) (./old__init__unreal_8py_source.tex
-[312]) (./____init_____8py_source.tex [313] [314])
-(./____main_____8py_source.tex [315]) (./Audio_8py_source.tex [316] [317])
-(./CommunicationServer_8py_source.tex [318] [319] [320])
-(./LibUtils_8py_source.tex [321]) (./Logging_8py_source.tex [322])
-(./WhisperInterface_8py_source.tex [323]) (./TestWhisper_8py_source.tex
-[324]
-Overfull \hbox (115.13333pt too wide) in paragraph at lines 71--71
-\T1/pcr/m/n/7 Engine$\OMS/cmsy/m/n/7 n$\T1/pcr/m/n/7 AccessibilityProject$\OMS/
-cmsy/m/n/7 n$\T1/pcr/m/n/7 Plugins$\OMS/cmsy/m/n/7 n$\T1/pcr/m/n/7 OpenAccessib
-ility$\OMS/cmsy/m/n/7 n$\T1/pcr/m/n/7 Saved$\OMS/cmsy/m/n/7 n$\T1/pcr/m/n/7 Bou
-ncedWavFiles$\OMS/cmsy/m/n/7 n$\T1/pcr/m/n/7 OpenAccessibility$\OMS/cmsy/m/n/7 
-n$\T1/pcr/m/n/7 Audioclips$\OMS/cmsy/m/n/7 n$\T1/pcr/m/n/7 Captured_User_Audio.
-wav"[]  
- []
-
-) (./OpenAccessibility_8Build_8cs_source.tex [325])
-(./SAccessibilityTranscriptionVis_8cpp_source.tex [326])
-(./SContentIndexer_8cpp_source.tex [327] [328]) (./SIndexer_8cpp_source.tex
-[329]) (./AccessibilityAddNodeContextMenu_8cpp_source.tex [330] [331] [332]
-[333]
+]) (./____init_____8py_source.tex [318]
+[319]) (./____main_____8py_source.tex [320] [321]) (./Audio_8py_source.tex
+[322]) (./CommunicationServer_8py_source.tex [323] [324] [325] [326])
+(./LibUtils_8py_source.tex) (./Logging_8py_source.tex [327])
+(./WhisperInterface_8py_source.tex [328])
+(./OpenAccessibility_8Build_8cs_source.tex [329])
+(./SAccessibilityTranscriptionVis_8cpp_source.tex [330])
+(./SContentIndexer_8cpp_source.tex [331] [332]) (./SIndexer_8cpp_source.tex
+[333]) (./AccessibilityAddNodeContextMenu_8cpp_source.tex [334] [335] [336]
+[337]
 Overfull \hbox (31.95554pt too wide) in paragraph at lines 331--331
 []\T1/pcr/m/n/7 (TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> 
  []
@@ -2474,90 +2490,92 @@ Overfull \hbox (36.15553pt too wide) in paragraph at lines 343--343
 []\T1/pcr/m/n/7 (TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> 
  []
 
-) (./AccessibilityGraphEditorContext_8cpp_source.tex [334] [335] [336] [337]
-[338]) (./AccessibilityGraphLocomotionContext_8cpp_source.tex [339] [340]
-[341] [342]) (./AccessibilityWindowToolbar_8cpp_source.tex [343] [344] [345]
-[346]) (./AssetAccessibilityRegistry_8cpp_source.tex [347] [348] [349])
-(./GraphIndexer_8cpp_source.tex [350] [351] [352])
-(./OAccessibilityNodeFactory_8cpp_source.tex [353]
+) (./AccessibilityGraphEditorContext_8cpp_source.tex [338] [339] [340] [341]
+[342]) (./AccessibilityGraphLocomotionContext_8cpp_source.tex [343] [344]
+[345] [346]) (./AccessibilityWindowToolbar_8cpp_source.tex [347] [348] [349]
+[350]) (./AssetAccessibilityRegistry_8cpp_source.tex [351] [352] [353])
+(./GraphIndexer_8cpp_source.tex [354] [355] [356])
+(./OAccessibilityNodeFactory_8cpp_source.tex [357]
 Overfull \hbox (15.15555pt too wide) in paragraph at lines 45--45
 \T1/pcr/m/n/7 FEdGraphUtilities::UnregisterVisualNodeFactory([]().Accessibility
 NodeFactory);  
  []
 
-[354] [355]) (./OAEditorAccessibilityManager_8cpp_source.tex)
-(./OpenAccessibility_8cpp_source.tex [356] [357] [358] [359])
-(./LocalizedInputLibrary_8cpp_source.tex [360] [361] [362])
-(./NodeInteractionLibrary_8cpp_source.tex [363] [364] [365] [366] [367]
-[368] [369] [370] [371] [372] [373]
+[358] [359]) (./OAEditorAccessibilityManager_8cpp_source.tex)
+(./OpenAccessibility_8cpp_source.tex [360] [361] [362] [363] [364])
+(./LocalizedInputLibrary_8cpp_source.tex [365] [366] [367])
+(./NodeInteractionLibrary_8cpp_source.tex [368] [369] [370] [371] [372]
+[373] [374] [375] [376] [377] [378]
 Overfull \hbox (19.35555pt too wide) in paragraph at lines 902--902
 \T1/pcr/m/n/7 StaticCastSharedPtr<FBlueprintEditor>(FKismetEditorUtilities::Get
 IBlueprintEditorForObject(FoundBlueprint, 
  []
 
-) (./ViewInteractionLibrary_8cpp_source.tex [374] [375] [376])
-(./WindowInteractionLibrary_8cpp_source.tex [377])
-(./TranscriptionVisualizer_8cpp_source.tex [378] [379])
-(./WidgetUtils_8h_source.tex [380] [381])
-(./AccessibilityNodeFactory_8h_source.tex [382] [383])
-(./SAccessibilityTranscriptionVis_8h_source.tex)
-(./SContentIndexer_8h_source.tex [384]) (./SIndexer_8h_source.tex [385])
-(./AccessibilityAddNodeContextMenu_8h_source.tex [386])
-(./AccessibilityGraphEditorContext_8h_source.tex [387] [388])
-(./AccessibilityGraphLocomotionContext_8h_source.tex [389] [390])
-(./AccessibilityWindowToolbar_8h_source.tex [391])
-(./AssetAccessibilityRegistry_8h_source.tex [392])
-(./GraphIndexer_8h_source.tex [393]) (./Indexer_8h_source.tex [394] [395])
-(./OAccessibilityNodeFactory_8h_source.tex [396])
+) (./ViewInteractionLibrary_8cpp_source.tex [379] [380])
+(./WindowInteractionLibrary_8cpp_source.tex [381] [382] [383] [384] [385])
+(./TranscriptionVisualizer_8cpp_source.tex [386] [387])
+(./WidgetUtils_8h_source.tex [388] [389])
+(./AccessibilityNodeFactory_8h_source.tex [390] [391])
+(./SAccessibilityTranscriptionVis_8h_source.tex [392])
+(./SContentIndexer_8h_source.tex [393]) (./SIndexer_8h_source.tex)
+(./AccessibilityAddNodeContextMenu_8h_source.tex [394] [395])
+(./AccessibilityGraphEditorContext_8h_source.tex [396])
+(./AccessibilityGraphLocomotionContext_8h_source.tex [397] [398])
+(./AccessibilityWindowToolbar_8h_source.tex [399])
+(./AssetAccessibilityRegistry_8h_source.tex [400])
+(./GraphIndexer_8h_source.tex [401]) (./Indexer_8h_source.tex [402] [403])
+(./OAccessibilityNodeFactory_8h_source.tex [404])
 (./OAEditorAccessibilityManager_8h_source.tex)
-(./OpenAccessibility_8h_source.tex [397])
+(./OpenAccessibility_8h_source.tex [405])
 (./OpenAccessibilityLogging_8h_source.tex)
-(./LocalizedInputLibrary_8h_source.tex) (./NodeInteractionLibrary_8h_source.tex
-[398] [399]) (./ViewInteractionLibrary_8h_source.tex)
-(./WindowInteractionLibrary_8h_source.tex [400])
-(./TranscriptionVisualizer_8h_source.tex [401])
-(./OpenAccessibilityAnalytics_8Build_8cs_source.tex)
-(./OpenAccessibilityAnalytics_8cpp_source.tex [402] [403])
+(./LocalizedInputLibrary_8h_source.tex [406])
+(./NodeInteractionLibrary_8h_source.tex [407])
+(./ViewInteractionLibrary_8h_source.tex [408])
+(./WindowInteractionLibrary_8h_source.tex)
+(./TranscriptionVisualizer_8h_source.tex [409])
+(./OpenAccessibilityAnalytics_8Build_8cs_source.tex [410])
+(./OpenAccessibilityAnalytics_8cpp_source.tex [411] [412])
 (./OpenAccessibilityAnalyticsLogging_8h_source.tex)
-(./OpenAccessibilityAnalytics_8h_source.tex [404] [405])
-(./OpenAccessibilityCommunication_8Build_8cs_source.tex [406])
-(./AudioManager_8cpp_source.tex [407])
-(./OpenAccessibilityComLogging_8cpp_source.tex)
-(./OpenAccessibilityCommunication_8cpp_source.tex [408] [409] [410])
-(./PhraseTree_8cpp_source.tex [411] [412] [413])
-(./ContextMenuObject_8cpp_source.tex [414])
-(./PhraseEnumInputNode_8cpp_source.tex [415])
-(./PhraseEventNode_8cpp_source.tex [416]) (./PhraseInputNode_8cpp_source.tex
-[417]) (./PhraseNode_8cpp_source.tex [418] [419] [420])
-(./PhraseStringInputNode_8cpp_source.tex [421]) (./Utils_8cpp_source.tex
-[422]) (./PhraseTreeUtils_8cpp_source.tex)
-(./SocketCommunicationServer_8cpp_source.tex [423] [424] [425] [426] [427]
-[428]) (./UBAudioCapture_8cpp_source.tex [429]) (./AudioManager_8h_source.tex
-[430]) (./OpenAccessibilityComLogging_8h_source.tex)
-(./OpenAccessibilityCommunication_8h_source.tex
+(./OpenAccessibilityAnalytics_8h_source.tex [413])
+(./OpenAccessibilityCommunication_8Build_8cs_source.tex [414])
+(./AudioManager_8cpp_source.tex [415])
+(./OpenAccessibilityComLogging_8cpp_source.tex [416])
+(./OpenAccessibilityCommunication_8cpp_source.tex [417] [418] [419])
+(./PhraseTree_8cpp_source.tex [420] [421]) (./ContextMenuObject_8cpp_source.tex
+[422]) (./PhraseEnumInputNode_8cpp_source.tex [423])
+(./PhraseEventNode_8cpp_source.tex [424]) (./PhraseInputNode_8cpp_source.tex
+[425] [426]) (./PhraseNode_8cpp_source.tex [427] [428] [429])
+(./PhraseStringInputNode_8cpp_source.tex) (./Utils_8cpp_source.tex [430])
+(./PhraseTreeUtils_8cpp_source.tex)
+(./SocketCommunicationServer_8cpp_source.tex [431] [432] [433] [434] [435]
+[436]) (./UBAudioCapture_8cpp_source.tex [437]) (./AudioManager_8h_source.tex
+[438]) (./OpenAccessibilityComLogging_8h_source.tex)
+(./OpenAccessibilityCommunication_8h_source.tex [439]
 Overfull \hbox (19.35555pt too wide) in paragraph at lines 34--34
 \T1/pcr/m/n/7 FModuleManager::GetModuleChecked<FOpenAccessibilityCommunicationM
 odule>([]"OpenAccessibilityCommunication"[]);  
  []
 
-[431]) (./PhraseTree_8h_source.tex [432] [433])
-(./ContextMenuObject_8h_source.tex [434]) (./ContextObject_8h_source.tex
-[435]) (./InputContainers_8h_source.tex [436]) (./UParseEnumInput_8h_source.tex
-) (./UParseInput_8h_source.tex [437]) (./UParseIntInput_8h_source.tex)
-(./UParseStringInput_8h_source.tex [438]) (./ParseRecord_8h_source.tex [439]
-[440]) (./ParseResult_8h_source.tex [441]) (./IPhraseContextNode_8h_source.tex)
-(./PhraseContextMenuNode_8h_source.tex [442] [443] [444])
-(./PhraseContextNode_8h_source.tex [445] [446])
-(./PhraseDirectionalInputNode_8h_source.tex [447] [448])
-(./PhraseEnumInputNode_8h_source.tex) (./PhraseEventNode_8h_source.tex)
-(./PhraseInputNode_8h_source.tex [449]) (./PhraseNode_8h_source.tex [450])
-(./PhraseStringInputNode_8h_source.tex)
-(./PhraseTreeFunctionLibrary_8h_source.tex [451])
-(./Public_2PhraseEvents_2Utils_8h_source.tex [452] [453])
+) (./PhraseTree_8h_source.tex [440] [441] [442])
+(./ContextMenuObject_8h_source.tex [443]) (./ContextObject_8h_source.tex)
+(./InputContainers_8h_source.tex [444]) (./UParseEnumInput_8h_source.tex
+[445]) (./UParseInput_8h_source.tex) (./UParseIntInput_8h_source.tex [446])
+(./UParseStringInput_8h_source.tex) (./ParseRecord_8h_source.tex [447] [448]
+[449]) (./ParseResult_8h_source.tex [450]) (./IPhraseContextNode_8h_source.tex)
+(./PhraseContextMenuNode_8h_source.tex [451] [452] [453])
+(./PhraseContextNode_8h_source.tex [454] [455])
+(./PhraseDirectionalInputNode_8h_source.tex [456])
+(./PhraseEnumInputNode_8h_source.tex [457]) (./PhraseEventNode_8h_source.tex)
+(./PhraseInputNode_8h_source.tex) (./PhraseNode_8h_source.tex [458])
+(./PhraseStringInputNode_8h_source.tex [459])
+(./PhraseTreeFunctionLibrary_8h_source.tex)
+(./Public_2PhraseEvents_2Utils_8h_source.tex [460] [461] [462])
 (./ommunication_2Public_2PhraseTree_2Utils_8h_source.tex)
-(./PhraseTreeUtils_8h_source.tex [454])
-(./SocketCommunicationServer_8h_source.tex [455])
-(./UBAudioCapture_8h_source.tex) [456] (./refman.ind
+(./PhraseTreeUtils_8h_source.tex [463])
+(./SocketCommunicationServer_8h_source.tex [464])
+(./UBAudioCapture_8h_source.tex) [465] [466
+
+] (./refman.ind
 Overfull \hbox (62.99908pt too wide) in paragraph at lines 5--7
 []| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
 erver,
@@ -2581,8 +2599,7 @@ Overfull \hbox (20.87082pt too wide) in paragraph at lines 15--17
 
  []
 
-[457
-
+[467
 
 
 ]
@@ -2591,60 +2608,54 @@ Overfull \hbox (20.87082pt too wide) in paragraph at lines 131--133
 
  []
 
-[458]
-Overfull \hbox (28.69821pt too wide) in paragraph at lines 246--248
+[468]
+Overfull \hbox (28.69821pt too wide) in paragraph at lines 245--247
 []\T1/phv/m/n/10 Content/Python/OpenAccessibilityPy/CommunicationServer.py,
  []
 
 
-Overfull \hbox (62.99908pt too wide) in paragraph at lines 258--260
+Overfull \hbox (62.99908pt too wide) in paragraph at lines 256--258
 []| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
 erver,
  []
 
 
-Overfull \hbox (62.99908pt too wide) in paragraph at lines 308--310
+Overfull \hbox (62.99908pt too wide) in paragraph at lines 306--308
 []| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
 erver,
  []
 
-[459] [460] [461]
-Overfull \hbox (53.77461pt too wide) in paragraph at lines 597--599
+[469] [470] [471]
+Overfull \hbox (53.77461pt too wide) in paragraph at lines 595--597
 []| \T1/phv/m/n/10 UAcces-si-bil-i-ty-GraphEd-i-tor-Con-text::FTreeViewTickRequ
 irements,
  []
 
-[462] [463]
-Overfull \hbox (42.99908pt too wide) in paragraph at lines 879--881
+[472] [473]
+Overfull \hbox (42.99908pt too wide) in paragraph at lines 882--884
 []\T1/phv/m/n/10 OpenAccessibilityPy.CommunicationServer.CommunicationServer,
  []
 
-[464]
-Overfull \hbox (62.99908pt too wide) in paragraph at lines 976--978
-[]| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
-erver,
- []
-
-
+[474]
 Overfull \hbox (62.99908pt too wide) in paragraph at lines 979--981
 []| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
 erver,
  []
 
 
-Overfull \hbox (53.77461pt too wide) in paragraph at lines 993--995
+Overfull \hbox (62.99908pt too wide) in paragraph at lines 982--984
+[]| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
+erver,
+ []
+
+
+Overfull \hbox (53.77461pt too wide) in paragraph at lines 996--998
 []| \T1/phv/m/n/10 UAcces-si-bil-i-ty-GraphEd-i-tor-Con-text::FTreeViewTickRequ
 irements,
  []
 
 
-Overfull \hbox (53.77461pt too wide) in paragraph at lines 997--999
-[]| \T1/phv/m/n/10 UAcces-si-bil-i-ty-GraphEd-i-tor-Con-text::FTreeViewTickRequ
-irements,
- []
-
-
-Overfull \hbox (53.77461pt too wide) in paragraph at lines 1001--1003
+Overfull \hbox (53.77461pt too wide) in paragraph at lines 1000--1002
 []| \T1/phv/m/n/10 UAcces-si-bil-i-ty-GraphEd-i-tor-Con-text::FTreeViewTickRequ
 irements,
  []
@@ -2656,9 +2667,9 @@ irements,
  []
 
 
-Overfull \hbox (20.87082pt too wide) in paragraph at lines 1009--1011
-[]| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.WhisperInterface.WhisperInterface,
-
+Overfull \hbox (53.77461pt too wide) in paragraph at lines 1007--1009
+[]| \T1/phv/m/n/10 UAcces-si-bil-i-ty-GraphEd-i-tor-Con-text::FTreeViewTickRequ
+irements,
  []
 
 
@@ -2668,9 +2679,9 @@ Overfull \hbox (20.87082pt too wide) in paragraph at lines 1012--1014
  []
 
 
-Overfull \hbox (62.99908pt too wide) in paragraph at lines 1026--1028
-[]| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
-erver,
+Overfull \hbox (20.87082pt too wide) in paragraph at lines 1015--1017
+[]| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.WhisperInterface.WhisperInterface,
+
  []
 
 
@@ -2704,7 +2715,7 @@ erver,
  []
 
 
-Overfull \hbox (62.99908pt too wide) in paragraph at lines 1048--1050
+Overfull \hbox (62.99908pt too wide) in paragraph at lines 1044--1046
 []| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
 erver,
  []
@@ -2715,20 +2726,20 @@ Overfull \hbox (62.99908pt too wide) in paragraph at lines 1051--1053
 erver,
  []
 
-[465]
-Overfull \hbox (62.99908pt too wide) in paragraph at lines 1172--1174
+
+Overfull \hbox (62.99908pt too wide) in paragraph at lines 1054--1056
+[]| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
+erver,
+ []
+
+[475]
+Overfull \hbox (62.99908pt too wide) in paragraph at lines 1175--1177
 []| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
 erver,
  []
 
 
-Overfull \hbox (62.99908pt too wide) in paragraph at lines 1183--1185
-[]| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
-erver,
- []
-
-
-Overfull \hbox (62.99908pt too wide) in paragraph at lines 1188--1190
+Overfull \hbox (62.99908pt too wide) in paragraph at lines 1186--1188
 []| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
 erver,
  []
@@ -2751,520 +2762,528 @@ Overfull \hbox (62.99908pt too wide) in paragraph at lines 1197--1199
 erver,
  []
 
-[466]
-Overfull \hbox (62.99908pt too wide) in paragraph at lines 1202--1204
+[476]
+Overfull \hbox (62.99908pt too wide) in paragraph at lines 1200--1202
 []| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
 erver,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1259--1261
+Overfull \hbox (62.99908pt too wide) in paragraph at lines 1205--1207
+[]| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.CommunicationServer.CommunicationS
+erver,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1262--1264
 []\T1/phv/m/n/10 Source/OpenAccessibility/OpenAccessibility.Build.cs,
  []
 
 
-Overfull \hbox (134.2035pt too wide) in paragraph at lines 1261--1263
+Overfull \hbox (134.2035pt too wide) in paragraph at lines 1264--1266
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/AccessibilityWidgets/SAccessi
 bilityTranscriptionVis.cpp,
  []
 
 
-Overfull \hbox (82.40018pt too wide) in paragraph at lines 1263--1265
+Overfull \hbox (82.40018pt too wide) in paragraph at lines 1266--1268
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/AccessibilityWidgets/SContent
 Indexer.cpp,
  []
 
 
-Overfull \hbox (50.88284pt too wide) in paragraph at lines 1265--1267
+Overfull \hbox (50.88284pt too wide) in paragraph at lines 1268--1270
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/AccessibilityWidgets/SIndexer
 .cpp,
  []
 
 
-Overfull \hbox (161.95004pt too wide) in paragraph at lines 1267--1269
+Overfull \hbox (161.95004pt too wide) in paragraph at lines 1270--1272
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/AccessibilityWrappers/Accessi
 bilityAddNodeContextMenu.cpp,
  []
 
 
-Overfull \hbox (150.43907pt too wide) in paragraph at lines 1269--1271
+Overfull \hbox (150.43907pt too wide) in paragraph at lines 1272--1274
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/AccessibilityWrappers/Accessi
 bilityGraphEditorContext.cpp,
  []
 
 
-Overfull \hbox (173.45175pt too wide) in paragraph at lines 1271--1273
+Overfull \hbox (173.45175pt too wide) in paragraph at lines 1274--1276
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/AccessibilityWrappers/Accessi
 bilityGraphLocomotionContext.cpp,
  []
 
 
-Overfull \hbox (132.11568pt too wide) in paragraph at lines 1273--1275
+Overfull \hbox (132.11568pt too wide) in paragraph at lines 1276--1278
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/AccessibilityWrappers/Accessi
 bilityWindowToolbar.cpp,
  []
 
 
-Overfull \hbox (35.72713pt too wide) in paragraph at lines 1275--1277
+Overfull \hbox (35.72713pt too wide) in paragraph at lines 1278--1280
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/AssetAccessibilityRegistry.cp
 p,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1277--1279
+Underfull \hbox (badness 10000) in paragraph at lines 1280--1282
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/GraphIndexer.cpp,
  []
 
 
-Overfull \hbox (38.1031pt too wide) in paragraph at lines 1279--1281
+Overfull \hbox (38.1031pt too wide) in paragraph at lines 1282--1284
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/OAccessibilityNodeFactory.cpp
 ,
  []
 
 
-Overfull \hbox (52.24174pt too wide) in paragraph at lines 1281--1283
+Overfull \hbox (52.24174pt too wide) in paragraph at lines 1284--1286
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/OAEditorAccessibilityManager.
 cpp,
  []
 
 
-Overfull \hbox (74.7322pt too wide) in paragraph at lines 1285--1287
+Overfull \hbox (74.7322pt too wide) in paragraph at lines 1288--1290
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/PhraseEvents/LocalizedInputLi
 brary.cpp,
  []
 
 
-Overfull \hbox (80.27594pt too wide) in paragraph at lines 1287--1289
+Overfull \hbox (80.27594pt too wide) in paragraph at lines 1290--1292
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/PhraseEvents/NodeInteractionL
 ibrary.cpp,
  []
 
 
-Overfull \hbox (78.089pt too wide) in paragraph at lines 1289--1291
+Overfull \hbox (78.089pt too wide) in paragraph at lines 1292--1294
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/PhraseEvents/ViewInteractionL
 ibrary.cpp,
  []
 
 
-Overfull \hbox (90.63486pt too wide) in paragraph at lines 1291--1293
+Overfull \hbox (90.63486pt too wide) in paragraph at lines 1294--1296
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/PhraseEvents/WindowInteractio
 nLibrary.cpp,
  []
 
 
-Overfull \hbox (21.23732pt too wide) in paragraph at lines 1293--1295
+Overfull \hbox (21.23732pt too wide) in paragraph at lines 1296--1298
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/TranscriptionVisualizer.cpp,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1295--1297
+Underfull \hbox (badness 10000) in paragraph at lines 1298--1300
 []\T1/phv/m/n/10 Source/OpenAccessibility/Private/Utils/WidgetUtils.h,
  []
 
 
-Overfull \hbox (18.1866pt too wide) in paragraph at lines 1297--1299
+Overfull \hbox (18.1866pt too wide) in paragraph at lines 1300--1302
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/AccessibilityNodeFactory.h,
  []
 
 
-Overfull \hbox (121.1089pt too wide) in paragraph at lines 1299--1301
+Overfull \hbox (121.1089pt too wide) in paragraph at lines 1302--1304
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/AccessibilityWidgets/SAccessib
 ilityTranscriptionVis.h,
  []
 
 
-Overfull \hbox (69.30557pt too wide) in paragraph at lines 1301--1303
+Overfull \hbox (69.30557pt too wide) in paragraph at lines 1304--1306
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/AccessibilityWidgets/SContentI
 ndexer.h,
  []
 
 
-Overfull \hbox (37.78824pt too wide) in paragraph at lines 1303--1305
+Overfull \hbox (37.78824pt too wide) in paragraph at lines 1306--1308
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/AccessibilityWidgets/SIndexer.
 h,
  []
 
 
-Overfull \hbox (148.85544pt too wide) in paragraph at lines 1305--1307
+Overfull \hbox (148.85544pt too wide) in paragraph at lines 1308--1310
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/AccessibilityWrappers/Accessib
 ilityAddNodeContextMenu.h,
  []
 
 
-Overfull \hbox (137.34447pt too wide) in paragraph at lines 1307--1309
+Overfull \hbox (137.34447pt too wide) in paragraph at lines 1310--1312
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/AccessibilityWrappers/Accessib
 ilityGraphEditorContext.h,
  []
 
 
-Overfull \hbox (160.35715pt too wide) in paragraph at lines 1309--1311
+Overfull \hbox (160.35715pt too wide) in paragraph at lines 1312--1314
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/AccessibilityWrappers/Accessib
 ilityGraphLocomotionContext.h,
  []
 
-
-Overfull \hbox (119.02107pt too wide) in paragraph at lines 1311--1313
+[477]
+Overfull \hbox (119.02107pt too wide) in paragraph at lines 1314--1316
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/AccessibilityWrappers/Accessib
 ilityWindowToolbar.h,
  []
 
 
-Overfull \hbox (22.63252pt too wide) in paragraph at lines 1313--1315
+Overfull \hbox (22.63252pt too wide) in paragraph at lines 1316--1318
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/AssetAccessibilityRegistry.h,
  []
 
-[467]
-Underfull \hbox (badness 10000) in paragraph at lines 1317--1319
+
+Underfull \hbox (badness 10000) in paragraph at lines 1320--1322
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/Indexers/Indexer.h,
  []
 
 
-Overfull \hbox (25.0085pt too wide) in paragraph at lines 1319--1321
+Overfull \hbox (25.0085pt too wide) in paragraph at lines 1322--1324
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/OAccessibilityNodeFactory.h,
  []
 
 
-Overfull \hbox (39.14714pt too wide) in paragraph at lines 1321--1323
+Overfull \hbox (39.14714pt too wide) in paragraph at lines 1324--1326
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/OAEditorAccessibilityManager.h
 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1323--1325
+Underfull \hbox (badness 10000) in paragraph at lines 1326--1328
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/OpenAccessibility.h,
  []
 
 
-Overfull \hbox (21.7865pt too wide) in paragraph at lines 1325--1327
+Overfull \hbox (21.7865pt too wide) in paragraph at lines 1328--1330
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/OpenAccessibilityLogging.h,
  []
 
 
-Overfull \hbox (61.63759pt too wide) in paragraph at lines 1327--1329
+Overfull \hbox (61.63759pt too wide) in paragraph at lines 1330--1332
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/PhraseEvents/LocalizedInputLib
 rary.h,
  []
 
 
-Overfull \hbox (67.18134pt too wide) in paragraph at lines 1329--1331
+Overfull \hbox (67.18134pt too wide) in paragraph at lines 1332--1334
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/PhraseEvents/NodeInteractionLi
 brary.h,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1331--1333
+Underfull \hbox (badness 10000) in paragraph at lines 1334--1336
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/PhraseEvents/Utils.h,
  []
 
 
-Overfull \hbox (64.9944pt too wide) in paragraph at lines 1333--1335
+Overfull \hbox (64.9944pt too wide) in paragraph at lines 1336--1338
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/PhraseEvents/ViewInteractionLi
 brary.h,
  []
 
 
-Overfull \hbox (77.54025pt too wide) in paragraph at lines 1335--1337
+Overfull \hbox (77.54025pt too wide) in paragraph at lines 1338--1340
 []\T1/phv/m/n/10 Source/OpenAccessibility/Public/PhraseEvents/WindowInteraction
 Library.h,
  []
 
 
-Overfull \hbox (61.32303pt too wide) in paragraph at lines 1339--1341
+Overfull \hbox (61.32303pt too wide) in paragraph at lines 1342--1344
 []\T1/phv/m/n/10 Source/OpenAccessibilityAnalytics/OpenAccessibilityAnalytics.B
 uild.cs,
  []
 
 
-Overfull \hbox (74.74161pt too wide) in paragraph at lines 1341--1343
+Overfull \hbox (74.74161pt too wide) in paragraph at lines 1344--1346
 []\T1/phv/m/n/10 Source/OpenAccessibilityAnalytics/Private/OpenAccessibilityAna
 lytics.cpp,
  []
 
 
-Overfull \hbox (97.39404pt too wide) in paragraph at lines 1343--1345
+Overfull \hbox (97.39404pt too wide) in paragraph at lines 1346--1348
 []\T1/phv/m/n/10 Source/OpenAccessibilityAnalytics/Private/OpenAccessibilityAna
 lyticsLogging.h,
  []
 
 
-Overfull \hbox (61.647pt too wide) in paragraph at lines 1345--1347
+Overfull \hbox (61.647pt too wide) in paragraph at lines 1348--1350
 []\T1/phv/m/n/10 Source/OpenAccessibilityAnalytics/Public/OpenAccessibilityAnal
 ytics.h,
  []
 
 
-Overfull \hbox (114.28702pt too wide) in paragraph at lines 1347--1349
+Overfull \hbox (114.28702pt too wide) in paragraph at lines 1350--1352
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/OpenAccessibilityCommuni
 cation.Build.cs,
  []
 
 
-Overfull \hbox (52.07079pt too wide) in paragraph at lines 1349--1351
+Overfull \hbox (52.07079pt too wide) in paragraph at lines 1352--1354
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/AudioManager.cpp
 ,
  []
 
 
-Overfull \hbox (116.30278pt too wide) in paragraph at lines 1351--1353
+Overfull \hbox (116.30278pt too wide) in paragraph at lines 1354--1356
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/OpenAccessibilit
 yComLogging.cpp,
  []
 
 
-Overfull \hbox (127.7056pt too wide) in paragraph at lines 1353--1355
+Overfull \hbox (127.7056pt too wide) in paragraph at lines 1356--1358
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/OpenAccessibilit
 yCommunication.cpp,
  []
 
 
-Overfull \hbox (39.97514pt too wide) in paragraph at lines 1355--1357
+Overfull \hbox (39.97514pt too wide) in paragraph at lines 1358--1360
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/PhraseTree.cpp,
  []
 
 
-Overfull \hbox (167.79962pt too wide) in paragraph at lines 1357--1359
+Overfull \hbox (167.79962pt too wide) in paragraph at lines 1360--1362
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/PhraseTree/Conta
 iners/ContextMenuObject.cpp,
  []
 
 
-Overfull \hbox (135.8413pt too wide) in paragraph at lines 1359--1361
+Overfull \hbox (135.8413pt too wide) in paragraph at lines 1362--1364
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/PhraseTree/Phras
 eEnumInputNode.cpp,
  []
 
 
-Overfull \hbox (115.19574pt too wide) in paragraph at lines 1361--1363
+Overfull \hbox (115.19574pt too wide) in paragraph at lines 1364--1366
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/PhraseTree/Phras
 eEventNode.cpp,
  []
 
 
-Overfull \hbox (112.42369pt too wide) in paragraph at lines 1363--1365
+Overfull \hbox (112.42369pt too wide) in paragraph at lines 1366--1368
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/PhraseTree/Phras
 eInputNode.cpp,
  []
 
 
-Overfull \hbox (92.40819pt too wide) in paragraph at lines 1365--1367
+Overfull \hbox (92.40819pt too wide) in paragraph at lines 1368--1370
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/PhraseTree/Phras
 eNode.cpp,
  []
 
 
-Overfull \hbox (136.06607pt too wide) in paragraph at lines 1367--1369
+Overfull \hbox (136.06607pt too wide) in paragraph at lines 1370--1372
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/PhraseTree/Phras
 eStringInputNode.cpp,
  []
 
 
-Overfull \hbox (59.97273pt too wide) in paragraph at lines 1369--1371
+Overfull \hbox (59.97273pt too wide) in paragraph at lines 1372--1374
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/PhraseTree/Utils
 .cpp,
  []
 
 
-Overfull \hbox (57.47084pt too wide) in paragraph at lines 1371--1373
+Overfull \hbox (57.47084pt too wide) in paragraph at lines 1374--1376
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/PhraseTreeUtils.
 cpp,
  []
 
 
-Overfull \hbox (109.9398pt too wide) in paragraph at lines 1373--1375
+Overfull \hbox (109.9398pt too wide) in paragraph at lines 1376--1378
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/SocketCommunicat
 ionServer.cpp,
  []
 
 
-Overfull \hbox (61.3857pt too wide) in paragraph at lines 1375--1377
+Overfull \hbox (61.3857pt too wide) in paragraph at lines 1378--1380
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Private/UBAudioCapture.c
 pp,
  []
 
 
-Overfull \hbox (38.97618pt too wide) in paragraph at lines 1377--1379
+Overfull \hbox (38.97618pt too wide) in paragraph at lines 1380--1382
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/AudioManager.h,
  []
 
 
-Overfull \hbox (103.20818pt too wide) in paragraph at lines 1379--1381
+Overfull \hbox (103.20818pt too wide) in paragraph at lines 1382--1384
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/OpenAccessibility
 ComLogging.h,
  []
 
 
-Overfull \hbox (114.611pt too wide) in paragraph at lines 1381--1383
+Overfull \hbox (114.611pt too wide) in paragraph at lines 1384--1386
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/OpenAccessibility
 Communication.h,
  []
 
 
-Overfull \hbox (26.88054pt too wide) in paragraph at lines 1383--1385
+Overfull \hbox (26.88054pt too wide) in paragraph at lines 1386--1388
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree.h,
  []
 
 
-Overfull \hbox (154.70502pt too wide) in paragraph at lines 1385--1387
+Overfull \hbox (154.70502pt too wide) in paragraph at lines 1388--1390
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Contai
 ners/ContextMenuObject.h,
  []
 
 
-Overfull \hbox (132.28639pt too wide) in paragraph at lines 1387--1389
+Overfull \hbox (132.28639pt too wide) in paragraph at lines 1390--1392
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Contai
 ners/ContextObject.h,
  []
 
 
-Overfull \hbox (161.44563pt too wide) in paragraph at lines 1389--1391
+Overfull \hbox (161.44563pt too wide) in paragraph at lines 1392--1394
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Contai
 ners/Input/InputContainers.h,
  []
 
 
-Overfull \hbox (171.12955pt too wide) in paragraph at lines 1391--1393
+Overfull \hbox (171.12955pt too wide) in paragraph at lines 1394--1396
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Contai
 ners/Input/UParseEnumInput.h,
  []
 
 
-Overfull \hbox (147.71194pt too wide) in paragraph at lines 1393--1395
+Overfull \hbox (147.71194pt too wide) in paragraph at lines 1396--1398
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Contai
 ners/Input/UParseInput.h,
  []
 
 
-Overfull \hbox (157.71964pt too wide) in paragraph at lines 1395--1397
+Overfull \hbox (157.71964pt too wide) in paragraph at lines 1398--1400
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Contai
 ners/Input/UParseIntInput.h,
  []
 
 
-Overfull \hbox (171.35432pt too wide) in paragraph at lines 1397--1399
+Overfull \hbox (171.35432pt too wide) in paragraph at lines 1400--1402
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Contai
 ners/Input/UParseStringInput.h,
  []
 
 
-Overfull \hbox (127.68767pt too wide) in paragraph at lines 1399--1401
+Overfull \hbox (127.68767pt too wide) in paragraph at lines 1402--1404
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Contai
 ners/ParseRecord.h,
  []
 
 
-Overfull \hbox (124.18668pt too wide) in paragraph at lines 1401--1403
+Overfull \hbox (124.18668pt too wide) in paragraph at lines 1404--1406
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Contai
 ners/ParseResult.h,
  []
 
 
-Overfull \hbox (112.55893pt too wide) in paragraph at lines 1403--1405
+Overfull \hbox (112.55893pt too wide) in paragraph at lines 1406--1408
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/IPhras
 eContextNode.h,
  []
 
 
-Overfull \hbox (132.47566pt too wide) in paragraph at lines 1405--1407
+Overfull \hbox (132.47566pt too wide) in paragraph at lines 1408--1410
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Phrase
 ContextMenuNode.h,
  []
 
 
-Overfull \hbox (110.05704pt too wide) in paragraph at lines 1407--1409
+Overfull \hbox (110.05704pt too wide) in paragraph at lines 1410--1412
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Phrase
 ContextNode.h,
  []
 
 
-Overfull \hbox (141.8353pt too wide) in paragraph at lines 1409--1411
+Overfull \hbox (141.8353pt too wide) in paragraph at lines 1412--1414
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Phrase
 DirectionalInputNode.h,
  []
 
 
-Overfull \hbox (122.74669pt too wide) in paragraph at lines 1411--1413
+Overfull \hbox (122.74669pt too wide) in paragraph at lines 1414--1416
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Phrase
 EnumInputNode.h,
  []
 
 
-Overfull \hbox (102.10114pt too wide) in paragraph at lines 1413--1415
+Overfull \hbox (102.10114pt too wide) in paragraph at lines 1416--1418
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Phrase
 EventNode.h,
  []
 
 
-Overfull \hbox (99.32909pt too wide) in paragraph at lines 1415--1417
+Overfull \hbox (99.32909pt too wide) in paragraph at lines 1418--1420
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Phrase
 InputNode.h,
  []
 
 
-Overfull \hbox (79.31358pt too wide) in paragraph at lines 1417--1419
+Overfull \hbox (79.31358pt too wide) in paragraph at lines 1420--1422
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Phrase
 Node.h,
  []
 
 
-Overfull \hbox (122.97147pt too wide) in paragraph at lines 1419--1421
+Overfull \hbox (122.97147pt too wide) in paragraph at lines 1422--1424
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Phrase
 StringInputNode.h,
  []
 
 
-Overfull \hbox (136.66042pt too wide) in paragraph at lines 1421--1423
+Overfull \hbox (136.66042pt too wide) in paragraph at lines 1424--1426
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Phrase
 TreeFunctionLibrary.h,
  []
 
 
-Overfull \hbox (46.87813pt too wide) in paragraph at lines 1423--1425
+Overfull \hbox (46.87813pt too wide) in paragraph at lines 1426--1428
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTree/Utils.
 h,
  []
 
 
-Overfull \hbox (44.37624pt too wide) in paragraph at lines 1425--1427
+Overfull \hbox (44.37624pt too wide) in paragraph at lines 1428--1430
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/PhraseTreeUtils.h
 ,
  []
 
 
-Overfull \hbox (96.8452pt too wide) in paragraph at lines 1427--1429
+Overfull \hbox (96.8452pt too wide) in paragraph at lines 1430--1432
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/SocketCommunicati
 onServer.h,
  []
 
-
-Overfull \hbox (48.29109pt too wide) in paragraph at lines 1429--1431
+[478]
+Overfull \hbox (48.29109pt too wide) in paragraph at lines 1432--1434
 []\T1/phv/m/n/10 Source/OpenAccessibilityCommunication/Public/UBAudioCapture.h,
 
  []
 
-[468] [469]
-Overfull \hbox (33.77461pt too wide) in paragraph at lines 1566--1568
+[479]
+Overfull \hbox (33.77461pt too wide) in paragraph at lines 1582--1584
 []\T1/phv/m/n/10 UAccessibilityGraphEditorContext::FTreeViewTickRequirements,
  []
 
-[470]
-Overfull \hbox (20.87082pt too wide) in paragraph at lines 1766--1768
+[480]
+Overfull \hbox (20.87082pt too wide) in paragraph at lines 1786--1788
 []| \T1/phv/m/n/10 Ope-nAc-ces-si-bil-i-tyPy.WhisperInterface.WhisperInterface,
 
  []
 
-[471]) (./refman.aux)
+[481] [482
+
+]) (./refman.aux)
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: DD2E5311F06DCBED71C728B31DCE13B6;231086.
+(rerunfilecheck)             Checksum: 9F96FE6522F09B925BDBE4CE5914C549;234041.
 
  ) 
 Here is how much of TeX's memory you used:
- 35059 strings out of 478238
- 914044 string characters out of 5850422
- 958179 words of memory out of 5000000
- 38434 multiletter control sequences out of 15000+600000
+ 35392 strings out of 478238
+ 928869 string characters out of 5850421
+ 961675 words of memory out of 5000000
+ 38475 multiletter control sequences out of 15000+600000
  534028 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,16n,117p,879b,1074s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,16n,117p,879b,1086s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{classOpenAccessibilityPy_1_1Audio_1_1AudioResampler
 _aedd3dabf73b9007f68bdf6ecb0f0354f} has been referenced but does not exist, rep
@@ -3297,10 +3316,10 @@ xmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/texmf-dist/fonts/type1
 /urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a
 c.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/te
 xmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (499 pages, 1807837 bytes).
+Output written on refman.pdf (510 pages, 1844566 bytes).
 PDF statistics:
- 30344 PDF objects out of 31911 (max. 8388607)
- 29428 compressed objects within 295 object streams
- 14207 named destinations out of 15390 (max. 500000)
- 8272 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 30885 PDF objects out of 31911 (max. 8388607)
+ 29947 compressed objects within 300 object streams
+ 14499 named destinations out of 15390 (max. 500000)
+ 8383 words of extra memory for PDF output out of 10000 (max. 10000000)
 

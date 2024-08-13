@@ -4,16 +4,16 @@
     \subitem {OpenAccessibilityPy.Audio.AudioResampler}, \hyperpage{9}
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{12}
-    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{183}
+    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{185}
     \subitem {OpenAccessibilityPy.WhisperInterface.WhisperInterface}, 
-		\hyperpage{308}
+		\hyperpage{314}
   \item {\_\_init\_\_}
     \subitem {OpenAccessibilityPy.Audio.AudioResampler}, \hyperpage{9}
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{12}
-    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{182}
+    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{184}
     \subitem {OpenAccessibilityPy.WhisperInterface.WhisperInterface}, 
-		\hyperpage{308}
+		\hyperpage{314}
   \item {$\sim$FAccessibilityNodeFactory}
     \subitem {FAccessibilityNodeFactory}, \hyperpage{21}
   \item {$\sim$FAssetAccessibilityRegistry}
@@ -23,101 +23,101 @@
   \item {$\sim$FIndexer}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{50}
   \item {$\sim$FParseRecord}
-    \subitem {FParseRecord}, \hyperpage{74}
+    \subitem {FParseRecord}, \hyperpage{76}
   \item {$\sim$FPhraseContextMenuNode}
     \subitem {FPhraseContextMenuNode$<$ ContextMenuType $>$}, 
-		\hyperpage{91}
+		\hyperpage{93}
   \item {$\sim$FPhraseContextNode}
-    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{97}
+    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{99}
   \item {$\sim$FPhraseEnumInputNode}
-    \subitem {FPhraseEnumInputNode$<$ TEnum $>$}, \hyperpage{104}
+    \subitem {FPhraseEnumInputNode$<$ TEnum $>$}, \hyperpage{106}
   \item {$\sim$FPhraseEventNode}
-    \subitem {FPhraseEventNode}, \hyperpage{107}
+    \subitem {FPhraseEventNode}, \hyperpage{109}
   \item {$\sim$FPhraseInputNode}
-    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{112}
+    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{114}
   \item {$\sim$FPhraseNode}
-    \subitem {FPhraseNode}, \hyperpage{118}
+    \subitem {FPhraseNode}, \hyperpage{120}
   \item {$\sim$FPhraseStringInputNode}
-    \subitem {FPhraseStringInputNode}, \hyperpage{132}
+    \subitem {FPhraseStringInputNode}, \hyperpage{134}
   \item {$\sim$FPhraseTree}
-    \subitem {FPhraseTree}, \hyperpage{135}
+    \subitem {FPhraseTree}, \hyperpage{137}
   \item {$\sim$FPhraseTreeBranchBind}
-    \subitem {FPhraseTreeBranchBind}, \hyperpage{140}
+    \subitem {FPhraseTreeBranchBind}, \hyperpage{142}
   \item {$\sim$FPhraseTreeContextManager}
-    \subitem {FPhraseTreeContextManager}, \hyperpage{142}
+    \subitem {FPhraseTreeContextManager}, \hyperpage{144}
   \item {$\sim$FSocketCommunicationServer}
-    \subitem {FSocketCommunicationServer}, \hyperpage{147}
+    \subitem {FSocketCommunicationServer}, \hyperpage{149}
   \item {$\sim$FTranscriptionVisualizer}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{164}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{166}
   \item {$\sim$OAEditorAccessibilityManager}
-    \subitem {OAEditorAccessibilityManager}, \hyperpage{177}
+    \subitem {OAEditorAccessibilityManager}, \hyperpage{179}
   \item {$\sim$SAccessibilityTranscriptionVis}
-    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{187}
+    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{189}
   \item {$\sim$SContentIndexer}
-    \subitem {SContentIndexer}, \hyperpage{191}
+    \subitem {SContentIndexer}, \hyperpage{193}
   \item {$\sim$SIndexer}
-    \subitem {SIndexer}, \hyperpage{198}
+    \subitem {SIndexer}, \hyperpage{200}
   \item {$\sim$TGraphAccessibilityNodeFactory}
-    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{202}
+    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{204}
   \item {$\sim$UAccessibilityAddNodeContextMenu}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{209}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{211}
   \item {$\sim$UAccessibilityGraphLocomotionContext}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{235}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{237}
   \item {$\sim$UAccessibilityWindowToolbar}
-    \subitem {UAccessibilityWindowToolbar}, \hyperpage{245}
+    \subitem {UAccessibilityWindowToolbar}, \hyperpage{247}
   \item {$\sim$UAudioManager}
-    \subitem {UAudioManager}, \hyperpage{248}
+    \subitem {UAudioManager}, \hyperpage{250}
   \item {$\sim$UBAudioCapture}
-    \subitem {UBAudioCapture}, \hyperpage{253}
+    \subitem {UBAudioCapture}, \hyperpage{255}
   \item {$\sim$ULocalizedInputLibrary}
-    \subitem {ULocalizedInputLibrary}, \hyperpage{255}
+    \subitem {ULocalizedInputLibrary}, \hyperpage{257}
   \item {$\sim$UNodeInteractionLibrary}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{261}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{263}
   \item {$\sim$UParseEnumInput}
-    \subitem {UParseEnumInput}, \hyperpage{280}
+    \subitem {UParseEnumInput}, \hyperpage{282}
   \item {$\sim$UParseInput}
-    \subitem {UParseInput}, \hyperpage{282}
+    \subitem {UParseInput}, \hyperpage{284}
   \item {$\sim$UParseIntInput}
-    \subitem {UParseIntInput}, \hyperpage{283}
+    \subitem {UParseIntInput}, \hyperpage{285}
   \item {$\sim$UParseStringInput}
-    \subitem {UParseStringInput}, \hyperpage{285}
+    \subitem {UParseStringInput}, \hyperpage{287}
   \item {$\sim$UPhraseTreeContextMenuObject}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{288}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{290}
   \item {$\sim$UPhraseTreeContextObject}
-    \subitem {UPhraseTreeContextObject}, \hyperpage{294}
+    \subitem {UPhraseTreeContextObject}, \hyperpage{296}
   \item {$\sim$UPhraseTreeUtils}
-    \subitem {UPhraseTreeUtils}, \hyperpage{297}
+    \subitem {UPhraseTreeUtils}, \hyperpage{299}
   \item {$\sim$UViewInteractionLibrary}
-    \subitem {UViewInteractionLibrary}, \hyperpage{300}
+    \subitem {UViewInteractionLibrary}, \hyperpage{302}
   \item {$\sim$UWindowInteractionLibrary}
-    \subitem {UWindowInteractionLibrary}, \hyperpage{305}
+    \subitem {UWindowInteractionLibrary}, \hyperpage{307}
 
   \indexspace
 
   \item {AccessibilityNodeFactory}
     \subitem {FOpenAccessibilityModule}, \hyperpage{69}
   \item {AccessibilityRegistry}
-    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{205}
+    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{207}
   \item {AddNode}
     \subitem {FGraphIndexer}, \hyperpage{36, 37}
   \item {AddPhraseInput}
-    \subitem {FParseRecord}, \hyperpage{74}
+    \subitem {FParseRecord}, \hyperpage{76}
   \item {AddPhraseString}
-    \subitem {FParseRecord}, \hyperpage{74}
+    \subitem {FParseRecord}, \hyperpage{77}
   \item {AddValue}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{51}
   \item {AppendFilterText}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{209}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{222}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{211}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{224}
   \item {AppendScrollDistance}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{209}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{223}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{211}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{225}
   \item {ApplyAccessibilityWidget}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{210}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{212}
   \item {AssetAccessibilityRegistry}
     \subitem {FOpenAccessibilityModule}, \hyperpage{69}
   \item {audio\_resampler}
-    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{185}
+    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{187}
   \item {AudioManager}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{66}
   \item {AvailableIndexes}
@@ -129,106 +129,106 @@
 
   \item {beam\_size}
     \subitem {OpenAccessibilityPy.WhisperInterface.WhisperInterface}, 
-		\hyperpage{310}
+		\hyperpage{316}
   \item {bHasLeafChild}
-    \subitem {FPhraseNode}, \hyperpage{126}
+    \subitem {FPhraseNode}, \hyperpage{128}
   \item {BindBranch}
-    \subitem {FPhraseTree}, \hyperpage{135}
+    \subitem {FPhraseTree}, \hyperpage{137}
   \item {BindBranches}
-    \subitem {FPhraseTree}, \hyperpage{136}
-    \subitem {ULocalizedInputLibrary}, \hyperpage{255}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{261}
-    \subitem {UPhraseTreeFunctionLibrary}, \hyperpage{296}
-    \subitem {UViewInteractionLibrary}, \hyperpage{301}
-    \subitem {UWindowInteractionLibrary}, \hyperpage{305}
+    \subitem {FPhraseTree}, \hyperpage{138}
+    \subitem {ULocalizedInputLibrary}, \hyperpage{257}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{263}
+    \subitem {UPhraseTreeFunctionLibrary}, \hyperpage{298}
+    \subitem {UViewInteractionLibrary}, \hyperpage{303}
+    \subitem {UWindowInteractionLibrary}, \hyperpage{307}
   \item {BindChildNode}
-    \subitem {FPhraseNode}, \hyperpage{119}
+    \subitem {FPhraseNode}, \hyperpage{121}
   \item {BindChildNodeForce}
-    \subitem {FPhraseNode}, \hyperpage{119}
+    \subitem {FPhraseNode}, \hyperpage{121}
   \item {BindChildrenNodes}
-    \subitem {FPhraseNode}, \hyperpage{120}
+    \subitem {FPhraseNode}, \hyperpage{122}
   \item {BindChildrenNodesForce}
-    \subitem {FPhraseNode}, \hyperpage{120}
+    \subitem {FPhraseNode}, \hyperpage{122}
   \item {BindFocusChangedEvent}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{235}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{237}
   \item {BindMenuDismissed}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{288}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{290}
   \item {BindTickDelegate}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{289}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{291}
   \item {bIsActive}
-    \subitem {UPhraseTreeContextObject}, \hyperpage{295}
+    \subitem {UPhraseTreeContextObject}, \hyperpage{297}
   \item {BlueprintCompile}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{265}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{267}
   \item {BotRight}
-    \subitem {FPanelViewPosition}, \hyperpage{71}
+    \subitem {FPanelViewPosition}, \hyperpage{73}
   \item {BottomRight}
     \subitem {FGraphLocomotionChunk}, \hyperpage{48}
   \item {BoundPhrase}
-    \subitem {FPhraseNode}, \hyperpage{126}
+    \subitem {FPhraseNode}, \hyperpage{128}
   \item {BranchRoot}
-    \subitem {FPhraseTreeBranchBind}, \hyperpage{140}
+    \subitem {FPhraseTreeBranchBind}, \hyperpage{142}
 
   \indexspace
 
   \item {CalculateVisualChunksBounds}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{235}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{237}
   \item {CanBindChild}
-    \subitem {FPhraseNode}, \hyperpage{121}
+    \subitem {FPhraseNode}, \hyperpage{123}
   \item {CancelLocomotion}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{236}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{238}
   \item {ChangeChunkVis}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{236}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{238}
   \item {CheckBoxes}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{232}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{234}
   \item {ChildNodes}
-    \subitem {FPhraseNode}, \hyperpage{126}
+    \subitem {FPhraseNode}, \hyperpage{128}
   \item {ChunkArray}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{242}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{244}
   \item {ChunkIndexer}
     \subitem {FGraphLocomotionChunk}, \hyperpage{48}
   \item {ChunkSize}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{242}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{244}
   \item {ChunkVisWidget}
     \subitem {FGraphLocomotionChunk}, \hyperpage{48}
   \item {ChunkWidget}
     \subitem {FGraphLocomotionChunk}, \hyperpage{49}
   \item {Close}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{210}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{223}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{236}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{289}
-    \subitem {UPhraseTreeContextObject}, \hyperpage{294}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{212}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{225}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{238}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{291}
+    \subitem {UPhraseTreeContextObject}, \hyperpage{296}
   \item {CloseActiveWindow}
-    \subitem {UWindowInteractionLibrary}, \hyperpage{306}
+    \subitem {UWindowInteractionLibrary}, \hyperpage{308}
   \item {com\_server}
-    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{185}
+    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{187}
   \item {ConfirmSelection}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{237}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{239}
   \item {Construct}
-    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{187}
-    \subitem {SContentIndexer}, \hyperpage{191}
-    \subitem {SIndexer}, \hyperpage{199}
+    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{189}
+    \subitem {SContentIndexer}, \hyperpage{193}
+    \subitem {SIndexer}, \hyperpage{201}
   \item {ConstructBottomIndexer}
-    \subitem {SContentIndexer}, \hyperpage{191}
+    \subitem {SContentIndexer}, \hyperpage{193}
   \item {ConstructContentContainer}
-    \subitem {SContentIndexer}, \hyperpage{192}
+    \subitem {SContentIndexer}, \hyperpage{194}
   \item {ConstructContextChildren}
     \subitem {FPhraseContextMenuNode$<$ ContextMenuType $>$}, 
-		\hyperpage{91}
-    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{97}
-    \subitem {IPhraseContextNodeBase}, \hyperpage{171}
+		\hyperpage{93}
+    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{99}
+    \subitem {IPhraseContextNodeBase}, \hyperpage{173}
   \item {ConstructIndexContainer}
-    \subitem {SContentIndexer}, \hyperpage{193}
-  \item {ConstructIndexText}
-    \subitem {SContentIndexer}, \hyperpage{193}
-  \item {ConstructLeftIndexer}
-    \subitem {SContentIndexer}, \hyperpage{193}
-  \item {ConstructRightIndexer}
-    \subitem {SContentIndexer}, \hyperpage{194}
-  \item {ConstructTopIndexer}
     \subitem {SContentIndexer}, \hyperpage{195}
+  \item {ConstructIndexText}
+    \subitem {SContentIndexer}, \hyperpage{195}
+  \item {ConstructLeftIndexer}
+    \subitem {SContentIndexer}, \hyperpage{195}
+  \item {ConstructRightIndexer}
+    \subitem {SContentIndexer}, \hyperpage{196}
+  \item {ConstructTopIndexer}
+    \subitem {SContentIndexer}, \hyperpage{197}
   \item {ConstructVisualizer}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{164}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{166}
   \item {ContainsKey}
     \subitem {FGraphIndexer}, \hyperpage{37}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{52}
@@ -236,62 +236,60 @@
     \subitem {FGraphIndexer}, \hyperpage{37, 38}
   \item {ContainsValue}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{52}
-  \item {Content/Python/init\_unreal.py}, \hyperpage{311}
-  \item {Content/Python/old\_init\_unreal.py}, \hyperpage{312}
+  \item {Content/Python/init\_unreal.py}, \hyperpage{317}
   \item {Content/Python/OpenAccessibilityPy/\_\_init\_\_.py}, 
-		\hyperpage{313}
-  \item {Content/Python/OpenAccessibilityPy/\_\_main\_\_.py}, 
-		\hyperpage{315}
-  \item {Content/Python/OpenAccessibilityPy/Audio.py}, \hyperpage{316}
-  \item {Content/Python/OpenAccessibilityPy/CommunicationServer.py}, 
 		\hyperpage{318}
+  \item {Content/Python/OpenAccessibilityPy/\_\_main\_\_.py}, 
+		\hyperpage{320}
+  \item {Content/Python/OpenAccessibilityPy/Audio.py}, \hyperpage{322}
+  \item {Content/Python/OpenAccessibilityPy/CommunicationServer.py}, 
+		\hyperpage{324}
   \item {Content/Python/OpenAccessibilityPy/LibUtils.py}, 
-		\hyperpage{322}
+		\hyperpage{327}
   \item {Content/Python/OpenAccessibilityPy/Logging.py}, 
-		\hyperpage{322}
+		\hyperpage{327}
   \item {Content/Python/OpenAccessibilityPy/WhisperInterface.py}, 
-		\hyperpage{323}
-  \item {Content/Python/TestWhisper.py}, \hyperpage{324}
+		\hyperpage{328}
   \item {Context}
-    \subitem {FSocketCommunicationServer}, \hyperpage{161}
+    \subitem {FSocketCommunicationServer}, \hyperpage{163}
   \item {context}
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{20}
   \item {ContextAwarenessCheckBox}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{219}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{221}
   \item {ContextMenuScalar}
     \subitem {FPhraseContextMenuNode$<$ ContextMenuType $>$}, 
-		\hyperpage{94}
+		\hyperpage{97}
   \item {ContextObjectStack}
-    \subitem {FParseRecord}, \hyperpage{83}
+    \subitem {FParseRecord}, \hyperpage{85}
   \item {ContextRoot}
-    \subitem {UPhraseTreeContextObject}, \hyperpage{295}
+    \subitem {UPhraseTreeContextObject}, \hyperpage{297}
   \item {CreateAccessibilityWrapper}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{223}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{225}
   \item {CreateContextObject}
     \subitem {FPhraseContextMenuNode$<$ ContextMenuType $>$}, 
-		\hyperpage{92}
-    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{97}
-    \subitem {IPhraseContextNodeBase}, \hyperpage{171}
+		\hyperpage{94}
+    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{99}
+    \subitem {IPhraseContextNodeBase}, \hyperpage{173}
   \item {CreateNode}
     \subitem {FAccessibilityNodeFactory}, \hyperpage{22}
   \item {CreateNodeWidget}
-    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{203}
+    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{205}
   \item {CreatePinWidget}
-    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{204}
+    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{206}
   \item {CreateVisualGrid}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{237}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{239}
   \item {CurrentViewPosition}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{242}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{244}
 
   \indexspace
 
   \item {DeleteNode}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{266}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{268}
   \item {DeserializeJSON}
-    \subitem {FSocketCommunicationServer}, \hyperpage{148}
+    \subitem {FSocketCommunicationServer}, \hyperpage{150}
   \item {DoesItemsRequireRefresh}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{211}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{213}
   \item {DumpTick}
     \subitem {FOpenAccessibilityAnalyticsModule}, \hyperpage{60}
 
@@ -300,11 +298,11 @@
   \item {Empty}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{53}
   \item {EnumType}
-    \subitem {UParseEnumInput}, \hyperpage{281}
+    \subitem {UParseEnumInput}, \hyperpage{283}
   \item {ERROR}
-    \subitem {OpenAccessibilityPy.Logging.LogLevel}, \hyperpage{174}
+    \subitem {OpenAccessibilityPy.Logging.LogLevel}, \hyperpage{176}
   \item {EventOccured}
-    \subitem {FSocketCommunicationServer}, \hyperpage{148}
+    \subitem {FSocketCommunicationServer}, \hyperpage{150}
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{13}
 
@@ -365,8 +363,8 @@
     \subitem {SetVisColor}, \hyperpage{48}
     \subitem {TopLeft}, \hyperpage{49}
   \item {FilterTextBox}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{219}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{233}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{221}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{235}
   \item {FIndexer}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{50}
   \item {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{49}
@@ -387,11 +385,11 @@
     \subitem {RemoveValue}, \hyperpage{58}
     \subitem {Reset}, \hyperpage{59}
   \item {FindGraphActionMenu}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{224}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{226}
   \item {FindStaticComponents}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{224}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{226}
   \item {FindTreeView}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{225}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{227}
   \item {FOpenAccessibilityAnalyticsModule}, \hyperpage{60}
     \subitem {DumpTick}, \hyperpage{60}
     \subitem {Get}, \hyperpage{61}
@@ -419,204 +417,207 @@
     \subitem {ShutdownModule}, \hyperpage{68}
     \subitem {StartupModule}, \hyperpage{68}
     \subitem {SupportsDynamicReloading}, \hyperpage{69}
-  \item {FPanelViewPosition}, \hyperpage{70}
-    \subitem {BotRight}, \hyperpage{71}
-    \subitem {FPanelViewPosition}, \hyperpage{70}
-    \subitem {operator!=}, \hyperpage{71}
-    \subitem {TopLeft}, \hyperpage{71}
-  \item {FParseRecord}, \hyperpage{72}
-    \subitem {$\sim$FParseRecord}, \hyperpage{74}
-    \subitem {AddPhraseInput}, \hyperpage{74}
-    \subitem {AddPhraseString}, \hyperpage{74}
-    \subitem {ContextObjectStack}, \hyperpage{83}
-    \subitem {FParseRecord}, \hyperpage{73}
-    \subitem {FPhraseTree}, \hyperpage{83}
-    \subitem {GetContextObj}, \hyperpage{75, 76}
-    \subitem {GetContextStack}, \hyperpage{76}
-    \subitem {GetPhraseInput}, \hyperpage{77, 78}
-    \subitem {GetPhraseInputs}, \hyperpage{79}
-    \subitem {GetPhraseString}, \hyperpage{80}
-    \subitem {HasContextObj}, \hyperpage{80}
-    \subitem {PhraseInputs}, \hyperpage{83}
-    \subitem {PhraseRecord}, \hyperpage{83}
-    \subitem {PopContextObj}, \hyperpage{81}
-    \subitem {PushContextObj}, \hyperpage{82}
-    \subitem {RemoveContextObj}, \hyperpage{82}
-    \subitem {RemovePhraseInput}, \hyperpage{82}
-  \item {FParseResult}, \hyperpage{84}
-    \subitem {FParseResult}, \hyperpage{84, 85}
-    \subitem {ReachedNode}, \hyperpage{85}
-    \subitem {Result}, \hyperpage{85}
-  \item {FPhrase2DDirectionalInputNode}, \hyperpage{86}
-    \subitem {FPhrase2DDirectionalInputNode}, \hyperpage{86, 87}
+  \item {FPanelViewPosition}, \hyperpage{72}
+    \subitem {BotRight}, \hyperpage{73}
+    \subitem {FPanelViewPosition}, \hyperpage{72, 73}
+    \subitem {operator!=}, \hyperpage{73}
+    \subitem {TopLeft}, \hyperpage{74}
+  \item {FParseRecord}, \hyperpage{74}
+    \subitem {$\sim$FParseRecord}, \hyperpage{76}
+    \subitem {AddPhraseInput}, \hyperpage{76}
+    \subitem {AddPhraseString}, \hyperpage{77}
+    \subitem {ContextObjectStack}, \hyperpage{85}
+    \subitem {FParseRecord}, \hyperpage{75, 76}
+    \subitem {FPhraseTree}, \hyperpage{85}
+    \subitem {GetContextObj}, \hyperpage{77, 78}
+    \subitem {GetContextStack}, \hyperpage{79}
+    \subitem {GetPhraseInput}, \hyperpage{79--81}
+    \subitem {GetPhraseInputs}, \hyperpage{81, 82}
+    \subitem {GetPhraseString}, \hyperpage{82}
+    \subitem {HasContextObj}, \hyperpage{83}
+    \subitem {PhraseInputs}, \hyperpage{85}
+    \subitem {PhraseRecord}, \hyperpage{86}
+    \subitem {PopContextObj}, \hyperpage{83, 84}
+    \subitem {PushContextObj}, \hyperpage{84}
+    \subitem {RemoveContextObj}, \hyperpage{84}
+    \subitem {RemovePhraseInput}, \hyperpage{85}
+  \item {FParseResult}, \hyperpage{86}
+    \subitem {FParseResult}, \hyperpage{87}
+    \subitem {ReachedNode}, \hyperpage{87}
+    \subitem {Result}, \hyperpage{87}
+  \item {FPhrase2DDirectionalInputNode}, \hyperpage{88}
+    \subitem {FPhrase2DDirectionalInputNode}, \hyperpage{88, 89}
   \item {FPhraseContextMenuNode}
     \subitem {FPhraseContextMenuNode$<$ ContextMenuType $>$}, 
-		\hyperpage{89, 90}
-  \item {FPhraseContextMenuNode$<$ ContextMenuType $>$}, \hyperpage{88}
-    \subitem {$\sim$FPhraseContextMenuNode}, \hyperpage{91}
-    \subitem {ConstructContextChildren}, \hyperpage{91}
-    \subitem {ContextMenuScalar}, \hyperpage{94}
-    \subitem {CreateContextObject}, \hyperpage{92}
-    \subitem {FPhraseContextMenuNode}, \hyperpage{89, 90}
-    \subitem {HasContextObject}, \hyperpage{92}
-    \subitem {OnGetMenu}, \hyperpage{95}
-    \subitem {ParsePhrase}, \hyperpage{93}
-    \subitem {ParsePhraseAsContext}, \hyperpage{94}
+		\hyperpage{91--93}
+  \item {FPhraseContextMenuNode$<$ ContextMenuType $>$}, \hyperpage{90}
+    \subitem {$\sim$FPhraseContextMenuNode}, \hyperpage{93}
+    \subitem {ConstructContextChildren}, \hyperpage{93}
+    \subitem {ContextMenuScalar}, \hyperpage{97}
+    \subitem {CreateContextObject}, \hyperpage{94}
+    \subitem {FPhraseContextMenuNode}, \hyperpage{91--93}
+    \subitem {HasContextObject}, \hyperpage{94}
+    \subitem {OnGetMenu}, \hyperpage{97}
+    \subitem {ParsePhrase}, \hyperpage{95}
+    \subitem {ParsePhraseAsContext}, \hyperpage{96}
   \item {FPhraseContextNode}
-    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{96}
-  \item {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{95}
-    \subitem {$\sim$FPhraseContextNode}, \hyperpage{97}
-    \subitem {ConstructContextChildren}, \hyperpage{97}
-    \subitem {CreateContextObject}, \hyperpage{97}
-    \subitem {FPhraseContextNode}, \hyperpage{96}
-    \subitem {HasContextObject}, \hyperpage{98}
-    \subitem {ParsePhrase}, \hyperpage{98}
-    \subitem {ParsePhraseAsContext}, \hyperpage{99}
-  \item {FPhraseDirectionalInputNode}, \hyperpage{100}
-    \subitem {FPhraseDirectionalInputNode}, \hyperpage{101}
+    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{98}
+  \item {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{97}
+    \subitem {$\sim$FPhraseContextNode}, \hyperpage{99}
+    \subitem {ConstructContextChildren}, \hyperpage{99}
+    \subitem {CreateContextObject}, \hyperpage{99}
+    \subitem {FPhraseContextNode}, \hyperpage{98}
+    \subitem {HasContextObject}, \hyperpage{100}
+    \subitem {ParsePhrase}, \hyperpage{100}
+    \subitem {ParsePhraseAsContext}, \hyperpage{101}
+  \item {FPhraseDirectionalInputNode}, \hyperpage{102}
+    \subitem {FPhraseDirectionalInputNode}, \hyperpage{103}
   \item {FPhraseEnumInputNode}
-    \subitem {FPhraseEnumInputNode$<$ TEnum $>$}, \hyperpage{103, 104}
-  \item {FPhraseEnumInputNode$<$ TEnum $>$}, \hyperpage{102}
-    \subitem {$\sim$FPhraseEnumInputNode}, \hyperpage{104}
-    \subitem {FPhraseEnumInputNode}, \hyperpage{103, 104}
-    \subitem {MeetsInputRequirements}, \hyperpage{104}
-    \subitem {RecordInput}, \hyperpage{105}
-  \item {FPhraseEventNode}, \hyperpage{106}
-    \subitem {$\sim$FPhraseEventNode}, \hyperpage{107}
-    \subitem {FPhraseEventNode}, \hyperpage{106, 107}
-    \subitem {IsLeafNode}, \hyperpage{107}
-    \subitem {ParsePhrase}, \hyperpage{108}
-    \subitem {RequiresPhrase}, \hyperpage{108, 109}
+    \subitem {FPhraseEnumInputNode$<$ TEnum $>$}, \hyperpage{105, 106}
+  \item {FPhraseEnumInputNode$<$ TEnum $>$}, \hyperpage{104}
+    \subitem {$\sim$FPhraseEnumInputNode}, \hyperpage{106}
+    \subitem {FPhraseEnumInputNode}, \hyperpage{105, 106}
+    \subitem {MeetsInputRequirements}, \hyperpage{106}
+    \subitem {RecordInput}, \hyperpage{107}
+  \item {FPhraseEventNode}, \hyperpage{108}
+    \subitem {$\sim$FPhraseEventNode}, \hyperpage{109}
+    \subitem {FPhraseEventNode}, \hyperpage{108, 109}
+    \subitem {IsLeafNode}, \hyperpage{109}
+    \subitem {ParsePhrase}, \hyperpage{110}
+    \subitem {RequiresPhrase}, \hyperpage{110, 111}
   \item {FPhraseInputNode}
-    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{111, 112}
-  \item {FPhraseInputNode$<$ InputType $>$}, \hyperpage{109}
-    \subitem {$\sim$FPhraseInputNode}, \hyperpage{112}
-    \subitem {FPhraseInputNode}, \hyperpage{111, 112}
-    \subitem {MeetsInputRequirements}, \hyperpage{112}
-    \subitem {OnInputReceived}, \hyperpage{115}
-    \subitem {ParsePhrase}, \hyperpage{113}
-    \subitem {RecordInput}, \hyperpage{114}
-    \subitem {RequiresPhrase}, \hyperpage{114, 115}
-  \item {FPhraseNode}, \hyperpage{116}
-    \subitem {$\sim$FPhraseNode}, \hyperpage{118}
-    \subitem {bHasLeafChild}, \hyperpage{126}
-    \subitem {BindChildNode}, \hyperpage{119}
-    \subitem {BindChildNodeForce}, \hyperpage{119}
-    \subitem {BindChildrenNodes}, \hyperpage{120}
-    \subitem {BindChildrenNodesForce}, \hyperpage{120}
-    \subitem {BoundPhrase}, \hyperpage{126}
-    \subitem {CanBindChild}, \hyperpage{121}
-    \subitem {ChildNodes}, \hyperpage{126}
-    \subitem {FPhraseNode}, \hyperpage{117, 118}
-    \subitem {HasLeafChild}, \hyperpage{121}
-    \subitem {IsLeafNode}, \hyperpage{122}
-    \subitem {OnPhraseParsed}, \hyperpage{126}
-    \subitem {ParentNode}, \hyperpage{126}
-    \subitem {ParseChildren}, \hyperpage{122}
-    \subitem {ParsePhrase}, \hyperpage{123}
-    \subitem {ParsePhraseAsContext}, \hyperpage{124}
-    \subitem {ParsePhraseIfRequired}, \hyperpage{124}
-    \subitem {RequiresPhrase}, \hyperpage{124, 125}
-  \item {FPhrasePositionalInputNode}, \hyperpage{127}
-    \subitem {FPhrasePositionalInputNode}, \hyperpage{127, 128}
-  \item {FPhraseScrollInputNode}, \hyperpage{129}
-    \subitem {FPhraseScrollInputNode}, \hyperpage{129, 130}
-  \item {FPhraseStringInputNode}, \hyperpage{131}
-    \subitem {$\sim$FPhraseStringInputNode}, \hyperpage{132}
-    \subitem {FPhraseStringInputNode}, \hyperpage{131, 132}
-    \subitem {MeetsInputRequirements}, \hyperpage{133}
-    \subitem {RecordInput}, \hyperpage{133}
-  \item {FPhraseTree}, \hyperpage{134}
-    \subitem {$\sim$FPhraseTree}, \hyperpage{135}
-    \subitem {BindBranch}, \hyperpage{135}
-    \subitem {BindBranches}, \hyperpage{136}
-    \subitem {FParseRecord}, \hyperpage{83}
-    \subitem {FPhraseTree}, \hyperpage{135}
-    \subitem {FPhraseTreeContextManager}, \hyperpage{145}
-    \subitem {GetContextManager}, \hyperpage{136}
-    \subitem {ParsePhrase}, \hyperpage{136}
-    \subitem {ParseTranscription}, \hyperpage{137}
-    \subitem {Tick}, \hyperpage{139}
-  \item {FPhraseTreeBranchBind}, \hyperpage{139}
-    \subitem {$\sim$FPhraseTreeBranchBind}, \hyperpage{140}
-    \subitem {BranchRoot}, \hyperpage{140}
-    \subitem {FPhraseTreeBranchBind}, \hyperpage{140}
-    \subitem {StartNode}, \hyperpage{141}
-  \item {FPhraseTreeContextManager}, \hyperpage{141}
-    \subitem {$\sim$FPhraseTreeContextManager}, \hyperpage{142}
-    \subitem {FPhraseTree}, \hyperpage{145}
-    \subitem {FPhraseTreeContextManager}, \hyperpage{142}
-    \subitem {GetContextStack}, \hyperpage{142}
-    \subitem {HasContextObject}, \hyperpage{142}
-    \subitem {HasContextObjects}, \hyperpage{143}
-    \subitem {IsEmpty}, \hyperpage{143}
-    \subitem {PeekContextObject}, \hyperpage{143}
-    \subitem {PopContextObject}, \hyperpage{144}
-    \subitem {PushContextObject}, \hyperpage{145}
-  \item {FSocketCommunicationServer}, \hyperpage{145}
-    \subitem {$\sim$FSocketCommunicationServer}, \hyperpage{147}
-    \subitem {Context}, \hyperpage{161}
-    \subitem {DeserializeJSON}, \hyperpage{148}
-    \subitem {EventOccured}, \hyperpage{148}
-    \subitem {FSocketCommunicationServer}, \hyperpage{147}
-    \subitem {Poller}, \hyperpage{161}
-    \subitem {PollTimeout}, \hyperpage{161}
-    \subitem {RecvAddress}, \hyperpage{162}
-    \subitem {RecvArray}, \hyperpage{149}
-    \subitem {RecvJson}, \hyperpage{150}
-    \subitem {RecvMultipartWithMeta}, \hyperpage{150}
-    \subitem {RecvSocket}, \hyperpage{162}
-    \subitem {RecvString}, \hyperpage{151}
-    \subitem {RecvStringMultipart}, \hyperpage{152}
-    \subitem {RecvStringMultipartWithMeta}, \hyperpage{152}
-    \subitem {SendAddress}, \hyperpage{162}
-    \subitem {SendArrayBuffer}, \hyperpage{153, 154}
-    \subitem {SendArrayMessage}, \hyperpage{155, 156}
-    \subitem {SendArrayMessageWithMeta}, \hyperpage{157, 158}
-    \subitem {SendJsonBuffer}, \hyperpage{159}
-    \subitem {SendSocket}, \hyperpage{162}
-    \subitem {SendStringBuffer}, \hyperpage{160}
-    \subitem {SerializeJSON}, \hyperpage{161}
-  \item {FTranscriptionVisualizer}, \hyperpage{163}
-    \subitem {$\sim$FTranscriptionVisualizer}, \hyperpage{164}
-    \subitem {ConstructVisualizer}, \hyperpage{164}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{163}
-    \subitem {GetDisplayVisualizerPosition}, \hyperpage{164}
-    \subitem {GetTopScreenVisualizerPosition}, \hyperpage{165}
-    \subitem {MoveVisualizer}, \hyperpage{165}
-    \subitem {OnTranscriptionRecieved}, \hyperpage{166}
-    \subitem {RegisterTicker}, \hyperpage{166}
-    \subitem {ReparentWindow}, \hyperpage{166}
-    \subitem {Tick}, \hyperpage{167}
-    \subitem {TickDelegateHandle}, \hyperpage{168}
-    \subitem {UnregisterTicker}, \hyperpage{167}
-    \subitem {UpdateVisualizer}, \hyperpage{167}
-    \subitem {VisContent}, \hyperpage{168}
-    \subitem {VisWindow}, \hyperpage{168}
+    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{113, 114}
+  \item {FPhraseInputNode$<$ InputType $>$}, \hyperpage{111}
+    \subitem {$\sim$FPhraseInputNode}, \hyperpage{114}
+    \subitem {FPhraseInputNode}, \hyperpage{113, 114}
+    \subitem {MeetsInputRequirements}, \hyperpage{114}
+    \subitem {OnInputReceived}, \hyperpage{117}
+    \subitem {ParsePhrase}, \hyperpage{115}
+    \subitem {RecordInput}, \hyperpage{116}
+    \subitem {RequiresPhrase}, \hyperpage{116, 117}
+  \item {FPhraseNode}, \hyperpage{118}
+    \subitem {$\sim$FPhraseNode}, \hyperpage{120}
+    \subitem {bHasLeafChild}, \hyperpage{128}
+    \subitem {BindChildNode}, \hyperpage{121}
+    \subitem {BindChildNodeForce}, \hyperpage{121}
+    \subitem {BindChildrenNodes}, \hyperpage{122}
+    \subitem {BindChildrenNodesForce}, \hyperpage{122}
+    \subitem {BoundPhrase}, \hyperpage{128}
+    \subitem {CanBindChild}, \hyperpage{123}
+    \subitem {ChildNodes}, \hyperpage{128}
+    \subitem {FPhraseNode}, \hyperpage{119, 120}
+    \subitem {HasLeafChild}, \hyperpage{123}
+    \subitem {IsLeafNode}, \hyperpage{124}
+    \subitem {OnPhraseParsed}, \hyperpage{128}
+    \subitem {ParentNode}, \hyperpage{128}
+    \subitem {ParseChildren}, \hyperpage{124}
+    \subitem {ParsePhrase}, \hyperpage{125}
+    \subitem {ParsePhraseAsContext}, \hyperpage{126}
+    \subitem {ParsePhraseIfRequired}, \hyperpage{126}
+    \subitem {RequiresPhrase}, \hyperpage{126, 127}
+  \item {FPhrasePositionalInputNode}, \hyperpage{129}
+    \subitem {FPhrasePositionalInputNode}, \hyperpage{129, 130}
+  \item {FPhraseScrollInputNode}, \hyperpage{131}
+    \subitem {FPhraseScrollInputNode}, \hyperpage{131, 132}
+  \item {FPhraseStringInputNode}, \hyperpage{133}
+    \subitem {$\sim$FPhraseStringInputNode}, \hyperpage{134}
+    \subitem {FPhraseStringInputNode}, \hyperpage{133, 134}
+    \subitem {MeetsInputRequirements}, \hyperpage{135}
+    \subitem {RecordInput}, \hyperpage{135}
+  \item {FPhraseTree}, \hyperpage{136}
+    \subitem {$\sim$FPhraseTree}, \hyperpage{137}
+    \subitem {BindBranch}, \hyperpage{137}
+    \subitem {BindBranches}, \hyperpage{138}
+    \subitem {FParseRecord}, \hyperpage{85}
+    \subitem {FPhraseTree}, \hyperpage{137}
+    \subitem {FPhraseTreeContextManager}, \hyperpage{147}
+    \subitem {GetContextManager}, \hyperpage{138}
+    \subitem {ParsePhrase}, \hyperpage{138}
+    \subitem {ParseTranscription}, \hyperpage{139}
+    \subitem {Tick}, \hyperpage{141}
+  \item {FPhraseTreeBranchBind}, \hyperpage{141}
+    \subitem {$\sim$FPhraseTreeBranchBind}, \hyperpage{142}
+    \subitem {BranchRoot}, \hyperpage{142}
+    \subitem {FPhraseTreeBranchBind}, \hyperpage{142}
+    \subitem {StartNode}, \hyperpage{143}
+  \item {FPhraseTreeContextManager}, \hyperpage{143}
+    \subitem {$\sim$FPhraseTreeContextManager}, \hyperpage{144}
+    \subitem {FPhraseTree}, \hyperpage{147}
+    \subitem {FPhraseTreeContextManager}, \hyperpage{144}
+    \subitem {GetContextStack}, \hyperpage{144}
+    \subitem {HasContextObject}, \hyperpage{144}
+    \subitem {HasContextObjects}, \hyperpage{145}
+    \subitem {IsEmpty}, \hyperpage{145}
+    \subitem {PeekContextObject}, \hyperpage{145}
+    \subitem {PopContextObject}, \hyperpage{146}
+    \subitem {PushContextObject}, \hyperpage{147}
+  \item {FSocketCommunicationServer}, \hyperpage{147}
+    \subitem {$\sim$FSocketCommunicationServer}, \hyperpage{149}
+    \subitem {Context}, \hyperpage{163}
+    \subitem {DeserializeJSON}, \hyperpage{150}
+    \subitem {EventOccured}, \hyperpage{150}
+    \subitem {FSocketCommunicationServer}, \hyperpage{149}
+    \subitem {Poller}, \hyperpage{163}
+    \subitem {PollTimeout}, \hyperpage{163}
+    \subitem {RecvAddress}, \hyperpage{164}
+    \subitem {RecvArray}, \hyperpage{151}
+    \subitem {RecvJson}, \hyperpage{152}
+    \subitem {RecvMultipartWithMeta}, \hyperpage{152}
+    \subitem {RecvSocket}, \hyperpage{164}
+    \subitem {RecvString}, \hyperpage{153}
+    \subitem {RecvStringMultipart}, \hyperpage{154}
+    \subitem {RecvStringMultipartWithMeta}, \hyperpage{154}
+    \subitem {SendAddress}, \hyperpage{164}
+    \subitem {SendArrayBuffer}, \hyperpage{155, 156}
+    \subitem {SendArrayMessage}, \hyperpage{157, 158}
+    \subitem {SendArrayMessageWithMeta}, \hyperpage{159, 160}
+    \subitem {SendJsonBuffer}, \hyperpage{161}
+    \subitem {SendSocket}, \hyperpage{164}
+    \subitem {SendStringBuffer}, \hyperpage{162}
+    \subitem {SerializeJSON}, \hyperpage{163}
+  \item {FTranscriptionVisualizer}, \hyperpage{165}
+    \subitem {$\sim$FTranscriptionVisualizer}, \hyperpage{166}
+    \subitem {ConstructVisualizer}, \hyperpage{166}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{165}
+    \subitem {GetDisplayVisualizerPosition}, \hyperpage{166}
+    \subitem {GetTopScreenVisualizerPosition}, \hyperpage{167}
+    \subitem {MoveVisualizer}, \hyperpage{167}
+    \subitem {OnTranscriptionRecieved}, \hyperpage{168}
+    \subitem {RegisterTicker}, \hyperpage{168}
+    \subitem {ReparentWindow}, \hyperpage{168}
+    \subitem {Tick}, \hyperpage{169}
+    \subitem {TickDelegateHandle}, \hyperpage{170}
+    \subitem {UnregisterTicker}, \hyperpage{169}
+    \subitem {UpdateVisualizer}, \hyperpage{169}
+    \subitem {VisContent}, \hyperpage{170}
+    \subitem {VisWindow}, \hyperpage{170}
   \item {FTreeViewTickRequirements}
     \subitem {UAccessibilityGraphEditorContext::FTreeViewTickRequirements}, 
-		\hyperpage{169}
+		\hyperpage{171}
 
   \indexspace
 
   \item {GenerateVisualChunks}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{237}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{239}
   \item {Get}
     \subitem {FOpenAccessibilityAnalyticsModule}, \hyperpage{61}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{63}
     \subitem {FOpenAccessibilityModule}, \hyperpage{68}
   \item {GetActiveToolkitWidget}
-    \subitem {UAccessibilityWindowToolbar}, \hyperpage{245}
+    \subitem {UAccessibilityWindowToolbar}, \hyperpage{247}
   \item {GetAllGraphIndexes}
     \subitem {FAssetAccessibilityRegistry}, \hyperpage{26, 27}
   \item {GetAllGraphKeyIndexes}
     \subitem {FAssetAccessibilityRegistry}, \hyperpage{27}
   \item {GetAudioCaptureNumChannels}
-    \subitem {UAudioManager}, \hyperpage{249}
+    \subitem {UAudioManager}, \hyperpage{251}
   \item {GetAudioCaptureSampleRate}
-    \subitem {UAudioManager}, \hyperpage{249}
+    \subitem {UAudioManager}, \hyperpage{251}
   \item {GetAvailableKey}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{53}
+  \item {GetChildNodes}
+    \subitem {TabUtils::FOpenArea}, \hyperpage{70}
+    \subitem {TabUtils::FOpenSplitter}, \hyperpage{71}
   \item {GetChunkBottomRight}
     \subitem {FGraphLocomotionChunk}, \hyperpage{47}
   \item {GetChunkBounds}
@@ -624,33 +625,33 @@
   \item {GetChunkTopLeft}
     \subitem {FGraphLocomotionChunk}, \hyperpage{47}
   \item {GetContent}
-    \subitem {SContentIndexer}, \hyperpage{195, 196}
+    \subitem {SContentIndexer}, \hyperpage{197, 198}
   \item {GetContextManager}
-    \subitem {FPhraseTree}, \hyperpage{136}
+    \subitem {FPhraseTree}, \hyperpage{138}
   \item {GetContextObj}
-    \subitem {FParseRecord}, \hyperpage{75, 76}
+    \subitem {FParseRecord}, \hyperpage{77, 78}
   \item {GetContextRoot}
-    \subitem {UPhraseTreeContextObject}, \hyperpage{294}
+    \subitem {UPhraseTreeContextObject}, \hyperpage{296}
   \item {GetContextStack}
-    \subitem {FParseRecord}, \hyperpage{76}
-    \subitem {FPhraseTreeContextManager}, \hyperpage{142}
+    \subitem {FParseRecord}, \hyperpage{79}
+    \subitem {FPhraseTreeContextManager}, \hyperpage{144}
   \item {GetDisplayVisualizerPosition}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{164}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{166}
   \item {GetEnumType}
-    \subitem {UParseEnumInput}, \hyperpage{280}
+    \subitem {UParseEnumInput}, \hyperpage{282}
   \item {GetFilterText}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{211}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{226}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{213}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{228}
   \item {GetGraphActionFromIndex}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{211, 212}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{213, 214}
   \item {GetGraphActionFromIndexSP}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{212}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{214}
   \item {GetGraphIndexer}
     \subitem {FAssetAccessibilityRegistry}, \hyperpage{28}
   \item {GetIndexText}
-    \subitem {SIndexer}, \hyperpage{199}
+    \subitem {SIndexer}, \hyperpage{201}
   \item {GetIsActive}
-    \subitem {UPhraseTreeContextObject}, \hyperpage{294}
+    \subitem {UPhraseTreeContextObject}, \hyperpage{296}
   \item {GetKey}
     \subitem {FGraphIndexer}, \hyperpage{38}, \hyperpage{40}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{54}
@@ -661,196 +662,198 @@
   \item {GetOrAddNode}
     \subitem {FGraphIndexer}, \hyperpage{41, 42}
   \item {GetPhraseInput}
-    \subitem {FParseRecord}, \hyperpage{77, 78}
+    \subitem {FParseRecord}, \hyperpage{79--81}
   \item {GetPhraseInputs}
-    \subitem {FParseRecord}, \hyperpage{79}
+    \subitem {FParseRecord}, \hyperpage{81, 82}
   \item {GetPhraseString}
-    \subitem {FParseRecord}, \hyperpage{80}
+    \subitem {FParseRecord}, \hyperpage{82}
   \item {GetPin}
     \subitem {FGraphIndexer}, \hyperpage{42, 43}
   \item {GetStaticIndexOffset}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{226}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{228}
+  \item {GetTabs}
+    \subitem {TabUtils::FOpenStack}, \hyperpage{72}
   \item {GetTopScreenVisualizerPosition}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{165}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{167}
   \item {GetTreeViewAction}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{226}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{228}
   \item {GetValue}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{56}
-    \subitem {UParseIntInput}, \hyperpage{283}
-    \subitem {UParseStringInput}, \hyperpage{285}
+    \subitem {UParseIntInput}, \hyperpage{285}
+    \subitem {UParseStringInput}, \hyperpage{287}
   \item {GetWindow}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{289}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{291}
   \item {GraphAssetIndex}
     \subitem {FAssetAccessibilityRegistry}, \hyperpage{32}
   \item {GraphMenu}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{219}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{233}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{221}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{235}
   \item {GridContainer}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{243}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{245}
   \item {GridParent}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{243}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{245}
 
   \indexspace
 
   \item {HandleKeyDownEvent}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{63}
   \item {HandleTranscriptionRequest}
-    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{183}
+    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{185}
   \item {HasContextObj}
-    \subitem {FParseRecord}, \hyperpage{80}
+    \subitem {FParseRecord}, \hyperpage{83}
   \item {HasContextObject}
     \subitem {FPhraseContextMenuNode$<$ ContextMenuType $>$}, 
-		\hyperpage{92}
-    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{98}
-    \subitem {FPhraseTreeContextManager}, \hyperpage{142}
-    \subitem {IPhraseContextNodeBase}, \hyperpage{171}
+		\hyperpage{94}
+    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{100}
+    \subitem {FPhraseTreeContextManager}, \hyperpage{144}
+    \subitem {IPhraseContextNodeBase}, \hyperpage{173}
   \item {HasContextObjects}
-    \subitem {FPhraseTreeContextManager}, \hyperpage{143}
+    \subitem {FPhraseTreeContextManager}, \hyperpage{145}
   \item {HasLeafChild}
-    \subitem {FPhraseNode}, \hyperpage{121}
-    \subitem {IPhraseNodeBase}, \hyperpage{172}
+    \subitem {FPhraseNode}, \hyperpage{123}
+    \subitem {IPhraseNodeBase}, \hyperpage{174}
   \item {HideNativeVisuals}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{238}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{240}
 
   \indexspace
 
   \item {Implementation}
-    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{205}
+    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{207}
   \item {IndexedContent}
-    \subitem {SContentIndexer}, \hyperpage{197}
+    \subitem {SContentIndexer}, \hyperpage{199}
   \item {IndexerWidget}
-    \subitem {SContentIndexer}, \hyperpage{197}
+    \subitem {SContentIndexer}, \hyperpage{199}
   \item {IndexFocus}
-    \subitem {UViewInteractionLibrary}, \hyperpage{302}
+    \subitem {UViewInteractionLibrary}, \hyperpage{304}
   \item {IndexMap}
     \subitem {FGraphIndexer}, \hyperpage{45}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{59}
   \item {IndexTextBlock}
-    \subitem {SIndexer}, \hyperpage{201}
+    \subitem {SIndexer}, \hyperpage{203}
   \item {INFO}
-    \subitem {OpenAccessibilityPy.Logging.LogLevel}, \hyperpage{175}
+    \subitem {OpenAccessibilityPy.Logging.LogLevel}, \hyperpage{177}
   \item {Init}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{213, 214}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{227}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{215, 216}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{229}
     \subitem {UAccessibilityGraphLocomotionContext}, 
-		\hyperpage{238, 239}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{289, 290}
-  \item {IPhraseContextNodeBase}, \hyperpage{170}
-    \subitem {ConstructContextChildren}, \hyperpage{171}
-    \subitem {CreateContextObject}, \hyperpage{171}
-    \subitem {HasContextObject}, \hyperpage{171}
-  \item {IPhraseNodeBase}, \hyperpage{172}
-    \subitem {HasLeafChild}, \hyperpage{172}
-    \subitem {IsLeafNode}, \hyperpage{172}
-    \subitem {ParsePhrase}, \hyperpage{173}
-    \subitem {ParsePhraseAsContext}, \hyperpage{173}
-    \subitem {RequiresPhrase}, \hyperpage{173}
+		\hyperpage{240, 241}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{291, 292}
+  \item {IPhraseContextNodeBase}, \hyperpage{172}
+    \subitem {ConstructContextChildren}, \hyperpage{173}
+    \subitem {CreateContextObject}, \hyperpage{173}
+    \subitem {HasContextObject}, \hyperpage{173}
+  \item {IPhraseNodeBase}, \hyperpage{174}
+    \subitem {HasLeafChild}, \hyperpage{174}
+    \subitem {IsLeafNode}, \hyperpage{174}
+    \subitem {ParsePhrase}, \hyperpage{175}
+    \subitem {ParsePhraseAsContext}, \hyperpage{175}
+    \subitem {RequiresPhrase}, \hyperpage{175}
   \item {IsActiveToolbar}
-    \subitem {UAccessibilityWindowToolbar}, \hyperpage{245}
+    \subitem {UAccessibilityWindowToolbar}, \hyperpage{247}
   \item {IsCapturingAudio}
-    \subitem {UAudioManager}, \hyperpage{249}
+    \subitem {UAudioManager}, \hyperpage{251}
   \item {IsEmpty}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{57}
-    \subitem {FPhraseTreeContextManager}, \hyperpage{143}
+    \subitem {FPhraseTreeContextManager}, \hyperpage{145}
   \item {IsGameWorldAssetRegistered}
     \subitem {FAssetAccessibilityRegistry}, \hyperpage{28}
   \item {IsGraphAssetRegistered}
     \subitem {FAssetAccessibilityRegistry}, \hyperpage{29}
   \item {IsLeafNode}
-    \subitem {FPhraseEventNode}, \hyperpage{107}
-    \subitem {FPhraseNode}, \hyperpage{122}
-    \subitem {IPhraseNodeBase}, \hyperpage{172}
+    \subitem {FPhraseEventNode}, \hyperpage{109}
+    \subitem {FPhraseNode}, \hyperpage{124}
+    \subitem {IPhraseNodeBase}, \hyperpage{174}
   \item {IsValidNumeric}
-    \subitem {NumericParser}, \hyperpage{176}
+    \subitem {NumericParser}, \hyperpage{177}
 
   \indexspace
 
   \item {KeyboardInputAdd}
-    \subitem {ULocalizedInputLibrary}, \hyperpage{256}
+    \subitem {ULocalizedInputLibrary}, \hyperpage{258}
   \item {KeyboardInputConfirm}
-    \subitem {ULocalizedInputLibrary}, \hyperpage{257}
-  \item {KeyboardInputExit}
-    \subitem {ULocalizedInputLibrary}, \hyperpage{258}
-  \item {KeyboardInputRemove}
-    \subitem {ULocalizedInputLibrary}, \hyperpage{258}
-  \item {KeyboardInputReset}
     \subitem {ULocalizedInputLibrary}, \hyperpage{259}
+  \item {KeyboardInputExit}
+    \subitem {ULocalizedInputLibrary}, \hyperpage{260}
+  \item {KeyboardInputRemove}
+    \subitem {ULocalizedInputLibrary}, \hyperpage{260}
+  \item {KeyboardInputReset}
+    \subitem {ULocalizedInputLibrary}, \hyperpage{261}
 
   \indexspace
 
   \item {LevelThreshold}
     \subitem {FAudioManagerSettings}, \hyperpage{33}
   \item {LinkedEditor}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{243}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{245}
   \item {LinkedGraph}
     \subitem {FGraphIndexer}, \hyperpage{46}
   \item {LocomotionCancel}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{266}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{268}
   \item {LocomotionConfirm}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{267}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{269}
   \item {LocomotionRevert}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{267}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{269}
   \item {LocomotionSelect}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{267}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{269}
   \item {LogEvent}
     \subitem {FOpenAccessibilityAnalyticsModule}, \hyperpage{61}
 
   \indexspace
 
   \item {MeetsInputRequirements}
-    \subitem {FPhraseEnumInputNode$<$ TEnum $>$}, \hyperpage{104}
-    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{112}
-    \subitem {FPhraseStringInputNode}, \hyperpage{133}
+    \subitem {FPhraseEnumInputNode$<$ TEnum $>$}, \hyperpage{106}
+    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{114}
+    \subitem {FPhraseStringInputNode}, \hyperpage{135}
   \item {Menu}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{292}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{294}
   \item {MoveNode}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{268}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{270}
   \item {MoveViewport}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{239}
-    \subitem {UViewInteractionLibrary}, \hyperpage{302}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{241}
+    \subitem {UViewInteractionLibrary}, \hyperpage{304}
   \item {MoveVisualizer}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{165}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{167}
 
   \indexspace
 
   \item {NodeAddMenu}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{269}
-  \item {NodeAddPinMenu}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{270}
-  \item {NodeAddScroll}
     \subitem {UNodeInteractionLibrary}, \hyperpage{271}
-  \item {NodeAddSearchAdd}
+  \item {NodeAddPinMenu}
     \subitem {UNodeInteractionLibrary}, \hyperpage{272}
-  \item {NodeAddSearchRemove}
+  \item {NodeAddScroll}
     \subitem {UNodeInteractionLibrary}, \hyperpage{273}
-  \item {NodeAddSearchReset}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{273}
-  \item {NodeAddSelect}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{273}
-  \item {NodeIndexFocus}
+  \item {NodeAddSearchAdd}
     \subitem {UNodeInteractionLibrary}, \hyperpage{274}
+  \item {NodeAddSearchRemove}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{275}
+  \item {NodeAddSearchReset}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{275}
+  \item {NodeAddSelect}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{275}
+  \item {NodeIndexFocus}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{276}
   \item {NodeSet}
     \subitem {FGraphIndexer}, \hyperpage{46}
   \item {Num}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{57}
-  \item {NumericParser}, \hyperpage{175}
-    \subitem {IsValidNumeric}, \hyperpage{176}
-    \subitem {StringToNumeric}, \hyperpage{176}
+  \item {NumericParser}, \hyperpage{177}
+    \subitem {IsValidNumeric}, \hyperpage{177}
+    \subitem {StringToNumeric}, \hyperpage{178}
 
   \indexspace
 
-  \item {OAEditorAccessibilityManager}, \hyperpage{177}
-    \subitem {$\sim$OAEditorAccessibilityManager}, \hyperpage{177}
-    \subitem {OAEditorAccessibilityManager}, \hyperpage{177}
+  \item {OAEditorAccessibilityManager}, \hyperpage{178}
+    \subitem {$\sim$OAEditorAccessibilityManager}, \hyperpage{179}
+    \subitem {OAEditorAccessibilityManager}, \hyperpage{179}
   \item {OnAudioReadyForTranscription}
-    \subitem {UAudioManager}, \hyperpage{252}
+    \subitem {UAudioManager}, \hyperpage{254}
   \item {OnDefaultDeviceChanged}
-    \subitem {UAudioManager}, \hyperpage{250}
+    \subitem {UAudioManager}, \hyperpage{252}
   \item {OnFocusChanged}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{240}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{242}
   \item {OnGetMenu}
     \subitem {FPhraseContextMenuNode$<$ ContextMenuType $>$}, 
-		\hyperpage{95}
+		\hyperpage{97}
   \item {OnGraphChangedHandle}
     \subitem {FGraphIndexer}, \hyperpage{46}
   \item {OnGraphEvent}
@@ -858,20 +861,20 @@
   \item {OnGraphRebuild}
     \subitem {FGraphIndexer}, \hyperpage{44}
   \item {OnInputReceived}
-    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{115}
+    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{117}
   \item {OnMenuDismissed}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{290}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{292}
   \item {OnPhraseParsed}
-    \subitem {FPhraseNode}, \hyperpage{126}
+    \subitem {FPhraseNode}, \hyperpage{128}
   \item {OnTranscriptionRecieved}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{66}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{166}
-  \item {OpenAccessibility}, \hyperpage{177}
-    \subitem {OpenAccessibility}, \hyperpage{178}
-  \item {OpenAccessibilityAnalytics}, \hyperpage{179}
-    \subitem {OpenAccessibilityAnalytics}, \hyperpage{179}
-  \item {OpenAccessibilityCommunication}, \hyperpage{180}
-    \subitem {OpenAccessibilityCommunication}, \hyperpage{181}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{168}
+  \item {OpenAccessibility}, \hyperpage{179}
+    \subitem {OpenAccessibility}, \hyperpage{179}
+  \item {OpenAccessibilityAnalytics}, \hyperpage{181}
+    \subitem {OpenAccessibilityAnalytics}, \hyperpage{181}
+  \item {OpenAccessibilityCommunication}, \hyperpage{182}
+    \subitem {OpenAccessibilityCommunication}, \hyperpage{182}
   \item {OpenAccessibilityPy.Audio.AudioResampler}, \hyperpage{9}
     \subitem {\_\_del\_\_}, \hyperpage{9}
     \subitem {\_\_init\_\_}, \hyperpage{9}
@@ -899,79 +902,79 @@
     \subitem {SendNDArray}, \hyperpage{18}
     \subitem {SendNDArrayWithMeta}, \hyperpage{18}
     \subitem {SendString}, \hyperpage{19}
-  \item {OpenAccessibilityPy.Logging.LogLevel}, \hyperpage{174}
-    \subitem {ERROR}, \hyperpage{174}
-    \subitem {INFO}, \hyperpage{175}
-    \subitem {WARNING}, \hyperpage{175}
-  \item {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{182}
-    \subitem {\_\_del\_\_}, \hyperpage{183}
-    \subitem {\_\_init\_\_}, \hyperpage{182}
-    \subitem {audio\_resampler}, \hyperpage{185}
-    \subitem {com\_server}, \hyperpage{185}
-    \subitem {HandleTranscriptionRequest}, \hyperpage{183}
-    \subitem {pyshutdown\_handle}, \hyperpage{186}
-    \subitem {Shutdown}, \hyperpage{184}
-    \subitem {Tick}, \hyperpage{185}
-    \subitem {tick\_handle}, \hyperpage{186}
-    \subitem {whisper\_interface}, \hyperpage{186}
-    \subitem {worker\_pool}, \hyperpage{186}
+  \item {OpenAccessibilityPy.Logging.LogLevel}, \hyperpage{176}
+    \subitem {ERROR}, \hyperpage{176}
+    \subitem {INFO}, \hyperpage{177}
+    \subitem {WARNING}, \hyperpage{177}
+  \item {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{184}
+    \subitem {\_\_del\_\_}, \hyperpage{185}
+    \subitem {\_\_init\_\_}, \hyperpage{184}
+    \subitem {audio\_resampler}, \hyperpage{187}
+    \subitem {com\_server}, \hyperpage{187}
+    \subitem {HandleTranscriptionRequest}, \hyperpage{185}
+    \subitem {pyshutdown\_handle}, \hyperpage{188}
+    \subitem {Shutdown}, \hyperpage{186}
+    \subitem {Tick}, \hyperpage{187}
+    \subitem {tick\_handle}, \hyperpage{188}
+    \subitem {whisper\_interface}, \hyperpage{188}
+    \subitem {worker\_pool}, \hyperpage{188}
   \item {OpenAccessibilityPy.WhisperInterface.WhisperInterface}, 
-		\hyperpage{307}
-    \subitem {\_\_del\_\_}, \hyperpage{308}
-    \subitem {\_\_init\_\_}, \hyperpage{308}
-    \subitem {beam\_size}, \hyperpage{310}
-    \subitem {process\_audio\_buffer}, \hyperpage{309}
-    \subitem {process\_file\_from\_dir}, \hyperpage{309}
-    \subitem {whisper\_model}, \hyperpage{310}
+		\hyperpage{313}
+    \subitem {\_\_del\_\_}, \hyperpage{314}
+    \subitem {\_\_init\_\_}, \hyperpage{314}
+    \subitem {beam\_size}, \hyperpage{316}
+    \subitem {process\_audio\_buffer}, \hyperpage{315}
+    \subitem {process\_file\_from\_dir}, \hyperpage{315}
+    \subitem {whisper\_model}, \hyperpage{316}
   \item {OpenDefaultAudioStream}
-    \subitem {UBAudioCapture}, \hyperpage{253}
+    \subitem {UBAudioCapture}, \hyperpage{255}
   \item {operator!=}
-    \subitem {FPanelViewPosition}, \hyperpage{71}
+    \subitem {FPanelViewPosition}, \hyperpage{73}
 
   \indexspace
 
   \item {ParentNode}
-    \subitem {FPhraseNode}, \hyperpage{126}
+    \subitem {FPhraseNode}, \hyperpage{128}
   \item {ParseChildren}
-    \subitem {FPhraseNode}, \hyperpage{122}
+    \subitem {FPhraseNode}, \hyperpage{124}
   \item {ParsePhrase}
     \subitem {FPhraseContextMenuNode$<$ ContextMenuType $>$}, 
-		\hyperpage{93}
-    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{98}
-    \subitem {FPhraseEventNode}, \hyperpage{108}
-    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{113}
-    \subitem {FPhraseNode}, \hyperpage{123}
-    \subitem {FPhraseTree}, \hyperpage{136}
-    \subitem {IPhraseNodeBase}, \hyperpage{173}
+		\hyperpage{95}
+    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{100}
+    \subitem {FPhraseEventNode}, \hyperpage{110}
+    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{115}
+    \subitem {FPhraseNode}, \hyperpage{125}
+    \subitem {FPhraseTree}, \hyperpage{138}
+    \subitem {IPhraseNodeBase}, \hyperpage{175}
   \item {ParsePhraseAsContext}
     \subitem {FPhraseContextMenuNode$<$ ContextMenuType $>$}, 
-		\hyperpage{94}
-    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{99}
-    \subitem {FPhraseNode}, \hyperpage{124}
-    \subitem {IPhraseNodeBase}, \hyperpage{173}
+		\hyperpage{96}
+    \subitem {FPhraseContextNode$<$ ContextType $>$}, \hyperpage{101}
+    \subitem {FPhraseNode}, \hyperpage{126}
+    \subitem {IPhraseNodeBase}, \hyperpage{175}
   \item {ParsePhraseIfRequired}
-    \subitem {FPhraseNode}, \hyperpage{124}
+    \subitem {FPhraseNode}, \hyperpage{126}
   \item {ParseTranscription}
-    \subitem {FPhraseTree}, \hyperpage{137}
+    \subitem {FPhraseTree}, \hyperpage{139}
   \item {PeekContextObject}
-    \subitem {FPhraseTreeContextManager}, \hyperpage{143}
+    \subitem {FPhraseTreeContextManager}, \hyperpage{145}
   \item {PerformGraphAction}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{215}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{217}
   \item {PhraseInputs}
-    \subitem {FParseRecord}, \hyperpage{83}
+    \subitem {FParseRecord}, \hyperpage{85}
   \item {PhraseRecord}
-    \subitem {FParseRecord}, \hyperpage{83}
+    \subitem {FParseRecord}, \hyperpage{86}
   \item {PhraseTree}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{66}
-    \subitem {UPhraseTreeUtils}, \hyperpage{299}
+    \subitem {UPhraseTreeUtils}, \hyperpage{301}
   \item {PhraseTreeUtils}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{67}
   \item {PinConnect}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{274}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{276}
   \item {PinDisconnect}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{275}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{277}
   \item {Poller}
-    \subitem {FSocketCommunicationServer}, \hyperpage{161}
+    \subitem {FSocketCommunicationServer}, \hyperpage{163}
   \item {poller}
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{20}
@@ -979,49 +982,49 @@
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{20}
   \item {PollTimeout}
-    \subitem {FSocketCommunicationServer}, \hyperpage{161}
+    \subitem {FSocketCommunicationServer}, \hyperpage{163}
   \item {PopContextObj}
-    \subitem {FParseRecord}, \hyperpage{81}
+    \subitem {FParseRecord}, \hyperpage{83, 84}
   \item {PopContextObject}
-    \subitem {FPhraseTreeContextManager}, \hyperpage{144}
+    \subitem {FPhraseTreeContextManager}, \hyperpage{146}
   \item {PrevFilterString}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{220}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{222}
   \item {PreviousPositions}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{243}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{245}
   \item {PrevNumGeneratedChildren}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{220}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{222}
     \subitem {UAccessibilityGraphEditorContext::FTreeViewTickRequirements}, 
-		\hyperpage{169}
+		\hyperpage{171}
   \item {PrevNumItemsBeingObserved}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{220}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{222}
     \subitem {UAccessibilityGraphEditorContext::FTreeViewTickRequirements}, 
-		\hyperpage{169}
+		\hyperpage{171}
   \item {PrevScrollDistance}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{220}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{222}
     \subitem {UAccessibilityGraphEditorContext::FTreeViewTickRequirements}, 
-		\hyperpage{169}
+		\hyperpage{171}
   \item {PrevSearchText}
     \subitem {UAccessibilityGraphEditorContext::FTreeViewTickRequirements}, 
-		\hyperpage{170}
+		\hyperpage{172}
   \item {PRIVATE\_OnAudioGenerate}
-    \subitem {UAudioManager}, \hyperpage{250}
+    \subitem {UAudioManager}, \hyperpage{252}
   \item {process\_audio\_buffer}
     \subitem {OpenAccessibilityPy.WhisperInterface.WhisperInterface}, 
-		\hyperpage{309}
+		\hyperpage{315}
   \item {process\_file\_from\_dir}
     \subitem {OpenAccessibilityPy.WhisperInterface.WhisperInterface}, 
-		\hyperpage{309}
+		\hyperpage{315}
   \item {PushContextObj}
-    \subitem {FParseRecord}, \hyperpage{82}
+    \subitem {FParseRecord}, \hyperpage{84}
   \item {PushContextObject}
-    \subitem {FPhraseTreeContextManager}, \hyperpage{145}
+    \subitem {FPhraseTreeContextManager}, \hyperpage{147}
   \item {pyshutdown\_handle}
-    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{186}
+    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{188}
 
   \indexspace
 
   \item {ReachedNode}
-    \subitem {FParseResult}, \hyperpage{85}
+    \subitem {FParseResult}, \hyperpage{87}
   \item {ReceiveJSON}
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{13}
@@ -1041,9 +1044,9 @@
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{16}
   \item {RecordInput}
-    \subitem {FPhraseEnumInputNode$<$ TEnum $>$}, \hyperpage{105}
-    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{114}
-    \subitem {FPhraseStringInputNode}, \hyperpage{133}
+    \subitem {FPhraseEnumInputNode$<$ TEnum $>$}, \hyperpage{107}
+    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{116}
+    \subitem {FPhraseStringInputNode}, \hyperpage{135}
   \item {recv\_socket}
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{20}
@@ -1051,139 +1054,139 @@
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{20}
   \item {RecvAddress}
-    \subitem {FSocketCommunicationServer}, \hyperpage{162}
+    \subitem {FSocketCommunicationServer}, \hyperpage{164}
   \item {RecvArray}
-    \subitem {FSocketCommunicationServer}, \hyperpage{149}
-  \item {RecvJson}
-    \subitem {FSocketCommunicationServer}, \hyperpage{150}
-  \item {RecvMultipartWithMeta}
-    \subitem {FSocketCommunicationServer}, \hyperpage{150}
-  \item {RecvSocket}
-    \subitem {FSocketCommunicationServer}, \hyperpage{162}
-  \item {RecvString}
     \subitem {FSocketCommunicationServer}, \hyperpage{151}
+  \item {RecvJson}
+    \subitem {FSocketCommunicationServer}, \hyperpage{152}
+  \item {RecvMultipartWithMeta}
+    \subitem {FSocketCommunicationServer}, \hyperpage{152}
+  \item {RecvSocket}
+    \subitem {FSocketCommunicationServer}, \hyperpage{164}
+  \item {RecvString}
+    \subitem {FSocketCommunicationServer}, \hyperpage{153}
   \item {RecvStringMultipart}
-    \subitem {FSocketCommunicationServer}, \hyperpage{152}
+    \subitem {FSocketCommunicationServer}, \hyperpage{154}
   \item {RecvStringMultipartWithMeta}
-    \subitem {FSocketCommunicationServer}, \hyperpage{152}
+    \subitem {FSocketCommunicationServer}, \hyperpage{154}
   \item {RefreshAccessibilityWidgets}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{215}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{217}
   \item {RegisteredLibraries}
-    \subitem {UPhraseTreeUtils}, \hyperpage{299}
+    \subitem {UPhraseTreeUtils}, \hyperpage{301}
   \item {RegisterFunctionLibrary}
-    \subitem {UPhraseTreeUtils}, \hyperpage{298}
+    \subitem {UPhraseTreeUtils}, \hyperpage{300}
   \item {RegisterGameWorldAsset}
     \subitem {FAssetAccessibilityRegistry}, \hyperpage{29}
   \item {RegisterGraphAsset}
     \subitem {FAssetAccessibilityRegistry}, \hyperpage{29, 30}
   \item {RegisterTicker}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{166}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{168}
   \item {RemoveContextObj}
-    \subitem {FParseRecord}, \hyperpage{82}
+    \subitem {FParseRecord}, \hyperpage{84}
   \item {RemoveMenuDismissed}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{291}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{293}
   \item {RemoveNode}
     \subitem {FGraphIndexer}, \hyperpage{44, 45}
   \item {RemovePhraseInput}
-    \subitem {FParseRecord}, \hyperpage{82}
+    \subitem {FParseRecord}, \hyperpage{85}
   \item {RemoveTickDelegate}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{291}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{293}
   \item {RemoveValue}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{58}
   \item {RemoveVisualGrid}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{240}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{242}
   \item {ReparentWindow}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{166}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{168}
   \item {RequiresPhrase}
-    \subitem {FPhraseEventNode}, \hyperpage{108, 109}
-    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{114, 115}
-    \subitem {FPhraseNode}, \hyperpage{124, 125}
-    \subitem {IPhraseNodeBase}, \hyperpage{173}
+    \subitem {FPhraseEventNode}, \hyperpage{110, 111}
+    \subitem {FPhraseInputNode$<$ InputType $>$}, \hyperpage{116, 117}
+    \subitem {FPhraseNode}, \hyperpage{126, 127}
+    \subitem {IPhraseNodeBase}, \hyperpage{175}
   \item {resample}
     \subitem {OpenAccessibilityPy.Audio.AudioResampler}, \hyperpage{10}
   \item {Reset}
     \subitem {FIndexer$<$ KeyType, ValueType $>$}, \hyperpage{59}
   \item {ResetFilterText}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{216}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{218}
   \item {Result}
-    \subitem {FParseResult}, \hyperpage{85}
+    \subitem {FParseResult}, \hyperpage{87}
   \item {RevertToPreviousView}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{240}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{242}
 
   \indexspace
 
-  \item {SAccessibilityTranscriptionVis}, \hyperpage{186}
-    \subitem {$\sim$SAccessibilityTranscriptionVis}, \hyperpage{187}
-    \subitem {Construct}, \hyperpage{187}
-    \subitem {SLATE\_BEGIN\_ARGS}, \hyperpage{188}
-    \subitem {Tick}, \hyperpage{188}
-    \subitem {TranscriptionContainer}, \hyperpage{189}
-    \subitem {TranscriptionSlots}, \hyperpage{189}
-    \subitem {UpdateTopTranscription}, \hyperpage{189}
+  \item {SAccessibilityTranscriptionVis}, \hyperpage{188}
+    \subitem {$\sim$SAccessibilityTranscriptionVis}, \hyperpage{189}
+    \subitem {Construct}, \hyperpage{189}
+    \subitem {SLATE\_BEGIN\_ARGS}, \hyperpage{190}
+    \subitem {Tick}, \hyperpage{190}
+    \subitem {TranscriptionContainer}, \hyperpage{191}
+    \subitem {TranscriptionSlots}, \hyperpage{191}
+    \subitem {UpdateTopTranscription}, \hyperpage{191}
   \item {SaveAudioBufferToWAV}
-    \subitem {UAudioManager}, \hyperpage{251}
+    \subitem {UAudioManager}, \hyperpage{253}
   \item {SaveName}
     \subitem {FAudioManagerSettings}, \hyperpage{34}
   \item {SavePath}
     \subitem {FAudioManagerSettings}, \hyperpage{34}
   \item {ScaleMenu}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{216}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{227}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{291}
-  \item {SContentIndexer}, \hyperpage{190}
-    \subitem {$\sim$SContentIndexer}, \hyperpage{191}
-    \subitem {Construct}, \hyperpage{191}
-    \subitem {ConstructBottomIndexer}, \hyperpage{191}
-    \subitem {ConstructContentContainer}, \hyperpage{192}
-    \subitem {ConstructIndexContainer}, \hyperpage{193}
-    \subitem {ConstructIndexText}, \hyperpage{193}
-    \subitem {ConstructLeftIndexer}, \hyperpage{193}
-    \subitem {ConstructRightIndexer}, \hyperpage{194}
-    \subitem {ConstructTopIndexer}, \hyperpage{195}
-    \subitem {GetContent}, \hyperpage{195, 196}
-    \subitem {IndexedContent}, \hyperpage{197}
-    \subitem {IndexerWidget}, \hyperpage{197}
-    \subitem {SLATE\_BEGIN\_ARGS}, \hyperpage{196}
-    \subitem {Tick}, \hyperpage{196}
-    \subitem {UpdateIndex}, \hyperpage{197}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{218}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{229}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{293}
+  \item {SContentIndexer}, \hyperpage{192}
+    \subitem {$\sim$SContentIndexer}, \hyperpage{193}
+    \subitem {Construct}, \hyperpage{193}
+    \subitem {ConstructBottomIndexer}, \hyperpage{193}
+    \subitem {ConstructContentContainer}, \hyperpage{194}
+    \subitem {ConstructIndexContainer}, \hyperpage{195}
+    \subitem {ConstructIndexText}, \hyperpage{195}
+    \subitem {ConstructLeftIndexer}, \hyperpage{195}
+    \subitem {ConstructRightIndexer}, \hyperpage{196}
+    \subitem {ConstructTopIndexer}, \hyperpage{197}
+    \subitem {GetContent}, \hyperpage{197, 198}
+    \subitem {IndexedContent}, \hyperpage{199}
+    \subitem {IndexerWidget}, \hyperpage{199}
+    \subitem {SLATE\_BEGIN\_ARGS}, \hyperpage{198}
+    \subitem {Tick}, \hyperpage{198}
+    \subitem {UpdateIndex}, \hyperpage{199}
   \item {SelectAction}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{228}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{230}
   \item {SelectChunk}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{241}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{243}
   \item {SelectGraphAction}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{217}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{219}
   \item {SelectionAlignment}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{276}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{278}
   \item {SelectionComment}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{276}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{278}
   \item {SelectionMove}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{277}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{279}
   \item {SelectionNodeToggle}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{278}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{280}
   \item {SelectionReset}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{278}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{280}
   \item {SelectionStraighten}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{278}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{280}
   \item {SelectToolBarItem}
-    \subitem {UWindowInteractionLibrary}, \hyperpage{306}
+    \subitem {UWindowInteractionLibrary}, \hyperpage{309}
   \item {SelectToolbarItem}
-    \subitem {UAccessibilityWindowToolbar}, \hyperpage{246}
+    \subitem {UAccessibilityWindowToolbar}, \hyperpage{248}
   \item {send\_socket\_context}
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{20}
   \item {SendAddress}
-    \subitem {FSocketCommunicationServer}, \hyperpage{162}
+    \subitem {FSocketCommunicationServer}, \hyperpage{164}
   \item {SendArrayBuffer}
-    \subitem {FSocketCommunicationServer}, \hyperpage{153, 154}
-  \item {SendArrayMessage}
     \subitem {FSocketCommunicationServer}, \hyperpage{155, 156}
-  \item {SendArrayMessageWithMeta}
+  \item {SendArrayMessage}
     \subitem {FSocketCommunicationServer}, \hyperpage{157, 158}
+  \item {SendArrayMessageWithMeta}
+    \subitem {FSocketCommunicationServer}, \hyperpage{159, 160}
   \item {SendJSON}
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{16}
   \item {SendJsonBuffer}
-    \subitem {FSocketCommunicationServer}, \hyperpage{159}
+    \subitem {FSocketCommunicationServer}, \hyperpage{161}
   \item {SendMultipart}
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{17}
@@ -1197,580 +1200,597 @@
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{18}
   \item {SendSocket}
-    \subitem {FSocketCommunicationServer}, \hyperpage{162}
+    \subitem {FSocketCommunicationServer}, \hyperpage{164}
   \item {SendString}
     \subitem {OpenAccessibilityPy.CommunicationServer.CommunicationServer}, 
 		\hyperpage{19}
   \item {SendStringBuffer}
-    \subitem {FSocketCommunicationServer}, \hyperpage{160}
+    \subitem {FSocketCommunicationServer}, \hyperpage{162}
   \item {SerializeJSON}
-    \subitem {FSocketCommunicationServer}, \hyperpage{161}
+    \subitem {FSocketCommunicationServer}, \hyperpage{163}
   \item {SetChunkBounds}
     \subitem {FGraphLocomotionChunk}, \hyperpage{47}
   \item {SetContextRootNode}
-    \subitem {UPhraseTreeContextObject}, \hyperpage{295}
+    \subitem {UPhraseTreeContextObject}, \hyperpage{297}
   \item {SetEnumType}
-    \subitem {UParseEnumInput}, \hyperpage{281}
+    \subitem {UParseEnumInput}, \hyperpage{283}
   \item {SetFilterText}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{217}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{229}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{219}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{231}
   \item {SetMenu}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{292}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{294}
   \item {SetPhraseTree}
-    \subitem {UPhraseTreeUtils}, \hyperpage{299}
+    \subitem {UPhraseTreeUtils}, \hyperpage{301}
   \item {SetScrollDistance}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{217}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{229}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{219}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{231}
   \item {SetScrollDistanceBottom}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{218}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{230}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{220}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{232}
   \item {SetScrollDistanceTop}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{218}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{230}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{220}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{232}
   \item {SetSharedPtr}
     \subitem {FAccessibilityNodeFactory}, \hyperpage{22}
   \item {Settings}
-    \subitem {UAudioManager}, \hyperpage{252}
+    \subitem {UAudioManager}, \hyperpage{254}
   \item {SetValue}
-    \subitem {UParseIntInput}, \hyperpage{284}
-    \subitem {UParseStringInput}, \hyperpage{286}
+    \subitem {UParseIntInput}, \hyperpage{286}
+    \subitem {UParseStringInput}, \hyperpage{288}
   \item {SetVisColor}
     \subitem {FGraphLocomotionChunk}, \hyperpage{48}
   \item {Shutdown}
-    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{184}
+    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{186}
   \item {ShutdownModule}
     \subitem {FOpenAccessibilityAnalyticsModule}, \hyperpage{61}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{64}
     \subitem {FOpenAccessibilityModule}, \hyperpage{68}
-  \item {SIndexer}, \hyperpage{198}
-    \subitem {$\sim$SIndexer}, \hyperpage{198}
-    \subitem {Construct}, \hyperpage{199}
-    \subitem {GetIndexText}, \hyperpage{199}
-    \subitem {IndexTextBlock}, \hyperpage{201}
-    \subitem {SLATE\_BEGIN\_ARGS}, \hyperpage{199}
-    \subitem {Tick}, \hyperpage{199}
-    \subitem {UpdateIndex}, \hyperpage{200}
+  \item {SIndexer}, \hyperpage{200}
+    \subitem {$\sim$SIndexer}, \hyperpage{200}
+    \subitem {Construct}, \hyperpage{201}
+    \subitem {GetIndexText}, \hyperpage{201}
+    \subitem {IndexTextBlock}, \hyperpage{203}
+    \subitem {SLATE\_BEGIN\_ARGS}, \hyperpage{201}
+    \subitem {Tick}, \hyperpage{201}
+    \subitem {UpdateIndex}, \hyperpage{202}
   \item {SLATE\_BEGIN\_ARGS}
-    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{188}
-    \subitem {SContentIndexer}, \hyperpage{196}
-    \subitem {SIndexer}, \hyperpage{199}
+    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{190}
+    \subitem {SContentIndexer}, \hyperpage{198}
+    \subitem {SIndexer}, \hyperpage{201}
   \item {SocketServer}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{67}
   \item {Source/OpenAccessibility/OpenAccessibility.Build.cs}, 
-		\hyperpage{325}
-  \item {Source/OpenAccessibility/Private/AccessibilityWidgets/SAccessibilityTranscriptionVis.cpp}, 
-		\hyperpage{326}
-  \item {Source/OpenAccessibility/Private/AccessibilityWidgets/SContentIndexer.cpp}, 
-		\hyperpage{327}
-  \item {Source/OpenAccessibility/Private/AccessibilityWidgets/SIndexer.cpp}, 
 		\hyperpage{329}
-  \item {Source/OpenAccessibility/Private/AccessibilityWrappers/AccessibilityAddNodeContextMenu.cpp}, 
+  \item {Source/OpenAccessibility/Private/AccessibilityWidgets/SAccessibilityTranscriptionVis.cpp}, 
 		\hyperpage{330}
-  \item {Source/OpenAccessibility/Private/AccessibilityWrappers/AccessibilityGraphEditorContext.cpp}, 
+  \item {Source/OpenAccessibility/Private/AccessibilityWidgets/SContentIndexer.cpp}, 
+		\hyperpage{331}
+  \item {Source/OpenAccessibility/Private/AccessibilityWidgets/SIndexer.cpp}, 
+		\hyperpage{333}
+  \item {Source/OpenAccessibility/Private/AccessibilityWrappers/AccessibilityAddNodeContextMenu.cpp}, 
 		\hyperpage{334}
+  \item {Source/OpenAccessibility/Private/AccessibilityWrappers/AccessibilityGraphEditorContext.cpp}, 
+		\hyperpage{338}
   \item {Source/OpenAccessibility/Private/AccessibilityWrappers/AccessibilityGraphLocomotionContext.cpp}, 
-		\hyperpage{339}
-  \item {Source/OpenAccessibility/Private/AccessibilityWrappers/AccessibilityWindowToolbar.cpp}, 
 		\hyperpage{343}
-  \item {Source/OpenAccessibility/Private/AssetAccessibilityRegistry.cpp}, 
+  \item {Source/OpenAccessibility/Private/AccessibilityWrappers/AccessibilityWindowToolbar.cpp}, 
 		\hyperpage{347}
+  \item {Source/OpenAccessibility/Private/AssetAccessibilityRegistry.cpp}, 
+		\hyperpage{351}
   \item {Source/OpenAccessibility/Private/GraphIndexer.cpp}, 
-		\hyperpage{350}
+		\hyperpage{354}
   \item {Source/OpenAccessibility/Private/OAccessibilityNodeFactory.cpp}, 
-		\hyperpage{353}
+		\hyperpage{357}
   \item {Source/OpenAccessibility/Private/OAEditorAccessibilityManager.cpp}, 
-		\hyperpage{356}
-  \item {Source/OpenAccessibility/Private/OpenAccessibility.cpp}, 
-		\hyperpage{356}
-  \item {Source/OpenAccessibility/Private/PhraseEvents/LocalizedInputLibrary.cpp}, 
 		\hyperpage{360}
+  \item {Source/OpenAccessibility/Private/OpenAccessibility.cpp}, 
+		\hyperpage{360}
+  \item {Source/OpenAccessibility/Private/PhraseEvents/LocalizedInputLibrary.cpp}, 
+		\hyperpage{365}
   \item {Source/OpenAccessibility/Private/PhraseEvents/NodeInteractionLibrary.cpp}, 
-		\hyperpage{363}
+		\hyperpage{368}
   \item {Source/OpenAccessibility/Private/PhraseEvents/ViewInteractionLibrary.cpp}, 
-		\hyperpage{375}
+		\hyperpage{379}
   \item {Source/OpenAccessibility/Private/PhraseEvents/WindowInteractionLibrary.cpp}, 
-		\hyperpage{377}
+		\hyperpage{381}
   \item {Source/OpenAccessibility/Private/TranscriptionVisualizer.cpp}, 
-		\hyperpage{378}
-  \item {Source/OpenAccessibility/Private/Utils/WidgetUtils.h}, 
-		\hyperpage{380}
-  \item {Source/OpenAccessibility/Public/AccessibilityNodeFactory.h}, 
-		\hyperpage{382}
-  \item {Source/OpenAccessibility/Public/AccessibilityWidgets/SAccessibilityTranscriptionVis.h}, 
-		\hyperpage{384}
-  \item {Source/OpenAccessibility/Public/AccessibilityWidgets/SContentIndexer.h}, 
-		\hyperpage{384}
-  \item {Source/OpenAccessibility/Public/AccessibilityWidgets/SIndexer.h}, 
-		\hyperpage{385}
-  \item {Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityAddNodeContextMenu.h}, 
 		\hyperpage{386}
-  \item {Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityGraphEditorContext.h}, 
-		\hyperpage{387}
-  \item {Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityGraphLocomotionContext.h}, 
-		\hyperpage{389}
-  \item {Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityWindowToolbar.h}, 
-		\hyperpage{391}
-  \item {Source/OpenAccessibility/Public/AssetAccessibilityRegistry.h}, 
+  \item {Source/OpenAccessibility/Private/Utils/WidgetUtils.h}, 
+		\hyperpage{388}
+  \item {Source/OpenAccessibility/Public/AccessibilityNodeFactory.h}, 
+		\hyperpage{390}
+  \item {Source/OpenAccessibility/Public/AccessibilityWidgets/SAccessibilityTranscriptionVis.h}, 
 		\hyperpage{392}
-  \item {Source/OpenAccessibility/Public/GraphIndexer.h}, 
+  \item {Source/OpenAccessibility/Public/AccessibilityWidgets/SContentIndexer.h}, 
 		\hyperpage{393}
-  \item {Source/OpenAccessibility/Public/Indexers/Indexer.h}, 
+  \item {Source/OpenAccessibility/Public/AccessibilityWidgets/SIndexer.h}, 
 		\hyperpage{394}
-  \item {Source/OpenAccessibility/Public/OAccessibilityNodeFactory.h}, 
+  \item {Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityAddNodeContextMenu.h}, 
+		\hyperpage{394}
+  \item {Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityGraphEditorContext.h}, 
 		\hyperpage{396}
-  \item {Source/OpenAccessibility/Public/OAEditorAccessibilityManager.h}, 
+  \item {Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityGraphLocomotionContext.h}, 
 		\hyperpage{397}
-  \item {Source/OpenAccessibility/Public/OpenAccessibility.h}, 
-		\hyperpage{397}
-  \item {Source/OpenAccessibility/Public/OpenAccessibilityLogging.h}, 
-		\hyperpage{398}
-  \item {Source/OpenAccessibility/Public/PhraseEvents/LocalizedInputLibrary.h}, 
-		\hyperpage{398}
-  \item {Source/OpenAccessibility/Public/PhraseEvents/NodeInteractionLibrary.h}, 
+  \item {Source/OpenAccessibility/Public/AccessibilityWrappers/AccessibilityWindowToolbar.h}, 
 		\hyperpage{399}
-  \item {Source/OpenAccessibility/Public/PhraseEvents/Utils.h}, 
-		\hyperpage{452}
-  \item {Source/OpenAccessibility/Public/PhraseEvents/ViewInteractionLibrary.h}, 
+  \item {Source/OpenAccessibility/Public/AssetAccessibilityRegistry.h}, 
 		\hyperpage{400}
-  \item {Source/OpenAccessibility/Public/PhraseEvents/WindowInteractionLibrary.h}, 
-		\hyperpage{400}
-  \item {Source/OpenAccessibility/Public/TranscriptionVisualizer.h}, 
+  \item {Source/OpenAccessibility/Public/GraphIndexer.h}, 
 		\hyperpage{401}
-  \item {Source/OpenAccessibilityAnalytics/OpenAccessibilityAnalytics.Build.cs}, 
+  \item {Source/OpenAccessibility/Public/Indexers/Indexer.h}, 
 		\hyperpage{402}
-  \item {Source/OpenAccessibilityAnalytics/Private/OpenAccessibilityAnalytics.cpp}, 
-		\hyperpage{402}
-  \item {Source/OpenAccessibilityAnalytics/Private/OpenAccessibilityAnalyticsLogging.h}, 
-		\hyperpage{404}
-  \item {Source/OpenAccessibilityAnalytics/Public/OpenAccessibilityAnalytics.h}, 
-		\hyperpage{404}
-  \item {Source/OpenAccessibilityCommunication/OpenAccessibilityCommunication.Build.cs}, 
+  \item {Source/OpenAccessibility/Public/OAccessibilityNodeFactory.h}, 
+		\hyperpage{405}
+  \item {Source/OpenAccessibility/Public/OAEditorAccessibilityManager.h}, 
+		\hyperpage{405}
+  \item {Source/OpenAccessibility/Public/OpenAccessibility.h}, 
+		\hyperpage{405}
+  \item {Source/OpenAccessibility/Public/OpenAccessibilityLogging.h}, 
 		\hyperpage{406}
-  \item {Source/OpenAccessibilityCommunication/Private/AudioManager.cpp}, 
+  \item {Source/OpenAccessibility/Public/PhraseEvents/LocalizedInputLibrary.h}, 
+		\hyperpage{406}
+  \item {Source/OpenAccessibility/Public/PhraseEvents/NodeInteractionLibrary.h}, 
 		\hyperpage{407}
-  \item {Source/OpenAccessibilityCommunication/Private/OpenAccessibilityComLogging.cpp}, 
+  \item {Source/OpenAccessibility/Public/PhraseEvents/Utils.h}, 
+		\hyperpage{460}
+  \item {Source/OpenAccessibility/Public/PhraseEvents/ViewInteractionLibrary.h}, 
 		\hyperpage{408}
-  \item {Source/OpenAccessibilityCommunication/Private/OpenAccessibilityCommunication.cpp}, 
-		\hyperpage{408}
-  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree.cpp}, 
+  \item {Source/OpenAccessibility/Public/PhraseEvents/WindowInteractionLibrary.h}, 
+		\hyperpage{409}
+  \item {Source/OpenAccessibility/Public/TranscriptionVisualizer.h}, 
+		\hyperpage{410}
+  \item {Source/OpenAccessibilityAnalytics/OpenAccessibilityAnalytics.Build.cs}, 
+		\hyperpage{410}
+  \item {Source/OpenAccessibilityAnalytics/Private/OpenAccessibilityAnalytics.cpp}, 
 		\hyperpage{411}
-  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/Containers/ContextMenuObject.cpp}, 
+  \item {Source/OpenAccessibilityAnalytics/Private/OpenAccessibilityAnalyticsLogging.h}, 
+		\hyperpage{413}
+  \item {Source/OpenAccessibilityAnalytics/Public/OpenAccessibilityAnalytics.h}, 
+		\hyperpage{413}
+  \item {Source/OpenAccessibilityCommunication/OpenAccessibilityCommunication.Build.cs}, 
 		\hyperpage{414}
-  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/PhraseEnumInputNode.cpp}, 
+  \item {Source/OpenAccessibilityCommunication/Private/AudioManager.cpp}, 
 		\hyperpage{415}
-  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/PhraseEventNode.cpp}, 
-		\hyperpage{416}
-  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/PhraseInputNode.cpp}, 
+  \item {Source/OpenAccessibilityCommunication/Private/OpenAccessibilityComLogging.cpp}, 
 		\hyperpage{417}
-  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/PhraseNode.cpp}, 
-		\hyperpage{418}
-  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/PhraseStringInputNode.cpp}, 
-		\hyperpage{421}
-  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/Utils.cpp}, 
+  \item {Source/OpenAccessibilityCommunication/Private/OpenAccessibilityCommunication.cpp}, 
+		\hyperpage{417}
+  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree.cpp}, 
+		\hyperpage{420}
+  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/Containers/ContextMenuObject.cpp}, 
 		\hyperpage{422}
-  \item {Source/OpenAccessibilityCommunication/Private/PhraseTreeUtils.cpp}, 
+  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/PhraseEnumInputNode.cpp}, 
 		\hyperpage{423}
-  \item {Source/OpenAccessibilityCommunication/Private/SocketCommunicationServer.cpp}, 
-		\hyperpage{423}
-  \item {Source/OpenAccessibilityCommunication/Private/UBAudioCapture.cpp}, 
-		\hyperpage{429}
-  \item {Source/OpenAccessibilityCommunication/Public/AudioManager.h}, 
+  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/PhraseEventNode.cpp}, 
+		\hyperpage{425}
+  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/PhraseInputNode.cpp}, 
+		\hyperpage{425}
+  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/PhraseNode.cpp}, 
+		\hyperpage{427}
+  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/PhraseStringInputNode.cpp}, 
 		\hyperpage{430}
-  \item {Source/OpenAccessibilityCommunication/Public/OpenAccessibilityComLogging.h}, 
+  \item {Source/OpenAccessibilityCommunication/Private/PhraseTree/Utils.cpp}, 
+		\hyperpage{430}
+  \item {Source/OpenAccessibilityCommunication/Private/PhraseTreeUtils.cpp}, 
 		\hyperpage{431}
-  \item {Source/OpenAccessibilityCommunication/Public/OpenAccessibilityCommunication.h}, 
-		\hyperpage{431}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree.h}, 
+  \item {Source/OpenAccessibilityCommunication/Private/SocketCommunicationServer.cpp}, 
 		\hyperpage{432}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/ContextMenuObject.h}, 
-		\hyperpage{434}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/ContextObject.h}, 
-		\hyperpage{435}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/Input/InputContainers.h}, 
-		\hyperpage{436}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/Input/UParseEnumInput.h}, 
+  \item {Source/OpenAccessibilityCommunication/Private/UBAudioCapture.cpp}, 
 		\hyperpage{437}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/Input/UParseInput.h}, 
-		\hyperpage{437}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/Input/UParseIntInput.h}, 
+  \item {Source/OpenAccessibilityCommunication/Public/AudioManager.h}, 
 		\hyperpage{438}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/Input/UParseStringInput.h}, 
-		\hyperpage{438}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/ParseRecord.h}, 
+  \item {Source/OpenAccessibilityCommunication/Public/OpenAccessibilityComLogging.h}, 
 		\hyperpage{439}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/ParseResult.h}, 
-		\hyperpage{442}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/IPhraseContextNode.h}, 
-		\hyperpage{442}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseContextMenuNode.h}, 
-		\hyperpage{442}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseContextNode.h}, 
+  \item {Source/OpenAccessibilityCommunication/Public/OpenAccessibilityCommunication.h}, 
+		\hyperpage{439}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree.h}, 
+		\hyperpage{440}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/ContextMenuObject.h}, 
+		\hyperpage{443}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/ContextObject.h}, 
+		\hyperpage{444}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/Input/InputContainers.h}, 
+		\hyperpage{444}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/Input/UParseEnumInput.h}, 
 		\hyperpage{445}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseDirectionalInputNode.h}, 
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/Input/UParseInput.h}, 
+		\hyperpage{446}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/Input/UParseIntInput.h}, 
+		\hyperpage{446}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/Input/UParseStringInput.h}, 
 		\hyperpage{447}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseEnumInputNode.h}, 
-		\hyperpage{449}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseEventNode.h}, 
-		\hyperpage{449}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseInputNode.h}, 
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/ParseRecord.h}, 
+		\hyperpage{447}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/ParseResult.h}, 
 		\hyperpage{450}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseNode.h}, 
-		\hyperpage{450}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseStringInputNode.h}, 
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/IPhraseContextNode.h}, 
 		\hyperpage{451}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseTreeFunctionLibrary.h}, 
-		\hyperpage{452}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Utils.h}, 
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseContextMenuNode.h}, 
+		\hyperpage{451}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseContextNode.h}, 
 		\hyperpage{454}
-  \item {Source/OpenAccessibilityCommunication/Public/PhraseTreeUtils.h}, 
-		\hyperpage{454}
-  \item {Source/OpenAccessibilityCommunication/Public/SocketCommunicationServer.h}, 
-		\hyperpage{455}
-  \item {Source/OpenAccessibilityCommunication/Public/UBAudioCapture.h}, 
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseDirectionalInputNode.h}, 
 		\hyperpage{456}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseEnumInputNode.h}, 
+		\hyperpage{457}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseEventNode.h}, 
+		\hyperpage{458}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseInputNode.h}, 
+		\hyperpage{458}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseNode.h}, 
+		\hyperpage{459}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseStringInputNode.h}, 
+		\hyperpage{460}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/PhraseTreeFunctionLibrary.h}, 
+		\hyperpage{460}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTree/Utils.h}, 
+		\hyperpage{463}
+  \item {Source/OpenAccessibilityCommunication/Public/PhraseTreeUtils.h}, 
+		\hyperpage{463}
+  \item {Source/OpenAccessibilityCommunication/Public/SocketCommunicationServer.h}, 
+		\hyperpage{464}
+  \item {Source/OpenAccessibilityCommunication/Public/UBAudioCapture.h}, 
+		\hyperpage{465}
   \item {StartCapturingAudio}
-    \subitem {UAudioManager}, \hyperpage{251}
+    \subitem {UAudioManager}, \hyperpage{253}
   \item {StartNode}
-    \subitem {FPhraseTreeBranchBind}, \hyperpage{141}
+    \subitem {FPhraseTreeBranchBind}, \hyperpage{143}
   \item {StartupModule}
     \subitem {FOpenAccessibilityAnalyticsModule}, \hyperpage{62}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{64}
     \subitem {FOpenAccessibilityModule}, \hyperpage{68}
   \item {StartViewPosition}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{243}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{245}
   \item {StartViewZoom}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{243}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{245}
   \item {StopCapturingAudio}
-    \subitem {UAudioManager}, \hyperpage{251}
+    \subitem {UAudioManager}, \hyperpage{253}
   \item {StringToNumeric}
-    \subitem {NumericParser}, \hyperpage{176}
+    \subitem {NumericParser}, \hyperpage{178}
   \item {SupportsDynamicReloading}
     \subitem {FOpenAccessibilityAnalyticsModule}, \hyperpage{62}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{65}
     \subitem {FOpenAccessibilityModule}, \hyperpage{69}
+  \item {SwitchNextActiveWindow}
+    \subitem {UWindowInteractionLibrary}, \hyperpage{309}
+  \item {SwitchNextTabInStack}
+    \subitem {UWindowInteractionLibrary}, \hyperpage{310}
+  \item {SwitchPrevActiveWindow}
+    \subitem {UWindowInteractionLibrary}, \hyperpage{311}
+  \item {SwitchPrevTabInStack}
+    \subitem {UWindowInteractionLibrary}, \hyperpage{312}
 
   \indexspace
 
-  \item {TestWhisper.ModelInfo}, \hyperpage{175}
+  \item {TabUtils::FOpenArea}, \hyperpage{70}
+    \subitem {GetChildNodes}, \hyperpage{70}
+  \item {TabUtils::FOpenSplitter}, \hyperpage{71}
+    \subitem {GetChildNodes}, \hyperpage{71}
+  \item {TabUtils::FOpenStack}, \hyperpage{71}
+    \subitem {GetTabs}, \hyperpage{72}
   \item {TGraphAccessibilityNodeFactory}
-    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{202}
-  \item {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{201}
-    \subitem {$\sim$TGraphAccessibilityNodeFactory}, \hyperpage{202}
-    \subitem {AccessibilityRegistry}, \hyperpage{205}
-    \subitem {CreateNodeWidget}, \hyperpage{203}
-    \subitem {CreatePinWidget}, \hyperpage{204}
-    \subitem {Implementation}, \hyperpage{205}
-    \subitem {TGraphAccessibilityNodeFactory}, \hyperpage{202}
+    \subitem {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{204}
+  \item {TGraphAccessibilityNodeFactory$<$ T $>$}, \hyperpage{203}
+    \subitem {$\sim$TGraphAccessibilityNodeFactory}, \hyperpage{204}
+    \subitem {AccessibilityRegistry}, \hyperpage{207}
+    \subitem {CreateNodeWidget}, \hyperpage{205}
+    \subitem {CreatePinWidget}, \hyperpage{206}
+    \subitem {Implementation}, \hyperpage{207}
+    \subitem {TGraphAccessibilityNodeFactory}, \hyperpage{204}
   \item {Tick}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{65}
-    \subitem {FPhraseTree}, \hyperpage{139}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{167}
-    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{185}
-    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{188}
-    \subitem {SContentIndexer}, \hyperpage{196}
-    \subitem {SIndexer}, \hyperpage{199}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{218}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{230}
-    \subitem {UAccessibilityWindowToolbar}, \hyperpage{246}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{292}
+    \subitem {FPhraseTree}, \hyperpage{141}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{169}
+    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{187}
+    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{190}
+    \subitem {SContentIndexer}, \hyperpage{198}
+    \subitem {SIndexer}, \hyperpage{201}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{220}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{232}
+    \subitem {UAccessibilityWindowToolbar}, \hyperpage{248}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{294}
   \item {tick\_handle}
-    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{186}
+    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{188}
   \item {TickDelegateHandle}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{168}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{170}
   \item {TickTreeViewAccessibility}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{230}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{232}
   \item {ToggleContextAwareness}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{218}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{220}
   \item {TopLeft}
     \subitem {FGraphLocomotionChunk}, \hyperpage{49}
-    \subitem {FPanelViewPosition}, \hyperpage{71}
+    \subitem {FPanelViewPosition}, \hyperpage{74}
   \item {TranscribeWaveForm}
     \subitem {FOpenAccessibilityCommunicationModule}, \hyperpage{65}
   \item {TranscriptionContainer}
-    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{189}
+    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{191}
   \item {TranscriptionSlots}
-    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{189}
+    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{191}
   \item {TreeView}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{220}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{233}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{222}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{235}
   \item {TreeViewCanTick}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{231}
-  \item {TreeViewRequiresTick}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{231}
-  \item {TreeViewTickRequirements}
     \subitem {UAccessibilityGraphEditorContext}, \hyperpage{233}
+  \item {TreeViewRequiresTick}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{233}
+  \item {TreeViewTickRequirements}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{235}
 
   \indexspace
 
-  \item {UAccessibilityAddNodeContextMenu}, \hyperpage{206}
-    \subitem {$\sim$UAccessibilityAddNodeContextMenu}, \hyperpage{209}
-    \subitem {AppendFilterText}, \hyperpage{209}
-    \subitem {AppendScrollDistance}, \hyperpage{209}
-    \subitem {ApplyAccessibilityWidget}, \hyperpage{210}
-    \subitem {Close}, \hyperpage{210}
-    \subitem {ContextAwarenessCheckBox}, \hyperpage{219}
-    \subitem {DoesItemsRequireRefresh}, \hyperpage{211}
-    \subitem {FilterTextBox}, \hyperpage{219}
-    \subitem {GetFilterText}, \hyperpage{211}
-    \subitem {GetGraphActionFromIndex}, \hyperpage{211, 212}
-    \subitem {GetGraphActionFromIndexSP}, \hyperpage{212}
-    \subitem {GraphMenu}, \hyperpage{219}
-    \subitem {Init}, \hyperpage{213, 214}
-    \subitem {PerformGraphAction}, \hyperpage{215}
-    \subitem {PrevFilterString}, \hyperpage{220}
-    \subitem {PrevNumGeneratedChildren}, \hyperpage{220}
-    \subitem {PrevNumItemsBeingObserved}, \hyperpage{220}
-    \subitem {PrevScrollDistance}, \hyperpage{220}
-    \subitem {RefreshAccessibilityWidgets}, \hyperpage{215}
-    \subitem {ResetFilterText}, \hyperpage{216}
-    \subitem {ScaleMenu}, \hyperpage{216}
-    \subitem {SelectGraphAction}, \hyperpage{217}
-    \subitem {SetFilterText}, \hyperpage{217}
-    \subitem {SetScrollDistance}, \hyperpage{217}
-    \subitem {SetScrollDistanceBottom}, \hyperpage{218}
-    \subitem {SetScrollDistanceTop}, \hyperpage{218}
-    \subitem {Tick}, \hyperpage{218}
-    \subitem {ToggleContextAwareness}, \hyperpage{218}
-    \subitem {TreeView}, \hyperpage{220}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{208}
-    \subitem {UpdateAccessibilityWidget}, \hyperpage{219}
-  \item {UAccessibilityGraphEditorContext}, \hyperpage{221}
-    \subitem {AppendFilterText}, \hyperpage{222}
-    \subitem {AppendScrollDistance}, \hyperpage{223}
-    \subitem {CheckBoxes}, \hyperpage{232}
-    \subitem {Close}, \hyperpage{223}
-    \subitem {CreateAccessibilityWrapper}, \hyperpage{223}
-    \subitem {FilterTextBox}, \hyperpage{233}
-    \subitem {FindGraphActionMenu}, \hyperpage{224}
-    \subitem {FindStaticComponents}, \hyperpage{224}
-    \subitem {FindTreeView}, \hyperpage{225}
-    \subitem {GetFilterText}, \hyperpage{226}
-    \subitem {GetStaticIndexOffset}, \hyperpage{226}
-    \subitem {GetTreeViewAction}, \hyperpage{226}
-    \subitem {GraphMenu}, \hyperpage{233}
-    \subitem {Init}, \hyperpage{227}
-    \subitem {ScaleMenu}, \hyperpage{227}
-    \subitem {SelectAction}, \hyperpage{228}
-    \subitem {SetFilterText}, \hyperpage{229}
-    \subitem {SetScrollDistance}, \hyperpage{229}
-    \subitem {SetScrollDistanceBottom}, \hyperpage{230}
-    \subitem {SetScrollDistanceTop}, \hyperpage{230}
-    \subitem {Tick}, \hyperpage{230}
-    \subitem {TickTreeViewAccessibility}, \hyperpage{230}
-    \subitem {TreeView}, \hyperpage{233}
-    \subitem {TreeViewCanTick}, \hyperpage{231}
-    \subitem {TreeViewRequiresTick}, \hyperpage{231}
-    \subitem {TreeViewTickRequirements}, \hyperpage{233}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{222}
-    \subitem {UpdateAccessibilityWidget}, \hyperpage{232}
+  \item {UAccessibilityAddNodeContextMenu}, \hyperpage{208}
+    \subitem {$\sim$UAccessibilityAddNodeContextMenu}, \hyperpage{211}
+    \subitem {AppendFilterText}, \hyperpage{211}
+    \subitem {AppendScrollDistance}, \hyperpage{211}
+    \subitem {ApplyAccessibilityWidget}, \hyperpage{212}
+    \subitem {Close}, \hyperpage{212}
+    \subitem {ContextAwarenessCheckBox}, \hyperpage{221}
+    \subitem {DoesItemsRequireRefresh}, \hyperpage{213}
+    \subitem {FilterTextBox}, \hyperpage{221}
+    \subitem {GetFilterText}, \hyperpage{213}
+    \subitem {GetGraphActionFromIndex}, \hyperpage{213, 214}
+    \subitem {GetGraphActionFromIndexSP}, \hyperpage{214}
+    \subitem {GraphMenu}, \hyperpage{221}
+    \subitem {Init}, \hyperpage{215, 216}
+    \subitem {PerformGraphAction}, \hyperpage{217}
+    \subitem {PrevFilterString}, \hyperpage{222}
+    \subitem {PrevNumGeneratedChildren}, \hyperpage{222}
+    \subitem {PrevNumItemsBeingObserved}, \hyperpage{222}
+    \subitem {PrevScrollDistance}, \hyperpage{222}
+    \subitem {RefreshAccessibilityWidgets}, \hyperpage{217}
+    \subitem {ResetFilterText}, \hyperpage{218}
+    \subitem {ScaleMenu}, \hyperpage{218}
+    \subitem {SelectGraphAction}, \hyperpage{219}
+    \subitem {SetFilterText}, \hyperpage{219}
+    \subitem {SetScrollDistance}, \hyperpage{219}
+    \subitem {SetScrollDistanceBottom}, \hyperpage{220}
+    \subitem {SetScrollDistanceTop}, \hyperpage{220}
+    \subitem {Tick}, \hyperpage{220}
+    \subitem {ToggleContextAwareness}, \hyperpage{220}
+    \subitem {TreeView}, \hyperpage{222}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{210}
+    \subitem {UpdateAccessibilityWidget}, \hyperpage{221}
+  \item {UAccessibilityGraphEditorContext}, \hyperpage{223}
+    \subitem {AppendFilterText}, \hyperpage{224}
+    \subitem {AppendScrollDistance}, \hyperpage{225}
+    \subitem {CheckBoxes}, \hyperpage{234}
+    \subitem {Close}, \hyperpage{225}
+    \subitem {CreateAccessibilityWrapper}, \hyperpage{225}
+    \subitem {FilterTextBox}, \hyperpage{235}
+    \subitem {FindGraphActionMenu}, \hyperpage{226}
+    \subitem {FindStaticComponents}, \hyperpage{226}
+    \subitem {FindTreeView}, \hyperpage{227}
+    \subitem {GetFilterText}, \hyperpage{228}
+    \subitem {GetStaticIndexOffset}, \hyperpage{228}
+    \subitem {GetTreeViewAction}, \hyperpage{228}
+    \subitem {GraphMenu}, \hyperpage{235}
+    \subitem {Init}, \hyperpage{229}
+    \subitem {ScaleMenu}, \hyperpage{229}
+    \subitem {SelectAction}, \hyperpage{230}
+    \subitem {SetFilterText}, \hyperpage{231}
+    \subitem {SetScrollDistance}, \hyperpage{231}
+    \subitem {SetScrollDistanceBottom}, \hyperpage{232}
+    \subitem {SetScrollDistanceTop}, \hyperpage{232}
+    \subitem {Tick}, \hyperpage{232}
+    \subitem {TickTreeViewAccessibility}, \hyperpage{232}
+    \subitem {TreeView}, \hyperpage{235}
+    \subitem {TreeViewCanTick}, \hyperpage{233}
+    \subitem {TreeViewRequiresTick}, \hyperpage{233}
+    \subitem {TreeViewTickRequirements}, \hyperpage{235}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{224}
+    \subitem {UpdateAccessibilityWidget}, \hyperpage{234}
   \item {UAccessibilityGraphEditorContext::FTreeViewTickRequirements}, 
-		\hyperpage{169}
-    \subitem {FTreeViewTickRequirements}, \hyperpage{169}
-    \subitem {PrevNumGeneratedChildren}, \hyperpage{169}
-    \subitem {PrevNumItemsBeingObserved}, \hyperpage{169}
-    \subitem {PrevScrollDistance}, \hyperpage{169}
-    \subitem {PrevSearchText}, \hyperpage{170}
-  \item {UAccessibilityGraphLocomotionContext}, \hyperpage{233}
+		\hyperpage{171}
+    \subitem {FTreeViewTickRequirements}, \hyperpage{171}
+    \subitem {PrevNumGeneratedChildren}, \hyperpage{171}
+    \subitem {PrevNumItemsBeingObserved}, \hyperpage{171}
+    \subitem {PrevScrollDistance}, \hyperpage{171}
+    \subitem {PrevSearchText}, \hyperpage{172}
+  \item {UAccessibilityGraphLocomotionContext}, \hyperpage{235}
     \subitem {$\sim$UAccessibilityGraphLocomotionContext}, 
-		\hyperpage{235}
-    \subitem {BindFocusChangedEvent}, \hyperpage{235}
-    \subitem {CalculateVisualChunksBounds}, \hyperpage{235}
-    \subitem {CancelLocomotion}, \hyperpage{236}
-    \subitem {ChangeChunkVis}, \hyperpage{236}
-    \subitem {ChunkArray}, \hyperpage{242}
-    \subitem {ChunkSize}, \hyperpage{242}
-    \subitem {Close}, \hyperpage{236}
-    \subitem {ConfirmSelection}, \hyperpage{237}
-    \subitem {CreateVisualGrid}, \hyperpage{237}
-    \subitem {CurrentViewPosition}, \hyperpage{242}
-    \subitem {GenerateVisualChunks}, \hyperpage{237}
-    \subitem {GridContainer}, \hyperpage{243}
-    \subitem {GridParent}, \hyperpage{243}
-    \subitem {HideNativeVisuals}, \hyperpage{238}
-    \subitem {Init}, \hyperpage{238, 239}
-    \subitem {LinkedEditor}, \hyperpage{243}
-    \subitem {MoveViewport}, \hyperpage{239}
-    \subitem {OnFocusChanged}, \hyperpage{240}
-    \subitem {PreviousPositions}, \hyperpage{243}
-    \subitem {RemoveVisualGrid}, \hyperpage{240}
-    \subitem {RevertToPreviousView}, \hyperpage{240}
-    \subitem {SelectChunk}, \hyperpage{241}
-    \subitem {StartViewPosition}, \hyperpage{243}
-    \subitem {StartViewZoom}, \hyperpage{243}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{234}
-    \subitem {UnbindFocusChangedEvent}, \hyperpage{241}
-    \subitem {UnHideNativeVisuals}, \hyperpage{242}
-  \item {UAccessibilityWindowToolbar}, \hyperpage{244}
-    \subitem {$\sim$UAccessibilityWindowToolbar}, \hyperpage{245}
-    \subitem {GetActiveToolkitWidget}, \hyperpage{245}
-    \subitem {IsActiveToolbar}, \hyperpage{245}
-    \subitem {SelectToolbarItem}, \hyperpage{246}
-    \subitem {Tick}, \hyperpage{246}
-    \subitem {UAccessibilityWindowToolbar}, \hyperpage{244}
-  \item {UAudioManager}, \hyperpage{247}
-    \subitem {$\sim$UAudioManager}, \hyperpage{248}
-    \subitem {GetAudioCaptureNumChannels}, \hyperpage{249}
-    \subitem {GetAudioCaptureSampleRate}, \hyperpage{249}
-    \subitem {IsCapturingAudio}, \hyperpage{249}
-    \subitem {OnAudioReadyForTranscription}, \hyperpage{252}
-    \subitem {OnDefaultDeviceChanged}, \hyperpage{250}
-    \subitem {PRIVATE\_OnAudioGenerate}, \hyperpage{250}
-    \subitem {SaveAudioBufferToWAV}, \hyperpage{251}
-    \subitem {Settings}, \hyperpage{252}
-    \subitem {StartCapturingAudio}, \hyperpage{251}
-    \subitem {StopCapturingAudio}, \hyperpage{251}
-    \subitem {UAudioManager}, \hyperpage{248}
-  \item {UBAudioCapture}, \hyperpage{252}
-    \subitem {$\sim$UBAudioCapture}, \hyperpage{253}
-    \subitem {OpenDefaultAudioStream}, \hyperpage{253}
-    \subitem {UBAudioCapture}, \hyperpage{253}
-  \item {ULocalizedInputLibrary}, \hyperpage{254}
-    \subitem {$\sim$ULocalizedInputLibrary}, \hyperpage{255}
-    \subitem {BindBranches}, \hyperpage{255}
-    \subitem {KeyboardInputAdd}, \hyperpage{256}
-    \subitem {KeyboardInputConfirm}, \hyperpage{257}
-    \subitem {KeyboardInputExit}, \hyperpage{258}
-    \subitem {KeyboardInputRemove}, \hyperpage{258}
-    \subitem {KeyboardInputReset}, \hyperpage{259}
-    \subitem {ULocalizedInputLibrary}, \hyperpage{255}
+		\hyperpage{237}
+    \subitem {BindFocusChangedEvent}, \hyperpage{237}
+    \subitem {CalculateVisualChunksBounds}, \hyperpage{237}
+    \subitem {CancelLocomotion}, \hyperpage{238}
+    \subitem {ChangeChunkVis}, \hyperpage{238}
+    \subitem {ChunkArray}, \hyperpage{244}
+    \subitem {ChunkSize}, \hyperpage{244}
+    \subitem {Close}, \hyperpage{238}
+    \subitem {ConfirmSelection}, \hyperpage{239}
+    \subitem {CreateVisualGrid}, \hyperpage{239}
+    \subitem {CurrentViewPosition}, \hyperpage{244}
+    \subitem {GenerateVisualChunks}, \hyperpage{239}
+    \subitem {GridContainer}, \hyperpage{245}
+    \subitem {GridParent}, \hyperpage{245}
+    \subitem {HideNativeVisuals}, \hyperpage{240}
+    \subitem {Init}, \hyperpage{240, 241}
+    \subitem {LinkedEditor}, \hyperpage{245}
+    \subitem {MoveViewport}, \hyperpage{241}
+    \subitem {OnFocusChanged}, \hyperpage{242}
+    \subitem {PreviousPositions}, \hyperpage{245}
+    \subitem {RemoveVisualGrid}, \hyperpage{242}
+    \subitem {RevertToPreviousView}, \hyperpage{242}
+    \subitem {SelectChunk}, \hyperpage{243}
+    \subitem {StartViewPosition}, \hyperpage{245}
+    \subitem {StartViewZoom}, \hyperpage{245}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{236}
+    \subitem {UnbindFocusChangedEvent}, \hyperpage{243}
+    \subitem {UnHideNativeVisuals}, \hyperpage{244}
+  \item {UAccessibilityWindowToolbar}, \hyperpage{246}
+    \subitem {$\sim$UAccessibilityWindowToolbar}, \hyperpage{247}
+    \subitem {GetActiveToolkitWidget}, \hyperpage{247}
+    \subitem {IsActiveToolbar}, \hyperpage{247}
+    \subitem {SelectToolbarItem}, \hyperpage{248}
+    \subitem {Tick}, \hyperpage{248}
+    \subitem {UAccessibilityWindowToolbar}, \hyperpage{246}
+  \item {UAudioManager}, \hyperpage{249}
+    \subitem {$\sim$UAudioManager}, \hyperpage{250}
+    \subitem {GetAudioCaptureNumChannels}, \hyperpage{251}
+    \subitem {GetAudioCaptureSampleRate}, \hyperpage{251}
+    \subitem {IsCapturingAudio}, \hyperpage{251}
+    \subitem {OnAudioReadyForTranscription}, \hyperpage{254}
+    \subitem {OnDefaultDeviceChanged}, \hyperpage{252}
+    \subitem {PRIVATE\_OnAudioGenerate}, \hyperpage{252}
+    \subitem {SaveAudioBufferToWAV}, \hyperpage{253}
+    \subitem {Settings}, \hyperpage{254}
+    \subitem {StartCapturingAudio}, \hyperpage{253}
+    \subitem {StopCapturingAudio}, \hyperpage{253}
+    \subitem {UAudioManager}, \hyperpage{250}
+  \item {UBAudioCapture}, \hyperpage{254}
+    \subitem {$\sim$UBAudioCapture}, \hyperpage{255}
+    \subitem {OpenDefaultAudioStream}, \hyperpage{255}
+    \subitem {UBAudioCapture}, \hyperpage{255}
+  \item {ULocalizedInputLibrary}, \hyperpage{256}
+    \subitem {$\sim$ULocalizedInputLibrary}, \hyperpage{257}
+    \subitem {BindBranches}, \hyperpage{257}
+    \subitem {KeyboardInputAdd}, \hyperpage{258}
+    \subitem {KeyboardInputConfirm}, \hyperpage{259}
+    \subitem {KeyboardInputExit}, \hyperpage{260}
+    \subitem {KeyboardInputRemove}, \hyperpage{260}
+    \subitem {KeyboardInputReset}, \hyperpage{261}
+    \subitem {ULocalizedInputLibrary}, \hyperpage{257}
   \item {UnbindFocusChangedEvent}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{241}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{243}
   \item {UnHideNativeVisuals}
-    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{242}
-  \item {UNodeInteractionLibrary}, \hyperpage{260}
-    \subitem {$\sim$UNodeInteractionLibrary}, \hyperpage{261}
-    \subitem {BindBranches}, \hyperpage{261}
-    \subitem {BlueprintCompile}, \hyperpage{265}
-    \subitem {DeleteNode}, \hyperpage{266}
-    \subitem {LocomotionCancel}, \hyperpage{266}
-    \subitem {LocomotionConfirm}, \hyperpage{267}
-    \subitem {LocomotionRevert}, \hyperpage{267}
-    \subitem {LocomotionSelect}, \hyperpage{267}
-    \subitem {MoveNode}, \hyperpage{268}
-    \subitem {NodeAddMenu}, \hyperpage{269}
-    \subitem {NodeAddPinMenu}, \hyperpage{270}
-    \subitem {NodeAddScroll}, \hyperpage{271}
-    \subitem {NodeAddSearchAdd}, \hyperpage{272}
-    \subitem {NodeAddSearchRemove}, \hyperpage{273}
-    \subitem {NodeAddSearchReset}, \hyperpage{273}
-    \subitem {NodeAddSelect}, \hyperpage{273}
-    \subitem {NodeIndexFocus}, \hyperpage{274}
-    \subitem {PinConnect}, \hyperpage{274}
-    \subitem {PinDisconnect}, \hyperpage{275}
-    \subitem {SelectionAlignment}, \hyperpage{276}
-    \subitem {SelectionComment}, \hyperpage{276}
-    \subitem {SelectionMove}, \hyperpage{277}
-    \subitem {SelectionNodeToggle}, \hyperpage{278}
-    \subitem {SelectionReset}, \hyperpage{278}
-    \subitem {SelectionStraighten}, \hyperpage{278}
-    \subitem {UNodeInteractionLibrary}, \hyperpage{261}
+    \subitem {UAccessibilityGraphLocomotionContext}, \hyperpage{244}
+  \item {UNodeInteractionLibrary}, \hyperpage{262}
+    \subitem {$\sim$UNodeInteractionLibrary}, \hyperpage{263}
+    \subitem {BindBranches}, \hyperpage{263}
+    \subitem {BlueprintCompile}, \hyperpage{267}
+    \subitem {DeleteNode}, \hyperpage{268}
+    \subitem {LocomotionCancel}, \hyperpage{268}
+    \subitem {LocomotionConfirm}, \hyperpage{269}
+    \subitem {LocomotionRevert}, \hyperpage{269}
+    \subitem {LocomotionSelect}, \hyperpage{269}
+    \subitem {MoveNode}, \hyperpage{270}
+    \subitem {NodeAddMenu}, \hyperpage{271}
+    \subitem {NodeAddPinMenu}, \hyperpage{272}
+    \subitem {NodeAddScroll}, \hyperpage{273}
+    \subitem {NodeAddSearchAdd}, \hyperpage{274}
+    \subitem {NodeAddSearchRemove}, \hyperpage{275}
+    \subitem {NodeAddSearchReset}, \hyperpage{275}
+    \subitem {NodeAddSelect}, \hyperpage{275}
+    \subitem {NodeIndexFocus}, \hyperpage{276}
+    \subitem {PinConnect}, \hyperpage{276}
+    \subitem {PinDisconnect}, \hyperpage{277}
+    \subitem {SelectionAlignment}, \hyperpage{278}
+    \subitem {SelectionComment}, \hyperpage{278}
+    \subitem {SelectionMove}, \hyperpage{279}
+    \subitem {SelectionNodeToggle}, \hyperpage{280}
+    \subitem {SelectionReset}, \hyperpage{280}
+    \subitem {SelectionStraighten}, \hyperpage{280}
+    \subitem {UNodeInteractionLibrary}, \hyperpage{263}
   \item {UnregisterGameWorldAsset}
     \subitem {FAssetAccessibilityRegistry}, \hyperpage{30}
   \item {UnregisterGraphAsset}
     \subitem {FAssetAccessibilityRegistry}, \hyperpage{32}
   \item {UnregisterTicker}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{167}
-  \item {UParseEnumInput}, \hyperpage{279}
-    \subitem {$\sim$UParseEnumInput}, \hyperpage{280}
-    \subitem {EnumType}, \hyperpage{281}
-    \subitem {GetEnumType}, \hyperpage{280}
-    \subitem {SetEnumType}, \hyperpage{281}
-  \item {UParseInput}, \hyperpage{281}
-    \subitem {$\sim$UParseInput}, \hyperpage{282}
-  \item {UParseIntInput}, \hyperpage{282}
-    \subitem {$\sim$UParseIntInput}, \hyperpage{283}
-    \subitem {GetValue}, \hyperpage{283}
-    \subitem {SetValue}, \hyperpage{284}
-    \subitem {Value}, \hyperpage{284}
-  \item {UParseStringInput}, \hyperpage{284}
-    \subitem {$\sim$UParseStringInput}, \hyperpage{285}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{169}
+  \item {UParseEnumInput}, \hyperpage{281}
+    \subitem {$\sim$UParseEnumInput}, \hyperpage{282}
+    \subitem {EnumType}, \hyperpage{283}
+    \subitem {GetEnumType}, \hyperpage{282}
+    \subitem {SetEnumType}, \hyperpage{283}
+  \item {UParseInput}, \hyperpage{283}
+    \subitem {$\sim$UParseInput}, \hyperpage{284}
+  \item {UParseIntInput}, \hyperpage{284}
+    \subitem {$\sim$UParseIntInput}, \hyperpage{285}
     \subitem {GetValue}, \hyperpage{285}
     \subitem {SetValue}, \hyperpage{286}
     \subitem {Value}, \hyperpage{286}
+  \item {UParseStringInput}, \hyperpage{286}
+    \subitem {$\sim$UParseStringInput}, \hyperpage{287}
+    \subitem {GetValue}, \hyperpage{287}
+    \subitem {SetValue}, \hyperpage{288}
+    \subitem {Value}, \hyperpage{288}
   \item {UpdateAccessibilityWidget}
-    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{219}
-    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{232}
+    \subitem {UAccessibilityAddNodeContextMenu}, \hyperpage{221}
+    \subitem {UAccessibilityGraphEditorContext}, \hyperpage{234}
   \item {UpdateIndex}
-    \subitem {SContentIndexer}, \hyperpage{197}
-    \subitem {SIndexer}, \hyperpage{200}
+    \subitem {SContentIndexer}, \hyperpage{199}
+    \subitem {SIndexer}, \hyperpage{202}
   \item {UpdateTopTranscription}
-    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{189}
+    \subitem {SAccessibilityTranscriptionVis}, \hyperpage{191}
   \item {UpdateVisualizer}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{167}
-  \item {UPhraseTreeContextMenuObject}, \hyperpage{286}
-    \subitem {$\sim$UPhraseTreeContextMenuObject}, \hyperpage{288}
-    \subitem {BindMenuDismissed}, \hyperpage{288}
-    \subitem {BindTickDelegate}, \hyperpage{289}
-    \subitem {Close}, \hyperpage{289}
-    \subitem {GetWindow}, \hyperpage{289}
-    \subitem {Init}, \hyperpage{289, 290}
-    \subitem {Menu}, \hyperpage{292}
-    \subitem {OnMenuDismissed}, \hyperpage{290}
-    \subitem {RemoveMenuDismissed}, \hyperpage{291}
-    \subitem {RemoveTickDelegate}, \hyperpage{291}
-    \subitem {ScaleMenu}, \hyperpage{291}
-    \subitem {SetMenu}, \hyperpage{292}
-    \subitem {Tick}, \hyperpage{292}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{287, 288}
-    \subitem {Window}, \hyperpage{292}
-  \item {UPhraseTreeContextObject}, \hyperpage{293}
-    \subitem {$\sim$UPhraseTreeContextObject}, \hyperpage{294}
-    \subitem {bIsActive}, \hyperpage{295}
-    \subitem {Close}, \hyperpage{294}
-    \subitem {ContextRoot}, \hyperpage{295}
-    \subitem {GetContextRoot}, \hyperpage{294}
-    \subitem {GetIsActive}, \hyperpage{294}
-    \subitem {SetContextRootNode}, \hyperpage{295}
-    \subitem {UPhraseTreeContextObject}, \hyperpage{294}
-  \item {UPhraseTreeFunctionLibrary}, \hyperpage{296}
-    \subitem {BindBranches}, \hyperpage{296}
-  \item {UPhraseTreeUtils}, \hyperpage{297}
-    \subitem {$\sim$UPhraseTreeUtils}, \hyperpage{297}
-    \subitem {PhraseTree}, \hyperpage{299}
-    \subitem {RegisteredLibraries}, \hyperpage{299}
-    \subitem {RegisterFunctionLibrary}, \hyperpage{298}
-    \subitem {SetPhraseTree}, \hyperpage{299}
-    \subitem {UPhraseTreeUtils}, \hyperpage{297}
-  \item {UViewInteractionLibrary}, \hyperpage{300}
-    \subitem {$\sim$UViewInteractionLibrary}, \hyperpage{300}
-    \subitem {BindBranches}, \hyperpage{301}
-    \subitem {IndexFocus}, \hyperpage{302}
-    \subitem {MoveViewport}, \hyperpage{302}
-    \subitem {UViewInteractionLibrary}, \hyperpage{300}
-    \subitem {ZoomViewport}, \hyperpage{303}
-  \item {UWindowInteractionLibrary}, \hyperpage{304}
-    \subitem {$\sim$UWindowInteractionLibrary}, \hyperpage{305}
-    \subitem {BindBranches}, \hyperpage{305}
-    \subitem {CloseActiveWindow}, \hyperpage{306}
-    \subitem {SelectToolBarItem}, \hyperpage{306}
-    \subitem {UWindowInteractionLibrary}, \hyperpage{305}
-    \subitem {WindowToolBar}, \hyperpage{307}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{169}
+  \item {UPhraseTreeContextMenuObject}, \hyperpage{288}
+    \subitem {$\sim$UPhraseTreeContextMenuObject}, \hyperpage{290}
+    \subitem {BindMenuDismissed}, \hyperpage{290}
+    \subitem {BindTickDelegate}, \hyperpage{291}
+    \subitem {Close}, \hyperpage{291}
+    \subitem {GetWindow}, \hyperpage{291}
+    \subitem {Init}, \hyperpage{291, 292}
+    \subitem {Menu}, \hyperpage{294}
+    \subitem {OnMenuDismissed}, \hyperpage{292}
+    \subitem {RemoveMenuDismissed}, \hyperpage{293}
+    \subitem {RemoveTickDelegate}, \hyperpage{293}
+    \subitem {ScaleMenu}, \hyperpage{293}
+    \subitem {SetMenu}, \hyperpage{294}
+    \subitem {Tick}, \hyperpage{294}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{289, 290}
+    \subitem {Window}, \hyperpage{294}
+  \item {UPhraseTreeContextObject}, \hyperpage{295}
+    \subitem {$\sim$UPhraseTreeContextObject}, \hyperpage{296}
+    \subitem {bIsActive}, \hyperpage{297}
+    \subitem {Close}, \hyperpage{296}
+    \subitem {ContextRoot}, \hyperpage{297}
+    \subitem {GetContextRoot}, \hyperpage{296}
+    \subitem {GetIsActive}, \hyperpage{296}
+    \subitem {SetContextRootNode}, \hyperpage{297}
+    \subitem {UPhraseTreeContextObject}, \hyperpage{296}
+  \item {UPhraseTreeFunctionLibrary}, \hyperpage{298}
+    \subitem {BindBranches}, \hyperpage{298}
+  \item {UPhraseTreeUtils}, \hyperpage{299}
+    \subitem {$\sim$UPhraseTreeUtils}, \hyperpage{299}
+    \subitem {PhraseTree}, \hyperpage{301}
+    \subitem {RegisteredLibraries}, \hyperpage{301}
+    \subitem {RegisterFunctionLibrary}, \hyperpage{300}
+    \subitem {SetPhraseTree}, \hyperpage{301}
+    \subitem {UPhraseTreeUtils}, \hyperpage{299}
+  \item {UViewInteractionLibrary}, \hyperpage{302}
+    \subitem {$\sim$UViewInteractionLibrary}, \hyperpage{302}
+    \subitem {BindBranches}, \hyperpage{303}
+    \subitem {IndexFocus}, \hyperpage{304}
+    \subitem {MoveViewport}, \hyperpage{304}
+    \subitem {UViewInteractionLibrary}, \hyperpage{302}
+    \subitem {ZoomViewport}, \hyperpage{305}
+  \item {UWindowInteractionLibrary}, \hyperpage{306}
+    \subitem {$\sim$UWindowInteractionLibrary}, \hyperpage{307}
+    \subitem {BindBranches}, \hyperpage{307}
+    \subitem {CloseActiveWindow}, \hyperpage{308}
+    \subitem {SelectToolBarItem}, \hyperpage{309}
+    \subitem {SwitchNextActiveWindow}, \hyperpage{309}
+    \subitem {SwitchNextTabInStack}, \hyperpage{310}
+    \subitem {SwitchPrevActiveWindow}, \hyperpage{311}
+    \subitem {SwitchPrevTabInStack}, \hyperpage{312}
+    \subitem {UWindowInteractionLibrary}, \hyperpage{307}
+    \subitem {WindowToolBar}, \hyperpage{313}
 
   \indexspace
 
   \item {Value}
-    \subitem {UParseIntInput}, \hyperpage{284}
-    \subitem {UParseStringInput}, \hyperpage{286}
+    \subitem {UParseIntInput}, \hyperpage{286}
+    \subitem {UParseStringInput}, \hyperpage{288}
   \item {VisContent}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{168}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{170}
   \item {VisWindow}
-    \subitem {FTranscriptionVisualizer}, \hyperpage{168}
+    \subitem {FTranscriptionVisualizer}, \hyperpage{170}
 
   \indexspace
 
   \item {WARNING}
-    \subitem {OpenAccessibilityPy.Logging.LogLevel}, \hyperpage{175}
+    \subitem {OpenAccessibilityPy.Logging.LogLevel}, \hyperpage{177}
   \item {whisper\_interface}
-    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{186}
+    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{188}
   \item {whisper\_model}
     \subitem {OpenAccessibilityPy.WhisperInterface.WhisperInterface}, 
-		\hyperpage{310}
+		\hyperpage{316}
   \item {Window}
-    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{292}
+    \subitem {UPhraseTreeContextMenuObject}, \hyperpage{294}
   \item {WindowToolBar}
-    \subitem {UWindowInteractionLibrary}, \hyperpage{307}
+    \subitem {UWindowInteractionLibrary}, \hyperpage{313}
   \item {worker\_pool}
-    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{186}
+    \subitem {OpenAccessibilityPy.OpenAccessibilityPy}, \hyperpage{188}
   \item {WrapNodeWidget}
     \subitem {FAccessibilityNodeFactory}, \hyperpage{23}
   \item {WrapPinWidget}
@@ -1779,6 +1799,6 @@
   \indexspace
 
   \item {ZoomViewport}
-    \subitem {UViewInteractionLibrary}, \hyperpage{303}
+    \subitem {UViewInteractionLibrary}, \hyperpage{305}
 
 \end{theindex}

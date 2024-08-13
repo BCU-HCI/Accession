@@ -26,7 +26,7 @@ var searchData=
   ['contextobjectstack_23',['ContextObjectStack',['../structFParseRecord.html#a544da35b513a59458a69d83a25882fcf',1,'FParseRecord']]],
   ['contextroot_24',['ContextRoot',['../classUPhraseTreeContextObject.html#a8560a9dd89e00f081ec53acfe98e41bf',1,'UPhraseTreeContextObject']]],
   ['createaccessibilitywrapper_25',['CreateAccessibilityWrapper',['../classUAccessibilityGraphEditorContext.html#a42cd73b7b2d1529e3e5eb8f625b00a72',1,'UAccessibilityGraphEditorContext']]],
-  ['createcontextobject_26',['CreateContextObject',['../classIPhraseContextNodeBase.html#ab76ed702f9c1f709f37976fd7e6c7067',1,'IPhraseContextNodeBase::CreateContextObject()'],['../classFPhraseContextMenuNode.html#a00d8705419e4ec7ddbe0d9a36e9456a4',1,'FPhraseContextMenuNode::CreateContextObject()'],['../classFPhraseContextNode.html#a97c5324f3167c5065269e999c507292c',1,'FPhraseContextNode::CreateContextObject()']]],
+  ['createcontextobject_26',['CreateContextObject',['../classIPhraseContextNodeBase.html#ab76ed702f9c1f709f37976fd7e6c7067',1,'IPhraseContextNodeBase::CreateContextObject()'],['../classFPhraseContextMenuNode.html#a00d8705419e4ec7ddbe0d9a36e9456a4',1,'FPhraseContextMenuNode::CreateContextObject()'],['../classFPhraseContextNode.html#a039158a4a8ec7bf4496cf291126c2703',1,'FPhraseContextNode::CreateContextObject()']]],
   ['createnodewidget_27',['CreateNodeWidget',['../classTGraphAccessibilityNodeFactory.html#aaa4127c42e735639bf22666f0b84117e',1,'TGraphAccessibilityNodeFactory']]],
   ['createpinwidget_28',['CreatePinWidget',['../classTGraphAccessibilityNodeFactory.html#a4843598dcfba1ce770cdc9b07d523d5c',1,'TGraphAccessibilityNodeFactory']]]
 ];

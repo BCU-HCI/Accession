@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['modelinfo_0',['ModelInfo',['../classTestWhisper_1_1ModelInfo.html',1,'TestWhisper']]]
+  ['numericparser_0',['NumericParser',['../classNumericParser.html',1,'']]]
 ];

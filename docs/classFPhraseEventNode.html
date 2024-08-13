@@ -98,9 +98,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0f0d538bb4f1836dea0a337a42f91b2c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseEventNode.html#a0f0d538bb4f1836dea0a337a42f91b2c">RequiresPhrase</a> (const FString InPhrase) override</td></tr>
 <tr class="memdesc:a0f0d538bb4f1836dea0a337a42f91b2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Node Requires the Given Phrase.   <a href="classFPhraseEventNode.html#a0f0d538bb4f1836dea0a337a42f91b2c">More...</a><br /></td></tr>
 <tr class="separator:a0f0d538bb4f1836dea0a337a42f91b2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f150cf1aa4719e02fe00178cf2e3b02"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseEventNode.html#a5f150cf1aa4719e02fe00178cf2e3b02">RequiresPhrase</a> (const FString InPhrase, int32 &amp;OutDistance)</td></tr>
-<tr class="memdesc:a5f150cf1aa4719e02fe00178cf2e3b02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Node Requires the Given Phrase, and Returns the Distance of the Phrase.   <a href="classFPhraseEventNode.html#a5f150cf1aa4719e02fe00178cf2e3b02">More...</a><br /></td></tr>
-<tr class="separator:a5f150cf1aa4719e02fe00178cf2e3b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71935559fd7b3f288ce89fdca42be340"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseEventNode.html#a71935559fd7b3f288ce89fdca42be340">RequiresPhrase</a> (const FString InPhrase, int32 &amp;OutDistance) override</td></tr>
+<tr class="memdesc:a71935559fd7b3f288ce89fdca42be340"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Node Requires the Given Phrase, and Returns the Distance of the Phrase.   <a href="classFPhraseEventNode.html#a71935559fd7b3f288ce89fdca42be340">More...</a><br /></td></tr>
+<tr class="separator:a71935559fd7b3f288ce89fdca42be340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14c76a68138b843355fe528d6fdcef91"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structFParseResult.html">FParseResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseEventNode.html#a14c76a68138b843355fe528d6fdcef91">ParsePhrase</a> (TArray&lt; FString &gt; &amp;InPhraseArray, <a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;InParseRecord) override</td></tr>
 <tr class="memdesc:a14c76a68138b843355fe528d6fdcef91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.   <a href="classFPhraseEventNode.html#a14c76a68138b843355fe528d6fdcef91">More...</a><br /></td></tr>
 <tr class="separator:a14c76a68138b843355fe528d6fdcef91"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -257,6 +257,9 @@ Additional Inherited Members</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">FPhraseEventNode::~FPhraseEventNode </td>
@@ -265,6 +268,11 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="PhraseEventNode_8cpp_source.html#l00025">25</a> of file <a class="el" href="PhraseEventNode_8cpp_source.html">PhraseEventNode.cpp</a>.</p>
@@ -411,8 +419,8 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a5f150cf1aa4719e02fe00178cf2e3b02" name="a5f150cf1aa4719e02fe00178cf2e3b02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5f150cf1aa4719e02fe00178cf2e3b02">&#9670;&#160;</a></span>RequiresPhrase() <span class="overload">[2/2]</span></h2>
+<a id="a71935559fd7b3f288ce89fdca42be340" name="a71935559fd7b3f288ce89fdca42be340"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71935559fd7b3f288ce89fdca42be340">&#9670;&#160;</a></span>RequiresPhrase() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -440,7 +448,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

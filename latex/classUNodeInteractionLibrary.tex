@@ -427,7 +427,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00880}{8
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00881 \{}
-\DoxyCodeLine{00882     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{00882     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{00883 }
 \DoxyCodeLine{00884     UEdGraph* ActiveGraph = ActiveGraphEditor-\/>GetCurrentGraph();}
 \DoxyCodeLine{00885     \textcolor{keywordflow}{if} (ActiveGraph == \textcolor{keyword}{nullptr})}
@@ -472,7 +472,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00395}{3
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00396 \{}
-\DoxyCodeLine{00397     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{00397     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{00398 }
 \DoxyCodeLine{00399     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* IndexInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}NODE\_INDEX"{}}));}
 \DoxyCodeLine{00400     \textcolor{keywordflow}{if} (IndexInput == \textcolor{keyword}{nullptr})}
@@ -617,7 +617,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00314}{3
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00314                                                            \{}
-\DoxyCodeLine{00315     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{00315     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{00316 }
 \DoxyCodeLine{00317     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* IndexInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}NODE\_INDEX"{}}));}
 \DoxyCodeLine{00318     \mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}* DirectionInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}>(TEXT(\textcolor{stringliteral}{"{}DIRECTION"{}}));}
@@ -719,7 +719,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00510}{5
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00511 \{}
-\DoxyCodeLine{00512     GET\_CAST\_ACTIVE\_TAB\_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())}
+\DoxyCodeLine{00512     GET\_CAST\_ACTIVE\_TAB\_CONTENT\_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())}
 \DoxyCodeLine{00513 }
 \DoxyCodeLine{00514     SGraphPanel* GraphPanel = ActiveGraphEditor-\/>GetGraphPanel();}
 \DoxyCodeLine{00515     }
@@ -795,7 +795,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00566}{5
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00567 \{}
-\DoxyCodeLine{00568     GET\_CAST\_ACTIVE\_TAB\_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())}
+\DoxyCodeLine{00568     GET\_CAST\_ACTIVE\_TAB\_CONTENT\_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())}
 \DoxyCodeLine{00569 }
 \DoxyCodeLine{00570     SGraphPanel* GraphPanel = ActiveGraphEditor-\/>GetGraphPanel();}
 \DoxyCodeLine{00571     }
@@ -1045,7 +1045,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00417}{4
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00418 \{}
-\DoxyCodeLine{00419     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{00419     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{00420 }
 \DoxyCodeLine{00421     TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()-\/>GetGraphIndexer(}
 \DoxyCodeLine{00422         ActiveGraphEditor-\/>GetCurrentGraph()}
@@ -1080,7 +1080,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00435}{4
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00436 \{}
-\DoxyCodeLine{00437     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{00437     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{00438 }
 \DoxyCodeLine{00439     UEdGraph* Graph = ActiveGraphEditor-\/>GetCurrentGraph();}
 \DoxyCodeLine{00440 }
@@ -1136,7 +1136,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00474}{4
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00475 \{}
-\DoxyCodeLine{00476     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{00476     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{00477 }
 \DoxyCodeLine{00478     UEdGraph* Graph = ActiveGraphEditor-\/>GetCurrentGraph();}
 \DoxyCodeLine{00479 }
@@ -1189,7 +1189,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00785}{7
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00786 \{}
-\DoxyCodeLine{00787     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{00787     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{00788 }
 \DoxyCodeLine{00789     \mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}* PositionInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}>(TEXT(\textcolor{stringliteral}{"{}POSITION"{}}));}
 \DoxyCodeLine{00790     \textcolor{keywordflow}{if} (PositionInput == \textcolor{keyword}{nullptr})}
@@ -1242,7 +1242,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00828}{8
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00829 \{}
-\DoxyCodeLine{00830     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{00830     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{00831 }
 \DoxyCodeLine{00832     UEdGraph* Graph = ActiveGraphEditor-\/>GetCurrentGraph();}
 \DoxyCodeLine{00833     }
@@ -1273,7 +1273,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00745}{7
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00746 \{}
-\DoxyCodeLine{00747     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{00747     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{00748 }
 \DoxyCodeLine{00749     \mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}* Direction = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}>(TEXT(\textcolor{stringliteral}{"{}DIRECTION"{}}));}
 \DoxyCodeLine{00750     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* Amount = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}AMOUNT"{}}));}
@@ -1330,7 +1330,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00714}{7
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00715 \{}
-\DoxyCodeLine{00716     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor);}
+\DoxyCodeLine{00716     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor);}
 \DoxyCodeLine{00717 }
 \DoxyCodeLine{00718     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* IndexInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}NODE\_INDEX"{}}));}
 \DoxyCodeLine{00719     \textcolor{keywordflow}{if} (IndexInput == \textcolor{keyword}{nullptr})}
@@ -1372,7 +1372,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00739}{7
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00739                                                                  \{}
-\DoxyCodeLine{00740     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{00740     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{00741 }
 \DoxyCodeLine{00742     ActiveGraphEditor-\/>ClearSelectionSet();}
 \DoxyCodeLine{00743 \}}
@@ -1396,7 +1396,7 @@ Definition at line \mbox{\hyperlink{NodeInteractionLibrary_8cpp_source_l00821}{8
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00822 \{}
-\DoxyCodeLine{00823     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{00823     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{00824 }
 \DoxyCodeLine{00825     ActiveGraphEditor-\/>OnStraightenConnections();}
 \DoxyCodeLine{00826 \}}

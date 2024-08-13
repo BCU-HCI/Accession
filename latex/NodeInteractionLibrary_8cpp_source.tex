@@ -316,7 +316,7 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00312}00312 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00313}00313 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00314}\mbox{\hyperlink{classUNodeInteractionLibrary_a11b47ab03e06a454483df3864e8f9aa0}{00314}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_a11b47ab03e06a454483df3864e8f9aa0}{UNodeInteractionLibrary::MoveNode}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}} \&Record) \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00315}00315     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00315}00315     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00316}00316 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00317}00317     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* IndexInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}NODE\_INDEX"{}}));}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00318}00318     \mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}* DirectionInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}>(TEXT(\textcolor{stringliteral}{"{}DIRECTION"{}}));}
@@ -398,7 +398,7 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00394}00394 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00395}\mbox{\hyperlink{classUNodeInteractionLibrary_a4f5fdd80642cfb68c4063fad6c2ebee0}{00395}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_a4f5fdd80642cfb68c4063fad6c2ebee0}{UNodeInteractionLibrary::DeleteNode}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00396}00396 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00397}00397     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00397}00397     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00398}00398 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00399}00399     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* IndexInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}NODE\_INDEX"{}}));}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00400}00400     \textcolor{keywordflow}{if} (IndexInput == \textcolor{keyword}{nullptr})}
@@ -420,7 +420,7 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00416}00416 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00417}\mbox{\hyperlink{classUNodeInteractionLibrary_aae20db1587bbbad836cdfe2f9e4508d1}{00417}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_aae20db1587bbbad836cdfe2f9e4508d1}{UNodeInteractionLibrary::NodeIndexFocus}}(int32 Index)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00418}00418 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00419}00419     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00419}00419     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00420}00420 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00421}00421     TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()-\/>GetGraphIndexer(}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00422}00422         ActiveGraphEditor-\/>GetCurrentGraph()}
@@ -438,7 +438,7 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00434}00434 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00435}\mbox{\hyperlink{classUNodeInteractionLibrary_a4e92dd11b9244d31747375e282da3025}{00435}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_a4e92dd11b9244d31747375e282da3025}{UNodeInteractionLibrary::PinConnect}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record) }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00436}00436 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00437}00437     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00437}00437     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00438}00438 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00439}00439     UEdGraph* Graph = ActiveGraphEditor-\/>GetCurrentGraph();}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00440}00440 }
@@ -477,7 +477,7 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00473}00473 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00474}\mbox{\hyperlink{classUNodeInteractionLibrary_a08ec552d13f1681e56166b06ae30f2d7}{00474}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_a08ec552d13f1681e56166b06ae30f2d7}{UNodeInteractionLibrary::PinDisconnect}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record) }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00475}00475 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00476}00476     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00476}00476     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00477}00477 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00478}00478     UEdGraph* Graph = ActiveGraphEditor-\/>GetCurrentGraph();}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00479}00479 }
@@ -513,7 +513,7 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00509}00509 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00510}\mbox{\hyperlink{classUNodeInteractionLibrary_a851ad48a033235befddc2513cc1670d8}{00510}} TSharedPtr<IMenu> \mbox{\hyperlink{classUNodeInteractionLibrary_a851ad48a033235befddc2513cc1670d8}{UNodeInteractionLibrary::NodeAddMenu}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record) }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00511}00511 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00512}00512     GET\_CAST\_ACTIVE\_TAB\_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00512}00512     GET\_CAST\_ACTIVE\_TAB\_CONTENT\_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00513}00513 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00514}00514     SGraphPanel* GraphPanel = ActiveGraphEditor-\/>GetGraphPanel();}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00515}00515     }
@@ -569,7 +569,7 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00565}00565 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00566}\mbox{\hyperlink{classUNodeInteractionLibrary_a1f22e6ed7da4356db68b75470ed3535a}{00566}} TSharedPtr<IMenu> \mbox{\hyperlink{classUNodeInteractionLibrary_a1f22e6ed7da4356db68b75470ed3535a}{UNodeInteractionLibrary::NodeAddPinMenu}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}} \&Record) }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00567}00567 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00568}00568     GET\_CAST\_ACTIVE\_TAB\_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00568}00568     GET\_CAST\_ACTIVE\_TAB\_CONTENT\_RETURN(ActiveGraphEditor, SGraphEditor, TSharedPtr<IMenu>())}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00569}00569 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00570}00570     SGraphPanel* GraphPanel = ActiveGraphEditor-\/>GetGraphPanel();}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00571}00571     }
@@ -717,7 +717,7 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00713}00713 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00714}\mbox{\hyperlink{classUNodeInteractionLibrary_a9feb857b99c6a346fc0a7a3592fb9c4c}{00714}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_a9feb857b99c6a346fc0a7a3592fb9c4c}{UNodeInteractionLibrary::SelectionNodeToggle}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00715}00715 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00716}00716     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor);}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00716}00716     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor);}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00717}00717 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00718}00718     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* IndexInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}NODE\_INDEX"{}}));}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00719}00719     \textcolor{keywordflow}{if} (IndexInput == \textcolor{keyword}{nullptr})}
@@ -741,14 +741,14 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00737}00737 \}}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00738}00738 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00739}\mbox{\hyperlink{classUNodeInteractionLibrary_a2f412ce3d7e7f87bb884bb025bc269ac}{00739}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_a2f412ce3d7e7f87bb884bb025bc269ac}{UNodeInteractionLibrary::SelectionReset}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}} \&Record) \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00740}00740     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00740}00740     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00741}00741 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00742}00742     ActiveGraphEditor-\/>ClearSelectionSet();}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00743}00743 \}}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00744}00744 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00745}\mbox{\hyperlink{classUNodeInteractionLibrary_a8a4f4a6a9922e7e128cb38c31ecbc988}{00745}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_a8a4f4a6a9922e7e128cb38c31ecbc988}{UNodeInteractionLibrary::SelectionMove}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00746}00746 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00747}00747     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00747}00747     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00748}00748 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00749}00749     \mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}* Direction = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}>(TEXT(\textcolor{stringliteral}{"{}DIRECTION"{}}));}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00750}00750     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* Amount = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}AMOUNT"{}}));}
@@ -788,7 +788,7 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00784}00784 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00785}\mbox{\hyperlink{classUNodeInteractionLibrary_a143c68ec957726f271f5c6fe73cd4270}{00785}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_a143c68ec957726f271f5c6fe73cd4270}{UNodeInteractionLibrary::SelectionAlignment}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00786}00786 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00787}00787     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00787}00787     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00788}00788 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00789}00789     \mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}* PositionInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseEnumInput}{UParseEnumInput}}>(TEXT(\textcolor{stringliteral}{"{}POSITION"{}}));}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00790}00790     \textcolor{keywordflow}{if} (PositionInput == \textcolor{keyword}{nullptr})}
@@ -824,14 +824,14 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00820}00820 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00821}\mbox{\hyperlink{classUNodeInteractionLibrary_add882670a79b89a4317c531f2314b042}{00821}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_add882670a79b89a4317c531f2314b042}{UNodeInteractionLibrary::SelectionStraighten}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00822}00822 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00823}00823     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00823}00823     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00824}00824 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00825}00825     ActiveGraphEditor-\/>OnStraightenConnections();}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00826}00826 \}}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00827}00827 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00828}\mbox{\hyperlink{classUNodeInteractionLibrary_a4667a8ba09e2f86b2cb8c1ce99691e0d}{00828}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_a4667a8ba09e2f86b2cb8c1ce99691e0d}{UNodeInteractionLibrary::SelectionComment}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00829}00829 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00830}00830     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00830}00830     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00831}00831 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00832}00832     UEdGraph* Graph = ActiveGraphEditor-\/>GetCurrentGraph();}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00833}00833     }
@@ -883,7 +883,7 @@
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00879}00879 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00880}\mbox{\hyperlink{classUNodeInteractionLibrary_af72502cf5f1b2bd3bd29dc136676fe2a}{00880}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUNodeInteractionLibrary_af72502cf5f1b2bd3bd29dc136676fe2a}{UNodeInteractionLibrary::BlueprintCompile}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00881}00881 \{}
-\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00882}00882     GET\_CAST\_ACTIVE\_TAB(ActiveGraphEditor, SGraphEditor)}
+\DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00882}00882     GET\_CAST\_ACTIVE\_TAB\_CONTENT(ActiveGraphEditor, SGraphEditor)}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00883}00883 }
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00884}00884     UEdGraph* ActiveGraph = ActiveGraphEditor-\/>GetCurrentGraph();}
 \DoxyCodeLine{\Hypertarget{NodeInteractionLibrary_8cpp_source_l00885}00885     \textcolor{keywordflow}{if} (ActiveGraph == \textcolor{keyword}{nullptr})}

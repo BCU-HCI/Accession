@@ -10,83 +10,391 @@
 \DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00006}00006 \textcolor{preprocessor}{\#include "{}PhraseTree/Containers/Input/UParseIntInput.h"{}}}
 \DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00007}00007 }
 \DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00008}00008 \textcolor{preprocessor}{\#include "{}AccessibilityWrappers/AccessibilityWindowToolbar.h"{}}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00009}00009 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00010}00010 UWindowInteractionLibrary::UWindowInteractionLibrary(\textcolor{keyword}{const} FObjectInitializer\& ObjectInitializer)}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00011}00011     : Super(ObjectInitializer)}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00012}00012 \{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00013}00013     WindowToolBar = NewObject<UAccessibilityWindowToolbar>();}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00014}00014 \}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00015}00015 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00016}00016 UWindowInteractionLibrary::\string~UWindowInteractionLibrary()}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00017}00017 \{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00018}00018 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00019}00019 \}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00020}00020 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00021}\mbox{\hyperlink{classUWindowInteractionLibrary_a069591b3d95773a6d2ace6008a1cf78a}{00021}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUWindowInteractionLibrary_a069591b3d95773a6d2ace6008a1cf78a}{UWindowInteractionLibrary::BindBranches}}(TSharedRef<FPhraseTree> PhraseTree)}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00022}00022 \{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00023}00023     PhraseTree-\/>BindBranches(}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00024}00024         TPhraseNodeArray\{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00025}00025 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00026}00026             MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}WINDOW"{}}),}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00027}00027             TPhraseNodeArray\{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00028}00028 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00029}00029                 MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}CLOSE"{}}),}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00030}00030                 TPhraseNodeArray \{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00031}00031 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00032}00032                     MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUWindowInteractionLibrary_acfeba58b5649ef353f0fbb673542db29}{UWindowInteractionLibrary::CloseActiveWindow}}))}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00033}00033 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00034}00034                 \}),}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00035}00035 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00036}00036             \}),}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00037}00037 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00038}00038             MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}TOOLBAR"{}}),}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00039}00039             TPhraseNodeArray \{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00040}00040 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00041}00041                 MakeShared<FPhraseInputNode<int32>>(TEXT(\textcolor{stringliteral}{"{}ITEM\_INDEX"{}}),}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00042}00042                 TPhraseNodeArray \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00009}00009 \textcolor{preprocessor}{\#include "{}Framework/Docking/TabManager.h"{}}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00011}00011 UWindowInteractionLibrary::UWindowInteractionLibrary(\textcolor{keyword}{const} FObjectInitializer\& ObjectInitializer)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00012}00012     : Super(ObjectInitializer)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00013}00013 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00014}00014     WindowToolBar = NewObject<UAccessibilityWindowToolbar>();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00015}00015 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00016}00016 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00017}00017 UWindowInteractionLibrary::\string~UWindowInteractionLibrary()}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00018}00018 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00020}00020 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00022}\mbox{\hyperlink{classUWindowInteractionLibrary_a069591b3d95773a6d2ace6008a1cf78a}{00022}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUWindowInteractionLibrary_a069591b3d95773a6d2ace6008a1cf78a}{UWindowInteractionLibrary::BindBranches}}(TSharedRef<FPhraseTree> PhraseTree)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00023}00023 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00024}00024     PhraseTree-\/>BindBranches(}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00025}00025         TPhraseNodeArray\{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00027}00027             MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}WINDOW"{}}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00028}00028             TPhraseNodeArray\{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00030}00030                 MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}NEXT"{}}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00031}00031                 TPhraseNodeArray \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00033}00033                     MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUWindowInteractionLibrary_adc8b7c4b5a5d60f3f1b0c9eb7d919cc2}{UWindowInteractionLibrary::SwitchNextActiveWindow}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00034}00034 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00035}00035                 \}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00037}00037                 MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}PREVIOUS"{}}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00038}00038                 TPhraseNodeArray \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00039}00039 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00040}00040                     MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUWindowInteractionLibrary_a1f1dc79b355e41d75da5731cc451b58d}{UWindowInteractionLibrary::SwitchPrevActiveWindow}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00042}00042                 \}),}
 \DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00043}00043 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00044}00044                     MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUWindowInteractionLibrary_a2aca2357e9f72c00a0e78166fe0c4f5f}{UWindowInteractionLibrary::SelectToolBarItem}}))}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00045}00045 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00046}00046                 \})}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00047}00047 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00048}00048             \})}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00049}00049 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00050}00050         \}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00051}00051     );}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00052}00052 \}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00053}00053 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00054}\mbox{\hyperlink{classUWindowInteractionLibrary_acfeba58b5649ef353f0fbb673542db29}{00054}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUWindowInteractionLibrary_acfeba58b5649ef353f0fbb673542db29}{UWindowInteractionLibrary::CloseActiveWindow}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}} \&Record) \{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00055}00055     FSlateApplication\& SlateApp = FSlateApplication::Get();}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00056}00056     \textcolor{keywordflow}{if} (!SlateApp.CanDisplayWindows())}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00057}00057     \{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00058}00058         UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}CloseActiveWindow: Slate Application cannot display windows."{}}));}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00059}00059         \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00060}00060     \}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00061}00061 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00062}00062     TSharedPtr<SWindow> ActiveWindow = SlateApp.GetActiveTopLevelWindow();}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00063}00063     \textcolor{keywordflow}{if} (!ActiveWindow.IsValid())}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00064}00064     \{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00065}00065         UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}CloseActiveWindow: No Active Window Found."{}}));}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00066}00066         \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00067}00067     \}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00068}00068 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00069}00069     TSharedPtr<SWindow> RootWindow = FGlobalTabmanager::Get()-\/>GetRootWindow();}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00070}00070     \textcolor{keywordflow}{if} (ActiveWindow-\/>IsVisible() \&\& ActiveWindow != RootWindow)}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00071}00071     \{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00072}00072         ActiveWindow-\/>RequestDestroyWindow();}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00073}00073     \}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00074}00074 \}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00075}00075 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00076}\mbox{\hyperlink{classUWindowInteractionLibrary_a2aca2357e9f72c00a0e78166fe0c4f5f}{00076}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUWindowInteractionLibrary_a2aca2357e9f72c00a0e78166fe0c4f5f}{UWindowInteractionLibrary::SelectToolBarItem}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00077}00077 \{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00078}00078     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* ItemIndexInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}ITEM\_INDEX"{}}));}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00079}00079     \textcolor{keywordflow}{if} (ItemIndexInput == \textcolor{keyword}{nullptr}) }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00080}00080     \{}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00081}00081         UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}SelectToolBarItem: No Item Index Found."{}}));}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00082}00082         \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00083}00083     \}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00084}00084 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00085}00085     WindowToolBar-\/>\mbox{\hyperlink{classUAccessibilityWindowToolbar_aa2945392855b85a4095b1452893466f2}{SelectToolbarItem}}(ItemIndexInput-\/>\mbox{\hyperlink{classUParseIntInput_a25393db97da6e72a5fc1f9efb127f0bf}{GetValue}}());}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00044}00044                 MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}CLOSE"{}}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00045}00045                 TPhraseNodeArray \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00047}00047                     MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUWindowInteractionLibrary_acfeba58b5649ef353f0fbb673542db29}{UWindowInteractionLibrary::CloseActiveWindow}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00049}00049                 \}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00051}00051             \}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00053}00053             MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}TAB"{}}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00054}00054             TPhraseNodeArray \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00056}00056                 MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}NEXT"{}}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00057}00057                 TPhraseNodeArray \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00058}00058 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00059}00059                     MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUWindowInteractionLibrary_adcf729c78b3e2f4766f2666882f88b21}{UWindowInteractionLibrary::SwitchNextTabInStack}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00061}00061                 \}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00063}00063                 MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}PREVIOUS"{}}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00064}00064                 TPhraseNodeArray \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00066}00066                     MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUWindowInteractionLibrary_a2473e4da4a39f7bbe9d5089627cf08f1}{UWindowInteractionLibrary::SwitchPrevTabInStack}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00067}00067 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00068}00068                 \})}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00070}00070             \}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00072}00072             MakeShared<FPhraseNode>(TEXT(\textcolor{stringliteral}{"{}TOOLBAR"{}}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00073}00073             TPhraseNodeArray \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00075}00075                 MakeShared<FPhraseInputNode<int32>>(TEXT(\textcolor{stringliteral}{"{}ITEM\_INDEX"{}}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00076}00076                 TPhraseNodeArray \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00078}00078                     MakeShared<FPhraseEventNode>(CreateParseDelegate(\textcolor{keyword}{this}, \&\mbox{\hyperlink{classUWindowInteractionLibrary_a2aca2357e9f72c00a0e78166fe0c4f5f}{UWindowInteractionLibrary::SelectToolBarItem}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00079}00079 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00080}00080                 \})}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00081}00081 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00082}00082             \}),}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00084}00084         \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00085}00085     );}
 \DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00086}00086 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00088}\mbox{\hyperlink{classUWindowInteractionLibrary_adc8b7c4b5a5d60f3f1b0c9eb7d919cc2}{00088}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUWindowInteractionLibrary_adc8b7c4b5a5d60f3f1b0c9eb7d919cc2}{UWindowInteractionLibrary::SwitchNextActiveWindow}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00089}00089 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00090}00090     GET\_ACTIVE\_REGULAR\_WINDOW(ActiveWindow)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00091}00091 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00092}00092     TArray<TSharedRef<SWindow>> AllWindows;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00093}00093     FSlateApplication::Get().GetAllVisibleWindowsOrdered(AllWindows);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00094}00094 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00095}00095     int32 FoundIndex;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00096}00096     \textcolor{keywordflow}{if} (!AllWindows.Find(ActiveWindow.ToSharedRef(), FoundIndex))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00097}00097     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00098}00098         UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}SwitchNextActiveWindow: Cannot Find the Current Active Window."{}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00099}00099         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00100}00100     \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00101}00101 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00102}00102     TSharedRef<SWindow> NextWindow = AllWindows[FoundIndex + 1 \% AllWindows.Num()];}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00103}00103 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00104}00104     NextWindow-\/>BringToFront(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00105}00105 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00106}00106     \textcolor{comment}{// Set Window Major Tab Focus?}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00107}00107 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00108}00108 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00109}\mbox{\hyperlink{classUWindowInteractionLibrary_a1f1dc79b355e41d75da5731cc451b58d}{00109}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUWindowInteractionLibrary_a1f1dc79b355e41d75da5731cc451b58d}{UWindowInteractionLibrary::SwitchPrevActiveWindow}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00110}00110 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00111}00111     GET\_ACTIVE\_REGULAR\_WINDOW(ActiveWindow)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00112}00112 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00113}00113     TArray<TSharedRef<SWindow>> AllWindows;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00114}00114     FSlateApplication::Get().GetAllVisibleWindowsOrdered(AllWindows);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00116}00116     int32 FoundIndex;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00117}00117     \textcolor{keywordflow}{if} (!AllWindows.Find(ActiveWindow.ToSharedRef(), FoundIndex))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00118}00118     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00119}00119         UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}SwitchPrevActiveWindow: Cannot Find the Current Active Window."{}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00120}00120             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00121}00121     \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00122}00122 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00123}00123     TSharedRef<SWindow> PrevWindow = AllWindows[}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00124}00124         FoundIndex -\/ 1 < 0}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00125}00125             ? AllWindows.Num() -\/ 1}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00126}00126             : FoundIndex -\/ 1}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00127}00127     ];}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00128}00128 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00129}00129     PrevWindow-\/>BringToFront(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00130}00130 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00131}00131     \textcolor{comment}{// Set Window Major Tab Focus?}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00132}00132 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00133}00133 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00134}\mbox{\hyperlink{classUWindowInteractionLibrary_acfeba58b5649ef353f0fbb673542db29}{00134}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUWindowInteractionLibrary_acfeba58b5649ef353f0fbb673542db29}{UWindowInteractionLibrary::CloseActiveWindow}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}} \&Record) \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00135}00135     FSlateApplication\& SlateApp = FSlateApplication::Get();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00136}00136     \textcolor{keywordflow}{if} (!SlateApp.CanDisplayWindows())}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00137}00137     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00138}00138         UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}CloseActiveWindow: Slate Application cannot display windows."{}}));}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00139}00139         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00140}00140     \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00141}00141 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00142}00142     TSharedPtr<SWindow> ActiveWindow = SlateApp.GetActiveTopLevelWindow();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00143}00143     \textcolor{keywordflow}{if} (!ActiveWindow.IsValid())}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00144}00144     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00145}00145         UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}CloseActiveWindow: No Active Window Found."{}}));}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00146}00146         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00147}00147     \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00148}00148 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00149}00149     TSharedPtr<SWindow> RootWindow = FGlobalTabmanager::Get()-\/>GetRootWindow();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00150}00150     \textcolor{keywordflow}{if} (ActiveWindow-\/>IsVisible() \&\& ActiveWindow != RootWindow)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00151}00151     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00152}00152         ActiveWindow-\/>RequestDestroyWindow();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00153}00153     \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00154}00154 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00155}00155 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00156}\mbox{\hyperlink{classUWindowInteractionLibrary_a2aca2357e9f72c00a0e78166fe0c4f5f}{00156}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUWindowInteractionLibrary_a2aca2357e9f72c00a0e78166fe0c4f5f}{UWindowInteractionLibrary::SelectToolBarItem}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00157}00157 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00158}00158     \mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}* ItemIndexInput = Record.\mbox{\hyperlink{structFParseRecord_a5e3e314f8799790a43208473ce37207e}{GetPhraseInput}}<\mbox{\hyperlink{classUParseIntInput}{UParseIntInput}}>(TEXT(\textcolor{stringliteral}{"{}ITEM\_INDEX"{}}));}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00159}00159     \textcolor{keywordflow}{if} (ItemIndexInput == \textcolor{keyword}{nullptr}) }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00160}00160     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00161}00161         UE\_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(\textcolor{stringliteral}{"{}SelectToolBarItem: No Item Index Found."{}}));}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00162}00162         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00163}00163     \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00164}00164 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00165}00165     WindowToolBar-\/>\mbox{\hyperlink{classUAccessibilityWindowToolbar_aa2945392855b85a4095b1452893466f2}{SelectToolbarItem}}(ItemIndexInput-\/>\mbox{\hyperlink{classUParseIntInput_a25393db97da6e72a5fc1f9efb127f0bf}{GetValue}}());}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00166}00166 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00168}00168 \textcolor{keyword}{namespace }TabUtils}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00169}00169 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00170}\mbox{\hyperlink{classTabUtils_1_1FOpenArea}{00170}}     \textcolor{keyword}{class }\mbox{\hyperlink{classTabUtils_1_1FOpenArea}{FOpenArea}} : \textcolor{keyword}{public} FTabManager::FArea}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00171}00171     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00172}00172     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00173}00173         \textcolor{keyword}{const} TArray<TSharedRef<FLayoutNode>>\& GetChildNodes()}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00174}00174         \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00175}00175             \textcolor{keywordflow}{return} ChildNodes;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00176}00176         \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00177}00177     \};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00178}00178 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00179}\mbox{\hyperlink{classTabUtils_1_1FOpenStack}{00179}}     \textcolor{keyword}{class }\mbox{\hyperlink{classTabUtils_1_1FOpenStack}{FOpenStack}} : \textcolor{keyword}{public} FTabManager::FStack}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00180}00180     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00181}00181     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00182}00182         \textcolor{keyword}{const} TArray<FTabManager::FTab>\& GetTabs()}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00183}00183         \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00184}00184             \textcolor{keywordflow}{return} Tabs;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00185}00185         \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00186}00186     \};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00187}00187 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00188}\mbox{\hyperlink{classTabUtils_1_1FOpenSplitter}{00188}}     \textcolor{keyword}{class }\mbox{\hyperlink{classTabUtils_1_1FOpenSplitter}{FOpenSplitter}} : \textcolor{keyword}{public} FTabManager::FSplitter}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00189}00189     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00190}00190     \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00191}00191         \textcolor{keyword}{const} TArray<TSharedRef<FLayoutNode>>\& GetChildNodes()}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00192}00192         \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00193}00193             \textcolor{keywordflow}{return} ChildNodes;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00194}00194         \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00195}00195     \};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00196}00196 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00197}00197     [[nodiscard]] TArray<FTabManager::FTab> CollectManagedTabs(\textcolor{keyword}{const} TSharedRef<FTabManager>\& TabManager)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00198}00198     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00199}00199         TArray<FTabManager::FTab> ManagedTabs = TArray<FTabManager::FTab>();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00200}00200 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00201}00201         \textcolor{keyword}{const} TSharedRef<FTabManager::FLayout> Layout = TabManager-\/>PersistLayout();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00202}00202         \textcolor{keyword}{const} TSharedPtr<FOpenArea> MainArea = StaticCastSharedPtr<FOpenArea>(Layout-\/>GetPrimaryArea().Pin());}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00203}00203         \textcolor{keywordflow}{if} (!MainArea.IsValid())}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00204}00204         \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00205}00205             UE\_LOG(LogOpenAccessibility, Warning, TEXT(\textcolor{stringliteral}{"{}CollectManagedTabs: Primary Area is Not Valid"{}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00206}00206             return ManagedTabs;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00207}00207         \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00208}00208 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00209}00209         TSharedPtr<FTabManager::FLayoutNode> CurrentNode = \textcolor{keywordtype}{nullptr};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00210}00210         TArray<TSharedRef<FTabManager::FLayoutNode>> NodesToCheck = TArray\{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00211}00211             MainArea-\/>GetChildNodes()}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00212}00212         \};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00213}00213 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00214}00214         \textcolor{keywordflow}{while}(!NodesToCheck.IsEmpty())}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00215}00215         \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00216}00216             CurrentNode = NodesToCheck[0];}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00217}00217             NodesToCheck.RemoveAt(0);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00218}00218 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00219}00219             \textcolor{keywordflow}{if} (TSharedPtr<FTabManager::FStack> AsStack = CurrentNode-\/>AsStack())}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00220}00220             \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00221}00221                 ManagedTabs.Append(StaticCastSharedPtr<FOpenStack>(AsStack)-\/>GetTabs());}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00222}00222             \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00223}00223             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (TSharedPtr<FTabManager::FArea> AsArea = CurrentNode-\/>AsArea())}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00224}00224             \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00225}00225                 NodesToCheck.Append(StaticCastSharedPtr<FOpenArea>(AsArea)-\/>GetChildNodes());}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00226}00226             \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00227}00227             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (TSharedPtr<FTabManager::FSplitter> AsSplitter = CurrentNode-\/>AsSplitter())}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00228}00228             \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00229}00229                 NodesToCheck.Append(StaticCastSharedPtr<FOpenArea>(AsSplitter)-\/>GetChildNodes());}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00230}00230             \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00231}00231             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00232}00232             \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00233}00233                 UE\_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(\textcolor{stringliteral}{"{}CollectManagedTabs: Unknown Node Type."{}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00234}00234             \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00235}00235         \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00236}00236 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00237}00237         \textcolor{keywordflow}{return} ManagedTabs;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00238}00238     \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00239}00239 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00240}00240 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00241}\mbox{\hyperlink{classUWindowInteractionLibrary_adcf729c78b3e2f4766f2666882f88b21}{00241}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUWindowInteractionLibrary_adcf729c78b3e2f4766f2666882f88b21}{UWindowInteractionLibrary::SwitchNextTabInStack}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00242}00242 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00243}00243     GET\_ACTIVE\_TAB(ActiveTab);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00244}00244 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00245}00245     TSharedPtr<FTabManager> ActiveTabManager = ActiveTab-\/>GetTabManagerPtr();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00246}00246     \textcolor{keywordflow}{if} (!ActiveTabManager.IsValid())}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00247}00247     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00248}00248         UE\_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(\textcolor{stringliteral}{"{}SwitchNextTabInStack: Cannot Find Active Tab Manager"{}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00249}00249         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00250}00250     \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00251}00251 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00252}00252     TArray<FTabManager::FTab> FoundTabs = TabUtils::CollectManagedTabs(ActiveTabManager.ToSharedRef());}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00253}00253 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00254}00254     \textcolor{keyword}{const} FTabId ActiveTabId = ActiveTab-\/>GetLayoutIdentifier();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00255}00255     \textcolor{keywordflow}{for} (int32 i = 0; i < FoundTabs.Num(); i++)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00256}00256     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00257}00257         \textcolor{keywordflow}{if} (FoundTabs[i].TabId == ActiveTabId)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00258}00258         \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00259}00259             TSharedPtr<SDockTab> NextTabWidget = TSharedPtr<SDockTab>();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00260}00260 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00261}00261             \textcolor{keywordtype}{int} CurrentTabIndex = i;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00262}00262             \textcolor{keywordflow}{while} (!NextTabWidget.IsValid())}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00263}00263             \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00264}00264                 CurrentTabIndex += 1;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00265}00265                 CurrentTabIndex \%= FoundTabs.Num();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00266}00266 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00267}00267                 \textcolor{keyword}{const} FTabManager::FTab NextTab = FoundTabs[}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00268}00268                     CurrentTabIndex}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00269}00269                 ];}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00270}00270 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00271}00271                 \textcolor{keywordflow}{if} (NextTab.TabId == ActiveTabId)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00272}00272                 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00273}00273                     UE\_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(\textcolor{stringliteral}{"{}SwitchNextTabInStack: No Next Tab Found."{}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00274}00274                     \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00275}00275                 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00276}00276 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00277}00277                 NextTabWidget = ActiveTabManager-\/>FindExistingLiveTab(}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00278}00278                     NextTab.TabId}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00279}00279                 );}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00280}00280             \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00281}00281 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00282}00282             FGlobalTabmanager::Get()-\/>SetActiveTab(NextTabWidget);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00283}00283             NextTabWidget-\/>ActivateInParent(SetDirectly);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00284}00284 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00285}00285             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00286}00286         \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00287}00287     \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00288}00288 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00289}00289     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00290}00290 \textcolor{comment}{    // Most Straightforward Implementation, But Requires Private Core Tab Classes}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00291}00291 \textcolor{comment}{    }}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00292}00292 \textcolor{comment}{    TSharedPtr<SDockingTabStack> ActiveTabStack = ActiveTab-\/>GetParentDockTabStack();}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00293}00293 \textcolor{comment}{    if (!ActiveTabStack.IsValid())}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00294}00294 \textcolor{comment}{    \{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00295}00295 \textcolor{comment}{        UE\_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("{}SwitchNextTabInStack: No Parent Tab Stack Found."{}))}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00296}00296 \textcolor{comment}{        return;}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00297}00297 \textcolor{comment}{    \}}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00298}00298 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00299}00299 \textcolor{comment}{    TArray<TSharedRef<SDockTab>> AllTabs = ActiveTabStack-\/>GetAllChildTabs();}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00300}00300 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00301}00301 \textcolor{comment}{    int32 FoundIndex;}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00302}00302 \textcolor{comment}{    if (!AllTabs.Find(ActiveTab.ToSharedRef(), FoundIndex))}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00303}00303 \textcolor{comment}{    \{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00304}00304 \textcolor{comment}{        UE\_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("{}SwitchNextTabInStack: Active Tab Not Found In Tab Stack."{}))}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00305}00305 \textcolor{comment}{        return;}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00306}00306 \textcolor{comment}{    \}}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00307}00307 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00308}00308 \textcolor{comment}{    TSharedRef<SDockTab> NextTab = AllTabs[FoundIndex + 1 \% AllTabs.Num()];}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00309}00309 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00310}00310 \textcolor{comment}{    FGlobalTabmanager::Get()-\/>SetActiveTab(NextTab);}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00311}00311 \textcolor{comment}{    NextTab-\/>ActivateInParent(SetDirectly);}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00312}00312 \textcolor{comment}{    */}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00313}00313 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00314}00314 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00315}\mbox{\hyperlink{classUWindowInteractionLibrary_a2473e4da4a39f7bbe9d5089627cf08f1}{00315}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUWindowInteractionLibrary_a2473e4da4a39f7bbe9d5089627cf08f1}{UWindowInteractionLibrary::SwitchPrevTabInStack}}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00316}00316 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00317}00317     GET\_ACTIVE\_TAB(ActiveTab);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00318}00318 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00319}00319     TSharedPtr<FTabManager> ActiveTabManager = ActiveTab-\/>GetTabManagerPtr();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00320}00320     \textcolor{keywordflow}{if} (!ActiveTabManager.IsValid())}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00321}00321     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00322}00322         UE\_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(\textcolor{stringliteral}{"{}SwitchPrevTabInStack: Cannot Find Active Tab Manager"{}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00323}00323             \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00324}00324     \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00325}00325 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00326}00326     TArray<FTabManager::FTab> FoundTabs = TabUtils::CollectManagedTabs(ActiveTabManager.ToSharedRef());}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00327}00327 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00328}00328     \textcolor{keyword}{const} FTabId ActiveTabId = ActiveTab-\/>GetLayoutIdentifier();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00329}00329     \textcolor{keywordflow}{for} (int32 i = 0; i < FoundTabs.Num(); i++)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00330}00330     \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00331}00331         \textcolor{keywordflow}{if} (FoundTabs[i].TabId == ActiveTabId)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00332}00332         \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00333}00333             TSharedPtr<SDockTab> PrevTabWidget = TSharedPtr<SDockTab>();}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00334}00334 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00335}00335             \textcolor{keywordtype}{int} CurrentTabIndex = i;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00336}00336             \textcolor{keywordflow}{while} (!PrevTabWidget.IsValid())}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00337}00337             \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00338}00338                 CurrentTabIndex -\/= 1;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00339}00339                 \textcolor{keywordflow}{if} (CurrentTabIndex < 0)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00340}00340                 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00341}00341                     CurrentTabIndex = FoundTabs.Num() -\/ 1;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00342}00342                 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00343}00343 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00344}00344                 \textcolor{keyword}{const} FTabManager::FTab NextTab = FoundTabs[}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00345}00345                     CurrentTabIndex}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00346}00346                 ];}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00347}00347 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00348}00348                 \textcolor{keywordflow}{if} (NextTab.TabId == ActiveTabId)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00349}00349                 \{}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00350}00350                     UE\_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(\textcolor{stringliteral}{"{}SwitchNextTabInStack: No Next Tab Found."{}}))}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00351}00351                         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00352}00352                 \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00353}00353 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00354}00354                 PrevTabWidget = ActiveTabManager-\/>FindExistingLiveTab(}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00355}00355                     NextTab.TabId}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00356}00356                 );}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00357}00357             \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00358}00358 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00359}00359             FGlobalTabmanager::Get()-\/>SetActiveTab(PrevTabWidget);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00360}00360             PrevTabWidget-\/>ActivateInParent(SetDirectly);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00361}00361 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00362}00362             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00363}00363         \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00364}00364     \}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00365}00365 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00366}00366     \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00367}00367 \textcolor{comment}{    // Most Straightforward Implementation, But Requires Private Core Tab Classes}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00368}00368 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00369}00369 \textcolor{comment}{    TSharedPtr<SDockingTabStack> ActiveTabStack = ActiveTab-\/>GetParentDockTabStack();}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00370}00370 \textcolor{comment}{    if (!ActiveTabStack.IsValid())}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00371}00371 \textcolor{comment}{    \{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00372}00372 \textcolor{comment}{        UE\_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("{}SwitchPrevTabInStack: No Parent Tab Stack Found."{}))}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00373}00373 \textcolor{comment}{            return;}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00374}00374 \textcolor{comment}{    \}}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00375}00375 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00376}00376 \textcolor{comment}{    TArray<TSharedRef<SDockTab>> AllTabs = ActiveTabStack-\/>GetAllChildTabs();}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00377}00377 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00378}00378 \textcolor{comment}{    int32 FoundIndex;}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00379}00379 \textcolor{comment}{    if (!AllTabs.Find(ActiveTab.ToSharedRef(), FoundIndex))}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00380}00380 \textcolor{comment}{    \{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00381}00381 \textcolor{comment}{        UE\_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("{}SwitchPrevTabInStack: Active Tab Not Found In Tab Stack."{}))}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00382}00382 \textcolor{comment}{            return;}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00383}00383 \textcolor{comment}{    \}}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00384}00384 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00385}00385 \textcolor{comment}{    TSharedRef<SDockTab> PrevTab = AllTabs[}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00386}00386 \textcolor{comment}{        FoundIndex -\/ 1 < 0}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00387}00387 \textcolor{comment}{            ? AllTabs.Num() -\/ 1}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00388}00388 \textcolor{comment}{            : FoundIndex -\/ 1}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00389}00389 \textcolor{comment}{    ];}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00390}00390 \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00391}00391 \textcolor{comment}{    FGlobalTabmanager::Get()-\/>SetActiveTab(PrevTab);}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00392}00392 \textcolor{comment}{    PrevTab-\/>ActivateInParent(SetDirectly);}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00393}00393 \textcolor{comment}{    */}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8cpp_source_l00394}00394 \}}
 
 \end{DoxyCode}

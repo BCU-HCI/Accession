@@ -32,23 +32,35 @@
 \DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00032}00032 }
 \DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00033}00033     \textcolor{comment}{// Window Interaction}}
 \DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00034}00034 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00039}00039     \textcolor{keywordtype}{void} CloseActiveWindow(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00039}00039     \textcolor{keywordtype}{void} SwitchNextActiveWindow(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record);}
 \DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00040}00040 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00041}00041     \textcolor{comment}{// End Window Interaction}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00042}00042 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00043}00043 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00044}00044     \textcolor{comment}{// Window ToolBar Interaction}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00045}00045 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00050}00050     \textcolor{keywordtype}{void} SelectToolBarItem(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record);}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00051}00051 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00052}00052     \textcolor{comment}{// End Window ToolBar Interaction}}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00045}00045     \textcolor{keywordtype}{void} SwitchPrevActiveWindow(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00051}00051     \textcolor{keywordtype}{void} CloseActiveWindow(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00053}00053     \textcolor{comment}{// End Window Interaction}}
 \DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00054}00054 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00055}00055 \textcolor{keyword}{protected}:}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00056}00056 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00057}00057     UPROPERTY(BlueprintReadOnly)}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00058}00058     \textcolor{keyword}{class }\mbox{\hyperlink{classUAccessibilityWindowToolbar}{UAccessibilityWindowToolbar}}* WindowToolBar;}
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00059}00059 }
-\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00060}00060 \};}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00056}00056     \textcolor{comment}{// Window ToolBar Interaction}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00062}00062     \textcolor{keywordtype}{void} SelectToolBarItem(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00064}00064     \textcolor{comment}{// End Window ToolBar Interaction}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00067}00067     \textcolor{comment}{// Window Tab Interaction}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00073}00073     \textcolor{keywordtype}{void} SwitchNextTabInStack(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00079}00079     \textcolor{keywordtype}{void} SwitchPrevTabInStack(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& Record);}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00081}00081     \textcolor{comment}{// End of Window Tab Interaction}}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00082}00082 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00083}00083 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00085}00085     UPROPERTY(BlueprintReadOnly)}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00086}00086     \textcolor{keyword}{class }\mbox{\hyperlink{classUAccessibilityWindowToolbar}{UAccessibilityWindowToolbar}}* WindowToolBar;}
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00087}00087 }
+\DoxyCodeLine{\Hypertarget{WindowInteractionLibrary_8h_source_l00088}00088 \};}
 
 \end{DoxyCode}

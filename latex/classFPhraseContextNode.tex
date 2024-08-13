@@ -22,11 +22,11 @@ virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{c
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-bool \mbox{\hyperlink{classFPhraseContextNode_a7c64d4f2ac308181e4df28662db8e2f9}{Has\+Context\+Object}} (TArray$<$ \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ $>$ In\+Context\+Objects) const
+virtual bool \mbox{\hyperlink{classFPhraseContextNode_ac625860d345fa58d4d9b1d3b2b0f268c}{Has\+Context\+Object}} (TArray$<$ \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ $>$ In\+Context\+Objects) const override
 \begin{DoxyCompactList}\small\item\em Checks if the Given Context Array Contains Context Objects.  \end{DoxyCompactList}\item 
-virtual \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ \mbox{\hyperlink{classFPhraseContextNode_a97c5324f3167c5065269e999c507292c}{Create\+Context\+Object}} (\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record)
+virtual \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ \mbox{\hyperlink{classFPhraseContextNode_a039158a4a8ec7bf4496cf291126c2703}{Create\+Context\+Object}} (\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&Record) override
 \begin{DoxyCompactList}\small\item\em Creates a Context Object, using Record Inputs.  \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classFPhraseContextNode_a074bfa5431329942d03730f7a4a5c37b}{Construct\+Context\+Children}} (TPhrase\+Node\+Array \&In\+Child\+Nodes)
+virtual void \mbox{\hyperlink{classFPhraseContextNode_a407ac5998cc93852b65f1d4a3177e37e}{Construct\+Context\+Children}} (TPhrase\+Node\+Array \&In\+Child\+Nodes) override
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -105,12 +105,12 @@ Definition at line \mbox{\hyperlink{PhraseContextNode_8h_source_l00035}{35}} of 
 \DoxyCodeLine{00041     \}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{classFPhraseContextNode_aa956af5165c87fc514dcdc61136e4140}\label{classFPhraseContextNode_aa956af5165c87fc514dcdc61136e4140}} 
+\mbox{\Hypertarget{classFPhraseContextNode_a200663bfb1c930f2f78c06a3ba47d603}\label{classFPhraseContextNode_a200663bfb1c930f2f78c06a3ba47d603}} 
 \index{FPhraseContextNode$<$ ContextType $>$@{FPhraseContextNode$<$ ContextType $>$}!````~FPhraseContextNode@{$\sim$FPhraseContextNode}}
 \index{````~FPhraseContextNode@{$\sim$FPhraseContextNode}!FPhraseContextNode$<$ ContextType $>$@{FPhraseContextNode$<$ ContextType $>$}}
 \doxysubsubsection{\texorpdfstring{$\sim$FPhraseContextNode()}{~FPhraseContextNode()}}
 {\footnotesize\ttfamily template$<$class Context\+Type  = UPhrase\+Tree\+Context\+Object$>$ \\
-\mbox{\hyperlink{classFPhraseContextNode}{FPhrase\+Context\+Node}}$<$ Context\+Type $>$\+::$\sim$\mbox{\hyperlink{classFPhraseContextNode}{FPhrase\+Context\+Node}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+virtual \mbox{\hyperlink{classFPhraseContextNode}{FPhrase\+Context\+Node}}$<$ Context\+Type $>$\+::$\sim$\mbox{\hyperlink{classFPhraseContextNode}{FPhrase\+Context\+Node}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -126,12 +126,12 @@ Definition at line \mbox{\hyperlink{PhraseContextNode_8h_source_l00043}{43}} of 
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classFPhraseContextNode_a074bfa5431329942d03730f7a4a5c37b}\label{classFPhraseContextNode_a074bfa5431329942d03730f7a4a5c37b}} 
+\mbox{\Hypertarget{classFPhraseContextNode_a407ac5998cc93852b65f1d4a3177e37e}\label{classFPhraseContextNode_a407ac5998cc93852b65f1d4a3177e37e}} 
 \index{FPhraseContextNode$<$ ContextType $>$@{FPhraseContextNode$<$ ContextType $>$}!ConstructContextChildren@{ConstructContextChildren}}
 \index{ConstructContextChildren@{ConstructContextChildren}!FPhraseContextNode$<$ ContextType $>$@{FPhraseContextNode$<$ ContextType $>$}}
 \doxysubsubsection{\texorpdfstring{ConstructContextChildren()}{ConstructContextChildren()}}
 {\footnotesize\ttfamily template$<$class Context\+Type $>$ \\
-void \mbox{\hyperlink{classFPhraseContextNode}{FPhrase\+Context\+Node}}$<$ Context\+Type $>$\+::\+Construct\+Context\+Children (\begin{DoxyParamCaption}\item[{TPhrase\+Node\+Array \&}]{In\+Child\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+void \mbox{\hyperlink{classFPhraseContextNode}{FPhrase\+Context\+Node}}$<$ Context\+Type $>$\+::\+Construct\+Context\+Children (\begin{DoxyParamCaption}\item[{TPhrase\+Node\+Array \&}]{In\+Child\+Nodes }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
 
 
 
@@ -166,12 +166,12 @@ Definition at line \mbox{\hyperlink{PhraseContextNode_8h_source_l00132}{132}} of
 \DoxyCodeLine{00157 \}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{classFPhraseContextNode_a97c5324f3167c5065269e999c507292c}\label{classFPhraseContextNode_a97c5324f3167c5065269e999c507292c}} 
+\mbox{\Hypertarget{classFPhraseContextNode_a039158a4a8ec7bf4496cf291126c2703}\label{classFPhraseContextNode_a039158a4a8ec7bf4496cf291126c2703}} 
 \index{FPhraseContextNode$<$ ContextType $>$@{FPhraseContextNode$<$ ContextType $>$}!CreateContextObject@{CreateContextObject}}
 \index{CreateContextObject@{CreateContextObject}!FPhraseContextNode$<$ ContextType $>$@{FPhraseContextNode$<$ ContextType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateContextObject()}{CreateContextObject()}}
 {\footnotesize\ttfamily template$<$class Context\+Type $>$ \\
-\mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ \mbox{\hyperlink{classFPhraseContextNode}{FPhrase\+Context\+Node}}$<$ Context\+Type $>$\+::\+Create\+Context\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+\mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ \mbox{\hyperlink{classFPhraseContextNode}{FPhrase\+Context\+Node}}$<$ Context\+Type $>$\+::\+Create\+Context\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&}]{Record }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
 
 
 
@@ -199,12 +199,12 @@ Definition at line \mbox{\hyperlink{PhraseContextNode_8h_source_l00122}{122}} of
 \DoxyCodeLine{00129 \}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{classFPhraseContextNode_a7c64d4f2ac308181e4df28662db8e2f9}\label{classFPhraseContextNode_a7c64d4f2ac308181e4df28662db8e2f9}} 
+\mbox{\Hypertarget{classFPhraseContextNode_ac625860d345fa58d4d9b1d3b2b0f268c}\label{classFPhraseContextNode_ac625860d345fa58d4d9b1d3b2b0f268c}} 
 \index{FPhraseContextNode$<$ ContextType $>$@{FPhraseContextNode$<$ ContextType $>$}!HasContextObject@{HasContextObject}}
 \index{HasContextObject@{HasContextObject}!FPhraseContextNode$<$ ContextType $>$@{FPhraseContextNode$<$ ContextType $>$}}
 \doxysubsubsection{\texorpdfstring{HasContextObject()}{HasContextObject()}}
 {\footnotesize\ttfamily template$<$class Context\+Type $>$ \\
-bool \mbox{\hyperlink{classFPhraseContextNode}{FPhrase\+Context\+Node}}$<$ Context\+Type $>$\+::\+Has\+Context\+Object (\begin{DoxyParamCaption}\item[{TArray$<$ \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ $>$}]{In\+Context\+Objects }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+bool \mbox{\hyperlink{classFPhraseContextNode}{FPhrase\+Context\+Node}}$<$ Context\+Type $>$\+::\+Has\+Context\+Object (\begin{DoxyParamCaption}\item[{TArray$<$ \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhrase\+Tree\+Context\+Object}} $\ast$ $>$}]{In\+Context\+Objects }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
 
 
 
@@ -273,9 +273,9 @@ Definition at line \mbox{\hyperlink{PhraseContextNode_8h_source_l00071}{71}} of 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00072 \{}
-\DoxyCodeLine{00073     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFPhraseContextNode_a7c64d4f2ac308181e4df28662db8e2f9}{HasContextObject}}(InParseRecord.\mbox{\hyperlink{structFParseRecord_a5d774b3ca0de6844931b79d2670fb3ce}{GetContextStack}}()))}
+\DoxyCodeLine{00073     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFPhraseContextNode_ac625860d345fa58d4d9b1d3b2b0f268c}{HasContextObject}}(InParseRecord.\mbox{\hyperlink{structFParseRecord_a5d774b3ca0de6844931b79d2670fb3ce}{GetContextStack}}()))}
 \DoxyCodeLine{00074     \{}
-\DoxyCodeLine{00075         \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}* NewObject = \mbox{\hyperlink{classFPhraseContextNode_a97c5324f3167c5065269e999c507292c}{CreateContextObject}}(InParseRecord);}
+\DoxyCodeLine{00075         \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}* NewObject = \mbox{\hyperlink{classFPhraseContextNode_a039158a4a8ec7bf4496cf291126c2703}{CreateContextObject}}(InParseRecord);}
 \DoxyCodeLine{00076 }
 \DoxyCodeLine{00077         InParseRecord.\mbox{\hyperlink{structFParseRecord_ac0ecc5d268763c231cb4be57faabaf6d}{PushContextObj}}(NewObject);}
 \DoxyCodeLine{00078     \}}
@@ -316,9 +316,9 @@ Definition at line \mbox{\hyperlink{PhraseContextNode_8h_source_l00084}{84}} of 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00085 \{}
-\DoxyCodeLine{00086     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFPhraseContextNode_a7c64d4f2ac308181e4df28662db8e2f9}{HasContextObject}}(InParseRecord.\mbox{\hyperlink{structFParseRecord_a5d774b3ca0de6844931b79d2670fb3ce}{GetContextStack}}()))}
+\DoxyCodeLine{00086     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classFPhraseContextNode_ac625860d345fa58d4d9b1d3b2b0f268c}{HasContextObject}}(InParseRecord.\mbox{\hyperlink{structFParseRecord_a5d774b3ca0de6844931b79d2670fb3ce}{GetContextStack}}()))}
 \DoxyCodeLine{00087     \{}
-\DoxyCodeLine{00088         \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}* NewObject = \mbox{\hyperlink{classFPhraseContextNode_a97c5324f3167c5065269e999c507292c}{CreateContextObject}}(InParseRecord);}
+\DoxyCodeLine{00088         \mbox{\hyperlink{classUPhraseTreeContextObject}{UPhraseTreeContextObject}}* NewObject = \mbox{\hyperlink{classFPhraseContextNode_a039158a4a8ec7bf4496cf291126c2703}{CreateContextObject}}(InParseRecord);}
 \DoxyCodeLine{00089 }
 \DoxyCodeLine{00090         InParseRecord.\mbox{\hyperlink{structFParseRecord_ac0ecc5d268763c231cb4be57faabaf6d}{PushContextObj}}(NewObject);}
 \DoxyCodeLine{00091     \}}

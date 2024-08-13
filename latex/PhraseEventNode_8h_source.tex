@@ -16,13 +16,13 @@
 \DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00015}00015     \mbox{\hyperlink{classFPhraseEventNode}{FPhraseEventNode}}(TDelegate<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\&)> InEvent);}
 \DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00016}00016     \mbox{\hyperlink{classFPhraseEventNode}{FPhraseEventNode}}(TFunction<\textcolor{keywordtype}{void}(\mbox{\hyperlink{structFParseRecord}{FParseRecord}}\&)> InEventFunction);}
 \DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00017}00017 }
-\DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00018}00018     \mbox{\hyperlink{classFPhraseEventNode}{\string~FPhraseEventNode}}();}
+\DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00018}00018     \textcolor{keyword}{virtual} \mbox{\hyperlink{classFPhraseEventNode}{\string~FPhraseEventNode}}();}
 \DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00019}00019 }
 \DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00020}00020     \textcolor{comment}{// FPhraseNode Implementation}}
 \DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00021}\mbox{\hyperlink{classFPhraseEventNode_ae107fcda29c78bd9cfba761906090460}{00021}}     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseEventNode_ae107fcda29c78bd9cfba761906090460}{IsLeafNode}}()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \}}
 \DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00022}00022 }
 \DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00023}00023     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseNode_a15b600afd86bb99477af360a5c169246}{RequiresPhrase}}(\textcolor{keyword}{const} FString InPhrase) \textcolor{keyword}{override};}
-\DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00024}00024     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseNode_a15b600afd86bb99477af360a5c169246}{RequiresPhrase}}(\textcolor{keyword}{const} FString InPhrase, int32\& OutDistance);}
+\DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00024}00024     \textcolor{keyword}{virtual} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classFPhraseNode_a15b600afd86bb99477af360a5c169246}{RequiresPhrase}}(\textcolor{keyword}{const} FString InPhrase, int32\& OutDistance) \textcolor{keyword}{override};}
 \DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00025}00025 }
 \DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00026}00026     \textcolor{keyword}{virtual} \mbox{\hyperlink{structFParseResult}{FParseResult}} \mbox{\hyperlink{classFPhraseNode_a9e108bf1a2f579ed03277540c01a36da}{ParsePhrase}}(TArray<FString>\& InPhraseArray, \mbox{\hyperlink{structFParseRecord}{FParseRecord}}\& InParseRecord) \textcolor{keyword}{override};}
 \DoxyCodeLine{\Hypertarget{PhraseEventNode_8h_source_l00027}00027     \textcolor{comment}{// End FPhraseNode Implementation}}

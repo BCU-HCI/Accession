@@ -17,7 +17,7 @@ virtual bool \mbox{\hyperlink{classFPhraseEventNode_ae107fcda29c78bd9cfba7619060
 \begin{DoxyCompactList}\small\item\em Checks if the Node is a Leaf Node.  \end{DoxyCompactList}\item 
 virtual bool \mbox{\hyperlink{classFPhraseEventNode_a0f0d538bb4f1836dea0a337a42f91b2c}{Requires\+Phrase}} (const FString In\+Phrase) override
 \begin{DoxyCompactList}\small\item\em Checks if the Node Requires the Given Phrase.  \end{DoxyCompactList}\item 
-virtual bool \mbox{\hyperlink{classFPhraseEventNode_a5f150cf1aa4719e02fe00178cf2e3b02}{Requires\+Phrase}} (const FString In\+Phrase, int32 \&Out\+Distance)
+virtual bool \mbox{\hyperlink{classFPhraseEventNode_a71935559fd7b3f288ce89fdca42be340}{Requires\+Phrase}} (const FString In\+Phrase, int32 \&Out\+Distance) override
 \begin{DoxyCompactList}\small\item\em Checks if the Node Requires the Given Phrase, and Returns the Distance of the Phrase.  \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{structFParseResult}{FParse\+Result}} \mbox{\hyperlink{classFPhraseEventNode_a14c76a68138b843355fe528d6fdcef91}{Parse\+Phrase}} (TArray$<$ FString $>$ \&In\+Phrase\+Array, \mbox{\hyperlink{structFParseRecord}{FParse\+Record}} \&In\+Parse\+Record) override
 \begin{DoxyCompactList}\small\item\em Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.  \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -90,7 +90,7 @@ Definition at line \mbox{\hyperlink{PhraseEventNode_8cpp_source_l00019}{19}} of 
 \index{FPhraseEventNode@{FPhraseEventNode}!````~FPhraseEventNode@{$\sim$FPhraseEventNode}}
 \index{````~FPhraseEventNode@{$\sim$FPhraseEventNode}!FPhraseEventNode@{FPhraseEventNode}}
 \doxysubsubsection{\texorpdfstring{$\sim$FPhraseEventNode()}{~FPhraseEventNode()}}
-{\footnotesize\ttfamily FPhrase\+Event\+Node\+::$\sim$\+FPhrase\+Event\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily FPhrase\+Event\+Node\+::$\sim$\+FPhrase\+Event\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
@@ -207,11 +207,11 @@ Definition at line \mbox{\hyperlink{PhraseEventNode_8cpp_source_l00030}{30}} of 
 \DoxyCodeLine{00033 \}}
 
 \end{DoxyCode}
-\mbox{\Hypertarget{classFPhraseEventNode_a5f150cf1aa4719e02fe00178cf2e3b02}\label{classFPhraseEventNode_a5f150cf1aa4719e02fe00178cf2e3b02}} 
+\mbox{\Hypertarget{classFPhraseEventNode_a71935559fd7b3f288ce89fdca42be340}\label{classFPhraseEventNode_a71935559fd7b3f288ce89fdca42be340}} 
 \index{FPhraseEventNode@{FPhraseEventNode}!RequiresPhrase@{RequiresPhrase}}
 \index{RequiresPhrase@{RequiresPhrase}!FPhraseEventNode@{FPhraseEventNode}}
 \doxysubsubsection{\texorpdfstring{RequiresPhrase()}{RequiresPhrase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily bool FPhrase\+Event\+Node\+::\+Requires\+Phrase (\begin{DoxyParamCaption}\item[{const FString}]{In\+Phrase,  }\item[{int32 \&}]{Out\+Distance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily bool FPhrase\+Event\+Node\+::\+Requires\+Phrase (\begin{DoxyParamCaption}\item[{const FString}]{In\+Phrase,  }\item[{int32 \&}]{Out\+Distance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
 
 
 

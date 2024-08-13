@@ -47,7 +47,7 @@
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityAnalytics_8cpp_source_l00043}00043     FDateTime CurrentDateTime = FDateTime::Now();}
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityAnalytics_8cpp_source_l00044}00044 }
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityAnalytics_8cpp_source_l00045}00045     FString CombinedFileName = TEXT(\textcolor{stringliteral}{"{}["{}}) + CurrentDateTime.ToString() + TEXT(\textcolor{stringliteral}{"{}] OA Event Log.log"{}});}
-\DoxyCodeLine{\Hypertarget{OpenAccessibilityAnalytics_8cpp_source_l00046}00046     \textcolor{keywordflow}{return} FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() + TEXT(\textcolor{stringliteral}{"{}Logs/OpenAccessibility/"{}}) + CombinedFileName);}
+\DoxyCodeLine{\Hypertarget{OpenAccessibilityAnalytics_8cpp_source_l00046}00046     \textcolor{keywordflow}{return} FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() + TEXT(\textcolor{stringliteral}{"{}OpenAccessibility/Logs/"{}}) + CombinedFileName);}
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityAnalytics_8cpp_source_l00047}00047 \}}
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityAnalytics_8cpp_source_l00048}00048 }
 \DoxyCodeLine{\Hypertarget{OpenAccessibilityAnalytics_8cpp_source_l00049}00049 \textcolor{keywordtype}{bool} FOpenAccessibilityAnalyticsModule::WriteBufferToFile()}
