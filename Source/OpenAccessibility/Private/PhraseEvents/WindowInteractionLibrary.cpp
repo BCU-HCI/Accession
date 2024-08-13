@@ -179,7 +179,7 @@ namespace TabUtils
 	class FOpenStack : public FTabManager::FStack
 	{
 	public:
-		const TArray<FTabManager::FTab> GetTabs()
+		const TArray<FTabManager::FTab>& GetTabs()
 		{
 			return Tabs;
 		}
@@ -192,7 +192,6 @@ namespace TabUtils
 		{
 			return ChildNodes;
 		}
-		
 	};
 
 	[[nodiscard]] TArray<FTabManager::FTab> CollectManagedTabs(const TSharedRef<FTabManager>& TabManager)
@@ -257,16 +256,27 @@ void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord& Record)
 	{
 		if (FoundTabs[i].TabId == ActiveTabId)
 		{
-			const FTabManager::FTab NextTab = FoundTabs[i + 1 % FoundTabs.Num()];
+			TSharedPtr<SDockTab> NextTabWidget = TSharedPtr<SDockTab>();
 
-			const TSharedPtr<SDockTab> NextTabWidget = ActiveTabManager->FindExistingLiveTab(
-				NextTab.TabId
-			);
-
-			if (!NextTabWidget.IsValid())
+			int CurrentTabIndex = i;
+			while (!NextTabWidget.IsValid())
 			{
-				UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Found Next Tab is Invalid."))
-				return;
+				CurrentTabIndex += 1;
+				CurrentTabIndex %= FoundTabs.Num();
+
+				const FTabManager::FTab NextTab = FoundTabs[
+					CurrentTabIndex
+				];
+
+				if (NextTab.TabId == ActiveTabId)
+				{
+					UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: No Next Tab Found."))
+					return;
+				}
+
+				NextTabWidget = ActiveTabManager->FindExistingLiveTab(
+					NextTab.TabId
+				);
 			}
 
 			FGlobalTabmanager::Get()->SetActiveTab(NextTabWidget);
@@ -320,24 +330,34 @@ void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
 	{
 		if (FoundTabs[i].TabId == ActiveTabId)
 		{
-			const FTabManager::FTab NextTab = FoundTabs[
-				i - 1 < 0
-				? FoundTabs.Num() - 1
-				: i - 1
-			];
+			TSharedPtr<SDockTab> PrevTabWidget = TSharedPtr<SDockTab>();
 
-			const TSharedPtr<SDockTab> NextTabWidget = ActiveTabManager->FindExistingLiveTab(
-				NextTab.TabId
-			);
-
-			if (!NextTabWidget.IsValid())
+			int CurrentTabIndex = i;
+			while (!PrevTabWidget.IsValid())
 			{
-				UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Found Next Tab is Invalid."))
-					return;
+				CurrentTabIndex -= 1;
+				if (CurrentTabIndex < 0)
+				{
+					CurrentTabIndex = FoundTabs.Num() - 1;
+				}
+
+				const FTabManager::FTab NextTab = FoundTabs[
+					CurrentTabIndex
+				];
+
+				if (NextTab.TabId == ActiveTabId)
+				{
+					UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: No Next Tab Found."))
+						return;
+				}
+
+				PrevTabWidget = ActiveTabManager->FindExistingLiveTab(
+					NextTab.TabId
+				);
 			}
 
-			FGlobalTabmanager::Get()->SetActiveTab(NextTabWidget);
-			NextTabWidget->ActivateInParent(SetDirectly);
+			FGlobalTabmanager::Get()->SetActiveTab(PrevTabWidget);
+			PrevTabWidget->ActivateInParent(SetDirectly);
 
 			break;
 		}

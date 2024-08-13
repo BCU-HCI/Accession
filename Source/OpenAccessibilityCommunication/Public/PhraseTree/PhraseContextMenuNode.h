@@ -69,7 +69,7 @@ public:
 		ConstructContextChildren(InChildNodes);
 	}
 
-	~FPhraseContextMenuNode()
+	virtual ~FPhraseContextMenuNode()
 	{
 
 	}

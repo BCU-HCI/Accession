@@ -18,7 +18,7 @@ public:
 
 public:
 	FAccessibilityNodeFactory();
-	~FAccessibilityNodeFactory();
+	virtual ~FAccessibilityNodeFactory();
 
 	/// <summary>
 	/// Wraps the Node Widget with Accessibility Indexing.

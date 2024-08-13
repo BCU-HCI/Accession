@@ -228,7 +228,7 @@ class OPENACCESSIBILITYCOMMUNICATION_API FPhraseTree : public FPhraseNode
 {
 public:
 	FPhraseTree();
-	~FPhraseTree();
+	virtual ~FPhraseTree();
 
 	FPhraseTreeContextManager& GetContextManager() {
 		return ContextManager;

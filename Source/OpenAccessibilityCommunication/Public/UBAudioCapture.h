@@ -13,7 +13,7 @@ class OPENACCESSIBILITYCOMMUNICATION_API UBAudioCapture : public UAudioCapture
 
 public:
 	UBAudioCapture();
-	~UBAudioCapture();
+	virtual ~UBAudioCapture();
 
 	/// <summary>
 	/// Opens the default audio stream.

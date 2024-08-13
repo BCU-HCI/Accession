@@ -20,7 +20,7 @@ public:
 	FPhraseEnumInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved);
 	FPhraseEnumInputNode(const TCHAR* InInputString, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(int32 Input)> InOnInputRecieved);
 
-	~FPhraseEnumInputNode();
+	virtual ~FPhraseEnumInputNode();
 
 protected:
 
