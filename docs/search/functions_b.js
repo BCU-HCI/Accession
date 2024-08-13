@@ -4,6 +4,5 @@ var searchData=
   ['locomotionconfirm_1',['LocomotionConfirm',['../classUNodeInteractionLibrary.html#a2934262cc71c6535679b105699b4d7c4',1,'UNodeInteractionLibrary']]],
   ['locomotionrevert_2',['LocomotionRevert',['../classUNodeInteractionLibrary.html#a7b04b9de427ec89ef330ccf02184c808',1,'UNodeInteractionLibrary']]],
   ['locomotionselect_3',['LocomotionSelect',['../classUNodeInteractionLibrary.html#a49c69260ebcb64c73eccea24ea5942f9',1,'UNodeInteractionLibrary']]],
-  ['logevent_4',['LogEvent',['../classFOpenAccessibilityAnalyticsModule.html#ae25cc948b4acd04863f5f20347569f0c',1,'FOpenAccessibilityAnalyticsModule']]],
-  ['long_5ffunction_5fwith_5fmany_5fparameters_5',['long_function_with_many_parameters',['../classMyLibrary_1_1SubclassExample.html#a92227fff4f72a11be0e21d88914ba63e',1,'MyLibrary::SubclassExample']]]
+  ['logevent_4',['LogEvent',['../classFOpenAccessibilityAnalyticsModule.html#ae25cc948b4acd04863f5f20347569f0c',1,'FOpenAccessibilityAnalyticsModule']]]
 ];
