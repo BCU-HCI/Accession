@@ -14,8 +14,8 @@ jobs:
       - name: Checkout Plugin
         uses: actions/checkout@v2
 
-      - name: Clone Doxygen Style Repo
-        run: git clone https://github.com/jothepro/doxygen-awesome-css.git
+      - name: Get Doxygen Style Repository
+        run: npm install https://github.com/jothepro/doxygen-awesome-css#v2.3.3 --save-dev
 
       - name: Run Doxygen Action
         uses: mattnotmitt/doxygen-action@v1.9.5
