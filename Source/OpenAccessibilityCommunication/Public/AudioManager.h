@@ -130,6 +130,8 @@ private:
 
     UPROPERTY(EditDefaultsOnly, Category = "OpenAccessibility/Audio Capture")
     class UAudioCapture* AudioCapture;
+
+    UPROPERTY(EditDefaultsOnly, Category = "OpenAccessibility/Audio Capture")
     TArray<float> AudioBuffer;
 
     FAudioGeneratorHandle OnAudioGenerateHandle;

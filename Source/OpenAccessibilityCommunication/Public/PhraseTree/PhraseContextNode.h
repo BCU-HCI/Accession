@@ -40,7 +40,7 @@ public:
 		ConstructContextChildren(InChildNodes);
 	}
 
-	~FPhraseContextNode()
+	virtual ~FPhraseContextNode()
 	{
 
 	}
@@ -57,11 +57,11 @@ protected:
 
 	// FPhraseContextNodeBase Implementation
 
-	bool HasContextObject(TArray<UPhraseTreeContextObject*> InContextObjects) const;
+	virtual bool HasContextObject(TArray<UPhraseTreeContextObject*> InContextObjects) const override;
 
-	virtual UPhraseTreeContextObject* CreateContextObject(FParseRecord& Record);
+	virtual UPhraseTreeContextObject* CreateContextObject(FParseRecord& Record) override;
 
-	virtual void ConstructContextChildren(TPhraseNodeArray& InChildNodes);
+	virtual void ConstructContextChildren(TPhraseNodeArray& InChildNodes) override;
 
 	// End FPhraseContextNodeBase Implementation
 

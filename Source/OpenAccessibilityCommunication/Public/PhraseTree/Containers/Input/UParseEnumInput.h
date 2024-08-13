@@ -48,6 +48,8 @@ public:
 	}
 
 protected:
+
+	UPROPERTY()
 	UEnum* EnumType;
 
 };

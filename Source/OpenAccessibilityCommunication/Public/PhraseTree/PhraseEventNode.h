@@ -15,13 +15,13 @@ public:
 	FPhraseEventNode(TDelegate<void(FParseRecord&)> InEvent);
 	FPhraseEventNode(TFunction<void(FParseRecord&)> InEventFunction);
 
-	~FPhraseEventNode();
+	virtual ~FPhraseEventNode();
 
 	// FPhraseNode Implementation
 	virtual bool IsLeafNode() const override { return true; }
 
 	virtual bool RequiresPhrase(const FString InPhrase) override;
-	virtual bool RequiresPhrase(const FString InPhrase, int32& OutDistance);
+	virtual bool RequiresPhrase(const FString InPhrase, int32& OutDistance) override;
 
 	virtual FParseResult ParsePhrase(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord) override;
 	// End FPhraseNode Implementation

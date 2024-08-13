@@ -18,7 +18,7 @@ public:
 	FPhraseInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate<void (InputType Input)> InOnInputRecieved);
 	FPhraseInputNode(const TCHAR* InInputString, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate<void(InputType Input)> InOnInputRecieved);
 
-	~FPhraseInputNode();
+	virtual ~FPhraseInputNode();
 
 	// FPhraseNode Implementation
 	

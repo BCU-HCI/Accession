@@ -28,6 +28,8 @@
 #include "Widgets/Input/SSearchBox.h"
 
 #include "Framework/Docking/TabManager.h"
+#include "HAL/PlatformFileManager.h"
+#include "Misc/FileHelper.h"
 #include "Logging/StructuredLog.h"
 
 #define LOCTEXT_NAMESPACE "FOpenAccessibilityModule"
@@ -276,7 +278,7 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 							DisplayMetrics.PrimaryDisplayWidth / 5,
 							DisplayMetrics.PrimaryDisplayHeight / 5
 						);
-					}					
+					}
 				}
 
 				TSharedPtr<SWidget> ContextWidgetToFocus = ActiveGraphPanel->SummonContextMenu(
@@ -299,12 +301,53 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 
 					);
 
-					GraphContext->ScaleMenu(1.5f); 
+					GraphContext->ScaleMenu(1.5f);
 				}
 
 			}
 		)
-	)),
+	));
+
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibility.Debug.DumpActiveTabManagerObject"),
+		TEXT("Dumps the Active FTabManager to a JSON Object File"),
+
+		FConsoleCommandDelegate::CreateLambda(
+			[this]()
+			{
+				TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab(); 
+				if (!ActiveTab.IsValid())
+				{                                                               
+					UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("DumpActiveTabManagerObject: No Active Tab Was Found"));        
+					return;                                          
+				}
+
+				TSharedPtr<FTabManager> ActiveTabManager = ActiveTab->GetTabManagerPtr();
+				if (!ActiveTabManager.IsValid())
+				{
+					UE_LOG(LogOpenAccessibility, Display, TEXT("DumpActiveTabManagerObject: No Parent Tab Manager Found For Active Tab."))
+					return;
+				}
+
+				TSharedRef<FTabManager::FLayout> ManagerLayout = ActiveTabManager->PersistLayout();
+
+				FString JsonString;
+				if (!FJsonSerializer::Serialize(ManagerLayout->ToJson(), TJsonWriterFactory<>::Create(&JsonString, 0)))
+				{
+					UE_LOG(LogOpenAccessibility, Display, TEXT("DumpActiveTabManagerObject: Failed to Serialize Json Object to String."))
+					return;
+				}
+
+				if (!FFileHelper::SaveStringToFile(
+						JsonString,
+						*FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() + TEXT("OpenAccessibility/Debug/ActiveTabManager_Dump.json"))
+				))
+				{
+					UE_LOG(LogOpenAccessibility, Display, TEXT("DumpActiveTabManagerObject: Failed to Save Serialized JSON Object to File."))
+				}
+			}
+		)
+	));
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
 		TEXT("OpenAccessibility.Debug.OpenAccessibilityGraph_SummonImprovedLocomotion"),

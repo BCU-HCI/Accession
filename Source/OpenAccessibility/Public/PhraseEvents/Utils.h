@@ -11,25 +11,96 @@
 
 #define EMPTY_ARG
 
+
+/**
+ * Gets the Active Native Window Widget, and stores it in the provided container name.
+ * @param ActiveContainerName Name of the Container to Store the Active Tab Object.
+ * @param ReturnObject The Object to Return Upon Failure.
+ */
+#define GET_ACTIVE_REGULAR_WINDOW_RETURN(ActiveContainerName, ReturnObject)            \
+	TSharedPtr<SWindow> ActiveContainerName;                                           \
+    {                                                                                  \
+	  ActiveContainerName = FSlateApplication::Get().GetActiveTopLevelRegularWindow(); \
+	  if (!ActiveContainerName.IsValid())                                              \
+	  {                                                                                \
+        UE_LOG(LogOpenAccessibilityPhraseEvent, Warning,                               \
+			TEXT("GET_ACTIVE_WINDOW: No Active Window Was Found"))                     \
+        return ReturnObject;                                                           \
+      }                                                                                \
+    };
+
+/**
+ * Gets the Active Native Window Widget, and stores it in the provided container name.
+ * @param ActiveContainerName Name of the Container to Store the Active Tab Object.
+ */
+#define GET_ACTIVE_REGULAR_WINDOW(ActiveContainerName) \
+    GET_ACTIVE_REGULAR_WINDOW_RETURN(ActiveContainerName, EMPTY_ARG)
+
+
+/**
+ * Gets the Active Window Widget, and stores it in the provided container name.
+ * @param ActiveContainerName Name of the Container to Store the Active Tab Object.
+ * @param ReturnObject The Object to Return Upon Failure.
+ */
+#define GET_ACTIVE_WINDOW_RETURN(ActiveContainerName, ReturnObject)             \
+    TSharedPtr<SWindow> ActiveContainerName;                                    \
+    {                                                                           \
+      ActiveContainerName = FSlateApplication::Get().GetActiveTopLevelWindow(); \
+      if (!ActiveContainerName.IsValid())                                       \
+      {                                                                         \
+      UE_LOG(LogOpenAccessibilityPhraseEvent, Warning,                          \
+		TEXT("GET_ACTIVE_WINDOW: No Active Window Was Found"))                  \
+      return ReturnObject;                                                      \
+      }                                                                         \
+    };
+
+/**
+ * Gets the Active Window Widget, and stores it in the provided container name.
+ * @param ActiveContainerName Name of the Container to Store the Active Tab Object.
+ */
+#define GET_ACTIVE_WINDOW(ActiveContainerName) \
+    GET_ACTIVE_WINDOW_RETURN(ActiveContainerName, EMPTY_ARG)
+
+
+/**
+ * Gets the Active Tab, and stores it in the provided container name.
+ * @param ActiveContainerName Name of the Container to Store the Active Tab Object.
+ * @param ReturnObject The Object to Return Upon Failure.
+ */
+#define GET_ACTIVE_TAB_RETURN(ActiveContainerName, ReturnObject)      \
+    TSharedPtr<SDockTab> ActiveContainerName;                         \
+    {                                                                 \
+      ActiveContainerName = FGlobalTabmanager::Get()->GetActiveTab(); \
+      if (!ActiveContainerName.IsValid())                             \
+	  {                                                               \
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display,              \
+			TEXT("GET_ACTIVE_TAB: Not Active Tab Was Found"));        \
+		return ReturnObject;                                          \
+	  }                                                               \
+    };
+
+/**
+ * Gets the Active Tab, and stores it in the provided container name.
+ * @param ActiveContainerName Name of the Container to Store the Active Tab Object.
+ */
+#define GET_ACTIVE_TAB(ActiveContainerName) \
+    GET_ACTIVE_TAB_RETURN(ActiveContainerName, EMPTY_ARG)
+
+
 /**
  * Gets the Active Tabs Content, and stores it in the provided container name.
  * @param ActiveContainerName Name of the Container to Store the Active Tabs Content.
  * @param ReturnObject The Object to Return Upon Failure.
  */
-#define GET_ACTIVE_TAB_RETURN(ActiveContainerName, ReturnObject)                \
+#define GET_ACTIVE_TAB_CONTENT_RETURN(ActiveContainerName, ReturnObject)        \
   TSharedPtr<SWidget> ActiveContainerName;                                      \
   {                                                                             \
-    TSharedPtr<SDockTab> _AT = FGlobalTabmanager::Get()->GetActiveTab();        \
-    if (_AT == nullptr || !_AT.IsValid()) {                                     \
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                        \
-			TEXT("GET_ACTIVE_TAB: NO ACTIVE TAB FOUND"));                       \
-      return ReturnObject;                                                      \
-    }                                                                           \
+    GET_ACTIVE_TAB_RETURN(_AT, ReturnObject)                                    \
 																				\
     ActiveContainerName = _AT->GetContent();                                    \
     if (_AT == nullptr || !ActiveContainerName.IsValid()) {                     \
 		UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                        \
-			TEXT("GET_ACTIVE_TAB: FOUND ACTIVE TAB IS NOT VALID"));             \
+			TEXT("GET_ACTIVE_TAB_CONTENT: FOUND ACTIVE TAB IS NOT VALID"));     \
 		return ReturnObject;                                                    \
     }                                                                           \
   };
@@ -38,8 +109,9 @@
  * Gets the Active Tabs Content, and stores it in the provided container name.
  * @param ActiveContainerName Name of the Container to Store the Active Tabs Content.
  */
-#define GET_ACTIVE_TAB(ActiveContainerName) \
-    GET_ACTIVE_TAB_RETURN(ActiveContainerName, EMPTY_ARG)
+#define GET_ACTIVE_TAB_CONTENT(ActiveContainerName) \
+    GET_ACTIVE_TAB_CONTENT_RETURN(ActiveContainerName, EMPTY_ARG)
+
 
 /**
  * Gets and Casts the Active Tabs Content, and Stores it in the provided container name.
@@ -47,11 +119,11 @@
  * @param ActiveTabType Type of Widget to Cast the Active Tabs Content To.
  * @param ReturnObject The Object To Return Upon Failure.
  */
-#define GET_CAST_ACTIVE_TAB_RETURN(ActiveContainerName, ActiveTabType, ReturnObject)                             \
+#define GET_CAST_ACTIVE_TAB_CONTENT_RETURN(ActiveContainerName, ActiveTabType, ReturnObject)                     \
     static_assert(TIsDerivedFrom<ActiveTabType, SWidget>::IsDerived, "Provided Type Is Not a Valid Widget Type");\
 	TSharedPtr<ActiveTabType> ActiveContainerName;                                                               \
 	{                                                                                                            \
-		GET_ACTIVE_TAB_RETURN(_PreCastContainer, ReturnObject);                                                  \
+		GET_ACTIVE_TAB_CONTENT_RETURN(_PreCastContainer, ReturnObject);                                          \
 	    ActiveContainerName = StaticCastSharedPtr<ActiveTabType>(_PreCastContainer);                             \
 	    if (!ActiveContainerName.IsValid() || ActiveContainerName->GetType() != #ActiveTabType) {                \
 	      UE_LOG(LogOpenAccessibilityPhraseEvent, Display,                                                       \
@@ -65,8 +137,9 @@
  * @param ActiveContainerName Name of the Container to Store the Active Tabs Content.
  * @param ActiveTabType Type of Widget to Cast the Active Tabs Content To.
  */
-#define GET_CAST_ACTIVE_TAB(ActiveContainerName, ActiveTabType) \
-	GET_CAST_ACTIVE_TAB_RETURN(ActiveContainerName, ActiveTabType, EMPTY_ARG)
+#define GET_CAST_ACTIVE_TAB_CONTENT(ActiveContainerName, ActiveTabType) \
+	GET_CAST_ACTIVE_TAB_CONTENT_RETURN(ActiveContainerName, ActiveTabType, EMPTY_ARG)
+
 
 /**
  * Gets the Active Keyboard Widget on the Application.
@@ -95,6 +168,7 @@
 #define GET_ACTIVE_KEYBOARD_WIDGET(ActiveContainerName) \
     GET_ACTIVE_KEYBOARD_WIDGET_RETURN(ActiveContainerName, EMPTY_ARG)
 
+
 /**
  * Gets the Top Context Object from the Provided Parse Record.
  * @param InRecord The Record to Search for the Context Object.
@@ -121,6 +195,7 @@
  */
 #define GET_TOP_CONTEXT(InRecord, ContextObjectName, ContextObjectType) \
     GET_TOP_CONTEXT_RETURN(InRecord, ContextObjectName, ContextObjectType, EMPTY_ARG)
+
 
 // Utility Functions
 
