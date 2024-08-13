@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['wrapnodewidget_0',['WrapNodeWidget',['../classFAccessibilityNodeFactory.html#a6ad1b813d43fd7753dd7b7fcc2caf1fc',1,'FAccessibilityNodeFactory']]],
-  ['wrappinwidget_1',['WrapPinWidget',['../classFAccessibilityNodeFactory.html#a6834a4e6c7b842a3019425379c02f887',1,'FAccessibilityNodeFactory']]]
+  ['virtualfunc_0',['virtualfunc',['../classMyLibrary_1_1SubclassExample.html#a08668a9f16511ad37fb547c985d62764',1,'MyLibrary::SubclassExample']]]
 ];
