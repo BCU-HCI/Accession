@@ -1,5 +1,10 @@
 var annotated_dup =
 [
+    [ "MyLibrary", null, [
+      [ "Example", "classMyLibrary_1_1Example.html", "classMyLibrary_1_1Example" ],
+      [ "SecondExample", "classMyLibrary_1_1SecondExample.html", null ],
+      [ "SubclassExample", "classMyLibrary_1_1SubclassExample.html", "classMyLibrary_1_1SubclassExample" ]
+    ] ],
     [ "OpenAccessibilityPy", null, [
       [ "Audio", null, [
         [ "AudioResampler", "classOpenAccessibilityPy_1_1Audio_1_1AudioResampler.html", "classOpenAccessibilityPy_1_1Audio_1_1AudioResampler" ]

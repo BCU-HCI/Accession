@@ -2,6 +2,9 @@ var hierarchy =
 [
     [ "OpenAccessibilityPy.Audio.AudioResampler", "classOpenAccessibilityPy_1_1Audio_1_1AudioResampler.html", null ],
     [ "OpenAccessibilityPy.CommunicationServer.CommunicationServer", "classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer.html", null ],
+    [ "MyLibrary::Example", "classMyLibrary_1_1Example.html", [
+      [ "MyLibrary::SubclassExample< TemplatedClass >", "classMyLibrary_1_1SubclassExample.html", null ]
+    ] ],
     [ "FTabManager::FArea", null, [
       [ "TabUtils::FOpenArea", "classTabUtils_1_1FOpenArea.html", null ]
     ] ],
@@ -54,6 +57,7 @@ var hierarchy =
       [ "SContentIndexer", "classSContentIndexer.html", null ],
       [ "SIndexer", "classSIndexer.html", null ]
     ] ],
+    [ "MyLibrary::SecondExample", "classMyLibrary_1_1SecondExample.html", null ],
     [ "TSharedFromThis", null, [
       [ "FPhraseNode", "classFPhraseNode.html", [
         [ "FPhraseInputNode< int32 >", "classFPhraseInputNode.html", [
