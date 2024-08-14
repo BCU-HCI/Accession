@@ -4,9 +4,13 @@
 #include "PhraseTree/PhraseInputNode.h"
 #include "PhraseTree/PhraseEventNode.h"
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
+#include "PhraseTree/Containers/Input/UParseStringInput.h"
 
 #include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
+
+#include "Algo/LevenshteinDistance.h"
 #include "Framework/Docking/TabManager.h"
+#include "PhraseTree/PhraseStringInputNode.h"
 
 UWindowInteractionLibrary::UWindowInteractionLibrary(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)
@@ -65,8 +69,19 @@ void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchPrevTabInStack))
 
-				})
+				}),
 
+				MakeShared<FPhraseNode>(TEXT("SELECT"),
+				TPhraseNodeArray {
+
+					MakeShared<FPhraseStringInputNode>(TEXT("TAB_NAME"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SelectTabInStack))
+
+					})
+
+				})
 			}),
 
 			MakeShared<FPhraseNode>(TEXT("TOOLBAR"),
@@ -354,6 +369,11 @@ void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
 	}
 
 	TArray<FTabManager::FTab> FoundTabs = TabUtils::CollectManagedTabs(ActiveTabManager.ToSharedRef());
+	if (FoundTabs.IsEmpty())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: No Tabs Found."))
+		return;
+	}
 
 	const FTabId ActiveTabId = ActiveTab->GetLayoutIdentifier();
 	for (int32 i = 0; i < FoundTabs.Num(); i++)
@@ -421,4 +441,70 @@ void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
 	FGlobalTabmanager::Get()->SetActiveTab(PrevTab);
 	PrevTab->ActivateInParent(SetDirectly);
 	*/
+}
+
+void UWindowInteractionLibrary::SelectTabInStack(FParseRecord& Record)
+{
+	UParseStringInput* TabNameInput =  Record.GetPhraseInput<UParseStringInput>(TEXT("TAB_NAME"));
+	if (TabNameInput == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SelectTabInStack: No Tab Name Input Found."))
+		return;
+	}
+
+	GET_ACTIVE_TAB(ActiveTab);
+
+	TSharedPtr<FTabManager> ActiveTabManager = ActiveTab->GetTabManagerPtr();
+	if (!ActiveTabManager.IsValid())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SelectTabInStack: Cannot Find Active Tab Manager"))
+		return;
+	}
+
+	TArray<FTabManager::FTab> FoundTabs = TabUtils::CollectManagedTabs(ActiveTabManager.ToSharedRef());
+	if (FoundTabs.IsEmpty())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SelectTabInStack: No Tabs Found."))
+		return;
+	}
+
+	FString TargetTabName = TabNameInput->GetValue();
+
+	TSharedPtr<SDockTab> FoundTabWidget = TSharedPtr<SDockTab>();
+	int32 FoundTabDistance = INT32_MAX;
+
+	for (auto& Tab : FoundTabs)
+	{
+		TSharedPtr<SDockTab> CurrTabWidget= ActiveTabManager->FindExistingLiveTab(
+			Tab.TabId
+		);
+
+		if (!CurrTabWidget.IsValid())
+		{
+			continue;
+		}
+
+		FString CurrName = CurrTabWidget->GetTabLabel().ToString().ToUpper();
+		if (CurrName == TargetTabName)
+		{
+			FoundTabWidget = CurrTabWidget;
+			break;
+		}
+
+		int32 Distance = Algo::LevenshteinDistance(CurrName, TargetTabName);
+		if (Distance < FoundTabDistance)
+		{
+			FoundTabWidget = CurrTabWidget;
+			FoundTabDistance = Distance;
+		}
+	}
+
+	if (!FoundTabWidget.IsValid())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SelectTabInStack: No Tab Found."))
+		return;
+	}
+
+	FGlobalTabmanager::Get()->SetActiveTab(FoundTabWidget);
+	FoundTabWidget->ActivateInParent(SetDirectly);
 }

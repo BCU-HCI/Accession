@@ -78,6 +78,12 @@ public:
 	 */
 	void SwitchPrevTabInStack(FParseRecord& Record);
 
+	/**
+	 * Selects the Tab Based on User Input, and switches the Focus to it.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	void SelectTabInStack(FParseRecord& Record);
+
 	// End of Window Tab Interaction
 
 protected:
