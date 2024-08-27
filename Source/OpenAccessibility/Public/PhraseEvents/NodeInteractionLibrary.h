@@ -72,6 +72,12 @@ public:
 	UFUNCTION()
 	void PinDisconnect(FParseRecord& Record);
 
+	UFUNCTION()
+	void PinSetDefault(FParseRecord& Record);
+
+	UFUNCTION()
+	void PinResetDefault(FParseRecord& Record);
+
 	// End of Pin Implementation
 
 
