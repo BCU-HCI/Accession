@@ -46,6 +46,8 @@ public:
 	UFUNCTION()
 	void DeleteNode(FParseRecord& Record);
 
+	void RequestRename(FParseRecord& Record);
+
 	/**
 	 * Input Event for Adding the specified Node Index to the Active Selection Set.
 	 * @param Index The Index Provided Through Voice Input. 

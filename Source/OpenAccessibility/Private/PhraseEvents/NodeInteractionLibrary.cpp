@@ -201,6 +201,13 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 						}),
 
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("RENAME"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::RequestRename))
+
 					})
 
 				}, NodeIndexFocusDelegate),
@@ -431,6 +438,38 @@ void UNodeInteractionLibrary::DeleteNode(FParseRecord& Record)
 
 	Node->Modify();
 	Node->DestroyNode();
+}
+
+void UNodeInteractionLibrary::RequestRename(FParseRecord& Record)
+{
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
+
+	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+	if (IndexInput == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("RequestRename: Invalid Node Index"));
+		return;
+	}
+
+	TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(
+		ActiveGraphEditor->GetCurrentGraph()
+	);
+
+	UEdGraphNode* FoundNode = Indexer->GetNode(IndexInput->GetValue());
+	if (FoundNode == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("RequestRename: Node Not Found"));
+		return;
+	}
+
+
+	TSharedPtr<SGraphNode> NodeWidget = ActiveGraphEditor->GetGraphPanel()->GetNodeWidgetFromGuid(FoundNode->NodeGuid);
+	if (!NodeWidget.IsValid())
+	{
+		return;
+	}
+
+	NodeWidget->RequestRename();
 }
 
 void UNodeInteractionLibrary::NodeIndexFocus(int32 Index)
