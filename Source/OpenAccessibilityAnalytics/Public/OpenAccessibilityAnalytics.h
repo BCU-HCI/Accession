@@ -24,6 +24,7 @@ struct FLoggedEvent
 public:
 
 	FLoggedEvent()
+		: Level(ELogLevel::Log)
 	{ };
 
 	FLoggedEvent(const TCHAR* EventTitle, const TCHAR* EventString, const ELogLevel Level = ELogLevel::Log, FDateTime EventTimestamp = FDateTime::Now())
@@ -68,6 +69,12 @@ public:
 
 	// Analytics Logging
 
+	/**
+	 * Logs the OpenAccessibility Event to the Log File.
+	 * @param EventTitle Title of the Event
+	 * @param EventLogLevel Level of Logging for the Event.
+	 * @param LogString Body of the Event.
+	 */
 	void LogEvent(const TCHAR* EventTitle, ELogLevel EventLogLevel, const TCHAR* LogString, ...)
 	{
 		va_list Args;
@@ -93,8 +100,8 @@ private:
 	FString GenerateFileForSessionLog();
 
 	/**
-	 * Writes the Current Buffer of Logged Events to the Log File.
-	 * @return True if the Buffer is successfully written to the Log File, otherwise False on Failure.
+	 * Writes the Provided Event to the Log File.
+	 * @return True if the Event was Successfully Written to the File, False if there was an Error Logging.
 	 */
 	bool WriteEventToFile(const FLoggedEvent& LoggedEvent);
 	
@@ -125,7 +132,7 @@ private:
 	TArray<IConsoleCommand*> ConsoleCommands;
 };
 
-bool FOpenAccessibilityAnalyticsModule::WriteEventToFile(const FLoggedEvent& LoggedEvent)
+inline bool FOpenAccessibilityAnalyticsModule::WriteEventToFile(const FLoggedEvent& LoggedEvent)
 {
 	FString EventString = FString::Format(
 		TEXT("[ {0} | {1} ] - {3} - {4}\n"),

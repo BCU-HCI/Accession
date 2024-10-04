@@ -10,13 +10,11 @@ void FOpenAccessibilityAnalyticsModule::StartupModule()
 {
 	SessionLogFile = GenerateFileForSessionLog();
 
-	//EnableDumpTick();
 	AddConsoleCommands();
 } 
 
 void FOpenAccessibilityAnalyticsModule::ShutdownModule() 
 {
-	//DisableDumpTick();
 	RemoveConsoleCommands();
 }
 
