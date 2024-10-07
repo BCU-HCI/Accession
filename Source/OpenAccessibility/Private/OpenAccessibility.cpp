@@ -3,6 +3,7 @@
 #include "OpenAccessibility.h"
 #include "OpenAccessibilityCommunication.h"
 #include "OpenAccessibilityLogging.h"
+#include "OpenAccessibilityAnalytics.h"
 
 #include "PhraseTree/PhraseNode.h"
 #include "PhraseTree/PhraseInputNode.h"
@@ -68,6 +69,9 @@ void FOpenAccessibilityModule::StartupModule()
 
 	CreateTranscriptionVisualization();
 
+	FSlateApplication::Get().OnFocusChanging()
+		.AddStatic(&FOpenAccessibilityModule::FocusChangeListener);
+
 	// Register Console Commands
 	RegisterConsoleCommands();
 }
@@ -77,6 +81,24 @@ void FOpenAccessibilityModule::ShutdownModule()
 	UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibilityModule::ShutdownModule()"));
 
 	UnregisterConsoleCommands();
+}
+
+void FOpenAccessibilityModule::FocusChangeListener(const FFocusEvent& FocusEvent, const FWeakWidgetPath& PrevWidgetPath,
+	const TSharedPtr<SWidget>& PrevFocusedWidget, const FWidgetPath& NewWidgetPath,
+	const TSharedPtr<SWidget>& NewFocusedWidget)
+{
+	if (!NewFocusedWidget.IsValid())
+		return;
+
+	switch (FocusEvent.GetCause())
+	{
+	case EFocusCause::Mouse:
+		OA_LOG(LogOpenAccessibility, Log, TEXT("WIDGET_FOCUS_MOUSE"), TEXT("Mouse Widget Focus Changed: %s"), *NewFocusedWidget->GetTypeAsString());
+		break;
+
+	default:
+		break;
+	}
 }
 
 void FOpenAccessibilityModule::CreateTranscriptionVisualization()

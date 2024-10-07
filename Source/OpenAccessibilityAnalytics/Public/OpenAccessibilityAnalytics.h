@@ -99,12 +99,16 @@ private:
 	 */
 	FString GenerateFileForSessionLog();
 
+	FString GenerateEventString(const FLoggedEvent& LoggedEvent);
+
 	/**
 	 * Writes the Provided Event to the Log File.
 	 * @return True if the Event was Successfully Written to the File, False if there was an Error Logging.
 	 */
 	bool WriteEventToFile(const FLoggedEvent& LoggedEvent);
-	
+
+	bool WriteEventsToFile(const TArray<FLoggedEvent>& LoggedEvents);
+
 	/**
 	 * Binds all relevant Console Commands for the Open Accessibility Analytics Module.
 	 */
@@ -132,27 +136,43 @@ private:
 	TArray<IConsoleCommand*> ConsoleCommands;
 };
 
-inline bool FOpenAccessibilityAnalyticsModule::WriteEventToFile(const FLoggedEvent& LoggedEvent)
+FORCEINLINE FString FOpenAccessibilityAnalyticsModule::GenerateEventString(const FLoggedEvent& LoggedEvent)
 {
-	FString EventString = FString::Format(
-		TEXT("[ {0} | {1} ] - {3} - {4}\n"),
+	return FString::Format(
+		TEXT("[ {0} | {1} ] - {2} - {3}\n"),
 		{
 			LoggedEvent.Level, LoggedEvent.Timestamp.ToString(),
 			LoggedEvent.Title, LoggedEvent.Body
 		}
 	);
+}
 
-	if (FFileHelper::SaveStringToFile(
+FORCEINLINE bool FOpenAccessibilityAnalyticsModule::WriteEventToFile(const FLoggedEvent& LoggedEvent)
+{
+	FString EventString = GenerateEventString(LoggedEvent);
+
+	return FFileHelper::SaveStringToFile(
 		EventString,
 		*SessionLogFile,
 		FFileHelper::EEncodingOptions::AutoDetect,
 		&IFileManager::Get(),
 		EFileWrite::FILEWRITE_Append
-	))
-	{
+	);
+}
 
-		return true;
+FORCEINLINE bool FOpenAccessibilityAnalyticsModule::WriteEventsToFile(const TArray<FLoggedEvent>& LoggedEvents)
+{
+	FString CombinedLogStrings;
+	for (const FLoggedEvent& LoggedEvent : LoggedEvents)
+	{
+		CombinedLogStrings += GenerateEventString(LoggedEvent);
 	}
 
-	return false;
+	return FFileHelper::SaveStringToFile(
+		CombinedLogStrings,
+		*SessionLogFile,
+		FFileHelper::EEncodingOptions::AutoDetect,
+		&IFileManager::Get(),
+		EFileWrite::FILEWRITE_Append
+	);
 }

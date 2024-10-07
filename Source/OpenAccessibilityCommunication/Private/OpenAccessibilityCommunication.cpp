@@ -79,7 +79,11 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 		// Receive the Detected Event, with separate transcriptions and metadata. 
 		if (SocketServer->RecvStringMultipartWithMeta(RecvStrings, RecvMetadata))
 		{
-			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION RECIEVED"), TEXT("Recieved Multipart - Message Count: %d"), RecvStrings.Num());
+			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION RECEIVED"), TEXT("Received Multipart - Message Count: %d"), RecvStrings.Num());
+			for (int i = 0; i < RecvStrings.Num(); i++)
+			{
+				OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION RECEIVED"), TEXT("Transcription - %d: { %s }"), i, *RecvStrings[i]);
+			}
 
 			// Send Received Transcriptions to any bound events.
 			OnTranscriptionRecieved.Broadcast(RecvStrings);
