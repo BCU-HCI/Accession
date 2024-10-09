@@ -1,0 +1,38 @@
+name: Plugin Builder
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ue_version: ["5.1", "5.2", "5.3", "5.4"]
+
+    container:
+      image: docker://ghcr.io/epicgames/unreal-engine:dev-${{ matrix.ue_version }}
+
+    steps:
+      - name: Checkout Plugin
+        uses: actions/checkout@v2
+        with:
+          path: PluginRepo
+
+      - name: Build Plugin
+        run: |
+          ${{ github.workspace }}/UnrealEngine/Engine/Build/BatchFiles/RunUAT.sh BuildPlugin \
+          -Plugin="${{ github.workspace }}/PluginRepo/OpenAccessibility.uplugin" \
+          -Package="${{ github.workspace }}/Build" \
+          -Configuration=Release \
+          -Rocket \
+
+      - name: Archive Plugin Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: plugin_${{ matrix.ue_version }}
+          path: ${{ github.workspace }}/Build
