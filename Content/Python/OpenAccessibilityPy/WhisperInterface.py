@@ -38,7 +38,6 @@ class WhisperInterface:
             compute_type=compute_type,
             num_workers=transcribe_workers,
             cpu_threads=cpu_threads,
-            local_files_only=True,
         )
         self.beam_size = 5
 
