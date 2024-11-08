@@ -180,7 +180,33 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 							})
 
-						})
+						}),
+
+						MakeShared<FPhraseNode>(TEXT("SET"), 
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseStringInputNode>(TEXT("DEFAULT_VALUE"),
+							TPhraseNodeArray {
+
+								MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinSetDefault))
+
+							})
+
+						}),
+
+						MakeShared<FPhraseNode>(TEXT("RESET"),
+						TPhraseNodeArray {
+
+							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinResetDefault))
+
+						}),
+
+					}),
+
+					MakeShared<FPhraseNode>(TEXT("RENAME"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::RequestRename))
 
 					})
 
@@ -414,6 +440,38 @@ void UNodeInteractionLibrary::DeleteNode(FParseRecord& Record)
 	Node->DestroyNode();
 }
 
+void UNodeInteractionLibrary::RequestRename(FParseRecord& Record)
+{
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
+
+	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+	if (IndexInput == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("RequestRename: Invalid Node Index"));
+		return;
+	}
+
+	TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(
+		ActiveGraphEditor->GetCurrentGraph()
+	);
+
+	UEdGraphNode* FoundNode = Indexer->GetNode(IndexInput->GetValue());
+	if (FoundNode == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("RequestRename: Node Not Found"));
+		return;
+	}
+
+
+	TSharedPtr<SGraphNode> NodeWidget = ActiveGraphEditor->GetGraphPanel()->GetNodeWidgetFromGuid(FoundNode->NodeGuid);
+	if (!NodeWidget.IsValid())
+	{
+		return;
+	}
+
+	NodeWidget->RequestRename();
+}
+
 void UNodeInteractionLibrary::NodeIndexFocus(int32 Index)
 {
 	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
@@ -505,6 +563,98 @@ void UNodeInteractionLibrary::PinDisconnect(FParseRecord& Record)
 	}
 
 	Graph->GetSchema()->BreakSinglePinLink(SourcePin, TargetPin);
+}
+
+void UNodeInteractionLibrary::PinSetDefault(FParseRecord& Record)
+{
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
+
+	// Get Phrase Inputs
+	UParseIntInput* NodeInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+	UParseIntInput* PinInput = Record.GetPhraseInput<UParseIntInput>(TEXT("PIN_INDEX"));
+
+	UParseStringInput* DefaultValueInput = Record.GetPhraseInput<UParseStringInput>(TEXT("DEFAULT_VALUE"));
+
+	if (NodeInput == nullptr || PinInput == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("PinSetDefault: Invalid Node / Pin Inputs"));
+		return;
+	}
+
+	if (DefaultValueInput == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("PinSetDefault: Invalid Value Input"));
+		return;
+	}
+
+	UEdGraph* Graph = ActiveGraphEditor->GetCurrentGraph();
+
+	TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(Graph);
+
+	UEdGraphPin* FoundPin = Indexer->GetPin(NodeInput->GetValue(), PinInput->GetValue());
+	if (FoundPin == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("PinSetDefault: Pin Not Found"));
+		return;
+	}
+
+	if (FoundPin->bDefaultValueIsReadOnly || FoundPin->bDefaultValueIsIgnored)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("PinSetDefault: Pin Default Value Is InAccessible"));
+		return;
+	}
+
+	const UEdGraphSchema* GraphSchema = FoundPin->GetSchema();
+
+	FString NewDefaultString = DefaultValueInput->GetValue();
+	FText NewDefaultText = FText::FromString(NewDefaultString);
+
+	FString DefaultSetLog = GraphSchema->IsPinDefaultValid(
+		FoundPin, 
+		NewDefaultString,
+		nullptr, 
+		NewDefaultText
+	);
+
+	if (!DefaultSetLog.IsEmpty())
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("PinSetDefault: Provided Value Is Invalid - %s"), *DefaultSetLog);
+		return;
+	}
+
+	GraphSchema->TrySetDefaultValue(*FoundPin, NewDefaultString);
+	GraphSchema->TrySetDefaultText(*FoundPin, NewDefaultText);
+}
+
+void UNodeInteractionLibrary::PinResetDefault(FParseRecord& Record)
+{
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
+
+	// Get Phrase Inputs
+	UParseIntInput* NodeInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
+	UParseIntInput* PinInput = Record.GetPhraseInput<UParseIntInput>(TEXT("PIN_INDEX"));
+
+	if (NodeInput == nullptr || PinInput == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("PinSetDefault: Invalid Node / Pin Inputs"));
+		return;
+	}
+
+	UEdGraph* Graph = ActiveGraphEditor->GetCurrentGraph();
+
+	TSharedRef<FGraphIndexer> Indexer = GetAssetRegistry()->GetGraphIndexer(Graph);
+
+	UEdGraphPin* FoundPin = Indexer->GetPin(NodeInput->GetValue(), PinInput->GetValue());
+	if (FoundPin == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("PinSetDefault: Pin Not Found"));
+		return;
+	}
+
+	if (!FoundPin->HasAnyConnections())
+	{
+		Graph->GetSchema()->ResetPinToAutogeneratedDefaultValue(FoundPin);
+	}
 }
 
 TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record) 
