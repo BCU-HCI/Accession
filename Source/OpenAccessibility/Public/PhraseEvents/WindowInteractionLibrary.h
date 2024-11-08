@@ -88,7 +88,7 @@ public:
 
 protected:
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category = "WindowInteractionLibrary|ToolBar Accessibility")
 	class UAccessibilityWindowToolbar* WindowToolBar;
 
 };

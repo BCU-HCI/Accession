@@ -41,7 +41,7 @@ protected:
 	/**
 	 * An Array of all the Registered Phrase Tree Function Libraries.
 	 */
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "PhraseTreeUtils")
 	TArray<UPhraseTreeFunctionLibrary*> RegisteredLibraries;
 
 
