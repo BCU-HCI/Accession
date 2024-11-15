@@ -95,18 +95,20 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 
 void FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(const FKeyEvent& InKeyEvent)
 {
-	// If the Space Key is pressed, we will send a request to the Accessibility Server
-	if (InKeyEvent.GetKey() == EKeys::SpaceBar)
+	FKey TargetKey = EKeys::LeftAlt;
+
+	// If the Voice Command Key is Pressed, Toggle Audio Capture.
+	if (InKeyEvent.GetKey() == TargetKey && !InKeyEvent.IsRepeat())
 	{
-		if (InKeyEvent.IsShiftDown())
-		{
-			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
-			AudioManager->StopCapturingAudio();
-		}
-		else
+		if (!AudioManager->IsCapturingAudio())
 		{
 			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Starting Audio Capture"));
 			AudioManager->StartCapturingAudio();
+		}
+		else
+		{
+			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
+			AudioManager->StopCapturingAudio();
 		}
 	}
 }
