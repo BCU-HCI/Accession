@@ -154,7 +154,7 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 		TArray<FString> PhraseWordArrayCopy = TArray(InPhraseWordArray);
 
 		FParseResult ParseResult = LastVistedNode->ParseChildren(PhraseWordArrayCopy, LastVistedParseRecord);
-		if (ParseResult.Result == PHRASE_PARSED)
+		if (ParseResult.Result & PHRASE_PARSED | PHRASE_PARSED_AND_EXECUTED)
 		{
 			LastVistedNode.Reset();
 			InParseRecord = LastVistedParseRecord;

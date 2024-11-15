@@ -26,6 +26,11 @@ void UAccessibilityGraphEditorContext::Init(TSharedRef<IMenu> InMenu, TSharedRef
 	{
 		UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphEditorContext: Cannot Find a SGraphActionMenu Widget"));
 	}
+	else
+	{
+		// IDK why the voice command breaks if the text is not ensure if its empty
+		FilterTextBox.Pin()->SetText(FText::GetEmpty());
+	}
 
 	if (!FindStaticComponents(WindowRef))
 	{
@@ -156,9 +161,15 @@ void UAccessibilityGraphEditorContext::AppendFilterText(const FString& StringToA
 
 	TSharedPtr<SEditableTextBox> FilterTextBoxPtr = FilterTextBox.Pin();
 
-	FilterTextBoxPtr->SetText(
-		FText::FromString( FilterTextBoxPtr->GetText().ToString() + TEXT(" ") + StringToAdd )
-	);
+	FString TextBoxString = FilterTextBoxPtr->GetText().ToString();
+
+	TextBoxString != TEXT("")
+		? FilterTextBoxPtr->SetText(
+			FText::FromString(TextBoxString + TEXT(" ") + StringToAdd)
+		)
+		: FilterTextBoxPtr->SetText(
+			FText::FromString(StringToAdd)
+		);
 }
 
 void UAccessibilityGraphEditorContext::SetScrollDistance(const float NewDistance)
