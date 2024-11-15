@@ -95,10 +95,12 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 
 void FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(const FKeyEvent& InKeyEvent)
 {
-	FKey TargetKey = EKeys::LeftAlt;
+	FKey EventKey = InKeyEvent.GetKey();
+
+	bool isTargetKey = EventKey == EKeys::LeftAlt || EventKey == EKeys::RightAlt;
 
 	// If the Voice Command Key is Pressed, Toggle Audio Capture.
-	if (InKeyEvent.GetKey() == TargetKey && !InKeyEvent.IsRepeat())
+	if (isTargetKey && !InKeyEvent.IsRepeat())
 	{
 		if (!AudioManager->IsCapturingAudio())
 		{
