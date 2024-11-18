@@ -160,6 +160,9 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 			InParseRecord = LastVistedParseRecord;
 			LastVistedParseRecord = FParseRecord();
 
+			// Swap Potentially Modified PhraseWordArray.
+			InPhraseWordArray = PhraseWordArrayCopy;
+
 			return ParseResult;
 		}
 		else if (ParseResult.Result != PHRASE_UNABLE_TO_PARSE)
