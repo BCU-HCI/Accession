@@ -485,7 +485,7 @@ void UWindowInteractionLibrary::SelectTabInStack(FParseRecord& Record)
 		}
 
 		FString CurrName = CurrTabWidget->GetTabLabel().ToString().ToUpper();
-		if (CurrName == TargetTabName)
+		if (CurrName == TargetTabName || CurrName.Contains(TargetTabName))
 		{
 			FoundTabWidget = CurrTabWidget;
 			break;
