@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "AudioCapture.h"
+#include "Generators/AudioGenerator.h"
 #include "Sound/SampleBufferIO.h"
 #include "Delegates/DelegateCombinations.h"
 #include "AudioDeviceNotificationSubsystem.h"
@@ -42,7 +42,6 @@ public:
     FString SavePath;
 };
 
-
 /**
  * 
  */
@@ -54,6 +53,24 @@ class OPENACCESSIBILITYCOMMUNICATION_API UAudioManager : public UObject
 public:
     UAudioManager();
     virtual ~UAudioManager();
+
+    /// <summary>
+	/// Is the Audio Manager Currently Capturing Audio.
+	/// </summary>
+	/// <returns>True, if Audio is being Captured. False, if Audio is being ignored.</returns>
+    bool IsCapturingAudio() const;
+
+    /// <summary>
+    /// Gets the Sample Rate of the Audio Capture.
+    /// </summary>
+    /// <returns>The Sample Rate of the Audiocapture.</returns>
+    int32 GetAudioCaptureSampleRate() const;
+
+    /// <summary>
+    /// Gets the Number of Channels of the Audio Capture.
+    /// </summary>
+    /// <returns>The Number of Channels used in the Audiocapture.</returns>
+    int32 GetAudioCaptureNumChannels() const;
 
     /// <summary>
     /// Starts The Capturing of Audio onto the Buffer.
@@ -78,24 +95,6 @@ public:
     /// <param name="FilePath">- The Path To Save the Audiobuffers WAV File.</param>
     void SaveAudioBufferToWAV(const FString& FilePath);
 
-    /// <summary>
-	/// Is the Audio Manager Currently Capturing Audio.
-    /// </summary>
-    /// <returns>True, if Audio is being Captured. False, if Audio is being ignored.</returns>
-    bool IsCapturingAudio() const { return bIsCapturingAudio; }
-
-    /// <summary>
-	/// Gets the Sample Rate of the Audio Capture.
-    /// </summary>
-    /// <returns>The Sample Rate of the Audiocapture.</returns>
-    int32 GetAudioCaptureSampleRate() const { return AudioCapture->GetSampleRate(); }
-
-    /// <summary>
-	/// Gets the Number of Channels of the Audio Capture.
-    /// </summary>
-    /// <returns>The Number of Channels used in the Audiocapture.</returns>
-    int32 GetAudioCaptureNumChannels() const { return AudioCapture->GetNumChannels(); }
-    
     /// <summary>
     /// Callback for when the Default Audio Device Changes.
 	/// Allowing for dynamic re-registration of the Audio Generator, to make sure the new device is being used.

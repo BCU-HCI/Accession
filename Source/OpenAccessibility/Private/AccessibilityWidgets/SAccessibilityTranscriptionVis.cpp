@@ -2,6 +2,9 @@
 
 #include "AccessibilityWidgets/SAccessibilityTranscriptionVis.h"
 
+#include "OpenAccessibilityCommunication.h"
+#include "AudioManager.h"
+
 SAccessibilityTranscriptionVis::~SAccessibilityTranscriptionVis()
 {
 }
@@ -40,6 +43,8 @@ void SAccessibilityTranscriptionVis::Construct(const FArguments& InArgs)
 
 	// Construct the Main Component
 
+	UAudioManager* AudioManager = FOpenAccessibilityCommunicationModule::Get().AudioManager;
+
 	ChildSlot
 	.Padding(FMargin(5.0f))
 	[
@@ -49,6 +54,12 @@ void SAccessibilityTranscriptionVis::Construct(const FArguments& InArgs)
 		[
 			SNew(SBorder)
 			.BorderBackgroundColor(FSlateColor(FLinearColor::Gray))
+			.BorderBackgroundColor_Lambda([AudioManager]()
+			{
+				return AudioManager != nullptr && AudioManager->IsCapturingAudio()
+				? FSlateColor(FLinearColor::Red)
+				: FSlateColor(FLinearColor::Gray);
+			})
 			[
 				SNew(SBox)
 				.MinDesiredWidth(250.0f)

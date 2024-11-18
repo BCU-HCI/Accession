@@ -5,7 +5,7 @@
 #include "OpenAccessibilityComLogging.h"
 #include "SocketCommunicationServer.h"
 
-#include "AudioCaptureCore.h"
+#include "AudioCapture.h"
 #include "AudioDeviceNotificationSubsystem.h"
 #include "Templates/Function.h"
 
@@ -34,6 +34,21 @@ UAudioManager::~UAudioManager()
 
 	delete AudioCapture; AudioCapture = nullptr;
 	delete FileWriter; FileWriter = nullptr;
+}
+
+bool UAudioManager::IsCapturingAudio() const
+{
+	return bIsCapturingAudio;
+}
+
+int32 UAudioManager::GetAudioCaptureSampleRate() const
+{
+	return AudioCapture->GetSampleRate();
+}
+
+int32 UAudioManager::GetAudioCaptureNumChannels() const
+{
+	return AudioCapture->GetNumChannels();
 }
 
 void UAudioManager::StartCapturingAudio()
