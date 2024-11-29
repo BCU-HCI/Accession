@@ -223,4 +223,10 @@ public:
 	void BlueprintCompile(FParseRecord& Record);
 
 	// End of Blueprint Specifics
+
+private:
+
+	FVector2D GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel);
+
+	TArray<TSharedPtr<SGraphNode>> GetNodesInViewport(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel);
 };

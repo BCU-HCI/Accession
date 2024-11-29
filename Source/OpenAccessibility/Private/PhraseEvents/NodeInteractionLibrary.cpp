@@ -699,6 +699,14 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record)
 			);
 		}
 
+		/*
+		FVector2D AddLocation = GetFreeGraphViewportSpace(ActiveGraphEditor.Get(), GraphPanel);
+		if (AddLocation == FVector2D::ZeroVector)
+		{
+			AddLocation = GraphPanel->GetPastePosition();
+		}
+		*/
+
 		TSharedPtr<SWidget> ContextWidgetToFocus = GraphPanel->SummonContextMenu(
             SpawnLocation, 
 			GraphPanel->GetPastePosition(),
@@ -766,6 +774,14 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddPinMenu(FParseRecord &Record)
 			
 			return TSharedPtr<IMenu>();
 		}
+
+		/*
+		FVector2D AddLocation = GetFreeGraphViewportSpace(ActiveGraphEditor.Get(), GraphPanel);
+		if (AddLocation == FVector2D::ZeroVector)
+		{
+			AddLocation = GraphPanel->GetPastePosition();
+		}
+		*/
 
 		TSharedPtr<SWidget> ContextWidgetToFocus = GraphPanel->SummonContextMenu(
             SpawnLocation, 
@@ -1066,4 +1082,28 @@ void UNodeInteractionLibrary::BlueprintCompile(FParseRecord& Record)
 	}
 
 	BlueprintEditor->Compile();
+}
+
+FVector2D UNodeInteractionLibrary::GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel)
+{
+	if (GraphEditor == nullptr || GraphPanel == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("GetFreeGraphViewportSpace: Invalid Graph Editor / Panel"));
+		return FVector2D::ZeroVector;
+	}
+
+	UEdGraph* Graph = GraphEditor->GetCurrentGraph();
+
+	return Graph->GetGoodPlaceForNewNode();
+}
+
+TArray<TSharedPtr<SGraphNode>> UNodeInteractionLibrary::GetNodesInViewport(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel)
+{
+	if (GraphEditor == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("GetNodesInViewport: Invalid Graph Panel"));
+		return TArray<TSharedPtr<SGraphNode>>();
+	}
+
+	return TArray<TSharedPtr<SGraphNode>>();
 }
