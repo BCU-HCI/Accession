@@ -136,19 +136,23 @@ void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record)
 
     if (TabType == "SGraphEditor")
 	{
+		#define ZOOM_INCREMENT 0.125f
+
         TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);
 
         FVector2D ViewLocation;
         float ZoomAmount;
         GraphEditor->GetViewLocation(ViewLocation, ZoomAmount);
 
+		ZoomAmount = FMath::RoundToFloat(ZoomAmount / ZOOM_INCREMENT) * ZOOM_INCREMENT;
+
         switch (EPhrase2DDirectionalInput(DirectionInput->GetValue())) {
             case EPhrase2DDirectionalInput::UP:
-                ZoomAmount += AmountInput->GetValue();
+                ZoomAmount += (ZOOM_INCREMENT * AmountInput->GetValue());
                 break;
 
             case EPhrase2DDirectionalInput::DOWN:
-                ZoomAmount -= AmountInput->GetValue();
+                ZoomAmount -= (ZOOM_INCREMENT * AmountInput->GetValue());
                 break;
 
             default:
@@ -157,6 +161,8 @@ void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record)
         }
 
         GraphEditor->SetViewLocation(ViewLocation, ZoomAmount);
+
+		#undef ZOOM_INCREMENT
     }
 
 	// Further Viewport Specific Implementation Here

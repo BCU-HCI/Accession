@@ -194,7 +194,7 @@ void FGraphIndexer::RemoveNode(const int& InIndex)
 	{
 		NodeSet.Remove(Node->GetUniqueID());
 		IndexMap.Remove(InIndex);
-		AvailableIndices.Enqueue(InIndex);
+		AddAvailableIndex(InIndex);
 	}
 	else
 	{
@@ -262,13 +262,30 @@ void FGraphIndexer::OnGraphRebuild()
 	BuildGraphIndex();
 }
 
+void FGraphIndexer::AddAvailableIndex(const int32& NewIndex)
+{
+	const int32 FoundIndex = AvailableIndices.IndexOfByPredicate([NewIndex](const int32& Element)
+	{
+		return Element < NewIndex;
+	});
+
+	if (FoundIndex == INDEX_NONE)
+	{
+		AvailableIndices.Add(NewIndex);
+	}
+	else
+	{
+		AvailableIndices.Insert(NewIndex, FoundIndex);
+	}
+
+	UE_LOG(LogTemp, Log, TEXT("Added Index %d to AvailableIndices"), NewIndex);
+}
+
 int FGraphIndexer::GetAvailableIndex()
 {
 	if (!AvailableIndices.IsEmpty())
 	{
-		int Index;
-		if (AvailableIndices.Dequeue(Index))
-			return Index;
+		return AvailableIndices.Pop();
 	}
 	
 	return IndexMap.Num();
@@ -276,9 +293,9 @@ int FGraphIndexer::GetAvailableIndex()
 
 void FGraphIndexer::GetAvailableIndex(int& OutIndex)
 {
-	if (!AvailableIndices.IsEmpty() && AvailableIndices.Dequeue(OutIndex))
+	if (!AvailableIndices.IsEmpty())
 	{
-		return;
+		OutIndex = AvailableIndices.Pop();
 	}
 	else OutIndex = IndexMap.Num();
 }

@@ -138,6 +138,10 @@ public:
 
 private:
 
+	void AddAvailableIndex(const int32& NewIndex);
+
+private:
+
 	/// <summary>
 	/// Gets the Next Available Index for the Indexer.
 	/// </summary>
@@ -170,7 +174,7 @@ protected:
 	/// <summary>
 	/// A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.
 	/// </summary>
-	TQueue<int32> AvailableIndices;
+	TArray<int32> AvailableIndices;
 
 	/// <summary>
 	/// The Graph Being Indexed By This Indexer.
