@@ -373,8 +373,6 @@ void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 
 	SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
 
-	FVector2D OldNodePosition = FVector2D(Node->NodePosX, Node->NodePosY);
-
 	switch (EPhrase2DDirectionalInput(DirectionInput->GetValue()))
 	{
 		case EPhrase2DDirectionalInput::UP:
@@ -395,40 +393,8 @@ void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 
 		default:
 			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("MoveNode: Invalid Direction"));
-			return;
+		break;
 	}
-
-	/*TSharedPtr<SGraphNode> NodeWidget = GraphPanel ? GraphPanel->GetNodeWidgetFromGuid(Node->NodeGuid) : TSharedPtr<SGraphNode>();
-	if (NodeWidget.IsValid())
-	{
-        SNodePanel::SNode::FNodeSet NodeFilter;
-		NodeWidget->MoveTo(FVector2D(Node->NodePosX, Node->NodePosY) + PositionDelta, NodeFilter);
-	}
-	else 
-	{
-		Node->Modify();
-		Node->NodePosX += PositionDelta.X;
-		Node->NodePosY += PositionDelta.Y;
-	}
-
-	// Move Comment Node Children
-    // Note: This is a workaround for the MoveTo Function not calling the override in UEdGraphNode_Comment
-	if (UEdGraphNode_Comment* CommentNode = Cast<UEdGraphNode_Comment>(Node))
-	{
-		for (UObject* _CommentChildNode : CommentNode->GetNodesUnderComment())
-		{
-			if (UEdGraphNode* CommentChildNode = Cast<UEdGraphNode>(_CommentChildNode))
-			{
-				if (!GraphPanel->SelectionManager.IsNodeSelected(CommentChildNode))
-				{
-					CommentChildNode->Modify();
-					CommentChildNode->NodePosX += MovementDelta.X;
-					CommentChildNode->NodePosY += MovementDelta.Y;
-				}
-			}
-		}
-	}
-	*/
 }
 
 void UNodeInteractionLibrary::DeleteNode(FParseRecord& Record)
@@ -1148,7 +1114,7 @@ void UNodeInteractionLibrary::MoveOnGrid(const SGraphPanel* Panel, UEdGraphNode*
 
 	GridAttributes GridAttr = GetGridAttributes(Panel);
 
-	FInt32Vector2 ScaledMovementDelta = FInt32Vector2(
+	FVector2D ScaledMovementDelta = FVector2D(
 		FMath::RoundToInt(MovementDelta.X * GridAttr.GridCellSize),
 		FMath::RoundToInt(MovementDelta.Y * GridAttr.GridCellSize)
 	);
@@ -1159,9 +1125,18 @@ void UNodeInteractionLibrary::MoveOnGrid(const SGraphPanel* Panel, UEdGraphNode*
 		FMath::RoundToInt(Node->NodePosY / GridAttr.GridCellSize) * GridAttr.GridCellSize
 	);
 
-	Node->Modify();
-	Node->NodePosX = SnappedPosition.X + ScaledMovementDelta.X;
-	Node->NodePosY = SnappedPosition.Y + ScaledMovementDelta.Y;
+	TSharedPtr<SGraphNode> NodeWidget = Panel ? Panel->GetNodeWidgetFromGuid(Node->NodeGuid) : TSharedPtr<SGraphNode>();
+	if (NodeWidget.IsValid())
+	{
+		SNodePanel::SNode::FNodeSet NodeFilter;
+		NodeWidget->MoveTo(SnappedPosition + ScaledMovementDelta, NodeFilter);
+	}
+	else
+	{
+		Node->Modify();
+		Node->NodePosX = SnappedPosition.X + ScaledMovementDelta.X;
+		Node->NodePosY = SnappedPosition.Y + ScaledMovementDelta.Y;
+	}
 }
 
 void UNodeInteractionLibrary::SnapToGridCentre(const SGraphPanel* Panel, UEdGraphNode* Node)
