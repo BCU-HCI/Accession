@@ -226,7 +226,30 @@ public:
 
 private:
 
+	// Editor Grid Utils
+
+	struct GridAttributes
+	{
+		float GridCellSize;
+		float VisualGridCellSize;
+		float NominalGridSize;
+		float InflationFactor;
+		float ZoomFactor;
+	};
+
+	GridAttributes GetGridAttributes(const SGraphPanel* Panel);
+
+	void SnapToGrid(const SGraphPanel* Panel, UEdGraphNode* Node);
+
+	void MoveOnGrid(const SGraphPanel* Panel, UEdGraphNode* Node, const FVector2D& MovementDelta);
+
+	void SnapToGridCentre(const SGraphPanel* Panel, UEdGraphNode* Node);
+
+	// Open Viewport for Node Placement
+
 	FVector2D GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel);
 
 	TArray<TSharedPtr<SGraphNode>> GetNodesInViewport(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel);
+
+	
 };

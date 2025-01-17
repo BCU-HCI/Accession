@@ -353,12 +353,14 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
 
+	// Inputs
 	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("NODE_INDEX"));
 	UParseEnumInput* DirectionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
 	UParseIntInput* AmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
 	if (IndexInput == nullptr || DirectionInput == nullptr || AmountInput == nullptr)
 		return;
 
+	// Registry
 	TSharedRef<FAssetAccessibilityRegistry> AssetRegistry = GetAssetRegistry();
 	TSharedRef<FGraphIndexer> Indexer = AssetRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
 
@@ -369,65 +371,29 @@ void UNodeInteractionLibrary::MoveNode(FParseRecord &Record) {
 		return;
 	}
 
-	FVector2D PositionDelta = FVector2D::ZeroVector;
+	SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
+
 	switch (EPhrase2DDirectionalInput(DirectionInput->GetValue()))
 	{
 		case EPhrase2DDirectionalInput::UP:
-            PositionDelta.Y -= AmountInput->GetValue();
+			MoveOnGrid(GraphPanel, Node, FVector2D(0, -AmountInput->GetValue()));
 			break;
 
 		case EPhrase2DDirectionalInput::DOWN:
-			PositionDelta.Y += AmountInput->GetValue();
+			MoveOnGrid(GraphPanel, Node, FVector2D(0, AmountInput->GetValue()));
 			break;
 
 		case EPhrase2DDirectionalInput::LEFT:
-			PositionDelta.X -= AmountInput->GetValue();
+			MoveOnGrid(GraphPanel, Node, FVector2D(-AmountInput->GetValue(), 0));
 			break;
 
 		case EPhrase2DDirectionalInput::RIGHT:
-			PositionDelta.X += AmountInput->GetValue();
+			MoveOnGrid(GraphPanel, Node, FVector2D(AmountInput->GetValue(), 0));
 			break;
 
 		default:
 			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("MoveNode: Invalid Direction"));
-			return;
-	}
-
-	SGraphPanel* GraphPanel = ActiveGraphEditor->GetGraphPanel();
-	if (GraphPanel == nullptr)
-	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("MoveNode: Linked Graph Panel Not Found"));
-	}
-
-	TSharedPtr<SGraphNode> NodeWidget = GraphPanel ? GraphPanel->GetNodeWidgetFromGuid(Node->NodeGuid) : TSharedPtr<SGraphNode>();
-	if (NodeWidget.IsValid())
-	{
-        SNodePanel::SNode::FNodeSet NodeFilter;
-		NodeWidget->MoveTo(FVector2D(Node->NodePosX, Node->NodePosY) + PositionDelta, NodeFilter);
-	}
-	else 
-	{
-		Node->Modify();
-		Node->NodePosX += PositionDelta.X;
-		Node->NodePosY += PositionDelta.Y;
-	}
-
-	// Move Comment Node Children
-    // Note: This is a workaround for the MoveTo Function not calling the override in UEdGraphNode_Comment
-	if (UEdGraphNode_Comment* CommentNode = Cast<UEdGraphNode_Comment>(Node))
-	{
-		for (UObject* _CommentChildNode : CommentNode->GetNodesUnderComment())
-		{
-			if (UEdGraphNode* CommentChildNode = Cast<UEdGraphNode>(_CommentChildNode))
-			{
-				if (!GraphPanel->SelectionManager.IsNodeSelected(CommentChildNode))
-				{
-					CommentChildNode->Modify();
-					CommentChildNode->NodePosX += PositionDelta.X;
-					CommentChildNode->NodePosY += PositionDelta.Y;
-				}
-			}
-		}
+		break;
 	}
 }
 
@@ -1082,6 +1048,115 @@ void UNodeInteractionLibrary::BlueprintCompile(FParseRecord& Record)
 	}
 
 	BlueprintEditor->Compile();
+}
+
+UNodeInteractionLibrary::GridAttributes UNodeInteractionLibrary::GetGridAttributes(const SGraphPanel* Panel)
+{
+	if (Panel == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("GetGridAttributes: Invalid Panel"));
+		return GridAttributes();
+	}
+
+	const int32 RulePeriod = (int32)FAppStyle::GetFloat("Graph.Panel.GridRulePeriod");
+	const float GraphSmallestGridSize = 8.0f;
+	const float ZoomFactor = Panel->GetZoomAmount();
+	float NominalGridSize = Panel->GetSnapGridSize();
+
+	float InflationFactor = 1.0f;
+	while (ZoomFactor * InflationFactor * NominalGridSize <= GraphSmallestGridSize)
+	{
+		InflationFactor *= 2.0f;
+	}
+
+	const float GridCellSize = NominalGridSize * ZoomFactor * InflationFactor;
+
+	const float VisualGridCellSize = NominalGridSize * InflationFactor * RulePeriod;
+
+	UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("GridAttributes: GridCellSize: %f, NominalGridSize: %f, InflationFactor: %f, ZoomFactor: %f"), GridCellSize, NominalGridSize, InflationFactor, ZoomFactor);
+
+	return {
+		GridCellSize,
+		VisualGridCellSize,
+		NominalGridSize,
+		InflationFactor,
+		ZoomFactor
+	};
+}
+
+void UNodeInteractionLibrary::SnapToGrid(const SGraphPanel* Panel, UEdGraphNode* Node)
+{
+	if (Panel == nullptr || Node == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SnapToGrid: Invalid Panel / Node"));
+		return;
+	}
+
+	GridAttributes GridAttr = GetGridAttributes(Panel);
+
+	FVector2D SnappedPosition = FVector2D(
+		FMath::RoundToInt(Node->NodePosX / GridAttr.GridCellSize) * GridAttr.GridCellSize,
+		FMath::RoundToInt(Node->NodePosY / GridAttr.GridCellSize) * GridAttr.GridCellSize
+	);
+
+	Node->Modify();
+	Node->NodePosX = SnappedPosition.X;
+	Node->NodePosY = SnappedPosition.Y;
+}
+
+void UNodeInteractionLibrary::MoveOnGrid(const SGraphPanel* Panel, UEdGraphNode* Node, const FVector2D& MovementDelta)
+{
+	if (Panel == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("MoveOnGrid: Invalid Panel"));
+		return;
+	}
+
+	GridAttributes GridAttr = GetGridAttributes(Panel);
+
+	FVector2D ScaledMovementDelta = FVector2D(
+		FMath::RoundToInt(MovementDelta.X * GridAttr.GridCellSize),
+		FMath::RoundToInt(MovementDelta.Y * GridAttr.GridCellSize)
+	);
+
+	// Ensure Node Is Snapped to Grid
+	FVector2D SnappedPosition = FVector2D(
+		FMath::RoundToInt(Node->NodePosX / GridAttr.GridCellSize) * GridAttr.GridCellSize,
+		FMath::RoundToInt(Node->NodePosY / GridAttr.GridCellSize) * GridAttr.GridCellSize
+	);
+
+	TSharedPtr<SGraphNode> NodeWidget = Panel ? Panel->GetNodeWidgetFromGuid(Node->NodeGuid) : TSharedPtr<SGraphNode>();
+	if (NodeWidget.IsValid())
+	{
+		SNodePanel::SNode::FNodeSet NodeFilter;
+		NodeWidget->MoveTo(SnappedPosition + ScaledMovementDelta, NodeFilter);
+	}
+	else
+	{
+		Node->Modify();
+		Node->NodePosX = SnappedPosition.X + ScaledMovementDelta.X;
+		Node->NodePosY = SnappedPosition.Y + ScaledMovementDelta.Y;
+	}
+}
+
+void UNodeInteractionLibrary::SnapToGridCentre(const SGraphPanel* Panel, UEdGraphNode* Node)
+{
+	if (Panel == nullptr || Node == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("CenterToGrid: Invalid Panel / Node"));
+		return;
+	}
+
+	GridAttributes GridAttr = GetGridAttributes(Panel);
+
+	FVector2D SnappedPosition = FVector2D(
+		FMath::RoundToInt(Node->NodePosX / GridAttr.GridCellSize) * GridAttr.GridCellSize,
+		FMath::RoundToInt(Node->NodePosY / GridAttr.GridCellSize) * GridAttr.GridCellSize
+	);
+
+	Node->Modify();
+	Node->NodePosX = SnappedPosition.X + (GridAttr.GridCellSize / 2);
+	Node->NodePosY = SnappedPosition.Y + (GridAttr.GridCellSize / 2);
 }
 
 FVector2D UNodeInteractionLibrary::GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel)
