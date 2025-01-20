@@ -247,7 +247,7 @@ private:
 
 	// Open Viewport for Node Placement
 
-	FVector2D GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel);
+	FVector2D GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor);
 
 	TArray<UEdGraphNode*> GetNodesInViewport(const SGraphEditor* GraphEditor);
 

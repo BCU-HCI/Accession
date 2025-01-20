@@ -1157,11 +1157,11 @@ void UNodeInteractionLibrary::SnapToGridCentre(const SGraphPanel* Panel, UEdGrap
 	Node->NodePosY = SnappedPosition.Y + (GridAttr.GridCellSize / 2);
 }
 
-FVector2D UNodeInteractionLibrary::GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel)
+FVector2D UNodeInteractionLibrary::GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor)
 {
-	if (GraphEditor == nullptr || GraphPanel == nullptr)
+	if (GraphEditor == nullptr)
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("GetFreeGraphViewportSpace: Invalid Graph Editor / Panel"));
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("GetFreeGraphViewportSpace: Invalid Graph Editor"));
 		return FVector2D::ZeroVector;
 	}
 
