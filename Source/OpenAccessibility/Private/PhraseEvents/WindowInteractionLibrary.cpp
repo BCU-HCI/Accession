@@ -96,6 +96,19 @@ void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 			}),
 
+			MakeShared<FPhraseNode>(TEXT("UNDO"),
+			TPhraseNodeArray {
+
+				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::UndoAction))
+
+			}),
+
+			MakeShared<FPhraseNode>(TEXT("REDO"),
+			TPhraseNodeArray {
+
+				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::RedoAction))
+
+			})
 		}
 	);
 }
@@ -507,4 +520,14 @@ void UWindowInteractionLibrary::SelectTabInStack(FParseRecord& Record)
 
 	FGlobalTabmanager::Get()->SetActiveTab(FoundTabWidget);
 	FoundTabWidget->ActivateInParent(SetDirectly);
+}
+
+void UWindowInteractionLibrary::UndoAction(FParseRecord& Record)
+{
+	GEditor->UndoTransaction();
+}
+
+void UWindowInteractionLibrary::RedoAction(FParseRecord& Record)
+{
+	GEditor->RedoTransaction();
 }
