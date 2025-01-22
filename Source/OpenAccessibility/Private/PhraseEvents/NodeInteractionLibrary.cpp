@@ -18,6 +18,8 @@
 #include "PhraseTree/PhraseContextMenuNode.h"
 #include "PhraseTree/PhraseEventNode.h"
 
+#include "Utils/GraphQuadTree.h"
+
 UNodeInteractionLibrary::UNodeInteractionLibrary(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
