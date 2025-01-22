@@ -161,11 +161,10 @@ void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record)
 				return;
 		}
 
-        FVector2D ViewLocation;
-        float ZoomAmount;
+		FVector2D ViewLocation;  float ZoomAmount;
         GraphEditor->GetViewLocation(ViewLocation, ZoomAmount);
 
-		// Find Zoom Level
+		// Find Index for Current Zoom Level
 		int32 ZoomIndex;
 		for (ZoomIndex = 0; ZoomIndex < ZoomLevels->GetNumZoomLevels(); ZoomIndex++)
 		{
@@ -175,21 +174,25 @@ void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record)
 			}
 		}
 
-		int32 AmountValue = AmountInput->GetValue();
         switch (EPhrase2DDirectionalInput(DirectionInput->GetValue()))
     	{
             case EPhrase2DDirectionalInput::UP:
-				ZoomAmount = ZoomLevels->GetZoomAmount( ZoomLevels->GetNumZoomLevels() <= ZoomIndex + AmountValue  ? ZoomLevels->GetDefaultZoomLevel() : ZoomIndex + AmountValue);
+				ZoomIndex += AmountInput->GetValue();
                 break;
 
             case EPhrase2DDirectionalInput::DOWN:
-				ZoomAmount = ZoomLevels->GetZoomAmount(ZoomIndex - AmountValue < 0 ? ZoomLevels->GetDefaultZoomLevel() : ZoomIndex - AmountValue);
+				ZoomIndex -= AmountInput->GetValue();
                 break;
 
             default:
                 UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("ZoomViewport: INVALID DIRECTION INPUT"));
                 return;
         }
+
+		if (ZoomIndex < 0 || ZoomIndex >= ZoomLevels->GetNumZoomLevels())
+			ZoomAmount = ZoomLevels->GetDefaultZoomLevel();
+		else
+			ZoomAmount = ZoomLevels->GetZoomAmount(ZoomIndex);
 
         GraphEditor->SetViewLocation(ViewLocation, ZoomAmount);
     }
