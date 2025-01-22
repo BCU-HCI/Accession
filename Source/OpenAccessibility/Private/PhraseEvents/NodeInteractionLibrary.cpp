@@ -237,6 +237,13 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 					}),
 
+					MakeShared<FPhraseNode>(TEXT("ALL"),
+					TPhraseNodeArray {
+
+						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionNodeAll))
+
+					}),
+
 					MakeShared<FPhraseNode>(TEXT("RESET"),
 					TPhraseNodeArray {
 
@@ -881,6 +888,13 @@ void UNodeInteractionLibrary::SelectionNodeToggle(FParseRecord& Record)
 		Node, 
 		!ActiveGraphEditor->GetSelectedNodes().Contains(Node)
 	);
+}
+
+void UNodeInteractionLibrary::SelectionNodeAll(FParseRecord& Record)
+{
+	GET_CAST_ACTIVE_TAB_CONTENT(ActiveGraphEditor, SGraphEditor)
+
+	ActiveGraphEditor->SelectAllNodes();
 }
 
 void UNodeInteractionLibrary::SelectionReset(FParseRecord &Record) {

@@ -143,6 +143,13 @@ public:
 	void SelectionNodeToggle(FParseRecord& Record);
 
 	/**
+	 * Phrase Event for Toggling the Selection of All Nodes, on the Active Graph Editor.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	UFUNCTION()
+	void SelectionNodeAll(FParseRecord& Record);
+
+	/**
 	 * Phrase Event for Resetting the Selection Set, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
