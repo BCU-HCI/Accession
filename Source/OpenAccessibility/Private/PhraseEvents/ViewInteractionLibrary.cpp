@@ -4,6 +4,8 @@
 #include "PhraseTree/Containers/Input/InputContainers.h"
 
 #include "AssetAccessibilityRegistry.h"
+#include "SGraphPanel.h"
+#include "SNodePanel.h"
 
 #include "PhraseTree/PhraseInputNode.h"
 #include "PhraseTree/PhraseDirectionalInputNode.h"
@@ -123,6 +125,16 @@ void UViewInteractionLibrary::MoveViewport(FParseRecord &Record) {
 	// Further Viewport Implementation Here
 }
 
+
+class SOpenGraphPanel : public SGraphPanel
+{
+public:
+	FZoomLevelsContainer* GetZoomLevels()
+	{
+		return ZoomLevels.Get();
+	}
+};
+
 void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record) 
 {
 	GET_ACTIVE_TAB_CONTENT(ActiveTab)
@@ -136,23 +148,42 @@ void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record)
 
     if (TabType == "SGraphEditor")
 	{
-		#define ZOOM_INCREMENT 0.125f
-
         TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);
+		FZoomLevelsContainer* ZoomLevels;
+
+		// Another Hack because its protected, which is good.
+		// But the derived ZoomLevelsContainer is in a .cpp file :(
+		{
+			SOpenGraphPanel* GraphPanel = static_cast<SOpenGraphPanel*>(GraphEditor->GetGraphPanel());
+			ZoomLevels = GraphPanel->GetZoomLevels();
+
+			if (ZoomLevels == nullptr)
+				return;
+		}
 
         FVector2D ViewLocation;
         float ZoomAmount;
         GraphEditor->GetViewLocation(ViewLocation, ZoomAmount);
 
-		ZoomAmount = FMath::RoundToFloat(ZoomAmount / ZOOM_INCREMENT) * ZOOM_INCREMENT;
+		// Find Zoom Level
+		int32 ZoomIndex;
+		for (ZoomIndex = 0; ZoomIndex < ZoomLevels->GetNumZoomLevels(); ZoomIndex++)
+		{
+			if (ZoomAmount <= ZoomLevels->GetZoomAmount(ZoomIndex))
+			{
+				break;
+			}
+		}
 
-        switch (EPhrase2DDirectionalInput(DirectionInput->GetValue())) {
+		int32 AmountValue = AmountInput->GetValue();
+        switch (EPhrase2DDirectionalInput(DirectionInput->GetValue()))
+    	{
             case EPhrase2DDirectionalInput::UP:
-                ZoomAmount += (ZOOM_INCREMENT * AmountInput->GetValue());
+				ZoomAmount = ZoomLevels->GetZoomAmount( ZoomLevels->GetNumZoomLevels() <= ZoomIndex + AmountValue  ? ZoomLevels->GetDefaultZoomLevel() : ZoomIndex + AmountValue);
                 break;
 
             case EPhrase2DDirectionalInput::DOWN:
-                ZoomAmount -= (ZOOM_INCREMENT * AmountInput->GetValue());
+				ZoomAmount = ZoomLevels->GetZoomAmount(ZoomIndex - AmountValue < 0 ? ZoomLevels->GetDefaultZoomLevel() : ZoomIndex - AmountValue);
                 break;
 
             default:
@@ -161,8 +192,6 @@ void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record)
         }
 
         GraphEditor->SetViewLocation(ViewLocation, ZoomAmount);
-
-		#undef ZOOM_INCREMENT
     }
 
 	// Further Viewport Specific Implementation Here
