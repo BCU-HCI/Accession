@@ -26,8 +26,8 @@ public:
 	};
 #undef 
 
-	GraphQuadTree(UEdGraph* Graph)
-	: LinkedGraph(Graph), LinkedEditor(nullptr)
+	GraphQuadTree(UEdGraph* Graph, int8 DepthLimit = 6, FVector2D MinSegmentSizeLimit = FVector2D())
+	: LinkedGraph(Graph), LinkedEditor(nullptr), DepthLimit(DepthLimit), MinSegmentSize(MinSegmentSizeLimit)
 	{
 		TSharedPtr<SGraphEditor> GraphEditor = SGraphEditor::FindGraphEditorForGraph(Graph);
 		LinkedEditor = GraphEditor;
@@ -40,8 +40,8 @@ public:
 		RootNode = MakeShared<GraphQTNode>(TSharedRef<GraphQuadTree>(this), RootTopLeft, RootBotRight);
 	}
 
-	GraphQuadTree(const TSharedPtr<SGraphEditor>& GraphEditor)
-	: LinkedGraph(GraphEditor->GetCurrentGraph()), LinkedEditor(GraphEditor)
+	GraphQuadTree(const TSharedPtr<SGraphEditor>& GraphEditor, int8 DepthLimit = 6, FVector2D MinSegmentSizeLimit = FVector2D())
+	: LinkedGraph(GraphEditor->GetCurrentGraph()), LinkedEditor(GraphEditor), DepthLimit(DepthLimit), MinSegmentSize(MinSegmentSizeLimit)
 	{
 		SGraphPanel* GraphPanel = GraphEditor->GetGraphPanel();
 
@@ -51,7 +51,7 @@ public:
 		RootNode = MakeShared<GraphQTNode>(TSharedRef<GraphQuadTree>(this), RootTopLeft, RootBotRight);
 	}
 
-	void AddGraphNode(const UEdGraphNode* GraphNode, int8 DepthLimit = 6)
+	void AddGraphNode(const UEdGraphNode* GraphNode)
 	{
 		if (!RootNode.IsValid() || GraphNode != nullptr)
 			return;
@@ -71,10 +71,9 @@ public:
 			if (!NodesToCheck.Dequeue(QNode) || !QNode->ContainsNodeRect(GNTopLeft, GNBotRight))
 				continue;
 
-
 			QNode->ContainedNodes.Add(GraphNode);
 
-			if (QNode->Depth <= DepthLimit)
+			if (QNode->Depth <= DepthLimit && GetSegmentSize(QNode) > MinSegmentSize)
 			{
 				TArray<TSharedPtr<GraphQTNode>> ChildNodes;
 				if (QNode->ContainsSegments())
@@ -115,6 +114,11 @@ private:
 		return false;
 	}
 
+	FVector2D GetSegmentSize(const TSharedRef<GraphQTNode> QNode)
+	{
+		return QNode->BotRight - QNode->TopLeft;
+	}
+
 	TArray<TSharedPtr<GraphQTNode>>& SegmentQNodeSpace(const TSharedRef<GraphQTNode>& QNode)
 	{
 		if (QNode->Children.Num() > 0)
@@ -143,4 +147,7 @@ private:
 
 	UEdGraph* LinkedGraph;
 	TWeakPtr<SGraphEditor> LinkedEditor;
+
+	int8 DepthLimit;
+	FVector2D MinSegmentSize;
 };
