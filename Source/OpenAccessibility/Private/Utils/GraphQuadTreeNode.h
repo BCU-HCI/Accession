@@ -54,32 +54,13 @@ public:
 		return ContainsTopLeft || ContainsBotRight;
 	}
 
-	/*
-	bool AddGraphNode(const UEdGraphNode* GraphNode)
-	{
-		FVector2D GNTopLeft = FVector2D(GraphNode->NodePosX, GraphNode->NodePosY);
-		FVector2D GNBotRight = FVector2D(GraphNode->NodePosX + GraphNode->NodeWidth, GraphNode->NodePosY + GraphNode->NodeHeight);
-
-		// Contained in Viewport.
-		if (GNTopLeft.ComponentwiseAllGreaterOrEqual(this->TopLeft) 
-			&& GNBotRight.ComponentwiseAllLessOrEqual(this->BotRight))
-		{
-			ContainedNodes.Add(GraphNode);
-
-			return true;
-		}
-
-		// Out of Viewport
-		return false;
-	}
-	*/
-
 protected:
 
 	TWeakPtr<GraphQuadTree> Owner;
 
 	FVector2D TopLeft;
 	FVector2D BotRight;
+
 	int8 Depth;
 
 	TArray<TSharedPtr<GraphQTNode>> Children;
