@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "GraphQuadTree.h"
+#include "Rendering/SlateDrawBuffer.h"
 
 class GraphQuadTree;
 
@@ -52,6 +53,61 @@ public:
 			NodeBotRight.ComponentwiseAllLessOrEqual(BotRight);
 
 		return ContainsTopLeft || ContainsBotRight;
+	}
+
+	void Visualize(FSlateWindowElementList& ElementList, const FPaintGeometry& PaintGeometry, const int32& LayerID, const FLinearColor& LineColor = FLinearColor::Green)
+	{
+		{
+			TArray<FVector2D> Lines;
+			Lines.Reserve(2);
+
+			// Draw Horizontal Line
+			Lines[0] = FVector2D(
+				TopLeft.X, 
+				TopLeft.Y + ((BotRight.Y - TopLeft.Y) / 2)
+			);
+
+			Lines[1] = FVector2D(
+				BotRight.X,
+				TopLeft.Y + ((BotRight.Y - TopLeft.Y) / 2)
+			);
+
+			FSlateDrawElement::MakeLines(
+				ElementList,
+				LayerID,
+				PaintGeometry,
+				Lines
+			);
+
+
+			// Draw Vertical Line
+			Lines[0] = FVector2D(
+				TopLeft.X + ((BotRight.X - TopLeft.X) / 2),
+				TopLeft.Y
+			);
+
+			Lines[1] = FVector2D(
+				TopLeft.X + ((BotRight.X - TopLeft.X) / 2),
+				BotRight.Y
+			);
+
+			FSlateDrawElement::MakeLines(
+				ElementList,
+				LayerID,
+				PaintGeometry,
+				Lines
+			);
+		}
+
+		// Draw Children
+		if (Children.IsEmpty())
+			return;
+
+		for (auto& Child : Children)
+		{
+			Child->Visualize(ElementList, PaintGeometry, LayerID, LineColor);
+		}
+
 	}
 
 protected:

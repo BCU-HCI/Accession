@@ -150,6 +150,7 @@ public:
 				if (QNode->Children.Num() == 0)
 					continue;
 
+				/*
 				FVector2D HalfVec = (QNode->BotRight - QNode->TopLeft) / 2;
 
                 // Add Vertical Line
@@ -176,6 +177,9 @@ public:
 					PaintGeometry,
 					LinePoints
 				);
+				*/
+
+				QNode->Visualize(*ElementList, PaintGeometry, ApproxLayerID, LineColor);
 			}
 		}
 	}
