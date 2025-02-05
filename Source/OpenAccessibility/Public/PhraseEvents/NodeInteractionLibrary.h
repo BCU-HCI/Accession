@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "PhraseTree/PhraseTreeFunctionLibrary.h"
+#include "Utils/GraphQuadTree.h"
 
 #include "NodeInteractionLibrary.generated.h"
 
@@ -258,5 +259,11 @@ private:
 
 	TArray<UEdGraphNode*> GetNodesInViewport(const SGraphEditor* GraphEditor);
 
+
+private:
+
+	TSharedPtr<FGraphQuadTree> GraphQuadTree;
+	FTickerDelegate TickDele;
+	FTSTicker::FDelegateHandle TickDelegateHandle;
 	
 };

@@ -682,6 +682,33 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record)
 		}
 		*/
 
+		{ // Find Optimal Location
+
+			GraphQuadTree = MakeShared<FGraphQuadTree>(ActiveGraphEditor);
+			GraphQuadTree->BuildTree();
+
+			// Debug Tick Delegate to Display Visuals of QuadTree.
+			if (!TickDele.IsBound())
+			{
+				TickDele = FTickerDelegate::CreateLambda([&](float InDeltaTime) -> bool
+				{
+					if (GraphQuadTree.IsValid())
+					{
+						GraphQuadTree->Visualize();
+					}
+
+					return true;
+				});				
+			}
+
+			if (TickDelegateHandle.IsValid())
+				FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
+
+			TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDele, 0.05f);
+		}
+		
+
+
 		TSharedPtr<SWidget> ContextWidgetToFocus = GraphPanel->SummonContextMenu(
             SpawnLocation, 
 			GraphPanel->GetPastePosition(),

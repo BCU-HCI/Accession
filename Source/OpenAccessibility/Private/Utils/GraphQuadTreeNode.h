@@ -4,25 +4,37 @@
 
 #include "CoreMinimal.h"
 
-#include "GraphQuadTree.h"
-#include "Rendering/SlateDrawBuffer.h"
+#include "Utils/GraphQuadTree.h"
 
-class GraphQuadTree;
 
-class GraphQTNode : public TSharedFromThis<GraphQTNode>
+class FGraphQuadTree;
+
+class FGraphQTNode : public TSharedFromThis<FGraphQTNode>
 {
-	friend GraphQuadTree;
+	friend FGraphQuadTree;
 
 public:
 
-	GraphQTNode(TSharedRef<GraphQuadTree> Owner, int8 Depth = 0)
-		: Owner(Owner), TopLeft(FVector2D::ZeroVector), BotRight(FVector2D::ZeroVector), Depth(Depth)
+	FGraphQTNode()
+		:Owner(nullptr), TopLeft(FVector2D::ZeroVector), BotRight(FVector2D::ZeroVector),
+		LocalTopLeft(FVector2D::ZeroVector), LocalBotRight(FVector2D::ZeroVector), Depth(0)
+	{
+		
+	}
+
+	FGraphQTNode(const FGraphQuadTree* Owner, int8 Depth = 0)
+		: Owner(Owner), TopLeft(FVector2D::ZeroVector), BotRight(FVector2D::ZeroVector),
+		LocalTopLeft(FVector2D::ZeroVector), LocalBotRight(FVector2D::ZeroVector), Depth(Depth)
 	{
 
 	}
 
-	GraphQTNode(TSharedRef<GraphQuadTree> Owner, FVector2D TopLeft, FVector2D BotRight, int8 Depth = 0)
-		: Owner(Owner), TopLeft(TopLeft), BotRight(BotRight), Depth(Depth)
+	FGraphQTNode(
+		const FGraphQuadTree* Owner, 
+		FVector2D TopLeft, FVector2D BotRight, 
+		FVector2D LocalTopLeft, FVector2D LocalBotRight, 
+		int8 Depth = 0
+	) : Owner(Owner), TopLeft(TopLeft), BotRight(BotRight), LocalTopLeft(LocalTopLeft), LocalBotRight(LocalBotRight), Depth(Depth)
 	{
 		
 	}
@@ -38,7 +50,7 @@ public:
 	}
 
 
-	TArray<TSharedPtr<GraphQTNode>> GetChildNodes() const
+	TArray<TSharedPtr<FGraphQTNode>> GetChildNodes() const
 	{
 		return Children;
 	}
@@ -46,79 +58,65 @@ public:
 
 	bool ContainsNodeRect(const FVector2D NodeTopLeft, const FVector2D NodeBotRight) const
 	{
-		bool ContainsTopLeft = NodeTopLeft.ComponentwiseAllGreaterOrEqual(TopLeft) &&
-			NodeTopLeft.ComponentwiseAllLessOrEqual(TopLeft);
-
-		bool ContainsBotRight = NodeBotRight.ComponentwiseAllGreaterOrEqual(BotRight) &&
-			NodeBotRight.ComponentwiseAllLessOrEqual(BotRight);
-
-		return ContainsTopLeft || ContainsBotRight;
+		return (
+			NodeTopLeft.ComponentwiseAllGreaterOrEqual(TopLeft) && NodeTopLeft.ComponentwiseAllLessOrEqual(BotRight)) || 
+			(NodeBotRight.ComponentwiseAllGreaterOrEqual(TopLeft) && NodeBotRight.ComponentwiseAllLessOrEqual(BotRight));
 	}
 
-	void Visualize(FSlateWindowElementList& ElementList, const FPaintGeometry& PaintGeometry, const int32& LayerID, const FLinearColor& LineColor = FLinearColor::Green)
+	void SegmentSpace(FVector2D MinSegmentSize = FVector2D(300, 250))
 	{
-		{
-			TArray<FVector2D> Lines;
-			Lines.Reserve(2);
+		if (ContainsSegments())
+			return;
 
-			// Draw Horizontal Line
-			Lines[0] = FVector2D(
-				TopLeft.X, 
-				TopLeft.Y + ((BotRight.Y - TopLeft.Y) / 2)
-			);
+		FVector2D SegmentSize = (BotRight - TopLeft) / 2;
+		if (SegmentSize.ComponentwiseAllLessThan(MinSegmentSize))
+			return; // Segment is Too Small For an Average Node.
 
-			Lines[1] = FVector2D(
-				BotRight.X,
-				TopLeft.Y + ((BotRight.Y - TopLeft.Y) / 2)
-			);
-
-			FSlateDrawElement::MakeLines(
-				ElementList,
-				LayerID,
-				PaintGeometry,
-				Lines
-			);
+		FVector2D LocalSegmentSize = (LocalBotRight - LocalTopLeft) / 2;
 
 
-			// Draw Vertical Line
-			Lines[0] = FVector2D(
-				TopLeft.X + ((BotRight.X - TopLeft.X) / 2),
-				TopLeft.Y
-			);
 
-			Lines[1] = FVector2D(
-				TopLeft.X + ((BotRight.X - TopLeft.X) / 2),
-				BotRight.Y
-			);
+	}
 
-			FSlateDrawElement::MakeLines(
-				ElementList,
-				LayerID,
-				PaintGeometry,
-				Lines
-			);
-		}
-
+	void Visualize(FSlateWindowElementList& ElementList, TArray<FVector2D>& LinePoints, const FPaintGeometry& PaintGeometry, const int32& LayerID, const FLinearColor& LineColor = FLinearColor::Green)
+	{
 		// Draw Children
 		if (Children.IsEmpty())
 			return;
 
+		// Draw Vertical Line
+		LinePoints[0] = LocalTopLeft + FVector2D((LocalBotRight.X - LocalTopLeft.X) / 2, 0);
+		LinePoints[1] = LocalTopLeft + FVector2D((LocalBotRight.X - LocalTopLeft.X) / 2, LocalBotRight.Y - LocalTopLeft.Y);
+
+		FSlateDrawElement::MakeLines(ElementList, LayerID, PaintGeometry, LinePoints, ESlateDrawEffect::None, LineColor);
+
+		// Draw Horizontal Line
+		LinePoints[0] = LocalTopLeft + FVector2D(0, (LocalBotRight.Y - LocalTopLeft.Y ) / 2);
+		LinePoints[1] = LocalTopLeft + FVector2D(LocalBotRight.X - LocalTopLeft.X, (LocalBotRight.Y - LocalTopLeft.Y ) / 2);
+
+		FSlateDrawElement::MakeLines(ElementList, LayerID, PaintGeometry, LinePoints, ESlateDrawEffect::None, LineColor);
+
+		// Draw Children
+
 		for (auto& Child : Children)
 		{
-			Child->Visualize(ElementList, PaintGeometry, LayerID, LineColor);
+			Child->Visualize(ElementList, LinePoints, PaintGeometry, LayerID, LineColor);
 		}
 
 	}
 
 protected:
 
-	TWeakPtr<GraphQuadTree> Owner;
+	const FGraphQuadTree* Owner;
 
 	FVector2D TopLeft;
 	FVector2D BotRight;
 
+	FVector2D LocalTopLeft;
+	FVector2D LocalBotRight;
+
 	int8 Depth;
 
-	TArray<TSharedPtr<GraphQTNode>> Children;
+	TArray<TSharedPtr<FGraphQTNode>> Children;
 	TArray<const UEdGraphNode*> ContainedNodes;
 };

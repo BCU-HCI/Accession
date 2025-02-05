@@ -10,9 +10,10 @@
 #include "SGraphPanel.h"
 
 #include "GraphQuadTreeNode.h"
+#include "OpenAccessibilityLogging.h"
 #include "Rendering/SlateDrawBuffer.h"
 
-class GraphQuadTree : public TSharedFromThis<GraphQuadTree>
+class FGraphQuadTree : public TSharedFromThis<FGraphQuadTree>
 {
 public:
 
@@ -27,7 +28,7 @@ public:
 	};
 #undef BIT_OFF
 
-	GraphQuadTree(UEdGraph* Graph, int8 DepthLimit = 6, FVector2D MinSegmentSizeLimit = FVector2D())
+	FGraphQuadTree(UEdGraph* Graph, int8 DepthLimit = 6, FVector2D MinSegmentSizeLimit = FVector2D())
 	: LinkedGraph(Graph), LinkedEditor(nullptr), DepthLimit(DepthLimit), MinSegmentSize(MinSegmentSizeLimit)
 	{
 		TSharedPtr<SGraphEditor> GraphEditor = SGraphEditor::FindGraphEditorForGraph(Graph);
@@ -38,18 +39,41 @@ public:
 		FVector2D RootTopLeft = LinkedPanel->GetViewOffset();
 		FVector2D RootBotRight = RootTopLeft + LinkedPanel->GetCachedGeometry().GetLocalSize();
 
-		RootNode = MakeShared<GraphQTNode>(TSharedRef<GraphQuadTree>(this), RootTopLeft, RootBotRight);
+		RootNode = MakeShared<FGraphQTNode>(
+			this, 
+			RootTopLeft, RootBotRight,
+			GetPanelPosition(RootTopLeft), GetPanelPosition(RootBotRight)
+		);
 	}
 
-	GraphQuadTree(const TSharedPtr<SGraphEditor>& GraphEditor, int8 DepthLimit = 6, FVector2D MinSegmentSizeLimit = FVector2D())
+	FGraphQuadTree(const TSharedPtr<SGraphEditor>& GraphEditor, int8 DepthLimit = 6, FVector2D MinSegmentSizeLimit = FVector2D())
 	: LinkedGraph(GraphEditor->GetCurrentGraph()), LinkedEditor(GraphEditor), DepthLimit(DepthLimit), MinSegmentSize(MinSegmentSizeLimit)
 	{
 		LinkedPanel = GraphEditor->GetGraphPanel();
+	}
 
+	// Builds the Initial Tree from the Linked Graph
+	void BuildTree()
+	{
 		FVector2D RootTopLeft = LinkedPanel->GetViewOffset();
 		FVector2D RootBotRight = RootTopLeft + LinkedPanel->GetCachedGeometry().GetLocalSize();
 
-		RootNode = MakeShared<GraphQTNode>(TSharedRef<GraphQuadTree>(this), RootTopLeft, RootBotRight);
+		RootNode = MakeShared<FGraphQTNode>(
+			this,
+			RootTopLeft, RootBotRight,
+			GetPanelPosition(RootTopLeft), GetPanelPosition(RootBotRight)
+		);
+
+		TSharedPtr<SGraphNode> NodeWidget;
+		for (auto& Node : LinkedGraph->Nodes)
+		{
+			NodeWidget = LinkedPanel->GetNodeWidgetFromGuid(Node->NodeGuid);
+			if (!NodeWidget.IsValid())
+				continue;
+
+			if (NodeWidget->GetVisibility() == EVisibility::Visible)
+				AddGraphNode(Node);
+		}
 	}
 
 	void AddGraphNode(const UEdGraphNode* GraphNode)
@@ -61,29 +85,29 @@ public:
 		FVector2D GNBotRight = FVector2D(GraphNode->NodePosX + GraphNode->NodeWidth, GraphNode->NodePosY + GraphNode->NodeHeight);
 
 
-		TSet<TSharedRef<GraphQTNode>> CheckedNodes;
-		TQueue<TSharedRef<GraphQTNode>> NodesToCheck;
+		TSet<TSharedRef<FGraphQTNode>> CheckedNodes;
+		TQueue<TSharedPtr<FGraphQTNode>> NodesToCheck = TQueue<TSharedPtr<FGraphQTNode>>();
 		NodesToCheck.Enqueue(RootNode.ToSharedRef());
 
-		TSharedRef<GraphQTNode> QNode;
+		TSharedPtr<FGraphQTNode> QNode;
 
 		while (!NodesToCheck.IsEmpty())
 		{
 			NodesToCheck.Dequeue(QNode);
-			CheckedNodes.Add(QNode);
+			CheckedNodes.Add(QNode.ToSharedRef());
 
 			if (!QNode->ContainsNodeRect(GNTopLeft, GNBotRight))
 				continue;
 
 			QNode->ContainedNodes.Add(GraphNode);
 
-			if (QNode->Depth <= DepthLimit && GetSegmentSize(QNode) > MinSegmentSize)
+			if (QNode->Depth <= DepthLimit && GetSegmentSize(QNode.ToSharedRef()) > MinSegmentSize)
 			{
-				TArray<TSharedPtr<GraphQTNode>> ChildNodes;
+				TArray<TSharedPtr<FGraphQTNode>> ChildNodes;
 				if (QNode->ContainsSegments())
 					ChildNodes = QNode->Children;
 				else
-					ChildNodes = SegmentQNodeSpace(QNode);
+					ChildNodes = SegmentQNodeSpace(QNode.ToSharedRef());
 
 				for (auto GraphQtNode : ChildNodes)
 				{
@@ -98,7 +122,7 @@ public:
 		return FVector2D::ZeroVector;
 	}
 
-	void Visualize() const
+	void Visualize()
 	{
 		if (!LinkedEditor.IsValid())
 			return;
@@ -106,46 +130,53 @@ public:
 		TSharedPtr<SGraphEditor> GraphEditor = LinkedEditor.Pin();
 		SGraphPanel* GraphPanel = GraphEditor->GetGraphPanel();
 
-		TSharedPtr<SWindow> GraphWindow = FSlateApplication::FindWidgetWindow(GraphEditor.ToSharedRef());
+		TSharedPtr<SWindow> GraphWindow = FSlateApplication::Get().FindWidgetWindow(GraphEditor.ToSharedRef());
 		if (!GraphWindow.IsValid())
 			return;
 
-		const FPaintGeometry PaintGeometry = Vis_GetPaintGeometry(GraphPanel);
+		const FPaintGeometry PaintGeometry = GraphPanel->GetTickSpaceGeometry().ToPaintGeometry();
 
-		FSlateWindowElementList* ElementList = Vis_GetWindowElementList(GraphWindow.ToSharedRef());
-		if (ElementList == nullptr)
+		FSlateRenderer* Renderer = FSlateApplication::Get().GetRenderer();
+		if (Renderer == nullptr)
 			return;
 
-		const int32 ApproxLayerID = GetApproximateLayer(GraphPanel->AsShared()) + 1;
+		FSlateDrawBuffer& DrawBuffer = Renderer->AcquireDrawBuffer();
+		FSlateWindowElementList& ElementList = DrawBuffer.AddWindowElementList(GraphWindow.ToSharedRef());
 
+		const int32 ApproxLayerID = INT32_MAX; //GetApproximateLayer(GraphPanel->AsShared()) + 1;
 		const FLinearColor LineColor = FLinearColor::Green;
-
 
 		// Draw Main Outer-Box
 		{
 			FSlateDrawElement::MakeBox(
-				*ElementList,
+				ElementList,
 				ApproxLayerID,
 				PaintGeometry,
 				FCoreStyle::Get().GetBrush("Debug.Border"),
 				ESlateDrawEffect::None,
 				LineColor
-			);			
+			);
 		}
 
+		TArray<FVector2D> LinePoints = TArray<FVector2D> {
+			FVector2D::ZeroVector,
+			FVector2D::ZeroVector
+		};
 
+		RootNode->Visualize(ElementList, LinePoints, PaintGeometry, ApproxLayerID, LineColor);
+
+		/*
 		// Draw Inner Lines
 		{
-			TArray<TSharedPtr<GraphQTNode>> NodesToDraw {
+			TArray<TSharedPtr<FGraphQTNode>> NodesToDraw {
 				RootNode->Children
 			};
 
-			TArray<FVector2D> LinePoints = TArray<FVector2D>();
-			LinePoints.Reserve(2);
+
 
 			while (!NodesToDraw.IsEmpty())
 			{
-				TSharedPtr<GraphQTNode> QNode = NodesToDraw.Pop();
+				TSharedPtr<FGraphQTNode> QNode = NodesToDraw.Pop();
 
 				if (QNode->Children.Num() == 0)
 					continue;
@@ -177,16 +208,19 @@ public:
 					PaintGeometry,
 					LinePoints
 				);
-				*/
+				
 
-				QNode->Visualize(*ElementList, PaintGeometry, ApproxLayerID, LineColor);
-			}
-		}
+			QNode->Visualize(ElementList, LinePoints, PaintGeometry, ApproxLayerID, LineColor); 
+			*/
+
+		Renderer->DrawWindows(DrawBuffer);
+
+		Renderer->ReleaseDrawBuffer(DrawBuffer);
 	}
 
 private:
 
-	bool ContainsNode(const TSharedRef<GraphQTNode>& QNode, const UEdGraphNode* GraphNode)
+	bool ContainsNode(const TSharedRef<FGraphQTNode>& QNode, const UEdGraphNode* GraphNode)
 	{
 		FVector2D GNTopLeft = FVector2D(GraphNode->NodePosX, GraphNode->NodePosY);
 		FVector2D GNBotRight = FVector2D(GraphNode->NodePosX + GraphNode->NodeWidth, GraphNode->NodePosY + GraphNode->NodeHeight);
@@ -202,43 +236,98 @@ private:
 		return false;
 	}
 
-	FVector2D GetSegmentSize(const TSharedRef<GraphQTNode>& QNode) const
+	FVector2D GetSegmentSize(const TSharedRef<FGraphQTNode>& QNode) const
 	{
 		return QNode->BotRight - QNode->TopLeft;
 	}
 
-	TArray<TSharedPtr<GraphQTNode>>& SegmentQNodeSpace(const TSharedRef<GraphQTNode>& QNode)
+	TArray<TSharedPtr<FGraphQTNode>>& SegmentQNodeSpace(const TSharedRef<FGraphQTNode>& QNode)
 	{
 		if (QNode->ContainsSegments())
 			return QNode->Children;
-
-		float SegmentSpaceX = (QNode->BotRight.X - QNode->TopLeft.X) / 2;
-		float SegmentSpaceY = (QNode->BotRight.Y - QNode->TopLeft.Y) / 2;
 
 		QNode->Children.Reserve(4);
 
 		const SGraphPanel* GraphPanel = LinkedEditor.Pin()->GetGraphPanel();
 
-		const FVector2D PanelOffset = GraphPanel->GetViewOffset();
-		const float PanelZoom = GraphPanel->GetZoomAmount();
+		FVector2D SegmentSize = (QNode->BotRight - QNode->TopLeft) / 2;
+		FVector2D LocalSegmentSize = (QNode->LocalBotRight - QNode->LocalTopLeft) / 2;
 
-		for (float X = QNode->TopLeft.X; X < QNode->BotRight.X; X += SegmentSpaceX)
+		int32 NewSegmentDepth = QNode->Depth + 1;
+
+		// Naive Implementation, as awkward to implement as a 2D For Loop.
+
+		// Top Left
+		QNode->Children.Add(
+			MakeShared<FGraphQTNode>(
+				this,
+				QNode->TopLeft, QNode->TopLeft + SegmentSize,
+				QNode->LocalTopLeft, QNode->LocalTopLeft + LocalSegmentSize,
+				NewSegmentDepth
+			)
+		);
+
+		// Top Right
+		QNode->Children.Add(
+			MakeShared<FGraphQTNode>(
+				this,
+				QNode->TopLeft + FVector2D(SegmentSize.X, 0),
+				QNode->TopLeft + FVector2D(SegmentSize.X, 0) + SegmentSize,
+				QNode->LocalTopLeft + FVector2D(LocalSegmentSize.X, 0),
+				QNode->LocalTopLeft + FVector2D(LocalSegmentSize.X, 0) + LocalSegmentSize,
+				NewSegmentDepth
+			)
+		);
+
+		// Bottom Left
+		QNode->Children.Add(
+			MakeShared<FGraphQTNode>(
+				this,
+				QNode->TopLeft + FVector2D(0, SegmentSize.Y),
+				QNode->TopLeft + FVector2D(0, SegmentSize.Y) + SegmentSize,
+				QNode->LocalTopLeft + FVector2D(0, LocalSegmentSize.Y),
+				QNode->LocalTopLeft + FVector2D(0, LocalSegmentSize.Y) + SegmentSize,
+				NewSegmentDepth
+			)
+		);
+
+		// Bottom Right
+		QNode->Children.Add(
+			MakeShared<FGraphQTNode>(
+				this,
+				QNode->TopLeft + SegmentSize,
+				QNode->TopLeft + (SegmentSize * 2),
+				QNode->LocalTopLeft + LocalSegmentSize,
+				QNode->LocalTopLeft + (LocalSegmentSize * 2),
+				NewSegmentDepth
+			)
+		);
+
+		/*
+		for (int X = 0; X < 2; ++X)
 		{
-			for (float Y = QNode->TopLeft.Y; Y < QNode->BotRight.Y; Y += SegmentSpaceY)
+			for (int Y = 0; Y < 2; ++Y)
 			{
-				FVector2D TopLeft = FVector2D(X, Y);
-				FVector2D BotRight = FVector2D(X + SegmentSpaceX, Y + SegmentSpaceY);
-
-				QNode->Children.Add(MakeShared<GraphQTNode>(TSharedRef<GraphQuadTree>(this), TopLeft, BotRight, QNode->Depth + 1));
+				QNode->Children.Add(
+					MakeShared<FGraphQTNode>(
+						this,
+						QNode->TopLeft + FVector2D(X * SegmentSize.X, Y * SegmentSize.Y),
+						QNode->TopLeft + FVector2D((X + 1) * SegmentSize.X, (Y + 1) * SegmentSize.Y),
+						QNode->LocalTopLeft + FVector2D(X * SegmentSize.X, Y * SegmentSize.Y),
+						QNode->LocalTopLeft + FVector2D((X + 1) * SegmentSize.X, (Y + 1) * SegmentSize.Y),
+						QNode->Depth + 1
+					)
+				);
 			}
 		}
+		*/
 
 		return QNode->Children;
 	}
 
 	FPaintGeometry Vis_GetPaintGeometry(const SWidget* Widget) const
 	{
-		const FGeometry Geometry = Widget->GetPaintSpaceGeometry();
+		const FGeometry Geometry = Widget->GetTickSpaceGeometry();
 
 		return FPaintGeometry(
 			Geometry.GetAccumulatedLayoutTransform(),
@@ -248,16 +337,21 @@ private:
 		);
 	}
 
-	FSlateWindowElementList* Vis_GetWindowElementList(const TSharedRef<SWindow>& Window) const
+	FSlateWindowElementList* Vis_GetWindowElementList(const TSharedRef<SWindow>& Window, FSlateDrawBuffer* DrawBuffer)
 	{
 		FSlateRenderer* Renderer = FSlateApplication::Get().GetRenderer();
 		if (Renderer == nullptr)
 			return nullptr;
 
-		FSlateDrawBuffer& DrawBuffer = Renderer->AcquireDrawBuffer();
+		DrawBuffer = &Renderer->AcquireDrawBuffer();
+		if (DrawBuffer == nullptr)
+		{
+			UE_LOG(LogOpenAccessibility, Log, TEXT("Draw Buffer Couldn't be Acquired."))
+			return nullptr;
+		}
 
 		// The Add Function First Searches For a Pre-Existing Element List
-		return &DrawBuffer.AddWindowElementList(Window);
+		return &DrawBuffer->AddWindowElementList(Window);
 	}
 
 	const int32 GetApproximateLayer(const TSharedRef<const SWidget>& Widget) const
@@ -276,12 +370,12 @@ private:
 
 	FVector2D GetPanelPosition(const FVector2D& GraphPosition) const
 	{
-		return (GraphPosition - LinkedPanel->GetViewOffset()) * LinkedPanel->GetZoomAmount();
+		return (GraphPosition - LinkedPanel->GetViewOffset()); // *LinkedPanel->GetZoomAmount();
 	}
 
 private:
 
-	TSharedPtr<GraphQTNode> RootNode;
+	TSharedPtr<FGraphQTNode> RootNode;
 
 	UEdGraph* LinkedGraph;
 	TWeakPtr<SGraphEditor> LinkedEditor;
