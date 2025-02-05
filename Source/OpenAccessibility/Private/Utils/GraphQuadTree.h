@@ -55,13 +55,15 @@ public:
 	// Builds the Initial Tree from the Linked Graph
 	void BuildTree()
 	{
+		TSharedPtr<SGraphEditor> GraphEditor = LinkedEditor.Pin();
+
 		FVector2D RootTopLeft = LinkedPanel->GetViewOffset();
-		FVector2D RootBotRight = RootTopLeft + LinkedPanel->GetCachedGeometry().GetLocalSize();
+		FVector2D RootBotRight = RootTopLeft + GraphEditor->GetCachedGeometry().GetLocalSize();
 
 		RootNode = MakeShared<FGraphQTNode>(
 			this,
 			RootTopLeft, RootBotRight,
-			GetPanelPosition(RootTopLeft), GetPanelPosition(RootBotRight)
+			FVector2D::ZeroVector, GraphEditor->GetCachedGeometry().GetLocalSize()
 		);
 
 		TSharedPtr<SGraphNode> NodeWidget;
@@ -128,13 +130,12 @@ public:
 			return;
 
 		TSharedPtr<SGraphEditor> GraphEditor = LinkedEditor.Pin();
-		SGraphPanel* GraphPanel = GraphEditor->GetGraphPanel();
 
 		TSharedPtr<SWindow> GraphWindow = FSlateApplication::Get().FindWidgetWindow(GraphEditor.ToSharedRef());
 		if (!GraphWindow.IsValid())
 			return;
 
-		const FPaintGeometry PaintGeometry = GraphPanel->GetTickSpaceGeometry().ToPaintGeometry();
+		const FPaintGeometry PaintGeometry = GraphEditor->GetTickSpaceGeometry().ToPaintGeometry();
 
 		FSlateRenderer* Renderer = FSlateApplication::Get().GetRenderer();
 		if (Renderer == nullptr)
@@ -143,7 +144,7 @@ public:
 		FSlateDrawBuffer& DrawBuffer = Renderer->AcquireDrawBuffer();
 		FSlateWindowElementList& ElementList = DrawBuffer.AddWindowElementList(GraphWindow.ToSharedRef());
 
-		const int32 ApproxLayerID = INT32_MAX; //GetApproximateLayer(GraphPanel->AsShared()) + 1;
+		const int32 ApproxLayerID = GetApproximateLayer(GraphEditor->AsShared()) + 1;
 		const FLinearColor LineColor = FLinearColor::Green;
 
 		// Draw Main Outer-Box
