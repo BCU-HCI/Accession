@@ -674,42 +674,6 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record)
 			);
 		}
 
-		/*
-		FVector2D AddLocation = GetFreeGraphViewportSpace(ActiveGraphEditor.Get(), GraphPanel);
-		if (AddLocation == FVector2D::ZeroVector)
-		{
-			AddLocation = GraphPanel->GetPastePosition();
-		}
-		*/
-
-		/*
-		{ // Find Optimal Location
-
-			GraphQuadTree = MakeShared<FGraphQuadTree>(ActiveGraphEditor);
-			GraphQuadTree->BuildTree();
-
-			// Debug Tick Delegate to Display Visuals of QuadTree.
-			if (!TickDele.IsBound())
-			{
-				TickDele = FTickerDelegate::CreateLambda([&](float InDeltaTime) -> bool
-				{
-					if (GraphQuadTree.IsValid())
-					{
-						GraphQuadTree->Visualize();
-					}
-
-					return true;
-				});				
-			}
-
-			if (TickDelegateHandle.IsValid())
-				FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
-
-			TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDele, 0.05f);
-		}
-		*/
-
-
 		TSharedPtr<SWidget> ContextWidgetToFocus = GraphPanel->SummonContextMenu(
             SpawnLocation, 
 			GetFreeGraphViewportSpace(ActiveGraphEditor.Get()),
@@ -1229,8 +1193,8 @@ FVector2D UNodeInteractionLibrary::GetFreeGraphViewportSpace(const SGraphEditor*
 	{
 		FVector2D NodePanelPosition = (FVector2D(GraphNode->NodePosX, GraphNode->NodePosY) - ViewOffset) * ViewZoom;
 
-		int32 xIndex = FMath::RoundToInt(NodePanelPosition.X / CellSize.X);
-		int32 yIndex =FMath::RoundToInt(NodePanelPosition.Y / CellSize.Y);
+		int32 xIndex = FMath::Clamp(FMath::RoundToInt(NodePanelPosition.X / CellSize.X), 0, GridResolution.X - 1);
+		int32 yIndex = FMath::Clamp(FMath::RoundToInt(NodePanelPosition.Y / CellSize.Y), 0, GridResolution.Y - 1);
 
 		UE_LOG(LogOpenAccessibility, Log, TEXT("Y Index: %d | X Index: %d | NodePanelPos: %s"), xIndex, yIndex, *NodePanelPosition.ToString())
 

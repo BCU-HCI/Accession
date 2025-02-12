@@ -260,10 +260,4 @@ private:
 	int32 GetNodesInViewport(const SGraphEditor* GraphEditor, TArray<UEdGraphNode*>& GraphNodes);
 	int32 GetNodesInViewport(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel, TArray<UEdGraphNode*>& GraphNodes);
 
-private:
-
-	TSharedPtr<FGraphQuadTree> GraphQuadTree;
-	FTickerDelegate TickDele;
-	FTSTicker::FDelegateHandle TickDelegateHandle;
-	
 };
