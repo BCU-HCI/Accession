@@ -58,24 +58,45 @@ public:
 
 	bool ContainsNodeRect(const FVector2D NodeTopLeft, const FVector2D NodeBotRight) const
 	{
-		return (
-			NodeTopLeft.ComponentwiseAllGreaterOrEqual(TopLeft) && NodeTopLeft.ComponentwiseAllLessOrEqual(BotRight)) || 
+		return (NodeTopLeft.ComponentwiseAllGreaterOrEqual(TopLeft) && NodeTopLeft.ComponentwiseAllLessOrEqual(BotRight)) || 
 			(NodeBotRight.ComponentwiseAllGreaterOrEqual(TopLeft) && NodeBotRight.ComponentwiseAllLessOrEqual(BotRight));
 	}
 
-	void SegmentSpace(FVector2D MinSegmentSize = FVector2D(300, 250))
+	TArray<TSharedPtr<FGraphQTNode>>& PartitionSpace(FVector2D MinSegmentSize = FVector2D(300, 250))
 	{
 		if (ContainsSegments())
-			return;
+			return Children;
 
 		FVector2D SegmentSize = (BotRight - TopLeft) / 2;
-		if (SegmentSize.ComponentwiseAllLessThan(MinSegmentSize))
-			return; // Segment is Too Small For an Average Node.
+		if (SegmentSize.ComponentwiseAllLessThan(MinSegmentSize)) // Ensure New Segments Won't Be Too Small.
+			return Children;
 
 		FVector2D LocalSegmentSize = (LocalBotRight - LocalTopLeft) / 2;
 
+		// Size Array For Incoming Segments
+		Children.Reserve(4);
 
+		for (int Y = 0; Y < 2; ++Y)
+		{
+			for (int X = 0; X < 2; ++X)
+			{
+				FVector2D SegmentOffset(X * SegmentSize.X, Y * SegmentSize.Y);
+				FVector2D LocalSegmentOffset(X * SegmentSize.X, Y * SegmentSize.Y);
 
+				Children.Add(
+					MakeShared<FGraphQTNode>(
+						Owner,
+						TopLeft + SegmentOffset,
+						TopLeft + SegmentOffset + SegmentSize,
+						LocalTopLeft + LocalSegmentOffset,
+						LocalTopLeft + LocalSegmentOffset + LocalSegmentSize,
+						Depth + 1
+					)
+				);
+			}
+		}
+
+		return Children;
 	}
 
 	void Visualize(FSlateWindowElementList& ElementList, TArray<FVector2D>& LinePoints, const FPaintGeometry& PaintGeometry, const int32& LayerID, const FLinearColor& LineColor = FLinearColor::Green)

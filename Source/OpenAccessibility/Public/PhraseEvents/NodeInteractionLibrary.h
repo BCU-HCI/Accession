@@ -257,8 +257,8 @@ private:
 
 	FVector2D GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor);
 
-	TArray<UEdGraphNode*> GetNodesInViewport(const SGraphEditor* GraphEditor);
-
+	int32 GetNodesInViewport(const SGraphEditor* GraphEditor, TArray<UEdGraphNode*>& GraphNodes);
+	int32 GetNodesInViewport(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel, TArray<UEdGraphNode*>& GraphNodes);
 
 private:
 

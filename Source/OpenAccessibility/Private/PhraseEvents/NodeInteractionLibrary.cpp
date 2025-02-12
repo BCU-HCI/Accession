@@ -682,6 +682,7 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record)
 		}
 		*/
 
+		/*
 		{ // Find Optimal Location
 
 			GraphQuadTree = MakeShared<FGraphQuadTree>(ActiveGraphEditor);
@@ -706,12 +707,12 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddMenu(FParseRecord& Record)
 
 			TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDele, 0.05f);
 		}
-		
+		*/
 
 
 		TSharedPtr<SWidget> ContextWidgetToFocus = GraphPanel->SummonContextMenu(
             SpawnLocation, 
-			GraphPanel->GetPastePosition(),
+			GetFreeGraphViewportSpace(ActiveGraphEditor.Get()),
 			nullptr,
 			nullptr, 
 			TArray<UEdGraphPin *>()
@@ -1208,22 +1209,76 @@ FVector2D UNodeInteractionLibrary::GetFreeGraphViewportSpace(const SGraphEditor*
 		return FVector2D::ZeroVector;
 	}
 
-	UEdGraph* Graph = GraphEditor->GetCurrentGraph();
+	SGraphPanel* GraphPanel = GraphEditor->GetGraphPanel();
 
-	return Graph->GetGoodPlaceForNewNode();
+	TArray<UEdGraphNode*> GraphNodes;
+	GetNodesInViewport(GraphEditor, GraphPanel, GraphNodes);
+
+	FVector2D GridResolution(6, 4);
+	FVector2D PanelSize = GraphPanel->GetCachedGeometry().GetLocalSize();
+	FVector2D CellSize = PanelSize / GridResolution;
+
+	TArray<int32> DensityGrid;
+	DensityGrid.Init(0, GridResolution.X * GridResolution.Y);
+
+	FVector2D ViewOffset = GraphPanel->GetViewOffset();
+	float ViewZoom = GraphPanel->GetZoomAmount();
+
+	// Build Density Per Cell
+	for (auto& GraphNode : GraphNodes)
+	{
+		FVector2D NodePanelPosition = (FVector2D(GraphNode->NodePosX, GraphNode->NodePosY) - ViewOffset) * ViewZoom;
+
+		int32 xIndex = FMath::RoundToInt(NodePanelPosition.X / CellSize.X);
+		int32 yIndex =FMath::RoundToInt(NodePanelPosition.Y / CellSize.Y);
+
+		UE_LOG(LogOpenAccessibility, Log, TEXT("Y Index: %d | X Index: %d | NodePanelPos: %s"), xIndex, yIndex, *NodePanelPosition.ToString())
+
+		DensityGrid[xIndex + yIndex * GridResolution.X]++;
+	}
+
+	int32 minCount = INT32_MAX;
+	FVector2D OptimalPosition = FVector2D::ZeroVector;
+
+	for (int Y = 0; Y < GridResolution.Y; ++Y)
+	{
+		for (int X = 0; X < GridResolution.X; ++X)
+		{
+			// Include Direct Neighbour Into Density
+			int32 CellCount = DensityGrid[X + Y * GridResolution.X];
+
+			// Include Direct Neighbour Into Density
+			// Includes: Up, Down, Left and Right.
+			CellCount += X > 0 ? DensityGrid[(X - 1) + Y * GridResolution.X] : 0;
+			CellCount += X < GridResolution.X - 1 ? DensityGrid[(X + 1) + Y * GridResolution.X] : 0;
+			CellCount += Y > 0 ? DensityGrid[X + (Y - 1) * GridResolution.X] : 0;
+			CellCount += Y < GridResolution.Y - 1 ? DensityGrid[X + (Y + 1) * GridResolution.X] : 0;
+
+			if (CellCount > minCount)
+				continue;
+
+			FVector2D PossibleOptimalPosition = FVector2D(X + 0.25f, Y + 0.25f) * CellSize;
+
+			if (FVector2D::Distance(PossibleOptimalPosition, PanelSize / 2) < FVector2D::Distance(OptimalPosition, PanelSize / 2))
+			{
+				minCount = CellCount;
+				OptimalPosition = PossibleOptimalPosition;
+			}
+		}
+	}
+
+	return OptimalPosition != FVector2D::ZeroVector ? GraphPanel->PanelCoordToGraphCoord(OptimalPosition) : GraphPanel->GetPastePosition();
 }
 
-TArray<UEdGraphNode*> UNodeInteractionLibrary::GetNodesInViewport(const SGraphEditor* GraphEditor)
+int32 UNodeInteractionLibrary::GetNodesInViewport(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel, TArray<UEdGraphNode*>& GraphNodes)
 {
-	if (GraphEditor == nullptr)
+	if (GraphEditor == nullptr || GraphPanel == nullptr)
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("GetNodesInViewport: Invalid Graph Panel"));
-		return TArray<UEdGraphNode*>();
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("GetNodesInViewport: Invalid Graph Widget is nullptr"));
+		return INDEX_NONE;
 	}
 
 	UEdGraph* Graph = GraphEditor->GetCurrentGraph();
-	SGraphPanel* GraphPanel = GraphEditor->GetGraphPanel();
-	TArray<UEdGraphNode*> NodesInViewport;
 
 	FVector2D NodeTopLeft = FVector2D::ZeroVector;
 	FVector2D NodeBotRight = FVector2D::ZeroVector;
@@ -1232,11 +1287,11 @@ TArray<UEdGraphNode*> UNodeInteractionLibrary::GetNodesInViewport(const SGraphEd
 		NodeTopLeft = FVector2D(Node->NodePosX, Node->NodePosY);
 		NodeBotRight = FVector2D(Node->NodePosX + Node->NodeWidth, Node->NodePosY + Node->NodeHeight);
 
-		if (GraphPanel->IsRectVisible(NodeTopLeft, NodeBotRight))
+		if (const_cast<SGraphPanel*>(GraphPanel)->IsRectVisible(NodeTopLeft, NodeBotRight))
 		{
-			NodesInViewport.Add(Node);
+			GraphNodes.Add(Node);
 		}
 	}
 
-	return NodesInViewport;
+	return GraphNodes.Num();
 }
