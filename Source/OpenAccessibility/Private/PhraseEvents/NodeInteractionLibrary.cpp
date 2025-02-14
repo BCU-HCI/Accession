@@ -1221,7 +1221,6 @@ FVector2D UNodeInteractionLibrary::GetFreeGraphViewportSpace(const SGraphEditor*
 		{
 			for (int X = 0; X < 2; ++X)
 			{
-
 				FVector2D NodeCorner = GraphCoordToPanelCoord(FVector2D(GraphNode->NodePosX + (X * GraphNode->NodeWidth), GraphNode->NodePosY + (Y * GraphNode->NodeHeight)), GraphPanel);
 
 				int32 xIndex = FMath::Clamp(FMath::RoundToInt(NodeCorner.X / CellSize.X), 0, GridResolution.X - 1);

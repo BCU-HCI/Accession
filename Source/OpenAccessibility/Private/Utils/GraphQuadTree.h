@@ -17,16 +17,16 @@ class FGraphQuadTree : public TSharedFromThis<FGraphQuadTree>
 {
 public:
 
-#define BIT_OFF(x) 0 << x
+#define _TMP_BIT_OFF(x) 0 << x
 	enum class EQueryBias : uint8
 	{
-		NONE = BIT_OFF(0),
-		LEFT = BIT_OFF(1),
-		RIGHT = BIT_OFF(2),
-		UP = BIT_OFF(3),
-		DOWN = BIT_OFF(4),
+		NONE = _TMP_BIT_OFF(0),
+		LEFT = _TMP_BIT_OFF(1),
+		RIGHT = _TMP_BIT_OFF(2),
+		UP = _TMP_BIT_OFF(3),
+		DOWN = _TMP_BIT_OFF(4),
 	};
-#undef BIT_OFF
+#undef _TMP_BIT_OFF
 
 	FGraphQuadTree(UEdGraph* Graph, int8 DepthLimit = 6, FVector2D MinSegmentSizeLimit = FVector2D())
 	: LinkedGraph(Graph), LinkedEditor(nullptr), DepthLimit(DepthLimit), MinSegmentSize(MinSegmentSizeLimit)
@@ -52,7 +52,9 @@ public:
 		LinkedPanel = GraphEditor->GetGraphPanel();
 	}
 
-	// Builds the Initial Tree from the Linked Graph
+	/**
+	 * Builds the Initial Tree From the Linked Graph, and its Editor.
+	 */
 	void BuildTree()
 	{
 		TSharedPtr<SGraphEditor> GraphEditor = LinkedEditor.Pin();
@@ -82,6 +84,10 @@ public:
 		}
 	}
 
+	/**
+	 * Adds a Graph Node into the Quad Tree.
+	 * @param NodeToAdd Graph Node to add into the Quad Tree.
+	 */
 	void AddGraphNode(const UEdGraphNode* NodeToAdd)
 	{
 		if (!RootNode.IsValid() || NodeToAdd == nullptr)
@@ -117,55 +123,29 @@ public:
 				NodesToCheck.Enqueue(Child);
 			}
 		}
-
-		/*
-		FVector2D GNTopLeft = FVector2D(GraphNode->NodePosX, GraphNode->NodePosY);
-		FVector2D GNBotRight = FVector2D(GraphNode->NodePosX + GraphNode->NodeWidth, GraphNode->NodePosY + GraphNode->NodeHeight);
-
-
-		TSet<TSharedRef<FGraphQTNode>> CheckedNodes;
-		TQueue<TSharedPtr<FGraphQTNode>> NodesToCheck = TQueue<TSharedPtr<FGraphQTNode>>();
-		NodesToCheck.Enqueue(RootNode.ToSharedRef());
-
-		TSharedPtr<FGraphQTNode> QNode;
-
-		while (!NodesToCheck.IsEmpty())
-		{
-			NodesToCheck.Dequeue(QNode);
-			CheckedNodes.Add(QNode.ToSharedRef());
-
-			if (!QNode->ContainsNodeRect(GNTopLeft, GNBotRight))
-				continue;
-
-			QNode->ContainedNodes.Add(GraphNode);
-
-			if (QNode->Depth <= DepthLimit && GetSegmentSize(QNode.ToSharedRef()) > MinSegmentSize)
-			{
-				TArray<TSharedPtr<FGraphQTNode>> ChildNodes;
-				if (QNode->ContainsSegments())
-					ChildNodes = QNode->Children;
-				else
-					ChildNodes = SegmentQNodeSpace(QNode.ToSharedRef());
-
-				for (auto GraphQtNode : ChildNodes)
-				{
-					NodesToCheck.Enqueue(GraphQtNode.ToSharedRef());
-				}				
-			}
-		}
-		*/
 	}
 
+	/**
+	 * Adds an Array of Graph Nodes into the Quad Tree.
+	 * @param NodesToAdd Array of Graph Nodes to add into the Quad Tree. 
+	 */
 	void AddGraphNodes(TArray<UEdGraphNode*> NodesToAdd)
 	{
-		
 	}
 
+	/**
+	 * Find the Optimal Location in the Viewport for a New Node.
+	 * @param QueryBias Directional Bias when Searching for Location.
+	 * @return The Found Optimal Location in the Viewport.
+	 */
 	FVector2D FindOptimalLocation(EQueryBias QueryBias = EQueryBias::NONE)
 	{
 		return FVector2D::ZeroVector;
 	}
 
+	/**
+	 * Visualizes the Quad Tree on the Graph Editor.
+	 */
 	void Visualize()
 	{
 		if (!LinkedEditor.IsValid())
@@ -215,6 +195,12 @@ public:
 
 private:
 
+	/**
+	 * Checks if a Graph Node is Contained in a Quad Tree Segment.
+	 * @param QNode Quad Tree Segment to Check.
+	 * @param GraphNode Graph Node to Check.
+	 * @return True, if the Graph Node is Contained in the Quad Tree Segment, otherwise False.
+	 */
 	bool ContainsNode(const TSharedRef<FGraphQTNode>& QNode, const UEdGraphNode* GraphNode)
 	{
 		FVector2D GNTopLeft = FVector2D(GraphNode->NodePosX, GraphNode->NodePosY);
@@ -231,11 +217,21 @@ private:
 		return false;
 	}
 
+	/**
+	 * Gets the Size of the provided Quad Tree Segment.
+	 * @param QNode Segment to Obtain the Size of.
+	 * @return Size of the Quad Tree Segment
+	 */
 	FVector2D GetSegmentSize(const TSharedRef<FGraphQTNode>& QNode) const
 	{
 		return QNode->BotRight - QNode->TopLeft;
 	}
 
+	/**
+	 * Segments the provided Quad Tree Segment, applying descendants.
+	 * @param QNode Segment of the Quad Tree, to segment further.
+	 * @return Array of Segments descending from the provided Quad Tree Segment.
+	 */
 	TArray<TSharedPtr<FGraphQTNode>>& SegmentQNodeSpace(const TSharedRef<FGraphQTNode>& QNode)
 	{
 		if (QNode->ContainsSegments())
@@ -250,18 +246,13 @@ private:
 		return QNode->Children;
 	}
 
-	FPaintGeometry Vis_GetPaintGeometry(const SWidget* Widget) const
-	{
-		const FGeometry Geometry = Widget->GetTickSpaceGeometry();
 
-		return FPaintGeometry(
-			Geometry.GetAccumulatedLayoutTransform(),
-			Geometry.GetAccumulatedRenderTransform(),
-			Geometry.GetLocalSize(),
-			Geometry.HasRenderTransform()
-		);
-	}
-
+	/**
+	 * Gets the Elements List of an SWindow, and Acquires the Draw Buffer in the Process.
+	 * @param Window Window To Get The Element List From.
+	 * @param DrawBuffer Acquired Draw Buffer.
+	 * @return Element List of the Window.
+	 */
 	FSlateWindowElementList* Vis_GetWindowElementList(const TSharedRef<SWindow>& Window, FSlateDrawBuffer* DrawBuffer)
 	{
 		FSlateRenderer* Renderer = FSlateApplication::Get().GetRenderer();
@@ -279,6 +270,11 @@ private:
 		return &DrawBuffer->AddWindowElementList(Window);
 	}
 
+	/**
+	 * Approximates the Layer Index of the Provided Widget, through its Window Path.
+	 * @param Widget Widget To Approximate the Layer from.
+	 * @return Approximate Layer of the Provided Widget.
+	 */
 	const int32 GetApproximateLayer(const TSharedRef<const SWidget>& Widget) const
 	{
 		FWidgetPath WidgetPath;
@@ -293,6 +289,11 @@ private:
 		return LayerID != INDEX_NONE ? LayerID : 0;
 	}
 
+	/**
+	 * Gets the Panel Position from a Graph Position.
+	 * @param GraphPosition Graph Position to Convert.
+	 * @return Converted Position in the Panel, based on the Graph Position.
+	 */
 	FVector2D GetPanelPosition(const FVector2D& GraphPosition) const
 	{
 		return (GraphPosition - LinkedPanel->GetViewOffset()) * LinkedPanel->GetZoomAmount();

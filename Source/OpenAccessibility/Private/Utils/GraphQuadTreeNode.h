@@ -39,29 +39,52 @@ public:
 		
 	}
 
+	/**
+	 * Checks if Subsegments Exist on this Node.
+	 * @return True, if Child Segments were Found, otherwise False.
+	 */
 	bool ContainsSegments() const
 	{
 		return Children.Num() > 0;
 	}
 
+	/**
+	 * Checks if Graph Nodes Exist on this Node, and descendants.
+	 * @return True, if Graph Nodes were Found, otherwise False.
+	 */
 	bool ContainsGraphNodes() const
 	{
 		return ContainedNodes.Num() > 0;
 	}
 
 
+	/**
+	 * Gets the Child Segments of this Node.
+	 * @return Array of Child Segments.
+	 */
 	TArray<TSharedPtr<FGraphQTNode>> GetChildNodes() const
 	{
 		return Children;
 	}
 
 
+	/**
+	 * Checks if a Graph Node is Contained in this Quad Tree Segment.
+	 * @param NodeTopLeft Top-Left Graph Position of the Node.
+	 * @param NodeBotRight Bottom-Right Graph Position of the Node.
+ 	 * @return 
+	 */
 	bool ContainsNodeRect(const FVector2D NodeTopLeft, const FVector2D NodeBotRight) const
 	{
 		return (NodeTopLeft.ComponentwiseAllGreaterOrEqual(TopLeft) && NodeTopLeft.ComponentwiseAllLessOrEqual(BotRight)) || 
 			(NodeBotRight.ComponentwiseAllGreaterOrEqual(TopLeft) && NodeBotRight.ComponentwiseAllLessOrEqual(BotRight));
 	}
 
+	/**
+	 * Partitions the Space of this Quad Tree Segment.
+	 * @param MinSegmentSize Minimum Size of a Child Segment.
+	 * @return Array of Child Segments, otherwise an Empty Array if SegmentSize is too small.
+	 */
 	TArray<TSharedPtr<FGraphQTNode>>& PartitionSpace(FVector2D MinSegmentSize = FVector2D(300, 250))
 	{
 		if (ContainsSegments())
@@ -99,6 +122,14 @@ public:
 		return Children;
 	}
 
+	/**
+	 * Visualizes the Quad Tree Segment, and Descendants.
+	 * @param ElementList Windows Element List, to Visualize From.
+	 * @param LinePoints Array of Line Positions, to Draw Using.
+	 * @param PaintGeometry Paint Geometry of the Graph.
+	 * @param LayerID LayerID of the Graph.
+	 * @param LineColor Color of the Line, when Drawn.
+	 */
 	void Visualize(FSlateWindowElementList& ElementList, TArray<FVector2D>& LinePoints, const FPaintGeometry& PaintGeometry, const int32& LayerID, const FLinearColor& LineColor = FLinearColor::Green)
 	{
 		// Draw Children
@@ -128,16 +159,45 @@ public:
 
 protected:
 
+	/**
+	 * Quad Tree Segment Owner.
+	 */
 	const FGraphQuadTree* Owner;
 
+
+	/**
+	 * Top Left Position of this Segment, in Graph Space.
+	 */
 	FVector2D TopLeft;
+
+	/**
+	 * Bottom Right Position of this Segment, in Graph Space.
+	 */
 	FVector2D BotRight;
 
+	/**
+	 * Top Left Position of this Segment, in Local Panel Space.
+	 */
 	FVector2D LocalTopLeft;
+
+	/**
+	 * Bottom Right Position of this Segment, in Local Panel Space.
+
+	 */
 	FVector2D LocalBotRight;
 
+	/**
+	 * Depth of this Node in the Quad Tree.
+	 */
 	int8 Depth;
 
+	/**
+	 * Child Segments from this Node.
+	 */
 	TArray<TSharedPtr<FGraphQTNode>> Children;
+
+	/**
+	 * GraphNodes Contained in this Segment.
+	 */
 	TArray<const UEdGraphNode*> ContainedNodes;
 };
