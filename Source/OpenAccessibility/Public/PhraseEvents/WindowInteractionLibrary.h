@@ -86,6 +86,25 @@ public:
 
 	// End of Window Tab Interaction
 
+
+	// Misc Interaction
+
+
+	/**
+	 * Undos a Performed Action.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	void UndoAction(FParseRecord& Record);
+
+
+	/**
+	 * Redos a Performed Action.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	void RedoAction(FParseRecord& Record);
+
+	// End of Misc Interaction
+
 protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "WindowInteractionLibrary|ToolBar Accessibility")

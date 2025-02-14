@@ -11,7 +11,7 @@ typedef TSharedPtr<FPhraseNode> TPhraseNode;
 typedef TArray<TPhraseNode> TPhraseNodeArray;
 
 
-#define BIT_SHIFT(x) (1 << x)
+#define _TMP_BIT_SHIFT(x) (1 << x)
 
 enum OPENACCESSIBILITYCOMMUNICATION_API PhrasePropogationType : uint8_t
 {
@@ -23,29 +23,31 @@ enum OPENACCESSIBILITYCOMMUNICATION_API PhrasePropogationType : uint8_t
 	/// <summary>
 	/// When the given phrase is unable to be parsed.
 	/// </summary>
-	PHRASE_UNABLE_TO_PARSE = BIT_SHIFT(0),
+	PHRASE_UNABLE_TO_PARSE = _TMP_BIT_SHIFT(0),
 
 	/// <summary>
 	/// When more phrase components are required to propogate down the tree further.
 	/// </summary>
-	PHRASE_REQUIRES_MORE = BIT_SHIFT(1),
+	PHRASE_REQUIRES_MORE = _TMP_BIT_SHIFT(1),
 
 	/// <summary>
 	/// When a phrase requires more correct phrase components to propogate down the tree further, 
 	/// as the propogation ran wrong inputs.
 	/// </summary>
-	PHRASE_REQUIRES_MORE_CORRECT_PHRASES = BIT_SHIFT(2),
+	PHRASE_REQUIRES_MORE_CORRECT_PHRASES = _TMP_BIT_SHIFT(2),
 
 	/// <summary>
 	/// When the Phrase is Parsed all the way to a leaf node.
 	/// </summary>
-	PHRASE_PARSED = BIT_SHIFT(3),
+	PHRASE_PARSED = _TMP_BIT_SHIFT(3),
 
 	/// <summary>
 	/// When the Phrase is Parsed all the way to a leaf node, triggering an event.
 	/// </summary>
-	PHRASE_PARSED_AND_EXECUTED = BIT_SHIFT(4),
+	PHRASE_PARSED_AND_EXECUTED = _TMP_BIT_SHIFT(4),
 };
+
+#undef _TMP_BIT_SHIFT
 
 /// <summary>
 /// Contains the Result of Propagation through the Phrase Tree.

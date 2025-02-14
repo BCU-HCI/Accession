@@ -405,6 +405,34 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 
 		ECVF_Default
 	));
+
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibility.Debug.LogGraphEditorViewport"),
+		TEXT("Logs the Active GraphEditors Viewport Information."),
+		FConsoleCommandDelegate::CreateLambda(
+			[this]() {
+				TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+				if (!ActiveTab.IsValid())
+				{
+					UE_LOG(LogOpenAccessibility, Display, TEXT("No Active Tab Found."));
+					return;
+				}
+
+				TSharedPtr<SGraphEditor> ActiveGraphEditor = StaticCastSharedRef<SGraphEditor>(ActiveTab->GetContent());
+				if (!ActiveGraphEditor.IsValid())
+				{
+					UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
+					return;
+				}
+
+				FVector2D ViewLocation;
+				float ZoomAmount;
+				ActiveGraphEditor->GetViewLocation(ViewLocation, ZoomAmount);
+
+				UE_LOG(LogOpenAccessibility, Display, TEXT("| Active Graph Editor Viewport Info | View Location: %s | Zoom Amount: %f |"), *ViewLocation.ToString(), ZoomAmount);
+			}
+		)
+	));
 }
 
 void FOpenAccessibilityModule::UnregisterConsoleCommands()

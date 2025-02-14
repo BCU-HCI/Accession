@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 
 #include "PhraseTree/PhraseTreeFunctionLibrary.h"
+#include "Utils/GraphQuadTree.h"
 
 #include "NodeInteractionLibrary.generated.h"
 
@@ -74,9 +75,17 @@ public:
 	UFUNCTION()
 	void PinDisconnect(FParseRecord& Record);
 
+	/**
+	 * Phrase Event for Setting the Default Value of an Editable Pin, on the Active Graph Editor.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
 	UFUNCTION()
 	void PinSetDefault(FParseRecord& Record);
 
+	/**
+	 * Phrase Event for Resetting the Default Value of an Editable Pin, on the Active Graph Editor.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
 	UFUNCTION()
 	void PinResetDefault(FParseRecord& Record);
 
@@ -141,6 +150,13 @@ public:
 	 */
 	UFUNCTION()
 	void SelectionNodeToggle(FParseRecord& Record);
+
+	/**
+	 * Phrase Event for Toggling the Selection of All Nodes, on the Active Graph Editor.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	UFUNCTION()
+	void SelectionNodeAll(FParseRecord& Record);
 
 	/**
 	 * Phrase Event for Resetting the Selection Set, on the Active Graph Editor.
@@ -223,4 +239,68 @@ public:
 	void BlueprintCompile(FParseRecord& Record);
 
 	// End of Blueprint Specifics
+
+private:
+
+	// Editor Grid Utils
+
+	/**
+	 * Container for the Attributes of a Graph Editors Visual Grid.
+	 */
+	struct GridAttributes
+	{
+		float GridCellSize;
+		float VisualGridCellSize;
+		float NominalGridSize;
+		float InflationFactor;
+		float ZoomFactor;
+	};
+
+	/**
+	 * Obtains the Grid Attributes of the Visual Grid of the provided Panel.
+	 * @param Panel The Panel containing the Visual Grid.
+	 * @return Found Grid Attributes, otherwise an Empty Grid Attributes on Failure.
+	 */
+	GridAttributes GetGridAttributes(const SGraphPanel* Panel);
+
+	/**
+	 * Snaps a Graph Node to the Nearest Visual Grid Cell.
+	 * @param Panel The Panel containing the Visual Grid.
+	 * @param Node The Graph Node to Snap to the Visual Grid.
+	 */
+	void SnapToGrid(const SGraphPanel* Panel, UEdGraphNode* Node);
+
+	/**
+	 * Moves a Graph Node Along the Visual Grid of a Graph Panel.
+	 * @param Panel The Panel containing the Visual Grid.
+	 * @param Node Graph Node to Move along the Visual Grid.
+	 * @param MovementDelta Movement Amount to Apply to the Node.
+	 */
+	void MoveOnGrid(const SGraphPanel* Panel, UEdGraphNode* Node, const FVector2D& MovementDelta);
+
+	/**
+	 * Snaps a Graph Node to the Centre of the Nearest Visual Grid Cell.
+	 * @param Panel The Panel Containing the Visual Grid.
+	 * @param Node Graph Node to Snap to the Centre of the Nearest Visual Grid Cell.
+	 */
+	void SnapToGridCentre(const SGraphPanel* Panel, UEdGraphNode* Node);
+
+	// Open Viewport for Node Placement
+
+	/**
+	 * Obtains the Optimal Position for Placing a Node into the Current Viewport, factoring in Visual Nodes.
+	 * @param GraphEditor The GraphEditor to Find Open View Space for.
+	 * @return The Found Optimal Space for Node Placement in the Current Viewport, otherwise Defaults to Paste Position.
+	 */
+	FVector2D GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor);
+
+	/**
+	 * Gets an Array of Nodes Currently in the Viewport of the Provided Graph Editor.
+	 * @param GraphEditor The GraphEditor to Find All Visual Nodes From.
+	 * @param GraphPanel The GraphEditors Linked Panel.
+	 * @param GraphNodes Array to Populate with Visual Nodes in the Current Viewport.
+	 * @return Number of Nodes in the Current Viewport.
+	 */
+	int32 GetNodesInViewport(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel, TArray<UEdGraphNode*>& GraphNodes);
+
 };
