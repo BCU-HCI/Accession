@@ -1165,6 +1165,17 @@ void UNodeInteractionLibrary::SnapToGridCentre(const SGraphPanel* Panel, UEdGrap
 	Node->NodePosY = SnappedPosition.Y + (GridAttr.GridCellSize / 2);
 }
 
+FVector2D GraphCoordToPanelCoord(FVector2D PanelCoord, const SGraphPanel* GraphPanel)
+{
+	if (GraphPanel == nullptr)
+	{
+		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("PanelCoordToGraphCoord: Invalid Graph Panel"));
+		return FVector2D::ZeroVector;
+	}
+
+	return (PanelCoord - GraphPanel->GetViewOffset()) * GraphPanel->GetZoomAmount();
+}
+
 FVector2D UNodeInteractionLibrary::GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor)
 {
 	if (GraphEditor == nullptr)
@@ -1178,27 +1189,47 @@ FVector2D UNodeInteractionLibrary::GetFreeGraphViewportSpace(const SGraphEditor*
 	TArray<UEdGraphNode*> GraphNodes;
 	GetNodesInViewport(GraphEditor, GraphPanel, GraphNodes);
 
-	FVector2D GridResolution(6, 4);
+	FVector2D GridResolution;
 	FVector2D PanelSize = GraphPanel->GetCachedGeometry().GetLocalSize();
+	{
+		FVector2D AverageNodeSize(300, 250);
+
+		FVector2D GraphViewSize = GraphPanel->PanelCoordToGraphCoord(PanelSize) - GraphPanel->PanelCoordToGraphCoord(FVector2D::ZeroVector);
+		constexpr float BufferScalar = 1.3f;
+
+		GridResolution = FVector2D(
+			FMath::CeilToInt(GraphViewSize.X / (AverageNodeSize.X * BufferScalar)),
+			FMath::CeilToInt(GraphViewSize.Y / (AverageNodeSize.Y * BufferScalar))
+		);
+
+		UE_LOG(LogOpenAccessibility, Log, TEXT("Calculated Node-Based Density Grid Resolution: %s"), *GridResolution.ToString());
+
+		FVector2D DefaultGridResolution(6, 4);
+		if (GridResolution.ComponentwiseAllLessThan(DefaultGridResolution))
+			GridResolution = DefaultGridResolution;
+	}
+
 	FVector2D CellSize = PanelSize / GridResolution;
 
 	TArray<int32> DensityGrid;
 	DensityGrid.Init(0, GridResolution.X * GridResolution.Y);
 
-	FVector2D ViewOffset = GraphPanel->GetViewOffset();
-	float ViewZoom = GraphPanel->GetZoomAmount();
-
 	// Build Density Per Cell
 	for (auto& GraphNode : GraphNodes)
 	{
-		FVector2D NodePanelPosition = (FVector2D(GraphNode->NodePosX, GraphNode->NodePosY) - ViewOffset) * ViewZoom;
+		for (int Y = 0; Y < 2; ++Y)
+		{
+			for (int X = 0; X < 2; ++X)
+			{
 
-		int32 xIndex = FMath::Clamp(FMath::RoundToInt(NodePanelPosition.X / CellSize.X), 0, GridResolution.X - 1);
-		int32 yIndex = FMath::Clamp(FMath::RoundToInt(NodePanelPosition.Y / CellSize.Y), 0, GridResolution.Y - 1);
+				FVector2D NodeCorner = GraphCoordToPanelCoord(FVector2D(GraphNode->NodePosX + (X * GraphNode->NodeWidth), GraphNode->NodePosY + (Y * GraphNode->NodeHeight)), GraphPanel);
 
-		UE_LOG(LogOpenAccessibility, Log, TEXT("Y Index: %d | X Index: %d | NodePanelPos: %s"), xIndex, yIndex, *NodePanelPosition.ToString())
+				int32 xIndex = FMath::Clamp(FMath::RoundToInt(NodeCorner.X / CellSize.X), 0, GridResolution.X - 1);
+				int32 yIndex = FMath::Clamp(FMath::RoundToInt(NodeCorner.Y / CellSize.Y), 0, GridResolution.Y - 1);
 
-		DensityGrid[xIndex + yIndex * GridResolution.X]++;
+				DensityGrid[xIndex + yIndex * GridResolution.X]++;
+			}
+		}
 	}
 
 	int32 minCount = INT32_MAX;
