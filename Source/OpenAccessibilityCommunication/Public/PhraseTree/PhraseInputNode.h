@@ -126,26 +126,22 @@ protected:
 	/// <param name="InInput">- The Phrase To Record onto the Parse Record.</param>
 	/// <param name="OutParseRecord">- Returns the Updated ParseRecord.</param>
 	/// <returns>True, if the Input Was Successful in Recording. Otherwise False.</returns>
-	virtual bool RecordInput(const FString& InInput, FParseRecord& OutParseRecord);
+	virtual bool RecordInput(const FString& InInput, FParseRecord& OutParseRecord)
+	{
+		return false;
+	}
+
+	template<int32> bool RecordInput(const FString& InInput, FParseRecord& OutParseRecord)
+	{
+		int32 Input = FCString::Atoi(*InInput);
+
+		UParseIntInput* ParseInput = MakeParseInput<UParseIntInput>();
+		ParseInput->SetValue(Input);
+
+		OutParseRecord.AddPhraseInput(BoundPhrase, ParseInput);
+
+		OnInputReceived.ExecuteIfBound(Input);
+
+		return true;
+	}
 };
-
-
-template<typename InputType>
-FORCEINLINE bool FPhraseInputNode<InputType>::RecordInput(const FString& InInput, FParseRecord& OutParseRecord)
-{
-	return false;
-}
-
-FORCEINLINE bool FPhraseInputNode<int32>::RecordInput(const FString& InInput, FParseRecord& OutParseRecord)
-{
-	int32 Input = FCString::Atoi(*InInput);
-
-	UParseIntInput* ParseInput = MakeParseInput<UParseIntInput>();
-	ParseInput->SetValue(Input);
-
-	OutParseRecord.AddPhraseInput(BoundPhrase, ParseInput);
-
-	OnInputReceived.ExecuteIfBound(Input);
-
-	return true;
-}

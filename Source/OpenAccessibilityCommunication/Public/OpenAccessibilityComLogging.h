@@ -2,6 +2,4 @@
 
 #pragma once
 
-DECLARE_LOG_CATEGORY_EXTERN(LogOpenAccessibilityCom, Log, All);
-
-DEFINE_LOG_CATEGORY(LogOpenAccessibilityCom);
+OPENACCESSIBILITYCOMMUNICATION_API DECLARE_LOG_CATEGORY_EXTERN(LogOpenAccessibilityCom, Log, All);

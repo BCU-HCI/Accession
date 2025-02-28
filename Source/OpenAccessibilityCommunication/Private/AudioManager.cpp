@@ -1,7 +1,6 @@
 // Copyright F-Dudley. All Rights Reserved.
 
 #include "AudioManager.h"
-#include "OpenAccessibilityCommunication.h"
 #include "OpenAccessibilityComLogging.h"
 #include "SocketCommunicationServer.h"
 
