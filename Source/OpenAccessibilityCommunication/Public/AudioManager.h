@@ -51,7 +51,7 @@ class OPENACCESSIBILITYCOMMUNICATION_API UAudioManager : public UObject
     GENERATED_BODY()
 
 public:
-    UAudioManager();
+    UAudioManager(const FObjectInitializer& ObjectInitializer);
     virtual ~UAudioManager();
 
     /// <summary>

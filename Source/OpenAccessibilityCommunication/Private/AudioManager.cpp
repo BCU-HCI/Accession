@@ -8,13 +8,14 @@
 #include "AudioDeviceNotificationSubsystem.h"
 #include "Templates/Function.h"
 
-UAudioManager::UAudioManager()
+UAudioManager::UAudioManager(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
 	Settings = FAudioManagerSettings();
 
 	// Create Audio Capture Object and Initialize Audio Stream
 	bIsCapturingAudio = false;
-    AudioCapture = NewObject<UAudioCapture>();
+    AudioCapture = ObjectInitializer.CreateDefaultSubobject<UAudioCapture>(this, TEXT("OpenAccessibilityAudioCapture"));
 	AudioCapture->OpenDefaultAudioStream();
 	AudioCapture->StartCapturingAudio();
 
