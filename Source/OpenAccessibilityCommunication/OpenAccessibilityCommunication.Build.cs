@@ -27,7 +27,6 @@ public class OpenAccessibilityCommunication : ModuleRules
 			new string[]
 			{
 				"Core",
-				"ZeroMQ",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -37,6 +36,9 @@ public class OpenAccessibilityCommunication : ModuleRules
 			{
 				// Internal Plugin Dependencies
 				"OpenAccessibilityAnalytics",
+
+				// Internal ThirdParty Dependencies
+				"ZeroMQ",
 
 				// Core Modules
 				"CoreUObject",

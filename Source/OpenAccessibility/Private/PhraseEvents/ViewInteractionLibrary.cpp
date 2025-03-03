@@ -7,7 +7,7 @@
 #include "SGraphPanel.h"
 #include "SNodePanel.h"
 
-#include "PhraseTree/PhraseInputNode.h"
+#include "PhraseTree/PhraseIntInputNode.h"
 #include "PhraseTree/PhraseDirectionalInputNode.h"
 #include "PhraseTree/PhraseEventNode.h"
 
@@ -34,7 +34,7 @@ void UViewInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"), 
 				TPhraseNodeArray {
 				
-					MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+					MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
 					TPhraseNodeArray {
 					
 						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::MoveViewport))
@@ -51,7 +51,7 @@ void UViewInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"), 
 				TPhraseNodeArray {
 				
-					MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"), 
+					MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
 					TPhraseNodeArray {
 					
 						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::ZoomViewport))
@@ -65,7 +65,7 @@ void UViewInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 			MakeShared<FPhraseNode>(TEXT("FOCUS"), 
 			TPhraseNodeArray {
 				
-				MakeShared<FPhraseInputNode<int32>>(TEXT("INDEX"), 
+				MakeShared<FPhraseIntInputNode>(TEXT("INDEX"),
 				TPhraseNodeArray {
 				
 					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::IndexFocus))

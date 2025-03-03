@@ -5,6 +5,7 @@
 
 #include "PhraseTree/PhraseStringInputNode.h"
 #include "PhraseTree/PhraseEventNode.h"
+#include "PhraseTree/PhraseIntInputNode.h"
 
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
@@ -41,7 +42,7 @@ void ULocalizedInputLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 			MakeShared<FPhraseNode>(TEXT("REMOVE"),
 			TPhraseNodeArray {
 
-				MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"), 
+				MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
 				TPhraseNodeArray {
 					
 					MakeShared<FPhraseEventNode>(CreateParseDelegate(this,&ULocalizedInputLibrary::KeyboardInputRemove))
