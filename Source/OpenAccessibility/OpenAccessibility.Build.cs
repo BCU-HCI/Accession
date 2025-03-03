@@ -26,7 +26,6 @@ public class OpenAccessibility : ModuleRules
 			new string[]
 			{
 				"Core",
-				"OpenAccessibilityCommunication",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -37,6 +36,7 @@ public class OpenAccessibility : ModuleRules
 			{
 				// Internal Plugin Modules
 				"OpenAccessibilityAnalytics",
+				"OpenAccessibilityCommunication",
 
 				// Core Modules
 				"CoreUObject",

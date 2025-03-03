@@ -11,7 +11,8 @@
 #include "AccessibilityWrappers/AccessibilityGraphEditorContext.h"
 #include "AccessibilityWrappers/AccessibilityGraphLocomotionContext.h"
 
-#include "PhraseTree/PhraseInputNode.h"
+#include "PhraseTree/PhraseIntInputNode.h"
+#include "PhraseTree/PhraseFloatInputNode.h"
 #include "PhraseTree/PhraseStringInputNode.h"
 #include "PhraseTree/PhraseDirectionalInputNode.h"
 #include "PhraseTree/PhraseContextNode.h"
@@ -43,7 +44,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 		MakeShared<FPhraseNode>(TEXT("SELECT"), 
 		TPhraseNodeArray {
 
-			MakeShared<FPhraseInputNode<int32>>(TEXT("SELECTION_INDEX"),
+			MakeShared<FPhraseIntInputNode>(TEXT("SELECTION_INDEX"),
 			TPhraseNodeArray {
 				
 				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddSelect))
@@ -70,7 +71,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 			MakeShared<FPhraseNode>(TEXT("REMOVE"),
 			TPhraseNodeArray {
 
-				MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+				MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
 				TPhraseNodeArray {
 
 					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddSearchRemove))
@@ -94,7 +95,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 			MakeShared<FPhraseScrollInputNode>(TEXT("DIRECTION"), 
 			TPhraseNodeArray {
 
-				MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+				MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
 				TPhraseNodeArray {
 
 					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::NodeAddScroll))
@@ -113,7 +114,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 			MakeShared<FPhraseNode>(TEXT("NODE"),
 			TPhraseNodeArray {
 
-				MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+				MakeShared<FPhraseIntInputNode>(TEXT("NODE_INDEX"),
 				TPhraseNodeArray {
 
 					MakeShared<FPhraseNode>(TEXT("MOVE"),
@@ -122,7 +123,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 						MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
 						TPhraseNodeArray {
 
-							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+							MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
 							TPhraseNodeArray {
 
 								MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::MoveNode))
@@ -143,7 +144,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 					MakeShared<FPhraseNode>(TEXT("PIN"),
 					TPhraseNodeArray {
 
-						MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+						MakeShared<FPhraseIntInputNode>(TEXT("PIN_INDEX"),
 						TPhraseNodeArray {
 
 							MakeShared<FPhraseNode>(TEXT("CONNECT"),
@@ -156,13 +157,13 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 									AddNodeContextChildren
 								),
 
-								MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+								MakeShared<FPhraseIntInputNode>(TEXT("NODE_INDEX"),
 								TPhraseNodeArray {
 
 									MakeShared<FPhraseNode>(TEXT("PIN"),
 									TPhraseNodeArray {
 
-										MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+										MakeShared<FPhraseIntInputNode>(TEXT("PIN_INDEX"),
 										TPhraseNodeArray {
 
 											MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinConnect))
@@ -178,12 +179,12 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 							MakeShared<FPhraseNode>(TEXT("DISCONNECT"),
 							TPhraseNodeArray {
 
-								MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+								MakeShared<FPhraseIntInputNode>(TEXT("NODE_INDEX"),
 								TPhraseNodeArray {
 									MakeShared<FPhraseNode>(TEXT("PIN"), 
 									TPhraseNodeArray {
 
-										MakeShared<FPhraseInputNode<int32>>(TEXT("PIN_INDEX"),
+										MakeShared<FPhraseIntInputNode>(TEXT("PIN_INDEX"),
 										TPhraseNodeArray {
 
 											MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::PinDisconnect))
@@ -230,7 +231,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 				MakeShared<FPhraseNode>(TEXT("SELECT"),
 				TPhraseNodeArray {
 
-					MakeShared<FPhraseInputNode<int32>>(TEXT("NODE_INDEX"),
+					MakeShared<FPhraseIntInputNode>(TEXT("NODE_INDEX"),
 					TPhraseNodeArray {
 
 						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionNodeToggle))
@@ -257,7 +258,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 						MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
 						TPhraseNodeArray {
 
-							MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"),
+							MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
 							TPhraseNodeArray {
 
 								MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::SelectionMove))
@@ -321,7 +322,7 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 					MakeShared<FPhraseNode>(TEXT("SELECT"),
 					TPhraseNodeArray {
 
-						MakeShared<FPhraseInputNode<int32>>(TEXT("INDEX"),
+						MakeShared<FPhraseIntInputNode>(TEXT("INDEX"),
 						TPhraseNodeArray {
 
 							MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionSelect))

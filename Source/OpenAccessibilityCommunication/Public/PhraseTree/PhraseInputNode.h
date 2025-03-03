@@ -7,8 +7,6 @@
 #include "PhraseTree/Utils.h"
 #include "OpenAccessibilityComLogging.h"
 
-#include "PhraseTree/Containers/Input/UParseIntInput.h"
-
 /**
  * 
  */
@@ -115,10 +113,7 @@ protected:
 	/// </summary>
 	/// <param name="InPhrase">- The Phrase To Check If It Meets Requirements.</param>
 	/// <returns>True, if the Phrase Meets Requirements. Otherwise False.</returns>
-	virtual bool MeetsInputRequirements(const FString& InPhrase)
-	{
-		return InPhrase.IsNumeric() || NumericParser::IsValidNumeric(InPhrase, false);
-	}
+	virtual bool MeetsInputRequirements(const FString& InPhrase) = 0;
 
 	/// <summary>
 	/// Records the Input onto the Parse Record.
@@ -126,22 +121,5 @@ protected:
 	/// <param name="InInput">- The Phrase To Record onto the Parse Record.</param>
 	/// <param name="OutParseRecord">- Returns the Updated ParseRecord.</param>
 	/// <returns>True, if the Input Was Successful in Recording. Otherwise False.</returns>
-	virtual bool RecordInput(const FString& InInput, FParseRecord& OutParseRecord)
-	{
-		return false;
-	}
-
-	template<int32> bool RecordInput(const FString& InInput, FParseRecord& OutParseRecord)
-	{
-		int32 Input = FCString::Atoi(*InInput);
-
-		UParseIntInput* ParseInput = MakeParseInput<UParseIntInput>();
-		ParseInput->SetValue(Input);
-
-		OutParseRecord.AddPhraseInput(BoundPhrase, ParseInput);
-
-		OnInputReceived.ExecuteIfBound(Input);
-
-		return true;
-	}
+	virtual bool RecordInput(const FString& InInput, FParseRecord& OutParseRecord) = 0;
 };

@@ -10,6 +10,8 @@
 
 #include "Algo/LevenshteinDistance.h"
 #include "Framework/Docking/TabManager.h"
+
+#include "PhraseTree/PhraseIntInputNode.h"
 #include "PhraseTree/PhraseStringInputNode.h"
 
 UWindowInteractionLibrary::UWindowInteractionLibrary(const FObjectInitializer& ObjectInitializer)
@@ -87,7 +89,7 @@ void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 			MakeShared<FPhraseNode>(TEXT("TOOLBAR"),
 			TPhraseNodeArray {
 
-				MakeShared<FPhraseInputNode<int32>>(TEXT("ITEM_INDEX"),
+				MakeShared<FPhraseIntInputNode>(TEXT("ITEM_INDEX"),
 				TPhraseNodeArray {
 
 					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SelectToolBarItem))
