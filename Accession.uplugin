@@ -1,8 +1,8 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "0.3.5",
-	"FriendlyName": "OpenAccessibility",
+	"VersionName": "0.3.4",
+	"FriendlyName": "Accession",
 	"Description": "",
 	"Category": "Other",
 	"CreatedBy": "F-Dudley",
@@ -16,17 +16,17 @@
 	"Installed": false,
 	"Modules": [
 		{
-			"Name": "OpenAccessibilityCommunication",
+			"Name": "AccessionCommunication",
 			"Type": "Editor",
 			"LoadingPhase": "PostEngineInit"
 		},
 		{
-			"Name": "OpenAccessibility",
+			"Name": "Accession",
 			"Type": "Editor",
 			"LoadingPhase": "PostEngineInit"
 		},
 		{
-			"Name": "OpenAccessibilityAnalytics",
+			"Name": "Accession",
 			"Type": "Editor",
 			"LoadingPhase": "Default"
 		}
