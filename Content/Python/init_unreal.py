@@ -23,12 +23,12 @@ def is_dependency_satisfied(dependency: str) -> bool:
 def install_dependencies(deps_to_install: list[str]):
 
     unreal.log_warning(
-        f"|| OpenAccessibility Python || Installing Dependencies: {deps_to_install} ||"
+        f"|| Accession Python || Installing Dependencies: {deps_to_install} ||"
     )
 
     with unreal.ScopedSlowTask(
         len(deps_to_install),
-        "OpenAccessibility Installing Python Dependencies",
+        "Accession Installing Python Dependencies",
         enabled=True,
     ) as install_ui:
 
@@ -63,7 +63,7 @@ def install_dependencies(deps_to_install: list[str]):
 
 ## ------------------------------
 
-unreal.log("|| OpenAccessibility Python || Initializing ||")
+unreal.log("|| Accession Python || Initializing ||")
 
 ## ------------------------------
 
@@ -82,9 +82,9 @@ if missing_deps:
 
 # Initialize the Python Runtime
 
-unreal.log("|| OpenAccessibility Python || Starting Python Runtime ||")
+unreal.log("|| Accession Python || Starting Python Runtime ||")
 
-import OpenAccessibilityPy as OAPy
+import AccessionPy as OAPy
 
 # Run Utilities for Better Project Runtime.
 
@@ -93,6 +93,6 @@ import OpenAccessibilityPy as OAPy
 # OAPy.forward_CUDA_CUDNN_to_path()
 
 # Initialize the Runtime
-OpenAccessibilityPy = OAPy.OpenAccessibilityPy()
+AccessionPy = OAPy.OpenAccessibilityPy()
 
 ## ------------------------------

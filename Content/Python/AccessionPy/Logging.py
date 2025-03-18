@@ -18,7 +18,7 @@ def Log(message: str, log_level: LogLevel = LogLevel.INFO):
         log_level (LogLevel, optional): Log Level of the Message. Defaults to LogLevel.INFO.
     """
 
-    message = f"|| LogOpenAccessibilityPy || {message} ||"
+    message = f"|| LogAccessionPy || {message} ||"
 
     try:
         from unreal import log, log_warning, log_error

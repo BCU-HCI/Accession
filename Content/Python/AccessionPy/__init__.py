@@ -31,8 +31,8 @@ def forward_CUDA_CUDNN_to_path():
         append_paths_to_library_path(get_child_directories(path, depth=1))
 
 
-class OpenAccessibilityPy:
-    """Python Runtime Class for Open Accessbility Plugin"""
+class AccessionPy:
+    """Python Runtime Class for Accession Plugin"""
 
     def __init__(
         self,
@@ -45,7 +45,7 @@ class OpenAccessibilityPy:
         # Communication Specifics
         poll_timeout: int = 10,
     ):
-        """Constructor of Python Runtime Class for Open Accessibility Plugin
+        """Constructor of Python Runtime Class for Accession Plugin
 
         Args:
             worker_count (int, optional): Amount of Thread Workers for Audio Transcription. Defaults to 2.
@@ -77,7 +77,7 @@ class OpenAccessibilityPy:
         self.pyshutdown_handle = ue.register_python_shutdown_callback(self.Shutdown)
 
     def __del__(self):
-        """Destructor of Python Runtime Class for Open Accessibility Plugin"""
+        """Destructor of Python Runtime Class for Accession Plugin"""
 
         self.Shutdown()
 
