@@ -18,9 +18,12 @@ var classUNodeInteractionLibrary =
     [ "NodeIndexFocus", "classUNodeInteractionLibrary.html#aae20db1587bbbad836cdfe2f9e4508d1", null ],
     [ "PinConnect", "classUNodeInteractionLibrary.html#a4e92dd11b9244d31747375e282da3025", null ],
     [ "PinDisconnect", "classUNodeInteractionLibrary.html#a08ec552d13f1681e56166b06ae30f2d7", null ],
+    [ "PinResetDefault", "classUNodeInteractionLibrary.html#aaa274f6c9a4be503a54df96214d89c5c", null ],
+    [ "PinSetDefault", "classUNodeInteractionLibrary.html#a59a22a56946aeb9166d0af4aee3ad801", null ],
     [ "SelectionAlignment", "classUNodeInteractionLibrary.html#a143c68ec957726f271f5c6fe73cd4270", null ],
     [ "SelectionComment", "classUNodeInteractionLibrary.html#a4667a8ba09e2f86b2cb8c1ce99691e0d", null ],
     [ "SelectionMove", "classUNodeInteractionLibrary.html#a8a4f4a6a9922e7e128cb38c31ecbc988", null ],
+    [ "SelectionNodeAll", "classUNodeInteractionLibrary.html#ab252852a0af9ddaa3e8ee6296ad9521d", null ],
     [ "SelectionNodeToggle", "classUNodeInteractionLibrary.html#a9feb857b99c6a346fc0a7a3592fb9c4c", null ],
     [ "SelectionReset", "classUNodeInteractionLibrary.html#a2f412ce3d7e7f87bb884bb025bc269ac", null ],
     [ "SelectionStraighten", "classUNodeInteractionLibrary.html#add882670a79b89a4317c531f2314b042", null ]

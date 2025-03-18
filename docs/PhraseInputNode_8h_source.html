@@ -100,43 +100,122 @@ $(document).ready(function(){initNavTree('PhraseInputNode_8h_source.html',''); i
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;PhraseTree/PhraseNode.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> InputType = <span class="keywordtype">int</span>32&gt;</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classFPhraseInputNode.html">   12</a></span><span class="keyword">class </span>OPENACCESSIBILITYCOMMUNICATION_API <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a> : <span class="keyword">public</span> <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a>(<span class="keyword">const</span> TCHAR* InInputString);</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a>(<span class="keyword">const</span> TCHAR* InInputString, TPhraseNodeArray InChildNodes);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a>(<span class="keyword">const</span> TCHAR* InInputString, TDelegate&lt;<span class="keywordtype">void</span>(<a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; Record)&gt; InOnPhraseParsed, TPhraseNodeArray InChildNodes);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a>(<span class="keyword">const</span> TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate&lt;<span class="keywordtype">void</span> (InputType Input)&gt; InOnInputRecieved);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a>(<span class="keyword">const</span> TCHAR* InInputString, TDelegate&lt;<span class="keywordtype">void</span>(<a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; Record)&gt; InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate&lt;<span class="keywordtype">void</span>(InputType Input)&gt; InOnInputRecieved);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classFPhraseInputNode.html">~FPhraseInputNode</a>();</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;PhraseTree/Utils.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;OpenAccessibilityComLogging.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> InputType = <span class="keywordtype">int</span>32&gt;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classFPhraseInputNode.html">   14</a></span><span class="keyword">class </span>OPENACCESSIBILITYCOMMUNICATION_API <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a> : <span class="keyword">public</span> <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a>(<span class="keyword">const</span> TCHAR* InInputString)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    }</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">// FPhraseNode Implementation</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">RequiresPhrase</a>(<span class="keyword">const</span> FString InPhrase) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">RequiresPhrase</a>(<span class="keyword">const</span> FString InPhrase, int32&amp; OutDistance) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a>(<span class="keyword">const</span> TCHAR* InInputString, TPhraseNodeArray InChildNodes)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InChildNodes)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">virtual</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a> <a class="code hl_function" href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">ParsePhrase</a>(TArray&lt;FString&gt;&amp; InPhraseArray, <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; InParseRecord) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// End FPhraseNode Implementation</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a>(<span class="keyword">const</span> TCHAR* InInputString, TDelegate&lt;<span class="keywordtype">void</span>(<a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; Record)&gt; InOnPhraseParsed, TPhraseNodeArray InChildNodes)</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InOnPhraseParsed, InChildNodes)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    {</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    TDelegate&lt;void(InputType ReceivedInput)&gt; OnInputReceived;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> MeetsInputRequirements(<span class="keyword">const</span> FString&amp; InPhrase);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> RecordInput(<span class="keyword">const</span> FString&amp; InInput, <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; OutParseRecord);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
-<div class="ttc" id="aclassFPhraseInputNode_html"><div class="ttname"><a href="classFPhraseInputNode.html">FPhraseInputNode</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseInputNode_8h_source.html#l00012">PhraseInputNode.h:13</a></div></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a>(<span class="keyword">const</span> TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate&lt;<span class="keywordtype">void</span> (InputType Input)&gt; InOnInputRecieved)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InChildNodes)</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        OnInputReceived = InOnInputRecieved;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <a class="code hl_class" href="classFPhraseInputNode.html">FPhraseInputNode</a>(<span class="keyword">const</span> TCHAR* InInputString, TDelegate&lt;<span class="keywordtype">void</span>(<a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; Record)&gt; InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate&lt;<span class="keywordtype">void</span>(InputType Input)&gt; InOnInputRecieved)</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InOnPhraseParsed, InChildNodes)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        OnInputReceived = InOnInputRecieved;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classFPhraseInputNode.html">~FPhraseInputNode</a>()<span class="keyword"> override</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// FPhraseNode Implementation</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classFPhraseInputNode.html#a1bb27ed6d11dbabd6d5afbf9e7f12389">   54</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseInputNode.html#a1bb27ed6d11dbabd6d5afbf9e7f12389">RequiresPhrase</a>(<span class="keyword">const</span> FString InPhrase)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">return</span> MeetsInputRequirements(InPhrase);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classFPhraseInputNode.html#a2ac441d8499400c801642b2862f264b7">   59</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseInputNode.html#a2ac441d8499400c801642b2862f264b7">RequiresPhrase</a>(<span class="keyword">const</span> FString InPhrase, int32&amp; OutDistance)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordtype">bool</span> bMeetsRequirements = MeetsInputRequirements(InPhrase);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        OutDistance = bMeetsRequirements ? 0 : INT32_MAX;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">return</span> bMeetsRequirements;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classFPhraseInputNode.html#a956e3ce95039fa25e872352dbc4baeae">   67</a></span>    <span class="keyword">virtual</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a> <a class="code hl_function" href="classFPhraseInputNode.html#a956e3ce95039fa25e872352dbc4baeae">ParsePhrase</a>(TArray&lt;FString&gt;&amp; InPhraseArray, <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; InParseRecord)<span class="keyword"> override</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keywordflow">if</span> (InPhraseArray.Num() == 0)</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Emptied Phrase Array ||&quot;</span>))</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_REQUIRES_MORE, AsShared());</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">if</span> (MeetsInputRequirements(InPhraseArray.Last()))</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <span class="comment">// Get the Input String.</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            FString InputToRecord = InPhraseArray.Pop();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="comment">// Append the Input String to the Record.</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            InParseRecord.AddPhraseString(InputToRecord);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            <span class="keywordflow">if</span> (!InputToRecord.IsNumeric() &amp;&amp; <a class="code hl_function" href="classNumericParser.html#a120339ff998f4d21fd86f65490bf711f">NumericParser::IsValidNumeric</a>(InputToRecord, <span class="keyword">false</span>))</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                <a class="code hl_function" href="classNumericParser.html#ab26286f6004a5ce409ee0f915daca8ea">NumericParser::StringToNumeric</a>(InputToRecord, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            <span class="keywordflow">if</span> (!RecordInput(InputToRecord, InParseRecord))</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Unable to Record Input ||&quot;</span>))</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                    <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_UNABLE_TO_PARSE, AsShared());</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            OnPhraseParsed.ExecuteIfBound(InParseRecord);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">ParseChildren</a>(InPhraseArray, InParseRecord);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_UNABLE_TO_PARSE, AsShared());</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    }</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="comment">// End FPhraseNode Implementation</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    TDelegate&lt;void(InputType ReceivedInput)&gt; OnInputReceived;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classFPhraseInputNode.html#a60704404fd0425bddb1fe0e5d34a8051">  116</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseInputNode.html#a60704404fd0425bddb1fe0e5d34a8051">MeetsInputRequirements</a>(<span class="keyword">const</span> FString&amp; InPhrase) = 0;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classFPhraseInputNode.html#ac24bf8bed399876836d9d60d5eef516b">  124</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseInputNode.html#ac24bf8bed399876836d9d60d5eef516b">RecordInput</a>(<span class="keyword">const</span> FString&amp; InInput, <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; OutParseRecord) = 0;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>};</div>
+<div class="ttc" id="aclassFPhraseInputNode_html"><div class="ttname"><a href="classFPhraseInputNode.html">FPhraseInputNode</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseInputNode_8h_source.html#l00014">PhraseInputNode.h:15</a></div></div>
+<div class="ttc" id="aclassFPhraseInputNode_html_a1bb27ed6d11dbabd6d5afbf9e7f12389"><div class="ttname"><a href="classFPhraseInputNode.html#a1bb27ed6d11dbabd6d5afbf9e7f12389">FPhraseInputNode::RequiresPhrase</a></div><div class="ttdeci">virtual bool RequiresPhrase(const FString InPhrase) override</div><div class="ttdoc">Checks if the Node Requires the Given Phrase.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseInputNode_8h_source.html#l00054">PhraseInputNode.h:54</a></div></div>
+<div class="ttc" id="aclassFPhraseInputNode_html_a2ac441d8499400c801642b2862f264b7"><div class="ttname"><a href="classFPhraseInputNode.html#a2ac441d8499400c801642b2862f264b7">FPhraseInputNode::RequiresPhrase</a></div><div class="ttdeci">virtual bool RequiresPhrase(const FString InPhrase, int32 &amp;OutDistance) override</div><div class="ttdoc">Checks if the Node Requires the Given Phrase, and Returns the Distance of the Phrase.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseInputNode_8h_source.html#l00059">PhraseInputNode.h:59</a></div></div>
+<div class="ttc" id="aclassFPhraseInputNode_html_a60704404fd0425bddb1fe0e5d34a8051"><div class="ttname"><a href="classFPhraseInputNode.html#a60704404fd0425bddb1fe0e5d34a8051">FPhraseInputNode::MeetsInputRequirements</a></div><div class="ttdeci">virtual bool MeetsInputRequirements(const FString &amp;InPhrase)=0</div><div class="ttdoc">Checks if the Given Phrase Meets Requirements for usage as Input. In Correlation to this Nodes Input ...</div></div>
+<div class="ttc" id="aclassFPhraseInputNode_html_a956e3ce95039fa25e872352dbc4baeae"><div class="ttname"><a href="classFPhraseInputNode.html#a956e3ce95039fa25e872352dbc4baeae">FPhraseInputNode::ParsePhrase</a></div><div class="ttdeci">virtual FParseResult ParsePhrase(TArray&lt; FString &gt; &amp;InPhraseArray, FParseRecord &amp;InParseRecord) override</div><div class="ttdoc">Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseInputNode_8h_source.html#l00067">PhraseInputNode.h:67</a></div></div>
+<div class="ttc" id="aclassFPhraseInputNode_html_ac24bf8bed399876836d9d60d5eef516b"><div class="ttname"><a href="classFPhraseInputNode.html#ac24bf8bed399876836d9d60d5eef516b">FPhraseInputNode::RecordInput</a></div><div class="ttdeci">virtual bool RecordInput(const FString &amp;InInput, FParseRecord &amp;OutParseRecord)=0</div><div class="ttdoc">Records the Input onto the Parse Record.</div></div>
 <div class="ttc" id="aclassFPhraseNode_html"><div class="ttname"><a href="classFPhraseNode.html">FPhraseNode</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00054">PhraseNode.h:55</a></div></div>
-<div class="ttc" id="aclassFPhraseNode_html_a15b600afd86bb99477af360a5c169246"><div class="ttname"><a href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">FPhraseNode::RequiresPhrase</a></div><div class="ttdeci">virtual bool RequiresPhrase(const FString InPhrase)</div><div class="ttdoc">Checks if the Node Requires the Given Phrase.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00053">PhraseNode.cpp:53</a></div></div>
-<div class="ttc" id="aclassFPhraseNode_html_a9e108bf1a2f579ed03277540c01a36da"><div class="ttname"><a href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode::ParsePhrase</a></div><div class="ttdeci">virtual FParseResult ParsePhrase(TArray&lt; FString &gt; &amp;InPhraseWordArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00065">PhraseNode.cpp:65</a></div></div>
+<div class="ttc" id="aclassFPhraseNode_html_a671f4121e9df6769775bae880a845765"><div class="ttname"><a href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">FPhraseNode::ParseChildren</a></div><div class="ttdeci">virtual FParseResult ParseChildren(TArray&lt; FString &gt; &amp;InPhraseArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses The Children Node of this Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00188">PhraseNode.cpp:188</a></div></div>
+<div class="ttc" id="aclassNumericParser_html_a120339ff998f4d21fd86f65490bf711f"><div class="ttname"><a href="classNumericParser.html#a120339ff998f4d21fd86f65490bf711f">NumericParser::IsValidNumeric</a></div><div class="ttdeci">static bool IsValidNumeric(const FString &amp;StringToCheck, bool ConvertToUpper=true)</div><div class="ttdoc">Checks if the String is a Valid Numeric in Comparison to its String Permutations.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00007">Utils.cpp:7</a></div></div>
+<div class="ttc" id="aclassNumericParser_html_ab26286f6004a5ce409ee0f915daca8ea"><div class="ttname"><a href="classNumericParser.html#ab26286f6004a5ce409ee0f915daca8ea">NumericParser::StringToNumeric</a></div><div class="ttdeci">static void StringToNumeric(FString &amp;NumericString, bool ConvertToUpper=true)</div><div class="ttdoc">Converts a String to its Numeric Permutation.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00012">Utils.cpp:12</a></div></div>
 <div class="ttc" id="astructFParseRecord_html"><div class="ttname"><a href="structFParseRecord.html">FParseRecord</a></div><div class="ttdoc">The Collected Information from the Propogation of the Phrase through the tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00016">ParseRecord.h:17</a></div></div>
-<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00051">ParseResult.h:52</a></div></div>
+<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00055">ParseResult.h:56</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

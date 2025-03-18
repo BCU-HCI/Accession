@@ -106,23 +106,14 @@ Inheritance diagram for FPhraseNode:</div>
  <div class="center">
   <img src="classFPhraseNode.png" usemap="#FPhraseNode_map" alt=""/>
   <map id="FPhraseNode_map" name="FPhraseNode_map">
-<area href="classFPhraseInputNode.html" alt="FPhraseInputNode&lt; int32 &gt;" shape="rect" coords="668,112,992,136"/>
-<area href="classFPhraseInputNode.html" alt="FPhraseInputNode&lt; FString &gt;" shape="rect" coords="1670,112,1994,136"/>
-<area href="classFPhraseContextMenuNode.html" alt="FPhraseContextMenuNode&lt; ContextMenuType &gt;" shape="rect" coords="2004,112,2328,136"/>
-<area href="classFPhraseContextNode.html" alt="FPhraseContextNode&lt; ContextType &gt;" shape="rect" coords="2338,112,2662,136"/>
-<area href="classFPhraseEventNode.html" alt="FPhraseEventNode" shape="rect" coords="2672,112,2996,136"/>
-<area href="classFPhraseInputNode.html" alt="FPhraseInputNode&lt; InputType &gt;" shape="rect" coords="3006,112,3330,136"/>
-<area href="classFPhraseTree.html" alt="FPhraseTree" shape="rect" coords="3340,112,3664,136"/>
-<area href="classFPhraseEnumInputNode.html" alt="FPhraseEnumInputNode&lt; EPhrase2DDirectionalInput &gt;" shape="rect" coords="0,168,324,192"/>
-<area href="classFPhraseEnumInputNode.html" alt="FPhraseEnumInputNode&lt; EPhraseDirectionalInput &gt;" shape="rect" coords="334,168,658,192"/>
-<area href="classFPhraseEnumInputNode.html" alt="FPhraseEnumInputNode&lt; EPhrasePositionalInput &gt;" shape="rect" coords="668,168,992,192"/>
-<area href="classFPhraseEnumInputNode.html" alt="FPhraseEnumInputNode&lt; EPhraseScrollInput &gt;" shape="rect" coords="1002,168,1326,192"/>
-<area href="classFPhraseEnumInputNode.html" alt="FPhraseEnumInputNode&lt; TEnum &gt;" shape="rect" coords="1336,168,1660,192"/>
-<area href="classFPhraseStringInputNode.html" alt="FPhraseStringInputNode" shape="rect" coords="1670,168,1994,192"/>
-<area href="classFPhrase2DDirectionalInputNode.html" alt="FPhrase2DDirectionalInputNode" shape="rect" coords="0,224,324,248"/>
-<area href="classFPhraseDirectionalInputNode.html" alt="FPhraseDirectionalInputNode" shape="rect" coords="334,224,658,248"/>
-<area href="classFPhrasePositionalInputNode.html" alt="FPhrasePositionalInputNode" shape="rect" coords="668,224,992,248"/>
-<area href="classFPhraseScrollInputNode.html" alt="FPhraseScrollInputNode" shape="rect" coords="1002,224,1326,248"/>
+<area href="classFPhraseInputNode.html" alt="FPhraseInputNode&lt; int32 &gt;" shape="rect" coords="300,112,590,136"/>
+<area href="classFPhraseInputNode.html" alt="FPhraseInputNode&lt; float &gt;" shape="rect" coords="300,168,590,192"/>
+<area href="classFPhraseInputNode.html" alt="FPhraseInputNode&lt; FString &gt;" shape="rect" coords="300,224,590,248"/>
+<area href="classFPhraseContextMenuNode.html" alt="FPhraseContextMenuNode&lt; ContextMenuType &gt;" shape="rect" coords="300,280,590,304"/>
+<area href="classFPhraseContextNode.html" alt="FPhraseContextNode&lt; ContextType &gt;" shape="rect" coords="300,336,590,360"/>
+<area href="classFPhraseEventNode.html" alt="FPhraseEventNode" shape="rect" coords="300,392,590,416"/>
+<area href="classFPhraseInputNode.html" alt="FPhraseInputNode&lt; InputType &gt;" shape="rect" coords="300,448,590,472"/>
+<area href="classFPhraseTree.html" alt="FPhraseTree" shape="rect" coords="300,504,590,528"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -768,7 +759,7 @@ Protected Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  226</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_UNABLE_TO_PARSE, AsShared());</div>
 <div class="line"><span class="lineno">  227</span>}</div>
 <div class="ttc" id="aclassFPhraseNode_html_a15b600afd86bb99477af360a5c169246"><div class="ttname"><a href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">FPhraseNode::RequiresPhrase</a></div><div class="ttdeci">virtual bool RequiresPhrase(const FString InPhrase)</div><div class="ttdoc">Checks if the Node Requires the Given Phrase.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00053">PhraseNode.cpp:53</a></div></div>
-<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00051">ParseResult.h:52</a></div></div>
+<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00055">ParseResult.h:56</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -816,7 +807,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The Result of the Parsing of the Phrase, and any Propagation.</dd></dl>
 
-<p>Reimplemented in <a class="el" href="classFPhraseEventNode.html#a14c76a68138b843355fe528d6fdcef91">FPhraseEventNode</a>, <a class="el" href="classFPhraseInputNode.html#a2789bf16d12a24c036157efeca2fb84b">FPhraseInputNode&lt; InputType &gt;</a>, <a class="el" href="classFPhraseInputNode.html#a2789bf16d12a24c036157efeca2fb84b">FPhraseInputNode&lt; int32 &gt;</a>, <a class="el" href="classFPhraseInputNode.html#a2789bf16d12a24c036157efeca2fb84b">FPhraseInputNode&lt; FString &gt;</a>, <a class="el" href="classFPhraseTree.html#af9f8e635d85ce7fed5a4f782f88a3ba8">FPhraseTree</a>, <a class="el" href="classFPhraseContextMenuNode.html#adf2f7046bea69db7f20577b00d9a0b7d">FPhraseContextMenuNode&lt; ContextMenuType &gt;</a>, and <a class="el" href="classFPhraseContextNode.html#a43403680a2324f8461aea97c2627c8b8">FPhraseContextNode&lt; ContextType &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="classFPhraseEventNode.html#a14c76a68138b843355fe528d6fdcef91">FPhraseEventNode</a>, <a class="el" href="classFPhraseInputNode.html#a956e3ce95039fa25e872352dbc4baeae">FPhraseInputNode&lt; InputType &gt;</a>, <a class="el" href="classFPhraseInputNode.html#a956e3ce95039fa25e872352dbc4baeae">FPhraseInputNode&lt; int32 &gt;</a>, <a class="el" href="classFPhraseInputNode.html#a956e3ce95039fa25e872352dbc4baeae">FPhraseInputNode&lt; float &gt;</a>, <a class="el" href="classFPhraseInputNode.html#a956e3ce95039fa25e872352dbc4baeae">FPhraseInputNode&lt; FString &gt;</a>, <a class="el" href="classFPhraseTree.html#af9f8e635d85ce7fed5a4f782f88a3ba8">FPhraseTree</a>, <a class="el" href="classFPhraseContextMenuNode.html#adf2f7046bea69db7f20577b00d9a0b7d">FPhraseContextMenuNode&lt; ContextMenuType &gt;</a>, and <a class="el" href="classFPhraseContextNode.html#a43403680a2324f8461aea97c2627c8b8">FPhraseContextNode&lt; ContextType &gt;</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="PhraseNode_8cpp_source.html#l00065">65</a> of file <a class="el" href="PhraseNode_8cpp_source.html">PhraseNode.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   66</span>                                                                   {</div>
@@ -987,7 +978,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Phrase is Required. Otherwise False.</dd></dl>
 
-<p>Reimplemented in <a class="el" href="classFPhraseEventNode.html#a0f0d538bb4f1836dea0a337a42f91b2c">FPhraseEventNode</a>, <a class="el" href="classFPhraseInputNode.html#a320d0a32dbb9b603b684d03a39be4d6e">FPhraseInputNode&lt; InputType &gt;</a>, <a class="el" href="classFPhraseInputNode.html#a320d0a32dbb9b603b684d03a39be4d6e">FPhraseInputNode&lt; int32 &gt;</a>, and <a class="el" href="classFPhraseInputNode.html#a320d0a32dbb9b603b684d03a39be4d6e">FPhraseInputNode&lt; FString &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="classFPhraseEventNode.html#a0f0d538bb4f1836dea0a337a42f91b2c">FPhraseEventNode</a>, <a class="el" href="classFPhraseInputNode.html#a1bb27ed6d11dbabd6d5afbf9e7f12389">FPhraseInputNode&lt; InputType &gt;</a>, <a class="el" href="classFPhraseInputNode.html#a1bb27ed6d11dbabd6d5afbf9e7f12389">FPhraseInputNode&lt; int32 &gt;</a>, <a class="el" href="classFPhraseInputNode.html#a1bb27ed6d11dbabd6d5afbf9e7f12389">FPhraseInputNode&lt; float &gt;</a>, and <a class="el" href="classFPhraseInputNode.html#a1bb27ed6d11dbabd6d5afbf9e7f12389">FPhraseInputNode&lt; FString &gt;</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="PhraseNode_8cpp_source.html#l00053">53</a> of file <a class="el" href="PhraseNode_8cpp_source.html">PhraseNode.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   54</span>{</div>
@@ -1040,7 +1031,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Phrase is Required. Otherwise False.</dd></dl>
 
-<p>Reimplemented in <a class="el" href="classFPhraseEventNode.html#a71935559fd7b3f288ce89fdca42be340">FPhraseEventNode</a>, <a class="el" href="classFPhraseInputNode.html#a8f84d569e4900f11631094bc7d889564">FPhraseInputNode&lt; InputType &gt;</a>, <a class="el" href="classFPhraseInputNode.html#a8f84d569e4900f11631094bc7d889564">FPhraseInputNode&lt; int32 &gt;</a>, and <a class="el" href="classFPhraseInputNode.html#a8f84d569e4900f11631094bc7d889564">FPhraseInputNode&lt; FString &gt;</a>.</p>
+<p>Reimplemented in <a class="el" href="classFPhraseEventNode.html#a71935559fd7b3f288ce89fdca42be340">FPhraseEventNode</a>, <a class="el" href="classFPhraseInputNode.html#a2ac441d8499400c801642b2862f264b7">FPhraseInputNode&lt; InputType &gt;</a>, <a class="el" href="classFPhraseInputNode.html#a2ac441d8499400c801642b2862f264b7">FPhraseInputNode&lt; int32 &gt;</a>, <a class="el" href="classFPhraseInputNode.html#a2ac441d8499400c801642b2862f264b7">FPhraseInputNode&lt; float &gt;</a>, and <a class="el" href="classFPhraseInputNode.html#a2ac441d8499400c801642b2862f264b7">FPhraseInputNode&lt; FString &gt;</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="PhraseNode_8cpp_source.html#l00058">58</a> of file <a class="el" href="PhraseNode_8cpp_source.html">PhraseNode.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   59</span>{</div>

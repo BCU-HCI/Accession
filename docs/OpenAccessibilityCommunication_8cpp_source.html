@@ -175,170 +175,179 @@ $(document).ready(function(){initNavTree('OpenAccessibilityCommunication_8cpp_so
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="comment">// Receive the Detected Event, with separate transcriptions and metadata. </span></div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a7918db39c3d055f0b0479caa1e2a3703">SocketServer</a>-&gt;RecvStringMultipartWithMeta(RecvStrings, RecvMetadata))</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        {</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            OA_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;TRANSCRIPTION RECIEVED&quot;</span>), TEXT(<span class="stringliteral">&quot;Recieved Multipart - Message Count: %d&quot;</span>), RecvStrings.Num());</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            <span class="comment">// Send Received Transcriptions to any bound events.</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#ae37e1243a57b9774b84cfcfd3c4b2374">OnTranscriptionRecieved</a>.Broadcast(RecvStrings);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        }</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(<span class="keyword">const</span> FKeyEvent&amp; InKeyEvent)</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>{</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="comment">// If the Space Key is pressed, we will send a request to the Accessibility Server</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordflow">if</span> (InKeyEvent.GetKey() == EKeys::SpaceBar)</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    {</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordflow">if</span> (InKeyEvent.IsShiftDown())</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            OA_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;AudioCapture Change&quot;</span>), TEXT(<span class="stringliteral">&quot;Stopping Audio Capture&quot;</span>));</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a0b9517bb36ae5a96308dd290f7b57f1f">StopCapturingAudio</a>();</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        }</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        {</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>            OA_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;AudioCapture Change&quot;</span>), TEXT(<span class="stringliteral">&quot;Starting Audio Capture&quot;</span>));</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>            <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a7d1368be18287e1f8c288c81d571142d">StartCapturingAudio</a>();</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        }</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    }</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>}</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classFOpenAccessibilityCommunicationModule.html#ab0d42e5090aff0d8adfbbe0047ac898a">  110</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab0d42e5090aff0d8adfbbe0047ac898a">FOpenAccessibilityCommunicationModule::TranscribeWaveForm</a>(<span class="keyword">const</span> TArray&lt;float&gt; AudioBufferToTranscribe)</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>{</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">if</span> (AudioBufferToTranscribe.Num() == 0)</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    {</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Transcription Ready || Audio Buffer is Empty ||&quot;</span>));</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            OA_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;TRANSCRIPTION RECEIVED&quot;</span>), TEXT(<span class="stringliteral">&quot;Received Multipart - Message Count: %d&quot;</span>), RecvStrings.Num());</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; RecvStrings.Num(); i++)</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                OA_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;TRANSCRIPTION RECEIVED&quot;</span>), TEXT(<span class="stringliteral">&quot;Transcription - %d: { %s }&quot;</span>), i, *RecvStrings[i]);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            <span class="comment">// Send Received Transcriptions to any bound events.</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#ae37e1243a57b9774b84cfcfd3c4b2374">OnTranscriptionRecieved</a>.Broadcast(RecvStrings);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>}</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(<span class="keyword">const</span> FKeyEvent&amp; InKeyEvent)</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>{</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    FKey EventKey = InKeyEvent.GetKey();</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">bool</span> isTargetKey = EventKey == EKeys::LeftAlt || EventKey == EKeys::RightAlt;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// If the Voice Command Key is Pressed, Toggle Audio Capture.</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">if</span> (isTargetKey &amp;&amp; !InKeyEvent.IsRepeat())</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    {</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a19164195b0f4762910b909ba2dd15582">IsCapturingAudio</a>())</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>            OA_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;AudioCapture Change&quot;</span>), TEXT(<span class="stringliteral">&quot;Starting Audio Capture&quot;</span>));</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a7d1368be18287e1f8c288c81d571142d">StartCapturingAudio</a>();</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            OA_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;AudioCapture Change&quot;</span>), TEXT(<span class="stringliteral">&quot;Stopping Audio Capture&quot;</span>));</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>            <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a0b9517bb36ae5a96308dd290f7b57f1f">StopCapturingAudio</a>();</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        }</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    PrevAudioBuffer = TArray(AudioBufferToTranscribe);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||&quot;</span>), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="comment">// Create Metadata of Audio Source.</span></div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    TSharedPtr&lt;FJsonObject&gt; AudioBufferMetadata = MakeShared&lt;FJsonObject&gt;();</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    AudioBufferMetadata-&gt;SetNumberField(TEXT(<span class="stringliteral">&quot;sample_rate&quot;</span>), <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">GetAudioCaptureSampleRate</a>());</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    AudioBufferMetadata-&gt;SetNumberField(TEXT(<span class="stringliteral">&quot;num_channels&quot;</span>), <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">GetAudioCaptureNumChannels</a>());</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    <span class="keywordtype">bool</span> bArrayMessageSent = <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a7918db39c3d055f0b0479caa1e2a3703">SocketServer</a>-&gt;SendArrayMessageWithMeta(AudioBufferToTranscribe, AudioBufferMetadata.ToSharedRef(), ComSendFlags::none);</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    OA_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;TRANSCRIPTION SENT&quot;</span>), TEXT(<span class="stringliteral">&quot;{%s} Send Audiobuffer (float x %d / %d Hz / %d channels)&quot;</span>),</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        bArrayMessageSent ? TEXT(<span class="stringliteral">&quot;Success&quot;</span>) : TEXT(<span class="stringliteral">&quot;Failed&quot;</span>),</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        AudioBufferToTranscribe.Num(), <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">GetAudioCaptureSampleRate</a>(), <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">GetAudioCaptureNumChannels</a>());</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>}</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::BuildPhraseTree()</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>{</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="comment">// Initialize the Phrase Tree</span></div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#add0625191e28119d5d4231e08df02e8c">PhraseTree</a> = MakeShared&lt;FPhraseTree&gt;();</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    PhraseTreePhraseRecievedHandle = <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#ae37e1243a57b9774b84cfcfd3c4b2374">OnTranscriptionRecieved</a></div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        .AddRaw(<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#add0625191e28119d5d4231e08df02e8c">PhraseTree</a>.Get(), &amp;<a class="code hl_function" href="classFPhraseTree.html#af915498384e11d4c9b1e9f0125e9a615">FPhraseTree::ParseTranscription</a>);</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a> = NewObject&lt;UPhraseTreeUtils&gt;();</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#aa4a1e4c59b4b246304e52d93344874fa">SetPhraseTree</a>(<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#add0625191e28119d5d4231e08df02e8c">PhraseTree</a>.ToSharedRef());</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;AddToRoot();</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>}</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::RegisterConsoleCommands()</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>{</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <span class="comment">// Audio Commands</span></div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.ShowAudioSampleRate&quot;</span>),</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        TEXT(<span class="stringliteral">&quot;Logs the Number of Samples being captured, from user input.&quot;</span>), </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classFOpenAccessibilityCommunicationModule.html#ab0d42e5090aff0d8adfbbe0047ac898a">  118</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab0d42e5090aff0d8adfbbe0047ac898a">FOpenAccessibilityCommunicationModule::TranscribeWaveForm</a>(<span class="keyword">const</span> TArray&lt;float&gt; AudioBufferToTranscribe)</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>{</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordflow">if</span> (AudioBufferToTranscribe.Num() == 0)</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Transcription Ready || Audio Buffer is Empty ||&quot;</span>));</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    PrevAudioBuffer = TArray(AudioBufferToTranscribe);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||&quot;</span>), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// Create Metadata of Audio Source.</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    TSharedPtr&lt;FJsonObject&gt; AudioBufferMetadata = MakeShared&lt;FJsonObject&gt;();</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    AudioBufferMetadata-&gt;SetNumberField(TEXT(<span class="stringliteral">&quot;sample_rate&quot;</span>), <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">GetAudioCaptureSampleRate</a>());</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    AudioBufferMetadata-&gt;SetNumberField(TEXT(<span class="stringliteral">&quot;num_channels&quot;</span>), <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">GetAudioCaptureNumChannels</a>());</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keywordtype">bool</span> bArrayMessageSent = <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a7918db39c3d055f0b0479caa1e2a3703">SocketServer</a>-&gt;SendArrayMessageWithMeta(AudioBufferToTranscribe, AudioBufferMetadata.ToSharedRef(), ComSendFlags::none);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    OA_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;TRANSCRIPTION SENT&quot;</span>), TEXT(<span class="stringliteral">&quot;{%s} Send Audiobuffer (float x %d / %d Hz / %d channels)&quot;</span>),</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        bArrayMessageSent ? TEXT(<span class="stringliteral">&quot;Success&quot;</span>) : TEXT(<span class="stringliteral">&quot;Failed&quot;</span>),</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        AudioBufferToTranscribe.Num(), <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">GetAudioCaptureSampleRate</a>(), <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">GetAudioCaptureNumChannels</a>());</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>}</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::BuildPhraseTree()</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>{</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="comment">// Initialize the Phrase Tree</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#add0625191e28119d5d4231e08df02e8c">PhraseTree</a> = MakeShared&lt;FPhraseTree&gt;();</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    PhraseTreePhraseRecievedHandle = <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#ae37e1243a57b9774b84cfcfd3c4b2374">OnTranscriptionRecieved</a></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        .AddRaw(<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#add0625191e28119d5d4231e08df02e8c">PhraseTree</a>.Get(), &amp;<a class="code hl_function" href="classFPhraseTree.html#af915498384e11d4c9b1e9f0125e9a615">FPhraseTree::ParseTranscription</a>);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a> = NewObject&lt;UPhraseTreeUtils&gt;();</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#aa4a1e4c59b4b246304e52d93344874fa">SetPhraseTree</a>(<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#add0625191e28119d5d4231e08df02e8c">PhraseTree</a>.ToSharedRef());</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">PhraseTreeUtils</a>-&gt;AddToRoot();</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>}</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        FConsoleCommandDelegate::CreateLambda([<span class="keyword">this</span>]() {</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            UE_LOG(LogOpenAccessibilityCom, Display, TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.ShowAudioSampleRate | Sample Rate: %d&quot;</span>), this-&gt;<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">GetAudioCaptureSampleRate</a>());</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        })</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    ));</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.ShowAudioNumChannels&quot;</span>),</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        TEXT(<span class="stringliteral">&quot;Logs the Number of Audio Channels being captured, from user input.&quot;</span>),</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        FConsoleCommandDelegate::CreateLambda([<span class="keyword">this</span>]() {</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            UE_LOG(LogOpenAccessibilityCom, Display, TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.ShowAudioNumChannels | Num Channels: %d&quot;</span>), this-&gt;<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">GetAudioCaptureNumChannels</a>());</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        })</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    ));</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.SendLastBuffer&quot;</span>),</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        TEXT(<span class="stringliteral">&quot;Sends the last saved audio buffer to the transcription service.&quot;</span>),</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        FConsoleCommandDelegate::CreateLambda([<span class="keyword">this</span>]() {</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>            UE_LOG(LogOpenAccessibilityCom, Display, TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.SendLastBuffer&quot;</span>));</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>            <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab0d42e5090aff0d8adfbbe0047ac898a">TranscribeWaveForm</a>(PrevAudioBuffer);</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        })</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    ));</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::RegisterConsoleCommands()</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>{</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="comment">// Audio Commands</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.ShowAudioSampleRate&quot;</span>),</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        TEXT(<span class="stringliteral">&quot;Logs the Number of Samples being captured, from user input.&quot;</span>), </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        FConsoleCommandDelegate::CreateLambda([<span class="keyword">this</span>]() {</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            UE_LOG(LogOpenAccessibilityCom, Display, TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.ShowAudioSampleRate | Sample Rate: %d&quot;</span>), this-&gt;<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">GetAudioCaptureSampleRate</a>());</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        })</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    ));</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.ShowAudioNumChannels&quot;</span>),</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        TEXT(<span class="stringliteral">&quot;Logs the Number of Audio Channels being captured, from user input.&quot;</span>),</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        FConsoleCommandDelegate::CreateLambda([<span class="keyword">this</span>]() {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>            UE_LOG(LogOpenAccessibilityCom, Display, TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.ShowAudioNumChannels | Num Channels: %d&quot;</span>), this-&gt;<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">GetAudioCaptureNumChannels</a>());</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        })</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    ));</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.SendLastBuffer&quot;</span>),</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        TEXT(<span class="stringliteral">&quot;Sends the last saved audio buffer to the transcription service.&quot;</span>),</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>}</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::UnregisterConsoleCommands()</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>{</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>    IConsoleCommand* ConsoleCommand = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keywordflow">while</span> (ConsoleCommands.Num() &gt; 0)</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    {</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        ConsoleCommand = ConsoleCommands.Pop();</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        IConsoleManager::Get().UnregisterConsoleObject(ConsoleCommand);</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    }</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>}</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::LoadZMQDLL()</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>{</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    FString BaseDir = IPluginManager::Get().FindPlugin(<span class="stringliteral">&quot;OpenAccessibility&quot;</span>)-&gt;GetBaseDir();</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        FConsoleCommandDelegate::CreateLambda([<span class="keyword">this</span>]() {</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>            UE_LOG(LogOpenAccessibilityCom, Display, TEXT(<span class="stringliteral">&quot;OpenAccessibilityCom.Debug.SendLastBuffer&quot;</span>));</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab0d42e5090aff0d8adfbbe0047ac898a">TranscribeWaveForm</a>(PrevAudioBuffer);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        })</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    ));</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>}</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::UnregisterConsoleCommands()</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>{</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    IConsoleCommand* ConsoleCommand = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">while</span> (ConsoleCommands.Num() &gt; 0)</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    {</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        ConsoleCommand = ConsoleCommands.Pop();</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    FString LibraryPath;</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">#if PLATFORM_WINDOWS</span></div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">    #if UE_BUILD_DEBUG</span></div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    LibraryPath = FPaths::Combine(*BaseDir, TEXT(<span class="stringliteral">&quot;Binaries/ThirdParty/ZeroMQ/Win64/libzmq-mt-gd-4_3_5.dll&quot;</span>));</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="preprocessor">    #else</span></div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    LibraryPath = FPaths::Combine(*BaseDir, TEXT(<span class="stringliteral">&quot;Binaries/ThirdParty/ZeroMQ/Win64/libzmq-mt-4_3_5.dll&quot;</span>));</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="preprocessor">    #endif</span></div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="preprocessor">#elif PLATFORM_LINUX</span></div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    LibraryPath = FPaths::Combine(*BaseDir, TEXT(<span class="stringliteral">&quot;Binaries/ThirdParty/ZeroMQ/Linux/libzmq-mt-4_3_5.so&quot;</span>))</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="preprocessor">#elif PLATFORM_MAC</span></div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    LibraryPath = FPaths::Combine(*BaseDir, TEXT(<span class="stringliteral">&quot;Source/ThirdParty/ZeroMQ/Mac/libzmq-mt-4_3_5.dylib&quot;</span>))</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    ZMQDllHandle = !LibraryPath.IsEmpty() ? FPlatformProcess::GetDllHandle(*LibraryPath) : nullptr;</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="keywordflow">if</span> (ZMQDllHandle)</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    {</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| LoadZMQDLL || Successfully Loaded ZMQ DLL ||&quot;</span>));</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    }</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    {</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        UE_LOG(LogOpenAccessibilityCom, Error, TEXT(<span class="stringliteral">&quot;|| LoadZMQDLL || Failed to Load ZMQ DLL ||&quot;</span>));</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    }</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>}</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::UnloadZMQDLL()</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>{</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    FPlatformProcess::FreeDllHandle(ZMQDllHandle);</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    ZMQDllHandle = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>}</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="preprocessor">#undef LOCTEXT_NAMESPACE</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        IConsoleManager::Get().UnregisterConsoleObject(ConsoleCommand);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    }</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>}</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::LoadZMQDLL()</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>{</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    FString BaseDir = IPluginManager::Get().FindPlugin(<span class="stringliteral">&quot;OpenAccessibility&quot;</span>)-&gt;GetBaseDir();</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    FString LibraryPath;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="preprocessor">#if PLATFORM_WINDOWS</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="preprocessor">    #if UE_BUILD_DEBUG</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    LibraryPath = FPaths::Combine(*BaseDir, TEXT(<span class="stringliteral">&quot;Binaries/ThirdParty/ZeroMQ/Win64/libzmq-mt-gd-4_3_5.dll&quot;</span>));</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="preprocessor">    #else</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    LibraryPath = FPaths::Combine(*BaseDir, TEXT(<span class="stringliteral">&quot;Binaries/ThirdParty/ZeroMQ/Win64/libzmq-mt-4_3_5.dll&quot;</span>));</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="preprocessor">    #endif</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="preprocessor">#elif PLATFORM_LINUX</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    LibraryPath = FPaths::Combine(*BaseDir, TEXT(<span class="stringliteral">&quot;Binaries/ThirdParty/ZeroMQ/Linux/libzmq-mt-4_3_5.so&quot;</span>))</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="preprocessor">#elif PLATFORM_MAC</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    LibraryPath = FPaths::Combine(*BaseDir, TEXT(<span class="stringliteral">&quot;Source/ThirdParty/ZeroMQ/Mac/libzmq-mt-4_3_5.dylib&quot;</span>))</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    ZMQDllHandle = !LibraryPath.IsEmpty() ? FPlatformProcess::GetDllHandle(*LibraryPath) : nullptr;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordflow">if</span> (ZMQDllHandle)</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    {</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| LoadZMQDLL || Successfully Loaded ZMQ DLL ||&quot;</span>));</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    }</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        UE_LOG(LogOpenAccessibilityCom, Error, TEXT(<span class="stringliteral">&quot;|| LoadZMQDLL || Failed to Load ZMQ DLL ||&quot;</span>));</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    }</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>}</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>IMPLEMENT_MODULE(<a class="code hl_class" href="classFOpenAccessibilityCommunicationModule.html">FOpenAccessibilityCommunicationModule</a>, <a class="code hl_class" href="classOpenAccessibility.html">OpenAccessibility</a>)</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="keywordtype">void</span> FOpenAccessibilityCommunicationModule::UnloadZMQDLL()</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>{</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    FPlatformProcess::FreeDllHandle(ZMQDllHandle);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    ZMQDllHandle = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>}</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="preprocessor">#undef LOCTEXT_NAMESPACE</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>IMPLEMENT_MODULE(<a class="code hl_class" href="classFOpenAccessibilityCommunicationModule.html">FOpenAccessibilityCommunicationModule</a>, <a class="code hl_class" href="classOpenAccessibility.html">OpenAccessibility</a>)</div>
 <div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html">FOpenAccessibilityCommunicationModule</a></div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8h_source.html#l00016">OpenAccessibilityCommunication.h:17</a></div></div>
 <div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_a080774412e3bcedb141cd37bafc79c2d"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#a080774412e3bcedb141cd37bafc79c2d">FOpenAccessibilityCommunicationModule::PhraseTreeUtils</a></div><div class="ttdeci">class UPhraseTreeUtils * PhraseTreeUtils</div><div class="ttdoc">Phrase Tree Utility Class, For Dealing With Phrase Tree Function Libraries.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8h_source.html#l00097">OpenAccessibilityCommunication.h:97</a></div></div>
 <div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_a7918db39c3d055f0b0479caa1e2a3703"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#a7918db39c3d055f0b0479caa1e2a3703">FOpenAccessibilityCommunicationModule::SocketServer</a></div><div class="ttdeci">TSharedPtr&lt; class FSocketCommunicationServer &gt; SocketServer</div><div class="ttdoc">The Socket Communication Server, Managing Socket Communication for the Transcription Service.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8h_source.html#l00087">OpenAccessibilityCommunication.h:87</a></div></div>
 <div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_a7ea0361ae40a50ad41baa3e5fa9d5c03"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#a7ea0361ae40a50ad41baa3e5fa9d5c03">FOpenAccessibilityCommunicationModule::StartupModule</a></div><div class="ttdeci">virtual void StartupModule() override</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8cpp_source.html#l00024">OpenAccessibilityCommunication.cpp:24</a></div></div>
 <div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_a96d050cde091ef820833f68292d3fdf0"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">FOpenAccessibilityCommunicationModule::AudioManager</a></div><div class="ttdeci">class UAudioManager * AudioManager</div><div class="ttdoc">The AudioManager, Managing any Audio Capture Component.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8h_source.html#l00082">OpenAccessibilityCommunication.h:82</a></div></div>
-<div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_ab0d42e5090aff0d8adfbbe0047ac898a"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#ab0d42e5090aff0d8adfbbe0047ac898a">FOpenAccessibilityCommunicationModule::TranscribeWaveForm</a></div><div class="ttdeci">void TranscribeWaveForm(TArray&lt; float &gt; AudioBufferToTranscribe)</div><div class="ttdoc">Sends the Audio Buffer to the Transcription Service.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8cpp_source.html#l00110">OpenAccessibilityCommunication.cpp:110</a></div></div>
+<div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_ab0d42e5090aff0d8adfbbe0047ac898a"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#ab0d42e5090aff0d8adfbbe0047ac898a">FOpenAccessibilityCommunicationModule::TranscribeWaveForm</a></div><div class="ttdeci">void TranscribeWaveForm(TArray&lt; float &gt; AudioBufferToTranscribe)</div><div class="ttdoc">Sends the Audio Buffer to the Transcription Service.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8cpp_source.html#l00118">OpenAccessibilityCommunication.cpp:118</a></div></div>
 <div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_add0625191e28119d5d4231e08df02e8c"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#add0625191e28119d5d4231e08df02e8c">FOpenAccessibilityCommunicationModule::PhraseTree</a></div><div class="ttdeci">TSharedPtr&lt; FPhraseTree &gt; PhraseTree</div><div class="ttdoc">The PhraseTree, Containing any Bound Phrase Nodes and Commands to Execute from Transcriptions.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8h_source.html#l00092">OpenAccessibilityCommunication.h:92</a></div></div>
 <div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_ae37e1243a57b9774b84cfcfd3c4b2374"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#ae37e1243a57b9774b84cfcfd3c4b2374">FOpenAccessibilityCommunicationModule::OnTranscriptionRecieved</a></div><div class="ttdeci">TMulticastDelegate&lt; void(TArray&lt; FString &gt;)&gt; OnTranscriptionRecieved</div><div class="ttdoc">A Delegate for when Transcriptions are recived back from the Transcription Service.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8h_source.html#l00077">OpenAccessibilityCommunication.h:77</a></div></div>
 <div class="ttc" id="aclassFPhraseTree_html_af915498384e11d4c9b1e9f0125e9a615"><div class="ttname"><a href="classFPhraseTree.html#af915498384e11d4c9b1e9f0125e9a615">FPhraseTree::ParseTranscription</a></div><div class="ttdeci">void ParseTranscription(TArray&lt; FString &gt; InTranscriptionSegments)</div><div class="ttdoc">Parses and Propogates the given Transcription Segments down the tree.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8cpp_source.html#l00033">PhraseTree.cpp:33</a></div></div>
 <div class="ttc" id="aclassOpenAccessibility_html"><div class="ttname"><a href="classOpenAccessibility.html">OpenAccessibility</a></div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibility_8Build_8cs_source.html#l00006">OpenAccessibility.Build.cs:7</a></div></div>
-<div class="ttc" id="aclassUAudioManager_html_a0b9517bb36ae5a96308dd290f7b57f1f"><div class="ttname"><a href="classUAudioManager.html#a0b9517bb36ae5a96308dd290f7b57f1f">UAudioManager::StopCapturingAudio</a></div><div class="ttdeci">void StopCapturingAudio()</div><div class="ttdoc">Stops the Capturing of Audio onto the Buffer, and sends the audio to the transcription service.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00046">AudioManager.cpp:46</a></div></div>
-<div class="ttc" id="aclassUAudioManager_html_a34de19d6b8de9ef36b3e0fe35fa6ef7d"><div class="ttname"><a href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">UAudioManager::GetAudioCaptureSampleRate</a></div><div class="ttdeci">int32 GetAudioCaptureSampleRate() const</div><div class="ttdoc">Gets the Sample Rate of the Audio Capture.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8h_source.html#l00091">AudioManager.h:91</a></div></div>
-<div class="ttc" id="aclassUAudioManager_html_a4d89ab378b24febcf77253f2d903add9"><div class="ttname"><a href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">UAudioManager::GetAudioCaptureNumChannels</a></div><div class="ttdeci">int32 GetAudioCaptureNumChannels() const</div><div class="ttdoc">Gets the Number of Channels of the Audio Capture.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8h_source.html#l00097">AudioManager.h:97</a></div></div>
-<div class="ttc" id="aclassUAudioManager_html_a5eb5bc3ec0e84cb2f4b3a1c8666b0abe"><div class="ttname"><a href="classUAudioManager.html#a5eb5bc3ec0e84cb2f4b3a1c8666b0abe">UAudioManager::OnAudioReadyForTranscription</a></div><div class="ttdeci">TDelegate&lt; void(const TArray&lt; float &gt;)&gt; OnAudioReadyForTranscription</div><div class="ttdoc">Delegate for when the AudioBuffer is Ready To Be Sent For Transcription.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8h_source.html#l00124">AudioManager.h:124</a></div></div>
-<div class="ttc" id="aclassUAudioManager_html_a7d1368be18287e1f8c288c81d571142d"><div class="ttname"><a href="classUAudioManager.html#a7d1368be18287e1f8c288c81d571142d">UAudioManager::StartCapturingAudio</a></div><div class="ttdeci">void StartCapturingAudio()</div><div class="ttdoc">Starts The Capturing of Audio onto the Buffer.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00039">AudioManager.cpp:39</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a0b9517bb36ae5a96308dd290f7b57f1f"><div class="ttname"><a href="classUAudioManager.html#a0b9517bb36ae5a96308dd290f7b57f1f">UAudioManager::StopCapturingAudio</a></div><div class="ttdeci">void StopCapturingAudio()</div><div class="ttdoc">Stops the Capturing of Audio onto the Buffer, and sends the audio to the transcription service.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00061">AudioManager.cpp:61</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a19164195b0f4762910b909ba2dd15582"><div class="ttname"><a href="classUAudioManager.html#a19164195b0f4762910b909ba2dd15582">UAudioManager::IsCapturingAudio</a></div><div class="ttdeci">bool IsCapturingAudio() const</div><div class="ttdoc">Is the Audio Manager Currently Capturing Audio.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00039">AudioManager.cpp:39</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a34de19d6b8de9ef36b3e0fe35fa6ef7d"><div class="ttname"><a href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">UAudioManager::GetAudioCaptureSampleRate</a></div><div class="ttdeci">int32 GetAudioCaptureSampleRate() const</div><div class="ttdoc">Gets the Sample Rate of the Audio Capture.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00044">AudioManager.cpp:44</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a4d89ab378b24febcf77253f2d903add9"><div class="ttname"><a href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">UAudioManager::GetAudioCaptureNumChannels</a></div><div class="ttdeci">int32 GetAudioCaptureNumChannels() const</div><div class="ttdoc">Gets the Number of Channels of the Audio Capture.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00049">AudioManager.cpp:49</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a5eb5bc3ec0e84cb2f4b3a1c8666b0abe"><div class="ttname"><a href="classUAudioManager.html#a5eb5bc3ec0e84cb2f4b3a1c8666b0abe">UAudioManager::OnAudioReadyForTranscription</a></div><div class="ttdeci">TDelegate&lt; void(const TArray&lt; float &gt;)&gt; OnAudioReadyForTranscription</div><div class="ttdoc">Delegate for when the AudioBuffer is Ready To Be Sent For Transcription.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8h_source.html#l00123">AudioManager.h:123</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a7d1368be18287e1f8c288c81d571142d"><div class="ttname"><a href="classUAudioManager.html#a7d1368be18287e1f8c288c81d571142d">UAudioManager::StartCapturingAudio</a></div><div class="ttdeci">void StartCapturingAudio()</div><div class="ttdoc">Starts The Capturing of Audio onto the Buffer.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00054">AudioManager.cpp:54</a></div></div>
 <div class="ttc" id="aclassUPhraseTreeUtils_html_aa4a1e4c59b4b246304e52d93344874fa"><div class="ttname"><a href="classUPhraseTreeUtils.html#aa4a1e4c59b4b246304e52d93344874fa">UPhraseTreeUtils::SetPhraseTree</a></div><div class="ttdeci">void SetPhraseTree(TSharedRef&lt; FPhraseTree &gt; NewPhraseTree)</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTreeUtils_8h_source.html#l00034">PhraseTreeUtils.h:34</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

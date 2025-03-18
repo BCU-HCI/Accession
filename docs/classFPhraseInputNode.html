@@ -96,7 +96,7 @@ $(document).ready(function(){initNavTree('classFPhraseInputNode.html',''); initR
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classFPhraseInputNode-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">FPhraseInputNode&lt; InputType &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">FPhraseInputNode&lt; InputType &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -121,15 +121,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a7787cfbca73eb8de486442dcbe67da9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af23e8ff553dcced009d02af127f0d4cb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseInputNode.html#af23e8ff553dcced009d02af127f0d4cb">FPhraseInputNode</a> (const TCHAR *InInputString, TDelegate&lt; void(<a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;Record)&gt; InOnPhraseParsed, TPhraseNodeArray InChildNodes, TDelegate&lt; void(InputType Input)&gt; InOnInputRecieved)</td></tr>
 <tr class="separator:af23e8ff553dcced009d02af127f0d4cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a320d0a32dbb9b603b684d03a39be4d6e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseInputNode.html#a320d0a32dbb9b603b684d03a39be4d6e">RequiresPhrase</a> (const FString InPhrase) override</td></tr>
-<tr class="memdesc:a320d0a32dbb9b603b684d03a39be4d6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Node Requires the Given Phrase.   <a href="classFPhraseInputNode.html#a320d0a32dbb9b603b684d03a39be4d6e">More...</a><br /></td></tr>
-<tr class="separator:a320d0a32dbb9b603b684d03a39be4d6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f84d569e4900f11631094bc7d889564"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseInputNode.html#a8f84d569e4900f11631094bc7d889564">RequiresPhrase</a> (const FString InPhrase, int32 &amp;OutDistance) override</td></tr>
-<tr class="memdesc:a8f84d569e4900f11631094bc7d889564"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Node Requires the Given Phrase, and Returns the Distance of the Phrase.   <a href="classFPhraseInputNode.html#a8f84d569e4900f11631094bc7d889564">More...</a><br /></td></tr>
-<tr class="separator:a8f84d569e4900f11631094bc7d889564"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2789bf16d12a24c036157efeca2fb84b"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structFParseResult.html">FParseResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseInputNode.html#a2789bf16d12a24c036157efeca2fb84b">ParsePhrase</a> (TArray&lt; FString &gt; &amp;InPhraseArray, <a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;InParseRecord) override</td></tr>
-<tr class="memdesc:a2789bf16d12a24c036157efeca2fb84b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.   <a href="classFPhraseInputNode.html#a2789bf16d12a24c036157efeca2fb84b">More...</a><br /></td></tr>
-<tr class="separator:a2789bf16d12a24c036157efeca2fb84b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bb27ed6d11dbabd6d5afbf9e7f12389"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseInputNode.html#a1bb27ed6d11dbabd6d5afbf9e7f12389">RequiresPhrase</a> (const FString InPhrase) override</td></tr>
+<tr class="memdesc:a1bb27ed6d11dbabd6d5afbf9e7f12389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Node Requires the Given Phrase.   <a href="classFPhraseInputNode.html#a1bb27ed6d11dbabd6d5afbf9e7f12389">More...</a><br /></td></tr>
+<tr class="separator:a1bb27ed6d11dbabd6d5afbf9e7f12389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ac441d8499400c801642b2862f264b7"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseInputNode.html#a2ac441d8499400c801642b2862f264b7">RequiresPhrase</a> (const FString InPhrase, int32 &amp;OutDistance) override</td></tr>
+<tr class="memdesc:a2ac441d8499400c801642b2862f264b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Node Requires the Given Phrase, and Returns the Distance of the Phrase.   <a href="classFPhraseInputNode.html#a2ac441d8499400c801642b2862f264b7">More...</a><br /></td></tr>
+<tr class="separator:a2ac441d8499400c801642b2862f264b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a956e3ce95039fa25e872352dbc4baeae"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structFParseResult.html">FParseResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseInputNode.html#a956e3ce95039fa25e872352dbc4baeae">ParsePhrase</a> (TArray&lt; FString &gt; &amp;InPhraseArray, <a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;InParseRecord) override</td></tr>
+<tr class="memdesc:a956e3ce95039fa25e872352dbc4baeae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.   <a href="classFPhraseInputNode.html#a956e3ce95039fa25e872352dbc4baeae">More...</a><br /></td></tr>
+<tr class="separator:a956e3ce95039fa25e872352dbc4baeae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classFPhraseNode"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classFPhraseNode')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classFPhraseNode.html">FPhraseNode</a></td></tr>
 <tr class="memitem:a2dec29c747d8fb57d0d8e97265f35e37 inherit pub_methods_classFPhraseNode"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseNode.html#a2dec29c747d8fb57d0d8e97265f35e37">FPhraseNode</a> (const TCHAR *InBoundPhrase)</td></tr>
 <tr class="separator:a2dec29c747d8fb57d0d8e97265f35e37 inherit pub_methods_classFPhraseNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,12 +197,12 @@ Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a4db63d4ca6bf5ace09c3dda2f19c7e78"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseInputNode.html#a4db63d4ca6bf5ace09c3dda2f19c7e78">MeetsInputRequirements</a> (const FString &amp;InPhrase)</td></tr>
-<tr class="memdesc:a4db63d4ca6bf5ace09c3dda2f19c7e78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Given Phrase Meets Requirements for usage as Input. In Correlation to this Nodes Input Specifications.   <a href="classFPhraseInputNode.html#a4db63d4ca6bf5ace09c3dda2f19c7e78">More...</a><br /></td></tr>
-<tr class="separator:a4db63d4ca6bf5ace09c3dda2f19c7e78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af938609ba4a21d785543851c2b511f7f"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseInputNode.html#af938609ba4a21d785543851c2b511f7f">RecordInput</a> (const FString &amp;InInput, <a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;OutParseRecord)</td></tr>
-<tr class="memdesc:af938609ba4a21d785543851c2b511f7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Records the Input onto the Parse Record.   <a href="classFPhraseInputNode.html#af938609ba4a21d785543851c2b511f7f">More...</a><br /></td></tr>
-<tr class="separator:af938609ba4a21d785543851c2b511f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60704404fd0425bddb1fe0e5d34a8051"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseInputNode.html#a60704404fd0425bddb1fe0e5d34a8051">MeetsInputRequirements</a> (const FString &amp;InPhrase)=0</td></tr>
+<tr class="memdesc:a60704404fd0425bddb1fe0e5d34a8051"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the Given Phrase Meets Requirements for usage as Input. In Correlation to this Nodes Input Specifications.   <a href="classFPhraseInputNode.html#a60704404fd0425bddb1fe0e5d34a8051">More...</a><br /></td></tr>
+<tr class="separator:a60704404fd0425bddb1fe0e5d34a8051"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac24bf8bed399876836d9d60d5eef516b"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseInputNode.html#ac24bf8bed399876836d9d60d5eef516b">RecordInput</a> (const FString &amp;InInput, <a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;OutParseRecord)=0</td></tr>
+<tr class="memdesc:ac24bf8bed399876836d9d60d5eef516b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Records the Input onto the Parse Record.   <a href="classFPhraseInputNode.html#ac24bf8bed399876836d9d60d5eef516b">More...</a><br /></td></tr>
+<tr class="separator:ac24bf8bed399876836d9d60d5eef516b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classFPhraseNode"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classFPhraseNode')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classFPhraseNode.html">FPhraseNode</a></td></tr>
 <tr class="memitem:ae22f5df5250868321eeb62b6c4ecf01a inherit pro_methods_classFPhraseNode"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseNode.html#ae22f5df5250868321eeb62b6c4ecf01a">HasLeafChild</a> ()</td></tr>
 <tr class="memdesc:ae22f5df5250868321eeb62b6c4ecf01a inherit pro_methods_classFPhraseNode"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters through the children, to check if it contains a Leaf Child.   <a href="classFPhraseNode.html#ae22f5df5250868321eeb62b6c4ecf01a">More...</a><br /></td></tr>
@@ -218,7 +218,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename InputType = int32&gt;<br />
 class FPhraseInputNode&lt; InputType &gt;</div>
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00012">12</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00014">14</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab7b57bf5bd6d109392829712305d2af9" name="ab7b57bf5bd6d109392829712305d2af9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab7b57bf5bd6d109392829712305d2af9">&#9670;&#160;</a></span>FPhraseInputNode() <span class="overload">[1/5]</span></h2>
@@ -226,7 +226,10 @@ class FPhraseInputNode&lt; InputType &gt;</div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputType &gt; </div>
+template&lt;typename InputType  = int32&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;<a class="el" href="classFPhraseInputNode.html">::FPhraseInputNode</a> </td>
@@ -236,13 +239,18 @@ template&lt;typename InputType &gt; </div>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8cpp_source.html#l00010">10</a> of file <a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   11</span>    : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString)</div>
-<div class="line"><span class="lineno">   12</span>{</div>
-<div class="line"><span class="lineno">   13</span> </div>
-<div class="line"><span class="lineno">   14</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00017">17</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   18</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString)</div>
+<div class="line"><span class="lineno">   19</span>    {</div>
+<div class="line"><span class="lineno">   20</span>        </div>
+<div class="line"><span class="lineno">   21</span>    }</div>
 <div class="ttc" id="aclassFPhraseNode_html"><div class="ttname"><a href="classFPhraseNode.html">FPhraseNode</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00054">PhraseNode.h:55</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -253,7 +261,10 @@ template&lt;typename InputType &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputType &gt; </div>
+template&lt;typename InputType  = int32&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;<a class="el" href="classFPhraseInputNode.html">::FPhraseInputNode</a> </td>
@@ -273,13 +284,18 @@ template&lt;typename InputType &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8cpp_source.html#l00017">17</a> of file <a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>    : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InChildNodes)</div>
-<div class="line"><span class="lineno">   19</span>{</div>
-<div class="line"><span class="lineno">   20</span> </div>
-<div class="line"><span class="lineno">   21</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00023">23</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InChildNodes)</div>
+<div class="line"><span class="lineno">   25</span>    {</div>
+<div class="line"><span class="lineno">   26</span>        </div>
+<div class="line"><span class="lineno">   27</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -289,7 +305,10 @@ template&lt;typename InputType &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputType &gt; </div>
+template&lt;typename InputType  = int32&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;<a class="el" href="classFPhraseInputNode.html">::FPhraseInputNode</a> </td>
@@ -315,13 +334,18 @@ template&lt;typename InputType &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8cpp_source.html#l00024">24</a> of file <a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   25</span>    : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InOnPhraseParsed, InChildNodes)</div>
-<div class="line"><span class="lineno">   26</span>{</div>
-<div class="line"><span class="lineno">   27</span> </div>
-<div class="line"><span class="lineno">   28</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00029">29</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   30</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InOnPhraseParsed, InChildNodes)</div>
+<div class="line"><span class="lineno">   31</span>    {</div>
+<div class="line"><span class="lineno">   32</span> </div>
+<div class="line"><span class="lineno">   33</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -331,7 +355,10 @@ template&lt;typename InputType &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputType &gt; </div>
+template&lt;typename InputType  = int32&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;<a class="el" href="classFPhraseInputNode.html">::FPhraseInputNode</a> </td>
@@ -357,13 +384,18 @@ template&lt;typename InputType &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8cpp_source.html#l00031">31</a> of file <a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   32</span>    : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InChildNodes)</div>
-<div class="line"><span class="lineno">   33</span>{</div>
-<div class="line"><span class="lineno">   34</span>    OnInputReceived = InOnInputRecieved;</div>
-<div class="line"><span class="lineno">   35</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00035">35</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InChildNodes)</div>
+<div class="line"><span class="lineno">   37</span>    {</div>
+<div class="line"><span class="lineno">   38</span>        OnInputReceived = InOnInputRecieved;</div>
+<div class="line"><span class="lineno">   39</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -373,7 +405,10 @@ template&lt;typename InputType &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputType &gt; </div>
+template&lt;typename InputType  = int32&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;<a class="el" href="classFPhraseInputNode.html">::FPhraseInputNode</a> </td>
@@ -405,59 +440,67 @@ template&lt;typename InputType &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8cpp_source.html#l00038">38</a> of file <a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   39</span>    : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InOnPhraseParsed, InChildNodes)</div>
-<div class="line"><span class="lineno">   40</span>{</div>
-<div class="line"><span class="lineno">   41</span>    OnInputReceived = InOnInputRecieved;</div>
-<div class="line"><span class="lineno">   42</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a790ec3f789259bd7f2035970deb82c81" name="a790ec3f789259bd7f2035970deb82c81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a790ec3f789259bd7f2035970deb82c81">&#9670;&#160;</a></span>~FPhraseInputNode()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename InputType &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::~<a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a></td>
-        </tr>
-      </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8cpp_source.html#l00045">45</a> of file <a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   46</span>{</div>
-<div class="line"><span class="lineno">   47</span> </div>
-<div class="line"><span class="lineno">   48</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00041">41</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   42</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InOnPhraseParsed, InChildNodes)</div>
+<div class="line"><span class="lineno">   43</span>    {</div>
+<div class="line"><span class="lineno">   44</span>        OnInputReceived = InOnInputRecieved;</div>
+<div class="line"><span class="lineno">   45</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4db63d4ca6bf5ace09c3dda2f19c7e78" name="a4db63d4ca6bf5ace09c3dda2f19c7e78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4db63d4ca6bf5ace09c3dda2f19c7e78">&#9670;&#160;</a></span>MeetsInputRequirements()</h2>
+<a id="a9ddd221dd4c265dcbcdbe0e6285ee48b" name="a9ddd221dd4c265dcbcdbe0e6285ee48b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ddd221dd4c265dcbcdbe0e6285ee48b">&#9670;&#160;</a></span>~FPhraseInputNode()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputType &gt; </div>
+template&lt;typename InputType  = int32&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::MeetsInputRequirements </td>
+          <td class="memname">virtual <a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::~<a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00047">47</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   48</span>    {</div>
+<div class="line"><span class="lineno">   49</span>        </div>
+<div class="line"><span class="lineno">   50</span>    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a60704404fd0425bddb1fe0e5d34a8051" name="a60704404fd0425bddb1fe0e5d34a8051"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60704404fd0425bddb1fe0e5d34a8051">&#9670;&#160;</a></span>MeetsInputRequirements()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename InputType  = int32&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool <a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::MeetsInputRequirements </td>
           <td>(</td>
           <td class="paramtype">const FString &amp;&#160;</td>
           <td class="paramname"><em>InPhrase</em></td><td>)</td>
@@ -466,7 +509,7 @@ template&lt;typename InputType &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -480,29 +523,23 @@ template&lt;typename InputType &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Phrase Meets Requirements. Otherwise False.</dd></dl>
 
-<p>Reimplemented in <a class="el" href="classFPhraseEnumInputNode.html#a331faf8f6863751d7f38e56d8e286c18">FPhraseEnumInputNode&lt; TEnum &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a331faf8f6863751d7f38e56d8e286c18">FPhraseEnumInputNode&lt; EPhrase2DDirectionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a331faf8f6863751d7f38e56d8e286c18">FPhraseEnumInputNode&lt; EPhraseDirectionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a331faf8f6863751d7f38e56d8e286c18">FPhraseEnumInputNode&lt; EPhrasePositionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a331faf8f6863751d7f38e56d8e286c18">FPhraseEnumInputNode&lt; EPhraseScrollInput &gt;</a>, and <a class="el" href="classFPhraseStringInputNode.html#adc7ca43b878f34dc239bb654be1da184">FPhraseStringInputNode</a>.</p>
+<p>Implemented in <a class="el" href="classFPhraseEnumInputNode.html#a3ba54bfdaa12b1b6ebea65c0f228af9d">FPhraseEnumInputNode&lt; TEnum &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a3ba54bfdaa12b1b6ebea65c0f228af9d">FPhraseEnumInputNode&lt; EPhrase2DDirectionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a3ba54bfdaa12b1b6ebea65c0f228af9d">FPhraseEnumInputNode&lt; EPhraseDirectionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a3ba54bfdaa12b1b6ebea65c0f228af9d">FPhraseEnumInputNode&lt; EPhrasePositionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a3ba54bfdaa12b1b6ebea65c0f228af9d">FPhraseEnumInputNode&lt; EPhraseScrollInput &gt;</a>, <a class="el" href="classFPhraseFloatInputNode.html#a80b14b0b4fb5d9665eb2488bb10c55f7">FPhraseFloatInputNode</a>, <a class="el" href="classFPhraseIntInputNode.html#a2eaab64da60974e22f6e4daf88cd29d0">FPhraseIntInputNode</a>, and <a class="el" href="classFPhraseStringInputNode.html#adc7ca43b878f34dc239bb654be1da184">FPhraseStringInputNode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8cpp_source.html#l00104">104</a> of file <a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  105</span>{</div>
-<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">return</span> InPhrase.IsNumeric() || <a class="code hl_function" href="classNumericParser.html#a120339ff998f4d21fd86f65490bf711f">NumericParser::IsValidNumeric</a>(InPhrase, <span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  107</span>}</div>
-<div class="ttc" id="aclassNumericParser_html_a120339ff998f4d21fd86f65490bf711f"><div class="ttname"><a href="classNumericParser.html#a120339ff998f4d21fd86f65490bf711f">NumericParser::IsValidNumeric</a></div><div class="ttdeci">static bool IsValidNumeric(const FString &amp;StringToCheck, bool ConvertToUpper=true)</div><div class="ttdoc">Checks if the String is a Valid Numeric in Comparison to its String Permutations.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00007">Utils.cpp:7</a></div></div>
-</div><!-- fragment -->
 </div>
 </div>
-<a id="a2789bf16d12a24c036157efeca2fb84b" name="a2789bf16d12a24c036157efeca2fb84b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2789bf16d12a24c036157efeca2fb84b">&#9670;&#160;</a></span>ParsePhrase()</h2>
+<a id="a956e3ce95039fa25e872352dbc4baeae" name="a956e3ce95039fa25e872352dbc4baeae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a956e3ce95039fa25e872352dbc4baeae">&#9670;&#160;</a></span>ParsePhrase()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputType &gt; </div>
+template&lt;typename InputType  = int32&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structFParseResult.html">FParseResult</a> <a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::ParsePhrase </td>
+          <td class="memname">virtual <a class="el" href="structFParseResult.html">FParseResult</a> <a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::ParsePhrase </td>
           <td>(</td>
           <td class="paramtype">TArray&lt; FString &gt; &amp;&#160;</td>
           <td class="paramname"><em>InPhraseWordArray</em>, </td>
@@ -521,7 +558,7 @@ template&lt;typename InputType &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -538,63 +575,64 @@ template&lt;typename InputType &gt; </div>
 
 <p>Reimplemented from <a class="el" href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8cpp_source.html#l00066">66</a> of file <a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   67</span>{</div>
-<div class="line"><span class="lineno">   68</span>    <span class="keywordflow">if</span> (InPhraseArray.Num() == 0)</div>
-<div class="line"><span class="lineno">   69</span>    {</div>
-<div class="line"><span class="lineno">   70</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Emptied Phrase Array ||&quot;</span>))</div>
-<div class="line"><span class="lineno">   71</span> </div>
-<div class="line"><span class="lineno">   72</span>        return <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_REQUIRES_MORE, AsShared());</div>
-<div class="line"><span class="lineno">   73</span>    }</div>
-<div class="line"><span class="lineno">   74</span> </div>
-<div class="line"><span class="lineno">   75</span>    if (<a class="code hl_function" href="classFPhraseInputNode.html#a4db63d4ca6bf5ace09c3dda2f19c7e78">MeetsInputRequirements</a>(InPhraseArray.Last()))</div>
-<div class="line"><span class="lineno">   76</span>    {</div>
-<div class="line"><span class="lineno">   77</span>        <span class="comment">// Get the Input String.</span></div>
-<div class="line"><span class="lineno">   78</span>        FString InputToRecord = InPhraseArray.Pop();</div>
-<div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>        <span class="comment">// Append the Input String to the Record.</span></div>
-<div class="line"><span class="lineno">   81</span>        InParseRecord.AddPhraseString(InputToRecord);</div>
-<div class="line"><span class="lineno">   82</span> </div>
-<div class="line"><span class="lineno">   83</span>        <span class="keywordflow">if</span> (!InputToRecord.IsNumeric() &amp;&amp; <a class="code hl_function" href="classNumericParser.html#a120339ff998f4d21fd86f65490bf711f">NumericParser::IsValidNumeric</a>(InputToRecord, <span class="keyword">false</span>))</div>
-<div class="line"><span class="lineno">   84</span>        {</div>
-<div class="line"><span class="lineno">   85</span>            <a class="code hl_function" href="classNumericParser.html#ab26286f6004a5ce409ee0f915daca8ea">NumericParser::StringToNumeric</a>(InputToRecord, <span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">   86</span>        }</div>
-<div class="line"><span class="lineno">   87</span> </div>
-<div class="line"><span class="lineno">   88</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFPhraseInputNode.html#af938609ba4a21d785543851c2b511f7f">RecordInput</a>(InputToRecord, InParseRecord))</div>
-<div class="line"><span class="lineno">   89</span>        {</div>
-<div class="line"><span class="lineno">   90</span>            UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Unable to Record Input ||&quot;</span>))</div>
-<div class="line"><span class="lineno">   91</span> </div>
-<div class="line"><span class="lineno">   92</span>            return <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_UNABLE_TO_PARSE, AsShared());</div>
-<div class="line"><span class="lineno">   93</span>        }</div>
-<div class="line"><span class="lineno">   94</span> </div>
-<div class="line"><span class="lineno">   95</span>        OnPhraseParsed.ExecuteIfBound(InParseRecord);</div>
-<div class="line"><span class="lineno">   96</span> </div>
-<div class="line"><span class="lineno">   97</span>        return <a class="code hl_function" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">ParseChildren</a>(InPhraseArray, InParseRecord);</div>
-<div class="line"><span class="lineno">   98</span>    }</div>
-<div class="line"><span class="lineno">   99</span> </div>
-<div class="line"><span class="lineno">  100</span>    return <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_UNABLE_TO_PARSE, AsShared());</div>
-<div class="line"><span class="lineno">  101</span>}</div>
-<div class="ttc" id="aclassFPhraseInputNode_html_a4db63d4ca6bf5ace09c3dda2f19c7e78"><div class="ttname"><a href="classFPhraseInputNode.html#a4db63d4ca6bf5ace09c3dda2f19c7e78">FPhraseInputNode::MeetsInputRequirements</a></div><div class="ttdeci">virtual bool MeetsInputRequirements(const FString &amp;InPhrase)</div><div class="ttdoc">Checks if the Given Phrase Meets Requirements for usage as Input. In Correlation to this Nodes Input ...</div><div class="ttdef"><b>Definition:</b> <a href="PhraseInputNode_8cpp_source.html#l00104">PhraseInputNode.cpp:104</a></div></div>
-<div class="ttc" id="aclassFPhraseInputNode_html_af938609ba4a21d785543851c2b511f7f"><div class="ttname"><a href="classFPhraseInputNode.html#af938609ba4a21d785543851c2b511f7f">FPhraseInputNode::RecordInput</a></div><div class="ttdeci">virtual bool RecordInput(const FString &amp;InInput, FParseRecord &amp;OutParseRecord)</div><div class="ttdoc">Records the Input onto the Parse Record.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseInputNode_8cpp_source.html#l00110">PhraseInputNode.cpp:110</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00067">67</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>    {</div>
+<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">if</span> (InPhraseArray.Num() == 0)</div>
+<div class="line"><span class="lineno">   70</span>        {</div>
+<div class="line"><span class="lineno">   71</span>            UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Emptied Phrase Array ||&quot;</span>))</div>
+<div class="line"><span class="lineno">   72</span> </div>
+<div class="line"><span class="lineno">   73</span>                return <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_REQUIRES_MORE, AsShared());</div>
+<div class="line"><span class="lineno">   74</span>        }</div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>        if (<a class="code hl_function" href="classFPhraseInputNode.html#a60704404fd0425bddb1fe0e5d34a8051">MeetsInputRequirements</a>(InPhraseArray.Last()))</div>
+<div class="line"><span class="lineno">   77</span>        {</div>
+<div class="line"><span class="lineno">   78</span>            <span class="comment">// Get the Input String.</span></div>
+<div class="line"><span class="lineno">   79</span>            FString InputToRecord = InPhraseArray.Pop();</div>
+<div class="line"><span class="lineno">   80</span> </div>
+<div class="line"><span class="lineno">   81</span>            <span class="comment">// Append the Input String to the Record.</span></div>
+<div class="line"><span class="lineno">   82</span>            InParseRecord.AddPhraseString(InputToRecord);</div>
+<div class="line"><span class="lineno">   83</span> </div>
+<div class="line"><span class="lineno">   84</span>            <span class="keywordflow">if</span> (!InputToRecord.IsNumeric() &amp;&amp; <a class="code hl_function" href="classNumericParser.html#a120339ff998f4d21fd86f65490bf711f">NumericParser::IsValidNumeric</a>(InputToRecord, <span class="keyword">false</span>))</div>
+<div class="line"><span class="lineno">   85</span>            {</div>
+<div class="line"><span class="lineno">   86</span>                <a class="code hl_function" href="classNumericParser.html#ab26286f6004a5ce409ee0f915daca8ea">NumericParser::StringToNumeric</a>(InputToRecord, <span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">   87</span>            }</div>
+<div class="line"><span class="lineno">   88</span> </div>
+<div class="line"><span class="lineno">   89</span>            <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFPhraseInputNode.html#ac24bf8bed399876836d9d60d5eef516b">RecordInput</a>(InputToRecord, InParseRecord))</div>
+<div class="line"><span class="lineno">   90</span>            {</div>
+<div class="line"><span class="lineno">   91</span>                UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Unable to Record Input ||&quot;</span>))</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>                    return <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_UNABLE_TO_PARSE, AsShared());</div>
+<div class="line"><span class="lineno">   94</span>            }</div>
+<div class="line"><span class="lineno">   95</span> </div>
+<div class="line"><span class="lineno">   96</span>            OnPhraseParsed.ExecuteIfBound(InParseRecord);</div>
+<div class="line"><span class="lineno">   97</span> </div>
+<div class="line"><span class="lineno">   98</span>            return <a class="code hl_function" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">ParseChildren</a>(InPhraseArray, InParseRecord);</div>
+<div class="line"><span class="lineno">   99</span>        }</div>
+<div class="line"><span class="lineno">  100</span> </div>
+<div class="line"><span class="lineno">  101</span>        return <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_UNABLE_TO_PARSE, AsShared());</div>
+<div class="line"><span class="lineno">  102</span>    }</div>
+<div class="ttc" id="aclassFPhraseInputNode_html_a60704404fd0425bddb1fe0e5d34a8051"><div class="ttname"><a href="classFPhraseInputNode.html#a60704404fd0425bddb1fe0e5d34a8051">FPhraseInputNode::MeetsInputRequirements</a></div><div class="ttdeci">virtual bool MeetsInputRequirements(const FString &amp;InPhrase)=0</div><div class="ttdoc">Checks if the Given Phrase Meets Requirements for usage as Input. In Correlation to this Nodes Input ...</div></div>
+<div class="ttc" id="aclassFPhraseInputNode_html_ac24bf8bed399876836d9d60d5eef516b"><div class="ttname"><a href="classFPhraseInputNode.html#ac24bf8bed399876836d9d60d5eef516b">FPhraseInputNode::RecordInput</a></div><div class="ttdeci">virtual bool RecordInput(const FString &amp;InInput, FParseRecord &amp;OutParseRecord)=0</div><div class="ttdoc">Records the Input onto the Parse Record.</div></div>
 <div class="ttc" id="aclassFPhraseNode_html_a671f4121e9df6769775bae880a845765"><div class="ttname"><a href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">FPhraseNode::ParseChildren</a></div><div class="ttdeci">virtual FParseResult ParseChildren(TArray&lt; FString &gt; &amp;InPhraseArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses The Children Node of this Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00188">PhraseNode.cpp:188</a></div></div>
+<div class="ttc" id="aclassNumericParser_html_a120339ff998f4d21fd86f65490bf711f"><div class="ttname"><a href="classNumericParser.html#a120339ff998f4d21fd86f65490bf711f">NumericParser::IsValidNumeric</a></div><div class="ttdeci">static bool IsValidNumeric(const FString &amp;StringToCheck, bool ConvertToUpper=true)</div><div class="ttdoc">Checks if the String is a Valid Numeric in Comparison to its String Permutations.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00007">Utils.cpp:7</a></div></div>
 <div class="ttc" id="aclassNumericParser_html_ab26286f6004a5ce409ee0f915daca8ea"><div class="ttname"><a href="classNumericParser.html#ab26286f6004a5ce409ee0f915daca8ea">NumericParser::StringToNumeric</a></div><div class="ttdeci">static void StringToNumeric(FString &amp;NumericString, bool ConvertToUpper=true)</div><div class="ttdoc">Converts a String to its Numeric Permutation.</div><div class="ttdef"><b>Definition:</b> <a href="Utils_8cpp_source.html#l00012">Utils.cpp:12</a></div></div>
-<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00051">ParseResult.h:52</a></div></div>
+<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00055">ParseResult.h:56</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="af938609ba4a21d785543851c2b511f7f" name="af938609ba4a21d785543851c2b511f7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af938609ba4a21d785543851c2b511f7f">&#9670;&#160;</a></span>RecordInput()</h2>
+<a id="ac24bf8bed399876836d9d60d5eef516b" name="ac24bf8bed399876836d9d60d5eef516b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac24bf8bed399876836d9d60d5eef516b">&#9670;&#160;</a></span>RecordInput()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputType &gt; </div>
+template&lt;typename InputType  = int32&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::RecordInput </td>
+          <td class="memname">virtual bool <a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::RecordInput </td>
           <td>(</td>
           <td class="paramtype">const FString &amp;&#160;</td>
           <td class="paramname"><em>InInput</em>, </td>
@@ -613,7 +651,7 @@ template&lt;typename InputType &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">pure virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -628,28 +666,23 @@ template&lt;typename InputType &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Input Was Successful in Recording. Otherwise False.</dd></dl>
 
-<p>Reimplemented in <a class="el" href="classFPhraseEnumInputNode.html#a2dd1f486f7ad7b017716ac7c86e4c640">FPhraseEnumInputNode&lt; TEnum &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a2dd1f486f7ad7b017716ac7c86e4c640">FPhraseEnumInputNode&lt; EPhrase2DDirectionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a2dd1f486f7ad7b017716ac7c86e4c640">FPhraseEnumInputNode&lt; EPhraseDirectionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a2dd1f486f7ad7b017716ac7c86e4c640">FPhraseEnumInputNode&lt; EPhrasePositionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a2dd1f486f7ad7b017716ac7c86e4c640">FPhraseEnumInputNode&lt; EPhraseScrollInput &gt;</a>, and <a class="el" href="classFPhraseStringInputNode.html#a543b68d2d8da9bc900c9ffa9968a2995">FPhraseStringInputNode</a>.</p>
+<p>Implemented in <a class="el" href="classFPhraseEnumInputNode.html#a7e729a7fc0a525cd2aa39455b45bf2ac">FPhraseEnumInputNode&lt; TEnum &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a7e729a7fc0a525cd2aa39455b45bf2ac">FPhraseEnumInputNode&lt; EPhrase2DDirectionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a7e729a7fc0a525cd2aa39455b45bf2ac">FPhraseEnumInputNode&lt; EPhraseDirectionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a7e729a7fc0a525cd2aa39455b45bf2ac">FPhraseEnumInputNode&lt; EPhrasePositionalInput &gt;</a>, <a class="el" href="classFPhraseEnumInputNode.html#a7e729a7fc0a525cd2aa39455b45bf2ac">FPhraseEnumInputNode&lt; EPhraseScrollInput &gt;</a>, <a class="el" href="classFPhraseFloatInputNode.html#a524ea5b47e54adea2fb9730056a8d513">FPhraseFloatInputNode</a>, <a class="el" href="classFPhraseIntInputNode.html#ae917f9d388a65b7073ba51974f5d09dd">FPhraseIntInputNode</a>, and <a class="el" href="classFPhraseStringInputNode.html#a543b68d2d8da9bc900c9ffa9968a2995">FPhraseStringInputNode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8cpp_source.html#l00110">110</a> of file <a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  111</span>{</div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  113</span>}</div>
-</div><!-- fragment -->
 </div>
 </div>
-<a id="a320d0a32dbb9b603b684d03a39be4d6e" name="a320d0a32dbb9b603b684d03a39be4d6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a320d0a32dbb9b603b684d03a39be4d6e">&#9670;&#160;</a></span>RequiresPhrase() <span class="overload">[1/2]</span></h2>
+<a id="a1bb27ed6d11dbabd6d5afbf9e7f12389" name="a1bb27ed6d11dbabd6d5afbf9e7f12389"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bb27ed6d11dbabd6d5afbf9e7f12389">&#9670;&#160;</a></span>RequiresPhrase() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputType &gt; </div>
+template&lt;typename InputType  = int32&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::RequiresPhrase </td>
+          <td class="memname">virtual bool <a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::RequiresPhrase </td>
           <td>(</td>
           <td class="paramtype">const FString&#160;</td>
           <td class="paramname"><em>InPhrase</em></td><td>)</td>
@@ -658,7 +691,7 @@ template&lt;typename InputType &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -674,26 +707,26 @@ template&lt;typename InputType &gt; </div>
 
 <p>Reimplemented from <a class="el" href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">FPhraseNode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8cpp_source.html#l00051">51</a> of file <a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   52</span>{</div>
-<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classFPhraseInputNode.html#a4db63d4ca6bf5ace09c3dda2f19c7e78">MeetsInputRequirements</a>(InPhrase);</div>
-<div class="line"><span class="lineno">   54</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00054">54</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   55</span>    {</div>
+<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classFPhraseInputNode.html#a60704404fd0425bddb1fe0e5d34a8051">MeetsInputRequirements</a>(InPhrase);</div>
+<div class="line"><span class="lineno">   57</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a8f84d569e4900f11631094bc7d889564" name="a8f84d569e4900f11631094bc7d889564"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f84d569e4900f11631094bc7d889564">&#9670;&#160;</a></span>RequiresPhrase() <span class="overload">[2/2]</span></h2>
+<a id="a2ac441d8499400c801642b2862f264b7" name="a2ac441d8499400c801642b2862f264b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ac441d8499400c801642b2862f264b7">&#9670;&#160;</a></span>RequiresPhrase() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename InputType &gt; </div>
+template&lt;typename InputType  = int32&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::RequiresPhrase </td>
+          <td class="memname">virtual bool <a class="el" href="classFPhraseInputNode.html">FPhraseInputNode</a>&lt; InputType &gt;::RequiresPhrase </td>
           <td>(</td>
           <td class="paramtype">const FString&#160;</td>
           <td class="paramname"><em>InPhrase</em>, </td>
@@ -712,7 +745,7 @@ template&lt;typename InputType &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -729,13 +762,13 @@ template&lt;typename InputType &gt; </div>
 
 <p>Reimplemented from <a class="el" href="classFPhraseNode.html#a27bb33f57c44482793806a71fcd7baf1">FPhraseNode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8cpp_source.html#l00057">57</a> of file <a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   58</span>{</div>
-<div class="line"><span class="lineno">   59</span>    <span class="keywordtype">bool</span> bMeetsRequirements = <a class="code hl_function" href="classFPhraseInputNode.html#a4db63d4ca6bf5ace09c3dda2f19c7e78">MeetsInputRequirements</a>(InPhrase);</div>
-<div class="line"><span class="lineno">   60</span>    OutDistance = bMeetsRequirements ? 0 : INT32_MAX;</div>
-<div class="line"><span class="lineno">   61</span> </div>
-<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">return</span> bMeetsRequirements;</div>
-<div class="line"><span class="lineno">   63</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00059">59</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   60</span>    {</div>
+<div class="line"><span class="lineno">   61</span>        <span class="keywordtype">bool</span> bMeetsRequirements = <a class="code hl_function" href="classFPhraseInputNode.html#a60704404fd0425bddb1fe0e5d34a8051">MeetsInputRequirements</a>(InPhrase);</div>
+<div class="line"><span class="lineno">   62</span>        OutDistance = bMeetsRequirements ? 0 : INT32_MAX;</div>
+<div class="line"><span class="lineno">   63</span> </div>
+<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">return</span> bMeetsRequirements;</div>
+<div class="line"><span class="lineno">   65</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -754,13 +787,12 @@ template&lt;typename InputType  = int32&gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00033">33</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PhraseInputNode_8h_source.html#l00106">106</a> of file <a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Source/OpenAccessibilityCommunication/Public/PhraseTree/<a class="el" href="PhraseInputNode_8h_source.html">PhraseInputNode.h</a></li>
-<li>Source/OpenAccessibilityCommunication/Private/PhraseTree/<a class="el" href="PhraseInputNode_8cpp_source.html">PhraseInputNode.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

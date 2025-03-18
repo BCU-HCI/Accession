@@ -123,45 +123,47 @@ $(document).ready(function(){initNavTree('OpenAccessibility_8h_source.html','');
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// Phrase Branch Bindings</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> FocusChangeListener(<span class="keyword">const</span> FFocusEvent&amp; FocusEvent, <span class="keyword">const</span> FWeakWidgetPath&amp; PrevWidgetPath, <span class="keyword">const</span> TSharedPtr&lt;SWidget&gt;&amp; PrevFocusedWidget, <span class="keyword">const</span> FWidgetPath&amp; NewWidgetPath, <span class="keyword">const</span> TSharedPtr&lt;SWidget&gt;&amp; NewFocusedWidget);</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> BindLocalizedInteractionBranch();</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> BindGraphInteractionBranch();</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> BindViewportInteractionBranch();</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// Transcription Visualization</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="comment">// Phrase Branch Bindings</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> BindLocalizedInteractionBranch();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> BindGraphInteractionBranch();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> BindViewportInteractionBranch();</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> CreateTranscriptionVisualization();</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> DestroyTranscriptionVisualization();</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// Console Commands</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// Transcription Visualization</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">void</span> CreateTranscriptionVisualization();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> DestroyTranscriptionVisualization();</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">void</span> RegisterConsoleCommands();</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> UnregisterConsoleCommands();</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="comment">// Console Commands</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span> RegisterConsoleCommands();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">void</span> UnregisterConsoleCommands();</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// Accessibility Components</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classFOpenAccessibilityModule.html#ac49087016c9548055821dae5fedc1ea6">   81</a></span>    TSharedPtr&lt;class FAccessibilityNodeFactory&gt; <a class="code hl_variable" href="classFOpenAccessibilityModule.html#ac49087016c9548055821dae5fedc1ea6">AccessibilityNodeFactory</a>;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classFOpenAccessibilityModule.html#a75dcc6c5db0b62b83bedfe20122a4b88">   86</a></span>    TSharedPtr&lt;class FAssetAccessibilityRegistry&gt; <a class="code hl_variable" href="classFOpenAccessibilityModule.html#a75dcc6c5db0b62b83bedfe20122a4b88">AssetAccessibilityRegistry</a>;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// Accessibility Components</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classFOpenAccessibilityModule.html#ac49087016c9548055821dae5fedc1ea6">   83</a></span>    TSharedPtr&lt;class FAccessibilityNodeFactory&gt; <a class="code hl_variable" href="classFOpenAccessibilityModule.html#ac49087016c9548055821dae5fedc1ea6">AccessibilityNodeFactory</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classFOpenAccessibilityModule.html#a75dcc6c5db0b62b83bedfe20122a4b88">   88</a></span>    TSharedPtr&lt;class FAssetAccessibilityRegistry&gt; <a class="code hl_variable" href="classFOpenAccessibilityModule.html#a75dcc6c5db0b62b83bedfe20122a4b88">AssetAccessibilityRegistry</a>;</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    TSharedPtr&lt;class FTranscriptionVisualizer&gt; TranscriptionVisualizer;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    TArray&lt;IConsoleCommand*&gt; ConsoleCommands;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>};</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    TSharedPtr&lt;class FTranscriptionVisualizer&gt; TranscriptionVisualizer;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    TArray&lt;IConsoleCommand*&gt; ConsoleCommands;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>};</div>
 <div class="ttc" id="aclassFOpenAccessibilityModule_html"><div class="ttname"><a href="classFOpenAccessibilityModule.html">FOpenAccessibilityModule</a></div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibility_8h_source.html#l00011">OpenAccessibility.h:12</a></div></div>
-<div class="ttc" id="aclassFOpenAccessibilityModule_html_a75dcc6c5db0b62b83bedfe20122a4b88"><div class="ttname"><a href="classFOpenAccessibilityModule.html#a75dcc6c5db0b62b83bedfe20122a4b88">FOpenAccessibilityModule::AssetAccessibilityRegistry</a></div><div class="ttdeci">TSharedPtr&lt; class FAssetAccessibilityRegistry &gt; AssetAccessibilityRegistry</div><div class="ttdoc">The Registry for Any Asset Accessibility Information.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibility_8h_source.html#l00086">OpenAccessibility.h:86</a></div></div>
+<div class="ttc" id="aclassFOpenAccessibilityModule_html_a75dcc6c5db0b62b83bedfe20122a4b88"><div class="ttname"><a href="classFOpenAccessibilityModule.html#a75dcc6c5db0b62b83bedfe20122a4b88">FOpenAccessibilityModule::AssetAccessibilityRegistry</a></div><div class="ttdeci">TSharedPtr&lt; class FAssetAccessibilityRegistry &gt; AssetAccessibilityRegistry</div><div class="ttdoc">The Registry for Any Asset Accessibility Information.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibility_8h_source.html#l00088">OpenAccessibility.h:88</a></div></div>
 <div class="ttc" id="aclassFOpenAccessibilityModule_html_ab035f88d5b30063286ced1d81a0c7b58"><div class="ttname"><a href="classFOpenAccessibilityModule.html#ab035f88d5b30063286ced1d81a0c7b58">FOpenAccessibilityModule::Get</a></div><div class="ttdeci">static FOpenAccessibilityModule &amp; Get()</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibility_8h_source.html#l00021">OpenAccessibility.h:21</a></div></div>
-<div class="ttc" id="aclassFOpenAccessibilityModule_html_ac49087016c9548055821dae5fedc1ea6"><div class="ttname"><a href="classFOpenAccessibilityModule.html#ac49087016c9548055821dae5fedc1ea6">FOpenAccessibilityModule::AccessibilityNodeFactory</a></div><div class="ttdeci">TSharedPtr&lt; class FAccessibilityNodeFactory &gt; AccessibilityNodeFactory</div><div class="ttdoc">The Node Factory for Generating Accessibility Graph Nodes.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibility_8h_source.html#l00081">OpenAccessibility.h:81</a></div></div>
-<div class="ttc" id="aclassFOpenAccessibilityModule_html_afc92a831fcfc92cf7cf04fbae7062251"><div class="ttname"><a href="classFOpenAccessibilityModule.html#afc92a831fcfc92cf7cf04fbae7062251">FOpenAccessibilityModule::StartupModule</a></div><div class="ttdeci">virtual void StartupModule() override</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibility_8cpp_source.html#l00037">OpenAccessibility.cpp:37</a></div></div>
+<div class="ttc" id="aclassFOpenAccessibilityModule_html_ac49087016c9548055821dae5fedc1ea6"><div class="ttname"><a href="classFOpenAccessibilityModule.html#ac49087016c9548055821dae5fedc1ea6">FOpenAccessibilityModule::AccessibilityNodeFactory</a></div><div class="ttdeci">TSharedPtr&lt; class FAccessibilityNodeFactory &gt; AccessibilityNodeFactory</div><div class="ttdoc">The Node Factory for Generating Accessibility Graph Nodes.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibility_8h_source.html#l00083">OpenAccessibility.h:83</a></div></div>
+<div class="ttc" id="aclassFOpenAccessibilityModule_html_afc92a831fcfc92cf7cf04fbae7062251"><div class="ttname"><a href="classFOpenAccessibilityModule.html#afc92a831fcfc92cf7cf04fbae7062251">FOpenAccessibilityModule::StartupModule</a></div><div class="ttdeci">virtual void StartupModule() override</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibility_8cpp_source.html#l00038">OpenAccessibility.cpp:38</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

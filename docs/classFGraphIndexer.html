@@ -163,9 +163,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:af326872f3d3e372e90e3763302d47aba"><td class="memItemLeft" align="right" valign="top">TSet&lt; int32 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a></td></tr>
 <tr class="memdesc:af326872f3d3e372e90e3763302d47aba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Look-Up Set of the Nodes Contained in the Indexer.   <a href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">More...</a><br /></td></tr>
 <tr class="separator:af326872f3d3e372e90e3763302d47aba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a331470f63727a15c6399ad4e99f1895a"><td class="memItemLeft" align="right" valign="top">TQueue&lt; int32 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFGraphIndexer.html#a331470f63727a15c6399ad4e99f1895a">AvailableIndices</a></td></tr>
-<tr class="memdesc:a331470f63727a15c6399ad4e99f1895a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.   <a href="classFGraphIndexer.html#a331470f63727a15c6399ad4e99f1895a">More...</a><br /></td></tr>
-<tr class="separator:a331470f63727a15c6399ad4e99f1895a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab24adb2b0079a4f94e6e7e622e0a648a"><td class="memItemLeft" align="right" valign="top">TArray&lt; int32 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">AvailableIndices</a></td></tr>
+<tr class="memdesc:ab24adb2b0079a4f94e6e7e622e0a648a"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.   <a href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">More...</a><br /></td></tr>
+<tr class="separator:ab24adb2b0079a4f94e6e7e622e0a648a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c316f3ca2135b295bd5f7e6b2ebc392"><td class="memItemLeft" align="right" valign="top">UEdGraph *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a></td></tr>
 <tr class="memdesc:a2c316f3ca2135b295bd5f7e6b2ebc392"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Graph Being Indexed By This Indexer.   <a href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">More...</a><br /></td></tr>
 <tr class="separator:a2c316f3ca2135b295bd5f7e6b2ebc392"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,7 +223,7 @@ Protected Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   23</span>        FOnGraphChanged::FDelegate::CreateRaw(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classFGraphIndexer.html#a5b8b8c88fd0d2e906cf3d358bee48fcf">FGraphIndexer::OnGraphEvent</a>)</div>
 <div class="line"><span class="lineno">   24</span>    );</div>
 <div class="line"><span class="lineno">   25</span>}</div>
-<div class="ttc" id="aclassFGraphIndexer_html_a2c316f3ca2135b295bd5f7e6b2ebc392"><div class="ttname"><a href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">FGraphIndexer::LinkedGraph</a></div><div class="ttdeci">UEdGraph * LinkedGraph</div><div class="ttdoc">The Graph Being Indexed By This Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00178">GraphIndexer.h:178</a></div></div>
+<div class="ttc" id="aclassFGraphIndexer_html_a2c316f3ca2135b295bd5f7e6b2ebc392"><div class="ttname"><a href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">FGraphIndexer::LinkedGraph</a></div><div class="ttdeci">UEdGraph * LinkedGraph</div><div class="ttdoc">The Graph Being Indexed By This Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00182">GraphIndexer.h:182</a></div></div>
 <div class="ttc" id="aclassFGraphIndexer_html_a5b8b8c88fd0d2e906cf3d358bee48fcf"><div class="ttname"><a href="classFGraphIndexer.html#a5b8b8c88fd0d2e906cf3d358bee48fcf">FGraphIndexer::OnGraphEvent</a></div><div class="ttdeci">void OnGraphEvent(const FEdGraphEditAction &amp;InAction)</div><div class="ttdoc">Callback for when the Linked Graph for the Indexer has been Modified.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00225">GraphIndexer.cpp:225</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -247,15 +247,15 @@ Protected Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">   28</span>{</div>
 <div class="line"><span class="lineno">   29</span>    <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.Empty();</div>
 <div class="line"><span class="lineno">   30</span>    <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Empty();</div>
-<div class="line"><span class="lineno">   31</span>    <a class="code hl_variable" href="classFGraphIndexer.html#a331470f63727a15c6399ad4e99f1895a">AvailableIndices</a>.Empty();</div>
+<div class="line"><span class="lineno">   31</span>    <a class="code hl_variable" href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">AvailableIndices</a>.Empty();</div>
 <div class="line"><span class="lineno">   32</span> </div>
 <div class="line"><span class="lineno">   33</span>    <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a>-&gt;RemoveOnGraphChangedHandler(OnGraphChangedHandle);</div>
 <div class="line"><span class="lineno">   34</span> </div>
 <div class="line"><span class="lineno">   35</span>    <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a> = <span class="keyword">nullptr</span>;</div>
 <div class="line"><span class="lineno">   36</span>}</div>
-<div class="ttc" id="aclassFGraphIndexer_html_a331470f63727a15c6399ad4e99f1895a"><div class="ttname"><a href="classFGraphIndexer.html#a331470f63727a15c6399ad4e99f1895a">FGraphIndexer::AvailableIndices</a></div><div class="ttdeci">TQueue&lt; int32 &gt; AvailableIndices</div><div class="ttdoc">A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00173">GraphIndexer.h:173</a></div></div>
-<div class="ttc" id="aclassFGraphIndexer_html_ae050cb6280c81878fb8175670020b60f"><div class="ttname"><a href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">FGraphIndexer::IndexMap</a></div><div class="ttdeci">TMap&lt; int, UEdGraphNode * &gt; IndexMap</div><div class="ttdoc">Map of the Index to the Node.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00163">GraphIndexer.h:163</a></div></div>
-<div class="ttc" id="aclassFGraphIndexer_html_af326872f3d3e372e90e3763302d47aba"><div class="ttname"><a href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">FGraphIndexer::NodeSet</a></div><div class="ttdeci">TSet&lt; int32 &gt; NodeSet</div><div class="ttdoc">Look-Up Set of the Nodes Contained in the Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00168">GraphIndexer.h:168</a></div></div>
+<div class="ttc" id="aclassFGraphIndexer_html_ab24adb2b0079a4f94e6e7e622e0a648a"><div class="ttname"><a href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">FGraphIndexer::AvailableIndices</a></div><div class="ttdeci">TArray&lt; int32 &gt; AvailableIndices</div><div class="ttdoc">A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00177">GraphIndexer.h:177</a></div></div>
+<div class="ttc" id="aclassFGraphIndexer_html_ae050cb6280c81878fb8175670020b60f"><div class="ttname"><a href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">FGraphIndexer::IndexMap</a></div><div class="ttdeci">TMap&lt; int, UEdGraphNode * &gt; IndexMap</div><div class="ttdoc">Map of the Index to the Node.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00167">GraphIndexer.h:167</a></div></div>
+<div class="ttc" id="aclassFGraphIndexer_html_af326872f3d3e372e90e3763302d47aba"><div class="ttname"><a href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">FGraphIndexer::NodeSet</a></div><div class="ttdeci">TSet&lt; int32 &gt; NodeSet</div><div class="ttdoc">Look-Up Set of the Nodes Contained in the Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00172">GraphIndexer.h:172</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -919,7 +919,7 @@ Protected Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><span class="lineno">  257</span>{</div>
 <div class="line"><span class="lineno">  258</span>    <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.Reset();</div>
 <div class="line"><span class="lineno">  259</span>    <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Reset();</div>
-<div class="line"><span class="lineno">  260</span>    <a class="code hl_variable" href="classFGraphIndexer.html#a331470f63727a15c6399ad4e99f1895a">AvailableIndices</a>.Empty();</div>
+<div class="line"><span class="lineno">  260</span>    <a class="code hl_variable" href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">AvailableIndices</a>.Empty();</div>
 <div class="line"><span class="lineno">  261</span> </div>
 <div class="line"><span class="lineno">  262</span>    BuildGraphIndex();</div>
 <div class="line"><span class="lineno">  263</span>}</div>
@@ -963,7 +963,7 @@ Protected Attributes</h2></td></tr>
 <div class="line"><span class="lineno">  194</span>    {</div>
 <div class="line"><span class="lineno">  195</span>        <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Remove(Node-&gt;GetUniqueID());</div>
 <div class="line"><span class="lineno">  196</span>        <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.Remove(InIndex);</div>
-<div class="line"><span class="lineno">  197</span>        <a class="code hl_variable" href="classFGraphIndexer.html#a331470f63727a15c6399ad4e99f1895a">AvailableIndices</a>.Enqueue(InIndex);</div>
+<div class="line"><span class="lineno">  197</span>        AddAvailableIndex(InIndex);</div>
 <div class="line"><span class="lineno">  198</span>    }</div>
 <div class="line"><span class="lineno">  199</span>    <span class="keywordflow">else</span></div>
 <div class="line"><span class="lineno">  200</span>    {</div>
@@ -1014,8 +1014,8 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a331470f63727a15c6399ad4e99f1895a" name="a331470f63727a15c6399ad4e99f1895a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a331470f63727a15c6399ad4e99f1895a">&#9670;&#160;</a></span>AvailableIndices</h2>
+<a id="ab24adb2b0079a4f94e6e7e622e0a648a" name="ab24adb2b0079a4f94e6e7e622e0a648a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab24adb2b0079a4f94e6e7e622e0a648a">&#9670;&#160;</a></span>AvailableIndices</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1024,7 +1024,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">TQueue&lt;int32&gt; FGraphIndexer::AvailableIndices</td>
+          <td class="memname">TArray&lt;int32&gt; FGraphIndexer::AvailableIndices</td>
         </tr>
       </table>
   </td>
@@ -1036,7 +1036,7 @@ Protected Attributes</h2></td></tr>
 
 <p>A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.  </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00173">173</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00177">177</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
 
 </div>
 </div>
@@ -1062,7 +1062,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Map of the Index to the Node.  </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00163">163</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00167">167</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
 
 </div>
 </div>
@@ -1088,7 +1088,7 @@ Protected Attributes</h2></td></tr>
 
 <p>The Graph Being Indexed By This Indexer.  </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00178">178</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00182">182</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
 
 </div>
 </div>
@@ -1114,7 +1114,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Look-Up Set of the Nodes Contained in the Indexer.  </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00168">168</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00172">172</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
 
 </div>
 </div>
@@ -1138,7 +1138,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00180">180</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00184">184</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
 
 </div>
 </div>

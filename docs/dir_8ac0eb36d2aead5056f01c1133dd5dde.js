@@ -9,5 +9,6 @@ var dir_8ac0eb36d2aead5056f01c1133dd5dde =
     [ "OAccessibilityNodeFactory.cpp", "OAccessibilityNodeFactory_8cpp_source.html", null ],
     [ "OAEditorAccessibilityManager.cpp", "OAEditorAccessibilityManager_8cpp_source.html", null ],
     [ "OpenAccessibility.cpp", "OpenAccessibility_8cpp_source.html", null ],
+    [ "OpenAccessibilityLogging.cpp", "OpenAccessibilityLogging_8cpp_source.html", null ],
     [ "TranscriptionVisualizer.cpp", "TranscriptionVisualizer_8cpp_source.html", null ]
 ];

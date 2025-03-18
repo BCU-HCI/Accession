@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['topleft_0',['TopLeft',['../structFGraphLocomotionChunk.html#a8dc029954ce81fe0507c4bffa0975b69',1,'FGraphLocomotionChunk']]],
-  ['transcriptioncontainer_1',['TranscriptionContainer',['../classSAccessibilityTranscriptionVis.html#a252aa6d658e15a1e272e6cc995fbbf9c',1,'SAccessibilityTranscriptionVis']]],
-  ['transcriptionslots_2',['TranscriptionSlots',['../classSAccessibilityTranscriptionVis.html#a2033256c83d4acf28b59c6da9c85a95b',1,'SAccessibilityTranscriptionVis']]],
-  ['treeview_3',['TreeView',['../classUAccessibilityAddNodeContextMenu.html#ab685c4b348b2842631789a570bb2c488',1,'UAccessibilityAddNodeContextMenu']]]
+  ['savename_0',['SaveName',['../structFAudioManagerSettings.html#adeeaa0e6e3fefc89ff21ca7f13587eb1',1,'FAudioManagerSettings']]],
+  ['savepath_1',['SavePath',['../structFAudioManagerSettings.html#ae98270b08ad9a9192c6622f827276741',1,'FAudioManagerSettings']]],
+  ['sendsocket_2',['SendSocket',['../classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc',1,'FSocketCommunicationServer']]],
+  ['settings_3',['Settings',['../classUAudioManager.html#addf856d032dedc5835e117f8f700fc79',1,'UAudioManager']]],
+  ['socketserver_4',['SocketServer',['../classFOpenAccessibilityCommunicationModule.html#a7918db39c3d055f0b0479caa1e2a3703',1,'FOpenAccessibilityCommunicationModule']]],
+  ['startnode_5',['StartNode',['../structFPhraseTreeBranchBind.html#ab8d30df40e30af23f51dd0f4d03c2d90',1,'FPhraseTreeBranchBind']]]
 ];

@@ -145,9 +145,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html#l00005">5</a> of file <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html">SAccessibilityTranscriptionVis.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    6</span>{</div>
-<div class="line"><span class="lineno">    7</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html#l00008">8</a> of file <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html">SAccessibilityTranscriptionVis.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">    9</span>{</div>
+<div class="line"><span class="lineno">   10</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -168,64 +168,76 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html#l00009">9</a> of file <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html">SAccessibilityTranscriptionVis.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   10</span>{</div>
-<div class="line"><span class="lineno">   11</span>    <span class="comment">// Transcription Holder</span></div>
-<div class="line"><span class="lineno">   12</span>    TSharedPtr&lt;SVerticalBox&gt; TranscriptionHolder = SNew(SVerticalBox)</div>
-<div class="line"><span class="lineno">   13</span>        + SVerticalBox::Slot()</div>
-<div class="line"><span class="lineno">   14</span>        .Padding(4.0f)</div>
-<div class="line"><span class="lineno">   15</span>        .AutoHeight();</div>
-<div class="line"><span class="lineno">   16</span> </div>
-<div class="line"><span class="lineno">   17</span>    <span class="comment">// Verify a least one slot will be constructed</span></div>
-<div class="line"><span class="lineno">   18</span>    <span class="keywordtype">int</span> TranscriptionSlotAmount = FMath::Max(1, InArgs._VisAmount);</div>
+<p class="definition">Definition at line <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html#l00012">12</a> of file <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html">SAccessibilityTranscriptionVis.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   13</span>{</div>
+<div class="line"><span class="lineno">   14</span>    <span class="comment">// Transcription Holder</span></div>
+<div class="line"><span class="lineno">   15</span>    TSharedPtr&lt;SVerticalBox&gt; TranscriptionHolder = SNew(SVerticalBox)</div>
+<div class="line"><span class="lineno">   16</span>        + SVerticalBox::Slot()</div>
+<div class="line"><span class="lineno">   17</span>        .Padding(4.0f)</div>
+<div class="line"><span class="lineno">   18</span>        .AutoHeight();</div>
 <div class="line"><span class="lineno">   19</span> </div>
-<div class="line"><span class="lineno">   20</span>    FSlateFontInfo FontInfo = FAppStyle::GetFontStyle(<span class="stringliteral">&quot;NormalText&quot;</span>);</div>
-<div class="line"><span class="lineno">   21</span>    FontInfo.Size = 12;</div>
+<div class="line"><span class="lineno">   20</span>    <span class="comment">// Verify a least one slot will be constructed</span></div>
+<div class="line"><span class="lineno">   21</span>    <span class="keywordtype">int</span> TranscriptionSlotAmount = FMath::Max(1, InArgs._VisAmount);</div>
 <div class="line"><span class="lineno">   22</span> </div>
-<div class="line"><span class="lineno">   23</span>    TSharedPtr&lt;STextBlock&gt; CurrentTranscriptionSlot;</div>
-<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; TranscriptionSlotAmount; i++)</div>
-<div class="line"><span class="lineno">   25</span>    {</div>
-<div class="line"><span class="lineno">   26</span>        TranscriptionHolder-&gt;AddSlot()</div>
-<div class="line"><span class="lineno">   27</span>            .HAlign(HAlign_Center)</div>
-<div class="line"><span class="lineno">   28</span>            .Padding(4.0f)</div>
-<div class="line"><span class="lineno">   29</span>            .AutoHeight()</div>
-<div class="line"><span class="lineno">   30</span>            [</div>
-<div class="line"><span class="lineno">   31</span>                SAssignNew(CurrentTranscriptionSlot, STextBlock)</div>
-<div class="line"><span class="lineno">   32</span>                    .Text(FText::GetEmpty())</div>
-<div class="line"><span class="lineno">   33</span>                    .Font(FontInfo)</div>
-<div class="line"><span class="lineno">   34</span>                    .SimpleTextMode(<span class="keyword">true</span>)</div>
-<div class="line"><span class="lineno">   35</span>                    .ColorAndOpacity(i == 0 ? FSlateColor(FLinearColor(1.0f, 1.0f, 0, 1.0f)) : FSlateColor(FLinearColor(0.5f, 0.5f, 0.5f, 1.0f)))</div>
-<div class="line"><span class="lineno">   36</span>            ];</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>        <a class="code hl_variable" href="classSAccessibilityTranscriptionVis.html#a2033256c83d4acf28b59c6da9c85a95b">TranscriptionSlots</a>.Add(CurrentTranscriptionSlot);</div>
-<div class="line"><span class="lineno">   39</span>    }</div>
+<div class="line"><span class="lineno">   23</span>    FSlateFontInfo FontInfo = FAppStyle::GetFontStyle(<span class="stringliteral">&quot;NormalText&quot;</span>);</div>
+<div class="line"><span class="lineno">   24</span>    FontInfo.Size = 12;</div>
+<div class="line"><span class="lineno">   25</span> </div>
+<div class="line"><span class="lineno">   26</span>    TSharedPtr&lt;STextBlock&gt; CurrentTranscriptionSlot;</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; TranscriptionSlotAmount; i++)</div>
+<div class="line"><span class="lineno">   28</span>    {</div>
+<div class="line"><span class="lineno">   29</span>        TranscriptionHolder-&gt;AddSlot()</div>
+<div class="line"><span class="lineno">   30</span>            .HAlign(HAlign_Center)</div>
+<div class="line"><span class="lineno">   31</span>            .Padding(4.0f)</div>
+<div class="line"><span class="lineno">   32</span>            .AutoHeight()</div>
+<div class="line"><span class="lineno">   33</span>            [</div>
+<div class="line"><span class="lineno">   34</span>                SAssignNew(CurrentTranscriptionSlot, STextBlock)</div>
+<div class="line"><span class="lineno">   35</span>                    .Text(FText::GetEmpty())</div>
+<div class="line"><span class="lineno">   36</span>                    .Font(FontInfo)</div>
+<div class="line"><span class="lineno">   37</span>                    .SimpleTextMode(<span class="keyword">true</span>)</div>
+<div class="line"><span class="lineno">   38</span>                    .ColorAndOpacity(i == 0 ? FSlateColor(FLinearColor(1.0f, 1.0f, 0, 1.0f)) : FSlateColor(FLinearColor(0.5f, 0.5f, 0.5f, 1.0f)))</div>
+<div class="line"><span class="lineno">   39</span>            ];</div>
 <div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>    <span class="comment">// Construct the Main Component</span></div>
-<div class="line"><span class="lineno">   42</span> </div>
-<div class="line"><span class="lineno">   43</span>    ChildSlot</div>
-<div class="line"><span class="lineno">   44</span>    .Padding(FMargin(5.0f))</div>
-<div class="line"><span class="lineno">   45</span>    [</div>
-<div class="line"><span class="lineno">   46</span>        SNew(SOverlay)</div>
-<div class="line"><span class="lineno">   47</span>        + SOverlay::Slot()</div>
-<div class="line"><span class="lineno">   48</span>        .ZOrder(1)</div>
-<div class="line"><span class="lineno">   49</span>        [</div>
-<div class="line"><span class="lineno">   50</span>            SNew(SBorder)</div>
-<div class="line"><span class="lineno">   51</span>            .BorderBackgroundColor(FSlateColor(FLinearColor::Gray))</div>
-<div class="line"><span class="lineno">   52</span>            [</div>
-<div class="line"><span class="lineno">   53</span>                SNew(SBox)</div>
-<div class="line"><span class="lineno">   54</span>                .MinDesiredWidth(250.0f)</div>
-<div class="line"><span class="lineno">   55</span>                .MinDesiredHeight(60.0f)</div>
-<div class="line"><span class="lineno">   56</span>                [</div>
-<div class="line"><span class="lineno">   57</span>                    TranscriptionHolder.ToSharedRef()</div>
-<div class="line"><span class="lineno">   58</span>                ]</div>
-<div class="line"><span class="lineno">   59</span>            ]</div>
-<div class="line"><span class="lineno">   60</span>        ]</div>
-<div class="line"><span class="lineno">   61</span>    ];</div>
-<div class="line"><span class="lineno">   62</span> </div>
-<div class="line"><span class="lineno">   63</span>    this-&gt;<a class="code hl_variable" href="classSAccessibilityTranscriptionVis.html#a252aa6d658e15a1e272e6cc995fbbf9c">TranscriptionContainer</a> = TranscriptionHolder;</div>
-<div class="line"><span class="lineno">   64</span>}</div>
+<div class="line"><span class="lineno">   41</span>        <a class="code hl_variable" href="classSAccessibilityTranscriptionVis.html#a2033256c83d4acf28b59c6da9c85a95b">TranscriptionSlots</a>.Add(CurrentTranscriptionSlot);</div>
+<div class="line"><span class="lineno">   42</span>    }</div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>    <span class="comment">// Construct the Main Component</span></div>
+<div class="line"><span class="lineno">   45</span> </div>
+<div class="line"><span class="lineno">   46</span>    <a class="code hl_class" href="classUAudioManager.html">UAudioManager</a>* AudioManager = <a class="code hl_function" href="classFOpenAccessibilityCommunicationModule.html#ab9a253dcab8c5f61a98bace34db23da3">FOpenAccessibilityCommunicationModule::Get</a>().<a class="code hl_variable" href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">AudioManager</a>;</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>    ChildSlot</div>
+<div class="line"><span class="lineno">   49</span>    .Padding(FMargin(5.0f))</div>
+<div class="line"><span class="lineno">   50</span>    [</div>
+<div class="line"><span class="lineno">   51</span>        SNew(SOverlay)</div>
+<div class="line"><span class="lineno">   52</span>        + SOverlay::Slot()</div>
+<div class="line"><span class="lineno">   53</span>        .ZOrder(1)</div>
+<div class="line"><span class="lineno">   54</span>        [</div>
+<div class="line"><span class="lineno">   55</span>            SNew(SBorder)</div>
+<div class="line"><span class="lineno">   56</span>            .BorderBackgroundColor(FSlateColor(FLinearColor::Gray))</div>
+<div class="line"><span class="lineno">   57</span>            .BorderBackgroundColor_Lambda([AudioManager]()</div>
+<div class="line"><span class="lineno">   58</span>            {</div>
+<div class="line"><span class="lineno">   59</span>                <span class="keywordflow">return</span> AudioManager != <span class="keyword">nullptr</span> &amp;&amp; AudioManager-&gt;<a class="code hl_function" href="classUAudioManager.html#a19164195b0f4762910b909ba2dd15582">IsCapturingAudio</a>()</div>
+<div class="line"><span class="lineno">   60</span>                ? FSlateColor(FLinearColor::Red)</div>
+<div class="line"><span class="lineno">   61</span>                : FSlateColor(FLinearColor::Gray);</div>
+<div class="line"><span class="lineno">   62</span>            })</div>
+<div class="line"><span class="lineno">   63</span>            [</div>
+<div class="line"><span class="lineno">   64</span>                SNew(SBox)</div>
+<div class="line"><span class="lineno">   65</span>                .MinDesiredWidth(250.0f)</div>
+<div class="line"><span class="lineno">   66</span>                .MinDesiredHeight(60.0f)</div>
+<div class="line"><span class="lineno">   67</span>                [</div>
+<div class="line"><span class="lineno">   68</span>                    TranscriptionHolder.ToSharedRef()</div>
+<div class="line"><span class="lineno">   69</span>                ]</div>
+<div class="line"><span class="lineno">   70</span>            ]</div>
+<div class="line"><span class="lineno">   71</span>        ]</div>
+<div class="line"><span class="lineno">   72</span>    ];</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>    this-&gt;<a class="code hl_variable" href="classSAccessibilityTranscriptionVis.html#a252aa6d658e15a1e272e6cc995fbbf9c">TranscriptionContainer</a> = TranscriptionHolder;</div>
+<div class="line"><span class="lineno">   75</span>}</div>
+<div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_a96d050cde091ef820833f68292d3fdf0"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#a96d050cde091ef820833f68292d3fdf0">FOpenAccessibilityCommunicationModule::AudioManager</a></div><div class="ttdeci">class UAudioManager * AudioManager</div><div class="ttdoc">The AudioManager, Managing any Audio Capture Component.</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8h_source.html#l00082">OpenAccessibilityCommunication.h:82</a></div></div>
+<div class="ttc" id="aclassFOpenAccessibilityCommunicationModule_html_ab9a253dcab8c5f61a98bace34db23da3"><div class="ttname"><a href="classFOpenAccessibilityCommunicationModule.html#ab9a253dcab8c5f61a98bace34db23da3">FOpenAccessibilityCommunicationModule::Get</a></div><div class="ttdeci">static FOpenAccessibilityCommunicationModule &amp; Get()</div><div class="ttdef"><b>Definition:</b> <a href="OpenAccessibilityCommunication_8h_source.html#l00031">OpenAccessibilityCommunication.h:31</a></div></div>
 <div class="ttc" id="aclassSAccessibilityTranscriptionVis_html_a2033256c83d4acf28b59c6da9c85a95b"><div class="ttname"><a href="classSAccessibilityTranscriptionVis.html#a2033256c83d4acf28b59c6da9c85a95b">SAccessibilityTranscriptionVis::TranscriptionSlots</a></div><div class="ttdeci">TArray&lt; TWeakPtr&lt; STextBlock &gt; &gt; TranscriptionSlots</div><div class="ttdoc">Array of the created Transcription Slots, displaying recieved transcriptions.</div><div class="ttdef"><b>Definition:</b> <a href="SAccessibilityTranscriptionVis_8h_source.html#l00044">SAccessibilityTranscriptionVis.h:44</a></div></div>
 <div class="ttc" id="aclassSAccessibilityTranscriptionVis_html_a252aa6d658e15a1e272e6cc995fbbf9c"><div class="ttname"><a href="classSAccessibilityTranscriptionVis.html#a252aa6d658e15a1e272e6cc995fbbf9c">SAccessibilityTranscriptionVis::TranscriptionContainer</a></div><div class="ttdeci">TWeakPtr&lt; SVerticalBox &gt; TranscriptionContainer</div><div class="ttdoc">The Container of the Transcription Slots.</div><div class="ttdef"><b>Definition:</b> <a href="SAccessibilityTranscriptionVis_8h_source.html#l00039">SAccessibilityTranscriptionVis.h:39</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html"><div class="ttname"><a href="classUAudioManager.html">UAudioManager</a></div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8h_source.html#l00049">AudioManager.h:50</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a19164195b0f4762910b909ba2dd15582"><div class="ttname"><a href="classUAudioManager.html#a19164195b0f4762910b909ba2dd15582">UAudioManager::IsCapturingAudio</a></div><div class="ttdeci">bool IsCapturingAudio() const</div><div class="ttdoc">Is the Audio Manager Currently Capturing Audio.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00039">AudioManager.cpp:39</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -299,10 +311,10 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html#l00066">66</a> of file <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html">SAccessibilityTranscriptionVis.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   67</span>{</div>
-<div class="line"><span class="lineno">   68</span>    SBox::Tick(AllottedGeometry, InCurrentTime, InDeltaTime);</div>
-<div class="line"><span class="lineno">   69</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html#l00077">77</a> of file <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html">SAccessibilityTranscriptionVis.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   78</span>{</div>
+<div class="line"><span class="lineno">   79</span>    SBox::Tick(AllottedGeometry, InCurrentTime, InDeltaTime);</div>
+<div class="line"><span class="lineno">   80</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -324,26 +336,26 @@ Protected Attributes</h2></td></tr>
 
 <p>Updates the Top Transcription Text, shifting all current transcriptions down.  </p>
 
-<p class="definition">Definition at line <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html#l00071">71</a> of file <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html">SAccessibilityTranscriptionVis.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   72</span>{</div>
-<div class="line"><span class="lineno">   73</span>    FString LastTopText = InTopTranscription;</div>
-<div class="line"><span class="lineno">   74</span>    FString TempText;</div>
-<div class="line"><span class="lineno">   75</span> </div>
-<div class="line"><span class="lineno">   76</span>    TSharedPtr&lt;STextBlock&gt; CurrentTranscriptionSlot;</div>
-<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">for</span> (TWeakPtr&lt;STextBlock&gt;&amp; TranscriptionSlot : <a class="code hl_variable" href="classSAccessibilityTranscriptionVis.html#a2033256c83d4acf28b59c6da9c85a95b">TranscriptionSlots</a>)</div>
-<div class="line"><span class="lineno">   78</span>    {</div>
-<div class="line"><span class="lineno">   79</span>        CurrentTranscriptionSlot = TranscriptionSlot.Pin();</div>
-<div class="line"><span class="lineno">   80</span> </div>
-<div class="line"><span class="lineno">   81</span>        TempText = FString(CurrentTranscriptionSlot-&gt;GetText().ToString());</div>
-<div class="line"><span class="lineno">   82</span>        CurrentTranscriptionSlot-&gt;SetText(FText::FromString(LastTopText));</div>
-<div class="line"><span class="lineno">   83</span> </div>
-<div class="line"><span class="lineno">   84</span>        CurrentTranscriptionSlot-&gt;Invalidate(EInvalidateWidgetReason::PaintAndVolatility);</div>
-<div class="line"><span class="lineno">   85</span> </div>
-<div class="line"><span class="lineno">   86</span>        LastTopText = TempText;</div>
-<div class="line"><span class="lineno">   87</span>    }</div>
-<div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>    <a class="code hl_variable" href="classSAccessibilityTranscriptionVis.html#a252aa6d658e15a1e272e6cc995fbbf9c">TranscriptionContainer</a>.Pin()-&gt;Invalidate(EInvalidateWidget::Layout);</div>
-<div class="line"><span class="lineno">   90</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html#l00082">82</a> of file <a class="el" href="SAccessibilityTranscriptionVis_8cpp_source.html">SAccessibilityTranscriptionVis.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   83</span>{</div>
+<div class="line"><span class="lineno">   84</span>    FString LastTopText = InTopTranscription;</div>
+<div class="line"><span class="lineno">   85</span>    FString TempText;</div>
+<div class="line"><span class="lineno">   86</span> </div>
+<div class="line"><span class="lineno">   87</span>    TSharedPtr&lt;STextBlock&gt; CurrentTranscriptionSlot;</div>
+<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">for</span> (TWeakPtr&lt;STextBlock&gt;&amp; TranscriptionSlot : <a class="code hl_variable" href="classSAccessibilityTranscriptionVis.html#a2033256c83d4acf28b59c6da9c85a95b">TranscriptionSlots</a>)</div>
+<div class="line"><span class="lineno">   89</span>    {</div>
+<div class="line"><span class="lineno">   90</span>        CurrentTranscriptionSlot = TranscriptionSlot.Pin();</div>
+<div class="line"><span class="lineno">   91</span> </div>
+<div class="line"><span class="lineno">   92</span>        TempText = FString(CurrentTranscriptionSlot-&gt;GetText().ToString());</div>
+<div class="line"><span class="lineno">   93</span>        CurrentTranscriptionSlot-&gt;SetText(FText::FromString(LastTopText));</div>
+<div class="line"><span class="lineno">   94</span> </div>
+<div class="line"><span class="lineno">   95</span>        CurrentTranscriptionSlot-&gt;Invalidate(EInvalidateWidgetReason::PaintAndVolatility);</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>        LastTopText = TempText;</div>
+<div class="line"><span class="lineno">   98</span>    }</div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>    <a class="code hl_variable" href="classSAccessibilityTranscriptionVis.html#a252aa6d658e15a1e272e6cc995fbbf9c">TranscriptionContainer</a>.Pin()-&gt;Invalidate(EInvalidateWidget::Layout);</div>
+<div class="line"><span class="lineno">  101</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

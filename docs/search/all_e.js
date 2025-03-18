@@ -12,5 +12,6 @@ var searchData=
   ['openaccessibilityanalytics_9',['OpenAccessibilityAnalytics',['../classOpenAccessibilityAnalytics.html',1,'']]],
   ['openaccessibilitycommunication_10',['OpenAccessibilityCommunication',['../classOpenAccessibilityCommunication.html',1,'']]],
   ['openaccessibilitypy_11',['OpenAccessibilityPy',['../classOpenAccessibilityPy_1_1OpenAccessibilityPy.html',1,'OpenAccessibilityPy']]],
-  ['opendefaultaudiostream_12',['OpenDefaultAudioStream',['../classUBAudioCapture.html#ad7ab2a794748b6a309bfcc8d3d20f289',1,'UBAudioCapture']]]
+  ['opendefaultaudiostream_12',['OpenDefaultAudioStream',['../classUBAudioCapture.html#ad7ab2a794748b6a309bfcc8d3d20f289',1,'UBAudioCapture']]],
+  ['owner_13',['Owner',['../classFGraphQTNode.html#a74f1b80c9bb1936561d58ee2f5910bdf',1,'FGraphQTNode']]]
 ];

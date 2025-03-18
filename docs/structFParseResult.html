@@ -123,7 +123,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Contains the Result of Propagation through the Phrase Tree.  </p>
 
-<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00051">51</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00055">55</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9bffd26b57d32710d92eb0769f3dcc22" name="a9bffd26b57d32710d92eb0769f3dcc22"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9bffd26b57d32710d92eb0769f3dcc22">&#9670;&#160;</a></span>FParseResult() <span class="overload">[1/3]</span></h2>
@@ -148,11 +148,11 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00053">53</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   54</span>    {</div>
-<div class="line"><span class="lineno">   55</span>        <a class="code hl_variable" href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">Result</a> = PHRASE_NOT_PARSED;</div>
-<div class="line"><span class="lineno">   56</span>    }</div>
-<div class="ttc" id="astructFParseResult_html_afd7eb42878c0d7cb3877b48fc93d4580"><div class="ttname"><a href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">FParseResult::Result</a></div><div class="ttdeci">uint8_t Result</div><div class="ttdoc">The Result of the Propogation.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00074">ParseResult.h:74</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00057">57</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   58</span>    {</div>
+<div class="line"><span class="lineno">   59</span>        <a class="code hl_variable" href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">Result</a> = PHRASE_NOT_PARSED;</div>
+<div class="line"><span class="lineno">   60</span>    }</div>
+<div class="ttc" id="astructFParseResult_html_afd7eb42878c0d7cb3877b48fc93d4580"><div class="ttname"><a href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">FParseResult::Result</a></div><div class="ttdeci">uint8_t Result</div><div class="ttdoc">The Result of the Propogation.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00078">ParseResult.h:78</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -180,10 +180,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00058">58</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   59</span>    {</div>
-<div class="line"><span class="lineno">   60</span>        <a class="code hl_variable" href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">Result</a> = InResult;</div>
-<div class="line"><span class="lineno">   61</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00062">62</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   63</span>    {</div>
+<div class="line"><span class="lineno">   64</span>        <a class="code hl_variable" href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">Result</a> = InResult;</div>
+<div class="line"><span class="lineno">   65</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -221,12 +221,12 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00063">63</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   64</span>    {</div>
-<div class="line"><span class="lineno">   65</span>        <a class="code hl_variable" href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">Result</a> = InResult;</div>
-<div class="line"><span class="lineno">   66</span>        <a class="code hl_variable" href="structFParseResult.html#abf7b09c62489fb07c96ece01ca591765">ReachedNode</a> = InReachedNode;</div>
-<div class="line"><span class="lineno">   67</span>    }</div>
-<div class="ttc" id="astructFParseResult_html_abf7b09c62489fb07c96ece01ca591765"><div class="ttname"><a href="structFParseResult.html#abf7b09c62489fb07c96ece01ca591765">FParseResult::ReachedNode</a></div><div class="ttdeci">TSharedPtr&lt; FPhraseNode &gt; ReachedNode</div><div class="ttdoc">The Node that was reached in the tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00079">ParseResult.h:79</a></div></div>
+<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00067">67</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>    {</div>
+<div class="line"><span class="lineno">   69</span>        <a class="code hl_variable" href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">Result</a> = InResult;</div>
+<div class="line"><span class="lineno">   70</span>        <a class="code hl_variable" href="structFParseResult.html#abf7b09c62489fb07c96ece01ca591765">ReachedNode</a> = InReachedNode;</div>
+<div class="line"><span class="lineno">   71</span>    }</div>
+<div class="ttc" id="astructFParseResult_html_abf7b09c62489fb07c96ece01ca591765"><div class="ttname"><a href="structFParseResult.html#abf7b09c62489fb07c96ece01ca591765">FParseResult::ReachedNode</a></div><div class="ttdeci">TSharedPtr&lt; FPhraseNode &gt; ReachedNode</div><div class="ttdoc">The Node that was reached in the tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00083">ParseResult.h:83</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -245,7 +245,7 @@ Public Attributes</h2></td></tr>
 
 <p>The Node that was reached in the tree.  </p>
 
-<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00079">79</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00083">83</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
 
 </div>
 </div>
@@ -263,7 +263,7 @@ Public Attributes</h2></td></tr>
 
 <p>The Result of the Propogation.  </p>
 
-<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00074">74</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ParseResult_8h_source.html#l00078">78</a> of file <a class="el" href="ParseResult_8h_source.html">ParseResult.h</a>.</p>
 
 </div>
 </div>

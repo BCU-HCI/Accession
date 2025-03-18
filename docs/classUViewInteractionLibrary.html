@@ -142,11 +142,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00012">12</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   13</span>    : Super(ObjectInitializer)</div>
-<div class="line"><span class="lineno">   14</span>{</div>
-<div class="line"><span class="lineno">   15</span> </div>
-<div class="line"><span class="lineno">   16</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00014">14</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   15</span>    : Super(ObjectInitializer)</div>
+<div class="line"><span class="lineno">   16</span>{</div>
+<div class="line"><span class="lineno">   17</span> </div>
+<div class="line"><span class="lineno">   18</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -173,10 +173,10 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00018">18</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>{</div>
-<div class="line"><span class="lineno">   20</span> </div>
-<div class="line"><span class="lineno">   21</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00020">20</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   21</span>{</div>
+<div class="line"><span class="lineno">   22</span> </div>
+<div class="line"><span class="lineno">   23</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -213,64 +213,64 @@ Public Member Functions</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00023">23</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   24</span>{</div>
-<div class="line"><span class="lineno">   25</span>    PhraseTree-&gt;BindBranch(</div>
-<div class="line"><span class="lineno">   26</span>        MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;VIEW&quot;</span>), </div>
-<div class="line"><span class="lineno">   27</span>        TPhraseNodeArray {</div>
-<div class="line"><span class="lineno">   28</span>            </div>
-<div class="line"><span class="lineno">   29</span>            MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;MOVE&quot;</span>),</div>
-<div class="line"><span class="lineno">   30</span>            TPhraseNodeArray {</div>
-<div class="line"><span class="lineno">   31</span> </div>
-<div class="line"><span class="lineno">   32</span>                MakeShared&lt;FPhrase2DDirectionalInputNode&gt;(TEXT(<span class="stringliteral">&quot;DIRECTION&quot;</span>), </div>
-<div class="line"><span class="lineno">   33</span>                TPhraseNodeArray {</div>
-<div class="line"><span class="lineno">   34</span>                </div>
-<div class="line"><span class="lineno">   35</span>                    MakeShared&lt;FPhraseInputNode&lt;int32&gt;&gt;(TEXT(<span class="stringliteral">&quot;AMOUNT&quot;</span>),</div>
-<div class="line"><span class="lineno">   36</span>                    TPhraseNodeArray {</div>
-<div class="line"><span class="lineno">   37</span>                    </div>
-<div class="line"><span class="lineno">   38</span>                        MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUViewInteractionLibrary.html#a4ef057b326b49e181f872220762db1d5">UViewInteractionLibrary::MoveViewport</a>))</div>
-<div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>                    })</div>
+<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00025">25</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   26</span>{</div>
+<div class="line"><span class="lineno">   27</span>    PhraseTree-&gt;BindBranch(</div>
+<div class="line"><span class="lineno">   28</span>        MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;VIEW&quot;</span>), </div>
+<div class="line"><span class="lineno">   29</span>        TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   30</span>            </div>
+<div class="line"><span class="lineno">   31</span>            MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;MOVE&quot;</span>),</div>
+<div class="line"><span class="lineno">   32</span>            TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   33</span> </div>
+<div class="line"><span class="lineno">   34</span>                MakeShared&lt;FPhrase2DDirectionalInputNode&gt;(TEXT(<span class="stringliteral">&quot;DIRECTION&quot;</span>), </div>
+<div class="line"><span class="lineno">   35</span>                TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   36</span>                </div>
+<div class="line"><span class="lineno">   37</span>                    MakeShared&lt;FPhraseIntInputNode&gt;(TEXT(<span class="stringliteral">&quot;AMOUNT&quot;</span>),</div>
+<div class="line"><span class="lineno">   38</span>                    TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   39</span>                    </div>
+<div class="line"><span class="lineno">   40</span>                        MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUViewInteractionLibrary.html#a4ef057b326b49e181f872220762db1d5">UViewInteractionLibrary::MoveViewport</a>))</div>
 <div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>                })</div>
+<div class="line"><span class="lineno">   42</span>                    })</div>
 <div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>            }),</div>
+<div class="line"><span class="lineno">   44</span>                })</div>
 <div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>            MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;ZOOM&quot;</span>), </div>
-<div class="line"><span class="lineno">   47</span>            TPhraseNodeArray {</div>
-<div class="line"><span class="lineno">   48</span>            </div>
-<div class="line"><span class="lineno">   49</span>                MakeShared&lt;FPhrase2DDirectionalInputNode&gt;(TEXT(<span class="stringliteral">&quot;DIRECTION&quot;</span>), </div>
-<div class="line"><span class="lineno">   50</span>                TPhraseNodeArray {</div>
-<div class="line"><span class="lineno">   51</span>                </div>
-<div class="line"><span class="lineno">   52</span>                    MakeShared&lt;FPhraseInputNode&lt;int32&gt;&gt;(TEXT(<span class="stringliteral">&quot;AMOUNT&quot;</span>), </div>
-<div class="line"><span class="lineno">   53</span>                    TPhraseNodeArray {</div>
-<div class="line"><span class="lineno">   54</span>                    </div>
-<div class="line"><span class="lineno">   55</span>                        MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUViewInteractionLibrary.html#a101a1fc37a876c1d5a58c0eae924e457">UViewInteractionLibrary::ZoomViewport</a>))</div>
+<div class="line"><span class="lineno">   46</span>            }),</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>            MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;ZOOM&quot;</span>), </div>
+<div class="line"><span class="lineno">   49</span>            TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   50</span>            </div>
+<div class="line"><span class="lineno">   51</span>                MakeShared&lt;FPhrase2DDirectionalInputNode&gt;(TEXT(<span class="stringliteral">&quot;DIRECTION&quot;</span>), </div>
+<div class="line"><span class="lineno">   52</span>                TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   53</span>                </div>
+<div class="line"><span class="lineno">   54</span>                    MakeShared&lt;FPhraseIntInputNode&gt;(TEXT(<span class="stringliteral">&quot;AMOUNT&quot;</span>),</div>
+<div class="line"><span class="lineno">   55</span>                    TPhraseNodeArray {</div>
 <div class="line"><span class="lineno">   56</span>                    </div>
-<div class="line"><span class="lineno">   57</span>                    })</div>
-<div class="line"><span class="lineno">   58</span> </div>
-<div class="line"><span class="lineno">   59</span>                })</div>
-<div class="line"><span class="lineno">   60</span>            </div>
-<div class="line"><span class="lineno">   61</span>            }),</div>
-<div class="line"><span class="lineno">   62</span> </div>
-<div class="line"><span class="lineno">   63</span>            MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;FOCUS&quot;</span>), </div>
-<div class="line"><span class="lineno">   64</span>            TPhraseNodeArray {</div>
-<div class="line"><span class="lineno">   65</span>                </div>
-<div class="line"><span class="lineno">   66</span>                MakeShared&lt;FPhraseInputNode&lt;int32&gt;&gt;(TEXT(<span class="stringliteral">&quot;INDEX&quot;</span>), </div>
-<div class="line"><span class="lineno">   67</span>                TPhraseNodeArray {</div>
-<div class="line"><span class="lineno">   68</span>                </div>
-<div class="line"><span class="lineno">   69</span>                    MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUViewInteractionLibrary.html#a42e597117b431a8e8412df2c6270245d">UViewInteractionLibrary::IndexFocus</a>))</div>
-<div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>                })</div>
+<div class="line"><span class="lineno">   57</span>                        MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUViewInteractionLibrary.html#a101a1fc37a876c1d5a58c0eae924e457">UViewInteractionLibrary::ZoomViewport</a>))</div>
+<div class="line"><span class="lineno">   58</span>                    </div>
+<div class="line"><span class="lineno">   59</span>                    })</div>
+<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   61</span>                })</div>
+<div class="line"><span class="lineno">   62</span>            </div>
+<div class="line"><span class="lineno">   63</span>            }),</div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>            MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;FOCUS&quot;</span>), </div>
+<div class="line"><span class="lineno">   66</span>            TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   67</span>                </div>
+<div class="line"><span class="lineno">   68</span>                MakeShared&lt;FPhraseIntInputNode&gt;(TEXT(<span class="stringliteral">&quot;INDEX&quot;</span>),</div>
+<div class="line"><span class="lineno">   69</span>                TPhraseNodeArray {</div>
+<div class="line"><span class="lineno">   70</span>                </div>
+<div class="line"><span class="lineno">   71</span>                    MakeShared&lt;FPhraseEventNode&gt;(CreateParseDelegate(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classUViewInteractionLibrary.html#a42e597117b431a8e8412df2c6270245d">UViewInteractionLibrary::IndexFocus</a>))</div>
 <div class="line"><span class="lineno">   72</span> </div>
-<div class="line"><span class="lineno">   73</span>            })</div>
+<div class="line"><span class="lineno">   73</span>                })</div>
 <div class="line"><span class="lineno">   74</span> </div>
-<div class="line"><span class="lineno">   75</span>        })</div>
-<div class="line"><span class="lineno">   76</span>    );</div>
-<div class="line"><span class="lineno">   77</span>}</div>
-<div class="ttc" id="aclassUViewInteractionLibrary_html_a101a1fc37a876c1d5a58c0eae924e457"><div class="ttname"><a href="classUViewInteractionLibrary.html#a101a1fc37a876c1d5a58c0eae924e457">UViewInteractionLibrary::ZoomViewport</a></div><div class="ttdeci">void ZoomViewport(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="ViewInteractionLibrary_8cpp_source.html#l00126">ViewInteractionLibrary.cpp:126</a></div></div>
-<div class="ttc" id="aclassUViewInteractionLibrary_html_a42e597117b431a8e8412df2c6270245d"><div class="ttname"><a href="classUViewInteractionLibrary.html#a42e597117b431a8e8412df2c6270245d">UViewInteractionLibrary::IndexFocus</a></div><div class="ttdeci">void IndexFocus(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="ViewInteractionLibrary_8cpp_source.html#l00165">ViewInteractionLibrary.cpp:165</a></div></div>
-<div class="ttc" id="aclassUViewInteractionLibrary_html_a4ef057b326b49e181f872220762db1d5"><div class="ttname"><a href="classUViewInteractionLibrary.html#a4ef057b326b49e181f872220762db1d5">UViewInteractionLibrary::MoveViewport</a></div><div class="ttdeci">void MoveViewport(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="ViewInteractionLibrary_8cpp_source.html#l00079">ViewInteractionLibrary.cpp:79</a></div></div>
+<div class="line"><span class="lineno">   75</span>            })</div>
+<div class="line"><span class="lineno">   76</span> </div>
+<div class="line"><span class="lineno">   77</span>        })</div>
+<div class="line"><span class="lineno">   78</span>    );</div>
+<div class="line"><span class="lineno">   79</span>}</div>
+<div class="ttc" id="aclassUViewInteractionLibrary_html_a101a1fc37a876c1d5a58c0eae924e457"><div class="ttname"><a href="classUViewInteractionLibrary.html#a101a1fc37a876c1d5a58c0eae924e457">UViewInteractionLibrary::ZoomViewport</a></div><div class="ttdeci">void ZoomViewport(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="ViewInteractionLibrary_8cpp_source.html#l00138">ViewInteractionLibrary.cpp:138</a></div></div>
+<div class="ttc" id="aclassUViewInteractionLibrary_html_a42e597117b431a8e8412df2c6270245d"><div class="ttname"><a href="classUViewInteractionLibrary.html#a42e597117b431a8e8412df2c6270245d">UViewInteractionLibrary::IndexFocus</a></div><div class="ttdeci">void IndexFocus(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="ViewInteractionLibrary_8cpp_source.html#l00203">ViewInteractionLibrary.cpp:203</a></div></div>
+<div class="ttc" id="aclassUViewInteractionLibrary_html_a4ef057b326b49e181f872220762db1d5"><div class="ttname"><a href="classUViewInteractionLibrary.html#a4ef057b326b49e181f872220762db1d5">UViewInteractionLibrary::MoveViewport</a></div><div class="ttdeci">void MoveViewport(FParseRecord &amp;Record)</div><div class="ttdef"><b>Definition:</b> <a href="ViewInteractionLibrary_8cpp_source.html#l00081">ViewInteractionLibrary.cpp:81</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -296,38 +296,38 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00165">165</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  166</span>{</div>
-<div class="line"><span class="lineno">  167</span>    GET_ACTIVE_TAB_CONTENT(ActiveTab)</div>
-<div class="line"><span class="lineno">  168</span> </div>
-<div class="line"><span class="lineno">  169</span>    FString TabType = ActiveTab-&gt;GetTypeAsString();</div>
-<div class="line"><span class="lineno">  170</span> </div>
-<div class="line"><span class="lineno">  171</span>    <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>* IndexInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>&gt;(TEXT(<span class="stringliteral">&quot;INDEX&quot;</span>));</div>
-<div class="line"><span class="lineno">  172</span>    <span class="keywordflow">if</span> (IndexInput == <span class="keyword">nullptr</span>)</div>
-<div class="line"><span class="lineno">  173</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  174</span> </div>
-<div class="line"><span class="lineno">  175</span>    <span class="keywordflow">if</span> (TabType == <span class="stringliteral">&quot;SGraphEditor&quot;</span>)</div>
-<div class="line"><span class="lineno">  176</span>    {</div>
-<div class="line"><span class="lineno">  177</span>        TSharedPtr&lt;SGraphEditor&gt; GraphEditor = StaticCastSharedPtr&lt;SGraphEditor&gt;(ActiveTab);</div>
-<div class="line"><span class="lineno">  178</span>        <span class="keywordflow">if</span> (!GraphEditor.IsValid())</div>
-<div class="line"><span class="lineno">  179</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  180</span> </div>
-<div class="line"><span class="lineno">  181</span>        TSharedRef&lt;FAssetAccessibilityRegistry&gt; AssetRegistry = GetAssetRegistry();</div>
-<div class="line"><span class="lineno">  182</span> </div>
-<div class="line"><span class="lineno">  183</span>        TSharedRef&lt;FGraphIndexer&gt; GraphIndexer = AssetRegistry-&gt;GetGraphIndexer(GraphEditor-&gt;GetCurrentGraph());</div>
-<div class="line"><span class="lineno">  184</span> </div>
-<div class="line"><span class="lineno">  185</span>        UEdGraphNode* Node = GraphIndexer-&gt;GetNode(IndexInput-&gt;<a class="code hl_function" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">GetValue</a>());</div>
-<div class="line"><span class="lineno">  186</span>        <span class="keywordflow">if</span> (Node == <span class="keyword">nullptr</span>)</div>
-<div class="line"><span class="lineno">  187</span>        {</div>
-<div class="line"><span class="lineno">  188</span>            UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;IndexFocus: INVALID INDEX INPUT&quot;</span>))</div>
-<div class="line"><span class="lineno">  189</span>            return;</div>
-<div class="line"><span class="lineno">  190</span>        }</div>
-<div class="line"><span class="lineno">  191</span> </div>
-<div class="line"><span class="lineno">  192</span>        GraphEditor-&gt;JumpToNode(Node);</div>
-<div class="line"><span class="lineno">  193</span>    }</div>
-<div class="line"><span class="lineno">  194</span> </div>
-<div class="line"><span class="lineno">  195</span>    <span class="comment">// Further ViewportS Specific Implementation Here</span></div>
-<div class="line"><span class="lineno">  196</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00203">203</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  204</span>{</div>
+<div class="line"><span class="lineno">  205</span>    GET_ACTIVE_TAB_CONTENT(ActiveTab)</div>
+<div class="line"><span class="lineno">  206</span> </div>
+<div class="line"><span class="lineno">  207</span>    FString TabType = ActiveTab-&gt;GetTypeAsString();</div>
+<div class="line"><span class="lineno">  208</span> </div>
+<div class="line"><span class="lineno">  209</span>    <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>* IndexInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>&gt;(TEXT(<span class="stringliteral">&quot;INDEX&quot;</span>));</div>
+<div class="line"><span class="lineno">  210</span>    <span class="keywordflow">if</span> (IndexInput == <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">  211</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  212</span> </div>
+<div class="line"><span class="lineno">  213</span>    <span class="keywordflow">if</span> (TabType == <span class="stringliteral">&quot;SGraphEditor&quot;</span>)</div>
+<div class="line"><span class="lineno">  214</span>    {</div>
+<div class="line"><span class="lineno">  215</span>        TSharedPtr&lt;SGraphEditor&gt; GraphEditor = StaticCastSharedPtr&lt;SGraphEditor&gt;(ActiveTab);</div>
+<div class="line"><span class="lineno">  216</span>        <span class="keywordflow">if</span> (!GraphEditor.IsValid())</div>
+<div class="line"><span class="lineno">  217</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  218</span> </div>
+<div class="line"><span class="lineno">  219</span>        TSharedRef&lt;FAssetAccessibilityRegistry&gt; AssetRegistry = GetAssetRegistry();</div>
+<div class="line"><span class="lineno">  220</span> </div>
+<div class="line"><span class="lineno">  221</span>        TSharedRef&lt;FGraphIndexer&gt; GraphIndexer = AssetRegistry-&gt;GetGraphIndexer(GraphEditor-&gt;GetCurrentGraph());</div>
+<div class="line"><span class="lineno">  222</span> </div>
+<div class="line"><span class="lineno">  223</span>        UEdGraphNode* Node = GraphIndexer-&gt;GetNode(IndexInput-&gt;<a class="code hl_function" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">GetValue</a>());</div>
+<div class="line"><span class="lineno">  224</span>        <span class="keywordflow">if</span> (Node == <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">  225</span>        {</div>
+<div class="line"><span class="lineno">  226</span>            UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;IndexFocus: INVALID INDEX INPUT&quot;</span>))</div>
+<div class="line"><span class="lineno">  227</span>            return;</div>
+<div class="line"><span class="lineno">  228</span>        }</div>
+<div class="line"><span class="lineno">  229</span> </div>
+<div class="line"><span class="lineno">  230</span>        GraphEditor-&gt;JumpToNode(Node);</div>
+<div class="line"><span class="lineno">  231</span>    }</div>
+<div class="line"><span class="lineno">  232</span> </div>
+<div class="line"><span class="lineno">  233</span>    <span class="comment">// Further ViewportS Specific Implementation Here</span></div>
+<div class="line"><span class="lineno">  234</span>}</div>
 <div class="ttc" id="aclassUParseIntInput_html"><div class="ttname"><a href="classUParseIntInput.html">UParseIntInput</a></div><div class="ttdef"><b>Definition:</b> <a href="UParseIntInput_8h_source.html#l00011">UParseIntInput.h:12</a></div></div>
 <div class="ttc" id="aclassUParseIntInput_html_a25393db97da6e72a5fc1f9efb127f0bf"><div class="ttname"><a href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">UParseIntInput::GetValue</a></div><div class="ttdeci">void GetValue(int32 &amp;OutValue)</div><div class="ttdoc">Gets the Current Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseIntInput_8h_source.html#l00036">UParseIntInput.h:36</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_a5e3e314f8799790a43208473ce37207e"><div class="ttname"><a href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">FParseRecord::GetPhraseInput</a></div><div class="ttdeci">UParseInput * GetPhraseInput(const FString &amp;InString)</div><div class="ttdoc">Gets the Input for the Provided Phrase, if it exists.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00064">ParseRecord.h:64</a></div></div>
@@ -356,53 +356,53 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00079">79</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   79</span>                                                               {</div>
-<div class="line"><span class="lineno">   80</span>    GET_ACTIVE_TAB_CONTENT(ActiveTab)</div>
-<div class="line"><span class="lineno">   81</span> </div>
-<div class="line"><span class="lineno">   82</span>    FString TabType = ActiveTab-&gt;GetTypeAsString();</div>
+<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00081">81</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   81</span>                                                               {</div>
+<div class="line"><span class="lineno">   82</span>    GET_ACTIVE_TAB_CONTENT(ActiveTab)</div>
 <div class="line"><span class="lineno">   83</span> </div>
-<div class="line"><span class="lineno">   84</span>    <a class="code hl_class" href="classUParseEnumInput.html">UParseEnumInput</a>* DirectionInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseEnumInput.html">UParseEnumInput</a>&gt;(TEXT(<span class="stringliteral">&quot;DIRECTION&quot;</span>));</div>
-<div class="line"><span class="lineno">   85</span>    <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>* AmountInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>&gt;(TEXT(<span class="stringliteral">&quot;AMOUNT&quot;</span>));</div>
-<div class="line"><span class="lineno">   86</span>    <span class="keywordflow">if</span> (DirectionInput == <span class="keyword">nullptr</span> || AmountInput == <span class="keyword">nullptr</span>)</div>
-<div class="line"><span class="lineno">   87</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>    <span class="keywordflow">if</span> (TabType == <span class="stringliteral">&quot;SGraphEditor&quot;</span>)</div>
-<div class="line"><span class="lineno">   90</span>    {</div>
-<div class="line"><span class="lineno">   91</span>        TSharedPtr&lt;SGraphEditor&gt; GraphEditor = StaticCastSharedPtr&lt;SGraphEditor&gt;(ActiveTab);</div>
-<div class="line"><span class="lineno">   92</span> </div>
-<div class="line"><span class="lineno">   93</span>        FVector2D ViewLocation;</div>
-<div class="line"><span class="lineno">   94</span>        <span class="keywordtype">float</span> ZoomAmount;        </div>
-<div class="line"><span class="lineno">   95</span>        GraphEditor-&gt;GetViewLocation(ViewLocation, ZoomAmount);</div>
-<div class="line"><span class="lineno">   96</span> </div>
-<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">switch</span> (EPhrase2DDirectionalInput(DirectionInput-&gt;<a class="code hl_function" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">GetValue</a>()))</div>
-<div class="line"><span class="lineno">   98</span>        {</div>
-<div class="line"><span class="lineno">   99</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::UP:</div>
-<div class="line"><span class="lineno">  100</span>                ViewLocation.Y -= AmountInput-&gt;GetValue();</div>
-<div class="line"><span class="lineno">  101</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  102</span> </div>
-<div class="line"><span class="lineno">  103</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::DOWN:</div>
-<div class="line"><span class="lineno">  104</span>                ViewLocation.Y += AmountInput-&gt;GetValue();</div>
-<div class="line"><span class="lineno">  105</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  106</span> </div>
-<div class="line"><span class="lineno">  107</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::LEFT:</div>
-<div class="line"><span class="lineno">  108</span>                ViewLocation.X -= AmountInput-&gt;GetValue();</div>
-<div class="line"><span class="lineno">  109</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  110</span> </div>
-<div class="line"><span class="lineno">  111</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::RIGHT:</div>
-<div class="line"><span class="lineno">  112</span>                ViewLocation.X += AmountInput-&gt;GetValue();</div>
-<div class="line"><span class="lineno">  113</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  114</span> </div>
-<div class="line"><span class="lineno">  115</span>            <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  116</span>                UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;MoveViewport: INVALID DIRECTION INPUT&quot;</span>));</div>
-<div class="line"><span class="lineno">  117</span>                <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  118</span>        }</div>
-<div class="line"><span class="lineno">  119</span> </div>
-<div class="line"><span class="lineno">  120</span>        GraphEditor-&gt;SetViewLocation(ViewLocation, ZoomAmount);</div>
-<div class="line"><span class="lineno">  121</span>    }</div>
-<div class="line"><span class="lineno">  122</span> </div>
-<div class="line"><span class="lineno">  123</span>    <span class="comment">// Further Viewport Implementation Here</span></div>
-<div class="line"><span class="lineno">  124</span>}</div>
+<div class="line"><span class="lineno">   84</span>    FString TabType = ActiveTab-&gt;GetTypeAsString();</div>
+<div class="line"><span class="lineno">   85</span> </div>
+<div class="line"><span class="lineno">   86</span>    <a class="code hl_class" href="classUParseEnumInput.html">UParseEnumInput</a>* DirectionInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseEnumInput.html">UParseEnumInput</a>&gt;(TEXT(<span class="stringliteral">&quot;DIRECTION&quot;</span>));</div>
+<div class="line"><span class="lineno">   87</span>    <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>* AmountInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>&gt;(TEXT(<span class="stringliteral">&quot;AMOUNT&quot;</span>));</div>
+<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">if</span> (DirectionInput == <span class="keyword">nullptr</span> || AmountInput == <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">   89</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   90</span> </div>
+<div class="line"><span class="lineno">   91</span>    <span class="keywordflow">if</span> (TabType == <span class="stringliteral">&quot;SGraphEditor&quot;</span>)</div>
+<div class="line"><span class="lineno">   92</span>    {</div>
+<div class="line"><span class="lineno">   93</span>        TSharedPtr&lt;SGraphEditor&gt; GraphEditor = StaticCastSharedPtr&lt;SGraphEditor&gt;(ActiveTab);</div>
+<div class="line"><span class="lineno">   94</span> </div>
+<div class="line"><span class="lineno">   95</span>        FVector2D ViewLocation;</div>
+<div class="line"><span class="lineno">   96</span>        <span class="keywordtype">float</span> ZoomAmount;        </div>
+<div class="line"><span class="lineno">   97</span>        GraphEditor-&gt;GetViewLocation(ViewLocation, ZoomAmount);</div>
+<div class="line"><span class="lineno">   98</span> </div>
+<div class="line"><span class="lineno">   99</span>        <span class="keywordflow">switch</span> (EPhrase2DDirectionalInput(DirectionInput-&gt;<a class="code hl_function" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">GetValue</a>()))</div>
+<div class="line"><span class="lineno">  100</span>        {</div>
+<div class="line"><span class="lineno">  101</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::UP:</div>
+<div class="line"><span class="lineno">  102</span>                ViewLocation.Y -= AmountInput-&gt;GetValue();</div>
+<div class="line"><span class="lineno">  103</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  104</span> </div>
+<div class="line"><span class="lineno">  105</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::DOWN:</div>
+<div class="line"><span class="lineno">  106</span>                ViewLocation.Y += AmountInput-&gt;GetValue();</div>
+<div class="line"><span class="lineno">  107</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  108</span> </div>
+<div class="line"><span class="lineno">  109</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::LEFT:</div>
+<div class="line"><span class="lineno">  110</span>                ViewLocation.X -= AmountInput-&gt;GetValue();</div>
+<div class="line"><span class="lineno">  111</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::RIGHT:</div>
+<div class="line"><span class="lineno">  114</span>                ViewLocation.X += AmountInput-&gt;GetValue();</div>
+<div class="line"><span class="lineno">  115</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  116</span> </div>
+<div class="line"><span class="lineno">  117</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  118</span>                UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;MoveViewport: INVALID DIRECTION INPUT&quot;</span>));</div>
+<div class="line"><span class="lineno">  119</span>                <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  120</span>        }</div>
+<div class="line"><span class="lineno">  121</span> </div>
+<div class="line"><span class="lineno">  122</span>        GraphEditor-&gt;SetViewLocation(ViewLocation, ZoomAmount);</div>
+<div class="line"><span class="lineno">  123</span>    }</div>
+<div class="line"><span class="lineno">  124</span> </div>
+<div class="line"><span class="lineno">  125</span>    <span class="comment">// Further Viewport Implementation Here</span></div>
+<div class="line"><span class="lineno">  126</span>}</div>
 <div class="ttc" id="aclassUParseEnumInput_html"><div class="ttname"><a href="classUParseEnumInput.html">UParseEnumInput</a></div><div class="ttdef"><b>Definition:</b> <a href="UParseEnumInput_8h_source.html#l00011">UParseEnumInput.h:12</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -429,44 +429,71 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00126">126</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  127</span>{</div>
-<div class="line"><span class="lineno">  128</span>    GET_ACTIVE_TAB_CONTENT(ActiveTab)</div>
-<div class="line"><span class="lineno">  129</span> </div>
-<div class="line"><span class="lineno">  130</span>    FString TabType = ActiveTab-&gt;GetTypeAsString();</div>
-<div class="line"><span class="lineno">  131</span> </div>
-<div class="line"><span class="lineno">  132</span>    <a class="code hl_class" href="classUParseEnumInput.html">UParseEnumInput</a>* DirectionInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseEnumInput.html">UParseEnumInput</a>&gt;(TEXT(<span class="stringliteral">&quot;DIRECTION&quot;</span>));</div>
-<div class="line"><span class="lineno">  133</span>    <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>* AmountInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>&gt;(TEXT(<span class="stringliteral">&quot;AMOUNT&quot;</span>));</div>
-<div class="line"><span class="lineno">  134</span>    <span class="keywordflow">if</span> (DirectionInput == <span class="keyword">nullptr</span> || AmountInput == <span class="keyword">nullptr</span>)</div>
-<div class="line"><span class="lineno">  135</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  136</span> </div>
-<div class="line"><span class="lineno">  137</span>    <span class="keywordflow">if</span> (TabType == <span class="stringliteral">&quot;SGraphEditor&quot;</span>)</div>
-<div class="line"><span class="lineno">  138</span>    {</div>
-<div class="line"><span class="lineno">  139</span>        TSharedPtr&lt;SGraphEditor&gt; GraphEditor = StaticCastSharedPtr&lt;SGraphEditor&gt;(ActiveTab);</div>
-<div class="line"><span class="lineno">  140</span> </div>
-<div class="line"><span class="lineno">  141</span>        FVector2D ViewLocation;</div>
-<div class="line"><span class="lineno">  142</span>        <span class="keywordtype">float</span> ZoomAmount;</div>
-<div class="line"><span class="lineno">  143</span>        GraphEditor-&gt;GetViewLocation(ViewLocation, ZoomAmount);</div>
-<div class="line"><span class="lineno">  144</span> </div>
-<div class="line"><span class="lineno">  145</span>        <span class="keywordflow">switch</span> (EPhrase2DDirectionalInput(DirectionInput-&gt;<a class="code hl_function" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">GetValue</a>())) {</div>
-<div class="line"><span class="lineno">  146</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::UP:</div>
-<div class="line"><span class="lineno">  147</span>                ZoomAmount += AmountInput-&gt;GetValue();</div>
-<div class="line"><span class="lineno">  148</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  149</span> </div>
-<div class="line"><span class="lineno">  150</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::DOWN:</div>
-<div class="line"><span class="lineno">  151</span>                ZoomAmount -= AmountInput-&gt;GetValue();</div>
-<div class="line"><span class="lineno">  152</span>                <span class="keywordflow">break</span>;</div>
+<p class="definition">Definition at line <a class="el" href="ViewInteractionLibrary_8cpp_source.html#l00138">138</a> of file <a class="el" href="ViewInteractionLibrary_8cpp_source.html">ViewInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  139</span>{</div>
+<div class="line"><span class="lineno">  140</span>    GET_ACTIVE_TAB_CONTENT(ActiveTab)</div>
+<div class="line"><span class="lineno">  141</span> </div>
+<div class="line"><span class="lineno">  142</span>    FString TabType = ActiveTab-&gt;GetTypeAsString();</div>
+<div class="line"><span class="lineno">  143</span> </div>
+<div class="line"><span class="lineno">  144</span>    <a class="code hl_class" href="classUParseEnumInput.html">UParseEnumInput</a>* DirectionInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseEnumInput.html">UParseEnumInput</a>&gt;(TEXT(<span class="stringliteral">&quot;DIRECTION&quot;</span>));</div>
+<div class="line"><span class="lineno">  145</span>    <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>* AmountInput = Record.<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>&lt;<a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>&gt;(TEXT(<span class="stringliteral">&quot;AMOUNT&quot;</span>));</div>
+<div class="line"><span class="lineno">  146</span>    <span class="keywordflow">if</span> (DirectionInput == <span class="keyword">nullptr</span> || AmountInput == <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">if</span> (TabType == <span class="stringliteral">&quot;SGraphEditor&quot;</span>)</div>
+<div class="line"><span class="lineno">  150</span>    {</div>
+<div class="line"><span class="lineno">  151</span>        TSharedPtr&lt;SGraphEditor&gt; GraphEditor = StaticCastSharedPtr&lt;SGraphEditor&gt;(ActiveTab);</div>
+<div class="line"><span class="lineno">  152</span>        FZoomLevelsContainer* ZoomLevels;</div>
 <div class="line"><span class="lineno">  153</span> </div>
-<div class="line"><span class="lineno">  154</span>            <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">  155</span>                UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;ZoomViewport: INVALID DIRECTION INPUT&quot;</span>));</div>
-<div class="line"><span class="lineno">  156</span>                <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  157</span>        }</div>
-<div class="line"><span class="lineno">  158</span> </div>
-<div class="line"><span class="lineno">  159</span>        GraphEditor-&gt;SetViewLocation(ViewLocation, ZoomAmount);</div>
-<div class="line"><span class="lineno">  160</span>    }</div>
-<div class="line"><span class="lineno">  161</span> </div>
-<div class="line"><span class="lineno">  162</span>    <span class="comment">// Further Viewport Specific Implementation Here</span></div>
-<div class="line"><span class="lineno">  163</span>}</div>
+<div class="line"><span class="lineno">  154</span>        <span class="comment">// Another Hack because its protected, which is good.</span></div>
+<div class="line"><span class="lineno">  155</span>        <span class="comment">// But the derived ZoomLevelsContainer is in a .cpp file :(</span></div>
+<div class="line"><span class="lineno">  156</span>        {</div>
+<div class="line"><span class="lineno">  157</span>            <a class="code hl_class" href="classSOpenGraphPanel.html">SOpenGraphPanel</a>* GraphPanel = <span class="keyword">static_cast&lt;</span><a class="code hl_class" href="classSOpenGraphPanel.html">SOpenGraphPanel</a>*<span class="keyword">&gt;</span>(GraphEditor-&gt;GetGraphPanel());</div>
+<div class="line"><span class="lineno">  158</span>            ZoomLevels = GraphPanel-&gt;GetZoomLevels();</div>
+<div class="line"><span class="lineno">  159</span> </div>
+<div class="line"><span class="lineno">  160</span>            <span class="keywordflow">if</span> (ZoomLevels == <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">  161</span>                <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  162</span>        }</div>
+<div class="line"><span class="lineno">  163</span> </div>
+<div class="line"><span class="lineno">  164</span>        FVector2D ViewLocation;  <span class="keywordtype">float</span> ZoomAmount;</div>
+<div class="line"><span class="lineno">  165</span>        GraphEditor-&gt;GetViewLocation(ViewLocation, ZoomAmount);</div>
+<div class="line"><span class="lineno">  166</span> </div>
+<div class="line"><span class="lineno">  167</span>        <span class="comment">// Find Index for Current Zoom Level</span></div>
+<div class="line"><span class="lineno">  168</span>        int32 ZoomIndex;</div>
+<div class="line"><span class="lineno">  169</span>        <span class="keywordflow">for</span> (ZoomIndex = 0; ZoomIndex &lt; ZoomLevels-&gt;GetNumZoomLevels(); ZoomIndex++)</div>
+<div class="line"><span class="lineno">  170</span>        {</div>
+<div class="line"><span class="lineno">  171</span>            <span class="keywordflow">if</span> (ZoomAmount &lt;= ZoomLevels-&gt;GetZoomAmount(ZoomIndex))</div>
+<div class="line"><span class="lineno">  172</span>            {</div>
+<div class="line"><span class="lineno">  173</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  174</span>            }</div>
+<div class="line"><span class="lineno">  175</span>        }</div>
+<div class="line"><span class="lineno">  176</span> </div>
+<div class="line"><span class="lineno">  177</span>        <span class="keywordflow">switch</span> (EPhrase2DDirectionalInput(DirectionInput-&gt;<a class="code hl_function" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">GetValue</a>()))</div>
+<div class="line"><span class="lineno">  178</span>        {</div>
+<div class="line"><span class="lineno">  179</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::UP:</div>
+<div class="line"><span class="lineno">  180</span>                ZoomIndex += AmountInput-&gt;GetValue();</div>
+<div class="line"><span class="lineno">  181</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  182</span> </div>
+<div class="line"><span class="lineno">  183</span>            <span class="keywordflow">case</span> EPhrase2DDirectionalInput::DOWN:</div>
+<div class="line"><span class="lineno">  184</span>                ZoomIndex -= AmountInput-&gt;GetValue();</div>
+<div class="line"><span class="lineno">  185</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  186</span> </div>
+<div class="line"><span class="lineno">  187</span>            <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  188</span>                UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT(<span class="stringliteral">&quot;ZoomViewport: INVALID DIRECTION INPUT&quot;</span>));</div>
+<div class="line"><span class="lineno">  189</span>                <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  190</span>        }</div>
+<div class="line"><span class="lineno">  191</span> </div>
+<div class="line"><span class="lineno">  192</span>        <span class="keywordflow">if</span> (ZoomIndex &lt; 0 || ZoomIndex &gt;= ZoomLevels-&gt;GetNumZoomLevels())</div>
+<div class="line"><span class="lineno">  193</span>            ZoomAmount = ZoomLevels-&gt;GetDefaultZoomLevel();</div>
+<div class="line"><span class="lineno">  194</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  195</span>            ZoomAmount = ZoomLevels-&gt;GetZoomAmount(ZoomIndex);</div>
+<div class="line"><span class="lineno">  196</span> </div>
+<div class="line"><span class="lineno">  197</span>        GraphEditor-&gt;SetViewLocation(ViewLocation, ZoomAmount);</div>
+<div class="line"><span class="lineno">  198</span>    }</div>
+<div class="line"><span class="lineno">  199</span> </div>
+<div class="line"><span class="lineno">  200</span>    <span class="comment">// Further Viewport Specific Implementation Here</span></div>
+<div class="line"><span class="lineno">  201</span>}</div>
+<div class="ttc" id="aclassSOpenGraphPanel_html"><div class="ttname"><a href="classSOpenGraphPanel.html">SOpenGraphPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="ViewInteractionLibrary_8cpp_source.html#l00129">ViewInteractionLibrary.cpp:130</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
