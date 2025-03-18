@@ -354,7 +354,7 @@ void UAccessibilityGraphLocomotionContext::OnFocusChanged(
 
 	TSharedPtr<SGraphEditor> LinkedEditorPtr = LinkedEditor.Pin();
 
-	if (!NewFocusedWidgetPath.ContainsWidget(LinkedEditorPtr.ToSharedRef()))
+	if (!NewFocusedWidgetPath.ContainsWidget(LinkedEditorPtr.Get()))
 	{
 		bIsActive = false;
 		Close();

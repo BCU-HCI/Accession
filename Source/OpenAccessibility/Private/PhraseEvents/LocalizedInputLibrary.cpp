@@ -5,6 +5,7 @@
 
 #include "PhraseTree/PhraseStringInputNode.h"
 #include "PhraseTree/PhraseEventNode.h"
+#include "PhraseTree/PhraseIntInputNode.h"
 
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
@@ -41,7 +42,7 @@ void ULocalizedInputLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 			MakeShared<FPhraseNode>(TEXT("REMOVE"),
 			TPhraseNodeArray {
 
-				MakeShared<FPhraseInputNode<int32>>(TEXT("AMOUNT"), 
+				MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
 				TPhraseNodeArray {
 					
 					MakeShared<FPhraseEventNode>(CreateParseDelegate(this,&ULocalizedInputLibrary::KeyboardInputRemove))
@@ -57,14 +58,12 @@ void ULocalizedInputLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 			}),
 
-			/*
 			MakeShared<FPhraseNode>(TEXT("CONFIRM"),
 			TPhraseNodeArray {
 
 				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &ULocalizedInputLibrary::KeyboardInputConfirm))
 
 			}),
-			*/
 
 			MakeShared<FPhraseNode>(TEXT("EXIT"), 
 			TPhraseNodeArray {
@@ -75,6 +74,12 @@ void ULocalizedInputLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 
 		})
 	);
+}
+
+template<class TargetType, class WidgetType>
+bool IsOfWidgetType(const TSharedRef<WidgetType>& SourceWidget)
+{
+	return TIsDerivedFrom<WidgetType, TargetType>::IsDerived;
 }
 
 void ULocalizedInputLibrary::KeyboardInputAdd(FParseRecord &Record) {
@@ -193,8 +198,7 @@ void ULocalizedInputLibrary::KeyboardInputConfirm(FParseRecord& Record)
 {
 	GET_ACTIVE_KEYBOARD_WIDGET(KeyboardFocusedWidget);
 
-	FName WidgetType = KeyboardFocusedWidget->GetType();
-
+	/*
 	if (WidgetType == SEditableText::StaticWidgetClass().GetWidgetType())
 	{
 		TSharedPtr<SEditableText> EditableText = StaticCastSharedPtr<SEditableText>(KeyboardFocusedWidget);
@@ -214,8 +218,11 @@ void ULocalizedInputLibrary::KeyboardInputConfirm(FParseRecord& Record)
 			return;
 		}
 
+		
+
 	}
 	else UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("KeyboardInputConfirm: CURRENT ACTIVE WIDGET IS NOT AN INTERFACEABLE TYPE"))
+	*/
 }
 
 void ULocalizedInputLibrary::KeyboardInputExit(FParseRecord &Record) 

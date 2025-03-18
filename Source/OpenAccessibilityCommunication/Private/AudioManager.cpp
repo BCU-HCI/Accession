@@ -1,21 +1,21 @@
 // Copyright F-Dudley. All Rights Reserved.
 
 #include "AudioManager.h"
-#include "OpenAccessibilityCommunication.h"
 #include "OpenAccessibilityComLogging.h"
 #include "SocketCommunicationServer.h"
 
-#include "AudioCaptureCore.h"
+#include "AudioCapture.h"
 #include "AudioDeviceNotificationSubsystem.h"
 #include "Templates/Function.h"
 
-UAudioManager::UAudioManager()
+UAudioManager::UAudioManager(const FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer)
 {
 	Settings = FAudioManagerSettings();
 
 	// Create Audio Capture Object and Initialize Audio Stream
 	bIsCapturingAudio = false;
-    AudioCapture = NewObject<UAudioCapture>();
+    AudioCapture = ObjectInitializer.CreateDefaultSubobject<UAudioCapture>(this, TEXT("OpenAccessibilityAudioCapture"));
 	AudioCapture->OpenDefaultAudioStream();
 	AudioCapture->StartCapturingAudio();
 
@@ -34,6 +34,21 @@ UAudioManager::~UAudioManager()
 
 	delete AudioCapture; AudioCapture = nullptr;
 	delete FileWriter; FileWriter = nullptr;
+}
+
+bool UAudioManager::IsCapturingAudio() const
+{
+	return bIsCapturingAudio;
+}
+
+int32 UAudioManager::GetAudioCaptureSampleRate() const
+{
+	return AudioCapture->GetSampleRate();
+}
+
+int32 UAudioManager::GetAudioCaptureNumChannels() const
+{
+	return AudioCapture->GetNumChannels();
 }
 
 void UAudioManager::StartCapturingAudio()

@@ -5,8 +5,6 @@
 #include "CoreMinimal.h"
 #include "UObject/ObjectMacros.h"
 #include "UObject/Object.h"
-#include "UObject/UnrealType.h"
-#include "UObject/ScriptMacros.h"
 
 #include "PhraseTree.h"
 
@@ -17,11 +15,11 @@
 
 #include "PhraseTreeFunctionLibrary.generated.h"
 
-// Utility Definitions
+// Utilities
 
-DECLARE_LOG_CATEGORY_EXTERN(LogOpenAccessibilityPhraseEvent, Log, All);
+OPENACCESSIBILITYCOMMUNICATION_API DECLARE_LOG_CATEGORY_EXTERN(LogOpenAccessibilityPhraseEvent, Log, All);
 
-DEFINE_LOG_CATEGORY(LogOpenAccessibilityPhraseEvent);
+// Phrase Tree Library Base Functions
 
 UCLASS(Abstract)
 class OPENACCESSIBILITYCOMMUNICATION_API UPhraseTreeFunctionLibrary : public UObject

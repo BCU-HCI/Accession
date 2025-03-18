@@ -35,6 +35,7 @@ public class OpenAccessibility : ModuleRules
 			new string[]
 			{
 				// Internal Plugin Modules
+				"OpenAccessibilityAnalytics",
 				"OpenAccessibilityCommunication",
 
 				// Core Modules

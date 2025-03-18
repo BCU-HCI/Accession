@@ -8,86 +8,22 @@
 
 void FOpenAccessibilityAnalyticsModule::StartupModule() 
 {
-	SessionBufferFile = GenerateFileForSessionLog();
+	SessionLogFile = GenerateFileForSessionLog();
 
-	EnableDumpTick();
 	AddConsoleCommands();
 } 
 
 void FOpenAccessibilityAnalyticsModule::ShutdownModule() 
 {
-	DisableDumpTick();
 	RemoveConsoleCommands();
-}
-
-bool FOpenAccessibilityAnalyticsModule::DumpTick(float DeltaTime)
-{
-	if (EventBuffer.IsEmpty())
-		return true;
-
-	if (SessionBufferFile.IsEmpty())
-		SessionBufferFile = GenerateFileForSessionLog();
-
-	UE_LOG(LogOpenAccessibilityAnalytics, Log, TEXT("Dumping Event Log To File."));
-
-	if (!WriteBufferToFile())
-	{
-		UE_LOG(LogOpenAccessibilityAnalytics, Warning, TEXT("EventLog Dumping Failed."));
-	}
-
-	return true;
 }
 
 FString FOpenAccessibilityAnalyticsModule::GenerateFileForSessionLog()
 {
 	FDateTime CurrentDateTime = FDateTime::Now();
 
-	FString CombinedFileName = TEXT("[") + CurrentDateTime.ToString() + TEXT("] OA Event Log.log");
+	FString CombinedFileName = TEXT("OAEventLog-") + CurrentDateTime.ToString() + TEXT(".log");
 	return FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() + TEXT("OpenAccessibility/Logs/") + CombinedFileName);
-}
-
-bool FOpenAccessibilityAnalyticsModule::WriteBufferToFile()
-{
-	if (EventBuffer.IsEmpty())
-		return false;
-
-	FString CombindedString = FString("");
-	LoggedEvent CurrEvent;
-	while (!EventBuffer.IsEmpty())
-	{
-		CurrEvent = EventBuffer[0];
-		EventBuffer.RemoveAt(0);
-
-		CombindedString += FString::Printf(TEXT("| %s | - %s\r\n"), *CurrEvent.Title, *CurrEvent.Body);
-	}
-
-	if (FFileHelper::SaveStringToFile(
-			CombindedString, 
-			*SessionBufferFile, 
-			FFileHelper::EEncodingOptions::AutoDetect, 
-			&IFileManager::Get(), 
-			EFileWrite::FILEWRITE_Append
-	))
-	{
-
-		return true;
-	}
-
-	return false;
-}
-
-void FOpenAccessibilityAnalyticsModule::EnableDumpTick()
-{
-	const double DumpDelayCheck = 20.0f;
-
-	FTickerDelegate TickDelegate = FTickerDelegate::CreateRaw(this, &FOpenAccessibilityAnalyticsModule::DumpTick);
-	DumpTickHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate, DumpDelayCheck);
-}
-
-void FOpenAccessibilityAnalyticsModule::DisableDumpTick()
-{
-	if (DumpTickHandle.IsValid())
-		FTSTicker::GetCoreTicker().RemoveTicker(DumpTickHandle);
 }
 
 void FOpenAccessibilityAnalyticsModule::AddConsoleCommands()
@@ -97,7 +33,7 @@ void FOpenAccessibilityAnalyticsModule::AddConsoleCommands()
 		TEXT("Adds a MOCK Event to the Eventbuffer"),
 
 		FConsoleCommandWithArgsDelegate::CreateLambda(
-			[this](const TArray<FString>& Args) {
+			[&](const TArray<FString>& Args) {
 
 				if (Args.Num() < 2)
 					return;
@@ -109,19 +45,19 @@ void FOpenAccessibilityAnalyticsModule::AddConsoleCommands()
 				{
 					EventBody += Args[i] + TEXT(" ");
 				}
+				
 
-				this->LogEvent(*EventTitle, *EventBody);
 			}
 		)
 	));
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibilityAnalytics.Debug.ForceLogDump"),
-		TEXT("Forces a Dump of the Active To Log File."),
+		TEXT("OpenAccessibilityAnalytics.Util.GenerateNewLogFile"),
+		TEXT("Generates a new log file location, with logging continuing from that location."),
 
 		FConsoleCommandDelegate::CreateLambda(
-			[this]() {
-				this->DumpTick(0.0f);
+			[&]() {
+				SessionLogFile = GenerateFileForSessionLog();
 			}
 		)
 	));

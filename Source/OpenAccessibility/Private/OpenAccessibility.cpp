@@ -3,6 +3,7 @@
 #include "OpenAccessibility.h"
 #include "OpenAccessibilityCommunication.h"
 #include "OpenAccessibilityLogging.h"
+#include "OpenAccessibilityAnalytics.h"
 
 #include "PhraseTree/PhraseNode.h"
 #include "PhraseTree/PhraseInputNode.h"
@@ -68,6 +69,9 @@ void FOpenAccessibilityModule::StartupModule()
 
 	CreateTranscriptionVisualization();
 
+	FSlateApplication::Get().OnFocusChanging()
+		.AddStatic(&FOpenAccessibilityModule::FocusChangeListener);
+
 	// Register Console Commands
 	RegisterConsoleCommands();
 }
@@ -77,6 +81,24 @@ void FOpenAccessibilityModule::ShutdownModule()
 	UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibilityModule::ShutdownModule()"));
 
 	UnregisterConsoleCommands();
+}
+
+void FOpenAccessibilityModule::FocusChangeListener(const FFocusEvent& FocusEvent, const FWeakWidgetPath& PrevWidgetPath,
+	const TSharedPtr<SWidget>& PrevFocusedWidget, const FWidgetPath& NewWidgetPath,
+	const TSharedPtr<SWidget>& NewFocusedWidget)
+{
+	if (!NewFocusedWidget.IsValid())
+		return;
+
+	switch (FocusEvent.GetCause())
+	{
+	case EFocusCause::Mouse:
+		OA_LOG(LogOpenAccessibility, Log, TEXT("WIDGET_FOCUS_MOUSE"), TEXT("Mouse Widget Focus Changed: %s"), *NewFocusedWidget->GetTypeAsString());
+		break;
+
+	default:
+		break;
+	}
 }
 
 void FOpenAccessibilityModule::CreateTranscriptionVisualization()
@@ -382,6 +404,34 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 			}),
 
 		ECVF_Default
+	));
+
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibility.Debug.LogGraphEditorViewport"),
+		TEXT("Logs the Active GraphEditors Viewport Information."),
+		FConsoleCommandDelegate::CreateLambda(
+			[this]() {
+				TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
+				if (!ActiveTab.IsValid())
+				{
+					UE_LOG(LogOpenAccessibility, Display, TEXT("No Active Tab Found."));
+					return;
+				}
+
+				TSharedPtr<SGraphEditor> ActiveGraphEditor = StaticCastSharedRef<SGraphEditor>(ActiveTab->GetContent());
+				if (!ActiveGraphEditor.IsValid())
+				{
+					UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
+					return;
+				}
+
+				FVector2D ViewLocation;
+				float ZoomAmount;
+				ActiveGraphEditor->GetViewLocation(ViewLocation, ZoomAmount);
+
+				UE_LOG(LogOpenAccessibility, Display, TEXT("| Active Graph Editor Viewport Info | View Location: %s | Zoom Amount: %f |"), *ViewLocation.ToString(), ZoomAmount);
+			}
+		)
 	));
 }
 

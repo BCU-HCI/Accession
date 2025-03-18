@@ -30,6 +30,8 @@ public:
 
 private:
 
+	static void FocusChangeListener(const FFocusEvent& FocusEvent, const FWeakWidgetPath& PrevWidgetPath, const TSharedPtr<SWidget>& PrevFocusedWidget, const FWidgetPath& NewWidgetPath, const TSharedPtr<SWidget>& NewFocusedWidget);
+
 	// Phrase Branch Bindings
 
 	/// <summary>

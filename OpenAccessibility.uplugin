@@ -16,14 +16,14 @@
 	"Installed": false,
 	"Modules": [
 		{
-			"Name": "OpenAccessibility",
+			"Name": "OpenAccessibilityCommunication",
 			"Type": "Editor",
 			"LoadingPhase": "PostEngineInit"
 		},
 		{
-			"Name": "OpenAccessibilityCommunication",
+			"Name": "OpenAccessibility",
 			"Type": "Editor",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "PostEngineInit"
 		},
 		{
 			"Name": "OpenAccessibilityAnalytics",

@@ -79,7 +79,11 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 		// Receive the Detected Event, with separate transcriptions and metadata. 
 		if (SocketServer->RecvStringMultipartWithMeta(RecvStrings, RecvMetadata))
 		{
-			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION RECIEVED"), TEXT("Recieved Multipart - Message Count: %d"), RecvStrings.Num());
+			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION RECEIVED"), TEXT("Received Multipart - Message Count: %d"), RecvStrings.Num());
+			for (int i = 0; i < RecvStrings.Num(); i++)
+			{
+				OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION RECEIVED"), TEXT("Transcription - %d: { %s }"), i, *RecvStrings[i]);
+			}
 
 			// Send Received Transcriptions to any bound events.
 			OnTranscriptionRecieved.Broadcast(RecvStrings);
@@ -91,18 +95,22 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 
 void FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(const FKeyEvent& InKeyEvent)
 {
-	// If the Space Key is pressed, we will send a request to the Accessibility Server
-	if (InKeyEvent.GetKey() == EKeys::SpaceBar)
+	FKey EventKey = InKeyEvent.GetKey();
+
+	bool isTargetKey = EventKey == EKeys::LeftAlt || EventKey == EKeys::RightAlt;
+
+	// If the Voice Command Key is Pressed, Toggle Audio Capture.
+	if (isTargetKey && !InKeyEvent.IsRepeat())
 	{
-		if (InKeyEvent.IsShiftDown())
-		{
-			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
-			AudioManager->StopCapturingAudio();
-		}
-		else
+		if (!AudioManager->IsCapturingAudio())
 		{
 			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Starting Audio Capture"));
 			AudioManager->StartCapturingAudio();
+		}
+		else
+		{
+			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
+			AudioManager->StopCapturingAudio();
 		}
 	}
 }
