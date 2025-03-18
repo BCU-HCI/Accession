@@ -20,7 +20,7 @@ def is_dependency_satisfied(dependency: str) -> bool:
         return False
 
 
-def install_dependencies(deps_to_install: list):
+def install_dependencies(deps_to_install: list[str]):
 
     unreal.log_warning(
         f"|| OpenAccessibility Python || Installing Dependencies: {deps_to_install} ||"
@@ -31,26 +31,34 @@ def install_dependencies(deps_to_install: list):
         "OpenAccessibility Installing Python Dependencies",
         enabled=True,
     ) as install_ui:
-        process = subprocess.Popen(
-            [
-                unreal.get_interpreter_executable_path(),
-                "-m",
-                "pip",
-                "install",
-            ]
-            + deps_to_install,
-            shell=True,
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            stderr=None,
-        )
 
-        while process.poll() is None:
-            install_ui.enter_progress_frame(
-                0, process.stdout.readline().decode("utf-8")
+        for dep in deps_to_install:
+
+            install_str = f"Installing {dep}"
+
+            print(install_str)
+            install_ui.enter_progress_frame(1, install_str)
+
+            process = subprocess.Popen(
+                [
+                    unreal.get_interpreter_executable_path(),
+                    "-m",
+                    "pip",
+                    "install",
+                    "--force-reinstall",  # Force Reinstall to avoid satisfying the requirement from global site-packages.
+                    dep,
+                ],
+                shell=True,
+                stdin=subprocess.PIPE,
+                stdout=subprocess.PIPE,
             )
 
-        process.wait()
+            while process.poll() is None:
+                install_ui.enter_progress_frame(
+                    0, process.stdout.readline().decode("utf-8")
+                )
+
+            process.wait()
 
 
 ## ------------------------------
