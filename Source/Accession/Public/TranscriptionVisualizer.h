@@ -4,10 +4,9 @@
 
 #include "CoreMinimal.h"
 
-class OPENACCESSIBILITY_API FTranscriptionVisualizer
+class ACCESSION_API FTranscriptionVisualizer
 {
 public:
-
 	FTranscriptionVisualizer();
 	~FTranscriptionVisualizer();
 
@@ -42,18 +41,17 @@ public:
 	void OnTranscriptionRecieved(TArray<FString> InTranscription);
 
 protected:
-
 	/// <summary>
 	/// Gets the Position of the Visualizer for the Top Active Screen.
 	/// </summary>
 	/// <param name="OutPosition"></param>
-	bool GetTopScreenVisualizerPosition(FVector2D& OutPosition);
+	bool GetTopScreenVisualizerPosition(FVector2D &OutPosition);
 
 	/// <summary>
 	/// Gets the Position of the Visualizer for the Last Active Display.
 	/// </summary>
 	/// <param name="OutPosition"></param>
-	bool GetDisplayVisualizerPosition(FVector2D& OutPosition);
+	bool GetDisplayVisualizerPosition(FVector2D &OutPosition);
 
 	// Ticker Manager Methods
 
@@ -67,9 +65,7 @@ protected:
 	/// </summary>
 	void UnregisterTicker();
 
-
 protected:
-
 	// Ticker Vars
 
 	FTSTicker::FDelegateHandle TickDelegateHandle;
@@ -84,5 +80,5 @@ protected:
 	/// <summary>
 	/// The Content of the Visualizer Window.
 	/// </summary>
-	TWeakPtr<class SAccessibilityTranscriptionVis> VisContent;
+	TWeakPtr<class STranscriptionVis> VisContent;
 };

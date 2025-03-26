@@ -17,16 +17,14 @@ class SContentIndexer;
  * A Dynamic Phrase Tree Context Object for Most Node Editor Based Context Menus.
  */
 UCLASS()
-class OPENACCESSIBILITY_API UAccessibilityGraphEditorContext : public UPhraseTreeContextMenuObject
+class ACCESSION_API UAccessibilityGraphEditorContext : public UPhraseTreeContextMenuObject
 {
 	GENERATED_BODY()
 
 public:
-
 	UAccessibilityGraphEditorContext();
 
 	// -- UPhraseTreeContextMenuObject Implementation
-
 
 	/**
 	 * Initializes the Graph Editor Context Wrapper.
@@ -51,8 +49,6 @@ public:
 
 	// -- End of UPhraseTreeContextMenuObject Implementation
 
-
-
 	// -- Event Actions
 
 	/**
@@ -60,13 +56,13 @@ public:
 	 * @param InIndex The Index of the TreeView Action to Find.
 	 * @return A Valid Shared Pointer of the Found Action, an Invalid Shared Pointer on Failure.
 	 */
-	TSharedPtr<FGraphActionNode> GetTreeViewAction(const int32& InIndex);
+	TSharedPtr<FGraphActionNode> GetTreeViewAction(const int32 &InIndex);
 
 	/**
 	 * Selects the Action on the Graph Editor Context Menu, based on the given index.
 	 * @param InIndex The Index of the Action To Perform.
 	 */
-	void SelectAction(const int32& InIndex);
+	void SelectAction(const int32 &InIndex);
 
 	/**
 	 * Gets Filter Text of the Context Menus SearchBar, if it contains one.
@@ -78,13 +74,13 @@ public:
 	 * Sets the Filter Text of the Context Menus SearchBar, if it contains one.
 	 * @param NewString The New Text of the SearchBar.
 	 */
-	void SetFilterText(const FString& NewString);
+	void SetFilterText(const FString &NewString);
 
 	/**
 	 * Appends the provided string to the Context Menus SearchBar, if it contains one.
 	 * @param StringToAdd The Text to Append to the End of the Active SearchBar.
 	 */
-	void AppendFilterText(const FString& StringToAdd);
+	void AppendFilterText(const FString &StringToAdd);
 
 	/**
 	 * Sets the Scroll Distance of the Context Menus TreeView, if it contains one.
@@ -109,7 +105,6 @@ public:
 	void SetScrollDistanceBottom();
 
 protected:
-
 	// Index Utils
 
 	/**
@@ -125,34 +120,31 @@ protected:
 	 * @param SearchRoot The Starting Point for the Widget Search.
 	 * @return True if a GraphActionMenu Widget was Found, otherwise False.
 	 */
-	bool FindGraphActionMenu(const TSharedRef<SWidget>& SearchRoot);
+	bool FindGraphActionMenu(const TSharedRef<SWidget> &SearchRoot);
 
 	/**
 	 * Finds the STreeView Widget descending from the provided widget.
 	 * @param SearchRoot The Starting Point for the Widget Search.
 	 * @return True if a TreeView Widget was Found, otherwise False.
 	 */
-	bool FindTreeView(const TSharedRef<SWidget>& SearchRoot);
+	bool FindTreeView(const TSharedRef<SWidget> &SearchRoot);
 
 	/**
 	 * Finds any Static Components of the Context Menu and sorts them into the necessary arrays.
 	 * @param SearchRoot The Starting Point for the Widget Search.
 	 * @return True if Static Components were Found, otherwise False.
 	 */
-	bool FindStaticComponents(const TSharedRef<SWidget>& SearchRoot);
+	bool FindStaticComponents(const TSharedRef<SWidget> &SearchRoot);
 
 	// Component Tickers
 
 	struct FTreeViewTickRequirements
 	{
 	public:
-
 		FTreeViewTickRequirements()
-			: PrevSearchText(FString())
-			, PrevNumItemsBeingObserved(-1)
-			, PrevNumGeneratedChildren(-1)
-			, PrevScrollDistance(-1.00)
-		{ }
+			: PrevSearchText(FString()), PrevNumItemsBeingObserved(-1), PrevNumGeneratedChildren(-1), PrevScrollDistance(-1.00)
+		{
+		}
 
 		FString PrevSearchText;
 		int32 PrevNumItemsBeingObserved;
@@ -184,7 +176,7 @@ protected:
 	 * @param ContextIndexer The Context Indexer Widget to Update.
 	 * @param NewIndex The Index to update the Context Indexer With.
 	 */
-	void UpdateAccessibilityWidget(const TSharedRef<SContentIndexer>& ContextIndexer, const int32& NewIndex);
+	void UpdateAccessibilityWidget(const TSharedRef<SContentIndexer> &ContextIndexer, const int32 &NewIndex);
 
 	/**
 	 * Creates a Content Indexer wrapping the provided Widget.
@@ -192,10 +184,9 @@ protected:
 	 * @param Index The Index of the Provided Content.
 	 * @return A Shared Reference of the created Content Indexer, wrapping the provided Content.
 	 */
-	const TSharedRef<SContentIndexer> CreateAccessibilityWrapper(const TSharedRef<SWidget>& ContentToWrap, const int32& Index);
-	
-protected:
+	const TSharedRef<SContentIndexer> CreateAccessibilityWrapper(const TSharedRef<SWidget> &ContentToWrap, const int32 &Index);
 
+protected:
 	FTreeViewTickRequirements TreeViewTickRequirements;
 
 	TWeakPtr<SGraphActionMenu> GraphMenu = TWeakPtr<SGraphActionMenu>();

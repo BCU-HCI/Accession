@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-#include "OpenAccessibilityLogging.h"
+#include "AccessionLogging.h"
 
 /**
  * A Templated Indexer for Indexing Assets in a TMap.
@@ -15,32 +15,28 @@ template <typename KeyType, typename ValueType>
 class FIndexer
 {
 public:
-
 	FIndexer()
 	{
-
 	}
 
-	virtual ~FIndexer() 
+	virtual ~FIndexer()
 	{
-	
-    }
-	
+	}
 
 	/**
 	 * Checks if the Indexer is Empty.
 	 * @return True if the Indexer is Empty, otherwise False.
 	 */
-	bool IsEmpty() const 
-	{ 
+	bool IsEmpty() const
+	{
 		return IndexMap.IsEmpty();
 	}
 
 	/**
 	 * Empties the Indexer, but preserves all Allocations.
 	 */
-	void Reset() 
-	{ 
+	void Reset()
+	{
 		IndexMap.Reset();
 		AvailableIndexes.Empty();
 	}
@@ -67,7 +63,7 @@ public:
 	 * Gets the Number of Items Currently in the Indexer.
 	 * @param OutNum Sets to the Number of Items Being Indexed.
 	 */
-	void Num(int32& OutNum) const
+	void Num(int32 &OutNum) const
 	{
 		OutNum = IndexMap.Num();
 	}
@@ -77,7 +73,7 @@ public:
 	 * @param InKey The Key to Search For.
 	 * @return True if the Key is in use in the Indexer, otherwise False.
 	 */
-	bool ContainsKey(const KeyType& InKey)
+	bool ContainsKey(const KeyType &InKey)
 	{
 		return IndexMap.Contains(InKey);
 	}
@@ -87,11 +83,11 @@ public:
 	 * @param InValue The Value to Search For.
 	 * @return True of the  specified value is associated with the Indexer.
 	 */
-	bool ContainsValue(const ValueType& InValue)
+	bool ContainsValue(const ValueType &InValue)
 	{
 		check(InValue != nullptr);
 
-		const KeyType* FoundKey = IndexMap.FindKey(InValue);
+		const KeyType *FoundKey = IndexMap.FindKey(InValue);
 
 		return FoundKey != nullptr;
 	}
@@ -101,7 +97,7 @@ public:
 	 * @param InValue The value to search using.
 	 * @return The associated key for the specified value.
 	 */
-	const KeyType GetKey(const ValueType& InValue)
+	const KeyType GetKey(const ValueType &InValue)
 	{
 		check(InValue != nullptr);
 
@@ -114,11 +110,11 @@ public:
 	 * @param OutKey Sets the associated key for the specified value
 	 * @return True if the associated key was found, otherwise False.
 	 */
-	bool GetKey(const ValueType& InValue, KeyType& OutKey)
+	bool GetKey(const ValueType &InValue, KeyType &OutKey)
 	{
 		check(InValue != nullptr);
 
-		const KeyType* FoundKey = IndexMap.FindKey(InValue);
+		const KeyType *FoundKey = IndexMap.FindKey(InValue);
 
 		if (FoundKey != nullptr)
 		{
@@ -126,7 +122,8 @@ public:
 
 			return true;
 		}
-		else return false;
+		else
+			return false;
 	}
 
 	/**
@@ -134,7 +131,7 @@ public:
 	 * @param InKey The Key to Search using.
 	 * @return The associated value of the specified key.
 	 */
-	ValueType GetValue(const KeyType& InKey)
+	ValueType GetValue(const KeyType &InKey)
 	{
 		return *IndexMap.Find(InKey);
 	}
@@ -145,11 +142,11 @@ public:
 	 * @param OutValue Sets the associated value of the specified key.
 	 * @return True if an associated value was found, otherwise False.
 	 */
-	bool GetValue(const KeyType& InKey, ValueType& OutValue)
+	bool GetValue(const KeyType &InKey, ValueType &OutValue)
 	{
 		if (!IndexMap.Contains(InKey))
 		{
-			UE_LOG(LogOpenAccessibility, Warning, TEXT("Provided Key is not recognised."));
+			UE_LOG(LogAccession, Warning, TEXT("Provided Key is not recognised."));
 			return false;
 		}
 
@@ -163,7 +160,7 @@ public:
 	 * @param InValue The value to insert.
 	 * @return The Key of the associated to the inserted value in the indexer.
 	 */
-	KeyType AddValue(const ValueType& InValue)
+	KeyType AddValue(const ValueType &InValue)
 	{
 		check(InValue != nullptr);
 
@@ -185,7 +182,7 @@ public:
 	 * @param InValue The value to insert.
 	 * @param OutKey The Key of the associated to the newly inserted value.
 	 */
-	void AddValue(const ValueType& InValue, KeyType& OutKey)
+	void AddValue(const ValueType &InValue, KeyType &OutKey)
 	{
 		check(InValue != nullptr);
 
@@ -205,7 +202,7 @@ public:
 	 * @param InValue The value to find or insert into the indexer.
 	 * @return The Key of the associated value.
 	 */
-	KeyType GetKeyOrAddValue(const ValueType& InValue)
+	KeyType GetKeyOrAddValue(const ValueType &InValue)
 	{
 		check(InValue != nullptr);
 
@@ -221,7 +218,7 @@ public:
 	 * @param InValue The value to find or insert into the indexer.
 	 * @param OutKey Sets the Key of the associated value.
 	 */
-	void GetKeyOrAddValue(const ValueType& InValue, KeyType& OutKey)
+	void GetKeyOrAddValue(const ValueType &InValue, KeyType &OutKey)
 	{
 		check(InValue != nullptr);
 
@@ -235,23 +232,23 @@ public:
 	 * Removes the specified key from the Indexer.
 	 * @param InKey The key to remove from the indexer.
 	 */
-	void RemoveValue(const KeyType& InKey)
+	void RemoveValue(const KeyType &InKey)
 	{
 		if (!IndexMap.Contains(InKey))
 		{
-			UE_LOG(LogOpenAccessibility, Warning, TEXT("Provided Key Has No Pair in Index."));
+			UE_LOG(LogAccession, Warning, TEXT("Provided Key Has No Pair in Index."));
 			return;
 		}
 
 		IndexMap.Remove(InKey);
 		AvailableIndexes.Enqueue(InKey);
 	}
-	
+
 	/**
 	 * Removes the specified value and its associated key from the Indexer.
 	 * @param InValue The value to remove from the Indexer.
 	 */
-	void RemoveValue(const ValueType& InValue)
+	void RemoveValue(const ValueType &InValue)
 	{
 		check(InValue != nullptr);
 
@@ -261,16 +258,16 @@ public:
 			IndexMap.Remove(FoundKey);
 			AvailableIndexes.Enqueue(FoundKey);
 		}
-		else UE_LOG(LogOpenAccessibility, Log, TEXT("Provided Value Had No Associated Key."));
+		else
+			UE_LOG(LogAccession, Log, TEXT("Provided Value Had No Associated Key."));
 	}
 
 protected:
-
 	/**
 	 * Gets the Next Available Key in the Indexer.
 	 * @param OutKey Sets the Next Available Key.
 	 */
-	void GetAvailableKey(KeyType& OutKey)
+	void GetAvailableKey(KeyType &OutKey)
 	{
 		if (!AvailableIndexes.IsEmpty() && AvailableIndexes.Dequeue(OutKey))
 			return;
@@ -295,10 +292,7 @@ protected:
 	}
 
 public:
-
-
 protected:
-
 	/**
 	 * The Map of Keys to Associated Values.
 	 */

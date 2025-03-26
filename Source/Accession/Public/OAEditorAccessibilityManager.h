@@ -5,9 +5,9 @@
 #include "CoreMinimal.h"
 
 /**
- * 
+ *
  */
-class OPENACCESSIBILITY_API OAEditorAccessibilityManager
+class ACCESSION_API OAEditorAccessibilityManager
 {
 public:
 	OAEditorAccessibilityManager();

@@ -12,12 +12,11 @@
  * Accessibility Wrapper for Window ToolBar Elements.
  */
 UCLASS()
-class OPENACCESSIBILITY_API UAccessibilityWindowToolbar : public UObject
+class ACCESSION_API UAccessibilityWindowToolbar : public UObject
 {
 	GENERATED_BODY()
 
 public:
-
 	UAccessibilityWindowToolbar();
 
 	virtual ~UAccessibilityWindowToolbar();
@@ -39,7 +38,7 @@ public:
 	 * @param ToolkitWidget Toolkit Widget to Check if it is the active toolkit being Indexed.
 	 * @return True if the provided toolkit is the active widget, otherwise False.
 	 */
-	bool IsActiveToolbar(const TSharedRef<SWidget>& ToolkitWidget);
+	bool IsActiveToolbar(const TSharedRef<SWidget> &ToolkitWidget);
 
 	/**
 	 * Gets the Stored Active Toolkit Widget.
@@ -48,12 +47,11 @@ public:
 	TSharedPtr<SWidget> GetActiveToolkitWidget() const;
 
 private:
-
 	/**
 	 * Applies Accessibility Indexing to the Provided Toolkits ToolBar.
 	 * @param ToolkitWidget The Toolkit to apply toolbar accessibility to.
 	 * @param ToolkitWindow The Window containing the provided Toolkit.
-	 * @return 
+	 * @return
 	 */
 	bool ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget, TSharedRef<SWindow> ToolkitWindow);
 
@@ -72,7 +70,7 @@ private:
 	 * @param OutToolBar The Found ToolBar Root, otherwise an Invalid Shared Pointer.
 	 * @return True if the ToolBar Root was Found, otherwise False.
 	 */
-	bool GetToolKitToolBar(TSharedRef<SWidget> ToolKitWidget, TSharedPtr<SWidget>& OutToolBar);
+	bool GetToolKitToolBar(TSharedRef<SWidget> ToolKitWidget, TSharedPtr<SWidget> &OutToolBar);
 
 	/**
 	 * Binds the Tick Method to the Applications Core Ticker.
@@ -85,9 +83,7 @@ private:
 	void UnbindTicker();
 
 public:
-
 private:
-
 	/**
 	 * Previously Found Top Active Window.
 	 */
@@ -106,7 +102,7 @@ private:
 	/**
 	 * Indexer for the Current Active ToolBar.
 	 */
-	FIndexer<int32, SMultiBlockBaseWidget*> ToolbarIndex;
+	FIndexer<int32, SMultiBlockBaseWidget *> ToolbarIndex;
 
 	/**
 	 * TickDelegate Handle for the Tick Method.
@@ -116,6 +112,5 @@ private:
 	/**
 	 * Array of Registered Console Commands for the Window Toolbar.
 	 */
-	TArray<IConsoleCommand*> ConsoleCommands;
-
+	TArray<IConsoleCommand *> ConsoleCommands;
 };

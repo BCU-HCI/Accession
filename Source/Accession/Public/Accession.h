@@ -8,19 +8,18 @@
 #include "AssetAccessibilityRegistry.h"
 #include "OAccessibilityNodeFactory.h"
 
-class FOpenAccessibilityModule : public IModuleInterface
+class FAccessionModule : public IModuleInterface
 {
 
 public:
-
 	/** IModuleInterface Implementation */
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
 	/** End IModuleInterface Implementation */
 
-	static FOpenAccessibilityModule& Get()
+	static FAccessionModule &Get()
 	{
-		return FModuleManager::GetModuleChecked<FOpenAccessibilityModule>("OpenAccessibility");
+		return FModuleManager::GetModuleChecked<FAccessionModule>("Accession");
 	}
 
 	virtual bool SupportsDynamicReloading() override
@@ -29,8 +28,7 @@ public:
 	}
 
 private:
-
-	static void FocusChangeListener(const FFocusEvent& FocusEvent, const FWeakWidgetPath& PrevWidgetPath, const TSharedPtr<SWidget>& PrevFocusedWidget, const FWidgetPath& NewWidgetPath, const TSharedPtr<SWidget>& NewFocusedWidget);
+	static void FocusChangeListener(const FFocusEvent &FocusEvent, const FWeakWidgetPath &PrevWidgetPath, const TSharedPtr<SWidget> &PrevFocusedWidget, const FWidgetPath &NewWidgetPath, const TSharedPtr<SWidget> &NewFocusedWidget);
 
 	// Phrase Branch Bindings
 
@@ -74,7 +72,6 @@ private:
 	void UnregisterConsoleCommands();
 
 public:
-
 	// Accessibility Components
 
 	/// <summary>
@@ -88,8 +85,7 @@ public:
 	TSharedPtr<class FAssetAccessibilityRegistry> AssetAccessibilityRegistry;
 
 private:
-
 	TSharedPtr<class FTranscriptionVisualizer> TranscriptionVisualizer;
 
-	TArray<IConsoleCommand*> ConsoleCommands;
+	TArray<IConsoleCommand *> ConsoleCommands;
 };

@@ -15,14 +15,13 @@ struct FGraphLocomotionChunk
 	GENERATED_BODY()
 
 public:
-
 	void SetChunkBounds(FVector2D InTopLeft, FVector2D InBottomRight)
 	{
 		TopLeft = InTopLeft;
 		BottomRight = InBottomRight;
 	}
 
-	void GetChunkBounds(FVector2D& OutTopLeft, FVector2D& OutBottomRight) const
+	void GetChunkBounds(FVector2D &OutTopLeft, FVector2D &OutBottomRight) const
 	{
 		OutTopLeft = TopLeft;
 		OutBottomRight = BottomRight;
@@ -32,14 +31,13 @@ public:
 
 	FVector2D GetChunkBottomRight() const { return BottomRight; }
 
-	void SetVisColor(const FLinearColor& NewColor) const
+	void SetVisColor(const FLinearColor &NewColor) const
 	{
 		if (ChunkVisWidget.IsValid())
 			ChunkVisWidget.Pin()->SetBorderBackgroundColor(NewColor);
 	}
 
 public:
-
 	/// <summary>
 	/// Visual Chunks Top Left Corner.
 	/// </summary>
@@ -64,29 +62,27 @@ public:
 	/// Weak Pointer to the Chunks Indexer Widget.
 	/// </summary>
 	TWeakPtr<class SIndexer> ChunkIndexer;
-
 };
 
 struct FPanelViewPosition
 {
 public:
-
 	FPanelViewPosition()
-		: TopLeft(FVector2D::ZeroVector)
-		, BotRight(FVector2D::ZeroVector)
-	{ }
+		: TopLeft(FVector2D::ZeroVector), BotRight(FVector2D::ZeroVector)
+	{
+	}
 
 	FPanelViewPosition(FVector2D InTopLeft, FVector2D InBotRight)
-		: TopLeft(InTopLeft)
-		, BotRight(InBotRight)
-	{ }
+		: TopLeft(InTopLeft), BotRight(InBotRight)
+	{
+	}
 
-	bool operator!=(const FVector2D& Other)
+	bool operator!=(const FVector2D &Other)
 	{
 		return TopLeft != Other || BotRight != Other;
 	}
 
-	bool operator!=(const FPanelViewPosition& Other)
+	bool operator!=(const FPanelViewPosition &Other)
 	{
 		return TopLeft != Other.TopLeft || BotRight != Other.BotRight;
 	}
@@ -96,20 +92,19 @@ public:
 };
 
 UCLASS()
-class OPENACCESSIBILITY_API UAccessibilityGraphLocomotionContext : public UPhraseTreeContextObject
+class ACCESSION_API UAccessibilityGraphLocomotionContext : public UPhraseTreeContextObject
 {
 	GENERATED_BODY()
 
 public:
+	UAccessibilityGraphLocomotionContext(const FObjectInitializer &ObjectInitializer);
 
-	UAccessibilityGraphLocomotionContext(const FObjectInitializer& ObjectInitializer);
-	
 	virtual ~UAccessibilityGraphLocomotionContext();
 
 	void Init();
 	void Init(TSharedRef<SGraphEditor> InGraphEditor);
 
-	bool SelectChunk(const int32& Index);
+	bool SelectChunk(const int32 &Index);
 
 	bool RevertToPreviousView();
 
@@ -120,14 +115,13 @@ public:
 	virtual bool Close() override;
 
 protected:
+	bool MoveViewport(const FVector2D &InTopLeft, const FVector2D &InBottomRight) const;
 
-	bool MoveViewport(const FVector2D& InTopLeft, const FVector2D& InBottomRight) const;
-
-	bool MoveViewport(const FPanelViewPosition& NewViewPosition) const;
+	bool MoveViewport(const FPanelViewPosition &NewViewPosition) const;
 
 	// Visuals Methods
 
-	void ChangeChunkVis(const int32& Index, const FLinearColor& NewColor = FLinearColor::Yellow);
+	void ChangeChunkVis(const int32 &Index, const FLinearColor &NewColor = FLinearColor::Yellow);
 
 	void CreateVisualGrid(const TSharedRef<SGraphEditor> InGraphEditor);
 
@@ -141,16 +135,15 @@ protected:
 
 	void UnHideNativeVisuals();
 
-	void OnFocusChanged(const FFocusEvent& FocusEvent, const FWeakWidgetPath& OldFocusedWidgetPath, const TSharedPtr<SWidget>& OldFocusedWidget, const FWidgetPath& NewFocusedWidgetPath, const TSharedPtr<SWidget>& NewFocusedWidget);
-
+	void OnFocusChanged(const FFocusEvent &FocusEvent, const FWeakWidgetPath &OldFocusedWidgetPath, const TSharedPtr<SWidget> &OldFocusedWidget, const FWidgetPath &NewFocusedWidgetPath, const TSharedPtr<SWidget> &NewFocusedWidget);
 
 	void BindFocusChangedEvent();
 
 	void UnbindFocusChangedEvent();
 
 protected:
-
-	FVector2D StartViewPosition; float StartViewZoom;
+	FVector2D StartViewPosition;
+	float StartViewZoom;
 
 	FPanelViewPosition CurrentViewPosition;
 	TArray<FPanelViewPosition> PreviousPositions;
@@ -161,7 +154,6 @@ protected:
 
 	FIntVector2 ChunkSize;
 
-
 	// Container References
 
 	TWeakPtr<SUniformGridPanel> GridContainer;
@@ -171,10 +163,9 @@ protected:
 	TWeakPtr<SGraphEditor> LinkedEditor;
 
 private:
-
 	FTimerHandle SelectionTimerHandle;
 
-	TMap<SWidget*, EVisibility> NativeWidgetVisibility;
+	TMap<SWidget *, EVisibility> NativeWidgetVisibility;
 
 	FDelegateHandle FocusChangedHandle;
 };

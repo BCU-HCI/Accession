@@ -3,25 +3,25 @@
 using System.IO;
 using UnrealBuildTool;
 
-public class OpenAccessibility : ModuleRules
+public class Accession : ModuleRules
 {
-	public OpenAccessibility(ReadOnlyTargetRules Target) : base(Target)
+	public Accession(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
+
 		PublicIncludePaths.AddRange(
 			new string[] {
 				// ... add public include paths required here ...
 			}
 			);
 
-        PrivateIncludePaths.AddRange(
+		PrivateIncludePaths.AddRange(
 			new string[] {
 				// ... add other private include paths required here ...
 			}
 			);
-			
-		
+
+
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
@@ -29,14 +29,14 @@ public class OpenAccessibility : ModuleRules
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
-			
-		
+
+
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
 				// Internal Plugin Modules
-				"OpenAccessibilityAnalytics",
-				"OpenAccessibilityCommunication",
+				"AccessionAnalytics",
+				"AccessionCommunication",
 
 				// Core Modules
 				"CoreUObject",
@@ -45,18 +45,18 @@ public class OpenAccessibility : ModuleRules
 
 				// Editor Modules
 				"UnrealEd",
-                "GraphEditor",
-                "Kismet",
-                "AIModule",
+				"GraphEditor",
+				"Kismet",
+				"AIModule",
 
 				// Slate UI
                 "Slate",
 				"SlateCore",
 				"EditorStyle",
-            }
+			}
 			);
-		
-		
+
+
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
 			{
@@ -68,7 +68,7 @@ public class OpenAccessibility : ModuleRules
 			new string[]
 			{
 
-            }
+			}
 		);
 	}
 }

@@ -14,12 +14,11 @@
 struct FGraphActionNode;
 
 UCLASS()
-class OPENACCESSIBILITY_API UAccessibilityAddNodeContextMenu : public UPhraseTreeContextMenuObject
+class ACCESSION_API UAccessibilityAddNodeContextMenu : public UPhraseTreeContextMenuObject
 {
 	GENERATED_BODY()
 
 public:
-
 	UAccessibilityAddNodeContextMenu();
 	UAccessibilityAddNodeContextMenu(TSharedRef<IMenu> Menu);
 	UAccessibilityAddNodeContextMenu(TSharedRef<IMenu> Menu, TSharedRef<SGraphActionMenu> GraphMenu);
@@ -85,15 +84,15 @@ public:
 	/// </summary>
 	/// <param name="InIndex">The Index of the Node to Find.</param>
 	/// <param name="OutGraphAction">The Found GraphActionNode for the Index, or nullptr.</param>
-	void GetGraphActionFromIndex(const int32 InIndex, FGraphActionNode* OutGraphAction);
+	void GetGraphActionFromIndex(const int32 InIndex, FGraphActionNode *OutGraphAction);
 
 	/// <summary>
 	/// Gets the GraphActionNode from the given Index.
 	/// </summary>
 	/// <param name="InIndex">The Index of the Node to Find.</param>
 	/// <returns>The Found GraphActionNode for the Index, or nullptr.</returns>
-	FGraphActionNode* GetGraphActionFromIndex(const int32 InIndex);
-	
+	FGraphActionNode *GetGraphActionFromIndex(const int32 InIndex);
+
 	/// <summary>
 	/// Gets the GraphActionNode from the given Index.
 	/// </summary>
@@ -106,7 +105,7 @@ public:
 	/// </summary>
 	/// <param name="InIndex"></param>
 	void SelectGraphAction(const int32 InIndex);
-	
+
 	/// <summary>
 	/// Performs the Action to the Linked GraphActionNode, based on the given Index.
 	/// </summary>
@@ -123,13 +122,13 @@ public:
 	/// Overrides the Current Filter Text with the given string.
 	/// </summary>
 	/// <param name="InFilterText">The String to Override with.</param>
-	void SetFilterText(const FString& InFilterText);
+	void SetFilterText(const FString &InFilterText);
 
 	/// <summary>
 	/// Append the given string to the End of the Current Filter Text.
 	/// </summary>
 	/// <param name="InFilterText">The Text To Append to the End.</param>
-	void AppendFilterText(const FString& InFilterText);
+	void AppendFilterText(const FString &InFilterText);
 
 	/// <summary>
 	/// Clears the Current Filter Text.
@@ -164,7 +163,6 @@ public:
 	void ToggleContextAwareness();
 
 protected:
-
 	/// <summary>
 	/// Applies the Accessibility Widget to the given Item's TableRow Widget.
 	/// </summary>
@@ -179,7 +177,6 @@ protected:
 	void UpdateAccessibilityWidget(TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);
 
 public:
-
 	// Menu Components
 
 	/// <summary>
@@ -203,7 +200,6 @@ public:
 	TWeakPtr<SCheckBox> ContextAwarenessCheckBox;
 
 protected:
-
 	FString PrevFilterString;
 	int32 PrevNumItemsBeingObserved;
 	int32 PrevNumGeneratedChildren;
