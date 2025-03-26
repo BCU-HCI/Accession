@@ -2,18 +2,16 @@
 
 #include "PhraseTree/Containers/ContextMenuObject.h"
 
-#include "OpenAccessibilityComLogging.h"
+#include "AccessionComLogging.h"
 
 UPhraseTreeContextMenuObject::UPhraseTreeContextMenuObject()
 	: UPhraseTreeContextObject()
 {
-
 }
 
-UPhraseTreeContextMenuObject::UPhraseTreeContextMenuObject(TSharedRef<IMenu> Menu) 
+UPhraseTreeContextMenuObject::UPhraseTreeContextMenuObject(TSharedRef<IMenu> Menu)
 	: UPhraseTreeContextObject()
 {
-
 }
 
 UPhraseTreeContextMenuObject::~UPhraseTreeContextMenuObject()
@@ -24,15 +22,14 @@ UPhraseTreeContextMenuObject::~UPhraseTreeContextMenuObject()
 	if (Menu.IsValid())
 		RemoveMenuDismissed(Menu.Pin().ToSharedRef());
 
-	UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Context Menu || Destroyed ||"))
+	UE_LOG(LogAccessionCom, Warning, TEXT("|| Context Menu || Destroyed ||"))
 }
 
 void UPhraseTreeContextMenuObject::Init(TSharedRef<IMenu> InMenu)
 {
 	this->Menu = InMenu;
 	this->Window = FSlateApplication::Get().FindWidgetWindow(
-		InMenu->GetContent().ToSharedRef()
-	);
+		InMenu->GetContent().ToSharedRef());
 
 	BindMenuDismissed(InMenu);
 	BindTickDelegate();
@@ -42,8 +39,7 @@ void UPhraseTreeContextMenuObject::Init(TSharedRef<IMenu> InMenu, TSharedRef<FPh
 {
 	this->Menu = InMenu;
 	this->Window = FSlateApplication::Get().FindWidgetWindow(
-		InMenu->GetContent().ToSharedRef()
-	);
+		InMenu->GetContent().ToSharedRef());
 
 	this->ContextRoot = InContextRoot;
 
@@ -66,7 +62,7 @@ void UPhraseTreeContextMenuObject::RemoveTickDelegate()
 void UPhraseTreeContextMenuObject::BindMenuDismissed(TSharedRef<IMenu> InMenu)
 {
 	MenuDismissedHandle = InMenu->GetOnMenuDismissed()
-		.AddUObject(this, &UPhraseTreeContextMenuObject::OnMenuDismissed);
+							  .AddUObject(this, &UPhraseTreeContextMenuObject::OnMenuDismissed);
 }
 
 void UPhraseTreeContextMenuObject::RemoveMenuDismissed(TSharedRef<IMenu> InMenu)
@@ -83,5 +79,5 @@ void UPhraseTreeContextMenuObject::OnMenuDismissed(TSharedRef<IMenu> InMenu)
 
 	bIsActive = false;
 
-	UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Context Menu || Dismissed ||"))
+	UE_LOG(LogAccessionCom, Warning, TEXT("|| Context Menu || Dismissed ||"))
 }

@@ -1,9 +1,9 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "OpenAccessibilityCommunication.h"
-#include "OpenAccessibilityComLogging.h"
+#include "AccessionCommunication.h"
+#include "AccessionComLogging.h"
 
-#include "OpenAccessibilityAnalytics.h"
+#include "AccessionAnalytics.h"
 
 #include "AudioManager.h"
 #include "SocketCommunicationServer.h"
@@ -19,21 +19,21 @@
 #include "Sound/SampleBufferIO.h"
 #include "HAL/PlatformProcess.h"
 
-#define LOCTEXT_NAMESPACE "UOpenAccessibilityCommunicationModule"
+#define LOCTEXT_NAMESPACE "UAccessionCommunicationModule"
 
-void FOpenAccessibilityCommunicationModule::StartupModule()
+void FAccessionCommunicationModule::StartupModule()
 {
 	LoadZMQDLL();
 
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
-	UE_LOG(LogOpenAccessibilityCom, Display, TEXT("OpenAccessibilityComModule::StartupModule()"));
+	UE_LOG(LogAccessionCom, Display, TEXT("AccessionComModule::StartupModule()"));
 
 	// Initialize AudioManager
 	AudioManager = NewObject<UAudioManager>();
 	AudioManager->AddToRoot();
 
 	AudioManager->OnAudioReadyForTranscription
-		.BindRaw(this, &FOpenAccessibilityCommunicationModule::TranscribeWaveForm);
+		.BindRaw(this, &FAccessionCommunicationModule::TranscribeWaveForm);
 
 	// Initialize Socket Server
 	SocketServer = MakeShared<FSocketCommunicationServer>();
@@ -42,21 +42,21 @@ void FOpenAccessibilityCommunicationModule::StartupModule()
 	BuildPhraseTree();
 
 	// Bind Tick Event
-	TickDelegate = FTickerDelegate::CreateRaw(this, &FOpenAccessibilityCommunicationModule::Tick);
+	TickDelegate = FTickerDelegate::CreateRaw(this, &FAccessionCommunicationModule::Tick);
 	TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);
 
 	// Bind Input Events
-	KeyDownEventHandle = FSlateApplication::Get().OnApplicationPreInputKeyDownListener().AddRaw(this, &FOpenAccessibilityCommunicationModule::HandleKeyDownEvent);
+	KeyDownEventHandle = FSlateApplication::Get().OnApplicationPreInputKeyDownListener().AddRaw(this, &FAccessionCommunicationModule::HandleKeyDownEvent);
 
 	// Register Console Commands
 	RegisterConsoleCommands();
 }
 
-void FOpenAccessibilityCommunicationModule::ShutdownModule()
+void FAccessionCommunicationModule::ShutdownModule()
 {
 	// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,
 	// we call this function before unloading the module.
-	UE_LOG(LogOpenAccessibilityCom, Display, TEXT("OpenAccessibilityComModule::ShutdownModule()"));
+	UE_LOG(LogAccessionCom, Display, TEXT("AccessionComModule::ShutdownModule()"));
 
 	AudioManager->RemoveFromRoot();
 	PhraseTreeUtils->RemoveFromRoot();
@@ -68,7 +68,7 @@ void FOpenAccessibilityCommunicationModule::ShutdownModule()
 	UnregisterConsoleCommands();
 }
 
-bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
+bool FAccessionCommunicationModule::Tick(const float DeltaTime)
 {
 	// Detect if any events are ready to be received.
 	if (SocketServer->EventOccured())
@@ -76,13 +76,13 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 		TArray<FString> RecvStrings;
 		TSharedPtr<FJsonObject> RecvMetadata;
 
-		// Receive the Detected Event, with separate transcriptions and metadata. 
+		// Receive the Detected Event, with separate transcriptions and metadata.
 		if (SocketServer->RecvStringMultipartWithMeta(RecvStrings, RecvMetadata))
 		{
-			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION RECEIVED"), TEXT("Received Multipart - Message Count: %d"), RecvStrings.Num());
+			OA_LOG(LogAccessionCom, Log, TEXT("TRANSCRIPTION RECEIVED"), TEXT("Received Multipart - Message Count: %d"), RecvStrings.Num());
 			for (int i = 0; i < RecvStrings.Num(); i++)
 			{
-				OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION RECEIVED"), TEXT("Transcription - %d: { %s }"), i, *RecvStrings[i]);
+				OA_LOG(LogAccessionCom, Log, TEXT("TRANSCRIPTION RECEIVED"), TEXT("Transcription - %d: { %s }"), i, *RecvStrings[i]);
 			}
 
 			// Send Received Transcriptions to any bound events.
@@ -93,7 +93,7 @@ bool FOpenAccessibilityCommunicationModule::Tick(const float DeltaTime)
 	return true;
 }
 
-void FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(const FKeyEvent& InKeyEvent)
+void FAccessionCommunicationModule::HandleKeyDownEvent(const FKeyEvent &InKeyEvent)
 {
 	FKey EventKey = InKeyEvent.GetKey();
 
@@ -104,28 +104,28 @@ void FOpenAccessibilityCommunicationModule::HandleKeyDownEvent(const FKeyEvent& 
 	{
 		if (!AudioManager->IsCapturingAudio())
 		{
-			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Starting Audio Capture"));
+			OA_LOG(LogAccessionCom, Log, TEXT("AudioCapture Change"), TEXT("Starting Audio Capture"));
 			AudioManager->StartCapturingAudio();
 		}
 		else
 		{
-			OA_LOG(LogOpenAccessibilityCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
+			OA_LOG(LogAccessionCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
 			AudioManager->StopCapturingAudio();
 		}
 	}
 }
 
-void FOpenAccessibilityCommunicationModule::TranscribeWaveForm(const TArray<float> AudioBufferToTranscribe)
+void FAccessionCommunicationModule::TranscribeWaveForm(const TArray<float> AudioBufferToTranscribe)
 {
 	if (AudioBufferToTranscribe.Num() == 0)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Transcription Ready || Audio Buffer is Empty ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Transcription Ready || Audio Buffer is Empty ||"));
 		return;
 	}
 
 	PrevAudioBuffer = TArray(AudioBufferToTranscribe);
 
-	UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||"), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * sizeof(float)));
+	UE_LOG(LogAccessionCom, Log, TEXT("|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||"), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * sizeof(float)));
 
 	// Create Metadata of Audio Source.
 	TSharedPtr<FJsonObject> AudioBufferMetadata = MakeShared<FJsonObject>();
@@ -133,63 +133,56 @@ void FOpenAccessibilityCommunicationModule::TranscribeWaveForm(const TArray<floa
 	AudioBufferMetadata->SetNumberField(TEXT("num_channels"), AudioManager->GetAudioCaptureNumChannels());
 
 	bool bArrayMessageSent = SocketServer->SendArrayMessageWithMeta(AudioBufferToTranscribe, AudioBufferMetadata.ToSharedRef(), ComSendFlags::none);
-	
-	OA_LOG(LogOpenAccessibilityCom, Log, TEXT("TRANSCRIPTION SENT"), TEXT("{%s} Send Audiobuffer (float x %d / %d Hz / %d channels)"),
-		bArrayMessageSent ? TEXT("Success") : TEXT("Failed"),
-		AudioBufferToTranscribe.Num(), AudioManager->GetAudioCaptureSampleRate(), AudioManager->GetAudioCaptureNumChannels());
+
+	OA_LOG(LogAccessionCom, Log, TEXT("TRANSCRIPTION SENT"), TEXT("{%s} Send Audiobuffer (float x %d / %d Hz / %d channels)"),
+		   bArrayMessageSent ? TEXT("Success") : TEXT("Failed"),
+		   AudioBufferToTranscribe.Num(), AudioManager->GetAudioCaptureSampleRate(), AudioManager->GetAudioCaptureNumChannels());
 }
 
-void FOpenAccessibilityCommunicationModule::BuildPhraseTree()
+void FAccessionCommunicationModule::BuildPhraseTree()
 {
 	// Initialize the Phrase Tree
 	PhraseTree = MakeShared<FPhraseTree>();
 	PhraseTreePhraseRecievedHandle = OnTranscriptionRecieved
-		.AddRaw(PhraseTree.Get(), &FPhraseTree::ParseTranscription);
+										 .AddRaw(PhraseTree.Get(), &FPhraseTree::ParseTranscription);
 
 	PhraseTreeUtils = NewObject<UPhraseTreeUtils>();
 	PhraseTreeUtils->SetPhraseTree(PhraseTree.ToSharedRef());
 	PhraseTreeUtils->AddToRoot();
 }
 
-void FOpenAccessibilityCommunicationModule::RegisterConsoleCommands()
+void FAccessionCommunicationModule::RegisterConsoleCommands()
 {
 	// Audio Commands
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibilityCom.Debug.ShowAudioSampleRate"),
-		TEXT("Logs the Number of Samples being captured, from user input."), 
+		TEXT("AccessionCom.Debug.ShowAudioSampleRate"),
+		TEXT("Logs the Number of Samples being captured, from user input."),
 
-		FConsoleCommandDelegate::CreateLambda([this]() {
-			UE_LOG(LogOpenAccessibilityCom, Display, TEXT("OpenAccessibilityCom.Debug.ShowAudioSampleRate | Sample Rate: %d"), this->AudioManager->GetAudioCaptureSampleRate());
-		})
-	));
+		FConsoleCommandDelegate::CreateLambda([this]()
+											  { UE_LOG(LogAccessionCom, Display, TEXT("AccessionCom.Debug.ShowAudioSampleRate | Sample Rate: %d"), this->AudioManager->GetAudioCaptureSampleRate()); })));
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibilityCom.Debug.ShowAudioNumChannels"),
+		TEXT("AccessionCom.Debug.ShowAudioNumChannels"),
 		TEXT("Logs the Number of Audio Channels being captured, from user input."),
 
-		FConsoleCommandDelegate::CreateLambda([this]() {
-			UE_LOG(LogOpenAccessibilityCom, Display, TEXT("OpenAccessibilityCom.Debug.ShowAudioNumChannels | Num Channels: %d"), this->AudioManager->GetAudioCaptureNumChannels());
-		})
-	));
+		FConsoleCommandDelegate::CreateLambda([this]()
+											  { UE_LOG(LogAccessionCom, Display, TEXT("AccessionCom.Debug.ShowAudioNumChannels | Num Channels: %d"), this->AudioManager->GetAudioCaptureNumChannels()); })));
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibilityCom.Debug.SendLastBuffer"),
+		TEXT("AccessionCom.Debug.SendLastBuffer"),
 		TEXT("Sends the last saved audio buffer to the transcription service."),
 
-		FConsoleCommandDelegate::CreateLambda([this]() {
-			UE_LOG(LogOpenAccessibilityCom, Display, TEXT("OpenAccessibilityCom.Debug.SendLastBuffer"));
+		FConsoleCommandDelegate::CreateLambda([this]()
+											  {
+			UE_LOG(LogAccessionCom, Display, TEXT("AccessionCom.Debug.SendLastBuffer"));
 
-			TranscribeWaveForm(PrevAudioBuffer);
-		})
-	));
-
-
+			TranscribeWaveForm(PrevAudioBuffer); })));
 }
 
-void FOpenAccessibilityCommunicationModule::UnregisterConsoleCommands()
+void FAccessionCommunicationModule::UnregisterConsoleCommands()
 {
-	IConsoleCommand* ConsoleCommand = nullptr;
+	IConsoleCommand *ConsoleCommand = nullptr;
 	while (ConsoleCommands.Num() > 0)
 	{
 		ConsoleCommand = ConsoleCommands.Pop();
@@ -198,17 +191,17 @@ void FOpenAccessibilityCommunicationModule::UnregisterConsoleCommands()
 	}
 }
 
-void FOpenAccessibilityCommunicationModule::LoadZMQDLL()
+void FAccessionCommunicationModule::LoadZMQDLL()
 {
-	FString BaseDir = IPluginManager::Get().FindPlugin("OpenAccessibility")->GetBaseDir();
+	FString BaseDir = IPluginManager::Get().FindPlugin("Accession")->GetBaseDir();
 
 	FString LibraryPath;
 #if PLATFORM_WINDOWS
-	#if UE_BUILD_DEBUG
+#if UE_BUILD_DEBUG
 	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Binaries/ThirdParty/ZeroMQ/Win64/libzmq-mt-gd-4_3_5.dll"));
-	#else
+#else
 	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Binaries/ThirdParty/ZeroMQ/Win64/libzmq-mt-4_3_5.dll"));
-	#endif
+#endif
 #elif PLATFORM_LINUX
 	LibraryPath = FPaths::Combine(*BaseDir, TEXT("Binaries/ThirdParty/ZeroMQ/Linux/libzmq-mt-4_3_5.so"))
 #elif PLATFORM_MAC
@@ -219,15 +212,15 @@ void FOpenAccessibilityCommunicationModule::LoadZMQDLL()
 
 	if (ZMQDllHandle)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| LoadZMQDLL || Successfully Loaded ZMQ DLL ||"));
+		UE_LOG(LogAccessionCom, Log, TEXT("|| LoadZMQDLL || Successfully Loaded ZMQ DLL ||"));
 	}
 	else
 	{
-		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| LoadZMQDLL || Failed to Load ZMQ DLL ||"));
+		UE_LOG(LogAccessionCom, Error, TEXT("|| LoadZMQDLL || Failed to Load ZMQ DLL ||"));
 	}
 }
 
-void FOpenAccessibilityCommunicationModule::UnloadZMQDLL()
+void FAccessionCommunicationModule::UnloadZMQDLL()
 {
 	FPlatformProcess::FreeDllHandle(ZMQDllHandle);
 	ZMQDllHandle = nullptr;
@@ -235,4 +228,4 @@ void FOpenAccessibilityCommunicationModule::UnloadZMQDLL()
 
 #undef LOCTEXT_NAMESPACE
 
-IMPLEMENT_MODULE(FOpenAccessibilityCommunicationModule, OpenAccessibility)
+IMPLEMENT_MODULE(FAccessionCommunicationModule, Accession)

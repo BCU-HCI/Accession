@@ -1,13 +1,12 @@
 // Copyright F-Dudley. All Rights Reserved.
 
-
 #include "PhraseTree.h"
 #include "PhraseTree/PhraseNode.h"
 #include "Algo/Reverse.h"
 
 #include "Logging/StructuredLog.h"
-#include "OpenAccessibilityComLogging.h"
-#include "OpenAccessibilityAnalytics.h"
+#include "AccessionComLogging.h"
+#include "AccessionAnalytics.h"
 
 FPhraseTree::FPhraseTree() : FPhraseNode(TEXT("ROOT_NODE"))
 {
@@ -34,7 +33,7 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 {
 	if (InTranscriptionSegments.IsEmpty())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Provided Transcription is Empty ||"))
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Phrase Tree || Provided Transcription is Empty ||"))
 		return;
 	}
 
@@ -42,11 +41,11 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 	int SegmentCount = 0;
 
 	// Loop over any Transcription Segments.
-	for (FString& TranscriptionSegment : InTranscriptionSegments)
+	for (FString &TranscriptionSegment : InTranscriptionSegments)
 	{
 		if (TranscriptionSegment.IsEmpty())
 		{
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment is Empty ||"))
+			UE_LOG(LogAccessionCom, Log, TEXT("|| Phrase Tree || Transcription Segment is Empty ||"))
 			continue;
 		}
 
@@ -56,13 +55,13 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 		TranscriptionSegment.ReplaceInline(TEXT(","), TEXT(""), ESearchCase::IgnoreCase);
 		TranscriptionSegment.ToUpperInline();
 
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Filtered Transcription Segment: { %s } ||"), *TranscriptionSegment)
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Phrase Tree || Filtered Transcription Segment: { %s } ||"), *TranscriptionSegment)
 
 		// Parse the Transcription Segment into an Array of Words, removing any white space.
 		TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray);
 		if (SegmentWordArray.Num() == 0)
 		{
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Phrase Tree || Transcription Segment has no Word Content ||"))
+			UE_LOG(LogAccessionCom, Log, TEXT("|| Phrase Tree || Transcription Segment has no Word Content ||"))
 			continue;
 		}
 
@@ -77,59 +76,59 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 
 			ContextManager.UpdateContextStack(ParseRecord.ContextObjectStack);
 
-			UE_LOGFMT(LogOpenAccessibilityCom, Log, "|| Phrase Tree || Segment: {0} | Result: {1} ||", SegmentCount, ParseResult.Result);
+			UE_LOGFMT(LogAccessionCom, Log, "|| Phrase Tree || Segment: {0} | Result: {1} ||", SegmentCount, ParseResult.Result);
 
 			switch (ParseResult.Result)
 			{
-				case PHRASE_PARSED:
-				case PHRASE_PARSED_AND_EXECUTED:
-				{
-					OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Success} Phrase Tree Parsed Correctly (%s)"),
-						*ParseRecord.GetPhraseString())
+			case PHRASE_PARSED:
+			case PHRASE_PARSED_AND_EXECUTED:
+			{
+				OA_LOG(LogAccessionCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Success} Phrase Tree Parsed Correctly (%s)"),
+					   *ParseRecord.GetPhraseString())
 
-					LastVistedNode.Reset();
-					LastVistedParseRecord = FParseRecord();
+				LastVistedNode.Reset();
+				LastVistedParseRecord = FParseRecord();
 
-					break;
-				}
+				break;
+			}
 
-				case PHRASE_REQUIRES_MORE:
-				{
-					OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Requires More Segments. (%s)"), 
-						*ParseRecord.GetPhraseString());
+			case PHRASE_REQUIRES_MORE:
+			{
+				OA_LOG(LogAccessionCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Requires More Segments. (%s)"),
+					   *ParseRecord.GetPhraseString());
 
-					// Store Reach Nodes, and the ParseRecord for future propagation attempts.
-					LastVistedNode = ParseResult.ReachedNode;
-					LastVistedParseRecord = ParseRecord;
-				}
+				// Store Reach Nodes, and the ParseRecord for future propagation attempts.
+				LastVistedNode = ParseResult.ReachedNode;
+				LastVistedParseRecord = ParseRecord;
+			}
 
-				case PHRASE_REQUIRES_MORE_CORRECT_PHRASES:
-				{
-					OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Requires More Correct Segments. (%s)"),
-						*ParseRecord.GetPhraseString())
+			case PHRASE_REQUIRES_MORE_CORRECT_PHRASES:
+			{
+				OA_LOG(LogAccessionCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Requires More Correct Segments. (%s)"),
+					   *ParseRecord.GetPhraseString())
 
-					LastVistedNode = ParseResult.ReachedNode;
-					LastVistedParseRecord = ParseRecord;
+				LastVistedNode = ParseResult.ReachedNode;
+				LastVistedParseRecord = ParseRecord;
 
-					// Dirty Way of Ensuring all Segments in Transcription are Attempted.
-					if (!SegmentWordArray.IsEmpty())  
-						SegmentWordArray.Pop();
+				// Dirty Way of Ensuring all Segments in Transcription are Attempted.
+				if (!SegmentWordArray.IsEmpty())
+					SegmentWordArray.Pop();
 
-					break;
-				}
+				break;
+			}
 
-				default:
-				case PHRASE_UNABLE_TO_PARSE:
-				{
-					OA_LOG(LogOpenAccessibilityCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Failed. (%s)"),
-						*ParseRecord.GetPhraseString())
+			default:
+			case PHRASE_UNABLE_TO_PARSE:
+			{
+				OA_LOG(LogAccessionCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Failed. (%s)"),
+					   *ParseRecord.GetPhraseString())
 
-					// Dirty Way of Ensuring all Segments in Transcription are Attempted.
-					if (!SegmentWordArray.IsEmpty())
-						SegmentWordArray.Pop();
+				// Dirty Way of Ensuring all Segments in Transcription are Attempted.
+				if (!SegmentWordArray.IsEmpty())
+					SegmentWordArray.Pop();
 
-					break;
-				}
+				break;
+			}
 			}
 		}
 
@@ -138,11 +137,11 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 	}
 }
 
-FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord)
+FParseResult FPhraseTree::ParsePhrase(TArray<FString> &InPhraseWordArray, FParseRecord &InParseRecord)
 {
 	if (InPhraseWordArray.IsEmpty())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Phrase Tree || Provided Transcription Segment is Empty ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Phrase Tree || Provided Transcription Segment is Empty ||"));
 
 		return FParseResult(PHRASE_NOT_PARSED);
 	}
@@ -166,7 +165,7 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 			return ParseResult;
 		}
 		else if (ParseResult.Result != PHRASE_UNABLE_TO_PARSE)
-		{ 
+		{
 			return ParseResult;
 		}
 	}
@@ -182,7 +181,7 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString>& InPhraseWordArray, FParse
 	return ParseChildren(InPhraseWordArray, InParseRecord);
 }
 
-void FPhraseTree::BindBranch(const TPhraseNode& InNode)
+void FPhraseTree::BindBranch(const TPhraseNode &InNode)
 {
 	TArray<FPhraseTreeBranchBind> ToBindArray = TArray<FPhraseTreeBranchBind>();
 
@@ -193,13 +192,13 @@ void FPhraseTree::BindBranch(const TPhraseNode& InNode)
 		FPhraseTreeBranchBind BranchToBind = ToBindArray.Pop();
 
 		// Check all ChildNodes to see if they are similar in purpose.
-		for (auto& ChildNode : BranchToBind.StartNode->ChildNodes)
+		for (auto &ChildNode : BranchToBind.StartNode->ChildNodes)
 		{
 			// If a ChildNode meets the same requirements as the BranchRoot,
 			// then Split Bind Process to the ChildNodes.
 			if (ChildNode->RequiresPhrase(BranchToBind.BranchRoot->BoundPhrase))
 			{
-				for (auto& BranchChildNode : BranchToBind.BranchRoot->ChildNodes)
+				for (auto &BranchChildNode : BranchToBind.BranchRoot->ChildNodes)
 				{
 					ToBindArray.Add(FPhraseTreeBranchBind(ChildNode, BranchChildNode));
 				}
@@ -214,9 +213,9 @@ void FPhraseTree::BindBranch(const TPhraseNode& InNode)
 	}
 }
 
-void FPhraseTree::BindBranches(const TPhraseNodeArray& InNodes)
+void FPhraseTree::BindBranches(const TPhraseNodeArray &InNodes)
 {
-	for (const TSharedPtr<FPhraseNode>& Node : InNodes)
+	for (const TSharedPtr<FPhraseNode> &Node : InNodes)
 	{
 		BindBranch(Node);
 	}

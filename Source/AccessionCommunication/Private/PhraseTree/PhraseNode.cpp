@@ -2,19 +2,19 @@
 
 #include "PhraseTree/PhraseNode.h"
 #include "PhraseTree.h"
-#include "OpenAccessibilityComLogging.h"
+#include "AccessionComLogging.h"
 
 #include "Algo/LevenshteinDistance.h"
 
-FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase)
+FPhraseNode::FPhraseNode(const TCHAR *InBoundPhrase)
 {
-	BoundPhrase = InBoundPhrase;
+    BoundPhrase = InBoundPhrase;
     BoundPhrase.ToUpperInline();
 
-	ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
+    ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
 }
 
-FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed)
+FPhraseNode::FPhraseNode(const TCHAR *InBoundPhrase, TDelegate<void(FParseRecord &Record)> InOnPhraseParsed)
 {
     BoundPhrase = InBoundPhrase;
     BoundPhrase.ToUpperInline();
@@ -23,26 +23,25 @@ FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(FParseRecord
     ChildNodes = TArray<TSharedPtr<FPhraseNode>>();
 }
 
-FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TPhraseNodeArray InChildNodes)
+FPhraseNode::FPhraseNode(const TCHAR *InBoundPhrase, TPhraseNodeArray InChildNodes)
 {
-	BoundPhrase = InBoundPhrase;
+    BoundPhrase = InBoundPhrase;
     BoundPhrase.ToUpperInline();
 
-	ChildNodes = InChildNodes;
+    ChildNodes = InChildNodes;
 }
 
-FPhraseNode::FPhraseNode(const TCHAR* InBoundPhrase, TDelegate<void(FParseRecord& Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
+FPhraseNode::FPhraseNode(const TCHAR *InBoundPhrase, TDelegate<void(FParseRecord &Record)> InOnPhraseParsed, TPhraseNodeArray InChildNodes)
 {
     BoundPhrase = InBoundPhrase;
     BoundPhrase.ToUpperInline();
 
     OnPhraseParsed = InOnPhraseParsed;
-	ChildNodes = InChildNodes;
+    ChildNodes = InChildNodes;
 }
 
 FPhraseNode::~FPhraseNode()
 {
-
 }
 
 bool FPhraseNode::HasLeafChild() const
@@ -55,18 +54,19 @@ bool FPhraseNode::RequiresPhrase(FString InPhrase)
     return InPhrase.Equals(BoundPhrase, ESearchCase::IgnoreCase) || Algo::LevenshteinDistance(BoundPhrase, InPhrase) < 3;
 }
 
-bool FPhraseNode::RequiresPhrase(const FString InPhrase, int32& OutDistance) 
+bool FPhraseNode::RequiresPhrase(const FString InPhrase, int32 &OutDistance)
 {
     OutDistance = Algo::LevenshteinDistance(BoundPhrase, InPhrase);
 
     return InPhrase.Equals(BoundPhrase, ESearchCase::IgnoreCase) || OutDistance < 3;
 }
 
-FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray,
-                                      FParseRecord& InParseRecord) {
+FParseResult FPhraseNode::ParsePhrase(TArray<FString> &InPhraseArray,
+                                      FParseRecord &InParseRecord)
+{
     if (InPhraseArray.IsEmpty())
     {
-        UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
+        UE_LOG(LogAccessionCom, Log, TEXT("|| Emptied Phrase Array ||"))
 
         return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
     }
@@ -74,23 +74,23 @@ FParseResult FPhraseNode::ParsePhrase(TArray<FString>& InPhraseArray,
     // Pop the Phrase Linked to this Node.
     // Apply to the Record.
     FString LinkedPhrase = InPhraseArray.Pop();
-    
+
     // Append Removed Phrase To Record.
     InParseRecord.AddPhraseString(LinkedPhrase);
-    
+
     OnPhraseParsed.ExecuteIfBound(InParseRecord);
 
-    // Pass 
+    // Pass
     return ParseChildren(InPhraseArray, InParseRecord);
 }
 
-FParseResult FPhraseNode::ParsePhraseAsContext(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord)
+FParseResult FPhraseNode::ParsePhraseAsContext(TArray<FString> &InPhraseWordArray, FParseRecord &InParseRecord)
 {
     if (InPhraseWordArray.IsEmpty())
     {
-        UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
+        UE_LOG(LogAccessionCom, Log, TEXT("|| Emptied Phrase Array ||"))
 
-            return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
+        return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
     }
 
     OnPhraseParsed.ExecuteIfBound(InParseRecord);
@@ -98,25 +98,25 @@ FParseResult FPhraseNode::ParsePhraseAsContext(TArray<FString>& InPhraseWordArra
     return ParseChildren(InPhraseWordArray, InParseRecord);
 }
 
-FParseResult FPhraseNode::ParsePhraseIfRequired(TArray<FString>& InPhraseWordArray, FParseRecord& InParseRecord)
+FParseResult FPhraseNode::ParsePhraseIfRequired(TArray<FString> &InPhraseWordArray, FParseRecord &InParseRecord)
 {
     if (RequiresPhrase(InPhraseWordArray.Last()))
     {
-		return ParsePhrase(InPhraseWordArray, InParseRecord);
-	}
+        return ParsePhrase(InPhraseWordArray, InParseRecord);
+    }
 
     return FParseResult(PHRASE_UNABLE_TO_PARSE);
 }
 
-bool FPhraseNode::CanBindChild(TPhraseNode& InNode)
+bool FPhraseNode::CanBindChild(TPhraseNode &InNode)
 {
-    for (auto& ChildNode : ChildNodes)
+    for (auto &ChildNode : ChildNodes)
     {
         if (ChildNode->RequiresPhrase(InNode->BoundPhrase) || ChildNode->IsLeafNode())
         {
-			return false;
-		}
-	}
+            return false;
+        }
+    }
 
     return true;
 }
@@ -125,13 +125,13 @@ bool FPhraseNode::BindChildNode(TPhraseNode InNode)
 {
     if (!InNode.IsValid())
         return false;
-	
-    for (auto& ChildNode : ChildNodes)
+
+    for (auto &ChildNode : ChildNodes)
     {
         if (ChildNode->RequiresPhrase(InNode->BoundPhrase))
         {
             return ChildNode->BindChildrenNodes(InNode->ChildNodes);
-		}
+        }
         else
         {
             ChildNodes.AddUnique(ChildNode);
@@ -151,20 +151,20 @@ bool FPhraseNode::BindChildNodeForce(TPhraseNode InNode)
 
 bool FPhraseNode::BindChildrenNodes(TPhraseNodeArray InNodes)
 {
-    for (auto& InNode : InNodes)
+    for (auto &InNode : InNodes)
     {
-        for (auto& ChildNode : ChildNodes)
+        for (auto &ChildNode : ChildNodes)
         {
             if (ChildNode->RequiresPhrase(InNode->BoundPhrase))
             {
-				return ChildNode->BindChildrenNodes(InNode->ChildNodes);
-			}
+                return ChildNode->BindChildrenNodes(InNode->ChildNodes);
+            }
             else
             {
-				ChildNodes.AddUnique(ChildNode);
-				return true;
-			}
-		}
+                ChildNodes.AddUnique(ChildNode);
+                return true;
+            }
+        }
     }
 
     return false;
@@ -172,10 +172,10 @@ bool FPhraseNode::BindChildrenNodes(TPhraseNodeArray InNodes)
 
 bool FPhraseNode::BindChildrenNodesForce(TPhraseNodeArray InNodes)
 {
-    for (auto& InNode : InNodes)
+    for (auto &InNode : InNodes)
     {
-		ChildNodes.AddUnique(InNode);
-	}
+        ChildNodes.AddUnique(InNode);
+    }
 
     return true;
 }
@@ -185,11 +185,11 @@ bool FPhraseNode::HasLeafChild()
     return ChildNodes.Num() == 1 && ChildNodes[0]->IsLeafNode();
 }
 
-FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRecord& InParseRecord)
+FParseResult FPhraseNode::ParseChildren(TArray<FString> &InPhraseArray, FParseRecord &InParseRecord)
 {
     if (HasLeafChild())
-		return ChildNodes[0]->ParsePhrase(InPhraseArray, InParseRecord);
-    if (InPhraseArray.IsEmpty()) 
+        return ChildNodes[0]->ParsePhrase(InPhraseArray, InParseRecord);
+    if (InPhraseArray.IsEmpty())
         return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
 
     // Below Can Be Optimized.
@@ -218,10 +218,10 @@ FParseResult FPhraseNode::ParseChildren(TArray<FString>& InPhraseArray, FParseRe
         return ChildNodes[FoundChildIndex]->ParsePhrase(InPhraseArray, InParseRecord);
     }
 
-	/*else if (!InPhraseArray.IsEmpty())
+    /*else if (!InPhraseArray.IsEmpty())
     {
-		return FParseResult(PHRASE_REQUIRES_MORE_CORRECT_PHRASES, AsShared());
+        return FParseResult(PHRASE_REQUIRES_MORE_CORRECT_PHRASES, AsShared());
     }*/
 
-	return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
+    return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
 }

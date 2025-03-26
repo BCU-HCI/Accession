@@ -1,4 +1,4 @@
 
-#include "OpenAccessibilityComLogging.h"
+#include "AccessionLogging.h"
 
-DEFINE_LOG_CATEGORY(LogOpenAccessibilityCom);
+DEFINE_LOG_CATEGORY(LogAccessionCom);

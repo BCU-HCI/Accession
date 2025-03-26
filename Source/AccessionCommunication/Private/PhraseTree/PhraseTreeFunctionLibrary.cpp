@@ -4,4 +4,4 @@
 
 #include "PhraseTree/PhraseTreeFunctionLibrary.h"
 
-DEFINE_LOG_CATEGORY(LogOpenAccessibilityPhraseEvent);
+DEFINE_LOG_CATEGORY(LogAccessionPhraseEvent);

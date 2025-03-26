@@ -1,7 +1,7 @@
 // Copyright F-Dudley. All Rights Reserved.
 
 #include "SocketCommunicationServer.h"
-#include "OpenAccessibilityComLogging.h"
+#include "AccessionComLogging.h"
 
 #include "Serialization/JsonSerializer.h"
 
@@ -11,28 +11,28 @@ FSocketCommunicationServer::FSocketCommunicationServer(const std::string SendAdd
 	Context = new zmq::context_t(1);
 	if (Context == nullptr)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("Failed to create ZMQ context"));
+		UE_LOG(LogAccessionCom, Error, TEXT("Failed to create ZMQ context"));
 		return;
 	}
 
 	SendSocket = new zmq::socket_t(*Context, ZMQ_PUSH);
 	if (SendSocket == nullptr)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("Failed to create ZMQ socket"));
+		UE_LOG(LogAccessionCom, Error, TEXT("Failed to create ZMQ socket"));
 		return;
 	}
 
 	RecvSocket = new zmq::socket_t(*Context, ZMQ_PULL);
 	if (RecvSocket == nullptr)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("Failed to create ZMQ socket"));
+		UE_LOG(LogAccessionCom, Error, TEXT("Failed to create ZMQ socket"));
 		return;
 	}
-	
+
 	Poller = new zmq::poller_t<int>();
 	if (Poller == nullptr)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("Failed to create ZMQ poller"));
+		UE_LOG(LogAccessionCom, Error, TEXT("Failed to create ZMQ poller"));
 		return;
 	}
 
@@ -45,19 +45,23 @@ FSocketCommunicationServer::FSocketCommunicationServer(const std::string SendAdd
 FSocketCommunicationServer::~FSocketCommunicationServer()
 {
 	Poller->remove(*RecvSocket);
-	delete Poller; Poller = nullptr;
+	delete Poller;
+	Poller = nullptr;
 
 	SendSocket->disconnect(SendAddress);
 	SendSocket->close();
-	delete SendSocket; SendSocket = nullptr;
+	delete SendSocket;
+	SendSocket = nullptr;
 
 	RecvSocket->unbind(RecvAddress);
 	RecvSocket->close();
-	delete RecvSocket; RecvSocket = nullptr;
+	delete RecvSocket;
+	RecvSocket = nullptr;
 
 	Context->shutdown();
 	Context->close();
-	delete Context; Context = nullptr;
+	delete Context;
+	Context = nullptr;
 }
 
 bool FSocketCommunicationServer::EventOccured()
@@ -73,17 +77,17 @@ bool FSocketCommunicationServer::EventOccured()
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArrayBuffer(const float* MessageData, size_t Size, ComSendFlags SendFlags)
+bool FSocketCommunicationServer::SendArrayBuffer(const float *MessageData, size_t Size, ComSendFlags SendFlags)
 {
 	auto Result = SendSocket->send(zmq::const_buffer(MessageData, Size * sizeof(float)), SendFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), Size * sizeof(float));
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), Size * sizeof(float));
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
 		return true;
 	}
 
@@ -95,46 +99,46 @@ bool FSocketCommunicationServer::SendArrayBuffer(const float MessageData[], ComS
 	auto Result = SendSocket->send(zmq::const_buffer(MessageData, sizeof MessageData), SendFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(sizeof MessageData));
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(sizeof MessageData));
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
 		return true;
 	}
 
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArrayBuffer(const TArray<float>& ArrayMessage, ComSendFlags SendFlag)
+bool FSocketCommunicationServer::SendArrayBuffer(const TArray<float> &ArrayMessage, ComSendFlags SendFlag)
 {
 	auto Result = SendSocket->send(zmq::const_buffer(ArrayMessage.GetData(), ArrayMessage.Num() * sizeof(float)), SendFlag);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(ArrayMessage.Num() * sizeof(float)));
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(ArrayMessage.Num() * sizeof(float)));
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
 		return true;
 	}
 
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArrayMessage(const float* MessageData, size_t Size, ComSendFlags SendFlags)
+bool FSocketCommunicationServer::SendArrayMessage(const float *MessageData, size_t Size, ComSendFlags SendFlags)
 {
 	auto Result = SendSocket->send(zmq::message_t(MessageData, Size * sizeof(float)), SendFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), Size * sizeof(float));
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), Size * sizeof(float));
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
 		return true;
 	}
 
@@ -146,41 +150,41 @@ bool FSocketCommunicationServer::SendArrayMessage(const float MessageData[], Com
 	auto Result = SendSocket->send(zmq::message_t(MessageData, sizeof MessageData), SendFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(sizeof MessageData));
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(sizeof MessageData));
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
 		return true;
 	}
 
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArrayMessage(const TArray<float>& ArrayMessage, ComSendFlags SendFlags)
+bool FSocketCommunicationServer::SendArrayMessage(const TArray<float> &ArrayMessage, ComSendFlags SendFlags)
 {
 	auto Result = SendSocket->send(zmq::message_t(ArrayMessage.GetData(), ArrayMessage.Num() * sizeof(float)), SendFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(ArrayMessage.Num() * sizeof(float)));
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(ArrayMessage.Num() * sizeof(float)));
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
 		return true;
 	}
 
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArrayMessageWithMeta(const float* MessageData, size_t Size, const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags)
+bool FSocketCommunicationServer::SendArrayMessageWithMeta(const float *MessageData, size_t Size, const TSharedRef<FJsonObject> &Metadata, ComSendFlags SendFlags)
 {
 	FString MetaDataString;
 	if (!SerializeJSON(Metadata, MetaDataString))
 	{
-		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Com Server: Sent Array || Failed to serialize metadata ||"));
+		UE_LOG(LogAccessionCom, Error, TEXT("|| Com Server: Sent Array || Failed to serialize metadata ||"));
 		return false;
 	}
 
@@ -192,24 +196,24 @@ bool FSocketCommunicationServer::SendArrayMessageWithMeta(const float* MessageDa
 
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), Size * sizeof(float));
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), Size * sizeof(float));
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
 		return true;
 	}
 
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArrayMessageWithMeta(const float MessageData[], const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags)
+bool FSocketCommunicationServer::SendArrayMessageWithMeta(const float MessageData[], const TSharedRef<FJsonObject> &Metadata, ComSendFlags SendFlags)
 {
 	FString MetaDataString;
 	if (!SerializeJSON(Metadata, MetaDataString))
 	{
-		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Com Server: Sent Array || Failed to serialize metadata ||"));
+		UE_LOG(LogAccessionCom, Error, TEXT("|| Com Server: Sent Array || Failed to serialize metadata ||"));
 		return false;
 	}
 
@@ -220,25 +224,25 @@ bool FSocketCommunicationServer::SendArrayMessageWithMeta(const float MessageDat
 	auto Result = zmq::send_multipart(*SendSocket, Messages, SendFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(sizeof MessageData));
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d bytes"), Result.value(), int(sizeof MessageData));
 
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
 		return true;
 	}
 
 	return false;
 }
 
-bool FSocketCommunicationServer::SendArrayMessageWithMeta(const TArray<float>& ArrayMessage, const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags)
+bool FSocketCommunicationServer::SendArrayMessageWithMeta(const TArray<float> &ArrayMessage, const TSharedRef<FJsonObject> &Metadata, ComSendFlags SendFlags)
 {
 	FString MetaDataString;
 	if (!SerializeJSON(Metadata, MetaDataString))
 	{
-		UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Com Server: Sent Array || Failed to serialize metadata ||"));
+		UE_LOG(LogAccessionCom, Error, TEXT("|| Com Server: Sent Array || Failed to serialize metadata ||"));
 		return false;
 	}
 
@@ -249,13 +253,13 @@ bool FSocketCommunicationServer::SendArrayMessageWithMeta(const TArray<float>& A
 	auto Result = zmq::send_multipart(*SendSocket, Messages, SendFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d Messages"), Result.value(), Messages.size());
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Sent Array || Sent %d of %d Messages"), Result.value(), Messages.size());
 
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Sent Array || EAGAIN Error Occured ||"));
 
 		return true;
 	}
@@ -268,12 +272,12 @@ bool FSocketCommunicationServer::SendStringBuffer(const std::string StringMessag
 	auto Result = SendSocket->send(zmq::const_buffer(StringMessage.c_str(), StringMessage.size()), SendFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent String || Sent %d of %d bytes"), Result.value(), StringMessage.size());
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Sent String || Sent %d of %d bytes"), Result.value(), StringMessage.size());
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent String || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Sent String || EAGAIN Error Occured ||"));
 		return true;
 	}
 
@@ -285,29 +289,27 @@ bool FSocketCommunicationServer::SendJsonBuffer(const std::string JsonMessage, C
 	auto Result = SendSocket->send(zmq::const_buffer(JsonMessage.c_str(), JsonMessage.size()), SendFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Sent JSON || Sent %d of %d bytes"), Result.value(), JsonMessage.size());
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Sent JSON || Sent %d of %d bytes"), Result.value(), JsonMessage.size());
 		return true;
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Sent JSON || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Sent JSON || EAGAIN Error Occured ||"));
 		return true;
 	}
 
 	return false;
 }
 
-
-
 template <typename T>
-bool FSocketCommunicationServer::RecvArray(TArray<T>& OutArrayData, size_t Size, ComRecvFlags RecvFlags)
+bool FSocketCommunicationServer::RecvArray(TArray<T> &OutArrayData, size_t Size, ComRecvFlags RecvFlags)
 {
 	zmq::message_t RecvMessage;
 
 	auto Result = RecvSocket->recv(RecvMessage, RecvFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv Array || Recv %d bytes"), Result.value());
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Recv Array || Recv %d bytes"), Result.value());
 
 		OutArrayData.Append(RecvMessage.data<T>(), Result.value());
 
@@ -315,21 +317,21 @@ bool FSocketCommunicationServer::RecvArray(TArray<T>& OutArrayData, size_t Size,
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Recv Array || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Recv Array || EAGAIN Error Occured ||"));
 		return true;
 	}
 
 	return false;
 }
 
-bool FSocketCommunicationServer::RecvString(FString& OutStringMessage, ComRecvFlags RecvFlags)
+bool FSocketCommunicationServer::RecvString(FString &OutStringMessage, ComRecvFlags RecvFlags)
 {
 	zmq::message_t RecvMessage;
 
 	auto Result = RecvSocket->recv(RecvMessage, RecvFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv String || Recv %d bytes"), Result.value());
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Recv String || Recv %d bytes"), Result.value());
 
 		OutStringMessage = FString(Result.value(), UTF8_TO_TCHAR(RecvMessage.data()));
 
@@ -338,21 +340,21 @@ bool FSocketCommunicationServer::RecvString(FString& OutStringMessage, ComRecvFl
 	else if (zmq_errno() == EAGAIN)
 	{
 
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Recv String || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Recv String || EAGAIN Error Occured ||"));
 		return true;
 	}
 
 	return false;
 }
 
-bool FSocketCommunicationServer::RecvJson(FString& OutJsonMessage, ComRecvFlags RecvFlags)
+bool FSocketCommunicationServer::RecvJson(FString &OutJsonMessage, ComRecvFlags RecvFlags)
 {
 	zmq::message_t RecvMessage;
 
 	auto Result = RecvSocket->recv(RecvMessage, RecvFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv JSON || Recv %d bytes"), Result.value());
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Recv JSON || Recv %d bytes"), Result.value());
 
 		OutJsonMessage = FString(Result.value(), UTF8_TO_TCHAR(RecvMessage.data()));
 
@@ -360,23 +362,23 @@ bool FSocketCommunicationServer::RecvJson(FString& OutJsonMessage, ComRecvFlags 
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Recv JSON || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Recv JSON || EAGAIN Error Occured ||"));
 		return true;
 	}
 
 	return false;
 }
 
-bool FSocketCommunicationServer::RecvStringMultipart(TArray<FString>& OutMessages, ComRecvFlags RecvFlags)
+bool FSocketCommunicationServer::RecvStringMultipart(TArray<FString> &OutMessages, ComRecvFlags RecvFlags)
 {
 	std::vector<zmq::message_t> RecvMessages;
 
 	auto Result = zmq::recv_multipart(*RecvSocket, std::back_inserter(RecvMessages), RecvFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv Multipart || Recv %d messages"), Result.value());
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Recv Multipart || Recv %d messages"), Result.value());
 
-		for (auto& Message : RecvMessages)
+		for (auto &Message : RecvMessages)
 		{
 			OutMessages.Add(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));
 		}
@@ -385,20 +387,20 @@ bool FSocketCommunicationServer::RecvStringMultipart(TArray<FString>& OutMessage
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Recv Multipart || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Recv Multipart || EAGAIN Error Occured ||"));
 		return true;
 	}
 
 	return false;
 }
 
-bool FSocketCommunicationServer::RecvStringMultipartWithMeta(TArray<FString>& OutMessages, TSharedPtr<FJsonObject>& OutMetadata, ComRecvFlags RecvFlag)
+bool FSocketCommunicationServer::RecvStringMultipartWithMeta(TArray<FString> &OutMessages, TSharedPtr<FJsonObject> &OutMetadata, ComRecvFlags RecvFlag)
 {
 	std::vector<zmq::message_t> RecvMessages;
 	if (!RecvMultipartWithMeta(RecvMessages, OutMetadata, RecvFlag))
 		return false;
 
-	for (auto& Message : RecvMessages)
+	for (auto &Message : RecvMessages)
 	{
 		OutMessages.Add(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));
 	}
@@ -406,12 +408,12 @@ bool FSocketCommunicationServer::RecvStringMultipartWithMeta(TArray<FString>& Ou
 	return true;
 }
 
-bool FSocketCommunicationServer::RecvMultipartWithMeta(std::vector<zmq::message_t>& OutMultipartMessages, TSharedPtr<FJsonObject>& OutMetadata, ComRecvFlags RecvFlags)
+bool FSocketCommunicationServer::RecvMultipartWithMeta(std::vector<zmq::message_t> &OutMultipartMessages, TSharedPtr<FJsonObject> &OutMetadata, ComRecvFlags RecvFlags)
 {
 	auto Result = zmq::recv_multipart(*RecvSocket, std::back_inserter(OutMultipartMessages), RecvFlags);
 	if (Result.has_value())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Com Server: Recv Multipart || Recv %d messages"), Result.value());
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Com Server: Recv Multipart || Recv %d messages"), Result.value());
 
 		// Pop Metadata Messages from the Front of Array.
 		zmq::message_t MetadataMessage = MoveTempIfPossible(OutMultipartMessages[0]);
@@ -423,25 +425,25 @@ bool FSocketCommunicationServer::RecvMultipartWithMeta(std::vector<zmq::message_
 		}
 		else
 		{
-			UE_LOG(LogOpenAccessibilityCom, Error, TEXT("|| Com Server: Recv Multipart || Failed to deserialize metadata ||"));
+			UE_LOG(LogAccessionCom, Error, TEXT("|| Com Server: Recv Multipart || Failed to deserialize metadata ||"));
 			return false;
 		}
 	}
 	else if (zmq_errno() == EAGAIN)
 	{
-		UE_LOG(LogOpenAccessibilityCom, Warning, TEXT("|| Com Server: Recv Multipart || EAGAIN Error Occured ||"));
+		UE_LOG(LogAccessionCom, Warning, TEXT("|| Com Server: Recv Multipart || EAGAIN Error Occured ||"));
 		return true;
 	}
-	
+
 	return false;
 }
 
-bool FSocketCommunicationServer::SerializeJSON(const TSharedRef<FJsonObject>& InJsonObject, FString& OutJsonString)
+bool FSocketCommunicationServer::SerializeJSON(const TSharedRef<FJsonObject> &InJsonObject, FString &OutJsonString)
 {
 	return FJsonSerializer::Serialize(InJsonObject, TJsonWriterFactory<TCHAR>::Create(&OutJsonString));
 }
 
-bool FSocketCommunicationServer::DeserializeJSON(const FString& InJsonString, TSharedPtr<FJsonObject>& OutJsonObject)
+bool FSocketCommunicationServer::DeserializeJSON(const FString &InJsonString, TSharedPtr<FJsonObject> &OutJsonObject)
 {
 	return FJsonSerializer::Deserialize(TJsonReaderFactory<TCHAR>::Create(InJsonString), OutJsonObject);
 }
