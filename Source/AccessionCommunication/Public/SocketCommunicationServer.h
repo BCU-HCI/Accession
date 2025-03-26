@@ -17,12 +17,11 @@ typedef zmq::send_flags ComSendFlags;
 typedef zmq::recv_flags ComRecvFlags;
 
 /**
- * 
+ *
  */
-class OPENACCESSIBILITYCOMMUNICATION_API FSocketCommunicationServer
+class ACESSIONCOMMUNICATION_API FSocketCommunicationServer
 {
 public:
-
 	FSocketCommunicationServer(const std::string SendAddress = "tcp://127.0.0.1:5555", const std::string RecvAddress = "tcp://127.0.0.1:5556", const int PollTimeout = 10);
 	~FSocketCommunicationServer();
 
@@ -39,7 +38,7 @@ public:
 	/// <param name="Size">- The Size of the Provided Data Array.</param>
 	/// <param name="SendFlags">- The Send Flags for when sending over the socket.</param>
 	/// <returns>True, if the Buffer was Sent Successfully. False, if an error occurs in sending.</returns>
-	bool SendArrayBuffer(const float* MessageData, size_t Size, ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendArrayBuffer(const float *MessageData, size_t Size, ComSendFlags SendFlags = ComSendFlags::none);
 
 	/// <summary>
 	/// Sends an Array of Data over the Socket, using a Buffer.
@@ -55,7 +54,7 @@ public:
 	/// <param name="ArrayMessage">- The Array of Message Data To Send.</param>
 	/// <param name="SendFlags">- The Send Flags for when sending over the socket.</param>
 	/// <returns>True, if the Buffer was Sent Successfully. False, if an error occurs in sending.</returns>
-	bool SendArrayBuffer(const TArray<float>& ArrayMessage, ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendArrayBuffer(const TArray<float> &ArrayMessage, ComSendFlags SendFlags = ComSendFlags::none);
 
 	/// <summary>
 	/// Sends an Array of Data over the Socket, using a message.
@@ -64,7 +63,7 @@ public:
 	/// <param name="Size">- The Size of the Data in the Array.</param>
 	/// <param name="SendFlags">- The Send Flags for when sending over the socket.</param>
 	/// <returns>True, if the Message was Sent Successfully. False, if an error occurs in sending.</returns>
-	bool SendArrayMessage(const float* MessageData, size_t Size, ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendArrayMessage(const float *MessageData, size_t Size, ComSendFlags SendFlags = ComSendFlags::none);
 
 	/// <summary>
 	/// Sends an Array of Data over the Socket, using a message.
@@ -80,7 +79,7 @@ public:
 	/// <param name="ArrayMessage">- The Array of Data To Send.</param>
 	/// <param name="SendFlags">- The Send Flags To Use When Sending The Data.</param>
 	/// <returns>True, if the Message was Sent Successfully. False, if an error occurs in sending.</returns>
-	bool SendArrayMessage(const TArray<float>& ArrayMessage, ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendArrayMessage(const TArray<float> &ArrayMessage, ComSendFlags SendFlags = ComSendFlags::none);
 
 	/// <summary>
 	/// Sends an Array of Data over the Socket, using a message.
@@ -90,8 +89,8 @@ public:
 	/// <param name="Metadata">- The JSON Metadata to Send With The Message.</param>
 	/// <param name="SendFlags">- The Send Flags To Use When Sending The Data.</param>
 	/// <returns>True, if the Message was Sent Successfully. False, if an error occurs in sending.</returns>
-	bool SendArrayMessageWithMeta(const float* MessageData, size_t Size, const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags = ComSendFlags::none);
-	
+	bool SendArrayMessageWithMeta(const float *MessageData, size_t Size, const TSharedRef<FJsonObject> &Metadata, ComSendFlags SendFlags = ComSendFlags::none);
+
 	/// <summary>
 	/// Sends an Array of Data over the Socket, using a message.
 	/// </summary>
@@ -99,8 +98,8 @@ public:
 	/// <param name="Metadata">- The JSON Metadata to Send With The Message.</param>
 	/// <param name="SendFlags">- The Send Flags To Use When Sending The Data.</param>
 	/// <returns>True, if the Message was Sent Successfully. False, if an error occurs in sending.</returns>
-	bool SendArrayMessageWithMeta(const float MessageData[], const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags = ComSendFlags::none);
-	
+	bool SendArrayMessageWithMeta(const float MessageData[], const TSharedRef<FJsonObject> &Metadata, ComSendFlags SendFlags = ComSendFlags::none);
+
 	/// <summary>
 	/// Sends an Array of Data over the Socket, using a message.
 	/// </summary>
@@ -108,7 +107,7 @@ public:
 	/// <param name="Metadata">- The JSON Metadata to Send With The Message.</param>
 	/// <param name="SendFlags">- The Send Flags To Use When Sending The Data.</param>
 	/// <returns>True, if the Message was Sent Successfully. False, if an error occurs in sending.</returns>
-	bool SendArrayMessageWithMeta(const TArray<float>& ArrayMessage, const TSharedRef<FJsonObject>& Metadata, ComSendFlags SendFlags = ComSendFlags::none);
+	bool SendArrayMessageWithMeta(const TArray<float> &ArrayMessage, const TSharedRef<FJsonObject> &Metadata, ComSendFlags SendFlags = ComSendFlags::none);
 
 	/// <summary>
 	/// Sends a String Buffer over the Socket.
@@ -135,7 +134,7 @@ public:
 	/// <param name="RecvFlag">- The Recv Flags To Use When Recieving The Data.</param>
 	/// <returns>True, if the Data was Recived from the Socket Successfully. False, if an error occurs in receiving.</returns>
 	template <typename T>
-	bool RecvArray(TArray<T>& OutArrayData, size_t Size, ComRecvFlags RecvFlag = ComRecvFlags::none);
+	bool RecvArray(TArray<T> &OutArrayData, size_t Size, ComRecvFlags RecvFlag = ComRecvFlags::none);
 
 	/// <summary>
 	/// Recives String Data From the Socket.
@@ -143,7 +142,7 @@ public:
 	/// <param name="OutStringMessage">- Returns the String Data Recived From the Socket.</param>
 	/// <param name="RecvFlag">- The Recv Flags To Use When Recieving The Data.</param>
 	/// <returns>True, if the Data was Recived from the Socket Successfully. False, if an error occurs in receiving.</returns>
-	bool RecvString(FString& OutStringMessage, ComRecvFlags RecvFlag = ComRecvFlags::none);
+	bool RecvString(FString &OutStringMessage, ComRecvFlags RecvFlag = ComRecvFlags::none);
 
 	/// <summary>
 	/// Recieves JSON Data From The Socket.
@@ -151,7 +150,7 @@ public:
 	/// <param name="OutJsonMessage">- Returns the JSON String Data Recived From the Socket.</param>
 	/// <param name="RecvFlag">- The Recv Flags To Use When Recieving The Data.</param>
 	/// <returns>True, if the Data was Recived from the Socket Successfully. False, if an error occurd in receiving.</returns>
-	bool RecvJson(FString& OutJsonMessage, ComRecvFlags RecvFlag = ComRecvFlags::none);
+	bool RecvJson(FString &OutJsonMessage, ComRecvFlags RecvFlag = ComRecvFlags::none);
 
 	/// <summary>
 	/// Receives An Array of String Data From The Socket.
@@ -159,7 +158,7 @@ public:
 	/// <param name="OutMessages">- Returns the Multipart of String Data Received From the Socket.</param>
 	/// <param name="RecvFlag">- The Recv Flags To Use When Recieving The Data.</param>
 	/// <returns>True, if the Data was Received from the Socket Successfully. False, if an error occured in receiving.</returns>
-	bool RecvStringMultipart(TArray<FString>& OutMessages, ComRecvFlags RecvFlag = ComRecvFlags::none);
+	bool RecvStringMultipart(TArray<FString> &OutMessages, ComRecvFlags RecvFlag = ComRecvFlags::none);
 
 	/// <summary>
 	/// Receives An Array of String Data From The Socket, With JSON Metadata.
@@ -168,10 +167,9 @@ public:
 	/// <param name="OutMetadata">- Returns a JSON Object containing Metadata.</param>
 	/// <param name="RecvFlag">- The Recv Flags To Use When Recieving The Data.</param>
 	/// <returns>True, if the Multipart was Received Successfully. False, if an error occured in receiving.</returns>
-	bool RecvStringMultipartWithMeta(TArray<FString>& OutMessages, TSharedPtr<FJsonObject>& OutMetadata, ComRecvFlags RecvFlag = ComRecvFlags::none);
+	bool RecvStringMultipartWithMeta(TArray<FString> &OutMessages, TSharedPtr<FJsonObject> &OutMetadata, ComRecvFlags RecvFlag = ComRecvFlags::none);
 
 protected:
-
 	/// <summary>
 	/// Recieves a Multipart Message From The Socket, and a Metadata Object.
 	/// </summary>
@@ -179,7 +177,7 @@ protected:
 	/// <param name="OutMetadata">- Returns the Metadata JSON Object from the Multipart.</param>
 	/// <param name="RecvFlags">- The Recv Flags To Use When Recieving The Data.</param>
 	/// <returns>True, if the Multipart was Recieved Successfully. False, if an error occured in receiving.</returns>
-	bool RecvMultipartWithMeta(std::vector<zmq::message_t>& OutMultipartMessages, TSharedPtr<FJsonObject>& OutMetadata, ComRecvFlags RecvFlags);
+	bool RecvMultipartWithMeta(std::vector<zmq::message_t> &OutMultipartMessages, TSharedPtr<FJsonObject> &OutMetadata, ComRecvFlags RecvFlags);
 
 	/// <summary>
 	/// Serializes the JSON Object into a JSON String.
@@ -187,7 +185,7 @@ protected:
 	/// <param name="InJsonObject">- The JSON Object To Serialize.</param>
 	/// <param name="OutJsonString">- The Returned Serialized JSON String from Serialization.</param>
 	/// <returns>True, if the JSON Object was Successful in Serialization. Otherwise False.</returns>
-	bool SerializeJSON(const TSharedRef<FJsonObject>& InJsonObject, FString& OutJsonString);
+	bool SerializeJSON(const TSharedRef<FJsonObject> &InJsonObject, FString &OutJsonString);
 
 	/// <summary>
 	/// Deserializes the JSON String into a JSON Object.
@@ -195,29 +193,28 @@ protected:
 	/// <param name="InJsonString">- The JSON String To Deserialize.</param>
 	/// <param name="OutJsonObject">- The Returned JSON Object from Deserialization.</param>
 	/// <returns>True, if the JSON was Successfuly in Deserialization. Otherwise False.</returns>
-	bool DeserializeJSON(const FString& InJsonString, TSharedPtr<FJsonObject>& OutJsonObject);
+	bool DeserializeJSON(const FString &InJsonString, TSharedPtr<FJsonObject> &OutJsonObject);
 
 protected:
-
 	/// <summary>
 	/// The Context Used for the Socket Communication.
 	/// </summary>
-	zmq::context_t* Context;
+	zmq::context_t *Context;
 
 	/// <summary>
 	/// The Socket Used For Sending Data.
 	/// </summary>
-	zmq::socket_t* SendSocket;
+	zmq::socket_t *SendSocket;
 
 	/// <summary>
 	/// The Socket Used For Receiving Data.
 	/// </summary>
-	zmq::socket_t* RecvSocket;
-	
+	zmq::socket_t *RecvSocket;
+
 	/// <summary>
 	/// The Poller used for Polling for Events on the Receiving Socket.
 	/// </summary>
-	zmq::poller_t<int>* Poller;
+	zmq::poller_t<int> *Poller;
 
 	std::string SendAddress;
 	std::string RecvAddress;

@@ -1,40 +1,40 @@
-#include "OpenAccessibilityAnalytics.h"
-#include "OpenAccessibilityAnalyticsLogging.h"
+#include "AccessionAnalytics.h"
+#include "AccessionAnalyticsLogging.h"
 
 #include "HAL/PlatformFileManager.h"
 #include "Misc/DateTime.h"
 
-#define LOCTEXT_NAMESPACE "FOpenAccessibilityAnalyticsModule"
+#define LOCTEXT_NAMESPACE "FAccessionAnalyticsModule"
 
-void FOpenAccessibilityAnalyticsModule::StartupModule() 
+void FAccessionAnalyticsModule::StartupModule()
 {
 	SessionLogFile = GenerateFileForSessionLog();
 
 	AddConsoleCommands();
-} 
+}
 
-void FOpenAccessibilityAnalyticsModule::ShutdownModule() 
+void FAccessionAnalyticsModule::ShutdownModule()
 {
 	RemoveConsoleCommands();
 }
 
-FString FOpenAccessibilityAnalyticsModule::GenerateFileForSessionLog()
+FString FAccessionAnalyticsModule::GenerateFileForSessionLog()
 {
 	FDateTime CurrentDateTime = FDateTime::Now();
 
 	FString CombinedFileName = TEXT("OAEventLog-") + CurrentDateTime.ToString() + TEXT(".log");
-	return FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() + TEXT("OpenAccessibility/Logs/") + CombinedFileName);
+	return FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() + TEXT("Accession/Logs/") + CombinedFileName);
 }
 
-void FOpenAccessibilityAnalyticsModule::AddConsoleCommands()
+void FAccessionAnalyticsModule::AddConsoleCommands()
 {
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibilityAnalytics.Debug.Add_Mock_Event"),
+		TEXT("AccessionAnalytics.Debug.Add_Mock_Event"),
 		TEXT("Adds a MOCK Event to the Eventbuffer"),
 
 		FConsoleCommandWithArgsDelegate::CreateLambda(
-			[&](const TArray<FString>& Args) {
-
+			[&](const TArray<FString> &Args)
+			{
 				if (Args.Num() < 2)
 					return;
 
@@ -45,27 +45,22 @@ void FOpenAccessibilityAnalyticsModule::AddConsoleCommands()
 				{
 					EventBody += Args[i] + TEXT(" ");
 				}
-				
-
-			}
-		)
-	));
+			})));
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibilityAnalytics.Util.GenerateNewLogFile"),
+		TEXT("AccessionAnalytics.Util.GenerateNewLogFile"),
 		TEXT("Generates a new log file location, with logging continuing from that location."),
 
 		FConsoleCommandDelegate::CreateLambda(
-			[&]() {
+			[&]()
+			{
 				SessionLogFile = GenerateFileForSessionLog();
-			}
-		)
-	));
+			})));
 }
 
-void FOpenAccessibilityAnalyticsModule::RemoveConsoleCommands()
+void FAccessionAnalyticsModule::RemoveConsoleCommands()
 {
-	IConsoleCommand* ConsoleCommand = nullptr;
+	IConsoleCommand *ConsoleCommand = nullptr;
 	while (ConsoleCommands.Num() > 0)
 	{
 		ConsoleCommand = ConsoleCommands.Pop();
@@ -79,4 +74,4 @@ void FOpenAccessibilityAnalyticsModule::RemoveConsoleCommands()
 
 #undef LOCTEXT_NAMESPACE
 
-IMPLEMENT_MODULE(FOpenAccessibilityAnalyticsModule, OpenAccessibilityAnalytics)
+IMPLEMENT_MODULE(FAccessionAnalyticsModule, AccessionAnalytics)

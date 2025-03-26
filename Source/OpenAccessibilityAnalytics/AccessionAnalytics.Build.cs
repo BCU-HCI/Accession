@@ -3,9 +3,9 @@
 using System.IO;
 using UnrealBuildTool;
 
-public class OpenAccessibilityAnalytics : ModuleRules
+public class AccessionAnalytics : ModuleRules
 {
-    public OpenAccessibilityAnalytics(ReadOnlyTargetRules Target) : base(Target)
+    public AccessionAnalytics(ReadOnlyTargetRules Target) : base(Target)
     {
         PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 

@@ -6,12 +6,12 @@
 #include "Modules/ModuleManager.h"
 #include "Logging/LogVerbosity.h"
 
-#define OA_LOG(CategoryName, Verbosity, EventTitle, Format, ...) \
-{ \
-	UE_VALIDATE_FORMAT_STRING(Format, ##__VA_ARGS__); \
-	UE_LOG(CategoryName, Verbosity, Format, ##__VA_ARGS__) \
-	FOpenAccessibilityAnalyticsModule::Get().LogEvent(EventTitle, ELogLevel::Log, Format, ##__VA_ARGS__); \
-}
+#define OA_LOG(CategoryName, Verbosity, EventTitle, Format, ...)                                      \
+	{                                                                                                 \
+		UE_VALIDATE_FORMAT_STRING(Format, ##__VA_ARGS__);                                             \
+		UE_LOG(CategoryName, Verbosity, Format, ##__VA_ARGS__)                                        \
+		FAccessionAnalyticsModule::Get().LogEvent(EventTitle, ELogLevel::Log, Format, ##__VA_ARGS__); \
+	}
 
 enum ELogLevel : int8
 {
@@ -22,24 +22,14 @@ enum ELogLevel : int8
 struct FLoggedEvent
 {
 public:
-
 	FLoggedEvent()
-		: Level(ELogLevel::Log)
-	{ };
+		: Level(ELogLevel::Log) {};
 
-	FLoggedEvent(const TCHAR* EventTitle, const TCHAR* EventString, const ELogLevel Level = ELogLevel::Log, FDateTime EventTimestamp = FDateTime::Now())
-		: Title(EventTitle)
-		, Body(EventString)
-		, Level(Level)
-		, Timestamp(EventTimestamp)
-	{ };
+	FLoggedEvent(const TCHAR *EventTitle, const TCHAR *EventString, const ELogLevel Level = ELogLevel::Log, FDateTime EventTimestamp = FDateTime::Now())
+		: Title(EventTitle), Body(EventString), Level(Level), Timestamp(EventTimestamp) {};
 
-	FLoggedEvent(const FString& EventTitle, const FString& EventString, const ELogLevel Level = ELogLevel::Log, FDateTime EventTimestamp = FDateTime::Now())
-		: Title(EventTitle)
-		, Body(EventString)
-		, Level(Level)
-		, Timestamp(EventTimestamp)
-	{ };
+	FLoggedEvent(const FString &EventTitle, const FString &EventString, const ELogLevel Level = ELogLevel::Log, FDateTime EventTimestamp = FDateTime::Now())
+		: Title(EventTitle), Body(EventString), Level(Level), Timestamp(EventTimestamp) {};
 
 public:
 	FString Title;
@@ -49,10 +39,10 @@ public:
 	FDateTime Timestamp;
 };
 
-class FOpenAccessibilityAnalyticsModule : public IModuleInterface {
+class FAccessionAnalyticsModule : public IModuleInterface
+{
 
 public:
-
 	/** IModuleInterface Implementation */
 
 	virtual void StartupModule() override;
@@ -62,20 +52,20 @@ public:
 
 	/** End IModuleInterface Implementation */
 
-	static FOpenAccessibilityAnalyticsModule& Get() 
+	static FAccessionAnalyticsModule &Get()
 	{
-		return FModuleManager::GetModuleChecked<FOpenAccessibilityAnalyticsModule>("OpenAccessibilityAnalytics");
+		return FModuleManager::GetModuleChecked<FAccessionAnalyticsModule>("OpenAccessibilityAnalytics");
 	}
 
 	// Analytics Logging
 
 	/**
-	 * Logs the OpenAccessibility Event to the Log File.
+	 * Logs the Accession Event to the Log File.
 	 * @param EventTitle Title of the Event
 	 * @param EventLogLevel Level of Logging for the Event.
 	 * @param LogString Body of the Event.
 	 */
-	void LogEvent(const TCHAR* EventTitle, ELogLevel EventLogLevel, const TCHAR* LogString, ...)
+	void LogEvent(const TCHAR *EventTitle, ELogLevel EventLogLevel, const TCHAR *LogString, ...)
 	{
 		va_list Args;
 
@@ -90,24 +80,22 @@ public:
 		}
 	}
 
-
 private:
-
 	/**
 	 * Creates a File Path for the current session of editor usage.
 	 * @return The generated file path for this logging session.
 	 */
 	FString GenerateFileForSessionLog();
 
-	FString GenerateEventString(const FLoggedEvent& LoggedEvent);
+	FString GenerateEventString(const FLoggedEvent &LoggedEvent);
 
 	/**
 	 * Writes the Provided Event to the Log File.
 	 * @return True if the Event was Successfully Written to the File, False if there was an Error Logging.
 	 */
-	bool WriteEventToFile(const FLoggedEvent& LoggedEvent);
+	bool WriteEventToFile(const FLoggedEvent &LoggedEvent);
 
-	bool WriteEventsToFile(const TArray<FLoggedEvent>& LoggedEvents);
+	bool WriteEventsToFile(const TArray<FLoggedEvent> &LoggedEvents);
 
 	/**
 	 * Binds all relevant Console Commands for the Open Accessibility Analytics Module.
@@ -115,12 +103,11 @@ private:
 	void AddConsoleCommands();
 
 	/**
-	* Unbinds all relevant Console Commands for the Open Accessibility Analytics Module.
-	*/
+	 * Unbinds all relevant Console Commands for the Open Accessibility Analytics Module.
+	 */
 	void RemoveConsoleCommands();
 
 private:
-
 	// Analytics Dumping
 
 	/**
@@ -133,21 +120,18 @@ private:
 	/**
 	 * Array of Registered Console Commands for the Open Accessibility Analytics Module.
 	 */
-	TArray<IConsoleCommand*> ConsoleCommands;
+	TArray<IConsoleCommand *> ConsoleCommands;
 };
 
-FORCEINLINE FString FOpenAccessibilityAnalyticsModule::GenerateEventString(const FLoggedEvent& LoggedEvent)
+FORCEINLINE FString FAccessionAnalyticsModule::GenerateEventString(const FLoggedEvent &LoggedEvent)
 {
 	return FString::Format(
 		TEXT("[ {0} | {1} ] - {2} - {3}\n"),
-		{
-			LoggedEvent.Level, LoggedEvent.Timestamp.ToString(),
-			LoggedEvent.Title, LoggedEvent.Body
-		}
-	);
+		{LoggedEvent.Level, LoggedEvent.Timestamp.ToString(),
+		 LoggedEvent.Title, LoggedEvent.Body});
 }
 
-FORCEINLINE bool FOpenAccessibilityAnalyticsModule::WriteEventToFile(const FLoggedEvent& LoggedEvent)
+FORCEINLINE bool FAccessionAnalyticsModule::WriteEventToFile(const FLoggedEvent &LoggedEvent)
 {
 	FString EventString = GenerateEventString(LoggedEvent);
 
@@ -156,14 +140,13 @@ FORCEINLINE bool FOpenAccessibilityAnalyticsModule::WriteEventToFile(const FLogg
 		*SessionLogFile,
 		FFileHelper::EEncodingOptions::AutoDetect,
 		&IFileManager::Get(),
-		EFileWrite::FILEWRITE_Append
-	);
+		EFileWrite::FILEWRITE_Append);
 }
 
-FORCEINLINE bool FOpenAccessibilityAnalyticsModule::WriteEventsToFile(const TArray<FLoggedEvent>& LoggedEvents)
+FORCEINLINE bool FAccessionAnalyticsModule::WriteEventsToFile(const TArray<FLoggedEvent> &LoggedEvents)
 {
 	FString CombinedLogStrings;
-	for (const FLoggedEvent& LoggedEvent : LoggedEvents)
+	for (const FLoggedEvent &LoggedEvent : LoggedEvents)
 	{
 		CombinedLogStrings += GenerateEventString(LoggedEvent);
 	}
@@ -173,6 +156,5 @@ FORCEINLINE bool FOpenAccessibilityAnalyticsModule::WriteEventsToFile(const TArr
 		*SessionLogFile,
 		FFileHelper::EEncodingOptions::AutoDetect,
 		&IFileManager::Get(),
-		EFileWrite::FILEWRITE_Append
-	);
+		EFileWrite::FILEWRITE_Append);
 }
