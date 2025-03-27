@@ -26,7 +26,7 @@
 			"LoadingPhase": "PostEngineInit"
 		},
 		{
-			"Name": "Accession",
+			"Name": "AccessionAnalytics",
 			"Type": "Editor",
 			"LoadingPhase": "Default"
 		}
