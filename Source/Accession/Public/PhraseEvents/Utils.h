@@ -196,7 +196,7 @@
 // Utility Functions
 
 /**
- * Gets the Phrase Tree from the Open AccessibilityComs Module.
+ * Gets the Phrase Tree from the AccessionCommunication Module.
  * @return A Shared Reference to the Phrase Tree.
  */
 FORCEINLINE TSharedRef<FPhraseTree> GetPhraseTree()
@@ -210,17 +210,17 @@ FORCEINLINE TSharedRef<FPhraseTree> GetPhraseTree()
 }
 
 /**
- * Gets the Asset Accessibility Registry from Open Accessibility Module.
- * @return A Shared Reference to the Asset Accessibility Registry.
+ * Gets the Asset Registry from Core Accession Module.
+ * @return A Shared Reference to the Accession Asset Registry.
  */
-FORCEINLINE TSharedRef<FAssetAccessibilityRegistry> GetAssetRegistry()
+FORCEINLINE TSharedRef<FAccessionAssetRegistry> GetAssetRegistry()
 {
   FAccessionModule &OAModule = FAccessionModule::Get();
 
-  if (OAModule.AssetAccessibilityRegistry.IsValid())
-    return OAModule.AssetAccessibilityRegistry.ToSharedRef();
+  if (OAModule.AssetRegistry.IsValid())
+    return OAModule.AssetRegistry.ToSharedRef();
 
-  return TSharedRef<FAssetAccessibilityRegistry>();
+  return TSharedRef<FAccessionAssetRegistry>();
 }
 
 // Delegate Utilities

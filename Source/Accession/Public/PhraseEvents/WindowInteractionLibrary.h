@@ -14,8 +14,7 @@ class UWindowInteractionLibrary : public UPhraseTreeFunctionLibrary
 	GENERATED_BODY()
 
 public:
-
-	UWindowInteractionLibrary(const FObjectInitializer& ObjectInitializer);
+	UWindowInteractionLibrary(const FObjectInitializer &ObjectInitializer);
 
 	virtual ~UWindowInteractionLibrary();
 
@@ -29,29 +28,27 @@ public:
 
 	// End of UPhraseTreeFunctionLibrary Implementation
 
-
 	// Window Interaction
 
 	/**
 	 * Selects the Next Window in the Slate Application, and switches the Focus to it.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void SwitchNextActiveWindow(FParseRecord& Record);
+	void SwitchNextActiveWindow(FParseRecord &Record);
 
 	/**
 	 * Selects the Previous Window in the Slate Application, and switches the Focus to it.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void SwitchPrevActiveWindow(FParseRecord& Record);
+	void SwitchPrevActiveWindow(FParseRecord &Record);
 
 	/**
 	 * Closes the Top Most Active Window, if it is not the Root Application Window.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void CloseActiveWindow(FParseRecord& Record);
+	void CloseActiveWindow(FParseRecord &Record);
 
 	// End Window Interaction
-
 
 	// Window ToolBar Interaction
 
@@ -59,10 +56,9 @@ public:
 	 * Selects the Item from the Active Windows ToolBar.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void SelectToolBarItem(FParseRecord& Record);
+	void SelectToolBarItem(FParseRecord &Record);
 
 	// End Window ToolBar Interaction
-
 
 	// Window Tab Interaction
 
@@ -70,44 +66,39 @@ public:
 	 * Selects the Next Tab In The Active Tab Stack, and switches the Focus to it.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void SwitchNextTabInStack(FParseRecord& Record);
+	void SwitchNextTabInStack(FParseRecord &Record);
 
 	/**
 	 * Selects the Prev Tab In The Active Tab Stack, and switches the Focus to it.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void SwitchPrevTabInStack(FParseRecord& Record);
+	void SwitchPrevTabInStack(FParseRecord &Record);
 
 	/**
 	 * Selects the Tab Based on User Input, and switches the Focus to it.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void SelectTabInStack(FParseRecord& Record);
+	void SelectTabInStack(FParseRecord &Record);
 
 	// End of Window Tab Interaction
 
-
 	// Misc Interaction
-
 
 	/**
 	 * Undos a Performed Action.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void UndoAction(FParseRecord& Record);
-
+	void UndoAction(FParseRecord &Record);
 
 	/**
 	 * Redos a Performed Action.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void RedoAction(FParseRecord& Record);
+	void RedoAction(FParseRecord &Record);
 
 	// End of Misc Interaction
 
 protected:
-
-	UPROPERTY(BlueprintReadOnly, Category = "WindowInteractionLibrary|ToolBar Accessibility")
-	class UAccessibilityWindowToolbar* WindowToolBar;
-
+	UPROPERTY(BlueprintReadOnly, Category = "WindowInteractionLibrary|ToolBar")
+	class UWindowToolbarIndex *WindowToolBar;
 };

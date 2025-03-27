@@ -7,7 +7,7 @@
 
 #include "Widgets/Layout/SUniformGridPanel.h"
 
-#include "AccessibilityGraphLocomotionContext.generated.h"
+#include "GraphLocomotionContext.generated.h"
 
 USTRUCT()
 struct FGraphLocomotionChunk
@@ -92,14 +92,14 @@ public:
 };
 
 UCLASS()
-class ACCESSION_API UAccessibilityGraphLocomotionContext : public UPhraseTreeContextObject
+class ACCESSION_API UGraphLocomotionContext : public UPhraseTreeContextObject
 {
 	GENERATED_BODY()
 
 public:
-	UAccessibilityGraphLocomotionContext(const FObjectInitializer &ObjectInitializer);
+	UGraphLocomotionContext(const FObjectInitializer &ObjectInitializer);
 
-	virtual ~UAccessibilityGraphLocomotionContext();
+	virtual ~UGraphLocomotionContext();
 
 	void Init();
 	void Init(TSharedRef<SGraphEditor> InGraphEditor);

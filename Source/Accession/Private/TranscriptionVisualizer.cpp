@@ -2,7 +2,7 @@
 
 #include "TranscriptionVisualizer.h"
 
-#include "AccessibilityWidgets/SAccessibilityTranscriptionVis.h"
+#include "Widgets/STranscriptionVis.h"
 
 FTranscriptionVisualizer::FTranscriptionVisualizer()
 {
@@ -30,8 +30,8 @@ bool FTranscriptionVisualizer::Tick(float DeltaTime)
 
 void FTranscriptionVisualizer::ConstructVisualizer()
 {
-	TSharedPtr<SAccessibilityTranscriptionVis> MenuContent = SNew(SAccessibilityTranscriptionVis)
-		.VisAmount(2);
+	TSharedPtr<STranscriptionVis> MenuContent = SNew(STranscriptionVis)
+													.VisAmount(2);
 
 	MenuContent->ForceVolatile(true);
 
@@ -48,23 +48,21 @@ void FTranscriptionVisualizer::ConstructVisualizer()
 	VisPosition.Y = DisplayMetrics.PrimaryDisplayHeight;
 
 	TSharedRef<SWindow> MenuWindow = SNew(SWindow)
-		.Type(EWindowType::Normal)
-		.SizingRule(ESizingRule::Autosized)
-		.ScreenPosition(VisPosition)
-		.ClientSize(FVector2D(10, 10))
-		.IsPopupWindow(true)
-		//.InitialOpacity(0.5f)
-		.SupportsTransparency(EWindowTransparency::PerWindow)
-		.ActivationPolicy(EWindowActivationPolicy::Always)
-		.AdjustInitialSizeAndPositionForDPIScale(true)
-		[
-			MenuContent.ToSharedRef()
-		];
+										 .Type(EWindowType::Normal)
+										 .SizingRule(ESizingRule::Autosized)
+										 .ScreenPosition(VisPosition)
+										 .ClientSize(FVector2D(10, 10))
+										 .IsPopupWindow(true)
+										 //.InitialOpacity(0.5f)
+										 .SupportsTransparency(EWindowTransparency::PerWindow)
+										 .ActivationPolicy(EWindowActivationPolicy::Always)
+										 .AdjustInitialSizeAndPositionForDPIScale(true)
+											 [MenuContent.ToSharedRef()];
 
 	TSharedPtr<SWindow> TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
 
 	MenuWindow->AssignParentWidget(TopLevelWindow);
-	FSlateApplication::Get().AddWindowAsNativeChild(MenuWindow , TopLevelWindow.ToSharedRef(), true);
+	FSlateApplication::Get().AddWindowAsNativeChild(MenuWindow, TopLevelWindow.ToSharedRef(), true);
 
 	VisWindow = MenuWindow.ToWeakPtr();
 	VisContent = MenuContent.ToWeakPtr();
@@ -80,7 +78,8 @@ void FTranscriptionVisualizer::UpdateVisualizer()
 
 		MoveVisualizer();
 	}
-	else VisWindow.Pin()->HideWindow();
+	else
+		VisWindow.Pin()->HideWindow();
 }
 
 void FTranscriptionVisualizer::ReparentWindow()
@@ -125,7 +124,7 @@ void FTranscriptionVisualizer::OnTranscriptionRecieved(TArray<FString> InTranscr
 	}
 }
 
-bool FTranscriptionVisualizer::GetTopScreenVisualizerPosition(FVector2D& OutPosition)
+bool FTranscriptionVisualizer::GetTopScreenVisualizerPosition(FVector2D &OutPosition)
 {
 	TSharedPtr<SWindow> TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
 	if (!TopLevelWindow.IsValid())
@@ -142,14 +141,14 @@ bool FTranscriptionVisualizer::GetTopScreenVisualizerPosition(FVector2D& OutPosi
 	return true;
 }
 
-bool FTranscriptionVisualizer::GetDisplayVisualizerPosition(FVector2D& OutPosition)
+bool FTranscriptionVisualizer::GetDisplayVisualizerPosition(FVector2D &OutPosition)
 {
 	FDisplayMetrics DisplayMetrics;
 	FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);
 
 	OutPosition.X = DisplayMetrics.PrimaryDisplayWidth;
 	OutPosition.Y = DisplayMetrics.PrimaryDisplayHeight;
-	
+
 	return true;
 }
 

@@ -6,20 +6,20 @@
 
 #include "Indexers/Indexer.h"
 
-#include "AccessibilityWindowToolbar.generated.h"
+#include "UWindowToolbarIndex.generated.h"
 
 /**
- * Accessibility Wrapper for Window ToolBar Elements.
+ * Wrapper for Indexing Window ToolBar Elements.
  */
 UCLASS()
-class ACCESSION_API UAccessibilityWindowToolbar : public UObject
+class ACCESSION_API UWindowToolbarIndex : public UObject
 {
 	GENERATED_BODY()
 
 public:
-	UAccessibilityWindowToolbar();
+	UWindowToolbarIndex();
 
-	virtual ~UAccessibilityWindowToolbar();
+	virtual ~UWindowToolbarIndex();
 
 	bool Tick(float DeltaTime);
 
@@ -48,8 +48,8 @@ public:
 
 private:
 	/**
-	 * Applies Accessibility Indexing to the Provided Toolkits ToolBar.
-	 * @param ToolkitWidget The Toolkit to apply toolbar accessibility to.
+	 * Applies Indexing to the Provided Toolkits ToolBar.
+	 * @param ToolkitWidget The Toolkit to apply toolbar indexing to.
 	 * @param ToolkitWindow The Window containing the provided Toolkit.
 	 * @return
 	 */

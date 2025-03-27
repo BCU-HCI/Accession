@@ -9,22 +9,22 @@
 #include "SGraphActionMenu.h"
 #include "GraphActionNode.h"
 
-#include "AccessibilityAddNodeContextMenu.generated.h"
+#include "GraphAddNodeContextMenu.generated.h"
 
 struct FGraphActionNode;
 
 UCLASS()
-class ACCESSION_API UAccessibilityAddNodeContextMenu : public UPhraseTreeContextMenuObject
+class ACCESSION_API UGraphAddNodeContextMenu : public UPhraseTreeContextMenuObject
 {
 	GENERATED_BODY()
 
 public:
-	UAccessibilityAddNodeContextMenu();
-	UAccessibilityAddNodeContextMenu(TSharedRef<IMenu> Menu);
-	UAccessibilityAddNodeContextMenu(TSharedRef<IMenu> Menu, TSharedRef<SGraphActionMenu> GraphMenu);
-	UAccessibilityAddNodeContextMenu(TSharedRef<IMenu> Menu, TSharedRef<SGraphActionMenu> GraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> TreeView);
+	UGraphAddNodeContextMenu();
+	UGraphAddNodeContextMenu(TSharedRef<IMenu> Menu);
+	UGraphAddNodeContextMenu(TSharedRef<IMenu> Menu, TSharedRef<SGraphActionMenu> GraphMenu);
+	UGraphAddNodeContextMenu(TSharedRef<IMenu> Menu, TSharedRef<SGraphActionMenu> GraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> TreeView);
 
-	~UAccessibilityAddNodeContextMenu();
+	~UGraphAddNodeContextMenu();
 
 	/// <summary>
 	/// Initializes the Context Menu.
@@ -41,7 +41,7 @@ public:
 	/// <param name="InTreeView">The GraphAction TreeView, for the target Context Menu.</param>
 	void Init(TSharedRef<IMenu> InMenu, TSharedRef<SGraphActionMenu> InGraphMenu, TSharedRef<STreeView<TSharedPtr<FGraphActionNode>>> InTreeView);
 
-	// -- UAccessibilityContextMenu Implementation
+	// -- UAccessionContextMenu Implementation
 
 	/// <summary>
 	/// Initializes the Context Menu from the given components.
@@ -63,18 +63,18 @@ public:
 	/// <param name="ScaleFactor">The Factor for Scaling the Context Menu.</param>
 	virtual void ScaleMenu(const float ScaleFactor = 1.5f) override;
 
-	// -- End UAccessibilityContextMenu Implementation
+	// -- End UAccessionContextMenu Implementation
 
 	/// <summary>
-	/// Does the Context Menu's TreeView Require a Refresh of Accessibility Widgets.
+	/// Does the Context Menu's TreeView Require a Refresh of Index Widgets.
 	/// </summary>
 	/// <returns>Returns True if the Context Menu requires change.</returns>
 	bool DoesItemsRequireRefresh();
 
 	/// <summary>
-	/// Performs a Refresh of the TreeView's Accessibility Widgets.
+	/// Performs a Refresh of the TreeView's Index Widgets.
 	/// </summary>
-	void RefreshAccessibilityWidgets();
+	void RefreshIndexWidgets();
 
 	// Utility Interactions
 	// Useful for simplifying common interactions.
@@ -164,17 +164,17 @@ public:
 
 protected:
 	/// <summary>
-	/// Applies the Accessibility Widget to the given Item's TableRow Widget.
+	/// Applies the Index Widget to the given Item's TableRow Widget.
 	/// </summary>
 	/// <param name="Item">The Item to apply to.</param>
 	/// <param name="ItemWidget">The Items linked widget.</param>
-	void ApplyAccessibilityWidget(TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);
+	void ApplyIndexWidget(TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);
 
 	/// <summary>
-	/// Updates the previously applied Accessibility Widget, with the new index.
+	/// Updates the previously applied Index Widget, with the new index.
 	/// </summary>
 	/// <param name="ItemWidget">The Item to update.</param>
-	void UpdateAccessibilityWidget(TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);
+	void UpdateIndexWidget(TSharedRef<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget);
 
 public:
 	// Menu Components

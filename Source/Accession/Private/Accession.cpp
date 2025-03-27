@@ -1,9 +1,9 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "OpenAccessibility.h"
-#include "OpenAccessibilityCommunication.h"
-#include "OpenAccessibilityLogging.h"
-#include "OpenAccessibilityAnalytics.h"
+#include "Accession.h"
+#include "AccessionCommunication.h"
+#include "AccessionLogging.h"
+#include "AccessionAnalytics.h"
 
 #include "PhraseTree/PhraseNode.h"
 #include "PhraseTree/PhraseInputNode.h"
@@ -19,12 +19,12 @@
 #include "PhraseEvents/NodeInteractionLibrary.h"
 
 #include "TranscriptionVisualizer.h"
-#include "AccessibilityWrappers/AccessibilityAddNodeContextMenu.h"
-#include "AccessibilityWrappers/AccessibilityGraphLocomotionContext.h"
+#include "FunctionalityWrappers/GraphAddNodeContextMenu.h"
+#include "FunctionalityWrappers/GraphLocomotionContext.h"
 
 #include "GraphActionNode.h"
 #include "SGraphPanel.h"
-#include "AccessibilityWrappers/AccessibilityGraphEditorContext.h"
+#include "FunctionalityWrappers/GraphEditorContext.h"
 #include "Widgets/Text/SMultiLineEditableText.h"
 #include "Widgets/Input/SSearchBox.h"
 
@@ -33,59 +33,54 @@
 #include "Misc/FileHelper.h"
 #include "Logging/StructuredLog.h"
 
-#define LOCTEXT_NAMESPACE "FOpenAccessibilityModule"
+#define LOCTEXT_NAMESPACE "FAccessionModule"
 
-void FOpenAccessibilityModule::StartupModule()
+void FAccessionModule::StartupModule()
 {
-	UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibilityModule::StartupModule()"));
+	UE_LOG(LogAccession, Display, TEXT("AccessionModule::StartupModule()"));
 
 	// Create the Asset Registry
-	AssetAccessibilityRegistry = MakeShared<FAssetAccessibilityRegistry, ESPMode::ThreadSafe>();
+	AssetRegistry = MakeShared<FAccessionAssetRegistry, ESPMode::ThreadSafe>();
 
-	// Register the Accessibility Node Factory
-	AccessibilityNodeFactory = MakeShared<FAccessibilityNodeFactory, ESPMode::ThreadSafe>();
-	FEdGraphUtilities::RegisterVisualNodeFactory(AccessibilityNodeFactory);
+	// Register the  Node Factory
+	NodeFactory = MakeShared<FAccessionNodeFactory, ESPMode::ThreadSafe>();
+	FEdGraphUtilities::RegisterVisualNodeFactory(NodeFactory);
 
 	// Construct Base Phrase Tree Libraries
-	FOpenAccessibilityCommunicationModule::Get()
-	.PhraseTreeUtils->RegisterFunctionLibrary(
-		NewObject<ULocalizedInputLibrary>()
-	);
+	FAccessionCommunicationModule::Get()
+		.PhraseTreeUtils->RegisterFunctionLibrary(
+			NewObject<ULocalizedInputLibrary>());
 
-	FOpenAccessibilityCommunicationModule::Get()
-	.PhraseTreeUtils->RegisterFunctionLibrary(
-		NewObject<UWindowInteractionLibrary>()
-	);
+	FAccessionCommunicationModule::Get()
+		.PhraseTreeUtils->RegisterFunctionLibrary(
+			NewObject<UWindowInteractionLibrary>());
 
-	FOpenAccessibilityCommunicationModule::Get()
-	.PhraseTreeUtils->RegisterFunctionLibrary(
-		NewObject<UViewInteractionLibrary>()
-	);
+	FAccessionCommunicationModule::Get()
+		.PhraseTreeUtils->RegisterFunctionLibrary(
+			NewObject<UViewInteractionLibrary>());
 
-	FOpenAccessibilityCommunicationModule::Get()
-	.PhraseTreeUtils->RegisterFunctionLibrary(
-		NewObject<UNodeInteractionLibrary>()
-	);
+	FAccessionCommunicationModule::Get()
+		.PhraseTreeUtils->RegisterFunctionLibrary(
+			NewObject<UNodeInteractionLibrary>());
 
 	CreateTranscriptionVisualization();
 
-	FSlateApplication::Get().OnFocusChanging()
-		.AddStatic(&FOpenAccessibilityModule::FocusChangeListener);
+	FSlateApplication::Get().OnFocusChanging().AddStatic(&FAccessionModule::FocusChangeListener);
 
 	// Register Console Commands
 	RegisterConsoleCommands();
 }
 
-void FOpenAccessibilityModule::ShutdownModule()
+void FAccessionModule::ShutdownModule()
 {
-	UE_LOG(LogOpenAccessibility, Display, TEXT("OpenAccessibilityModule::ShutdownModule()"));
+	UE_LOG(LogAccession, Display, TEXT("AccessionModule::ShutdownModule()"));
 
 	UnregisterConsoleCommands();
 }
 
-void FOpenAccessibilityModule::FocusChangeListener(const FFocusEvent& FocusEvent, const FWeakWidgetPath& PrevWidgetPath,
-	const TSharedPtr<SWidget>& PrevFocusedWidget, const FWidgetPath& NewWidgetPath,
-	const TSharedPtr<SWidget>& NewFocusedWidget)
+void FAccessionModule::FocusChangeListener(const FFocusEvent &FocusEvent, const FWeakWidgetPath &PrevWidgetPath,
+										   const TSharedPtr<SWidget> &PrevFocusedWidget, const FWidgetPath &NewWidgetPath,
+										   const TSharedPtr<SWidget> &NewFocusedWidget)
 {
 	if (!NewFocusedWidget.IsValid())
 		return;
@@ -93,7 +88,7 @@ void FOpenAccessibilityModule::FocusChangeListener(const FFocusEvent& FocusEvent
 	switch (FocusEvent.GetCause())
 	{
 	case EFocusCause::Mouse:
-		OA_LOG(LogOpenAccessibility, Log, TEXT("WIDGET_FOCUS_MOUSE"), TEXT("Mouse Widget Focus Changed: %s"), *NewFocusedWidget->GetTypeAsString());
+		OA_LOG(LogAccession, Log, TEXT("WIDGET_FOCUS_MOUSE"), TEXT("Mouse Widget Focus Changed: %s"), *NewFocusedWidget->GetTypeAsString());
 		break;
 
 	default:
@@ -101,20 +96,20 @@ void FOpenAccessibilityModule::FocusChangeListener(const FFocusEvent& FocusEvent
 	}
 }
 
-void FOpenAccessibilityModule::CreateTranscriptionVisualization()
+void FAccessionModule::CreateTranscriptionVisualization()
 {
 	TranscriptionVisualizer = MakeShared<FTranscriptionVisualizer, ESPMode::ThreadSafe>();
 
-	FOpenAccessibilityCommunicationModule::Get().OnTranscriptionRecieved
-		.AddSP(TranscriptionVisualizer.ToSharedRef(), &FTranscriptionVisualizer::OnTranscriptionRecieved);
+	FAccessionCommunicationModule::Get().OnTranscriptionRecieved.AddSP(TranscriptionVisualizer.ToSharedRef(), &FTranscriptionVisualizer::OnTranscriptionRecieved);
 }
 
-void FOpenAccessibilityModule::RegisterConsoleCommands()
+void FAccessionModule::RegisterConsoleCommands()
 {
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibility.Debug.SendPhraseEvent"), 
+		TEXT("Accession.Debug.SendPhraseEvent"),
 		TEXT("Sends the provided Phrase to the Phrase Tree, replicating the STT Communication Module's Transcription Recieving."),
-        FConsoleCommandWithArgsDelegate::CreateLambda([this](const TArray<FString> &Args) {
+		FConsoleCommandWithArgsDelegate::CreateLambda([this](const TArray<FString> &Args)
+													  {
 			if (Args.Num() == 0)
 				return;
 
@@ -127,41 +122,38 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 			ProvidedPhrase.TrimStartAndEndInline();
 			ProvidedPhrase.ToUpperInline();
 
-            FOpenAccessibilityCommunicationModule::Get()
-				.OnTranscriptionRecieved.Broadcast(TArray<FString>{ ProvidedPhrase });
-        }),
+            FAccessionCommunicationModule::Get()
+				.OnTranscriptionRecieved.Broadcast(TArray<FString>{ ProvidedPhrase }); }),
 
-		ECVF_Default
-	));
+		ECVF_Default));
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibility.Debug.LogActiveIndexes"),
+		TEXT("Accession.Debug.LogActiveIndexes"),
 		TEXT("Logs the Active Indexes of the Active Tab"),
 
-		FConsoleCommandDelegate::CreateLambda([this]() {
+		FConsoleCommandDelegate::CreateLambda([this]()
+											  {
 
 			TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 			SGraphEditor* ActiveGraphEditor = (SGraphEditor*)ActiveTab->GetContent().ToSharedPtr().Get();
 			if (ActiveGraphEditor == nullptr)
 			{
-				UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
+				UE_LOG(LogAccession, Display, TEXT("Active Tab Not SGraphEditor"));
 				return;
 			}
 
 
-			TSharedRef<FGraphIndexer> GraphIndexer = AssetAccessibilityRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph());
-		}),
+			TSharedRef<FGraphIndexer> GraphIndexer = AssetRegistry->GetGraphIndexer(ActiveGraphEditor->GetCurrentGraph()); }),
 
-		ECVF_Default
-	));
+		ECVF_Default));
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibility.Debug.OpenAccessibilityGraph_AddNodeMenu"),
+		TEXT("Accession.Debug.Graph_AddNodeMenu"),
 		TEXT("Opens the context menu for adding nodes for the active graph editor."),
 
 		FConsoleCommandDelegate::CreateLambda(
-			[this]() {
-
+			[this]()
+			{
 				TSharedPtr<SGraphEditor> ActiveGraphEditor = nullptr;
 				{
 					// Getting Graph Editor Section
@@ -173,7 +165,7 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					ActiveGraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab->GetContent().ToSharedPtr());
 					if (!ActiveGraphEditor.IsValid())
 					{
-						UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
+						UE_LOG(LogAccession, Display, TEXT("Active Tab Not SGraphEditor"));
 						return;
 					}
 				}
@@ -192,19 +184,20 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					TSharedPtr<SWidget> KeyboardFocusedWidget = StaticCastSharedPtr<SEditableText>(FSlateApplication::Get().GetKeyboardFocusedWidget());
 					if (!KeyboardFocusedWidget.IsValid())
 					{
-						UE_LOG(LogOpenAccessibility, Display, TEXT("Cannot get Keyboard Focused Widget."));
+						UE_LOG(LogAccession, Display, TEXT("Cannot get Keyboard Focused Widget."));
 						return;
 					}
 
-					UE_LOG(LogOpenAccessibility, Display, TEXT("Keyboard Focused Widget Type: %s"), *KeyboardFocusedWidget->GetTypeAsString());
+					UE_LOG(LogAccession, Display, TEXT("Keyboard Focused Widget Type: %s"), *KeyboardFocusedWidget->GetTypeAsString());
 
 					// Getting Menu Object
 					FWidgetPath KeyboardFocusedWidgetPath;
 					if (FSlateApplication::Get().FindPathToWidget(KeyboardFocusedWidget.ToSharedRef(), KeyboardFocusedWidgetPath))
 					{
-						UE_LOG(LogOpenAccessibility, Display, TEXT("Keyboard Focused Widget Path Found."));
+						UE_LOG(LogAccession, Display, TEXT("Keyboard Focused Widget Path Found."));
 					}
-					else return;
+					else
+						return;
 
 					Menu = FSlateApplication::Get().FindMenuInWidgetPath(KeyboardFocusedWidgetPath);
 
@@ -215,48 +208,43 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 							->GetParentWidget()
 							->GetParentWidget()
 							->GetParentWidget()
-							->GetParentWidget()
-					);
+							->GetParentWidget());
 
 					SearchBox = StaticCastSharedPtr<SSearchBox>(
 						KeyboardFocusedWidget
 							->GetParentWidget()
 							->GetParentWidget()
-							->GetParentWidget()
-					);
+							->GetParentWidget());
 
 					TSharedRef<SWidget> SearchBoxSibling = SearchBox->GetParentWidget()->GetChildren()->GetChildAt(1);
 					TreeView = StaticCastSharedRef<STreeView<TSharedPtr<FGraphActionNode>>>(
-						SearchBoxSibling->GetChildren()->GetChildAt(0)->GetChildren()->GetChildAt(0)
-					);
+						SearchBoxSibling->GetChildren()->GetChildAt(0)->GetChildren()->GetChildAt(0));
 
-					UE_LOG(LogOpenAccessibility, Log, TEXT("THIS IS THE STRING: %s"), *TreeView->GetTypeAsString());
+					UE_LOG(LogAccession, Log, TEXT("THIS IS THE STRING: %s"), *TreeView->GetTypeAsString());
 
 					MenuWindow = FSlateApplication::Get().FindWidgetWindow(KeyboardFocusedWidget.ToSharedRef());
 				}
-				
-				UAccessibilityAddNodeContextMenu* AddNodeContextMenu = NewObject<UAccessibilityAddNodeContextMenu>();
+
+				UGraphAddNodeContextMenu *AddNodeContextMenu = NewObject<UGraphAddNodeContextMenu>();
 				AddNodeContextMenu->AddToRoot();
 				AddNodeContextMenu->Init(
 					Menu.ToSharedRef(),
-					FOpenAccessibilityCommunicationModule::Get().PhraseTree->AsShared()
-				);
+					FAccessionCommunicationModule::Get().PhraseTree->AsShared());
 
 				AddNodeContextMenu->ScaleMenu(1.5f);
 
 				FSlateApplication::Get().SetKeyboardFocus(TreeView);
 
-				FPhraseTreeContextManager& ContextManager =FOpenAccessibilityCommunicationModule::Get()
-                      .PhraseTree->GetContextManager();
+				FPhraseTreeContextManager &ContextManager = FAccessionCommunicationModule::Get()
+																.PhraseTree->GetContextManager();
 
 				ContextManager.PushContextObject(AddNodeContextMenu);
 			}),
 
-		ECVF_Default
-	));
+		ECVF_Default));
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibility.Debug.OpenAccessibilityGraph_GenericContextMenu"),
+		TEXT("Accession.Debug.Graph_GenericContextMenu"),
 		TEXT("Opens the Context Menu for the Active Graph Editor, and Uses Generic Bindings For Commands"),
 
 		FConsoleCommandDelegate::CreateLambda(
@@ -273,12 +261,12 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					ActiveGraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab->GetContent().ToSharedPtr());
 					if (!ActiveGraphEditor.IsValid() && ActiveGraphEditor->GetType() == "SGraphEditor")
 					{
-						UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
+						UE_LOG(LogAccession, Display, TEXT("Active Tab Not SGraphEditor"));
 						return;
 					}
 				}
 
-				SGraphPanel* ActiveGraphPanel = ActiveGraphEditor->GetGraphPanel();
+				SGraphPanel *ActiveGraphPanel = ActiveGraphEditor->GetGraphPanel();
 
 				FVector2D SpawnLocation;
 				{
@@ -298,8 +286,7 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 
 						SpawnLocation = FVector2D(
 							DisplayMetrics.PrimaryDisplayWidth / 5,
-							DisplayMetrics.PrimaryDisplayHeight / 5
-						);
+							DisplayMetrics.PrimaryDisplayHeight / 5);
 					}
 				}
 
@@ -308,46 +295,42 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 					ActiveGraphPanel->GetPastePosition(),
 					nullptr,
 					nullptr,
-					TArray<UEdGraphPin*>()
-				);
+					TArray<UEdGraphPin *>());
 
 				FWidgetPath ContextWidgetToFocusPath;
 				if (FSlateApplication::Get().FindPathToWidget(ContextWidgetToFocus.ToSharedRef(), ContextWidgetToFocusPath))
 				{
-					UAccessibilityGraphEditorContext* GraphContext = NewObject<UAccessibilityGraphEditorContext>();
+					UGraphEditorContext *GraphContext = NewObject<UGraphEditorContext>();
 					GraphContext->AddToRoot();
 
 					GraphContext->Init(
 						FSlateApplication::Get().FindMenuInWidgetPath(ContextWidgetToFocusPath).ToSharedRef(),
-						FOpenAccessibilityCommunicationModule::Get().PhraseTree->AsShared()
+						FAccessionCommunicationModule::Get().PhraseTree->AsShared()
 
 					);
 
 					GraphContext->ScaleMenu(1.5f);
 				}
-
-			}
-		)
-	));
+			})));
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibility.Debug.DumpActiveTabManagerObject"),
+		TEXT("Accession.Debug.DumpActiveTabManagerObject"),
 		TEXT("Dumps the Active FTabManager to a JSON Object File"),
 
 		FConsoleCommandDelegate::CreateLambda(
 			[this]()
 			{
-				TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab(); 
+				TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 				if (!ActiveTab.IsValid())
-				{                                                               
-					UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("DumpActiveTabManagerObject: No Active Tab Was Found"));        
-					return;                                          
+				{
+					UE_LOG(LogAccessionPhraseEvent, Display, TEXT("DumpActiveTabManagerObject: No Active Tab Was Found"));
+					return;
 				}
 
 				TSharedPtr<FTabManager> ActiveTabManager = ActiveTab->GetTabManagerPtr();
 				if (!ActiveTabManager.IsValid())
 				{
-					UE_LOG(LogOpenAccessibility, Display, TEXT("DumpActiveTabManagerObject: No Parent Tab Manager Found For Active Tab."))
+					UE_LOG(LogAccession, Display, TEXT("DumpActiveTabManagerObject: No Parent Tab Manager Found For Active Tab."))
 					return;
 				}
 
@@ -356,27 +339,25 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 				FString JsonString;
 				if (!FJsonSerializer::Serialize(ManagerLayout->ToJson(), TJsonWriterFactory<>::Create(&JsonString, 0)))
 				{
-					UE_LOG(LogOpenAccessibility, Display, TEXT("DumpActiveTabManagerObject: Failed to Serialize Json Object to String."))
+					UE_LOG(LogAccession, Display, TEXT("DumpActiveTabManagerObject: Failed to Serialize Json Object to String."))
 					return;
 				}
 
 				if (!FFileHelper::SaveStringToFile(
 						JsonString,
-						*FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() + TEXT("OpenAccessibility/Debug/ActiveTabManager_Dump.json"))
-				))
+						*FPaths::ConvertRelativePathToFull(FPaths::ProjectSavedDir() + TEXT("Accession/Debug/ActiveTabManager_Dump.json"))))
 				{
-					UE_LOG(LogOpenAccessibility, Display, TEXT("DumpActiveTabManagerObject: Failed to Save Serialized JSON Object to File."))
+					UE_LOG(LogAccession, Display, TEXT("DumpActiveTabManagerObject: Failed to Save Serialized JSON Object to File."))
 				}
-			}
-		)
-	));
+			})));
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibility.Debug.OpenAccessibilityGraph_SummonImprovedLocomotion"),
+		TEXT("Accession.Debug.Graph_SummonImprovedLocomotion"),
 		TEXT("Summons the Improved Locomotion Menu for the Active Graph Editor."),
 
 		FConsoleCommandDelegate::CreateLambda(
-			[this]() {
+			[this]()
+			{
 				TSharedPtr<SGraphEditor> ActiveGraphEditor = nullptr;
 				{
 					// Getting Graph Editor Section
@@ -386,42 +367,42 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 						return;
 
 					ActiveGraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab->GetContent().ToSharedPtr());
-					if (!ActiveGraphEditor.IsValid() || ActiveGraphEditor->GetTypeAsString() != "SGraphEditor") 
+					if (!ActiveGraphEditor.IsValid() || ActiveGraphEditor->GetTypeAsString() != "SGraphEditor")
 					{
-						UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
+						UE_LOG(LogAccession, Display, TEXT("Active Tab Not SGraphEditor"));
 						return;
 					}
 				}
 
-				UAccessibilityGraphLocomotionContext* LocomotionContext = NewObject<UAccessibilityGraphLocomotionContext>();
+				UGraphLocomotionContext *LocomotionContext = NewObject<UGraphLocomotionContext>();
 				LocomotionContext->AddToRoot();
 				LocomotionContext->Init(ActiveGraphEditor.ToSharedRef());
 
-				FPhraseTreeContextManager& ContextManager = FOpenAccessibilityCommunicationModule::Get()
-                  .PhraseTree->GetContextManager();
+				FPhraseTreeContextManager &ContextManager = FAccessionCommunicationModule::Get()
+																.PhraseTree->GetContextManager();
 
 				ContextManager.PushContextObject(LocomotionContext);
 			}),
 
-		ECVF_Default
-	));
+		ECVF_Default));
 
 	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibility.Debug.LogGraphEditorViewport"),
+		TEXT("Accession.Debug.LogGraphEditorViewport"),
 		TEXT("Logs the Active GraphEditors Viewport Information."),
 		FConsoleCommandDelegate::CreateLambda(
-			[this]() {
+			[this]()
+			{
 				TSharedPtr<SDockTab> ActiveTab = FGlobalTabmanager::Get()->GetActiveTab();
 				if (!ActiveTab.IsValid())
 				{
-					UE_LOG(LogOpenAccessibility, Display, TEXT("No Active Tab Found."));
+					UE_LOG(LogAccession, Display, TEXT("No Active Tab Found."));
 					return;
 				}
 
 				TSharedPtr<SGraphEditor> ActiveGraphEditor = StaticCastSharedRef<SGraphEditor>(ActiveTab->GetContent());
 				if (!ActiveGraphEditor.IsValid())
 				{
-					UE_LOG(LogOpenAccessibility, Display, TEXT("Active Tab Not SGraphEditor"));
+					UE_LOG(LogAccession, Display, TEXT("Active Tab Not SGraphEditor"));
 					return;
 				}
 
@@ -429,15 +410,13 @@ void FOpenAccessibilityModule::RegisterConsoleCommands()
 				float ZoomAmount;
 				ActiveGraphEditor->GetViewLocation(ViewLocation, ZoomAmount);
 
-				UE_LOG(LogOpenAccessibility, Display, TEXT("| Active Graph Editor Viewport Info | View Location: %s | Zoom Amount: %f |"), *ViewLocation.ToString(), ZoomAmount);
-			}
-		)
-	));
+				UE_LOG(LogAccession, Display, TEXT("| Active Graph Editor Viewport Info | View Location: %s | Zoom Amount: %f |"), *ViewLocation.ToString(), ZoomAmount);
+			})));
 }
 
-void FOpenAccessibilityModule::UnregisterConsoleCommands()
+void FAccessionModule::UnregisterConsoleCommands()
 {
-	IConsoleCommand* ConsoleCommand = nullptr;
+	IConsoleCommand *ConsoleCommand = nullptr;
 	while (ConsoleCommands.Num() > 0)
 	{
 		ConsoleCommand = ConsoleCommands.Pop();
@@ -450,5 +429,5 @@ void FOpenAccessibilityModule::UnregisterConsoleCommands()
 }
 
 #undef LOCTEXT_NAMESPACE
-	
-IMPLEMENT_MODULE(FOpenAccessibilityModule, OpenAccessibility)
+
+IMPLEMENT_MODULE(FAccessionModule, Accession)

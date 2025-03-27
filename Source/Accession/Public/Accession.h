@@ -5,8 +5,8 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
-#include "AssetAccessibilityRegistry.h"
-#include "OAccessibilityNodeFactory.h"
+#include "AccessionAssetRegistry.h"
+#include "OAccessionNodeFactory.h"
 
 class FAccessionModule : public IModuleInterface
 {
@@ -72,17 +72,15 @@ private:
 	void UnregisterConsoleCommands();
 
 public:
-	// Accessibility Components
+	/// <summary>
+	/// The Node Factory for Generating Indexed Graph Nodes.
+	/// </summary>
+	TSharedPtr<class FAccessionNodeFactory> NodeFactory;
 
 	/// <summary>
-	/// The Node Factory for Generating Accessibility Graph Nodes.
+	/// The Registry for Any Unreal Asset Information.
 	/// </summary>
-	TSharedPtr<class FAccessibilityNodeFactory> AccessibilityNodeFactory;
-
-	/// <summary>
-	/// The Registry for Any Asset Accessibility Information.
-	/// </summary>
-	TSharedPtr<class FAssetAccessibilityRegistry> AssetAccessibilityRegistry;
+	TSharedPtr<class FAccessionAssetRegistry> AssetRegistry;
 
 private:
 	TSharedPtr<class FTranscriptionVisualizer> TranscriptionVisualizer;

@@ -9,7 +9,7 @@
 #include "SGraphActionMenu.h"
 #include "GraphActionNode.h"
 
-#include "AccessibilityGraphEditorContext.generated.h"
+#include "GraphEditorContext.generated.h"
 
 class SContentIndexer;
 
@@ -17,12 +17,12 @@ class SContentIndexer;
  * A Dynamic Phrase Tree Context Object for Most Node Editor Based Context Menus.
  */
 UCLASS()
-class ACCESSION_API UAccessibilityGraphEditorContext : public UPhraseTreeContextMenuObject
+class ACCESSION_API UGraphEditorContext : public UPhraseTreeContextMenuObject
 {
 	GENERATED_BODY()
 
 public:
-	UAccessibilityGraphEditorContext();
+	UGraphEditorContext();
 
 	// -- UPhraseTreeContextMenuObject Implementation
 
@@ -159,15 +159,15 @@ protected:
 	bool TreeViewCanTick();
 
 	/**
-	 * Checks if the Dynamic TreeView Accessibility Components Require a Refresh.
-	 * @return True if the TreeView Accessibility Assets Require a Refresh.
+	 * Checks if the Dynamic TreeView Indexing Components Require a Refresh.
+	 * @return True if the TreeView Indexing Assets Require a Refresh.
 	 */
 	bool TreeViewRequiresTick();
 
 	/**
-	 * Updates the TreeView Accessibility Components.
+	 * Updates the TreeView Indexing Components.
 	 */
-	void TickTreeViewAccessibility();
+	void TickTreeView();
 
 	// Widget Utils
 
@@ -176,7 +176,7 @@ protected:
 	 * @param ContextIndexer The Context Indexer Widget to Update.
 	 * @param NewIndex The Index to update the Context Indexer With.
 	 */
-	void UpdateAccessibilityWidget(const TSharedRef<SContentIndexer> &ContextIndexer, const int32 &NewIndex);
+	void UpdateIndexWidget(const TSharedRef<SContentIndexer> &ContextIndexer, const int32 &NewIndex);
 
 	/**
 	 * Creates a Content Indexer wrapping the provided Widget.
@@ -184,7 +184,7 @@ protected:
 	 * @param Index The Index of the Provided Content.
 	 * @return A Shared Reference of the created Content Indexer, wrapping the provided Content.
 	 */
-	const TSharedRef<SContentIndexer> CreateAccessibilityWrapper(const TSharedRef<SWidget> &ContentToWrap, const int32 &Index);
+	const TSharedRef<SContentIndexer> CreateIndexWrapper(const TSharedRef<SWidget> &ContentToWrap, const int32 &Index);
 
 protected:
 	FTreeViewTickRequirements TreeViewTickRequirements;
