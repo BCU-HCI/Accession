@@ -64,7 +64,7 @@ public:
 	{
 		if (InPhraseArray.Num() == 0)
 		{
-			UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
+			UE_LOG(LogAccessionCom, Log, TEXT("|| Emptied Phrase Array ||"))
 
 			return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
 		}
@@ -84,7 +84,7 @@ public:
 
 			if (!RecordInput(InputToRecord, InParseRecord))
 			{
-				UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Unable to Record Input ||"))
+				UE_LOG(LogAccessionCom, Log, TEXT("|| Unable to Record Input ||"))
 
 				return FParseResult(PHRASE_UNABLE_TO_PARSE, AsShared());
 			}

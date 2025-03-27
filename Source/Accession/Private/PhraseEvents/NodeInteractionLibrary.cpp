@@ -462,7 +462,7 @@ void UNodeInteractionLibrary::NodeIndexFocus(int32 Index)
 	UEdGraphNode *Node = Indexer->GetNode(Index);
 	if (Node == nullptr)
 	{
-		UE_LOG(LogOpenAccessionPhraseEvent, Display, TEXT("NodeSelectionFocus: Node Not Found"));
+		UE_LOG(LogAccessionPhraseEvent, Display, TEXT("NodeSelectionFocus: Node Not Found"));
 		return;
 	}
 
@@ -745,7 +745,7 @@ TSharedPtr<IMenu> UNodeInteractionLibrary::NodeAddPinMenu(FParseRecord &Record)
 
 		if (!ContextWidgetToFocus.IsValid())
 		{
-			UE_LOG(LogAccessionyPhraseEvent, Display, TEXT("NodeAddMenu: Context Keyboard Focus Widget Not Found"));
+			UE_LOG(LogAccessionPhraseEvent, Display, TEXT("NodeAddMenu: Context Keyboard Focus Widget Not Found"));
 			return TSharedPtr<IMenu>();
 		}
 

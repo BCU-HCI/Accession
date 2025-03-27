@@ -22,7 +22,7 @@ enum EPhraseTreeBranchBindResult : uint8_t
 	BRANCH_SPLIT
 };
 
-struct ACESSIONCOMMUNICATION_API FPhraseTreeBranchBind
+struct ACCESSIONCOMMUNICATION_API FPhraseTreeBranchBind
 {
 	FPhraseTreeBranchBind()
 	{
@@ -51,7 +51,7 @@ struct ACESSIONCOMMUNICATION_API FPhraseTreeBranchBind
 	TPhraseNode BranchRoot;
 };
 
-struct ACESSIONCOMMUNICATION_API FPhraseTreeContextManager
+struct ACCESSIONCOMMUNICATION_API FPhraseTreeContextManager
 {
 	friend class FPhraseTree;
 
@@ -217,7 +217,7 @@ private:
 /**
  *
  */
-class ACESSIONCOMMUNICATION_API FPhraseTree : public FPhraseNode
+class ACCESSIONCOMMUNICATION_API FPhraseTree : public FPhraseNode
 {
 public:
 	FPhraseTree();

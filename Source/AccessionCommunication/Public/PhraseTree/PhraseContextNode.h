@@ -88,7 +88,7 @@ FParseResult FPhraseContextNode<ContextType>::ParsePhraseAsContext(TArray<FStrin
 
 	if (InPhraseWordArray.IsEmpty())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Emptied Phrase Array ||"))
 
 		return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
 	}

@@ -6,7 +6,7 @@
 
 #include "Indexers/Indexer.h"
 
-#include "UWindowToolbarIndex.generated.h"
+#include "WindowToolbarIndex.generated.h"
 
 /**
  * Wrapper for Indexing Window ToolBar Elements.

@@ -19,7 +19,7 @@
 #include "Sound/SampleBufferIO.h"
 #include "HAL/PlatformProcess.h"
 
-#define LOCTEXT_NAMESPACE "UAccessionCommunicationModule"
+#define LOCTEXT_NAMESPACE "FAccessionCommunicationModule"
 
 void FAccessionCommunicationModule::StartupModule()
 {

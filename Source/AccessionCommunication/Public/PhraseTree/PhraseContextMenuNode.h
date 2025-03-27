@@ -132,7 +132,7 @@ FParseResult FPhraseContextMenuNode<ContextMenuType>::ParsePhrase(TArray<FString
 
 	if (InPhraseWordArray.IsEmpty())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Emptied Phrase Array ||"))
 
 		return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
 	}
@@ -158,7 +158,7 @@ inline FParseResult FPhraseContextMenuNode<ContextMenuType>::ParsePhraseAsContex
 
 	if (InPhraseWordArray.IsEmpty())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("|| Emptied Phrase Array ||"))
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Emptied Phrase Array ||"))
 
 		return FParseResult(PHRASE_REQUIRES_MORE, AsShared());
 	}
@@ -187,7 +187,7 @@ UPhraseTreeContextObject *FPhraseContextMenuNode<ContextMenuType>::CreateContext
 {
 	if (!OnGetMenu.IsBound())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("OnGetMenu Delegate Not Bound. Cannot Create Context Object, linked to a Menu."));
+		UE_LOG(LogAccessionCom, Log, TEXT("OnGetMenu Delegate Not Bound. Cannot Create Context Object, linked to a Menu."));
 		return nullptr;
 	}
 
@@ -195,7 +195,7 @@ UPhraseTreeContextObject *FPhraseContextMenuNode<ContextMenuType>::CreateContext
 
 	if (!NewMenu.IsValid())
 	{
-		UE_LOG(LogOpenAccessibilityCom, Log, TEXT("OnGetMenu Delegate Returned Invalid Menu. Cannot Create Context Object."));
+		UE_LOG(LogAccessionCom, Log, TEXT("OnGetMenu Delegate Returned Invalid Menu. Cannot Create Context Object."));
 		return nullptr;
 	}
 

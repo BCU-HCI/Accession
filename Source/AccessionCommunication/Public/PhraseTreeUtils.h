@@ -9,7 +9,7 @@
 #include "PhraseTreeUtils.generated.h"
 
 UCLASS()
-class ACESSIONCOMMUNICATION_API UPhraseTreeUtils : public UObject
+class ACCESSIONCOMMUNICATION_API UPhraseTreeUtils : public UObject
 {
 	GENERATED_BODY()
 

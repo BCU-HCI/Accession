@@ -6,7 +6,7 @@
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 
-#include "FunctionalityWrappers/WindowToolbar.h"
+#include "FunctionalityWrappers/WindowToolbarIndex.h"
 
 #include "Algo/LevenshteinDistance.h"
 #include "Framework/Docking/TabManager.h"
@@ -17,7 +17,7 @@
 UWindowInteractionLibrary::UWindowInteractionLibrary(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	WindowToolBar = NewObject<UWindowToolbar>();
+	WindowToolBar = NewObject<UWindowToolbarIndex>();
 }
 
 UWindowInteractionLibrary::~UWindowInteractionLibrary()

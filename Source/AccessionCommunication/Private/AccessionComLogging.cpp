@@ -1,4 +1,4 @@
 
-#include "AccessionLogging.h"
+#include "AccessionComLogging.h"
 
 DEFINE_LOG_CATEGORY(LogAccessionCom);

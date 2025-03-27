@@ -19,7 +19,7 @@ typedef zmq::recv_flags ComRecvFlags;
 /**
  *
  */
-class ACESSIONCOMMUNICATION_API FSocketCommunicationServer
+class ACCESSIONCOMMUNICATION_API FSocketCommunicationServer
 {
 public:
 	FSocketCommunicationServer(const std::string SendAddress = "tcp://127.0.0.1:5555", const std::string RecvAddress = "tcp://127.0.0.1:5556", const int PollTimeout = 10);

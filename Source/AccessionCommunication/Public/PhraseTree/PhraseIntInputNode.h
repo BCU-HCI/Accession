@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "PhraseTree/PhraseInputNode.h"
-#include "OpenAccessibilityComLogging.h"
+#include "AccessionComLogging.h"
 
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 
