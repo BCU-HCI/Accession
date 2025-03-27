@@ -84,7 +84,7 @@ if missing_deps:
 
 unreal.log("|| Accession Python || Starting Python Runtime ||")
 
-import AccessionPy as OAPy
+import AccessionPy as APy
 
 # Run Utilities for Better Project Runtime.
 
@@ -93,6 +93,6 @@ import AccessionPy as OAPy
 # OAPy.forward_CUDA_CUDNN_to_path()
 
 # Initialize the Runtime
-AccessionPy = OAPy.OpenAccessibilityPy()
+AccessionPy = APy.AccessionPy()
 
 ## ------------------------------

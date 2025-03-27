@@ -29,7 +29,7 @@ public:
 
 	static FAccessionCommunicationModule &Get()
 	{
-		return FModuleManager::GetModuleChecked<FAccessionCommunicationModule>("AccessionCommunicationModule");
+		return FModuleManager::GetModuleChecked<FAccessionCommunicationModule>("AccessionCommunication");
 	}
 
 	bool Tick(const float DeltaTime);

@@ -228,4 +228,4 @@ void FAccessionCommunicationModule::UnloadZMQDLL()
 
 #undef LOCTEXT_NAMESPACE
 
-IMPLEMENT_MODULE(FAccessionCommunicationModule, Accession)
+IMPLEMENT_MODULE(FAccessionCommunicationModule, AccessionCommunication)

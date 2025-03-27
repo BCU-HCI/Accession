@@ -54,7 +54,7 @@ public:
 
 	static FAccessionAnalyticsModule &Get()
 	{
-		return FModuleManager::GetModuleChecked<FAccessionAnalyticsModule>("OpenAccessibilityAnalytics");
+		return FModuleManager::GetModuleChecked<FAccessionAnalyticsModule>("AccessionAnalytics");
 	}
 
 	// Analytics Logging
