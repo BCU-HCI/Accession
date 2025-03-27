@@ -3,7 +3,7 @@
 
 #include "PhraseTree/Containers/Input/InputContainers.h"
 
-#include "AssetAccessibilityRegistry.h"
+#include "AccessionAssetRegistry.h"
 #include "SGraphPanel.h"
 #include "SNodePanel.h"
 
@@ -14,77 +14,75 @@
 UViewInteractionLibrary::UViewInteractionLibrary(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-
 }
 
 UViewInteractionLibrary::~UViewInteractionLibrary()
 {
-
 }
 
 void UViewInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 {
 	PhraseTree->BindBranch(
-		MakeShared<FPhraseNode>(TEXT("VIEW"), 
-		TPhraseNodeArray {
-			
-			MakeShared<FPhraseNode>(TEXT("MOVE"),
-			TPhraseNodeArray {
+		MakeShared<FPhraseNode>(TEXT("VIEW"),
+								TPhraseNodeArray{
 
-				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"), 
-				TPhraseNodeArray {
-				
-					MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
-					TPhraseNodeArray {
-					
-						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::MoveViewport))
+									MakeShared<FPhraseNode>(TEXT("MOVE"),
+															TPhraseNodeArray{
 
-					})
+																MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+																										  TPhraseNodeArray{
 
-				})
+																											  MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
+																																			  TPhraseNodeArray{
 
-			}),
+																																				  MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::MoveViewport))
 
-			MakeShared<FPhraseNode>(TEXT("ZOOM"), 
-			TPhraseNodeArray {
-			
-				MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"), 
-				TPhraseNodeArray {
-				
-					MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
-					TPhraseNodeArray {
-					
-						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::ZoomViewport))
-					
-					})
+																																			  })
 
-				})
-			
-			}),
+																										  })
 
-			MakeShared<FPhraseNode>(TEXT("FOCUS"), 
-			TPhraseNodeArray {
-				
-				MakeShared<FPhraseIntInputNode>(TEXT("INDEX"),
-				TPhraseNodeArray {
-				
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::IndexFocus))
+															}),
 
-				})
+									MakeShared<FPhraseNode>(TEXT("ZOOM"),
+															TPhraseNodeArray{
 
-			})
+																MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+																										  TPhraseNodeArray{
 
-		})
-	);
+																											  MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
+																																			  TPhraseNodeArray{
+
+																																				  MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::ZoomViewport))
+
+																																			  })
+
+																										  })
+
+															}),
+
+									MakeShared<FPhraseNode>(TEXT("FOCUS"),
+															TPhraseNodeArray{
+
+																MakeShared<FPhraseIntInputNode>(TEXT("INDEX"),
+																								TPhraseNodeArray{
+
+																									MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewInteractionLibrary::IndexFocus))
+
+																								})
+
+															})
+
+								}));
 }
 
-void UViewInteractionLibrary::MoveViewport(FParseRecord &Record) {
+void UViewInteractionLibrary::MoveViewport(FParseRecord &Record)
+{
 	GET_ACTIVE_TAB_CONTENT(ActiveTab)
 
 	FString TabType = ActiveTab->GetTypeAsString();
 
-	UParseEnumInput* DirectionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
-    UParseIntInput* AmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+	UParseEnumInput *DirectionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
+	UParseIntInput *AmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
 	if (DirectionInput == nullptr || AmountInput == nullptr)
 		return;
 
@@ -93,30 +91,30 @@ void UViewInteractionLibrary::MoveViewport(FParseRecord &Record) {
 		TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);
 
 		FVector2D ViewLocation;
-		float ZoomAmount;        
+		float ZoomAmount;
 		GraphEditor->GetViewLocation(ViewLocation, ZoomAmount);
 
 		switch (EPhrase2DDirectionalInput(DirectionInput->GetValue()))
 		{
-			case EPhrase2DDirectionalInput::UP:
-				ViewLocation.Y -= AmountInput->GetValue();
-				break;
+		case EPhrase2DDirectionalInput::UP:
+			ViewLocation.Y -= AmountInput->GetValue();
+			break;
 
-			case EPhrase2DDirectionalInput::DOWN:
-				ViewLocation.Y += AmountInput->GetValue();
-				break;
+		case EPhrase2DDirectionalInput::DOWN:
+			ViewLocation.Y += AmountInput->GetValue();
+			break;
 
-			case EPhrase2DDirectionalInput::LEFT:
-				ViewLocation.X -= AmountInput->GetValue();
-				break;
+		case EPhrase2DDirectionalInput::LEFT:
+			ViewLocation.X -= AmountInput->GetValue();
+			break;
 
-			case EPhrase2DDirectionalInput::RIGHT:
-				ViewLocation.X += AmountInput->GetValue();
-				break;
+		case EPhrase2DDirectionalInput::RIGHT:
+			ViewLocation.X += AmountInput->GetValue();
+			break;
 
-			default:
-				UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("MoveViewport: INVALID DIRECTION INPUT"));
-				return;
+		default:
+			UE_LOG(LogAccessionPhraseEvent, Display, TEXT("MoveViewport: INVALID DIRECTION INPUT"));
+			return;
 		}
 
 		GraphEditor->SetViewLocation(ViewLocation, ZoomAmount);
@@ -125,44 +123,44 @@ void UViewInteractionLibrary::MoveViewport(FParseRecord &Record) {
 	// Further Viewport Implementation Here
 }
 
-
 class SOpenGraphPanel : public SGraphPanel
 {
 public:
-	FZoomLevelsContainer* GetZoomLevels()
+	FZoomLevelsContainer *GetZoomLevels()
 	{
 		return ZoomLevels.Get();
 	}
 };
 
-void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record) 
+void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record)
 {
 	GET_ACTIVE_TAB_CONTENT(ActiveTab)
 
-    FString TabType = ActiveTab->GetTypeAsString();
+	FString TabType = ActiveTab->GetTypeAsString();
 
-    UParseEnumInput* DirectionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
-    UParseIntInput* AmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
-    if (DirectionInput == nullptr || AmountInput == nullptr)
-        return;
+	UParseEnumInput *DirectionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
+	UParseIntInput *AmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+	if (DirectionInput == nullptr || AmountInput == nullptr)
+		return;
 
-    if (TabType == "SGraphEditor")
+	if (TabType == "SGraphEditor")
 	{
-        TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);
-		FZoomLevelsContainer* ZoomLevels;
+		TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);
+		FZoomLevelsContainer *ZoomLevels;
 
 		// Another Hack because its protected, which is good.
 		// But the derived ZoomLevelsContainer is in a .cpp file :(
 		{
-			SOpenGraphPanel* GraphPanel = static_cast<SOpenGraphPanel*>(GraphEditor->GetGraphPanel());
+			SOpenGraphPanel *GraphPanel = static_cast<SOpenGraphPanel *>(GraphEditor->GetGraphPanel());
 			ZoomLevels = GraphPanel->GetZoomLevels();
 
 			if (ZoomLevels == nullptr)
 				return;
 		}
 
-		FVector2D ViewLocation;  float ZoomAmount;
-        GraphEditor->GetViewLocation(ViewLocation, ZoomAmount);
+		FVector2D ViewLocation;
+		float ZoomAmount;
+		GraphEditor->GetViewLocation(ViewLocation, ZoomAmount);
 
 		// Find Index for Current Zoom Level
 		int32 ZoomIndex;
@@ -174,56 +172,56 @@ void UViewInteractionLibrary::ZoomViewport(FParseRecord &Record)
 			}
 		}
 
-        switch (EPhrase2DDirectionalInput(DirectionInput->GetValue()))
-    	{
-            case EPhrase2DDirectionalInput::UP:
-				ZoomIndex += AmountInput->GetValue();
-                break;
+		switch (EPhrase2DDirectionalInput(DirectionInput->GetValue()))
+		{
+		case EPhrase2DDirectionalInput::UP:
+			ZoomIndex += AmountInput->GetValue();
+			break;
 
-            case EPhrase2DDirectionalInput::DOWN:
-				ZoomIndex -= AmountInput->GetValue();
-                break;
+		case EPhrase2DDirectionalInput::DOWN:
+			ZoomIndex -= AmountInput->GetValue();
+			break;
 
-            default:
-                UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("ZoomViewport: INVALID DIRECTION INPUT"));
-                return;
-        }
+		default:
+			UE_LOG(LogAccessionPhraseEvent, Display, TEXT("ZoomViewport: INVALID DIRECTION INPUT"));
+			return;
+		}
 
 		if (ZoomIndex < 0 || ZoomIndex >= ZoomLevels->GetNumZoomLevels())
 			ZoomAmount = ZoomLevels->GetDefaultZoomLevel();
 		else
 			ZoomAmount = ZoomLevels->GetZoomAmount(ZoomIndex);
 
-        GraphEditor->SetViewLocation(ViewLocation, ZoomAmount);
-    }
+		GraphEditor->SetViewLocation(ViewLocation, ZoomAmount);
+	}
 
 	// Further Viewport Specific Implementation Here
 }
 
-void UViewInteractionLibrary::IndexFocus(FParseRecord& Record) 
+void UViewInteractionLibrary::IndexFocus(FParseRecord &Record)
 {
 	GET_ACTIVE_TAB_CONTENT(ActiveTab)
 
 	FString TabType = ActiveTab->GetTypeAsString();
 
-	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("INDEX"));
+	UParseIntInput *IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("INDEX"));
 	if (IndexInput == nullptr)
 		return;
 
 	if (TabType == "SGraphEditor")
 	{
 		TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);
-        if (!GraphEditor.IsValid())
+		if (!GraphEditor.IsValid())
 			return;
 
-		TSharedRef<FAssetAccessibilityRegistry> AssetRegistry = GetAssetRegistry();
+		TSharedRef<FAccessionAssetRegistry> AssetRegistry = GetAssetRegistry();
 
 		TSharedRef<FGraphIndexer> GraphIndexer = AssetRegistry->GetGraphIndexer(GraphEditor->GetCurrentGraph());
 
-		UEdGraphNode* Node = GraphIndexer->GetNode(IndexInput->GetValue());
+		UEdGraphNode *Node = GraphIndexer->GetNode(IndexInput->GetValue());
 		if (Node == nullptr)
 		{
-			UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("IndexFocus: INVALID INDEX INPUT"))
+			UE_LOG(LogAccessionPhraseEvent, Display, TEXT("IndexFocus: INVALID INDEX INPUT"))
 			return;
 		}
 

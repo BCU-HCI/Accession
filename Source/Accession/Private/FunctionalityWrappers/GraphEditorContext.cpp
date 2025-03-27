@@ -1,22 +1,21 @@
 // Copyright F-Dudley. All Rights Reserved.
 
-#include "AccessibilityWrappers/AccessibilityGraphEditorContext.h"
+#include "FunctionalityWrappers/GraphEditorContext.h"
 
-#include "OpenAccessibilityLogging.h"
-#include "AccessibilityWidgets/SIndexer.h"
-#include "AccessibilityWidgets/SContentIndexer.h"
+#include "AccessionLogging.h"
+#include "Widgets/SIndexer.h"
+#include "Widgets/SContentIndexer.h"
 #include "Utils/WidgetUtils.h"
 
 #include "Widgets/SWindow.h"
 #include "Widgets/Input/SEditableTextBox.h"
 
-UAccessibilityGraphEditorContext::UAccessibilityGraphEditorContext()
+UGraphEditorContext::UGraphEditorContext()
 	: Super()
 {
-
 }
 
-void UAccessibilityGraphEditorContext::Init(TSharedRef<IMenu> InMenu, TSharedRef<FPhraseNode> InContextRoot)
+void UGraphEditorContext::Init(TSharedRef<IMenu> InMenu, TSharedRef<FPhraseNode> InContextRoot)
 {
 	Super::Init(InMenu, InContextRoot);
 
@@ -24,7 +23,7 @@ void UAccessibilityGraphEditorContext::Init(TSharedRef<IMenu> InMenu, TSharedRef
 
 	if (!FindGraphActionMenu(WindowRef))
 	{
-		UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphEditorContext: Cannot Find a SGraphActionMenu Widget"));
+		UE_LOG(LogAccession, Warning, TEXT("GraphEditorContext: Cannot Find a SGraphActionMenu Widget"));
 	}
 	else
 	{
@@ -34,12 +33,12 @@ void UAccessibilityGraphEditorContext::Init(TSharedRef<IMenu> InMenu, TSharedRef
 
 	if (!FindStaticComponents(WindowRef))
 	{
-		UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphEditorContext: Cannot Find Any Static Components"));
+		UE_LOG(LogAccession, Warning, TEXT("GraphEditorContext: Cannot Find Any Static Components"));
 	}
 
 	if (!FindTreeView(WindowRef))
 	{
-		UE_LOG(LogOpenAccessibility, Warning, TEXT("GraphEditorContext: Cannot Find a STreeView Widget"));
+		UE_LOG(LogAccession, Warning, TEXT("GraphEditorContext: Cannot Find a STreeView Widget"));
 	}
 	else
 	{
@@ -47,13 +46,13 @@ void UAccessibilityGraphEditorContext::Init(TSharedRef<IMenu> InMenu, TSharedRef
 	}
 }
 
-bool UAccessibilityGraphEditorContext::Tick(float DeltaTime)
+bool UGraphEditorContext::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 	if (TreeViewCanTick())
 	{
-		TickTreeViewAccessibility();
+		TickTreeView();
 
 		TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
 
@@ -66,14 +65,14 @@ bool UAccessibilityGraphEditorContext::Tick(float DeltaTime)
 	return true;
 }
 
-bool UAccessibilityGraphEditorContext::Close()
+bool UGraphEditorContext::Close()
 {
 	Super::Close();
 
 	return true;
 }
 
-void UAccessibilityGraphEditorContext::ScaleMenu(const float ScaleFactor)
+void UGraphEditorContext::ScaleMenu(const float ScaleFactor)
 {
 	Super::ScaleMenu(ScaleFactor);
 
@@ -95,7 +94,7 @@ void UAccessibilityGraphEditorContext::ScaleMenu(const float ScaleFactor)
 	}
 }
 
-TSharedPtr<FGraphActionNode> UAccessibilityGraphEditorContext::GetTreeViewAction(const int32& InIndex)
+TSharedPtr<FGraphActionNode> UGraphEditorContext::GetTreeViewAction(const int32 &InIndex)
 {
 	TArrayView<const TSharedPtr<FGraphActionNode>> Items = TreeView.Pin()->GetItems();
 
@@ -105,7 +104,7 @@ TSharedPtr<FGraphActionNode> UAccessibilityGraphEditorContext::GetTreeViewAction
 	return TSharedPtr<FGraphActionNode>();
 }
 
-void UAccessibilityGraphEditorContext::SelectAction(const int32& InIndex)
+void UGraphEditorContext::SelectAction(const int32 &InIndex)
 {
 	if (InIndex < 0)
 		return;
@@ -122,7 +121,7 @@ void UAccessibilityGraphEditorContext::SelectAction(const int32& InIndex)
 	TSharedPtr<FGraphActionNode> ChosenTreeViewAction = GetTreeViewAction(InIndex - GetStaticIndexOffset());
 	if (!ChosenTreeViewAction.IsValid())
 	{
-		UE_LOG(LogOpenAccessibility, Warning, TEXT("SelectGraphAction: Provided TreeView Action is Invalid"))
+		UE_LOG(LogAccession, Warning, TEXT("SelectGraphAction: Provided TreeView Action is Invalid"))
 		return;
 	}
 
@@ -139,22 +138,21 @@ void UAccessibilityGraphEditorContext::SelectAction(const int32& InIndex)
 	}
 }
 
-FString UAccessibilityGraphEditorContext::GetFilterText()
+FString UGraphEditorContext::GetFilterText()
 {
 	return FilterTextBox.IsValid() ? FilterTextBox.Pin()->GetText().ToString() : FString();
 }
 
-void UAccessibilityGraphEditorContext::SetFilterText(const FString& NewString)
+void UGraphEditorContext::SetFilterText(const FString &NewString)
 {
 	if (!FilterTextBox.IsValid())
 		return;
 
 	FilterTextBox.Pin()->SetText(
-		FText::FromString(NewString)
-	);
+		FText::FromString(NewString));
 }
 
-void UAccessibilityGraphEditorContext::AppendFilterText(const FString& StringToAdd)
+void UGraphEditorContext::AppendFilterText(const FString &StringToAdd)
 {
 	if (!FilterTextBox.IsValid())
 		return;
@@ -165,14 +163,12 @@ void UAccessibilityGraphEditorContext::AppendFilterText(const FString& StringToA
 
 	TextBoxString != TEXT("")
 		? FilterTextBoxPtr->SetText(
-			FText::FromString(TextBoxString + TEXT(" ") + StringToAdd)
-		)
+			  FText::FromString(TextBoxString + TEXT(" ") + StringToAdd))
 		: FilterTextBoxPtr->SetText(
-			FText::FromString(StringToAdd)
-		);
+			  FText::FromString(StringToAdd));
 }
 
-void UAccessibilityGraphEditorContext::SetScrollDistance(const float NewDistance)
+void UGraphEditorContext::SetScrollDistance(const float NewDistance)
 {
 	if (TreeView.IsValid())
 		return;
@@ -180,7 +176,7 @@ void UAccessibilityGraphEditorContext::SetScrollDistance(const float NewDistance
 	TreeView.Pin()->SetScrollOffset(NewDistance);
 }
 
-void UAccessibilityGraphEditorContext::AppendScrollDistance(const float DistanceToAdd)
+void UGraphEditorContext::AppendScrollDistance(const float DistanceToAdd)
 {
 	auto TreeViewPtr = TreeView.Pin();
 
@@ -193,22 +189,22 @@ void UAccessibilityGraphEditorContext::AppendScrollDistance(const float Distance
 	TreeViewPtr->AddScrollOffset(DistanceToAdd);
 }
 
-void UAccessibilityGraphEditorContext::SetScrollDistanceTop()
+void UGraphEditorContext::SetScrollDistanceTop()
 {
 	TreeView.Pin()->ScrollToTop();
 }
 
-void UAccessibilityGraphEditorContext::SetScrollDistanceBottom()
+void UGraphEditorContext::SetScrollDistanceBottom()
 {
 	TreeView.Pin()->ScrollToBottom();
 }
 
-const int32 UAccessibilityGraphEditorContext::GetStaticIndexOffset()
+const int32 UGraphEditorContext::GetStaticIndexOffset()
 {
 	return CheckBoxes.Num();
 }
 
-bool UAccessibilityGraphEditorContext::FindGraphActionMenu(const TSharedRef<SWidget>& SearchRoot)
+bool UGraphEditorContext::FindGraphActionMenu(const TSharedRef<SWidget> &SearchRoot)
 {
 	TSharedPtr<SGraphActionMenu> GraphActionMenu = GetWidgetDescendant<SGraphActionMenu>(SearchRoot, TEXT("SGraphActionMenu"));
 	if (GraphActionMenu.IsValid())
@@ -222,12 +218,11 @@ bool UAccessibilityGraphEditorContext::FindGraphActionMenu(const TSharedRef<SWid
 	return false;
 }
 
-bool UAccessibilityGraphEditorContext::FindTreeView(const TSharedRef<SWidget>& SearchRoot)
+bool UGraphEditorContext::FindTreeView(const TSharedRef<SWidget> &SearchRoot)
 {
 	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> ContextTreeView = GetWidgetDescendant<STreeView<TSharedPtr<FGraphActionNode>>>(
 		SearchRoot,
-		TEXT("STreeView<TSharedPtr<FGraphActionNode>>")
-	);
+		TEXT("STreeView<TSharedPtr<FGraphActionNode>>"));
 	if (ContextTreeView.IsValid())
 	{
 		TreeView = ContextTreeView;
@@ -238,21 +233,19 @@ bool UAccessibilityGraphEditorContext::FindTreeView(const TSharedRef<SWidget>& S
 	return false;
 }
 
-bool UAccessibilityGraphEditorContext::FindStaticComponents(const TSharedRef<SWidget>& SearchRoot)
+bool UGraphEditorContext::FindStaticComponents(const TSharedRef<SWidget> &SearchRoot)
 {
-	TArray<FSlotBase*> FoundComponentSlots = GetWidgetSlotsByType(
-		SearchRoot, 
-		TSet<FString> {
-			TEXT("SCheckBox")
-		}
-	);
+	TArray<FSlotBase *> FoundComponentSlots = GetWidgetSlotsByType(
+		SearchRoot,
+		TSet<FString>{
+			TEXT("SCheckBox")});
 
 	if (!FoundComponentSlots.IsEmpty())
 	{
 		// Sort and Index the Static Components.
 		for (int i = 0; i < FoundComponentSlots.Num(); i++)
 		{
-			FSlotBase* FoundComponentSlot = FoundComponentSlots[i];
+			FSlotBase *FoundComponentSlot = FoundComponentSlots[i];
 
 			TSharedPtr<SWidget> DetachedWidget = FoundComponentSlot->DetachWidget();
 			if (!DetachedWidget.IsValid())
@@ -269,10 +262,9 @@ bool UAccessibilityGraphEditorContext::FindStaticComponents(const TSharedRef<SWi
 
 			FoundComponentSlot->AttachWidget(
 				SNew(SContentIndexer)
-				.IndexValue(ComponentIndex)
-				.IndexPositionToContent(EIndexerPosition::Left)
-				.ContentToIndex(DetachedWidget)
-			);
+					.IndexValue(ComponentIndex)
+					.IndexPositionToContent(EIndexerPosition::Left)
+					.ContentToIndex(DetachedWidget));
 		}
 
 		return true;
@@ -281,19 +273,19 @@ bool UAccessibilityGraphEditorContext::FindStaticComponents(const TSharedRef<SWi
 	return false;
 }
 
-bool UAccessibilityGraphEditorContext::TreeViewCanTick()
+bool UGraphEditorContext::TreeViewCanTick()
 {
 	return TreeView.IsValid() && GraphMenu.IsValid();
 }
 
-bool UAccessibilityGraphEditorContext::TreeViewRequiresTick()
+bool UGraphEditorContext::TreeViewRequiresTick()
 {
 	if (!TreeView.IsValid() || !GraphMenu.IsValid())
 		return false;
 
 	bool bFilterTextChange = FilterTextBox.IsValid()
-		? FilterTextBox.Pin()->GetText().ToString() != TreeViewTickRequirements.PrevSearchText
-		: false;
+								 ? FilterTextBox.Pin()->GetText().ToString() != TreeViewTickRequirements.PrevSearchText
+								 : false;
 
 	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
 
@@ -301,11 +293,10 @@ bool UAccessibilityGraphEditorContext::TreeViewRequiresTick()
 		bFilterTextChange ||
 		TreeViewPtr->GetNumItemsBeingObserved() != TreeViewTickRequirements.PrevNumItemsBeingObserved ||
 		TreeViewPtr->GetNumGeneratedChildren() != TreeViewTickRequirements.PrevNumGeneratedChildren ||
-		TreeViewPtr->GetScrollDistance().Y != TreeViewTickRequirements.PrevScrollDistance
-	);
-} 
+		TreeViewPtr->GetScrollDistance().Y != TreeViewTickRequirements.PrevScrollDistance);
+}
 
-void UAccessibilityGraphEditorContext::TickTreeViewAccessibility()
+void UGraphEditorContext::TickTreeView()
 {
 	if (!TreeViewRequiresTick())
 		return;
@@ -313,9 +304,7 @@ void UAccessibilityGraphEditorContext::TickTreeViewAccessibility()
 	TSharedPtr<STreeView<TSharedPtr<FGraphActionNode>>> TreeViewPtr = TreeView.Pin();
 
 	TArray<TSharedPtr<FGraphActionNode>> Items = TArray<TSharedPtr<FGraphActionNode>>(
-		TreeViewPtr->GetRootItems()
-	);
-
+		TreeViewPtr->GetRootItems());
 
 	TSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>> ItemWidget = nullptr;
 	const int32 IndexOffset = GetStaticIndexOffset();
@@ -329,8 +318,7 @@ void UAccessibilityGraphEditorContext::TickTreeViewAccessibility()
 			Items.Append(Item->Children);
 
 		ItemWidget = StaticCastSharedPtr<STableRow<TSharedPtr<FGraphActionNode>>>(
-			TreeViewPtr->WidgetFromItem(Item)
-		);
+			TreeViewPtr->WidgetFromItem(Item));
 		if (!ItemWidget.IsValid())
 			continue;
 
@@ -338,30 +326,27 @@ void UAccessibilityGraphEditorContext::TickTreeViewAccessibility()
 
 		if (ItemContent->GetType() == "SContentIndexer")
 		{
-			UpdateAccessibilityWidget(
-				StaticCastSharedRef<SContentIndexer>(ItemContent.ToSharedRef()), 
-				IndexOffset + ItemWidget->GetIndexInList()
-			);
+			UpdateIndexWidget(
+				StaticCastSharedRef<SContentIndexer>(ItemContent.ToSharedRef()),
+				IndexOffset + ItemWidget->GetIndexInList());
 		}
 		else
 		{
 			ItemWidget->SetContent(
-				CreateAccessibilityWrapper(ItemContent.ToSharedRef(), IndexOffset + ItemWidget->GetIndexInList())
-			);
+				CreateIndexWrapper(ItemContent.ToSharedRef(), IndexOffset + ItemWidget->GetIndexInList()));
 		}
 	}
 }
 
-void UAccessibilityGraphEditorContext::UpdateAccessibilityWidget(const TSharedRef<SContentIndexer>& ContentIndexer, const int32& NewIndex)
+void UGraphEditorContext::UpdateIndexWidget(const TSharedRef<SContentIndexer> &ContentIndexer, const int32 &NewIndex)
 {
 	ContentIndexer->UpdateIndex(NewIndex);
 }
 
-const TSharedRef<SContentIndexer> UAccessibilityGraphEditorContext::CreateAccessibilityWrapper(const TSharedRef<SWidget>& ContentToWrap, const int32& Index)
+const TSharedRef<SContentIndexer> UGraphEditorContext::CreateIndexWrapper(const TSharedRef<SWidget> &ContentToWrap, const int32 &Index)
 {
 	return SNew(SContentIndexer)
 		.IndexValue(Index)
 		.IndexPositionToContent(EIndexerPosition::Left)
 		.ContentToIndex(ContentToWrap);
 }
-

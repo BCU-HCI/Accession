@@ -6,7 +6,7 @@
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 
-#include "AccessibilityWrappers/AccessibilityWindowToolbar.h"
+#include "FunctionalityWrappers/WindowToolbar.h"
 
 #include "Algo/LevenshteinDistance.h"
 #include "Framework/Docking/TabManager.h"
@@ -14,15 +14,14 @@
 #include "PhraseTree/PhraseIntInputNode.h"
 #include "PhraseTree/PhraseStringInputNode.h"
 
-UWindowInteractionLibrary::UWindowInteractionLibrary(const FObjectInitializer& ObjectInitializer)
-    : Super(ObjectInitializer)
+UWindowInteractionLibrary::UWindowInteractionLibrary(const FObjectInitializer &ObjectInitializer)
+	: Super(ObjectInitializer)
 {
-	WindowToolBar = NewObject<UAccessibilityWindowToolbar>();
+	WindowToolBar = NewObject<UWindowToolbar>();
 }
 
 UWindowInteractionLibrary::~UWindowInteractionLibrary()
 {
-
 }
 
 void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
@@ -31,91 +30,88 @@ void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 		TPhraseNodeArray{
 
 			MakeShared<FPhraseNode>(TEXT("WINDOW"),
-			TPhraseNodeArray{
+									TPhraseNodeArray{
 
-				MakeShared<FPhraseNode>(TEXT("NEXT"),
-				TPhraseNodeArray {
+										MakeShared<FPhraseNode>(TEXT("NEXT"),
+																TPhraseNodeArray{
 
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchNextActiveWindow))
+																	MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchNextActiveWindow))
 
-				}),
+																}),
 
-				MakeShared<FPhraseNode>(TEXT("PREVIOUS"),
-				TPhraseNodeArray {
+										MakeShared<FPhraseNode>(TEXT("PREVIOUS"),
+																TPhraseNodeArray{
 
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchPrevActiveWindow))
+																	MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchPrevActiveWindow))
 
-				}),
+																}),
 
-				MakeShared<FPhraseNode>(TEXT("CLOSE"),
-				TPhraseNodeArray {
+										MakeShared<FPhraseNode>(TEXT("CLOSE"),
+																TPhraseNodeArray{
 
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::CloseActiveWindow))
+																	MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::CloseActiveWindow))
 
-				}),
+																}),
 
-			}),
+									}),
 
 			MakeShared<FPhraseNode>(TEXT("TAB"),
-			TPhraseNodeArray {
+									TPhraseNodeArray{
 
-				MakeShared<FPhraseNode>(TEXT("NEXT"),
-				TPhraseNodeArray {
+										MakeShared<FPhraseNode>(TEXT("NEXT"),
+																TPhraseNodeArray{
 
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchNextTabInStack))
+																	MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchNextTabInStack))
 
-				}),
+																}),
 
-				MakeShared<FPhraseNode>(TEXT("PREVIOUS"),
-				TPhraseNodeArray {
+										MakeShared<FPhraseNode>(TEXT("PREVIOUS"),
+																TPhraseNodeArray{
 
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchPrevTabInStack))
+																	MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SwitchPrevTabInStack))
 
-				}),
+																}),
 
-				MakeShared<FPhraseNode>(TEXT("SELECT"),
-				TPhraseNodeArray {
+										MakeShared<FPhraseNode>(TEXT("SELECT"),
+																TPhraseNodeArray{
 
-					MakeShared<FPhraseStringInputNode>(TEXT("TAB_NAME"),
-					TPhraseNodeArray {
+																	MakeShared<FPhraseStringInputNode>(TEXT("TAB_NAME"),
+																									   TPhraseNodeArray{
 
-						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SelectTabInStack))
+																										   MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SelectTabInStack))
 
-					})
+																									   })
 
-				})
-			}),
+																})}),
 
 			MakeShared<FPhraseNode>(TEXT("TOOLBAR"),
-			TPhraseNodeArray {
+									TPhraseNodeArray{
 
-				MakeShared<FPhraseIntInputNode>(TEXT("ITEM_INDEX"),
-				TPhraseNodeArray {
+										MakeShared<FPhraseIntInputNode>(TEXT("ITEM_INDEX"),
+																		TPhraseNodeArray{
 
-					MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SelectToolBarItem))
+																			MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::SelectToolBarItem))
 
-				})
+																		})
 
-			}),
+									}),
 
 			MakeShared<FPhraseNode>(TEXT("UNDO"),
-			TPhraseNodeArray {
+									TPhraseNodeArray{
 
-				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::UndoAction))
+										MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::UndoAction))
 
-			}),
+									}),
 
 			MakeShared<FPhraseNode>(TEXT("REDO"),
-			TPhraseNodeArray {
+									TPhraseNodeArray{
 
-				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::RedoAction))
+										MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UWindowInteractionLibrary::RedoAction))
 
-			})
-		}
-	);
+									})});
 }
 
-void UWindowInteractionLibrary::SwitchNextActiveWindow(FParseRecord& Record)
+void UWindowInteractionLibrary::SwitchNextActiveWindow(FParseRecord &Record)
 {
 	GET_ACTIVE_REGULAR_WINDOW(ActiveWindow)
 
@@ -125,7 +121,7 @@ void UWindowInteractionLibrary::SwitchNextActiveWindow(FParseRecord& Record)
 	int32 FoundIndex;
 	if (!AllWindows.Find(ActiveWindow.ToSharedRef(), FoundIndex))
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SwitchNextActiveWindow: Cannot Find the Current Active Window."))
+		UE_LOG(LogAccessionPhraseEvent, Display, TEXT("SwitchNextActiveWindow: Cannot Find the Current Active Window."))
 		return;
 	}
 
@@ -136,7 +132,7 @@ void UWindowInteractionLibrary::SwitchNextActiveWindow(FParseRecord& Record)
 	// Set Window Major Tab Focus?
 }
 
-void UWindowInteractionLibrary::SwitchPrevActiveWindow(FParseRecord& Record)
+void UWindowInteractionLibrary::SwitchPrevActiveWindow(FParseRecord &Record)
 {
 	GET_ACTIVE_REGULAR_WINDOW(ActiveWindow)
 
@@ -146,33 +142,32 @@ void UWindowInteractionLibrary::SwitchPrevActiveWindow(FParseRecord& Record)
 	int32 FoundIndex;
 	if (!AllWindows.Find(ActiveWindow.ToSharedRef(), FoundIndex))
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SwitchPrevActiveWindow: Cannot Find the Current Active Window."))
-			return;
+		UE_LOG(LogAccessionPhraseEvent, Display, TEXT("SwitchPrevActiveWindow: Cannot Find the Current Active Window."))
+		return;
 	}
 
-	TSharedRef<SWindow> PrevWindow = AllWindows[
-		FoundIndex - 1 < 0
-			? AllWindows.Num() - 1
-			: FoundIndex - 1
-	];
+	TSharedRef<SWindow> PrevWindow = AllWindows[FoundIndex - 1 < 0
+													? AllWindows.Num() - 1
+													: FoundIndex - 1];
 
 	PrevWindow->BringToFront(true);
 
 	// Set Window Major Tab Focus?
 }
 
-void UWindowInteractionLibrary::CloseActiveWindow(FParseRecord &Record) {
-	FSlateApplication& SlateApp = FSlateApplication::Get();
+void UWindowInteractionLibrary::CloseActiveWindow(FParseRecord &Record)
+{
+	FSlateApplication &SlateApp = FSlateApplication::Get();
 	if (!SlateApp.CanDisplayWindows())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("CloseActiveWindow: Slate Application cannot display windows."));
+		UE_LOG(LogAccessionPhraseEvent, Display, TEXT("CloseActiveWindow: Slate Application cannot display windows."));
 		return;
 	}
 
 	TSharedPtr<SWindow> ActiveWindow = SlateApp.GetActiveTopLevelWindow();
 	if (!ActiveWindow.IsValid())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("CloseActiveWindow: No Active Window Found."));
+		UE_LOG(LogAccessionPhraseEvent, Display, TEXT("CloseActiveWindow: No Active Window Found."));
 		return;
 	}
 
@@ -183,12 +178,12 @@ void UWindowInteractionLibrary::CloseActiveWindow(FParseRecord &Record) {
 	}
 }
 
-void UWindowInteractionLibrary::SelectToolBarItem(FParseRecord& Record)
+void UWindowInteractionLibrary::SelectToolBarItem(FParseRecord &Record)
 {
-	UParseIntInput* ItemIndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("ITEM_INDEX"));
-	if (ItemIndexInput == nullptr) 
+	UParseIntInput *ItemIndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("ITEM_INDEX"));
+	if (ItemIndexInput == nullptr)
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Display, TEXT("SelectToolBarItem: No Item Index Found."));
+		UE_LOG(LogAccessionPhraseEvent, Display, TEXT("SelectToolBarItem: No Item Index Found."));
 		return;
 	}
 
@@ -211,7 +206,7 @@ namespace TabUtils
 		 * Gets a Reference to the Areas Child Nodes Array.
 		 * @return A Reference to the FAreas Child Layout Nodes.
 		 */
-		const TArray<TSharedRef<FLayoutNode>>& GetChildNodes()
+		const TArray<TSharedRef<FLayoutNode>> &GetChildNodes()
 		{
 			return ChildNodes;
 		}
@@ -227,7 +222,7 @@ namespace TabUtils
 		 * Gets a Reference to the Stacks Child Tabs Array.
 		 * @return A Reference to the FStacks Child Tabs.
 		 */
-		const TArray<FTabManager::FTab>& GetTabs()
+		const TArray<FTabManager::FTab> &GetTabs()
 		{
 			return Tabs;
 		}
@@ -243,7 +238,7 @@ namespace TabUtils
 		 * Gets a Reference to the Splitters Child Nodes Array.
 		 * @return A Reference to the FSplitter Child Layout Nodes.
 		 */
-		const TArray<TSharedRef<FLayoutNode>>& GetChildNodes()
+		const TArray<TSharedRef<FLayoutNode>> &GetChildNodes()
 		{
 			return ChildNodes;
 		}
@@ -251,10 +246,10 @@ namespace TabUtils
 
 	/**
 	 * Collects all Tabs Manager by this Tab Manager, through its Layout.
-	 * @param TabManager The Tab Manager to Collect Descendant Tabs from.  
+	 * @param TabManager The Tab Manager to Collect Descendant Tabs from.
 	 * @return An Array of Found Tabs from the Root Layout.
 	 */
-	[[nodiscard]] TArray<FTabManager::FTab> CollectManagedTabs(const TSharedRef<FTabManager>& TabManager)
+	[[nodiscard]] TArray<FTabManager::FTab> CollectManagedTabs(const TSharedRef<FTabManager> &TabManager)
 	{
 		TArray<FTabManager::FTab> ManagedTabs = TArray<FTabManager::FTab>();
 
@@ -262,16 +257,15 @@ namespace TabUtils
 		const TSharedPtr<FOpenArea> MainArea = StaticCastSharedPtr<FOpenArea>(Layout->GetPrimaryArea().Pin());
 		if (!MainArea.IsValid())
 		{
-			UE_LOG(LogOpenAccessibility, Warning, TEXT("CollectManagedTabs: Primary Area is Not Valid"))
+			UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("CollectManagedTabs: Primary Area is Not Valid"))
 			return ManagedTabs;
 		}
 
 		TSharedPtr<FTabManager::FLayoutNode> CurrentNode = nullptr;
 		TArray<TSharedRef<FTabManager::FLayoutNode>> NodesToCheck = TArray{
-			MainArea->GetChildNodes()
-		};
+			MainArea->GetChildNodes()};
 
-		while(!NodesToCheck.IsEmpty())
+		while (!NodesToCheck.IsEmpty())
 		{
 			CurrentNode = NodesToCheck[0];
 			NodesToCheck.RemoveAt(0);
@@ -290,7 +284,7 @@ namespace TabUtils
 			}
 			else
 			{
-				UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("CollectManagedTabs: Unknown Node Type."))
+				UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("CollectManagedTabs: Unknown Node Type."))
 			}
 		}
 
@@ -298,14 +292,14 @@ namespace TabUtils
 	}
 }
 
-void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord& Record)
+void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord &Record)
 {
 	GET_ACTIVE_TAB(ActiveTab);
 
 	TSharedPtr<FTabManager> ActiveTabManager = ActiveTab->GetTabManagerPtr();
 	if (!ActiveTabManager.IsValid())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Cannot Find Active Tab Manager"))
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Cannot Find Active Tab Manager"))
 		return;
 	}
 
@@ -324,19 +318,16 @@ void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord& Record)
 				CurrentTabIndex += 1;
 				CurrentTabIndex %= FoundTabs.Num();
 
-				const FTabManager::FTab NextTab = FoundTabs[
-					CurrentTabIndex
-				];
+				const FTabManager::FTab NextTab = FoundTabs[CurrentTabIndex];
 
 				if (NextTab.TabId == ActiveTabId)
 				{
-					UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: No Next Tab Found."))
+					UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SwitchNextTabInStack: No Next Tab Found."))
 					return;
 				}
 
 				NextTabWidget = ActiveTabManager->FindExistingLiveTab(
-					NextTab.TabId
-				);
+					NextTab.TabId);
 			}
 
 			FGlobalTabmanager::Get()->SetActiveTab(NextTabWidget);
@@ -348,11 +339,11 @@ void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord& Record)
 
 	/*
 	// Most Straightforward Implementation, But Requires Private Core Tab Classes
-	
+
 	TSharedPtr<SDockingTabStack> ActiveTabStack = ActiveTab->GetParentDockTabStack();
 	if (!ActiveTabStack.IsValid())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: No Parent Tab Stack Found."))
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SwitchNextTabInStack: No Parent Tab Stack Found."))
 		return;
 	}
 
@@ -361,7 +352,7 @@ void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord& Record)
 	int32 FoundIndex;
 	if (!AllTabs.Find(ActiveTab.ToSharedRef(), FoundIndex))
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Active Tab Not Found In Tab Stack."))
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SwitchNextTabInStack: Active Tab Not Found In Tab Stack."))
 		return;
 	}
 
@@ -372,21 +363,21 @@ void UWindowInteractionLibrary::SwitchNextTabInStack(FParseRecord& Record)
 	*/
 }
 
-void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
+void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord &Record)
 {
 	GET_ACTIVE_TAB(ActiveTab);
 
 	TSharedPtr<FTabManager> ActiveTabManager = ActiveTab->GetTabManagerPtr();
 	if (!ActiveTabManager.IsValid())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: Cannot Find Active Tab Manager"))
-			return;
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: Cannot Find Active Tab Manager"))
+		return;
 	}
 
 	TArray<FTabManager::FTab> FoundTabs = TabUtils::CollectManagedTabs(ActiveTabManager.ToSharedRef());
 	if (FoundTabs.IsEmpty())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: No Tabs Found."))
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: No Tabs Found."))
 		return;
 	}
 
@@ -406,19 +397,16 @@ void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
 					CurrentTabIndex = FoundTabs.Num() - 1;
 				}
 
-				const FTabManager::FTab NextTab = FoundTabs[
-					CurrentTabIndex
-				];
+				const FTabManager::FTab NextTab = FoundTabs[CurrentTabIndex];
 
 				if (NextTab.TabId == ActiveTabId)
 				{
-					UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchNextTabInStack: No Next Tab Found."))
-						return;
+					UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SwitchNextTabInStack: No Next Tab Found."))
+					return;
 				}
 
 				PrevTabWidget = ActiveTabManager->FindExistingLiveTab(
-					NextTab.TabId
-				);
+					NextTab.TabId);
 			}
 
 			FGlobalTabmanager::Get()->SetActiveTab(PrevTabWidget);
@@ -434,7 +422,7 @@ void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
 	TSharedPtr<SDockingTabStack> ActiveTabStack = ActiveTab->GetParentDockTabStack();
 	if (!ActiveTabStack.IsValid())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: No Parent Tab Stack Found."))
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: No Parent Tab Stack Found."))
 			return;
 	}
 
@@ -443,7 +431,7 @@ void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
 	int32 FoundIndex;
 	if (!AllTabs.Find(ActiveTab.ToSharedRef(), FoundIndex))
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: Active Tab Not Found In Tab Stack."))
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SwitchPrevTabInStack: Active Tab Not Found In Tab Stack."))
 			return;
 	}
 
@@ -458,12 +446,12 @@ void UWindowInteractionLibrary::SwitchPrevTabInStack(FParseRecord& Record)
 	*/
 }
 
-void UWindowInteractionLibrary::SelectTabInStack(FParseRecord& Record)
+void UWindowInteractionLibrary::SelectTabInStack(FParseRecord &Record)
 {
-	UParseStringInput* TabNameInput =  Record.GetPhraseInput<UParseStringInput>(TEXT("TAB_NAME"));
+	UParseStringInput *TabNameInput = Record.GetPhraseInput<UParseStringInput>(TEXT("TAB_NAME"));
 	if (TabNameInput == nullptr)
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SelectTabInStack: No Tab Name Input Found."))
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SelectTabInStack: No Tab Name Input Found."))
 		return;
 	}
 
@@ -472,14 +460,14 @@ void UWindowInteractionLibrary::SelectTabInStack(FParseRecord& Record)
 	TSharedPtr<FTabManager> ActiveTabManager = ActiveTab->GetTabManagerPtr();
 	if (!ActiveTabManager.IsValid())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SelectTabInStack: Cannot Find Active Tab Manager"))
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SelectTabInStack: Cannot Find Active Tab Manager"))
 		return;
 	}
 
 	TArray<FTabManager::FTab> FoundTabs = TabUtils::CollectManagedTabs(ActiveTabManager.ToSharedRef());
 	if (FoundTabs.IsEmpty())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SelectTabInStack: No Tabs Found."))
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SelectTabInStack: No Tabs Found."))
 		return;
 	}
 
@@ -488,11 +476,10 @@ void UWindowInteractionLibrary::SelectTabInStack(FParseRecord& Record)
 	TSharedPtr<SDockTab> FoundTabWidget = TSharedPtr<SDockTab>();
 	int32 FoundTabDistance = INT32_MAX;
 
-	for (auto& Tab : FoundTabs)
+	for (auto &Tab : FoundTabs)
 	{
-		TSharedPtr<SDockTab> CurrTabWidget= ActiveTabManager->FindExistingLiveTab(
-			Tab.TabId
-		);
+		TSharedPtr<SDockTab> CurrTabWidget = ActiveTabManager->FindExistingLiveTab(
+			Tab.TabId);
 
 		if (!CurrTabWidget.IsValid())
 		{
@@ -516,7 +503,7 @@ void UWindowInteractionLibrary::SelectTabInStack(FParseRecord& Record)
 
 	if (!FoundTabWidget.IsValid())
 	{
-		UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT("SelectTabInStack: No Tab Found."))
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("SelectTabInStack: No Tab Found."))
 		return;
 	}
 
@@ -524,12 +511,12 @@ void UWindowInteractionLibrary::SelectTabInStack(FParseRecord& Record)
 	FoundTabWidget->ActivateInParent(SetDirectly);
 }
 
-void UWindowInteractionLibrary::UndoAction(FParseRecord& Record)
+void UWindowInteractionLibrary::UndoAction(FParseRecord &Record)
 {
 	GEditor->UndoTransaction();
 }
 
-void UWindowInteractionLibrary::RedoAction(FParseRecord& Record)
+void UWindowInteractionLibrary::RedoAction(FParseRecord &Record)
 {
 	GEditor->RedoTransaction();
 }
