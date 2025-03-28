@@ -185,8 +185,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:aab82e92732204d8f0c712b7e68b3fbc5 inherit pub_attribs_classFPhraseNode"><td class="memItemLeft" align="right" valign="top">FString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a></td></tr>
 <tr class="memdesc:aab82e92732204d8f0c712b7e68b3fbc5 inherit pub_attribs_classFPhraseNode"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Phrase Bound to this   <a href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">More...</a><br /></td></tr>
 <tr class="separator:aab82e92732204d8f0c712b7e68b3fbc5 inherit pub_attribs_classFPhraseNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a485f745d7335c10d1c9c03e0de5ee291 inherit pub_attribs_classFPhraseNode"><td class="memItemLeft" align="right" valign="top">TDelegate&lt; void(<a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;Record)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseNode.html#a485f745d7335c10d1c9c03e0de5ee291">OnPhraseParsed</a></td></tr>
-<tr class="separator:a485f745d7335c10d1c9c03e0de5ee291 inherit pub_attribs_classFPhraseNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaee01dc53fc7c188ce7d907945bf50d3 inherit pub_attribs_classFPhraseNode"><td class="memItemLeft" align="right" valign="top">TDelegate&lt; void(<a class="el" href="structFParseRecord.html">FParseRecord</a> &amp;Record)&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseNode.html#aaee01dc53fc7c188ce7d907945bf50d3">OnPhraseParsed</a></td></tr>
+<tr class="separator:aaee01dc53fc7c188ce7d907945bf50d3 inherit pub_attribs_classFPhraseNode"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classFPhraseNode"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classFPhraseNode')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classFPhraseNode.html">FPhraseNode</a></td></tr>
 <tr class="memitem:ae22f5df5250868321eeb62b6c4ecf01a inherit pro_methods_classFPhraseNode"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFPhraseNode.html#ae22f5df5250868321eeb62b6c4ecf01a">HasLeafChild</a> ()</td></tr>
 <tr class="memdesc:ae22f5df5250868321eeb62b6c4ecf01a inherit pro_methods_classFPhraseNode"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters through the children, to check if it contains a Leaf Child.   <a href="classFPhraseNode.html#ae22f5df5250868321eeb62b6c4ecf01a">More...</a><br /></td></tr>
@@ -198,7 +198,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="PhraseTree_8h_source.html#l00227">227</a> of file <a class="el" href="PhraseTree_8h_source.html">PhraseTree.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PhraseTree_8h_source.html#l00220">220</a> of file <a class="el" href="PhraseTree_8h_source.html">PhraseTree.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa151c7fa68349dd4292cc8cd6a3c5e23" name="aa151c7fa68349dd4292cc8cd6a3c5e23"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa151c7fa68349dd4292cc8cd6a3c5e23">&#9670;&#160;</a></span>FPhraseTree()</h2>
@@ -215,16 +215,16 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00012">12</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   12</span>                         : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(TEXT(<span class="stringliteral">&quot;ROOT_NODE&quot;</span>))</div>
-<div class="line"><span class="lineno">   13</span>{</div>
-<div class="line"><span class="lineno">   14</span>    ContextManager = <a class="code hl_struct" href="structFPhraseTreeContextManager.html">FPhraseTreeContextManager</a>();</div>
-<div class="line"><span class="lineno">   15</span> </div>
-<div class="line"><span class="lineno">   16</span>    FTickerDelegate TickDelegate = FTickerDelegate::CreateRaw(<span class="keyword">this</span>, &amp;FPhraseTree::Tick);</div>
-<div class="line"><span class="lineno">   17</span>    TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);</div>
-<div class="line"><span class="lineno">   18</span>}</div>
-<div class="ttc" id="aclassFPhraseNode_html"><div class="ttname"><a href="classFPhraseNode.html">FPhraseNode</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00054">PhraseNode.h:55</a></div></div>
-<div class="ttc" id="astructFPhraseTreeContextManager_html"><div class="ttname"><a href="structFPhraseTreeContextManager.html">FPhraseTreeContextManager</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00055">PhraseTree.h:56</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00011">11</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   11</span>                         : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(TEXT(<span class="stringliteral">&quot;ROOT_NODE&quot;</span>))</div>
+<div class="line"><span class="lineno">   12</span>{</div>
+<div class="line"><span class="lineno">   13</span>    ContextManager = <a class="code hl_struct" href="structFPhraseTreeContextManager.html">FPhraseTreeContextManager</a>();</div>
+<div class="line"><span class="lineno">   14</span> </div>
+<div class="line"><span class="lineno">   15</span>    FTickerDelegate TickDelegate = FTickerDelegate::CreateRaw(<span class="keyword">this</span>, &amp;FPhraseTree::Tick);</div>
+<div class="line"><span class="lineno">   16</span>    TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);</div>
+<div class="line"><span class="lineno">   17</span>}</div>
+<div class="ttc" id="aclassFPhraseNode_html"><div class="ttname"><a href="classFPhraseNode.html">FPhraseNode</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00053">PhraseNode.h:54</a></div></div>
+<div class="ttc" id="astructFPhraseTreeContextManager_html"><div class="ttname"><a href="structFPhraseTreeContextManager.html">FPhraseTreeContextManager</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00054">PhraseTree.h:55</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -251,10 +251,10 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00020">20</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   21</span>{</div>
-<div class="line"><span class="lineno">   22</span>    FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);</div>
-<div class="line"><span class="lineno">   23</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00019">19</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   20</span>{</div>
+<div class="line"><span class="lineno">   21</span>    FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);</div>
+<div class="line"><span class="lineno">   22</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -283,40 +283,40 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00185">185</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  186</span>{</div>
-<div class="line"><span class="lineno">  187</span>    TArray&lt;FPhraseTreeBranchBind&gt; ToBindArray = TArray&lt;FPhraseTreeBranchBind&gt;();</div>
-<div class="line"><span class="lineno">  188</span> </div>
-<div class="line"><span class="lineno">  189</span>    ToBindArray.Add(<a class="code hl_struct" href="structFPhraseTreeBranchBind.html">FPhraseTreeBranchBind</a>(AsShared(), InNode));</div>
-<div class="line"><span class="lineno">  190</span> </div>
-<div class="line"><span class="lineno">  191</span>    <span class="keywordflow">while</span> (!ToBindArray.IsEmpty())</div>
-<div class="line"><span class="lineno">  192</span>    {</div>
-<div class="line"><span class="lineno">  193</span>        <a class="code hl_struct" href="structFPhraseTreeBranchBind.html">FPhraseTreeBranchBind</a> BranchToBind = ToBindArray.Pop();</div>
-<div class="line"><span class="lineno">  194</span> </div>
-<div class="line"><span class="lineno">  195</span>        <span class="comment">// Check all ChildNodes to see if they are similar in purpose.</span></div>
-<div class="line"><span class="lineno">  196</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; ChildNode : BranchToBind.<a class="code hl_variable" href="structFPhraseTreeBranchBind.html#ab8d30df40e30af23f51dd0f4d03c2d90">StartNode</a>-&gt;ChildNodes)</div>
-<div class="line"><span class="lineno">  197</span>        {</div>
-<div class="line"><span class="lineno">  198</span>            <span class="comment">// If a ChildNode meets the same requirements as the BranchRoot,</span></div>
-<div class="line"><span class="lineno">  199</span>            <span class="comment">// then Split Bind Process to the ChildNodes.</span></div>
-<div class="line"><span class="lineno">  200</span>            <span class="keywordflow">if</span> (ChildNode-&gt;RequiresPhrase(BranchToBind.<a class="code hl_variable" href="structFPhraseTreeBranchBind.html#a49265ea6bb0bc84c20f12a07e070c539">BranchRoot</a>-&gt;BoundPhrase))</div>
-<div class="line"><span class="lineno">  201</span>            {</div>
-<div class="line"><span class="lineno">  202</span>                <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; BranchChildNode : BranchToBind.<a class="code hl_variable" href="structFPhraseTreeBranchBind.html#a49265ea6bb0bc84c20f12a07e070c539">BranchRoot</a>-&gt;ChildNodes)</div>
-<div class="line"><span class="lineno">  203</span>                {</div>
-<div class="line"><span class="lineno">  204</span>                    ToBindArray.Add(<a class="code hl_struct" href="structFPhraseTreeBranchBind.html">FPhraseTreeBranchBind</a>(ChildNode, BranchChildNode));</div>
-<div class="line"><span class="lineno">  205</span>                }</div>
-<div class="line"><span class="lineno">  206</span> </div>
-<div class="line"><span class="lineno">  207</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  208</span>            }</div>
-<div class="line"><span class="lineno">  209</span>        }</div>
-<div class="line"><span class="lineno">  210</span> </div>
-<div class="line"><span class="lineno">  211</span>        <span class="comment">// If the Start Node has no similar children, then bind the branch to the start node.</span></div>
-<div class="line"><span class="lineno">  212</span>        <span class="comment">// Can force bind, as previous checks show no child is similar.</span></div>
-<div class="line"><span class="lineno">  213</span>        BranchToBind.<a class="code hl_variable" href="structFPhraseTreeBranchBind.html#ab8d30df40e30af23f51dd0f4d03c2d90">StartNode</a>-&gt;BindChildNodeForce(BranchToBind.<a class="code hl_variable" href="structFPhraseTreeBranchBind.html#a49265ea6bb0bc84c20f12a07e070c539">BranchRoot</a>);</div>
-<div class="line"><span class="lineno">  214</span>    }</div>
-<div class="line"><span class="lineno">  215</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00184">184</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  185</span>{</div>
+<div class="line"><span class="lineno">  186</span>    TArray&lt;FPhraseTreeBranchBind&gt; ToBindArray = TArray&lt;FPhraseTreeBranchBind&gt;();</div>
+<div class="line"><span class="lineno">  187</span> </div>
+<div class="line"><span class="lineno">  188</span>    ToBindArray.Add(<a class="code hl_struct" href="structFPhraseTreeBranchBind.html">FPhraseTreeBranchBind</a>(AsShared(), InNode));</div>
+<div class="line"><span class="lineno">  189</span> </div>
+<div class="line"><span class="lineno">  190</span>    <span class="keywordflow">while</span> (!ToBindArray.IsEmpty())</div>
+<div class="line"><span class="lineno">  191</span>    {</div>
+<div class="line"><span class="lineno">  192</span>        <a class="code hl_struct" href="structFPhraseTreeBranchBind.html">FPhraseTreeBranchBind</a> BranchToBind = ToBindArray.Pop();</div>
+<div class="line"><span class="lineno">  193</span> </div>
+<div class="line"><span class="lineno">  194</span>        <span class="comment">// Check all ChildNodes to see if they are similar in purpose.</span></div>
+<div class="line"><span class="lineno">  195</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ChildNode : BranchToBind.<a class="code hl_variable" href="structFPhraseTreeBranchBind.html#ab8d30df40e30af23f51dd0f4d03c2d90">StartNode</a>-&gt;ChildNodes)</div>
+<div class="line"><span class="lineno">  196</span>        {</div>
+<div class="line"><span class="lineno">  197</span>            <span class="comment">// If a ChildNode meets the same requirements as the BranchRoot,</span></div>
+<div class="line"><span class="lineno">  198</span>            <span class="comment">// then Split Bind Process to the ChildNodes.</span></div>
+<div class="line"><span class="lineno">  199</span>            <span class="keywordflow">if</span> (ChildNode-&gt;RequiresPhrase(BranchToBind.<a class="code hl_variable" href="structFPhraseTreeBranchBind.html#a49265ea6bb0bc84c20f12a07e070c539">BranchRoot</a>-&gt;BoundPhrase))</div>
+<div class="line"><span class="lineno">  200</span>            {</div>
+<div class="line"><span class="lineno">  201</span>                <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;BranchChildNode : BranchToBind.<a class="code hl_variable" href="structFPhraseTreeBranchBind.html#a49265ea6bb0bc84c20f12a07e070c539">BranchRoot</a>-&gt;ChildNodes)</div>
+<div class="line"><span class="lineno">  202</span>                {</div>
+<div class="line"><span class="lineno">  203</span>                    ToBindArray.Add(<a class="code hl_struct" href="structFPhraseTreeBranchBind.html">FPhraseTreeBranchBind</a>(ChildNode, BranchChildNode));</div>
+<div class="line"><span class="lineno">  204</span>                }</div>
+<div class="line"><span class="lineno">  205</span> </div>
+<div class="line"><span class="lineno">  206</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  207</span>            }</div>
+<div class="line"><span class="lineno">  208</span>        }</div>
+<div class="line"><span class="lineno">  209</span> </div>
+<div class="line"><span class="lineno">  210</span>        <span class="comment">// If the Start Node has no similar children, then bind the branch to the start node.</span></div>
+<div class="line"><span class="lineno">  211</span>        <span class="comment">// Can force bind, as previous checks show no child is similar.</span></div>
+<div class="line"><span class="lineno">  212</span>        BranchToBind.<a class="code hl_variable" href="structFPhraseTreeBranchBind.html#ab8d30df40e30af23f51dd0f4d03c2d90">StartNode</a>-&gt;BindChildNodeForce(BranchToBind.<a class="code hl_variable" href="structFPhraseTreeBranchBind.html#a49265ea6bb0bc84c20f12a07e070c539">BranchRoot</a>);</div>
+<div class="line"><span class="lineno">  213</span>    }</div>
+<div class="line"><span class="lineno">  214</span>}</div>
 <div class="ttc" id="astructFPhraseTreeBranchBind_html"><div class="ttname"><a href="structFPhraseTreeBranchBind.html">FPhraseTreeBranchBind</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00025">PhraseTree.h:26</a></div></div>
-<div class="ttc" id="astructFPhraseTreeBranchBind_html_a49265ea6bb0bc84c20f12a07e070c539"><div class="ttname"><a href="structFPhraseTreeBranchBind.html#a49265ea6bb0bc84c20f12a07e070c539">FPhraseTreeBranchBind::BranchRoot</a></div><div class="ttdeci">TPhraseNode BranchRoot</div><div class="ttdoc">The Root Node of the Branch that needs to be bound.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00052">PhraseTree.h:52</a></div></div>
-<div class="ttc" id="astructFPhraseTreeBranchBind_html_ab8d30df40e30af23f51dd0f4d03c2d90"><div class="ttname"><a href="structFPhraseTreeBranchBind.html#ab8d30df40e30af23f51dd0f4d03c2d90">FPhraseTreeBranchBind::StartNode</a></div><div class="ttdeci">TPhraseNode StartNode</div><div class="ttdoc">The Node to start the binding of this branch root.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00047">PhraseTree.h:47</a></div></div>
+<div class="ttc" id="astructFPhraseTreeBranchBind_html_a49265ea6bb0bc84c20f12a07e070c539"><div class="ttname"><a href="structFPhraseTreeBranchBind.html#a49265ea6bb0bc84c20f12a07e070c539">FPhraseTreeBranchBind::BranchRoot</a></div><div class="ttdeci">TPhraseNode BranchRoot</div><div class="ttdoc">The Root Node of the Branch that needs to be bound.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00051">PhraseTree.h:51</a></div></div>
+<div class="ttc" id="astructFPhraseTreeBranchBind_html_ab8d30df40e30af23f51dd0f4d03c2d90"><div class="ttname"><a href="structFPhraseTreeBranchBind.html#ab8d30df40e30af23f51dd0f4d03c2d90">FPhraseTreeBranchBind::StartNode</a></div><div class="ttdeci">TPhraseNode StartNode</div><div class="ttdoc">The Node to start the binding of this branch root.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00046">PhraseTree.h:46</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -338,14 +338,14 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Bind Multiple Branches to the Tree, that are not connected.  </p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00217">217</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  218</span>{</div>
-<div class="line"><span class="lineno">  219</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> TSharedPtr&lt;FPhraseNode&gt;&amp; Node : InNodes)</div>
-<div class="line"><span class="lineno">  220</span>    {</div>
-<div class="line"><span class="lineno">  221</span>        <a class="code hl_function" href="classFPhraseTree.html#aadd641aaeee910e7a366a68322f01593">BindBranch</a>(Node);</div>
-<div class="line"><span class="lineno">  222</span>    }</div>
-<div class="line"><span class="lineno">  223</span>}</div>
-<div class="ttc" id="aclassFPhraseTree_html_aadd641aaeee910e7a366a68322f01593"><div class="ttname"><a href="classFPhraseTree.html#aadd641aaeee910e7a366a68322f01593">FPhraseTree::BindBranch</a></div><div class="ttdeci">void BindBranch(const TPhraseNode &amp;InNode)</div><div class="ttdoc">Bind a branch to the tree. Attaching to any overlapping nodes.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8cpp_source.html#l00185">PhraseTree.cpp:185</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00216">216</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  217</span>{</div>
+<div class="line"><span class="lineno">  218</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> TSharedPtr&lt;FPhraseNode&gt; &amp;Node : InNodes)</div>
+<div class="line"><span class="lineno">  219</span>    {</div>
+<div class="line"><span class="lineno">  220</span>        <a class="code hl_function" href="classFPhraseTree.html#aadd641aaeee910e7a366a68322f01593">BindBranch</a>(Node);</div>
+<div class="line"><span class="lineno">  221</span>    }</div>
+<div class="line"><span class="lineno">  222</span>}</div>
+<div class="ttc" id="aclassFPhraseTree_html_aadd641aaeee910e7a366a68322f01593"><div class="ttname"><a href="classFPhraseTree.html#aadd641aaeee910e7a366a68322f01593">FPhraseTree::BindBranch</a></div><div class="ttdeci">void BindBranch(const TPhraseNode &amp;InNode)</div><div class="ttdoc">Bind a branch to the tree. Attaching to any overlapping nodes.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8cpp_source.html#l00184">PhraseTree.cpp:184</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -372,10 +372,10 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseTree_8h_source.html#l00233">233</a> of file <a class="el" href="PhraseTree_8h_source.html">PhraseTree.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  233</span>                                                   {</div>
-<div class="line"><span class="lineno">  234</span>        <span class="keywordflow">return</span> ContextManager;</div>
-<div class="line"><span class="lineno">  235</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="PhraseTree_8h_source.html#l00226">226</a> of file <a class="el" href="PhraseTree_8h_source.html">PhraseTree.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  227</span>    {</div>
+<div class="line"><span class="lineno">  228</span>        <span class="keywordflow">return</span> ContextManager;</div>
+<div class="line"><span class="lineno">  229</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -425,55 +425,55 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00141">141</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  142</span>{</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">if</span> (InPhraseWordArray.IsEmpty())</div>
-<div class="line"><span class="lineno">  144</span>    {</div>
-<div class="line"><span class="lineno">  145</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Phrase Tree || Provided Transcription Segment is Empty ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  146</span> </div>
-<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_NOT_PARSED);</div>
-<div class="line"><span class="lineno">  148</span>    }</div>
-<div class="line"><span class="lineno">  149</span> </div>
-<div class="line"><span class="lineno">  150</span>    <span class="comment">// First give the last visited node a chance to parse the phrase.</span></div>
-<div class="line"><span class="lineno">  151</span>    <span class="comment">// due to the possibility of connecting phrases over different transcription segments.</span></div>
-<div class="line"><span class="lineno">  152</span>    <span class="keywordflow">if</span> (LastVistedNode != <span class="keyword">nullptr</span> &amp;&amp; LastVistedNode.IsValid())</div>
-<div class="line"><span class="lineno">  153</span>    {</div>
-<div class="line"><span class="lineno">  154</span>        TArray&lt;FString&gt; PhraseWordArrayCopy = TArray(InPhraseWordArray);</div>
-<div class="line"><span class="lineno">  155</span> </div>
-<div class="line"><span class="lineno">  156</span>        <a class="code hl_struct" href="structFParseResult.html">FParseResult</a> ParseResult = LastVistedNode-&gt;ParseChildren(PhraseWordArrayCopy, LastVistedParseRecord);</div>
-<div class="line"><span class="lineno">  157</span>        <span class="keywordflow">if</span> (ParseResult.<a class="code hl_variable" href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">Result</a> &amp; PHRASE_PARSED | PHRASE_PARSED_AND_EXECUTED)</div>
-<div class="line"><span class="lineno">  158</span>        {</div>
-<div class="line"><span class="lineno">  159</span>            LastVistedNode.Reset();</div>
-<div class="line"><span class="lineno">  160</span>            InParseRecord = LastVistedParseRecord;</div>
-<div class="line"><span class="lineno">  161</span>            LastVistedParseRecord = <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>();</div>
-<div class="line"><span class="lineno">  162</span> </div>
-<div class="line"><span class="lineno">  163</span>            <span class="comment">// Swap Potentially Modified PhraseWordArray.</span></div>
-<div class="line"><span class="lineno">  164</span>            InPhraseWordArray = PhraseWordArrayCopy;</div>
-<div class="line"><span class="lineno">  165</span> </div>
-<div class="line"><span class="lineno">  166</span>            <span class="keywordflow">return</span> ParseResult;</div>
-<div class="line"><span class="lineno">  167</span>        }</div>
-<div class="line"><span class="lineno">  168</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (ParseResult.<a class="code hl_variable" href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">Result</a> != PHRASE_UNABLE_TO_PARSE)</div>
-<div class="line"><span class="lineno">  169</span>        { </div>
-<div class="line"><span class="lineno">  170</span>            <span class="keywordflow">return</span> ParseResult;</div>
-<div class="line"><span class="lineno">  171</span>        }</div>
-<div class="line"><span class="lineno">  172</span>    }</div>
-<div class="line"><span class="lineno">  173</span> </div>
-<div class="line"><span class="lineno">  174</span>    <span class="comment">// Check if the Context Stack has Objects, if so propagation from the Context Root.</span></div>
-<div class="line"><span class="lineno">  175</span>    <span class="keywordflow">if</span> (ContextManager.<a class="code hl_function" href="structFPhraseTreeContextManager.html#a028433f8424f7c4e21cc6107bb2ee6c9">HasContextObjects</a>())</div>
-<div class="line"><span class="lineno">  176</span>    {</div>
-<div class="line"><span class="lineno">  177</span>        <span class="comment">// Propagate from the Context Root, that is the Top of the Context Stack.</span></div>
-<div class="line"><span class="lineno">  178</span>        <span class="keywordflow">return</span> ContextManager.<a class="code hl_function" href="structFPhraseTreeContextManager.html#aa402440624f976fd50ad9008bd52017a">PeekContextObject</a>()-&gt;GetContextRoot()-&gt;ParsePhraseAsContext(InPhraseWordArray, InParseRecord);</div>
-<div class="line"><span class="lineno">  179</span>    }</div>
-<div class="line"><span class="lineno">  180</span> </div>
-<div class="line"><span class="lineno">  181</span>    <span class="comment">// Otherwise, start a new propagation entirely from the Tree Root.</span></div>
-<div class="line"><span class="lineno">  182</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">ParseChildren</a>(InPhraseWordArray, InParseRecord);</div>
-<div class="line"><span class="lineno">  183</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00140">140</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  141</span>{</div>
+<div class="line"><span class="lineno">  142</span>    <span class="keywordflow">if</span> (InPhraseWordArray.IsEmpty())</div>
+<div class="line"><span class="lineno">  143</span>    {</div>
+<div class="line"><span class="lineno">  144</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Phrase Tree || Provided Transcription Segment is Empty ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  145</span> </div>
+<div class="line"><span class="lineno">  146</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_NOT_PARSED);</div>
+<div class="line"><span class="lineno">  147</span>    }</div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span>    <span class="comment">// First give the last visited node a chance to parse the phrase.</span></div>
+<div class="line"><span class="lineno">  150</span>    <span class="comment">// due to the possibility of connecting phrases over different transcription segments.</span></div>
+<div class="line"><span class="lineno">  151</span>    <span class="keywordflow">if</span> (LastVistedNode != <span class="keyword">nullptr</span> &amp;&amp; LastVistedNode.IsValid())</div>
+<div class="line"><span class="lineno">  152</span>    {</div>
+<div class="line"><span class="lineno">  153</span>        TArray&lt;FString&gt; PhraseWordArrayCopy = TArray(InPhraseWordArray);</div>
+<div class="line"><span class="lineno">  154</span> </div>
+<div class="line"><span class="lineno">  155</span>        <a class="code hl_struct" href="structFParseResult.html">FParseResult</a> ParseResult = LastVistedNode-&gt;ParseChildren(PhraseWordArrayCopy, LastVistedParseRecord);</div>
+<div class="line"><span class="lineno">  156</span>        <span class="keywordflow">if</span> (ParseResult.<a class="code hl_variable" href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">Result</a> &amp; PHRASE_PARSED | PHRASE_PARSED_AND_EXECUTED)</div>
+<div class="line"><span class="lineno">  157</span>        {</div>
+<div class="line"><span class="lineno">  158</span>            LastVistedNode.Reset();</div>
+<div class="line"><span class="lineno">  159</span>            InParseRecord = LastVistedParseRecord;</div>
+<div class="line"><span class="lineno">  160</span>            LastVistedParseRecord = <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>();</div>
+<div class="line"><span class="lineno">  161</span> </div>
+<div class="line"><span class="lineno">  162</span>            <span class="comment">// Swap Potentially Modified PhraseWordArray.</span></div>
+<div class="line"><span class="lineno">  163</span>            InPhraseWordArray = PhraseWordArrayCopy;</div>
+<div class="line"><span class="lineno">  164</span> </div>
+<div class="line"><span class="lineno">  165</span>            <span class="keywordflow">return</span> ParseResult;</div>
+<div class="line"><span class="lineno">  166</span>        }</div>
+<div class="line"><span class="lineno">  167</span>        <span class="keywordflow">else</span> <span class="keywordflow">if</span> (ParseResult.<a class="code hl_variable" href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">Result</a> != PHRASE_UNABLE_TO_PARSE)</div>
+<div class="line"><span class="lineno">  168</span>        {</div>
+<div class="line"><span class="lineno">  169</span>            <span class="keywordflow">return</span> ParseResult;</div>
+<div class="line"><span class="lineno">  170</span>        }</div>
+<div class="line"><span class="lineno">  171</span>    }</div>
+<div class="line"><span class="lineno">  172</span> </div>
+<div class="line"><span class="lineno">  173</span>    <span class="comment">// Check if the Context Stack has Objects, if so propagation from the Context Root.</span></div>
+<div class="line"><span class="lineno">  174</span>    <span class="keywordflow">if</span> (ContextManager.<a class="code hl_function" href="structFPhraseTreeContextManager.html#a028433f8424f7c4e21cc6107bb2ee6c9">HasContextObjects</a>())</div>
+<div class="line"><span class="lineno">  175</span>    {</div>
+<div class="line"><span class="lineno">  176</span>        <span class="comment">// Propagate from the Context Root, that is the Top of the Context Stack.</span></div>
+<div class="line"><span class="lineno">  177</span>        <span class="keywordflow">return</span> ContextManager.<a class="code hl_function" href="structFPhraseTreeContextManager.html#aa402440624f976fd50ad9008bd52017a">PeekContextObject</a>()-&gt;GetContextRoot()-&gt;ParsePhraseAsContext(InPhraseWordArray, InParseRecord);</div>
+<div class="line"><span class="lineno">  178</span>    }</div>
+<div class="line"><span class="lineno">  179</span> </div>
+<div class="line"><span class="lineno">  180</span>    <span class="comment">// Otherwise, start a new propagation entirely from the Tree Root.</span></div>
+<div class="line"><span class="lineno">  181</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">ParseChildren</a>(InPhraseWordArray, InParseRecord);</div>
+<div class="line"><span class="lineno">  182</span>}</div>
 <div class="ttc" id="aclassFPhraseNode_html_a671f4121e9df6769775bae880a845765"><div class="ttname"><a href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">FPhraseNode::ParseChildren</a></div><div class="ttdeci">virtual FParseResult ParseChildren(TArray&lt; FString &gt; &amp;InPhraseArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses The Children Node of this Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00188">PhraseNode.cpp:188</a></div></div>
 <div class="ttc" id="astructFParseRecord_html"><div class="ttname"><a href="structFParseRecord.html">FParseRecord</a></div><div class="ttdoc">The Collected Information from the Propogation of the Phrase through the tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00016">ParseRecord.h:17</a></div></div>
-<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00055">ParseResult.h:56</a></div></div>
-<div class="ttc" id="astructFParseResult_html_afd7eb42878c0d7cb3877b48fc93d4580"><div class="ttname"><a href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">FParseResult::Result</a></div><div class="ttdeci">uint8_t Result</div><div class="ttdoc">The Result of the Propogation.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00078">ParseResult.h:78</a></div></div>
-<div class="ttc" id="astructFPhraseTreeContextManager_html_a028433f8424f7c4e21cc6107bb2ee6c9"><div class="ttname"><a href="structFPhraseTreeContextManager.html#a028433f8424f7c4e21cc6107bb2ee6c9">FPhraseTreeContextManager::HasContextObjects</a></div><div class="ttdeci">bool HasContextObjects()</div><div class="ttdoc">Does the Context Stack Contain Any Context Objects.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00085">PhraseTree.h:85</a></div></div>
-<div class="ttc" id="astructFPhraseTreeContextManager_html_aa402440624f976fd50ad9008bd52017a"><div class="ttname"><a href="structFPhraseTreeContextManager.html#aa402440624f976fd50ad9008bd52017a">FPhraseTreeContextManager::PeekContextObject</a></div><div class="ttdeci">void PeekContextObject(UPhraseTreeContextObject *OutContextObject)</div><div class="ttdoc">Peeks the Top Context Object On The Stack.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00115">PhraseTree.h:115</a></div></div>
+<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00054">ParseResult.h:55</a></div></div>
+<div class="ttc" id="astructFParseResult_html_afd7eb42878c0d7cb3877b48fc93d4580"><div class="ttname"><a href="structFParseResult.html#afd7eb42878c0d7cb3877b48fc93d4580">FParseResult::Result</a></div><div class="ttdeci">uint8_t Result</div><div class="ttdoc">The Result of the Propogation.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00076">ParseResult.h:76</a></div></div>
+<div class="ttc" id="astructFPhraseTreeContextManager_html_a028433f8424f7c4e21cc6107bb2ee6c9"><div class="ttname"><a href="structFPhraseTreeContextManager.html#a028433f8424f7c4e21cc6107bb2ee6c9">FPhraseTreeContextManager::HasContextObjects</a></div><div class="ttdeci">bool HasContextObjects()</div><div class="ttdoc">Does the Context Stack Contain Any Context Objects.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00081">PhraseTree.h:81</a></div></div>
+<div class="ttc" id="astructFPhraseTreeContextManager_html_aa402440624f976fd50ad9008bd52017a"><div class="ttname"><a href="structFPhraseTreeContextManager.html#aa402440624f976fd50ad9008bd52017a">FPhraseTreeContextManager::PeekContextObject</a></div><div class="ttdeci">void PeekContextObject(UPhraseTreeContextObject *OutContextObject)</div><div class="ttdoc">Peeks the Top Context Object On The Stack.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00111">PhraseTree.h:111</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -501,113 +501,113 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00033">33</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   34</span>{</div>
-<div class="line"><span class="lineno">   35</span>    <span class="keywordflow">if</span> (InTranscriptionSegments.IsEmpty())</div>
-<div class="line"><span class="lineno">   36</span>    {</div>
-<div class="line"><span class="lineno">   37</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Phrase Tree || Provided Transcription is Empty ||&quot;</span>))</div>
-<div class="line"><span class="lineno">   38</span>        return;</div>
-<div class="line"><span class="lineno">   39</span>    }</div>
-<div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>    TArray&lt;FString&gt; SegmentWordArray = TArray&lt;FString&gt;();</div>
-<div class="line"><span class="lineno">   42</span>    <span class="keywordtype">int</span> SegmentCount = 0;</div>
-<div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>    <span class="comment">// Loop over any Transcription Segments.</span></div>
-<div class="line"><span class="lineno">   45</span>    for (FString&amp; TranscriptionSegment : InTranscriptionSegments)</div>
-<div class="line"><span class="lineno">   46</span>    {</div>
-<div class="line"><span class="lineno">   47</span>        <span class="keywordflow">if</span> (TranscriptionSegment.IsEmpty())</div>
-<div class="line"><span class="lineno">   48</span>        {</div>
-<div class="line"><span class="lineno">   49</span>            UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Phrase Tree || Transcription Segment is Empty ||&quot;</span>))</div>
-<div class="line"><span class="lineno">   50</span>            continue;</div>
-<div class="line"><span class="lineno">   51</span>        }</div>
-<div class="line"><span class="lineno">   52</span> </div>
-<div class="line"><span class="lineno">   53</span>        <span class="comment">// Filter the Transcription Segment, to remove any unwanted characters.</span></div>
-<div class="line"><span class="lineno">   54</span>        TranscriptionSegment.TrimStartAndEndInline();</div>
-<div class="line"><span class="lineno">   55</span>        TranscriptionSegment.ReplaceInline(TEXT(&quot;.&quot;), TEXT(&quot;&quot;), ESearchCase::IgnoreCase);</div>
-<div class="line"><span class="lineno">   56</span>        TranscriptionSegment.ReplaceInline(TEXT(&quot;,&quot;), TEXT(&quot;&quot;), ESearchCase::IgnoreCase);</div>
-<div class="line"><span class="lineno">   57</span>        TranscriptionSegment.ToUpperInline();</div>
-<div class="line"><span class="lineno">   58</span> </div>
-<div class="line"><span class="lineno">   59</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(&quot;|| Phrase Tree || Filtered Transcription Segment: { %s } ||<span class="stringliteral">&quot;), *TranscriptionSegment)</span></div>
-<div class="line"><span class="lineno">   60</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   61</span><span class="stringliteral">        // Parse the Transcription Segment into an Array of Words, removing any white space.</span></div>
-<div class="line"><span class="lineno">   62</span><span class="stringliteral">        TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray);</span></div>
-<div class="line"><span class="lineno">   63</span><span class="stringliteral">        if (SegmentWordArray.Num() == 0)</span></div>
-<div class="line"><span class="lineno">   64</span><span class="stringliteral">        {</span></div>
-<div class="line"><span class="lineno">   65</span><span class="stringliteral">            UE_LOG(LogOpenAccessibilityCom, Log, TEXT(&quot;</span>|| Phrase Tree || Transcription Segment has no Word Content ||<span class="stringliteral">&quot;))</span></div>
-<div class="line"><span class="lineno">   66</span><span class="stringliteral">            continue;</span></div>
-<div class="line"><span class="lineno">   67</span><span class="stringliteral">        }</span></div>
-<div class="line"><span class="lineno">   68</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   69</span><span class="stringliteral">        Algo::Reverse(SegmentWordArray);</span></div>
-<div class="line"><span class="lineno">   70</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   71</span><span class="stringliteral">        // Loop until the Segment is Empty</span></div>
-<div class="line"><span class="lineno">   72</span><span class="stringliteral">        while (!SegmentWordArray.IsEmpty())</span></div>
-<div class="line"><span class="lineno">   73</span><span class="stringliteral">        {</span></div>
-<div class="line"><span class="lineno">   74</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   75</span><span class="stringliteral">            FParseRecord ParseRecord = FParseRecord(ContextManager.GetContextStack());</span></div>
-<div class="line"><span class="lineno">   76</span><span class="stringliteral">            FParseResult ParseResult = ParsePhrase(SegmentWordArray, ParseRecord);</span></div>
-<div class="line"><span class="lineno">   77</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   78</span><span class="stringliteral">            ContextManager.UpdateContextStack(ParseRecord.ContextObjectStack);</span></div>
-<div class="line"><span class="lineno">   79</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   80</span><span class="stringliteral">            UE_LOGFMT(LogOpenAccessibilityCom, Log, &quot;</span>|| Phrase Tree || Segment: {0} | Result: {1} ||<span class="stringliteral">&quot;, SegmentCount, ParseResult.Result);</span></div>
-<div class="line"><span class="lineno">   81</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   82</span><span class="stringliteral">            switch (ParseResult.Result)</span></div>
-<div class="line"><span class="lineno">   83</span><span class="stringliteral">            {</span></div>
-<div class="line"><span class="lineno">   84</span><span class="stringliteral">                case PHRASE_PARSED:</span></div>
-<div class="line"><span class="lineno">   85</span><span class="stringliteral">                case PHRASE_PARSED_AND_EXECUTED:</span></div>
-<div class="line"><span class="lineno">   86</span><span class="stringliteral">                {</span></div>
-<div class="line"><span class="lineno">   87</span><span class="stringliteral">                    OA_LOG(LogOpenAccessibilityCom, Log, TEXT(&quot;</span>PhraseTree Propagation<span class="stringliteral">&quot;), TEXT(&quot;</span>{Success} Phrase Tree Parsed Correctly (%s)<span class="stringliteral">&quot;),</span></div>
-<div class="line"><span class="lineno">   88</span><span class="stringliteral">                        *ParseRecord.GetPhraseString())</span></div>
-<div class="line"><span class="lineno">   89</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   90</span><span class="stringliteral">                    LastVistedNode.Reset();</span></div>
-<div class="line"><span class="lineno">   91</span><span class="stringliteral">                    LastVistedParseRecord = FParseRecord();</span></div>
-<div class="line"><span class="lineno">   92</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   93</span><span class="stringliteral">                    break;</span></div>
-<div class="line"><span class="lineno">   94</span><span class="stringliteral">                }</span></div>
-<div class="line"><span class="lineno">   95</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">   96</span><span class="stringliteral">                case PHRASE_REQUIRES_MORE:</span></div>
-<div class="line"><span class="lineno">   97</span><span class="stringliteral">                {</span></div>
-<div class="line"><span class="lineno">   98</span><span class="stringliteral">                    OA_LOG(LogOpenAccessibilityCom, Log, TEXT(&quot;</span>PhraseTree Propagation<span class="stringliteral">&quot;), TEXT(&quot;</span>{Failed} Phrase Tree Propagation Requires More Segments. (%s)<span class="stringliteral">&quot;), </span></div>
-<div class="line"><span class="lineno">   99</span><span class="stringliteral">                        *ParseRecord.GetPhraseString());</span></div>
-<div class="line"><span class="lineno">  100</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  101</span><span class="stringliteral">                    // Store Reach Nodes, and the ParseRecord for future propagation attempts.</span></div>
-<div class="line"><span class="lineno">  102</span><span class="stringliteral">                    LastVistedNode = ParseResult.ReachedNode;</span></div>
-<div class="line"><span class="lineno">  103</span><span class="stringliteral">                    LastVistedParseRecord = ParseRecord;</span></div>
-<div class="line"><span class="lineno">  104</span><span class="stringliteral">                }</span></div>
-<div class="line"><span class="lineno">  105</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  106</span><span class="stringliteral">                case PHRASE_REQUIRES_MORE_CORRECT_PHRASES:</span></div>
-<div class="line"><span class="lineno">  107</span><span class="stringliteral">                {</span></div>
-<div class="line"><span class="lineno">  108</span><span class="stringliteral">                    OA_LOG(LogOpenAccessibilityCom, Log, TEXT(&quot;</span>PhraseTree Propagation<span class="stringliteral">&quot;), TEXT(&quot;</span>{Failed} Phrase Tree Propagation Requires More Correct Segments. (%s)<span class="stringliteral">&quot;),</span></div>
-<div class="line"><span class="lineno">  109</span><span class="stringliteral">                        *ParseRecord.GetPhraseString())</span></div>
-<div class="line"><span class="lineno">  110</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  111</span><span class="stringliteral">                    LastVistedNode = ParseResult.ReachedNode;</span></div>
-<div class="line"><span class="lineno">  112</span><span class="stringliteral">                    LastVistedParseRecord = ParseRecord;</span></div>
-<div class="line"><span class="lineno">  113</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  114</span><span class="stringliteral">                    // Dirty Way of Ensuring all Segments in Transcription are Attempted.</span></div>
-<div class="line"><span class="lineno">  115</span><span class="stringliteral">                    if (!SegmentWordArray.IsEmpty())  </span></div>
-<div class="line"><span class="lineno">  116</span><span class="stringliteral">                        SegmentWordArray.Pop();</span></div>
-<div class="line"><span class="lineno">  117</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  118</span><span class="stringliteral">                    break;</span></div>
-<div class="line"><span class="lineno">  119</span><span class="stringliteral">                }</span></div>
-<div class="line"><span class="lineno">  120</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  121</span><span class="stringliteral">                default:</span></div>
-<div class="line"><span class="lineno">  122</span><span class="stringliteral">                case PHRASE_UNABLE_TO_PARSE:</span></div>
-<div class="line"><span class="lineno">  123</span><span class="stringliteral">                {</span></div>
-<div class="line"><span class="lineno">  124</span><span class="stringliteral">                    OA_LOG(LogOpenAccessibilityCom, Log, TEXT(&quot;</span>PhraseTree Propagation<span class="stringliteral">&quot;), TEXT(&quot;</span>{Failed} Phrase Tree Propagation Failed. (%s)<span class="stringliteral">&quot;),</span></div>
-<div class="line"><span class="lineno">  125</span><span class="stringliteral">                        *ParseRecord.GetPhraseString())</span></div>
-<div class="line"><span class="lineno">  126</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  127</span><span class="stringliteral">                    // Dirty Way of Ensuring all Segments in Transcription are Attempted.</span></div>
-<div class="line"><span class="lineno">  128</span><span class="stringliteral">                    if (!SegmentWordArray.IsEmpty())</span></div>
-<div class="line"><span class="lineno">  129</span><span class="stringliteral">                        SegmentWordArray.Pop();</span></div>
-<div class="line"><span class="lineno">  130</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  131</span><span class="stringliteral">                    break;</span></div>
-<div class="line"><span class="lineno">  132</span><span class="stringliteral">                }</span></div>
-<div class="line"><span class="lineno">  133</span><span class="stringliteral">            }</span></div>
-<div class="line"><span class="lineno">  134</span><span class="stringliteral">        }</span></div>
-<div class="line"><span class="lineno">  135</span><span class="stringliteral"></span> </div>
-<div class="line"><span class="lineno">  136</span><span class="stringliteral">        SegmentCount++;</span></div>
-<div class="line"><span class="lineno">  137</span><span class="stringliteral">        SegmentWordArray.Reset();</span></div>
-<div class="line"><span class="lineno">  138</span><span class="stringliteral">    }</span></div>
-<div class="line"><span class="lineno">  139</span><span class="stringliteral">}</span></div>
+<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00032">32</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>{</div>
+<div class="line"><span class="lineno">   34</span>    <span class="keywordflow">if</span> (InTranscriptionSegments.IsEmpty())</div>
+<div class="line"><span class="lineno">   35</span>    {</div>
+<div class="line"><span class="lineno">   36</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Phrase Tree || Provided Transcription is Empty ||&quot;</span>))</div>
+<div class="line"><span class="lineno">   37</span>        return;</div>
+<div class="line"><span class="lineno">   38</span>    }</div>
+<div class="line"><span class="lineno">   39</span> </div>
+<div class="line"><span class="lineno">   40</span>    TArray&lt;FString&gt; SegmentWordArray = TArray&lt;FString&gt;();</div>
+<div class="line"><span class="lineno">   41</span>    <span class="keywordtype">int</span> SegmentCount = 0;</div>
+<div class="line"><span class="lineno">   42</span> </div>
+<div class="line"><span class="lineno">   43</span>    <span class="comment">// Loop over any Transcription Segments.</span></div>
+<div class="line"><span class="lineno">   44</span>    for (FString &amp;TranscriptionSegment : InTranscriptionSegments)</div>
+<div class="line"><span class="lineno">   45</span>    {</div>
+<div class="line"><span class="lineno">   46</span>        <span class="keywordflow">if</span> (TranscriptionSegment.IsEmpty())</div>
+<div class="line"><span class="lineno">   47</span>        {</div>
+<div class="line"><span class="lineno">   48</span>            UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Phrase Tree || Transcription Segment is Empty ||&quot;</span>))</div>
+<div class="line"><span class="lineno">   49</span>            continue;</div>
+<div class="line"><span class="lineno">   50</span>        }</div>
+<div class="line"><span class="lineno">   51</span> </div>
+<div class="line"><span class="lineno">   52</span>        <span class="comment">// Filter the Transcription Segment, to remove any unwanted characters.</span></div>
+<div class="line"><span class="lineno">   53</span>        TranscriptionSegment.TrimStartAndEndInline();</div>
+<div class="line"><span class="lineno">   54</span>        TranscriptionSegment.ReplaceInline(TEXT(&quot;.&quot;), TEXT(&quot;&quot;), ESearchCase::IgnoreCase);</div>
+<div class="line"><span class="lineno">   55</span>        TranscriptionSegment.ReplaceInline(TEXT(&quot;,&quot;), TEXT(&quot;&quot;), ESearchCase::IgnoreCase);</div>
+<div class="line"><span class="lineno">   56</span>        TranscriptionSegment.ToUpperInline();</div>
+<div class="line"><span class="lineno">   57</span> </div>
+<div class="line"><span class="lineno">   58</span>        UE_LOG(LogAccessionCom, Log, TEXT(&quot;|| Phrase Tree || Filtered Transcription Segment: { %s } ||<span class="stringliteral">&quot;), *TranscriptionSegment)</span></div>
+<div class="line"><span class="lineno">   59</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   60</span><span class="stringliteral">        // Parse the Transcription Segment into an Array of Words, removing any white space.</span></div>
+<div class="line"><span class="lineno">   61</span><span class="stringliteral">        TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray);</span></div>
+<div class="line"><span class="lineno">   62</span><span class="stringliteral">        if (SegmentWordArray.Num() == 0)</span></div>
+<div class="line"><span class="lineno">   63</span><span class="stringliteral">        {</span></div>
+<div class="line"><span class="lineno">   64</span><span class="stringliteral">            UE_LOG(LogAccessionCom, Log, TEXT(&quot;</span>|| Phrase Tree || Transcription Segment has no Word Content ||<span class="stringliteral">&quot;))</span></div>
+<div class="line"><span class="lineno">   65</span><span class="stringliteral">            continue;</span></div>
+<div class="line"><span class="lineno">   66</span><span class="stringliteral">        }</span></div>
+<div class="line"><span class="lineno">   67</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   68</span><span class="stringliteral">        Algo::Reverse(SegmentWordArray);</span></div>
+<div class="line"><span class="lineno">   69</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   70</span><span class="stringliteral">        // Loop until the Segment is Empty</span></div>
+<div class="line"><span class="lineno">   71</span><span class="stringliteral">        while (!SegmentWordArray.IsEmpty())</span></div>
+<div class="line"><span class="lineno">   72</span><span class="stringliteral">        {</span></div>
+<div class="line"><span class="lineno">   73</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   74</span><span class="stringliteral">            FParseRecord ParseRecord = FParseRecord(ContextManager.GetContextStack());</span></div>
+<div class="line"><span class="lineno">   75</span><span class="stringliteral">            FParseResult ParseResult = ParsePhrase(SegmentWordArray, ParseRecord);</span></div>
+<div class="line"><span class="lineno">   76</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   77</span><span class="stringliteral">            ContextManager.UpdateContextStack(ParseRecord.ContextObjectStack);</span></div>
+<div class="line"><span class="lineno">   78</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   79</span><span class="stringliteral">            UE_LOGFMT(LogAccessionCom, Log, &quot;</span>|| Phrase Tree || Segment: {0} | Result: {1} ||<span class="stringliteral">&quot;, SegmentCount, ParseResult.Result);</span></div>
+<div class="line"><span class="lineno">   80</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   81</span><span class="stringliteral">            switch (ParseResult.Result)</span></div>
+<div class="line"><span class="lineno">   82</span><span class="stringliteral">            {</span></div>
+<div class="line"><span class="lineno">   83</span><span class="stringliteral">            case PHRASE_PARSED:</span></div>
+<div class="line"><span class="lineno">   84</span><span class="stringliteral">            case PHRASE_PARSED_AND_EXECUTED:</span></div>
+<div class="line"><span class="lineno">   85</span><span class="stringliteral">            {</span></div>
+<div class="line"><span class="lineno">   86</span><span class="stringliteral">                OA_LOG(LogAccessionCom, Log, TEXT(&quot;</span>PhraseTree Propagation<span class="stringliteral">&quot;), TEXT(&quot;</span>{Success} Phrase Tree Parsed Correctly (%s)<span class="stringliteral">&quot;),</span></div>
+<div class="line"><span class="lineno">   87</span><span class="stringliteral">                       *ParseRecord.GetPhraseString())</span></div>
+<div class="line"><span class="lineno">   88</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   89</span><span class="stringliteral">                LastVistedNode.Reset();</span></div>
+<div class="line"><span class="lineno">   90</span><span class="stringliteral">                LastVistedParseRecord = FParseRecord();</span></div>
+<div class="line"><span class="lineno">   91</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   92</span><span class="stringliteral">                break;</span></div>
+<div class="line"><span class="lineno">   93</span><span class="stringliteral">            }</span></div>
+<div class="line"><span class="lineno">   94</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">   95</span><span class="stringliteral">            case PHRASE_REQUIRES_MORE:</span></div>
+<div class="line"><span class="lineno">   96</span><span class="stringliteral">            {</span></div>
+<div class="line"><span class="lineno">   97</span><span class="stringliteral">                OA_LOG(LogAccessionCom, Log, TEXT(&quot;</span>PhraseTree Propagation<span class="stringliteral">&quot;), TEXT(&quot;</span>{Failed} Phrase Tree Propagation Requires More Segments. (%s)<span class="stringliteral">&quot;),</span></div>
+<div class="line"><span class="lineno">   98</span><span class="stringliteral">                       *ParseRecord.GetPhraseString());</span></div>
+<div class="line"><span class="lineno">   99</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  100</span><span class="stringliteral">                // Store Reach Nodes, and the ParseRecord for future propagation attempts.</span></div>
+<div class="line"><span class="lineno">  101</span><span class="stringliteral">                LastVistedNode = ParseResult.ReachedNode;</span></div>
+<div class="line"><span class="lineno">  102</span><span class="stringliteral">                LastVistedParseRecord = ParseRecord;</span></div>
+<div class="line"><span class="lineno">  103</span><span class="stringliteral">            }</span></div>
+<div class="line"><span class="lineno">  104</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  105</span><span class="stringliteral">            case PHRASE_REQUIRES_MORE_CORRECT_PHRASES:</span></div>
+<div class="line"><span class="lineno">  106</span><span class="stringliteral">            {</span></div>
+<div class="line"><span class="lineno">  107</span><span class="stringliteral">                OA_LOG(LogAccessionCom, Log, TEXT(&quot;</span>PhraseTree Propagation<span class="stringliteral">&quot;), TEXT(&quot;</span>{Failed} Phrase Tree Propagation Requires More Correct Segments. (%s)<span class="stringliteral">&quot;),</span></div>
+<div class="line"><span class="lineno">  108</span><span class="stringliteral">                       *ParseRecord.GetPhraseString())</span></div>
+<div class="line"><span class="lineno">  109</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  110</span><span class="stringliteral">                LastVistedNode = ParseResult.ReachedNode;</span></div>
+<div class="line"><span class="lineno">  111</span><span class="stringliteral">                LastVistedParseRecord = ParseRecord;</span></div>
+<div class="line"><span class="lineno">  112</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  113</span><span class="stringliteral">                // Dirty Way of Ensuring all Segments in Transcription are Attempted.</span></div>
+<div class="line"><span class="lineno">  114</span><span class="stringliteral">                if (!SegmentWordArray.IsEmpty())</span></div>
+<div class="line"><span class="lineno">  115</span><span class="stringliteral">                    SegmentWordArray.Pop();</span></div>
+<div class="line"><span class="lineno">  116</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  117</span><span class="stringliteral">                break;</span></div>
+<div class="line"><span class="lineno">  118</span><span class="stringliteral">            }</span></div>
+<div class="line"><span class="lineno">  119</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  120</span><span class="stringliteral">            default:</span></div>
+<div class="line"><span class="lineno">  121</span><span class="stringliteral">            case PHRASE_UNABLE_TO_PARSE:</span></div>
+<div class="line"><span class="lineno">  122</span><span class="stringliteral">            {</span></div>
+<div class="line"><span class="lineno">  123</span><span class="stringliteral">                OA_LOG(LogAccessionCom, Log, TEXT(&quot;</span>PhraseTree Propagation<span class="stringliteral">&quot;), TEXT(&quot;</span>{Failed} Phrase Tree Propagation Failed. (%s)<span class="stringliteral">&quot;),</span></div>
+<div class="line"><span class="lineno">  124</span><span class="stringliteral">                       *ParseRecord.GetPhraseString())</span></div>
+<div class="line"><span class="lineno">  125</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  126</span><span class="stringliteral">                // Dirty Way of Ensuring all Segments in Transcription are Attempted.</span></div>
+<div class="line"><span class="lineno">  127</span><span class="stringliteral">                if (!SegmentWordArray.IsEmpty())</span></div>
+<div class="line"><span class="lineno">  128</span><span class="stringliteral">                    SegmentWordArray.Pop();</span></div>
+<div class="line"><span class="lineno">  129</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  130</span><span class="stringliteral">                break;</span></div>
+<div class="line"><span class="lineno">  131</span><span class="stringliteral">            }</span></div>
+<div class="line"><span class="lineno">  132</span><span class="stringliteral">            }</span></div>
+<div class="line"><span class="lineno">  133</span><span class="stringliteral">        }</span></div>
+<div class="line"><span class="lineno">  134</span><span class="stringliteral"></span> </div>
+<div class="line"><span class="lineno">  135</span><span class="stringliteral">        SegmentCount++;</span></div>
+<div class="line"><span class="lineno">  136</span><span class="stringliteral">        SegmentWordArray.Reset();</span></div>
+<div class="line"><span class="lineno">  137</span><span class="stringliteral">    }</span></div>
+<div class="line"><span class="lineno">  138</span><span class="stringliteral">}</span></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -627,19 +627,19 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00025">25</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   26</span>{</div>
-<div class="line"><span class="lineno">   27</span>    <span class="comment">// Filter InActive Context Objects out of the stack.</span></div>
-<div class="line"><span class="lineno">   28</span>    ContextManager.FilterContextStack();</div>
-<div class="line"><span class="lineno">   29</span> </div>
-<div class="line"><span class="lineno">   30</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   31</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseTree_8cpp_source.html#l00024">24</a> of file <a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   25</span>{</div>
+<div class="line"><span class="lineno">   26</span>    <span class="comment">// Filter InActive Context Objects out of the stack.</span></div>
+<div class="line"><span class="lineno">   27</span>    ContextManager.FilterContextStack();</div>
+<div class="line"><span class="lineno">   28</span> </div>
+<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   30</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Source/OpenAccessibilityCommunication/Public/<a class="el" href="PhraseTree_8h_source.html">PhraseTree.h</a></li>
-<li>Source/OpenAccessibilityCommunication/Private/<a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a></li>
+<li>Source/AccessionCommunication/Public/<a class="el" href="PhraseTree_8h_source.html">PhraseTree.h</a></li>
+<li>Source/AccessionCommunication/Private/<a class="el" href="PhraseTree_8cpp_source.html">PhraseTree.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

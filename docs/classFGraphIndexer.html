@@ -157,9 +157,9 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ae050cb6280c81878fb8175670020b60f"><td class="memItemLeft" align="right" valign="top">TMap&lt; int, UEdGraphNode * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a></td></tr>
-<tr class="memdesc:ae050cb6280c81878fb8175670020b60f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map of the Index to the Node.   <a href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">More...</a><br /></td></tr>
-<tr class="separator:ae050cb6280c81878fb8175670020b60f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a013ae80630b037849bd35a03bcae7be4"><td class="memItemLeft" align="right" valign="top">TMap&lt; int, UEdGraphNode * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a></td></tr>
+<tr class="memdesc:a013ae80630b037849bd35a03bcae7be4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map of the Index to the Node.   <a href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">More...</a><br /></td></tr>
+<tr class="separator:a013ae80630b037849bd35a03bcae7be4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af326872f3d3e372e90e3763302d47aba"><td class="memItemLeft" align="right" valign="top">TSet&lt; int32 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a></td></tr>
 <tr class="memdesc:af326872f3d3e372e90e3763302d47aba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Look-Up Set of the Nodes Contained in the Indexer.   <a href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">More...</a><br /></td></tr>
 <tr class="separator:af326872f3d3e372e90e3763302d47aba"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,10 +191,9 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00012">12</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   13</span>{</div>
-<div class="line"><span class="lineno">   14</span> </div>
-<div class="line"><span class="lineno">   15</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00011">11</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   12</span>{</div>
+<div class="line"><span class="lineno">   13</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -214,17 +213,16 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00017">17</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>    : <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a>(<span class="keyword">const_cast&lt;</span>UEdGraph*<span class="keyword">&gt;</span>(GraphToIndex))</div>
-<div class="line"><span class="lineno">   19</span>{</div>
-<div class="line"><span class="lineno">   20</span>    BuildGraphIndex();</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>    OnGraphChangedHandle = <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a>-&gt;AddOnGraphChangedHandler(</div>
-<div class="line"><span class="lineno">   23</span>        FOnGraphChanged::FDelegate::CreateRaw(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classFGraphIndexer.html#a5b8b8c88fd0d2e906cf3d358bee48fcf">FGraphIndexer::OnGraphEvent</a>)</div>
-<div class="line"><span class="lineno">   24</span>    );</div>
-<div class="line"><span class="lineno">   25</span>}</div>
-<div class="ttc" id="aclassFGraphIndexer_html_a2c316f3ca2135b295bd5f7e6b2ebc392"><div class="ttname"><a href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">FGraphIndexer::LinkedGraph</a></div><div class="ttdeci">UEdGraph * LinkedGraph</div><div class="ttdoc">The Graph Being Indexed By This Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00182">GraphIndexer.h:182</a></div></div>
-<div class="ttc" id="aclassFGraphIndexer_html_a5b8b8c88fd0d2e906cf3d358bee48fcf"><div class="ttname"><a href="classFGraphIndexer.html#a5b8b8c88fd0d2e906cf3d358bee48fcf">FGraphIndexer::OnGraphEvent</a></div><div class="ttdeci">void OnGraphEvent(const FEdGraphEditAction &amp;InAction)</div><div class="ttdoc">Callback for when the Linked Graph for the Indexer has been Modified.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00225">GraphIndexer.cpp:225</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00015">15</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   16</span>    : <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a>(<span class="keyword">const_cast&lt;</span>UEdGraph *<span class="keyword">&gt;</span>(GraphToIndex))</div>
+<div class="line"><span class="lineno">   17</span>{</div>
+<div class="line"><span class="lineno">   18</span>    BuildGraphIndex();</div>
+<div class="line"><span class="lineno">   19</span> </div>
+<div class="line"><span class="lineno">   20</span>    OnGraphChangedHandle = <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a>-&gt;AddOnGraphChangedHandler(</div>
+<div class="line"><span class="lineno">   21</span>        FOnGraphChanged::FDelegate::CreateRaw(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classFGraphIndexer.html#a5b8b8c88fd0d2e906cf3d358bee48fcf">FGraphIndexer::OnGraphEvent</a>));</div>
+<div class="line"><span class="lineno">   22</span>}</div>
+<div class="ttc" id="aclassFGraphIndexer_html_a2c316f3ca2135b295bd5f7e6b2ebc392"><div class="ttname"><a href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">FGraphIndexer::LinkedGraph</a></div><div class="ttdeci">UEdGraph * LinkedGraph</div><div class="ttdoc">The Graph Being Indexed By This Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00178">GraphIndexer.h:178</a></div></div>
+<div class="ttc" id="aclassFGraphIndexer_html_a5b8b8c88fd0d2e906cf3d358bee48fcf"><div class="ttname"><a href="classFGraphIndexer.html#a5b8b8c88fd0d2e906cf3d358bee48fcf">FGraphIndexer::OnGraphEvent</a></div><div class="ttdeci">void OnGraphEvent(const FEdGraphEditAction &amp;InAction)</div><div class="ttdoc">Callback for when the Linked Graph for the Indexer has been Modified.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00224">GraphIndexer.cpp:224</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -243,19 +241,19 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00027">27</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   28</span>{</div>
-<div class="line"><span class="lineno">   29</span>    <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.Empty();</div>
-<div class="line"><span class="lineno">   30</span>    <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Empty();</div>
-<div class="line"><span class="lineno">   31</span>    <a class="code hl_variable" href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">AvailableIndices</a>.Empty();</div>
-<div class="line"><span class="lineno">   32</span> </div>
-<div class="line"><span class="lineno">   33</span>    <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a>-&gt;RemoveOnGraphChangedHandler(OnGraphChangedHandle);</div>
-<div class="line"><span class="lineno">   34</span> </div>
-<div class="line"><span class="lineno">   35</span>    <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a> = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">   36</span>}</div>
-<div class="ttc" id="aclassFGraphIndexer_html_ab24adb2b0079a4f94e6e7e622e0a648a"><div class="ttname"><a href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">FGraphIndexer::AvailableIndices</a></div><div class="ttdeci">TArray&lt; int32 &gt; AvailableIndices</div><div class="ttdoc">A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00177">GraphIndexer.h:177</a></div></div>
-<div class="ttc" id="aclassFGraphIndexer_html_ae050cb6280c81878fb8175670020b60f"><div class="ttname"><a href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">FGraphIndexer::IndexMap</a></div><div class="ttdeci">TMap&lt; int, UEdGraphNode * &gt; IndexMap</div><div class="ttdoc">Map of the Index to the Node.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00167">GraphIndexer.h:167</a></div></div>
-<div class="ttc" id="aclassFGraphIndexer_html_af326872f3d3e372e90e3763302d47aba"><div class="ttname"><a href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">FGraphIndexer::NodeSet</a></div><div class="ttdeci">TSet&lt; int32 &gt; NodeSet</div><div class="ttdoc">Look-Up Set of the Nodes Contained in the Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00172">GraphIndexer.h:172</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00024">24</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   25</span>{</div>
+<div class="line"><span class="lineno">   26</span>    <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>.Empty();</div>
+<div class="line"><span class="lineno">   27</span>    <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Empty();</div>
+<div class="line"><span class="lineno">   28</span>    <a class="code hl_variable" href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">AvailableIndices</a>.Empty();</div>
+<div class="line"><span class="lineno">   29</span> </div>
+<div class="line"><span class="lineno">   30</span>    <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a>-&gt;RemoveOnGraphChangedHandler(OnGraphChangedHandle);</div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>    <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">   33</span>}</div>
+<div class="ttc" id="aclassFGraphIndexer_html_a013ae80630b037849bd35a03bcae7be4"><div class="ttname"><a href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">FGraphIndexer::IndexMap</a></div><div class="ttdeci">TMap&lt; int, UEdGraphNode * &gt; IndexMap</div><div class="ttdoc">Map of the Index to the Node.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00163">GraphIndexer.h:163</a></div></div>
+<div class="ttc" id="aclassFGraphIndexer_html_ab24adb2b0079a4f94e6e7e622e0a648a"><div class="ttname"><a href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">FGraphIndexer::AvailableIndices</a></div><div class="ttdeci">TArray&lt; int32 &gt; AvailableIndices</div><div class="ttdoc">A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00173">GraphIndexer.h:173</a></div></div>
+<div class="ttc" id="aclassFGraphIndexer_html_af326872f3d3e372e90e3763302d47aba"><div class="ttname"><a href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">FGraphIndexer::NodeSet</a></div><div class="ttdeci">TSet&lt; int32 &gt; NodeSet</div><div class="ttdoc">Look-Up Set of the Nodes Contained in the Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00168">GraphIndexer.h:168</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -285,29 +283,29 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The Index of the Node in the Indexer.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00134">134</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  135</span>{</div>
-<div class="line"><span class="lineno">  136</span>    check (InNode != <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  137</span>    </div>
-<div class="line"><span class="lineno">  138</span>    <span class="keywordflow">if</span> (!InNode-&gt;IsValidLowLevelFast())</div>
-<div class="line"><span class="lineno">  139</span>    {</div>
-<div class="line"><span class="lineno">  140</span>        UE_LOG(LogOpenAccessibility, Warning, TEXT(<span class="stringliteral">&quot;Provided Node is not valid.&quot;</span>))</div>
-<div class="line"><span class="lineno">  141</span>    }</div>
-<div class="line"><span class="lineno">  142</span> </div>
-<div class="line"><span class="lineno">  143</span>    <span class="keywordtype">int</span> Index = <a class="code hl_function" href="classFGraphIndexer.html#a3da5527929de755f0054053c38385ae7">ContainsNode</a>(<span class="keyword">const_cast&lt;</span>UEdGraphNode*<span class="keyword">&gt;</span>(InNode));</div>
-<div class="line"><span class="lineno">  144</span>    <span class="keywordflow">if</span> (Index != -1)</div>
-<div class="line"><span class="lineno">  145</span>    {</div>
-<div class="line"><span class="lineno">  146</span>        <span class="keywordflow">return</span> Index;</div>
-<div class="line"><span class="lineno">  147</span>    }</div>
-<div class="line"><span class="lineno">  148</span> </div>
-<div class="line"><span class="lineno">  149</span>    GetAvailableIndex(Index);</div>
-<div class="line"><span class="lineno">  150</span> </div>
-<div class="line"><span class="lineno">  151</span>    <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Add(InNode-&gt;GetUniqueID());</div>
-<div class="line"><span class="lineno">  152</span>    <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.Add(Index, <span class="keyword">const_cast&lt;</span>UEdGraphNode*<span class="keyword">&gt;</span>(InNode));</div>
-<div class="line"><span class="lineno">  153</span> </div>
-<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">return</span> Index;</div>
-<div class="line"><span class="lineno">  155</span>}</div>
-<div class="ttc" id="aclassFGraphIndexer_html_a3da5527929de755f0054053c38385ae7"><div class="ttname"><a href="classFGraphIndexer.html#a3da5527929de755f0054053c38385ae7">FGraphIndexer::ContainsNode</a></div><div class="ttdeci">int ContainsNode(UEdGraphNode *InNode)</div><div class="ttdoc">Checks that the provided Node is Indexed, and retrieves its Key.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00043">GraphIndexer.cpp:43</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00135">135</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  136</span>{</div>
+<div class="line"><span class="lineno">  137</span>    check(InNode != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  138</span> </div>
+<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">if</span> (!InNode-&gt;IsValidLowLevelFast())</div>
+<div class="line"><span class="lineno">  140</span>    {</div>
+<div class="line"><span class="lineno">  141</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;Provided Node is not valid.&quot;</span>))</div>
+<div class="line"><span class="lineno">  142</span>    }</div>
+<div class="line"><span class="lineno">  143</span> </div>
+<div class="line"><span class="lineno">  144</span>    <span class="keywordtype">int</span> Index = <a class="code hl_function" href="classFGraphIndexer.html#a3da5527929de755f0054053c38385ae7">ContainsNode</a>(<span class="keyword">const_cast&lt;</span>UEdGraphNode *<span class="keyword">&gt;</span>(InNode));</div>
+<div class="line"><span class="lineno">  145</span>    <span class="keywordflow">if</span> (Index != -1)</div>
+<div class="line"><span class="lineno">  146</span>    {</div>
+<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">return</span> Index;</div>
+<div class="line"><span class="lineno">  148</span>    }</div>
+<div class="line"><span class="lineno">  149</span> </div>
+<div class="line"><span class="lineno">  150</span>    GetAvailableIndex(Index);</div>
+<div class="line"><span class="lineno">  151</span> </div>
+<div class="line"><span class="lineno">  152</span>    <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Add(InNode-&gt;GetUniqueID());</div>
+<div class="line"><span class="lineno">  153</span>    <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>.Add(Index, <span class="keyword">const_cast&lt;</span>UEdGraphNode *<span class="keyword">&gt;</span>(InNode));</div>
+<div class="line"><span class="lineno">  154</span> </div>
+<div class="line"><span class="lineno">  155</span>    <span class="keywordflow">return</span> Index;</div>
+<div class="line"><span class="lineno">  156</span>}</div>
+<div class="ttc" id="aclassFGraphIndexer_html_a3da5527929de755f0054053c38385ae7"><div class="ttname"><a href="classFGraphIndexer.html#a3da5527929de755f0054053c38385ae7">FGraphIndexer::ContainsNode</a></div><div class="ttdeci">int ContainsNode(UEdGraphNode *InNode)</div><div class="ttdoc">Checks that the provided Node is Indexed, and retrieves its Key.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00040">GraphIndexer.cpp:40</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -346,11 +344,11 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00157">157</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  158</span>{</div>
-<div class="line"><span class="lineno">  159</span>    OutIndex = <a class="code hl_function" href="classFGraphIndexer.html#abe51e50c9906b6a20089a44ae7a0dcea">AddNode</a>(&amp;InNode);</div>
-<div class="line"><span class="lineno">  160</span>}</div>
-<div class="ttc" id="aclassFGraphIndexer_html_abe51e50c9906b6a20089a44ae7a0dcea"><div class="ttname"><a href="classFGraphIndexer.html#abe51e50c9906b6a20089a44ae7a0dcea">FGraphIndexer::AddNode</a></div><div class="ttdeci">int AddNode(const UEdGraphNode *Node)</div><div class="ttdoc">Adds the Given Node to the Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00134">GraphIndexer.cpp:134</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00158">158</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  159</span>{</div>
+<div class="line"><span class="lineno">  160</span>    OutIndex = <a class="code hl_function" href="classFGraphIndexer.html#abe51e50c9906b6a20089a44ae7a0dcea">AddNode</a>(&amp;InNode);</div>
+<div class="line"><span class="lineno">  161</span>}</div>
+<div class="ttc" id="aclassFGraphIndexer_html_abe51e50c9906b6a20089a44ae7a0dcea"><div class="ttname"><a href="classFGraphIndexer.html#abe51e50c9906b6a20089a44ae7a0dcea">FGraphIndexer::AddNode</a></div><div class="ttdeci">int AddNode(const UEdGraphNode *Node)</div><div class="ttdoc">Adds the Given Node to the Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00135">GraphIndexer.cpp:135</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -379,10 +377,10 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Key is Used for Indexing. False, if the Key is Not Used for Indexing.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00038">38</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   39</span>{</div>
-<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.Contains(InKey);</div>
-<div class="line"><span class="lineno">   41</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00035">35</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>{</div>
+<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>.Contains(InKey);</div>
+<div class="line"><span class="lineno">   38</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -411,21 +409,22 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The Key Used to Index The Provided Node. -1 if Unsuccessful in finding the Node.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00043">43</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   44</span>{</div>
-<div class="line"><span class="lineno">   45</span>    check(InNode != <span class="keyword">nullptr</span>);</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00040">40</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   41</span>{</div>
+<div class="line"><span class="lineno">   42</span>    check(InNode != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">if</span> (!InNode-&gt;IsValidLowLevelFast() || !<a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Contains(InNode-&gt;GetUniqueID()))</div>
+<div class="line"><span class="lineno">   45</span>        <span class="keywordflow">return</span> -1;</div>
 <div class="line"><span class="lineno">   46</span> </div>
-<div class="line"><span class="lineno">   47</span>    <span class="keywordflow">if</span> (!InNode-&gt;IsValidLowLevelFast() || !<a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Contains(InNode-&gt;GetUniqueID()))</div>
-<div class="line"><span class="lineno">   48</span>        <span class="keywordflow">return</span> -1;</div>
-<div class="line"><span class="lineno">   49</span> </div>
-<div class="line"><span class="lineno">   50</span>    <span class="keyword">const</span> <span class="keywordtype">int</span>* ReturnedIndex = <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.FindKey(InNode);</div>
-<div class="line"><span class="lineno">   51</span> </div>
-<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">if</span> (ReturnedIndex != <span class="keyword">nullptr</span>)</div>
-<div class="line"><span class="lineno">   53</span>    {</div>
-<div class="line"><span class="lineno">   54</span>        <span class="keywordflow">return</span> *ReturnedIndex;</div>
-<div class="line"><span class="lineno">   55</span>    }</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">else</span> <span class="keywordflow">return</span> -1;</div>
-<div class="line"><span class="lineno">   57</span>}</div>
+<div class="line"><span class="lineno">   47</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> *ReturnedIndex = <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>.FindKey(InNode);</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>    <span class="keywordflow">if</span> (ReturnedIndex != <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">   50</span>    {</div>
+<div class="line"><span class="lineno">   51</span>        <span class="keywordflow">return</span> *ReturnedIndex;</div>
+<div class="line"><span class="lineno">   52</span>    }</div>
+<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   54</span>        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">   55</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -464,10 +463,10 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00059">59</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   60</span>{</div>
-<div class="line"><span class="lineno">   61</span>    OutIndex = <a class="code hl_function" href="classFGraphIndexer.html#a3da5527929de755f0054053c38385ae7">ContainsNode</a>(InNode);</div>
-<div class="line"><span class="lineno">   62</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00057">57</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   58</span>{</div>
+<div class="line"><span class="lineno">   59</span>    OutIndex = <a class="code hl_function" href="classFGraphIndexer.html#a3da5527929de755f0054053c38385ae7">ContainsNode</a>(InNode);</div>
+<div class="line"><span class="lineno">   60</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -496,17 +495,19 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The Index of the Provided Node. -1 on Failure.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00064">64</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   65</span>{</div>
-<div class="line"><span class="lineno">   66</span>    check(InNode != <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>    <span class="keywordflow">if</span> (!InNode-&gt;IsValidLowLevelFast())</div>
-<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">return</span> -1;</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00062">62</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   63</span>{</div>
+<div class="line"><span class="lineno">   64</span>    check(InNode != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">if</span> (!InNode-&gt;IsValidLowLevelFast())</div>
+<div class="line"><span class="lineno">   67</span>        <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">   68</span> </div>
+<div class="line"><span class="lineno">   69</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> *FoundKey = <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>.FindKey(<span class="keyword">const_cast&lt;</span>UEdGraphNode *<span class="keyword">&gt;</span>(InNode));</div>
 <div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>    <span class="keyword">const</span> <span class="keywordtype">int</span>* FoundKey = <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.FindKey(<span class="keyword">const_cast&lt;</span>UEdGraphNode*<span class="keyword">&gt;</span>(InNode));</div>
-<div class="line"><span class="lineno">   72</span> </div>
-<div class="line"><span class="lineno">   73</span>    <span class="keywordflow">if</span> (FoundKey != <span class="keyword">nullptr</span>) <span class="keywordflow">return</span> *FoundKey;</div>
-<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">else</span> <span class="keywordflow">return</span> -1;</div>
+<div class="line"><span class="lineno">   71</span>    <span class="keywordflow">if</span> (FoundKey != <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">   72</span>        <span class="keywordflow">return</span> *FoundKey;</div>
+<div class="line"><span class="lineno">   73</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   74</span>        <span class="keywordflow">return</span> -1;</div>
 <div class="line"><span class="lineno">   75</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -554,14 +555,15 @@ Protected Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   81</span>    <span class="keywordflow">if</span> (!InNode-&gt;IsValidLowLevelFast())</div>
 <div class="line"><span class="lineno">   82</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><span class="lineno">   83</span> </div>
-<div class="line"><span class="lineno">   84</span>    <span class="keyword">const</span> <span class="keywordtype">int</span>* FoundKey = <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.FindKey(<span class="keyword">const_cast&lt;</span>UEdGraphNode*<span class="keyword">&gt;</span>(InNode));</div>
+<div class="line"><span class="lineno">   84</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> *FoundKey = <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>.FindKey(<span class="keyword">const_cast&lt;</span>UEdGraphNode *<span class="keyword">&gt;</span>(InNode));</div>
 <div class="line"><span class="lineno">   85</span>    <span class="keywordflow">if</span> (FoundKey != <span class="keyword">nullptr</span>)</div>
 <div class="line"><span class="lineno">   86</span>    {</div>
 <div class="line"><span class="lineno">   87</span>        OutKey = *FoundKey;</div>
 <div class="line"><span class="lineno">   88</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line"><span class="lineno">   89</span>    }</div>
-<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">else</span> <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   91</span>}</div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   91</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   92</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -590,17 +592,17 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The Found Graph Node, nullptr on Failure.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00093">93</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   94</span>{</div>
-<div class="line"><span class="lineno">   95</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.Contains(InIndex))</div>
-<div class="line"><span class="lineno">   96</span>    {</div>
-<div class="line"><span class="lineno">   97</span>        UE_LOG(LogOpenAccessibility, Warning, TEXT(<span class="stringliteral">&quot;Provided Index is not recognised&quot;</span>))</div>
-<div class="line"><span class="lineno">   98</span> </div>
-<div class="line"><span class="lineno">   99</span>        return <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><span class="lineno">  100</span>    }</div>
-<div class="line"><span class="lineno">  101</span> </div>
-<div class="line"><span class="lineno">  102</span>    return <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>[InIndex];</div>
-<div class="line"><span class="lineno">  103</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00094">94</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   95</span>{</div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>.Contains(InIndex))</div>
+<div class="line"><span class="lineno">   97</span>    {</div>
+<div class="line"><span class="lineno">   98</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;Provided Index is not recognised&quot;</span>))</div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>        return <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><span class="lineno">  101</span>    }</div>
+<div class="line"><span class="lineno">  102</span> </div>
+<div class="line"><span class="lineno">  103</span>    return <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>[InIndex];</div>
+<div class="line"><span class="lineno">  104</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -639,11 +641,11 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00129">129</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  130</span>{</div>
-<div class="line"><span class="lineno">  131</span>    OutNode = <a class="code hl_function" href="classFGraphIndexer.html#a62206ec64082d69b21b2e1d6691ba285">GetNode</a>(InIndex);</div>
-<div class="line"><span class="lineno">  132</span>}</div>
-<div class="ttc" id="aclassFGraphIndexer_html_a62206ec64082d69b21b2e1d6691ba285"><div class="ttname"><a href="classFGraphIndexer.html#a62206ec64082d69b21b2e1d6691ba285">FGraphIndexer::GetNode</a></div><div class="ttdeci">void GetNode(const int &amp;InIndex, UEdGraphNode *OutNode)</div><div class="ttdoc">Gets the Node Linked to the Provided Index.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00129">GraphIndexer.cpp:129</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00130">130</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  131</span>{</div>
+<div class="line"><span class="lineno">  132</span>    OutNode = <a class="code hl_function" href="classFGraphIndexer.html#a62206ec64082d69b21b2e1d6691ba285">GetNode</a>(InIndex);</div>
+<div class="line"><span class="lineno">  133</span>}</div>
+<div class="ttc" id="aclassFGraphIndexer_html_a62206ec64082d69b21b2e1d6691ba285"><div class="ttname"><a href="classFGraphIndexer.html#a62206ec64082d69b21b2e1d6691ba285">FGraphIndexer::GetNode</a></div><div class="ttdeci">void GetNode(const int &amp;InIndex, UEdGraphNode *OutNode)</div><div class="ttdoc">Gets the Node Linked to the Provided Index.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00130">GraphIndexer.cpp:130</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -672,17 +674,17 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The Index of the Node in the Graph.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00162">162</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  163</span>{</div>
-<div class="line"><span class="lineno">  164</span>    <span class="keywordtype">int</span> Key = <a class="code hl_function" href="classFGraphIndexer.html#a27b35d445390c74cd4d4939e17536f17">GetKey</a>(InNode);</div>
-<div class="line"><span class="lineno">  165</span>    <span class="keywordflow">if</span> (Key != -1)</div>
-<div class="line"><span class="lineno">  166</span>    {</div>
-<div class="line"><span class="lineno">  167</span>        <span class="keywordflow">return</span> Key;</div>
-<div class="line"><span class="lineno">  168</span>    }</div>
-<div class="line"><span class="lineno">  169</span> </div>
-<div class="line"><span class="lineno">  170</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classFGraphIndexer.html#abe51e50c9906b6a20089a44ae7a0dcea">AddNode</a>(InNode);</div>
-<div class="line"><span class="lineno">  171</span>}</div>
-<div class="ttc" id="aclassFGraphIndexer_html_a27b35d445390c74cd4d4939e17536f17"><div class="ttname"><a href="classFGraphIndexer.html#a27b35d445390c74cd4d4939e17536f17">FGraphIndexer::GetKey</a></div><div class="ttdeci">int GetKey(const UEdGraphNode *InNode)</div><div class="ttdoc">Gets the Key Linked to the Provided Node in the Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00064">GraphIndexer.cpp:64</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00163">163</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  164</span>{</div>
+<div class="line"><span class="lineno">  165</span>    <span class="keywordtype">int</span> Key = <a class="code hl_function" href="classFGraphIndexer.html#a27b35d445390c74cd4d4939e17536f17">GetKey</a>(InNode);</div>
+<div class="line"><span class="lineno">  166</span>    <span class="keywordflow">if</span> (Key != -1)</div>
+<div class="line"><span class="lineno">  167</span>    {</div>
+<div class="line"><span class="lineno">  168</span>        <span class="keywordflow">return</span> Key;</div>
+<div class="line"><span class="lineno">  169</span>    }</div>
+<div class="line"><span class="lineno">  170</span> </div>
+<div class="line"><span class="lineno">  171</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classFGraphIndexer.html#abe51e50c9906b6a20089a44ae7a0dcea">AddNode</a>(InNode);</div>
+<div class="line"><span class="lineno">  172</span>}</div>
+<div class="ttc" id="aclassFGraphIndexer_html_a27b35d445390c74cd4d4939e17536f17"><div class="ttname"><a href="classFGraphIndexer.html#a27b35d445390c74cd4d4939e17536f17">FGraphIndexer::GetKey</a></div><div class="ttdeci">int GetKey(const UEdGraphNode *InNode)</div><div class="ttdoc">Gets the Key Linked to the Provided Node in the Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00062">GraphIndexer.cpp:62</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -721,16 +723,16 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00173">173</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  174</span>{</div>
-<div class="line"><span class="lineno">  175</span>    OutIndex = <a class="code hl_function" href="classFGraphIndexer.html#a27b35d445390c74cd4d4939e17536f17">GetKey</a>(InNode);</div>
-<div class="line"><span class="lineno">  176</span>    <span class="keywordflow">if</span> (OutIndex != -1)</div>
-<div class="line"><span class="lineno">  177</span>    {</div>
-<div class="line"><span class="lineno">  178</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  179</span>    }</div>
-<div class="line"><span class="lineno">  180</span> </div>
-<div class="line"><span class="lineno">  181</span>    OutIndex = <a class="code hl_function" href="classFGraphIndexer.html#abe51e50c9906b6a20089a44ae7a0dcea">AddNode</a>(InNode);</div>
-<div class="line"><span class="lineno">  182</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00174">174</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  175</span>{</div>
+<div class="line"><span class="lineno">  176</span>    OutIndex = <a class="code hl_function" href="classFGraphIndexer.html#a27b35d445390c74cd4d4939e17536f17">GetKey</a>(InNode);</div>
+<div class="line"><span class="lineno">  177</span>    <span class="keywordflow">if</span> (OutIndex != -1)</div>
+<div class="line"><span class="lineno">  178</span>    {</div>
+<div class="line"><span class="lineno">  179</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  180</span>    }</div>
+<div class="line"><span class="lineno">  181</span> </div>
+<div class="line"><span class="lineno">  182</span>    OutIndex = <a class="code hl_function" href="classFGraphIndexer.html#abe51e50c9906b6a20089a44ae7a0dcea">AddNode</a>(InNode);</div>
+<div class="line"><span class="lineno">  183</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -770,17 +772,17 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The Found Pin on the Provided Node, nullptr on Failure.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00117">117</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  118</span>{</div>
-<div class="line"><span class="lineno">  119</span>    UEdGraphNode* Node = <a class="code hl_function" href="classFGraphIndexer.html#a62206ec64082d69b21b2e1d6691ba285">GetNode</a>(InNodeIndex);</div>
-<div class="line"><span class="lineno">  120</span>    <span class="keywordflow">if</span> (Node == <span class="keyword">nullptr</span>)</div>
-<div class="line"><span class="lineno">  121</span>    {</div>
-<div class="line"><span class="lineno">  122</span>        UE_LOG(LogOpenAccessibility, Warning, TEXT(<span class="stringliteral">&quot;Requested Node at index %d is not valid.&quot;</span>), InNodeIndex);</div>
-<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  124</span>    }</div>
-<div class="line"><span class="lineno">  125</span> </div>
-<div class="line"><span class="lineno">  126</span>    <span class="keywordflow">return</span> Node-&gt;GetPinAt(InPinIndex); <span class="comment">// Returns nullptr if invalid</span></div>
-<div class="line"><span class="lineno">  127</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00118">118</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  119</span>{</div>
+<div class="line"><span class="lineno">  120</span>    UEdGraphNode *Node = <a class="code hl_function" href="classFGraphIndexer.html#a62206ec64082d69b21b2e1d6691ba285">GetNode</a>(InNodeIndex);</div>
+<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">if</span> (Node == <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">  122</span>    {</div>
+<div class="line"><span class="lineno">  123</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;Requested Node at index %d is not valid.&quot;</span>), InNodeIndex);</div>
+<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  125</span>    }</div>
+<div class="line"><span class="lineno">  126</span> </div>
+<div class="line"><span class="lineno">  127</span>    <span class="keywordflow">return</span> Node-&gt;GetPinAt(InPinIndex); <span class="comment">// Returns nullptr if invalid</span></div>
+<div class="line"><span class="lineno">  128</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -826,17 +828,17 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00105">105</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  106</span>{</div>
-<div class="line"><span class="lineno">  107</span>    UEdGraphNode* Node = <a class="code hl_function" href="classFGraphIndexer.html#a62206ec64082d69b21b2e1d6691ba285">GetNode</a>(InNodeIndex);</div>
-<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">if</span> (Node == <span class="keyword">nullptr</span>)</div>
-<div class="line"><span class="lineno">  109</span>    {</div>
-<div class="line"><span class="lineno">  110</span>        UE_LOG(LogOpenAccessibility, Warning, TEXT(<span class="stringliteral">&quot;Requested Node at index %d is not valid.&quot;</span>), InNodeIndex);</div>
-<div class="line"><span class="lineno">  111</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  112</span>    }</div>
-<div class="line"><span class="lineno">  113</span> </div>
-<div class="line"><span class="lineno">  114</span>    OutPin = Node-&gt;GetPinAt(InPinIndex); <span class="comment">// Returns nullptr if invalid</span></div>
-<div class="line"><span class="lineno">  115</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00106">106</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  107</span>{</div>
+<div class="line"><span class="lineno">  108</span>    UEdGraphNode *Node = <a class="code hl_function" href="classFGraphIndexer.html#a62206ec64082d69b21b2e1d6691ba285">GetNode</a>(InNodeIndex);</div>
+<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> (Node == <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">  110</span>    {</div>
+<div class="line"><span class="lineno">  111</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;Requested Node at index %d is not valid.&quot;</span>), InNodeIndex);</div>
+<div class="line"><span class="lineno">  112</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  113</span>    }</div>
+<div class="line"><span class="lineno">  114</span> </div>
+<div class="line"><span class="lineno">  115</span>    OutPin = Node-&gt;GetPinAt(InPinIndex); <span class="comment">// Returns nullptr if invalid</span></div>
+<div class="line"><span class="lineno">  116</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -864,37 +866,37 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00225">225</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  226</span>{</div>
-<div class="line"><span class="lineno">  227</span>    <span class="keywordflow">if</span> (InAction.Graph != <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a>)</div>
-<div class="line"><span class="lineno">  228</span>    {</div>
-<div class="line"><span class="lineno">  229</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  230</span>    }</div>
-<div class="line"><span class="lineno">  231</span> </div>
-<div class="line"><span class="lineno">  232</span>    <span class="keywordflow">switch</span> (InAction.Action)</div>
-<div class="line"><span class="lineno">  233</span>    {</div>
-<div class="line"><span class="lineno">  234</span>        <span class="keywordflow">case</span> EEdGraphActionType::GRAPHACTION_AddNode:</div>
-<div class="line"><span class="lineno">  235</span>        {</div>
-<div class="line"><span class="lineno">  236</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> UEdGraphNode* Node : InAction.Nodes)</div>
-<div class="line"><span class="lineno">  237</span>            {</div>
-<div class="line"><span class="lineno">  238</span>                <a class="code hl_function" href="classFGraphIndexer.html#abe51e50c9906b6a20089a44ae7a0dcea">AddNode</a>(Node);</div>
-<div class="line"><span class="lineno">  239</span>            }</div>
-<div class="line"><span class="lineno">  240</span> </div>
-<div class="line"><span class="lineno">  241</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  242</span>        }</div>
-<div class="line"><span class="lineno">  243</span> </div>
-<div class="line"><span class="lineno">  244</span>        <span class="keywordflow">case</span> EEdGraphActionType::GRAPHACTION_RemoveNode:</div>
-<div class="line"><span class="lineno">  245</span>        {</div>
-<div class="line"><span class="lineno">  246</span>            <span class="keywordflow">for</span> (<span class="keyword">const</span> UEdGraphNode* Node : InAction.Nodes)</div>
-<div class="line"><span class="lineno">  247</span>            {</div>
-<div class="line"><span class="lineno">  248</span>                <a class="code hl_function" href="classFGraphIndexer.html#ac1ef6ef472f50489d82cfec46d59b909">RemoveNode</a>(Node);</div>
-<div class="line"><span class="lineno">  249</span>            }</div>
-<div class="line"><span class="lineno">  250</span> </div>
-<div class="line"><span class="lineno">  251</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  252</span>        }</div>
-<div class="line"><span class="lineno">  253</span>    }</div>
-<div class="line"><span class="lineno">  254</span>}</div>
-<div class="ttc" id="aclassFGraphIndexer_html_ac1ef6ef472f50489d82cfec46d59b909"><div class="ttname"><a href="classFGraphIndexer.html#ac1ef6ef472f50489d82cfec46d59b909">FGraphIndexer::RemoveNode</a></div><div class="ttdeci">void RemoveNode(const int &amp;InIndex)</div><div class="ttdoc">Removes the Node from the Indexer, linked to the Provided Index.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00184">GraphIndexer.cpp:184</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00224">224</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  225</span>{</div>
+<div class="line"><span class="lineno">  226</span>    <span class="keywordflow">if</span> (InAction.Graph != <a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a>)</div>
+<div class="line"><span class="lineno">  227</span>    {</div>
+<div class="line"><span class="lineno">  228</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  229</span>    }</div>
+<div class="line"><span class="lineno">  230</span> </div>
+<div class="line"><span class="lineno">  231</span>    <span class="keywordflow">switch</span> (InAction.Action)</div>
+<div class="line"><span class="lineno">  232</span>    {</div>
+<div class="line"><span class="lineno">  233</span>    <span class="keywordflow">case</span> EEdGraphActionType::GRAPHACTION_AddNode:</div>
+<div class="line"><span class="lineno">  234</span>    {</div>
+<div class="line"><span class="lineno">  235</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> UEdGraphNode *Node : InAction.Nodes)</div>
+<div class="line"><span class="lineno">  236</span>        {</div>
+<div class="line"><span class="lineno">  237</span>            <a class="code hl_function" href="classFGraphIndexer.html#abe51e50c9906b6a20089a44ae7a0dcea">AddNode</a>(Node);</div>
+<div class="line"><span class="lineno">  238</span>        }</div>
+<div class="line"><span class="lineno">  239</span> </div>
+<div class="line"><span class="lineno">  240</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  241</span>    }</div>
+<div class="line"><span class="lineno">  242</span> </div>
+<div class="line"><span class="lineno">  243</span>    <span class="keywordflow">case</span> EEdGraphActionType::GRAPHACTION_RemoveNode:</div>
+<div class="line"><span class="lineno">  244</span>    {</div>
+<div class="line"><span class="lineno">  245</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> UEdGraphNode *Node : InAction.Nodes)</div>
+<div class="line"><span class="lineno">  246</span>        {</div>
+<div class="line"><span class="lineno">  247</span>            <a class="code hl_function" href="classFGraphIndexer.html#ac1ef6ef472f50489d82cfec46d59b909">RemoveNode</a>(Node);</div>
+<div class="line"><span class="lineno">  248</span>        }</div>
+<div class="line"><span class="lineno">  249</span> </div>
+<div class="line"><span class="lineno">  250</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  251</span>    }</div>
+<div class="line"><span class="lineno">  252</span>    }</div>
+<div class="line"><span class="lineno">  253</span>}</div>
+<div class="ttc" id="aclassFGraphIndexer_html_ac1ef6ef472f50489d82cfec46d59b909"><div class="ttname"><a href="classFGraphIndexer.html#ac1ef6ef472f50489d82cfec46d59b909">FGraphIndexer::RemoveNode</a></div><div class="ttdeci">void RemoveNode(const int &amp;InIndex)</div><div class="ttdoc">Removes the Node from the Indexer, linked to the Provided Index.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8cpp_source.html#l00185">GraphIndexer.cpp:185</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -915,14 +917,14 @@ Protected Attributes</h2></td></tr>
 
 <p>Calls a Full Rebuild of the Indexer, to ensure all Nodes are Indexed.  </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00256">256</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  257</span>{</div>
-<div class="line"><span class="lineno">  258</span>    <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.Reset();</div>
-<div class="line"><span class="lineno">  259</span>    <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Reset();</div>
-<div class="line"><span class="lineno">  260</span>    <a class="code hl_variable" href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">AvailableIndices</a>.Empty();</div>
-<div class="line"><span class="lineno">  261</span> </div>
-<div class="line"><span class="lineno">  262</span>    BuildGraphIndex();</div>
-<div class="line"><span class="lineno">  263</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00255">255</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  256</span>{</div>
+<div class="line"><span class="lineno">  257</span>    <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>.Reset();</div>
+<div class="line"><span class="lineno">  258</span>    <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Reset();</div>
+<div class="line"><span class="lineno">  259</span>    <a class="code hl_variable" href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">AvailableIndices</a>.Empty();</div>
+<div class="line"><span class="lineno">  260</span> </div>
+<div class="line"><span class="lineno">  261</span>    BuildGraphIndex();</div>
+<div class="line"><span class="lineno">  262</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -950,26 +952,26 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00184">184</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  185</span>{</div>
-<div class="line"><span class="lineno">  186</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.Contains(InIndex))</div>
-<div class="line"><span class="lineno">  187</span>    {</div>
-<div class="line"><span class="lineno">  188</span>        UE_LOG(LogOpenAccessibility, Warning, TEXT(<span class="stringliteral">&quot;Provided Index is not recognised&quot;</span>))</div>
-<div class="line"><span class="lineno">  189</span>    }</div>
-<div class="line"><span class="lineno">  190</span>    </div>
-<div class="line"><span class="lineno">  191</span>    <span class="keyword">const</span> UEdGraphNode* Node = <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>[InIndex];</div>
-<div class="line"><span class="lineno">  192</span> </div>
-<div class="line"><span class="lineno">  193</span>    <span class="keywordflow">if</span> (Node-&gt;IsValidLowLevelFast())</div>
-<div class="line"><span class="lineno">  194</span>    {</div>
-<div class="line"><span class="lineno">  195</span>        <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Remove(Node-&gt;GetUniqueID());</div>
-<div class="line"><span class="lineno">  196</span>        <a class="code hl_variable" href="classFGraphIndexer.html#ae050cb6280c81878fb8175670020b60f">IndexMap</a>.Remove(InIndex);</div>
-<div class="line"><span class="lineno">  197</span>        AddAvailableIndex(InIndex);</div>
-<div class="line"><span class="lineno">  198</span>    }</div>
-<div class="line"><span class="lineno">  199</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  200</span>    {</div>
-<div class="line"><span class="lineno">  201</span>        UE_LOG(LogOpenAccessibility, Warning, TEXT(<span class="stringliteral">&quot;Stored Node in IndexMap is not vaild.&quot;</span>))</div>
-<div class="line"><span class="lineno">  202</span>    }</div>
-<div class="line"><span class="lineno">  203</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00185">185</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  186</span>{</div>
+<div class="line"><span class="lineno">  187</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>.Contains(InIndex))</div>
+<div class="line"><span class="lineno">  188</span>    {</div>
+<div class="line"><span class="lineno">  189</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;Provided Index is not recognised&quot;</span>))</div>
+<div class="line"><span class="lineno">  190</span>    }</div>
+<div class="line"><span class="lineno">  191</span> </div>
+<div class="line"><span class="lineno">  192</span>    <span class="keyword">const</span> UEdGraphNode *Node = <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>[InIndex];</div>
+<div class="line"><span class="lineno">  193</span> </div>
+<div class="line"><span class="lineno">  194</span>    <span class="keywordflow">if</span> (Node-&gt;IsValidLowLevelFast())</div>
+<div class="line"><span class="lineno">  195</span>    {</div>
+<div class="line"><span class="lineno">  196</span>        <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>.Remove(Node-&gt;GetUniqueID());</div>
+<div class="line"><span class="lineno">  197</span>        <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>.Remove(InIndex);</div>
+<div class="line"><span class="lineno">  198</span>        AddAvailableIndex(InIndex);</div>
+<div class="line"><span class="lineno">  199</span>    }</div>
+<div class="line"><span class="lineno">  200</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  201</span>    {</div>
+<div class="line"><span class="lineno">  202</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;Stored Node in IndexMap is not vaild.&quot;</span>))</div>
+<div class="line"><span class="lineno">  203</span>    }</div>
+<div class="line"><span class="lineno">  204</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -997,19 +999,19 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00205">205</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  206</span>{</div>
-<div class="line"><span class="lineno">  207</span>    check(InNode != <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  208</span> </div>
-<div class="line"><span class="lineno">  209</span>    <span class="keywordtype">int</span> Key = <a class="code hl_function" href="classFGraphIndexer.html#a27b35d445390c74cd4d4939e17536f17">GetKey</a>(InNode);</div>
-<div class="line"><span class="lineno">  210</span>    <span class="keywordflow">if</span> (Key == -1)</div>
-<div class="line"><span class="lineno">  211</span>    {</div>
-<div class="line"><span class="lineno">  212</span>        UE_LOG(LogOpenAccessibility, Warning, TEXT(<span class="stringliteral">&quot;Node does not exist in IndexMap.&quot;</span>))</div>
-<div class="line"><span class="lineno">  213</span>        return;</div>
-<div class="line"><span class="lineno">  214</span>    }</div>
-<div class="line"><span class="lineno">  215</span> </div>
-<div class="line"><span class="lineno">  216</span>    <a class="code hl_function" href="classFGraphIndexer.html#ac1ef6ef472f50489d82cfec46d59b909">RemoveNode</a>(Key);</div>
-<div class="line"><span class="lineno">  217</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8cpp_source.html#l00206">206</a> of file <a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  207</span>{</div>
+<div class="line"><span class="lineno">  208</span>    check(InNode != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  209</span> </div>
+<div class="line"><span class="lineno">  210</span>    <span class="keywordtype">int</span> Key = <a class="code hl_function" href="classFGraphIndexer.html#a27b35d445390c74cd4d4939e17536f17">GetKey</a>(InNode);</div>
+<div class="line"><span class="lineno">  211</span>    <span class="keywordflow">if</span> (Key == -1)</div>
+<div class="line"><span class="lineno">  212</span>    {</div>
+<div class="line"><span class="lineno">  213</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;Node does not exist in IndexMap.&quot;</span>))</div>
+<div class="line"><span class="lineno">  214</span>        return;</div>
+<div class="line"><span class="lineno">  215</span>    }</div>
+<div class="line"><span class="lineno">  216</span> </div>
+<div class="line"><span class="lineno">  217</span>    <a class="code hl_function" href="classFGraphIndexer.html#ac1ef6ef472f50489d82cfec46d59b909">RemoveNode</a>(Key);</div>
+<div class="line"><span class="lineno">  218</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1036,12 +1038,12 @@ Protected Attributes</h2></td></tr>
 
 <p>A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.  </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00177">177</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00173">173</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
 
 </div>
 </div>
-<a id="ae050cb6280c81878fb8175670020b60f" name="ae050cb6280c81878fb8175670020b60f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae050cb6280c81878fb8175670020b60f">&#9670;&#160;</a></span>IndexMap</h2>
+<a id="a013ae80630b037849bd35a03bcae7be4" name="a013ae80630b037849bd35a03bcae7be4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a013ae80630b037849bd35a03bcae7be4">&#9670;&#160;</a></span>IndexMap</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1050,7 +1052,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">TMap&lt;int, UEdGraphNode*&gt; FGraphIndexer::IndexMap</td>
+          <td class="memname">TMap&lt;int, UEdGraphNode *&gt; FGraphIndexer::IndexMap</td>
         </tr>
       </table>
   </td>
@@ -1062,7 +1064,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Map of the Index to the Node.  </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00167">167</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00163">163</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
 
 </div>
 </div>
@@ -1088,7 +1090,7 @@ Protected Attributes</h2></td></tr>
 
 <p>The Graph Being Indexed By This Indexer.  </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00182">182</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00178">178</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
 
 </div>
 </div>
@@ -1114,7 +1116,7 @@ Protected Attributes</h2></td></tr>
 
 <p>Look-Up Set of the Nodes Contained in the Indexer.  </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00172">172</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00168">168</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
 
 </div>
 </div>
@@ -1138,13 +1140,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00184">184</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphIndexer_8h_source.html#l00180">180</a> of file <a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Source/OpenAccessibility/Public/<a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a></li>
-<li>Source/OpenAccessibility/Private/<a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a></li>
+<li>Source/Accession/Public/<a class="el" href="GraphIndexer_8h_source.html">GraphIndexer.h</a></li>
+<li>Source/Accession/Private/<a class="el" href="GraphIndexer_8cpp_source.html">GraphIndexer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

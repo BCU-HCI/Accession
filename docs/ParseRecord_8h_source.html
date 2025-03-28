@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Open Accessibility Unreal Plugin: Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/ParseRecord.h Source File</title>
+<title>Open Accessibility Unreal Plugin: Source/AccessionCommunication/Public/PhraseTree/Containers/ParseRecord.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -106,7 +106,7 @@ $(document).ready(function(){initNavTree('ParseRecord_8h_source.html',''); initR
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;ParseRecord.generated.h&quot;</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>USTRUCT(BlueprintType)</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structFParseRecord.html">   16</a></span>struct OPENACCESSIBILITYCOMMUNICATION_API <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structFParseRecord.html">   16</a></span>struct ACCESSIONCOMMUNICATION_API <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    GENERATED_BODY()</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
@@ -115,13 +115,13 @@ $(document).ready(function(){initNavTree('ParseRecord_8h_source.html',''); initR
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>()</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        PhraseInputs = TMultiMap&lt;FString, UParseInput*&gt;();</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        ContextObjectStack = TArray&lt;UPhraseTreeContextObject*&gt;();</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        PhraseInputs = TMultiMap&lt;FString, UParseInput *&gt;();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        ContextObjectStack = TArray&lt;UPhraseTreeContextObject *&gt;();</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    }</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>(TArray&lt;UPhraseTreeContextObject*&gt; InContextObjects)</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>(TArray&lt;UPhraseTreeContextObject *&gt; InContextObjects)</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        PhraseInputs = TMultiMap&lt;FString, UParseInput*&gt;();</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        PhraseInputs = TMultiMap&lt;FString, UParseInput *&gt;();</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        ContextObjectStack = InContextObjects;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    }</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
@@ -144,63 +144,63 @@ $(document).ready(function(){initNavTree('ParseRecord_8h_source.html',''); initR
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// --</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">   64</a></span>    <a class="code hl_class" href="classUParseInput.html">UParseInput</a>* <a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>(<span class="keyword">const</span> FString&amp; InString)</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="comment">// Check If The Phrase Exits</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        check(PhraseInputs.Contains(InString))</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">return</span> *PhraseInputs.Find(InString);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> CastToType&gt;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a11d98230de6448e218a903703643a4b6">   80</a></span>    CastToType* <a class="code hl_function" href="structFParseRecord.html#a11d98230de6448e218a903703643a4b6">GetPhraseInput</a>(<span class="keyword">const</span> FString&amp; InString)</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    {</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="comment">// Check If The Phrase Exits</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        check(PhraseInputs.Contains(InString))</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keywordflow">return</span> Cast&lt;CastToType&gt;(*PhraseInputs.Find(InString));</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structFParseRecord.html#ae1c4b2ab14342482728d0deb299774ae">   94</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#ae1c4b2ab14342482728d0deb299774ae">GetPhraseInput</a>(<span class="keyword">const</span> FString&amp; InString, <a class="code hl_class" href="classUParseInput.html">UParseInput</a>* OutInput)</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    {</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="comment">// Check If The Phrase Exits</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        check(PhraseInputs.Contains(InString))</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        OutInput = *PhraseInputs.Find(InString);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> CastToType&gt;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a0785ad46863cc0a72e44980787b08434">  110</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a0785ad46863cc0a72e44980787b08434">GetPhraseInput</a>(<span class="keyword">const</span> FString&amp; InString, CastToType* OutInput)</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="comment">// Check If The Phrase Exits</span></div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        check(PhraseInputs.Contains(InString))</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        OutInput = Cast&lt;CastToType&gt;(*PhraseInputs.Find(InString));</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    }</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="comment">// -- GetPhraseInputs</span></div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="structFParseRecord.html#af24d63bb79861b6730f12d54a6097978">  127</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#af24d63bb79861b6730f12d54a6097978">GetPhraseInputs</a>(<span class="keyword">const</span> FString&amp; InString, TArray&lt;UParseInput*&gt;&amp; OutInputs, <span class="keyword">const</span> <span class="keywordtype">bool</span> MaintainOrder = <span class="keyword">true</span>)</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    {</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="comment">// Check If The Phrase Exits</span></div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        check(PhraseInputs.Contains(InString))</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a69e753f7edee06c64163203adbda4cdb">  142</a></span>    TArray&lt;UParseInput*&gt; <a class="code hl_function" href="structFParseRecord.html#a69e753f7edee06c64163203adbda4cdb">GetPhraseInputs</a>(<span class="keyword">const</span> FString&amp; InString, <span class="keyword">const</span> <span class="keywordtype">bool</span> MaintainOrder = <span class="keyword">true</span>)</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    {</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="comment">// Check If The Phrase Exits</span></div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        check(PhraseInputs.Contains(InString))</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        TArray&lt;UParseInput*&gt; OutInputs;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">   63</a></span>    <a class="code hl_class" href="classUParseInput.html">UParseInput</a> *<a class="code hl_function" href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">GetPhraseInput</a>(<span class="keyword">const</span> FString &amp;InString)</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    {</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        <span class="comment">// Check If The Phrase Exits</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        check(PhraseInputs.Contains(InString))</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            <span class="keywordflow">return</span> *PhraseInputs.Find(InString);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> CastToType&gt;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a11d98230de6448e218a903703643a4b6">   79</a></span>    CastToType *<a class="code hl_function" href="structFParseRecord.html#a11d98230de6448e218a903703643a4b6">GetPhraseInput</a>(<span class="keyword">const</span> FString &amp;InString)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        <span class="comment">// Check If The Phrase Exits</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        check(PhraseInputs.Contains(InString))</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            <span class="keywordflow">return</span> Cast&lt;CastToType&gt;(*PhraseInputs.Find(InString));</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="structFParseRecord.html#ae1c4b2ab14342482728d0deb299774ae">   93</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#ae1c4b2ab14342482728d0deb299774ae">GetPhraseInput</a>(<span class="keyword">const</span> FString &amp;InString, <a class="code hl_class" href="classUParseInput.html">UParseInput</a> *OutInput)</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="comment">// Check If The Phrase Exits</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        check(PhraseInputs.Contains(InString))</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            OutInput = *PhraseInputs.Find(InString);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> CastToType&gt;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a0785ad46863cc0a72e44980787b08434">  109</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a0785ad46863cc0a72e44980787b08434">GetPhraseInput</a>(<span class="keyword">const</span> FString &amp;InString, CastToType *OutInput)</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="comment">// Check If The Phrase Exits</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        check(PhraseInputs.Contains(InString))</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>            OutInput = Cast&lt;CastToType&gt;(*PhraseInputs.Find(InString));</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    }</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="comment">// -- GetPhraseInputs</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno"><a class="line" href="structFParseRecord.html#af24d63bb79861b6730f12d54a6097978">  126</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#af24d63bb79861b6730f12d54a6097978">GetPhraseInputs</a>(<span class="keyword">const</span> FString &amp;InString, TArray&lt;UParseInput *&gt; &amp;OutInputs, <span class="keyword">const</span> <span class="keywordtype">bool</span> MaintainOrder = <span class="keyword">true</span>)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>        <span class="comment">// Check If The Phrase Exits</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        check(PhraseInputs.Contains(InString))</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>            PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a69e753f7edee06c64163203adbda4cdb">  141</a></span>    TArray&lt;UParseInput *&gt; <a class="code hl_function" href="structFParseRecord.html#a69e753f7edee06c64163203adbda4cdb">GetPhraseInputs</a>(<span class="keyword">const</span> FString &amp;InString, <span class="keyword">const</span> <span class="keywordtype">bool</span> MaintainOrder = <span class="keyword">true</span>)</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    {</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <span class="comment">// Check If The Phrase Exits</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="comment">// This Error Will Be Thrown If: InString Is In Correct (Requires UpperCase) or The Phrase Does Not Exist.</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        check(PhraseInputs.Contains(InString))</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            TArray&lt;UParseInput *&gt;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>                OutInputs;</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        PhraseInputs.MultiFind(InString, OutInputs, MaintainOrder);</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
@@ -209,19 +209,19 @@ $(document).ready(function(){initNavTree('ParseRecord_8h_source.html',''); initR
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="comment">// -- PhraseInput</span></div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="structFParseRecord.html#ae15c154b890b7ac8e73cf85e7c5eed7b">  162</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#ae15c154b890b7ac8e73cf85e7c5eed7b">AddPhraseInput</a>(<span class="keyword">const</span> FString&amp; InString, <a class="code hl_class" href="classUParseInput.html">UParseInput</a>* InInput)</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="structFParseRecord.html#ae15c154b890b7ac8e73cf85e7c5eed7b">  162</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#ae15c154b890b7ac8e73cf85e7c5eed7b">AddPhraseInput</a>(<span class="keyword">const</span> FString &amp;InString, <a class="code hl_class" href="classUParseInput.html">UParseInput</a> *InInput)</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    {</div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        PhraseInputs.Add(InString.ToUpper(), InInput);</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a0b49747164613e0dc522ec9f344c62d0">  171</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a0b49747164613e0dc522ec9f344c62d0">RemovePhraseInput</a>(<span class="keyword">const</span> FString&amp; InString)</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a0b49747164613e0dc522ec9f344c62d0">  171</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a0b49747164613e0dc522ec9f344c62d0">RemovePhraseInput</a>(<span class="keyword">const</span> FString &amp;InString)</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    {</div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        PhraseInputs.Remove(InString);</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    }</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="comment">// -- ContextObject Stack Modification</span></div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d">  182</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d">PushContextObj</a>(<a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a>* InObject)</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d">  182</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d">PushContextObj</a>(<a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *InObject)</div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    {</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        this-&gt;ContextObjectStack.Push(InObject);</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    }</div>
@@ -234,7 +234,7 @@ $(document).ready(function(){initNavTree('ParseRecord_8h_source.html',''); initR
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        this-&gt;ContextObjectStack.Pop();</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    }</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a75eab9842a28610e3fec803ac98bc250">  202</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a75eab9842a28610e3fec803ac98bc250">PopContextObj</a>(<a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a>* OutObject)</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a75eab9842a28610e3fec803ac98bc250">  202</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a75eab9842a28610e3fec803ac98bc250">PopContextObj</a>(<a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *OutObject)</div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    {</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keywordflow">if</span> (ContextObjectStack.IsEmpty())</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        {</div>
@@ -245,26 +245,26 @@ $(document).ready(function(){initNavTree('ParseRecord_8h_source.html',''); initR
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>        OutObject = this-&gt;ContextObjectStack.Pop();</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a17e567608b13f2f1ebfaff91d1556095">  217</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a17e567608b13f2f1ebfaff91d1556095">RemoveContextObj</a>(<a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a>* InObject)</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a17e567608b13f2f1ebfaff91d1556095">  217</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a17e567608b13f2f1ebfaff91d1556095">RemoveContextObj</a>(<a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *InObject)</div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    {</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        this-&gt;ContextObjectStack.Remove(InObject);</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    }</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    <span class="comment">// -- HasContextObj</span></div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    </div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a7c658e9a22291e96184dc57267231da6">  228</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="structFParseRecord.html#a7c658e9a22291e96184dc57267231da6">HasContextObj</a>()</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    {</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <span class="keywordflow">return</span> this-&gt;ContextObjectStack.Num() &gt; 0;</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    }</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a7e1dc0d8241c602bd0bc8fbeb66911c8">  238</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="structFParseRecord.html#a7e1dc0d8241c602bd0bc8fbeb66911c8">HasContextObj</a>(<a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a>* InObject)</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a7e1dc0d8241c602bd0bc8fbeb66911c8">  238</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="structFParseRecord.html#a7e1dc0d8241c602bd0bc8fbeb66911c8">HasContextObj</a>(<a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *InObject)</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    {</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        <span class="keywordflow">return</span> HasContextObj() &amp;&amp; this-&gt;ContextObjectStack.Contains(InObject);</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    }</div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span> </div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>    <span class="comment">// -- GetContextObj</span></div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="structFParseRecord.html#aefcadd27a097c7f866d751f077531194">  249</a></span>    <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a>* <a class="code hl_function" href="structFParseRecord.html#aefcadd27a097c7f866d751f077531194">GetContextObj</a>()</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="structFParseRecord.html#aefcadd27a097c7f866d751f077531194">  249</a></span>    <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *<a class="code hl_function" href="structFParseRecord.html#aefcadd27a097c7f866d751f077531194">GetContextObj</a>()</div>
 <div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>    {</div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        <span class="keywordflow">if</span> (ContextObjectStack.IsEmpty())</div>
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>            <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
@@ -272,7 +272,7 @@ $(document).ready(function(){initNavTree('ParseRecord_8h_source.html',''); initR
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>        <span class="keywordflow">return</span> this-&gt;ContextObjectStack.Last();</div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    }</div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a9e8c4f2a75832b2cf4bce72ac6373cb7">  261</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a9e8c4f2a75832b2cf4bce72ac6373cb7">GetContextObj</a>(<a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a>* OutObject)</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a9e8c4f2a75832b2cf4bce72ac6373cb7">  261</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a9e8c4f2a75832b2cf4bce72ac6373cb7">GetContextObj</a>(<a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *OutObject)</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    {</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <span class="keywordflow">if</span> (ContextObjectStack.IsEmpty())</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        {</div>
@@ -283,8 +283,8 @@ $(document).ready(function(){initNavTree('ParseRecord_8h_source.html',''); initR
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        OutObject = this-&gt;ContextObjectStack.Last();</div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    }</div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> CastToType&gt;</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a89f8bc153c386ff45ccc4a7091dfee71">  278</a></span>    CastToType* <a class="code hl_function" href="structFParseRecord.html#a89f8bc153c386ff45ccc4a7091dfee71">GetContextObj</a>()</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> CastToType&gt;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a89f8bc153c386ff45ccc4a7091dfee71">  278</a></span>    CastToType *<a class="code hl_function" href="structFParseRecord.html#a89f8bc153c386ff45ccc4a7091dfee71">GetContextObj</a>()</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    {</div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        <span class="keywordflow">if</span> (ContextObjectStack.IsEmpty())</div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>            <span class="keywordflow">return</span> <span class="keyword">nullptr</span>;</div>
@@ -292,8 +292,8 @@ $(document).ready(function(){initNavTree('ParseRecord_8h_source.html',''); initR
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        <span class="keywordflow">return</span> Cast&lt;CastToType&gt;(this-&gt;ContextObjectStack.Last());</div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>    }</div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> CastToType&gt;</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="structFParseRecord.html#accffca09c256d0b620311963b5dbcf8a">  292</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#accffca09c256d0b620311963b5dbcf8a">GetContextObj</a>(CastToType* OutObject)</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    <span class="keyword">template</span> &lt;<span class="keyword">class</span> CastToType&gt;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="structFParseRecord.html#accffca09c256d0b620311963b5dbcf8a">  292</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#accffca09c256d0b620311963b5dbcf8a">GetContextObj</a>(CastToType *OutObject)</div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    {</div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>        <span class="keywordflow">if</span> (ContextObjectStack.IsEmpty())</div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>        {</div>
@@ -304,41 +304,39 @@ $(document).ready(function(){initNavTree('ParseRecord_8h_source.html',''); initR
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>        OutObject = Cast&lt;CastToType&gt;(this-&gt;ContextObjectStack.Last());</div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    }</div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a5d774b3ca0de6844931b79d2670fb3ce">  307</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a5d774b3ca0de6844931b79d2670fb3ce">GetContextStack</a>(TArray&lt;UPhraseTreeContextObject*&gt; OutContextStack)</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a5d774b3ca0de6844931b79d2670fb3ce">  307</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="structFParseRecord.html#a5d774b3ca0de6844931b79d2670fb3ce">GetContextStack</a>(TArray&lt;UPhraseTreeContextObject *&gt; OutContextStack)</div>
 <div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>    {</div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        OutContextStack = ContextObjectStack;</div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    }</div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno"><a class="line" href="structFParseRecord.html#aaa14686a26abb28994444115ae7f73d6">  316</a></span>    TArray&lt;UPhraseTreeContextObject*&gt; <a class="code hl_function" href="structFParseRecord.html#aaa14686a26abb28994444115ae7f73d6">GetContextStack</a>()</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno"><a class="line" href="structFParseRecord.html#aaa14686a26abb28994444115ae7f73d6">  316</a></span>    TArray&lt;UPhraseTreeContextObject *&gt; <a class="code hl_function" href="structFParseRecord.html#aaa14686a26abb28994444115ae7f73d6">GetContextStack</a>()</div>
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    {</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        <span class="keywordflow">return</span> ContextObjectStack;</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    }</div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a544da35b513a59458a69d83a25882fcf">  326</a></span>    TArray&lt;UPhraseTreeContextObject*&gt; ContextObjectStack = TArray&lt;UPhraseTreeContextObject*&gt;();</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a86e4c1b97d0f8348e75d4bee95cacffb">  331</a></span>    TArray&lt;FString&gt; <a class="code hl_variable" href="structFParseRecord.html#a86e4c1b97d0f8348e75d4bee95cacffb">PhraseRecord</a>;</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a66b1f4a14bcdc10fea26b32e81a159cb">  336</a></span>    TMultiMap&lt;FString, UParseInput*&gt; <a class="code hl_variable" href="structFParseRecord.html#a66b1f4a14bcdc10fea26b32e81a159cb">PhraseInputs</a>;</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>};</div>
-<div class="ttc" id="aclassFPhraseTree_html"><div class="ttname"><a href="classFPhraseTree.html">FPhraseTree</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00227">PhraseTree.h:228</a></div></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a334089a6f0228a0d01396357b49c6340">  325</a></span>    TArray&lt;UPhraseTreeContextObject *&gt; ContextObjectStack = TArray&lt;UPhraseTreeContextObject *&gt;();</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a86e4c1b97d0f8348e75d4bee95cacffb">  330</a></span>    TArray&lt;FString&gt; <a class="code hl_variable" href="structFParseRecord.html#a86e4c1b97d0f8348e75d4bee95cacffb">PhraseRecord</a>;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="structFParseRecord.html#a801b9e0494c603c3350d0252145e4fc5">  335</a></span>    TMultiMap&lt;FString, UParseInput *&gt; <a class="code hl_variable" href="structFParseRecord.html#a801b9e0494c603c3350d0252145e4fc5">PhraseInputs</a>;</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>};</div>
+<div class="ttc" id="aclassFPhraseTree_html"><div class="ttname"><a href="classFPhraseTree.html">FPhraseTree</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00220">PhraseTree.h:221</a></div></div>
 <div class="ttc" id="aclassUParseInput_html"><div class="ttname"><a href="classUParseInput.html">UParseInput</a></div><div class="ttdef"><b>Definition:</b> <a href="UParseInput_8h_source.html#l00011">UParseInput.h:12</a></div></div>
 <div class="ttc" id="aclassUPhraseTreeContextObject_html"><div class="ttname"><a href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a></div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00012">ContextObject.h:13</a></div></div>
 <div class="ttc" id="astructFParseRecord_html"><div class="ttname"><a href="structFParseRecord.html">FParseRecord</a></div><div class="ttdoc">The Collected Information from the Propogation of the Phrase through the tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00016">ParseRecord.h:17</a></div></div>
-<div class="ttc" id="astructFParseRecord_html_a0785ad46863cc0a72e44980787b08434"><div class="ttname"><a href="structFParseRecord.html#a0785ad46863cc0a72e44980787b08434">FParseRecord::GetPhraseInput</a></div><div class="ttdeci">void GetPhraseInput(const FString &amp;InString, CastToType *OutInput)</div><div class="ttdoc">Gets the Input for the Provided Phrase, if it exists.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00110">ParseRecord.h:110</a></div></div>
+<div class="ttc" id="astructFParseRecord_html_a0785ad46863cc0a72e44980787b08434"><div class="ttname"><a href="structFParseRecord.html#a0785ad46863cc0a72e44980787b08434">FParseRecord::GetPhraseInput</a></div><div class="ttdeci">void GetPhraseInput(const FString &amp;InString, CastToType *OutInput)</div><div class="ttdoc">Gets the Input for the Provided Phrase, if it exists.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00109">ParseRecord.h:109</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_a0b49747164613e0dc522ec9f344c62d0"><div class="ttname"><a href="structFParseRecord.html#a0b49747164613e0dc522ec9f344c62d0">FParseRecord::RemovePhraseInput</a></div><div class="ttdeci">void RemovePhraseInput(const FString &amp;InString)</div><div class="ttdoc">Removes a Phrase Input From The Record.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00171">ParseRecord.h:171</a></div></div>
-<div class="ttc" id="astructFParseRecord_html_a11d98230de6448e218a903703643a4b6"><div class="ttname"><a href="structFParseRecord.html#a11d98230de6448e218a903703643a4b6">FParseRecord::GetPhraseInput</a></div><div class="ttdeci">CastToType * GetPhraseInput(const FString &amp;InString)</div><div class="ttdoc">Gets the Input for the Provided Phrase, if it exists.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00080">ParseRecord.h:80</a></div></div>
+<div class="ttc" id="astructFParseRecord_html_a11d98230de6448e218a903703643a4b6"><div class="ttname"><a href="structFParseRecord.html#a11d98230de6448e218a903703643a4b6">FParseRecord::GetPhraseInput</a></div><div class="ttdeci">CastToType * GetPhraseInput(const FString &amp;InString)</div><div class="ttdoc">Gets the Input for the Provided Phrase, if it exists.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00079">ParseRecord.h:79</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_a17e567608b13f2f1ebfaff91d1556095"><div class="ttname"><a href="structFParseRecord.html#a17e567608b13f2f1ebfaff91d1556095">FParseRecord::RemoveContextObj</a></div><div class="ttdeci">void RemoveContextObj(UPhraseTreeContextObject *InObject)</div><div class="ttdoc">Removes a Select Context Object From The Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00217">ParseRecord.h:217</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_a5d774b3ca0de6844931b79d2670fb3ce"><div class="ttname"><a href="structFParseRecord.html#a5d774b3ca0de6844931b79d2670fb3ce">FParseRecord::GetContextStack</a></div><div class="ttdeci">void GetContextStack(TArray&lt; UPhraseTreeContextObject * &gt; OutContextStack)</div><div class="ttdoc">Gets the Entire Context Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00307">ParseRecord.h:307</a></div></div>
-<div class="ttc" id="astructFParseRecord_html_a5e3e314f8799790a43208473ce37207e"><div class="ttname"><a href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">FParseRecord::GetPhraseInput</a></div><div class="ttdeci">UParseInput * GetPhraseInput(const FString &amp;InString)</div><div class="ttdoc">Gets the Input for the Provided Phrase, if it exists.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00064">ParseRecord.h:64</a></div></div>
-<div class="ttc" id="astructFParseRecord_html_a66b1f4a14bcdc10fea26b32e81a159cb"><div class="ttname"><a href="structFParseRecord.html#a66b1f4a14bcdc10fea26b32e81a159cb">FParseRecord::PhraseInputs</a></div><div class="ttdeci">TMultiMap&lt; FString, UParseInput * &gt; PhraseInputs</div><div class="ttdoc">Map of all the Provided Phrase Inputs, to their Respective Phrases.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00336">ParseRecord.h:336</a></div></div>
-<div class="ttc" id="astructFParseRecord_html_a69e753f7edee06c64163203adbda4cdb"><div class="ttname"><a href="structFParseRecord.html#a69e753f7edee06c64163203adbda4cdb">FParseRecord::GetPhraseInputs</a></div><div class="ttdeci">TArray&lt; UParseInput * &gt; GetPhraseInputs(const FString &amp;InString, const bool MaintainOrder=true)</div><div class="ttdoc">Gets an Array of Phrase Inputs for the Provided Phrase.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00142">ParseRecord.h:142</a></div></div>
+<div class="ttc" id="astructFParseRecord_html_a5e3e314f8799790a43208473ce37207e"><div class="ttname"><a href="structFParseRecord.html#a5e3e314f8799790a43208473ce37207e">FParseRecord::GetPhraseInput</a></div><div class="ttdeci">UParseInput * GetPhraseInput(const FString &amp;InString)</div><div class="ttdoc">Gets the Input for the Provided Phrase, if it exists.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00063">ParseRecord.h:63</a></div></div>
+<div class="ttc" id="astructFParseRecord_html_a69e753f7edee06c64163203adbda4cdb"><div class="ttname"><a href="structFParseRecord.html#a69e753f7edee06c64163203adbda4cdb">FParseRecord::GetPhraseInputs</a></div><div class="ttdeci">TArray&lt; UParseInput * &gt; GetPhraseInputs(const FString &amp;InString, const bool MaintainOrder=true)</div><div class="ttdoc">Gets an Array of Phrase Inputs for the Provided Phrase.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00141">ParseRecord.h:141</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_a75eab9842a28610e3fec803ac98bc250"><div class="ttname"><a href="structFParseRecord.html#a75eab9842a28610e3fec803ac98bc250">FParseRecord::PopContextObj</a></div><div class="ttdeci">void PopContextObj(UPhraseTreeContextObject *OutObject)</div><div class="ttdoc">Pops the Top Context Object From The Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00202">ParseRecord.h:202</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_a7c658e9a22291e96184dc57267231da6"><div class="ttname"><a href="structFParseRecord.html#a7c658e9a22291e96184dc57267231da6">FParseRecord::HasContextObj</a></div><div class="ttdeci">bool HasContextObj()</div><div class="ttdoc">Checks if there is a Context Object on the Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00228">ParseRecord.h:228</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_a7e1dc0d8241c602bd0bc8fbeb66911c8"><div class="ttname"><a href="structFParseRecord.html#a7e1dc0d8241c602bd0bc8fbeb66911c8">FParseRecord::HasContextObj</a></div><div class="ttdeci">bool HasContextObj(UPhraseTreeContextObject *InObject)</div><div class="ttdoc">Checks if a specific Context Object is on the Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00238">ParseRecord.h:238</a></div></div>
-<div class="ttc" id="astructFParseRecord_html_a86e4c1b97d0f8348e75d4bee95cacffb"><div class="ttname"><a href="structFParseRecord.html#a86e4c1b97d0f8348e75d4bee95cacffb">FParseRecord::PhraseRecord</a></div><div class="ttdeci">TArray&lt; FString &gt; PhraseRecord</div><div class="ttdoc">A Record of the Phrase String used through-out propagation.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00331">ParseRecord.h:331</a></div></div>
+<div class="ttc" id="astructFParseRecord_html_a801b9e0494c603c3350d0252145e4fc5"><div class="ttname"><a href="structFParseRecord.html#a801b9e0494c603c3350d0252145e4fc5">FParseRecord::PhraseInputs</a></div><div class="ttdeci">TMultiMap&lt; FString, UParseInput * &gt; PhraseInputs</div><div class="ttdoc">Map of all the Provided Phrase Inputs, to their Respective Phrases.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00335">ParseRecord.h:335</a></div></div>
+<div class="ttc" id="astructFParseRecord_html_a86e4c1b97d0f8348e75d4bee95cacffb"><div class="ttname"><a href="structFParseRecord.html#a86e4c1b97d0f8348e75d4bee95cacffb">FParseRecord::PhraseRecord</a></div><div class="ttdeci">TArray&lt; FString &gt; PhraseRecord</div><div class="ttdoc">A Record of the Phrase String used through-out propagation.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00330">ParseRecord.h:330</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_a89f8bc153c386ff45ccc4a7091dfee71"><div class="ttname"><a href="structFParseRecord.html#a89f8bc153c386ff45ccc4a7091dfee71">FParseRecord::GetContextObj</a></div><div class="ttdeci">CastToType * GetContextObj()</div><div class="ttdoc">Gets the Top Context Object On The Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00278">ParseRecord.h:278</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_a9e8c4f2a75832b2cf4bce72ac6373cb7"><div class="ttname"><a href="structFParseRecord.html#a9e8c4f2a75832b2cf4bce72ac6373cb7">FParseRecord::GetContextObj</a></div><div class="ttdeci">void GetContextObj(UPhraseTreeContextObject *OutObject)</div><div class="ttdoc">Gets the Top Context Object On The Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00261">ParseRecord.h:261</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_aaa14686a26abb28994444115ae7f73d6"><div class="ttname"><a href="structFParseRecord.html#aaa14686a26abb28994444115ae7f73d6">FParseRecord::GetContextStack</a></div><div class="ttdeci">TArray&lt; UPhraseTreeContextObject * &gt; GetContextStack()</div><div class="ttdoc">Gets the Entire Context Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00316">ParseRecord.h:316</a></div></div>
@@ -346,16 +344,16 @@ $(document).ready(function(){initNavTree('ParseRecord_8h_source.html',''); initR
 <div class="ttc" id="astructFParseRecord_html_ac2bbc6ba1c8aebea66f8211aa36c598f"><div class="ttname"><a href="structFParseRecord.html#ac2bbc6ba1c8aebea66f8211aa36c598f">FParseRecord::GetPhraseString</a></div><div class="ttdeci">FString GetPhraseString() const</div><div class="ttdoc">Gets the Recorded Phrase String for this record of propagation.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00046">ParseRecord.h:46</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_accffca09c256d0b620311963b5dbcf8a"><div class="ttname"><a href="structFParseRecord.html#accffca09c256d0b620311963b5dbcf8a">FParseRecord::GetContextObj</a></div><div class="ttdeci">void GetContextObj(CastToType *OutObject)</div><div class="ttdoc">Gets the Top Context Object On The Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00292">ParseRecord.h:292</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_ae15c154b890b7ac8e73cf85e7c5eed7b"><div class="ttname"><a href="structFParseRecord.html#ae15c154b890b7ac8e73cf85e7c5eed7b">FParseRecord::AddPhraseInput</a></div><div class="ttdeci">void AddPhraseInput(const FString &amp;InString, UParseInput *InInput)</div><div class="ttdoc">Adds a Phrase Input to the Record.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00162">ParseRecord.h:162</a></div></div>
-<div class="ttc" id="astructFParseRecord_html_ae1c4b2ab14342482728d0deb299774ae"><div class="ttname"><a href="structFParseRecord.html#ae1c4b2ab14342482728d0deb299774ae">FParseRecord::GetPhraseInput</a></div><div class="ttdeci">void GetPhraseInput(const FString &amp;InString, UParseInput *OutInput)</div><div class="ttdoc">Gets the Input for the Provided Phrase, if it exists.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00094">ParseRecord.h:94</a></div></div>
+<div class="ttc" id="astructFParseRecord_html_ae1c4b2ab14342482728d0deb299774ae"><div class="ttname"><a href="structFParseRecord.html#ae1c4b2ab14342482728d0deb299774ae">FParseRecord::GetPhraseInput</a></div><div class="ttdeci">void GetPhraseInput(const FString &amp;InString, UParseInput *OutInput)</div><div class="ttdoc">Gets the Input for the Provided Phrase, if it exists.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00093">ParseRecord.h:93</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_aefcadd27a097c7f866d751f077531194"><div class="ttname"><a href="structFParseRecord.html#aefcadd27a097c7f866d751f077531194">FParseRecord::GetContextObj</a></div><div class="ttdeci">UPhraseTreeContextObject * GetContextObj()</div><div class="ttdoc">Gets the Top Context Object On The Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00249">ParseRecord.h:249</a></div></div>
-<div class="ttc" id="astructFParseRecord_html_af24d63bb79861b6730f12d54a6097978"><div class="ttname"><a href="structFParseRecord.html#af24d63bb79861b6730f12d54a6097978">FParseRecord::GetPhraseInputs</a></div><div class="ttdeci">void GetPhraseInputs(const FString &amp;InString, TArray&lt; UParseInput * &gt; &amp;OutInputs, const bool MaintainOrder=true)</div><div class="ttdoc">Gets an Array of Phrase Inputs for the Provided Phrase.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00127">ParseRecord.h:127</a></div></div>
+<div class="ttc" id="astructFParseRecord_html_af24d63bb79861b6730f12d54a6097978"><div class="ttname"><a href="structFParseRecord.html#af24d63bb79861b6730f12d54a6097978">FParseRecord::GetPhraseInputs</a></div><div class="ttdeci">void GetPhraseInputs(const FString &amp;InString, TArray&lt; UParseInput * &gt; &amp;OutInputs, const bool MaintainOrder=true)</div><div class="ttdoc">Gets an Array of Phrase Inputs for the Provided Phrase.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00126">ParseRecord.h:126</a></div></div>
 <div class="ttc" id="astructFParseRecord_html_af3912683ff8d26af1c0e5b45f6cc39c3"><div class="ttname"><a href="structFParseRecord.html#af3912683ff8d26af1c0e5b45f6cc39c3">FParseRecord::PopContextObj</a></div><div class="ttdeci">void PopContextObj()</div><div class="ttdoc">Pops the Top Context Object From The Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00190">ParseRecord.h:190</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_0be4fb7ae7139531592415badda1d85f.html">OpenAccessibilityCommunication</a></li><li class="navelem"><a class="el" href="dir_992faac7f20c8fd543390d48fec206cc.html">Public</a></li><li class="navelem"><a class="el" href="dir_6020ac7f9061057e390f335f34493b55.html">PhraseTree</a></li><li class="navelem"><a class="el" href="dir_aada4a6a452bd5c7af19d7131e20ae05.html">Containers</a></li><li class="navelem"><b>ParseRecord.h</b></li>
+    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_02a58dd24a7a3529d305a4e28a239d5e.html">AccessionCommunication</a></li><li class="navelem"><a class="el" href="dir_58f3e0517e0721b33df2f217fd82f170.html">Public</a></li><li class="navelem"><a class="el" href="dir_4a2d3f87a1d2e2297645ae095032d3f8.html">PhraseTree</a></li><li class="navelem"><a class="el" href="dir_8a2e3aa5fbb21607a057c49c67d23319.html">Containers</a></li><li class="navelem"><b>ParseRecord.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>

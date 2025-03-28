@@ -132,55 +132,53 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p >Collects all Tabs Manager by this Tab Manager, through its Layout. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">TabManager</td><td>The Tab Manager to Collect Descendant Tabs from. <br  />
- </td></tr>
+    <tr><td class="paramname">TabManager</td><td>The Tab Manager to Collect Descendant Tabs from. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An Array of Found Tabs from the Root Layout. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00257">257</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  258</span>    {</div>
-<div class="line"><span class="lineno">  259</span>        TArray&lt;FTabManager::FTab&gt; ManagedTabs = TArray&lt;FTabManager::FTab&gt;();</div>
-<div class="line"><span class="lineno">  260</span> </div>
-<div class="line"><span class="lineno">  261</span>        <span class="keyword">const</span> TSharedRef&lt;FTabManager::FLayout&gt; Layout = TabManager-&gt;PersistLayout();</div>
-<div class="line"><span class="lineno">  262</span>        <span class="keyword">const</span> TSharedPtr&lt;FOpenArea&gt; MainArea = StaticCastSharedPtr&lt;FOpenArea&gt;(Layout-&gt;GetPrimaryArea().Pin());</div>
-<div class="line"><span class="lineno">  263</span>        <span class="keywordflow">if</span> (!MainArea.IsValid())</div>
-<div class="line"><span class="lineno">  264</span>        {</div>
-<div class="line"><span class="lineno">  265</span>            UE_LOG(LogOpenAccessibility, Warning, TEXT(<span class="stringliteral">&quot;CollectManagedTabs: Primary Area is Not Valid&quot;</span>))</div>
-<div class="line"><span class="lineno">  266</span>            return ManagedTabs;</div>
-<div class="line"><span class="lineno">  267</span>        }</div>
-<div class="line"><span class="lineno">  268</span> </div>
-<div class="line"><span class="lineno">  269</span>        TSharedPtr&lt;FTabManager::FLayoutNode&gt; CurrentNode = <span class="keywordtype">nullptr</span>;</div>
-<div class="line"><span class="lineno">  270</span>        TArray&lt;TSharedRef&lt;FTabManager::FLayoutNode&gt;&gt; NodesToCheck = TArray{</div>
-<div class="line"><span class="lineno">  271</span>            MainArea-&gt;GetChildNodes()</div>
-<div class="line"><span class="lineno">  272</span>        };</div>
-<div class="line"><span class="lineno">  273</span> </div>
-<div class="line"><span class="lineno">  274</span>        <span class="keywordflow">while</span>(!NodesToCheck.IsEmpty())</div>
-<div class="line"><span class="lineno">  275</span>        {</div>
-<div class="line"><span class="lineno">  276</span>            CurrentNode = NodesToCheck[0];</div>
-<div class="line"><span class="lineno">  277</span>            NodesToCheck.RemoveAt(0);</div>
-<div class="line"><span class="lineno">  278</span> </div>
-<div class="line"><span class="lineno">  279</span>            <span class="keywordflow">if</span> (TSharedPtr&lt;FTabManager::FStack&gt; AsStack = CurrentNode-&gt;AsStack())</div>
-<div class="line"><span class="lineno">  280</span>            {</div>
-<div class="line"><span class="lineno">  281</span>                ManagedTabs.Append(StaticCastSharedPtr&lt;FOpenStack&gt;(AsStack)-&gt;GetTabs());</div>
-<div class="line"><span class="lineno">  282</span>            }</div>
-<div class="line"><span class="lineno">  283</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (TSharedPtr&lt;FTabManager::FArea&gt; AsArea = CurrentNode-&gt;AsArea())</div>
-<div class="line"><span class="lineno">  284</span>            {</div>
-<div class="line"><span class="lineno">  285</span>                NodesToCheck.Append(StaticCastSharedPtr&lt;FOpenArea&gt;(AsArea)-&gt;GetChildNodes());</div>
-<div class="line"><span class="lineno">  286</span>            }</div>
-<div class="line"><span class="lineno">  287</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (TSharedPtr&lt;FTabManager::FSplitter&gt; AsSplitter = CurrentNode-&gt;AsSplitter())</div>
-<div class="line"><span class="lineno">  288</span>            {</div>
-<div class="line"><span class="lineno">  289</span>                NodesToCheck.Append(StaticCastSharedPtr&lt;FOpenArea&gt;(AsSplitter)-&gt;GetChildNodes());</div>
-<div class="line"><span class="lineno">  290</span>            }</div>
-<div class="line"><span class="lineno">  291</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  292</span>            {</div>
-<div class="line"><span class="lineno">  293</span>                UE_LOG(LogOpenAccessibilityPhraseEvent, Warning, TEXT(<span class="stringliteral">&quot;CollectManagedTabs: Unknown Node Type.&quot;</span>))</div>
-<div class="line"><span class="lineno">  294</span>            }</div>
-<div class="line"><span class="lineno">  295</span>        }</div>
-<div class="line"><span class="lineno">  296</span> </div>
-<div class="line"><span class="lineno">  297</span>        <span class="keywordflow">return</span> ManagedTabs;</div>
-<div class="line"><span class="lineno">  298</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="WindowInteractionLibrary_8cpp_source.html#l00252">252</a> of file <a class="el" href="WindowInteractionLibrary_8cpp_source.html">WindowInteractionLibrary.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  253</span>    {</div>
+<div class="line"><span class="lineno">  254</span>        TArray&lt;FTabManager::FTab&gt; ManagedTabs = TArray&lt;FTabManager::FTab&gt;();</div>
+<div class="line"><span class="lineno">  255</span> </div>
+<div class="line"><span class="lineno">  256</span>        <span class="keyword">const</span> TSharedRef&lt;FTabManager::FLayout&gt; Layout = TabManager-&gt;PersistLayout();</div>
+<div class="line"><span class="lineno">  257</span>        <span class="keyword">const</span> TSharedPtr&lt;FOpenArea&gt; MainArea = StaticCastSharedPtr&lt;FOpenArea&gt;(Layout-&gt;GetPrimaryArea().Pin());</div>
+<div class="line"><span class="lineno">  258</span>        <span class="keywordflow">if</span> (!MainArea.IsValid())</div>
+<div class="line"><span class="lineno">  259</span>        {</div>
+<div class="line"><span class="lineno">  260</span>            UE_LOG(LogAccessionPhraseEvent, Warning, TEXT(<span class="stringliteral">&quot;CollectManagedTabs: Primary Area is Not Valid&quot;</span>))</div>
+<div class="line"><span class="lineno">  261</span>            return ManagedTabs;</div>
+<div class="line"><span class="lineno">  262</span>        }</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>        TSharedPtr&lt;FTabManager::FLayoutNode&gt; CurrentNode = <span class="keywordtype">nullptr</span>;</div>
+<div class="line"><span class="lineno">  265</span>        TArray&lt;TSharedRef&lt;FTabManager::FLayoutNode&gt;&gt; NodesToCheck = TArray{</div>
+<div class="line"><span class="lineno">  266</span>            MainArea-&gt;GetChildNodes()};</div>
+<div class="line"><span class="lineno">  267</span> </div>
+<div class="line"><span class="lineno">  268</span>        <span class="keywordflow">while</span> (!NodesToCheck.IsEmpty())</div>
+<div class="line"><span class="lineno">  269</span>        {</div>
+<div class="line"><span class="lineno">  270</span>            CurrentNode = NodesToCheck[0];</div>
+<div class="line"><span class="lineno">  271</span>            NodesToCheck.RemoveAt(0);</div>
+<div class="line"><span class="lineno">  272</span> </div>
+<div class="line"><span class="lineno">  273</span>            <span class="keywordflow">if</span> (TSharedPtr&lt;FTabManager::FStack&gt; AsStack = CurrentNode-&gt;AsStack())</div>
+<div class="line"><span class="lineno">  274</span>            {</div>
+<div class="line"><span class="lineno">  275</span>                ManagedTabs.Append(StaticCastSharedPtr&lt;FOpenStack&gt;(AsStack)-&gt;GetTabs());</div>
+<div class="line"><span class="lineno">  276</span>            }</div>
+<div class="line"><span class="lineno">  277</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (TSharedPtr&lt;FTabManager::FArea&gt; AsArea = CurrentNode-&gt;AsArea())</div>
+<div class="line"><span class="lineno">  278</span>            {</div>
+<div class="line"><span class="lineno">  279</span>                NodesToCheck.Append(StaticCastSharedPtr&lt;FOpenArea&gt;(AsArea)-&gt;GetChildNodes());</div>
+<div class="line"><span class="lineno">  280</span>            }</div>
+<div class="line"><span class="lineno">  281</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (TSharedPtr&lt;FTabManager::FSplitter&gt; AsSplitter = CurrentNode-&gt;AsSplitter())</div>
+<div class="line"><span class="lineno">  282</span>            {</div>
+<div class="line"><span class="lineno">  283</span>                NodesToCheck.Append(StaticCastSharedPtr&lt;FOpenArea&gt;(AsSplitter)-&gt;GetChildNodes());</div>
+<div class="line"><span class="lineno">  284</span>            }</div>
+<div class="line"><span class="lineno">  285</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  286</span>            {</div>
+<div class="line"><span class="lineno">  287</span>                UE_LOG(LogAccessionPhraseEvent, Warning, TEXT(<span class="stringliteral">&quot;CollectManagedTabs: Unknown Node Type.&quot;</span>))</div>
+<div class="line"><span class="lineno">  288</span>            }</div>
+<div class="line"><span class="lineno">  289</span>        }</div>
+<div class="line"><span class="lineno">  290</span> </div>
+<div class="line"><span class="lineno">  291</span>        <span class="keywordflow">return</span> ManagedTabs;</div>
+<div class="line"><span class="lineno">  292</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>

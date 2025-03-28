@@ -190,10 +190,9 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00019">19</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>    {</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00018">18</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   19</span>    {</div>
+<div class="line"><span class="lineno">   20</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -222,10 +221,9 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00024">24</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   25</span>    {</div>
-<div class="line"><span class="lineno">   26</span>    </div>
-<div class="line"><span class="lineno">   27</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00022">22</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>    {</div>
+<div class="line"><span class="lineno">   24</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -263,26 +261,26 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The Key of the associated to the inserted value in the indexer. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00166">166</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  167</span>    {</div>
-<div class="line"><span class="lineno">  168</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  169</span> </div>
-<div class="line"><span class="lineno">  170</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFIndexer.html#ad25d80b2aef02d3935f9daf6b82e6437">ContainsValue</a>(InValue))</div>
-<div class="line"><span class="lineno">  171</span>        {</div>
-<div class="line"><span class="lineno">  172</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">GetKey</a>(InValue);</div>
-<div class="line"><span class="lineno">  173</span>        }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00163">163</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  164</span>    {</div>
+<div class="line"><span class="lineno">  165</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  166</span> </div>
+<div class="line"><span class="lineno">  167</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFIndexer.html#ad25d80b2aef02d3935f9daf6b82e6437">ContainsValue</a>(InValue))</div>
+<div class="line"><span class="lineno">  168</span>        {</div>
+<div class="line"><span class="lineno">  169</span>            <span class="keywordflow">return</span> <a class="code hl_function" href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">GetKey</a>(InValue);</div>
+<div class="line"><span class="lineno">  170</span>        }</div>
+<div class="line"><span class="lineno">  171</span> </div>
+<div class="line"><span class="lineno">  172</span>        KeyType NewKey;</div>
+<div class="line"><span class="lineno">  173</span>        <a class="code hl_function" href="classFIndexer.html#ab5608e93138c4c7f3438c0fa3d3b0c88">GetAvailableKey</a>(NewKey);</div>
 <div class="line"><span class="lineno">  174</span> </div>
-<div class="line"><span class="lineno">  175</span>        KeyType NewKey;</div>
-<div class="line"><span class="lineno">  176</span>        <a class="code hl_function" href="classFIndexer.html#ab5608e93138c4c7f3438c0fa3d3b0c88">GetAvailableKey</a>(NewKey);</div>
-<div class="line"><span class="lineno">  177</span> </div>
-<div class="line"><span class="lineno">  178</span>        <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Add(NewKey, InValue);</div>
-<div class="line"><span class="lineno">  179</span> </div>
-<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">return</span> NewKey;</div>
-<div class="line"><span class="lineno">  181</span>    }</div>
-<div class="ttc" id="aclassFIndexer_html_a8a51595492e7f19946f9e40acd3a54b0"><div class="ttname"><a href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">FIndexer::GetKey</a></div><div class="ttdeci">const KeyType GetKey(const ValueType &amp;InValue)</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00104">Indexer.h:104</a></div></div>
-<div class="ttc" id="aclassFIndexer_html_ab5608e93138c4c7f3438c0fa3d3b0c88"><div class="ttname"><a href="classFIndexer.html#ab5608e93138c4c7f3438c0fa3d3b0c88">FIndexer::GetAvailableKey</a></div><div class="ttdeci">KeyType GetAvailableKey()</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00285">Indexer.h:285</a></div></div>
-<div class="ttc" id="aclassFIndexer_html_ad25d80b2aef02d3935f9daf6b82e6437"><div class="ttname"><a href="classFIndexer.html#ad25d80b2aef02d3935f9daf6b82e6437">FIndexer::ContainsValue</a></div><div class="ttdeci">bool ContainsValue(const ValueType &amp;InValue)</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00090">Indexer.h:90</a></div></div>
-<div class="ttc" id="aclassFIndexer_html_ad3524a9fd34d62096addfc9ab115913a"><div class="ttname"><a href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">FIndexer::IndexMap</a></div><div class="ttdeci">TMap&lt; KeyType, ValueType &gt; IndexMap</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00305">Indexer.h:305</a></div></div>
+<div class="line"><span class="lineno">  175</span>        <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Add(NewKey, InValue);</div>
+<div class="line"><span class="lineno">  176</span> </div>
+<div class="line"><span class="lineno">  177</span>        <span class="keywordflow">return</span> NewKey;</div>
+<div class="line"><span class="lineno">  178</span>    }</div>
+<div class="ttc" id="aclassFIndexer_html_a8a51595492e7f19946f9e40acd3a54b0"><div class="ttname"><a href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">FIndexer::GetKey</a></div><div class="ttdeci">const KeyType GetKey(const ValueType &amp;InValue)</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00100">Indexer.h:100</a></div></div>
+<div class="ttc" id="aclassFIndexer_html_ab5608e93138c4c7f3438c0fa3d3b0c88"><div class="ttname"><a href="classFIndexer.html#ab5608e93138c4c7f3438c0fa3d3b0c88">FIndexer::GetAvailableKey</a></div><div class="ttdeci">KeyType GetAvailableKey()</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00282">Indexer.h:282</a></div></div>
+<div class="ttc" id="aclassFIndexer_html_ad25d80b2aef02d3935f9daf6b82e6437"><div class="ttname"><a href="classFIndexer.html#ad25d80b2aef02d3935f9daf6b82e6437">FIndexer::ContainsValue</a></div><div class="ttdeci">bool ContainsValue(const ValueType &amp;InValue)</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00086">Indexer.h:86</a></div></div>
+<div class="ttc" id="aclassFIndexer_html_ad3524a9fd34d62096addfc9ab115913a"><div class="ttname"><a href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">FIndexer::IndexMap</a></div><div class="ttdeci">TMap&lt; KeyType, ValueType &gt; IndexMap</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00299">Indexer.h:299</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -329,20 +327,20 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00188">188</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  189</span>    {</div>
-<div class="line"><span class="lineno">  190</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  191</span> </div>
-<div class="line"><span class="lineno">  192</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFIndexer.html#ad25d80b2aef02d3935f9daf6b82e6437">ContainsValue</a>(InValue))</div>
-<div class="line"><span class="lineno">  193</span>        {</div>
-<div class="line"><span class="lineno">  194</span>            OutKey = <a class="code hl_function" href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">GetKey</a>(InValue);</div>
-<div class="line"><span class="lineno">  195</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  196</span>        }</div>
-<div class="line"><span class="lineno">  197</span> </div>
-<div class="line"><span class="lineno">  198</span>        OutKey = <a class="code hl_function" href="classFIndexer.html#ab5608e93138c4c7f3438c0fa3d3b0c88">GetAvailableKey</a>();</div>
-<div class="line"><span class="lineno">  199</span> </div>
-<div class="line"><span class="lineno">  200</span>        <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Add(OutKey, InValue);</div>
-<div class="line"><span class="lineno">  201</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00185">185</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  186</span>    {</div>
+<div class="line"><span class="lineno">  187</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  188</span> </div>
+<div class="line"><span class="lineno">  189</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFIndexer.html#ad25d80b2aef02d3935f9daf6b82e6437">ContainsValue</a>(InValue))</div>
+<div class="line"><span class="lineno">  190</span>        {</div>
+<div class="line"><span class="lineno">  191</span>            OutKey = <a class="code hl_function" href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">GetKey</a>(InValue);</div>
+<div class="line"><span class="lineno">  192</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  193</span>        }</div>
+<div class="line"><span class="lineno">  194</span> </div>
+<div class="line"><span class="lineno">  195</span>        OutKey = <a class="code hl_function" href="classFIndexer.html#ab5608e93138c4c7f3438c0fa3d3b0c88">GetAvailableKey</a>();</div>
+<div class="line"><span class="lineno">  196</span> </div>
+<div class="line"><span class="lineno">  197</span>        <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Add(OutKey, InValue);</div>
+<div class="line"><span class="lineno">  198</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -379,10 +377,10 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the Key is in use in the Indexer, otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00080">80</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   81</span>    {</div>
-<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Contains(InKey);</div>
-<div class="line"><span class="lineno">   83</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00076">76</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>    {</div>
+<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Contains(InKey);</div>
+<div class="line"><span class="lineno">   79</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -419,14 +417,14 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True of the specified value is associated with the Indexer. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00090">90</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   91</span>    {</div>
-<div class="line"><span class="lineno">   92</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>        <span class="keyword">const</span> KeyType* FoundKey = <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.FindKey(InValue);</div>
-<div class="line"><span class="lineno">   95</span> </div>
-<div class="line"><span class="lineno">   96</span>        <span class="keywordflow">return</span> FoundKey != <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">   97</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00086">86</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   87</span>    {</div>
+<div class="line"><span class="lineno">   88</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">   89</span> </div>
+<div class="line"><span class="lineno">   90</span>        <span class="keyword">const</span> KeyType *FoundKey = <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.FindKey(InValue);</div>
+<div class="line"><span class="lineno">   91</span> </div>
+<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">return</span> FoundKey != <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">   93</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -456,12 +454,12 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </div><div class="memdoc">
 <p >Empties the Indexer, preserving no space allocated. </p>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00051">51</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   52</span>    {</div>
-<div class="line"><span class="lineno">   53</span>        <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Empty();</div>
-<div class="line"><span class="lineno">   54</span>        <a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Empty();</div>
-<div class="line"><span class="lineno">   55</span>    }</div>
-<div class="ttc" id="aclassFIndexer_html_a723c23dcda42f9748fb00b5e13708578"><div class="ttname"><a href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">FIndexer::AvailableIndexes</a></div><div class="ttdeci">TQueue&lt; KeyType &gt; AvailableIndexes</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00310">Indexer.h:310</a></div></div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00047">47</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   48</span>    {</div>
+<div class="line"><span class="lineno">   49</span>        <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Empty();</div>
+<div class="line"><span class="lineno">   50</span>        <a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Empty();</div>
+<div class="line"><span class="lineno">   51</span>    }</div>
+<div class="ttc" id="aclassFIndexer_html_a723c23dcda42f9748fb00b5e13708578"><div class="ttname"><a href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">FIndexer::AvailableIndexes</a></div><div class="ttdeci">TQueue&lt; KeyType &gt; AvailableIndexes</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00304">Indexer.h:304</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -491,17 +489,17 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </div><div class="memdoc">
 <p >Gets the Next Available Key in the Indexer. </p><dl class="section return"><dt>Returns</dt><dd>The next available key in the indexer. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00285">285</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  286</span>    {</div>
-<div class="line"><span class="lineno">  287</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.IsEmpty())</div>
-<div class="line"><span class="lineno">  288</span>        {</div>
-<div class="line"><span class="lineno">  289</span>            KeyType OutKey;</div>
-<div class="line"><span class="lineno">  290</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Dequeue(OutKey))</div>
-<div class="line"><span class="lineno">  291</span>                <span class="keywordflow">return</span> OutKey;</div>
-<div class="line"><span class="lineno">  292</span>        }</div>
-<div class="line"><span class="lineno">  293</span> </div>
-<div class="line"><span class="lineno">  294</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Num();</div>
-<div class="line"><span class="lineno">  295</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00282">282</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  283</span>    {</div>
+<div class="line"><span class="lineno">  284</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.IsEmpty())</div>
+<div class="line"><span class="lineno">  285</span>        {</div>
+<div class="line"><span class="lineno">  286</span>            KeyType OutKey;</div>
+<div class="line"><span class="lineno">  287</span>            <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Dequeue(OutKey))</div>
+<div class="line"><span class="lineno">  288</span>                <span class="keywordflow">return</span> OutKey;</div>
+<div class="line"><span class="lineno">  289</span>        }</div>
+<div class="line"><span class="lineno">  290</span> </div>
+<div class="line"><span class="lineno">  291</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Num();</div>
+<div class="line"><span class="lineno">  292</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -537,13 +535,13 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00273">273</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  274</span>    {</div>
-<div class="line"><span class="lineno">  275</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.IsEmpty() &amp;&amp; <a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Dequeue(OutKey))</div>
-<div class="line"><span class="lineno">  276</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  277</span> </div>
-<div class="line"><span class="lineno">  278</span>        OutKey = <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Num();</div>
-<div class="line"><span class="lineno">  279</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00270">270</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  271</span>    {</div>
+<div class="line"><span class="lineno">  272</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.IsEmpty() &amp;&amp; <a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Dequeue(OutKey))</div>
+<div class="line"><span class="lineno">  273</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  274</span> </div>
+<div class="line"><span class="lineno">  275</span>        OutKey = <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Num();</div>
+<div class="line"><span class="lineno">  276</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -580,12 +578,12 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The associated key for the specified value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00104">104</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  105</span>    {</div>
-<div class="line"><span class="lineno">  106</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  107</span> </div>
-<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.FindKey(InValue);</div>
-<div class="line"><span class="lineno">  109</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00100">100</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  101</span>    {</div>
+<div class="line"><span class="lineno">  102</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  103</span> </div>
+<div class="line"><span class="lineno">  104</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.FindKey(InValue);</div>
+<div class="line"><span class="lineno">  105</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -633,20 +631,21 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the associated key was found, otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00117">117</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  118</span>    {</div>
-<div class="line"><span class="lineno">  119</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  120</span> </div>
-<div class="line"><span class="lineno">  121</span>        <span class="keyword">const</span> KeyType* FoundKey = <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.FindKey(InValue);</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00113">113</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  114</span>    {</div>
+<div class="line"><span class="lineno">  115</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  116</span> </div>
+<div class="line"><span class="lineno">  117</span>        <span class="keyword">const</span> KeyType *FoundKey = <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.FindKey(InValue);</div>
+<div class="line"><span class="lineno">  118</span> </div>
+<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">if</span> (FoundKey != <span class="keyword">nullptr</span>)</div>
+<div class="line"><span class="lineno">  120</span>        {</div>
+<div class="line"><span class="lineno">  121</span>            OutKey = *FoundKey;</div>
 <div class="line"><span class="lineno">  122</span> </div>
-<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">if</span> (FoundKey != <span class="keyword">nullptr</span>)</div>
-<div class="line"><span class="lineno">  124</span>        {</div>
-<div class="line"><span class="lineno">  125</span>            OutKey = *FoundKey;</div>
-<div class="line"><span class="lineno">  126</span> </div>
-<div class="line"><span class="lineno">  127</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  128</span>        }</div>
-<div class="line"><span class="lineno">  129</span>        <span class="keywordflow">else</span> <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  130</span>    }</div>
+<div class="line"><span class="lineno">  123</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  124</span>        }</div>
+<div class="line"><span class="lineno">  125</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  126</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  127</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -683,17 +682,17 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The Key of the associated value. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00208">208</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  209</span>    {</div>
-<div class="line"><span class="lineno">  210</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  211</span> </div>
-<div class="line"><span class="lineno">  212</span>        KeyType FoundKey;</div>
-<div class="line"><span class="lineno">  213</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">GetKey</a>(InValue, FoundKey))</div>
-<div class="line"><span class="lineno">  214</span>            <span class="keywordflow">return</span> FoundKey;</div>
-<div class="line"><span class="lineno">  215</span> </div>
-<div class="line"><span class="lineno">  216</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classFIndexer.html#aa8bb1e6e18fd1ebebb8a8f200113de11">AddValue</a>(InValue);</div>
-<div class="line"><span class="lineno">  217</span>    }</div>
-<div class="ttc" id="aclassFIndexer_html_aa8bb1e6e18fd1ebebb8a8f200113de11"><div class="ttname"><a href="classFIndexer.html#aa8bb1e6e18fd1ebebb8a8f200113de11">FIndexer::AddValue</a></div><div class="ttdeci">KeyType AddValue(const ValueType &amp;InValue)</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00166">Indexer.h:166</a></div></div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00205">205</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  206</span>    {</div>
+<div class="line"><span class="lineno">  207</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  208</span> </div>
+<div class="line"><span class="lineno">  209</span>        KeyType FoundKey;</div>
+<div class="line"><span class="lineno">  210</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">GetKey</a>(InValue, FoundKey))</div>
+<div class="line"><span class="lineno">  211</span>            <span class="keywordflow">return</span> FoundKey;</div>
+<div class="line"><span class="lineno">  212</span> </div>
+<div class="line"><span class="lineno">  213</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="classFIndexer.html#aa8bb1e6e18fd1ebebb8a8f200113de11">AddValue</a>(InValue);</div>
+<div class="line"><span class="lineno">  214</span>    }</div>
+<div class="ttc" id="aclassFIndexer_html_aa8bb1e6e18fd1ebebb8a8f200113de11"><div class="ttname"><a href="classFIndexer.html#aa8bb1e6e18fd1ebebb8a8f200113de11">FIndexer::AddValue</a></div><div class="ttdeci">KeyType AddValue(const ValueType &amp;InValue)</div><div class="ttdef"><b>Definition:</b> <a href="Indexer_8h_source.html#l00163">Indexer.h:163</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -740,15 +739,15 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00224">224</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  225</span>    {</div>
-<div class="line"><span class="lineno">  226</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00221">221</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  222</span>    {</div>
+<div class="line"><span class="lineno">  223</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  224</span> </div>
+<div class="line"><span class="lineno">  225</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">GetKey</a>(InValue, OutKey))</div>
+<div class="line"><span class="lineno">  226</span>            <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">  227</span> </div>
-<div class="line"><span class="lineno">  228</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">GetKey</a>(InValue, OutKey))</div>
-<div class="line"><span class="lineno">  229</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  230</span> </div>
-<div class="line"><span class="lineno">  231</span>        OutKey = <a class="code hl_function" href="classFIndexer.html#aa8bb1e6e18fd1ebebb8a8f200113de11">AddValue</a>(InValue);</div>
-<div class="line"><span class="lineno">  232</span>    }</div>
+<div class="line"><span class="lineno">  228</span>        OutKey = <a class="code hl_function" href="classFIndexer.html#aa8bb1e6e18fd1ebebb8a8f200113de11">AddValue</a>(InValue);</div>
+<div class="line"><span class="lineno">  229</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -785,10 +784,10 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The associated value of the specified key. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00137">137</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  138</span>    {</div>
-<div class="line"><span class="lineno">  139</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Find(InKey);</div>
-<div class="line"><span class="lineno">  140</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00134">134</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  135</span>    {</div>
+<div class="line"><span class="lineno">  136</span>        <span class="keywordflow">return</span> *<a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Find(InKey);</div>
+<div class="line"><span class="lineno">  137</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -836,18 +835,18 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if an associated value was found, otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00148">148</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  149</span>    {</div>
-<div class="line"><span class="lineno">  150</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Contains(InKey))</div>
-<div class="line"><span class="lineno">  151</span>        {</div>
-<div class="line"><span class="lineno">  152</span>            UE_LOG(LogOpenAccessibility, Warning, TEXT(<span class="stringliteral">&quot;Provided Key is not recognised.&quot;</span>));</div>
-<div class="line"><span class="lineno">  153</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  154</span>        }</div>
-<div class="line"><span class="lineno">  155</span> </div>
-<div class="line"><span class="lineno">  156</span>        OutValue = *<a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Find(InKey);</div>
-<div class="line"><span class="lineno">  157</span> </div>
-<div class="line"><span class="lineno">  158</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  159</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00145">145</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  146</span>    {</div>
+<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Contains(InKey))</div>
+<div class="line"><span class="lineno">  148</span>        {</div>
+<div class="line"><span class="lineno">  149</span>            UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;Provided Key is not recognised.&quot;</span>));</div>
+<div class="line"><span class="lineno">  150</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  151</span>        }</div>
+<div class="line"><span class="lineno">  152</span> </div>
+<div class="line"><span class="lineno">  153</span>        OutValue = *<a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Find(InKey);</div>
+<div class="line"><span class="lineno">  154</span> </div>
+<div class="line"><span class="lineno">  155</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  156</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -877,10 +876,10 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </div><div class="memdoc">
 <p >Checks if the Indexer is Empty. </p><dl class="section return"><dt>Returns</dt><dd>True if the Indexer is Empty, otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00034">34</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   35</span>    { </div>
-<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.IsEmpty();</div>
-<div class="line"><span class="lineno">   37</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00030">30</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   31</span>    {</div>
+<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.IsEmpty();</div>
+<div class="line"><span class="lineno">   33</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -910,10 +909,10 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </div><div class="memdoc">
 <p >Gets the Number of Items Currently in the Indexer. </p><dl class="section return"><dt>Returns</dt><dd>Number of Items being Indexed. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00061">61</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   62</span>    {</div>
-<div class="line"><span class="lineno">   63</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Num();</div>
-<div class="line"><span class="lineno">   64</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00057">57</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   58</span>    {</div>
+<div class="line"><span class="lineno">   59</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Num();</div>
+<div class="line"><span class="lineno">   60</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -949,10 +948,10 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00070">70</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   71</span>    {</div>
-<div class="line"><span class="lineno">   72</span>        OutNum = <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Num();</div>
-<div class="line"><span class="lineno">   73</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00066">66</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   67</span>    {</div>
+<div class="line"><span class="lineno">   68</span>        OutNum = <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Num();</div>
+<div class="line"><span class="lineno">   69</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -988,17 +987,17 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00238">238</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  239</span>    {</div>
-<div class="line"><span class="lineno">  240</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Contains(InKey))</div>
-<div class="line"><span class="lineno">  241</span>        {</div>
-<div class="line"><span class="lineno">  242</span>            UE_LOG(LogOpenAccessibility, Warning, TEXT(<span class="stringliteral">&quot;Provided Key Has No Pair in Index.&quot;</span>));</div>
-<div class="line"><span class="lineno">  243</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  244</span>        }</div>
-<div class="line"><span class="lineno">  245</span> </div>
-<div class="line"><span class="lineno">  246</span>        <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Remove(InKey);</div>
-<div class="line"><span class="lineno">  247</span>        <a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Enqueue(InKey);</div>
-<div class="line"><span class="lineno">  248</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00235">235</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  236</span>    {</div>
+<div class="line"><span class="lineno">  237</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Contains(InKey))</div>
+<div class="line"><span class="lineno">  238</span>        {</div>
+<div class="line"><span class="lineno">  239</span>            UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;Provided Key Has No Pair in Index.&quot;</span>));</div>
+<div class="line"><span class="lineno">  240</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  241</span>        }</div>
+<div class="line"><span class="lineno">  242</span> </div>
+<div class="line"><span class="lineno">  243</span>        <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Remove(InKey);</div>
+<div class="line"><span class="lineno">  244</span>        <a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Enqueue(InKey);</div>
+<div class="line"><span class="lineno">  245</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1034,18 +1033,19 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00254">254</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  255</span>    {</div>
-<div class="line"><span class="lineno">  256</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
-<div class="line"><span class="lineno">  257</span> </div>
-<div class="line"><span class="lineno">  258</span>        KeyType FoundKey;</div>
-<div class="line"><span class="lineno">  259</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">GetKey</a>(InValue, FoundKey))</div>
-<div class="line"><span class="lineno">  260</span>        {</div>
-<div class="line"><span class="lineno">  261</span>            <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Remove(FoundKey);</div>
-<div class="line"><span class="lineno">  262</span>            <a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Enqueue(FoundKey);</div>
-<div class="line"><span class="lineno">  263</span>        }</div>
-<div class="line"><span class="lineno">  264</span>        <span class="keywordflow">else</span> UE_LOG(LogOpenAccessibility, Log, TEXT(<span class="stringliteral">&quot;Provided Value Had No Associated Key.&quot;</span>));</div>
-<div class="line"><span class="lineno">  265</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00251">251</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  252</span>    {</div>
+<div class="line"><span class="lineno">  253</span>        check(InValue != <span class="keyword">nullptr</span>);</div>
+<div class="line"><span class="lineno">  254</span> </div>
+<div class="line"><span class="lineno">  255</span>        KeyType FoundKey;</div>
+<div class="line"><span class="lineno">  256</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFIndexer.html#a8a51595492e7f19946f9e40acd3a54b0">GetKey</a>(InValue, FoundKey))</div>
+<div class="line"><span class="lineno">  257</span>        {</div>
+<div class="line"><span class="lineno">  258</span>            <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Remove(FoundKey);</div>
+<div class="line"><span class="lineno">  259</span>            <a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Enqueue(FoundKey);</div>
+<div class="line"><span class="lineno">  260</span>        }</div>
+<div class="line"><span class="lineno">  261</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  262</span>            UE_LOG(LogAccession, Log, TEXT(<span class="stringliteral">&quot;Provided Value Had No Associated Key.&quot;</span>));</div>
+<div class="line"><span class="lineno">  263</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1075,11 +1075,11 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </div><div class="memdoc">
 <p >Empties the Indexer, but preserves all Allocations. </p>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00042">42</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   43</span>    { </div>
-<div class="line"><span class="lineno">   44</span>        <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Reset();</div>
-<div class="line"><span class="lineno">   45</span>        <a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Empty();</div>
-<div class="line"><span class="lineno">   46</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00038">38</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   39</span>    {</div>
+<div class="line"><span class="lineno">   40</span>        <a class="code hl_variable" href="classFIndexer.html#ad3524a9fd34d62096addfc9ab115913a">IndexMap</a>.Reset();</div>
+<div class="line"><span class="lineno">   41</span>        <a class="code hl_variable" href="classFIndexer.html#a723c23dcda42f9748fb00b5e13708578">AvailableIndexes</a>.Empty();</div>
+<div class="line"><span class="lineno">   42</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1107,7 +1107,7 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </div><div class="memdoc">
 <p >The Queue of Available Indexes from Previous Associations. </p>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00310">310</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00304">304</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
 
 </div>
 </div>
@@ -1134,12 +1134,12 @@ template&lt;typename KeyType , typename ValueType &gt; </div>
 </div><div class="memdoc">
 <p >The Map of Keys to Associated Values. </p>
 
-<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00305">305</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Indexer_8h_source.html#l00299">299</a> of file <a class="el" href="Indexer_8h_source.html">Indexer.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Source/OpenAccessibility/Public/Indexers/<a class="el" href="Indexer_8h_source.html">Indexer.h</a></li>
+<li>Source/Accession/Public/Indexers/<a class="el" href="Indexer_8h_source.html">Indexer.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

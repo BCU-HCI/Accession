@@ -117,7 +117,7 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html#l00070">70</a> of file <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html">AccessibilityGraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00067">67</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a79ffd7403c2f76da6756bf5e2a2789a8" name="a79ffd7403c2f76da6756bf5e2a2789a8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79ffd7403c2f76da6756bf5e2a2789a8">&#9670;&#160;</a></span>FPanelViewPosition() <span class="overload">[1/2]</span></h2>
@@ -142,10 +142,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html#l00074">74</a> of file <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html">AccessibilityGraphLocomotionContext.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   75</span>        : TopLeft(FVector2D::ZeroVector)</div>
-<div class="line"><span class="lineno">   76</span>        , BotRight(FVector2D::ZeroVector)</div>
-<div class="line"><span class="lineno">   77</span>    { }</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00070">70</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>        : TopLeft(FVector2D::ZeroVector), BotRight(FVector2D::ZeroVector)</div>
+<div class="line"><span class="lineno">   72</span>    {</div>
+<div class="line"><span class="lineno">   73</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -183,10 +183,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html#l00079">79</a> of file <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html">AccessibilityGraphLocomotionContext.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   80</span>        : TopLeft(InTopLeft)</div>
-<div class="line"><span class="lineno">   81</span>        , BotRight(InBotRight)</div>
-<div class="line"><span class="lineno">   82</span>    { }</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00075">75</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   76</span>        : TopLeft(InTopLeft), BotRight(InBotRight)</div>
+<div class="line"><span class="lineno">   77</span>    {</div>
+<div class="line"><span class="lineno">   78</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -215,10 +215,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html#l00089">89</a> of file <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html">AccessibilityGraphLocomotionContext.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   90</span>    {</div>
-<div class="line"><span class="lineno">   91</span>        <span class="keywordflow">return</span> TopLeft != Other.TopLeft || BotRight != Other.BotRight;</div>
-<div class="line"><span class="lineno">   92</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00085">85</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   86</span>    {</div>
+<div class="line"><span class="lineno">   87</span>        <span class="keywordflow">return</span> TopLeft != Other.TopLeft || BotRight != Other.BotRight;</div>
+<div class="line"><span class="lineno">   88</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -246,10 +246,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html#l00084">84</a> of file <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html">AccessibilityGraphLocomotionContext.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   85</span>    {</div>
-<div class="line"><span class="lineno">   86</span>        <span class="keywordflow">return</span> TopLeft != Other || BotRight != Other;</div>
-<div class="line"><span class="lineno">   87</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00080">80</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   81</span>    {</div>
+<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">return</span> TopLeft != Other || BotRight != Other;</div>
+<div class="line"><span class="lineno">   83</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -266,7 +266,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html#l00095">95</a> of file <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html">AccessibilityGraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00091">91</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 
 </div>
 </div>
@@ -282,12 +282,12 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html#l00094">94</a> of file <a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html">AccessibilityGraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00090">90</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>Source/OpenAccessibility/Public/AccessibilityWrappers/<a class="el" href="AccessibilityGraphLocomotionContext_8h_source.html">AccessibilityGraphLocomotionContext.h</a></li>
+<li>Source/Accession/Public/FunctionalityWrappers/<a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

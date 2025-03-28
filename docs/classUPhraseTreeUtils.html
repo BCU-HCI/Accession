@@ -114,8 +114,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a9e0118b5d598b203546fcaeda3e39682"><td class="memItemLeft" align="right" valign="top">TArray&lt; <a class="el" href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUPhraseTreeUtils.html#a9e0118b5d598b203546fcaeda3e39682">RegisteredLibraries</a></td></tr>
-<tr class="separator:a9e0118b5d598b203546fcaeda3e39682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb7a4d0c45650c67dc3d9b04ef58a166"><td class="memItemLeft" align="right" valign="top">TArray&lt; <a class="el" href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUPhraseTreeUtils.html#aeb7a4d0c45650c67dc3d9b04ef58a166">RegisteredLibraries</a></td></tr>
+<tr class="separator:aeb7a4d0c45650c67dc3d9b04ef58a166"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa8212de13b995b53ababd2c709f0aa8"><td class="memItemLeft" align="right" valign="top">TWeakPtr&lt; <a class="el" href="classFPhraseTree.html">FPhraseTree</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUPhraseTreeUtils.html#afa8212de13b995b53ababd2c709f0aa8">PhraseTree</a></td></tr>
 <tr class="separator:afa8212de13b995b53ababd2c709f0aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -140,8 +140,7 @@ Protected Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="PhraseTreeUtils_8cpp_source.html#l00005">5</a> of file <a class="el" href="PhraseTreeUtils_8cpp_source.html">PhraseTreeUtils.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">    6</span>{</div>
-<div class="line"><span class="lineno">    7</span> </div>
-<div class="line"><span class="lineno">    8</span>}</div>
+<div class="line"><span class="lineno">    7</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -168,10 +167,9 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseTreeUtils_8cpp_source.html#l00010">10</a> of file <a class="el" href="PhraseTreeUtils_8cpp_source.html">PhraseTreeUtils.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   11</span>{</div>
-<div class="line"><span class="lineno">   12</span> </div>
-<div class="line"><span class="lineno">   13</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseTreeUtils_8cpp_source.html#l00009">9</a> of file <a class="el" href="PhraseTreeUtils_8cpp_source.html">PhraseTreeUtils.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   10</span>{</div>
+<div class="line"><span class="lineno">   11</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -198,21 +196,21 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="PhraseTreeUtils_8cpp_source.html#l00015">15</a> of file <a class="el" href="PhraseTreeUtils_8cpp_source.html">PhraseTreeUtils.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   16</span>{</div>
-<div class="line"><span class="lineno">   17</span>    TSharedPtr&lt;FPhraseTree&gt; PhraseTreeSP = <a class="code hl_variable" href="classUPhraseTreeUtils.html#afa8212de13b995b53ababd2c709f0aa8">PhraseTree</a>.Pin();</div>
-<div class="line"><span class="lineno">   18</span>    <span class="keywordflow">if</span> (!PhraseTreeSP.IsValid())</div>
-<div class="line"><span class="lineno">   19</span>    {</div>
-<div class="line"><span class="lineno">   20</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;Cannot Register Phrase Tree Function Library Due To InValid Phrase Tree Reference.&quot;</span>));</div>
-<div class="line"><span class="lineno">   21</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   22</span>    }</div>
-<div class="line"><span class="lineno">   23</span> </div>
-<div class="line"><span class="lineno">   24</span>    <span class="comment">// For some reason this needs to be told directly to be kept alive,</span></div>
-<div class="line"><span class="lineno">   25</span>    <span class="comment">// even though it is a UPROPERTY TArray and should be kept alive by the UObject system.</span></div>
-<div class="line"><span class="lineno">   26</span>    LibraryToRegister-&gt;AddToRoot();</div>
-<div class="line"><span class="lineno">   27</span>    LibraryToRegister-&gt;BindBranches(PhraseTreeSP.ToSharedRef());</div>
-<div class="line"><span class="lineno">   28</span>}</div>
-<div class="ttc" id="aclassUPhraseTreeUtils_html_afa8212de13b995b53ababd2c709f0aa8"><div class="ttname"><a href="classUPhraseTreeUtils.html#afa8212de13b995b53ababd2c709f0aa8">UPhraseTreeUtils::PhraseTree</a></div><div class="ttdeci">TWeakPtr&lt; FPhraseTree &gt; PhraseTree</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTreeUtils_8h_source.html#l00051">PhraseTreeUtils.h:51</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PhraseTreeUtils_8cpp_source.html#l00013">13</a> of file <a class="el" href="PhraseTreeUtils_8cpp_source.html">PhraseTreeUtils.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   14</span>{</div>
+<div class="line"><span class="lineno">   15</span>    TSharedPtr&lt;FPhraseTree&gt; PhraseTreeSP = <a class="code hl_variable" href="classUPhraseTreeUtils.html#afa8212de13b995b53ababd2c709f0aa8">PhraseTree</a>.Pin();</div>
+<div class="line"><span class="lineno">   16</span>    <span class="keywordflow">if</span> (!PhraseTreeSP.IsValid())</div>
+<div class="line"><span class="lineno">   17</span>    {</div>
+<div class="line"><span class="lineno">   18</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;Cannot Register Phrase Tree Function Library Due To InValid Phrase Tree Reference.&quot;</span>));</div>
+<div class="line"><span class="lineno">   19</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   20</span>    }</div>
+<div class="line"><span class="lineno">   21</span> </div>
+<div class="line"><span class="lineno">   22</span>    <span class="comment">// For some reason this needs to be told directly to be kept alive,</span></div>
+<div class="line"><span class="lineno">   23</span>    <span class="comment">// even though it is a UPROPERTY TArray and should be kept alive by the UObject system.</span></div>
+<div class="line"><span class="lineno">   24</span>    LibraryToRegister-&gt;AddToRoot();</div>
+<div class="line"><span class="lineno">   25</span>    LibraryToRegister-&gt;BindBranches(PhraseTreeSP.ToSharedRef());</div>
+<div class="line"><span class="lineno">   26</span>}</div>
+<div class="ttc" id="aclassUPhraseTreeUtils_html_afa8212de13b995b53ababd2c709f0aa8"><div class="ttname"><a href="classUPhraseTreeUtils.html#afa8212de13b995b53ababd2c709f0aa8">UPhraseTreeUtils::PhraseTree</a></div><div class="ttdeci">TWeakPtr&lt; FPhraseTree &gt; PhraseTree</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTreeUtils_8h_source.html#l00048">PhraseTreeUtils.h:48</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -246,10 +244,10 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="PhraseTreeUtils_8h_source.html#l00034">34</a> of file <a class="el" href="PhraseTreeUtils_8h_source.html">PhraseTreeUtils.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   35</span>    {</div>
-<div class="line"><span class="lineno">   36</span>        this-&gt;<a class="code hl_variable" href="classUPhraseTreeUtils.html#afa8212de13b995b53ababd2c709f0aa8">PhraseTree</a> = NewPhraseTree;</div>
-<div class="line"><span class="lineno">   37</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="PhraseTreeUtils_8h_source.html#l00033">33</a> of file <a class="el" href="PhraseTreeUtils_8h_source.html">PhraseTreeUtils.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   34</span>    {</div>
+<div class="line"><span class="lineno">   35</span>        this-&gt;<a class="code hl_variable" href="classUPhraseTreeUtils.html#afa8212de13b995b53ababd2c709f0aa8">PhraseTree</a> = NewPhraseTree;</div>
+<div class="line"><span class="lineno">   36</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -275,12 +273,12 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p >Weak Pointer to the Current Phrase Tree Instance used in Registering the Phrase Tree Function Libraries. </p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseTreeUtils_8h_source.html#l00051">51</a> of file <a class="el" href="PhraseTreeUtils_8h_source.html">PhraseTreeUtils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PhraseTreeUtils_8h_source.html#l00048">48</a> of file <a class="el" href="PhraseTreeUtils_8h_source.html">PhraseTreeUtils.h</a>.</p>
 
 </div>
 </div>
-<a id="a9e0118b5d598b203546fcaeda3e39682" name="a9e0118b5d598b203546fcaeda3e39682"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9e0118b5d598b203546fcaeda3e39682">&#9670;&#160;</a></span>RegisteredLibraries</h2>
+<a id="aeb7a4d0c45650c67dc3d9b04ef58a166" name="aeb7a4d0c45650c67dc3d9b04ef58a166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb7a4d0c45650c67dc3d9b04ef58a166">&#9670;&#160;</a></span>RegisteredLibraries</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -289,7 +287,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">TArray&lt;<a class="el" href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a>*&gt; UPhraseTreeUtils::RegisteredLibraries</td>
+          <td class="memname">TArray&lt;<a class="el" href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a> *&gt; UPhraseTreeUtils::RegisteredLibraries</td>
         </tr>
       </table>
   </td>
@@ -300,13 +298,13 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p >An Array of all the Registered Phrase Tree Function Libraries. </p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseTreeUtils_8h_source.html#l00045">45</a> of file <a class="el" href="PhraseTreeUtils_8h_source.html">PhraseTreeUtils.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PhraseTreeUtils_8h_source.html#l00043">43</a> of file <a class="el" href="PhraseTreeUtils_8h_source.html">PhraseTreeUtils.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Source/OpenAccessibilityCommunication/Public/<a class="el" href="PhraseTreeUtils_8h_source.html">PhraseTreeUtils.h</a></li>
-<li>Source/OpenAccessibilityCommunication/Private/<a class="el" href="PhraseTreeUtils_8cpp_source.html">PhraseTreeUtils.cpp</a></li>
+<li>Source/AccessionCommunication/Public/<a class="el" href="PhraseTreeUtils_8h_source.html">PhraseTreeUtils.h</a></li>
+<li>Source/AccessionCommunication/Private/<a class="el" href="PhraseTreeUtils_8cpp_source.html">PhraseTreeUtils.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

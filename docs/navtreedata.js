@@ -50,9 +50,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AccessibilityAddNodeContextMenu_8cpp_source.html",
-"classFPhraseScrollInputNode.html",
-"classUParseStringInput.html"
+"AccessionAnalyticsLogging_8h_source.html",
+"classFPhraseFloatInputNode.html#a524ea5b47e54adea2fb9730056a8d513",
+"classUPhraseTreeContextMenuObject.html#a82aa4e1503c0df1d8e66f1795262f0c4"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

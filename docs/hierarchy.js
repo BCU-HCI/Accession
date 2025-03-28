@@ -1,19 +1,20 @@
 var hierarchy =
 [
-    [ "OpenAccessibilityPy.Audio.AudioResampler", "classOpenAccessibilityPy_1_1Audio_1_1AudioResampler.html", null ],
-    [ "OpenAccessibilityPy.CommunicationServer.CommunicationServer", "classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer.html", null ],
+    [ "AccessionPy.AccessionPy", "classAccessionPy_1_1AccessionPy.html", null ],
+    [ "AccessionPy.Audio.AudioResampler", "classAccessionPy_1_1Audio_1_1AudioResampler.html", null ],
+    [ "AccessionPy.CommunicationServer.CommunicationServer", "classAccessionPy_1_1CommunicationServer_1_1CommunicationServer.html", null ],
+    [ "FAccessionAssetRegistry", "classFAccessionAssetRegistry.html", null ],
     [ "FTabManager::FArea", null, [
       [ "TabUtils::FOpenArea", "classTabUtils_1_1FOpenArea.html", null ]
     ] ],
-    [ "FAssetAccessibilityRegistry", "classFAssetAccessibilityRegistry.html", null ],
     [ "FAudioManagerSettings", "structFAudioManagerSettings.html", null ],
     [ "FGraphIndexer", "classFGraphIndexer.html", null ],
     [ "FGraphLocomotionChunk", "structFGraphLocomotionChunk.html", null ],
     [ "FGraphNodeFactory", null, [
-      [ "TGraphAccessibilityNodeFactory< T >", "classTGraphAccessibilityNodeFactory.html", null ]
+      [ "TAccessionNodeFactory< T >", "classTAccessionNodeFactory.html", null ]
     ] ],
     [ "FGraphPanelNodeFactory", null, [
-      [ "FAccessibilityNodeFactory", "classFAccessibilityNodeFactory.html", null ]
+      [ "FAccessionNodeFactory", "classFAccessionNodeFactory.html", null ]
     ] ],
     [ "FIndexer< KeyType, ValueType >", "classFIndexer.html", null ],
     [ "FIndexer< int32, SMultiBlockBaseWidget * >", "classFIndexer.html", null ],
@@ -31,11 +32,11 @@ var hierarchy =
       [ "TabUtils::FOpenStack", "classTabUtils_1_1FOpenStack.html", null ]
     ] ],
     [ "FTranscriptionVisualizer", "classFTranscriptionVisualizer.html", null ],
-    [ "UAccessibilityGraphEditorContext::FTreeViewTickRequirements", "structUAccessibilityGraphEditorContext_1_1FTreeViewTickRequirements.html", null ],
+    [ "UGraphEditorContext::FTreeViewTickRequirements", "structUGraphEditorContext_1_1FTreeViewTickRequirements.html", null ],
     [ "IModuleInterface", null, [
-      [ "FOpenAccessibilityAnalyticsModule", "classFOpenAccessibilityAnalyticsModule.html", null ],
-      [ "FOpenAccessibilityCommunicationModule", "classFOpenAccessibilityCommunicationModule.html", null ],
-      [ "FOpenAccessibilityModule", "classFOpenAccessibilityModule.html", null ]
+      [ "FAccessionAnalyticsModule", "classFAccessionAnalyticsModule.html", null ],
+      [ "FAccessionCommunicationModule", "classFAccessionCommunicationModule.html", null ],
+      [ "FAccessionModule", "classFAccessionModule.html", null ]
     ] ],
     [ "IPhraseContextNodeBase", "classIPhraseContextNodeBase.html", [
       [ "FPhraseContextMenuNode< ContextMenuType >", "classFPhraseContextMenuNode.html", null ],
@@ -43,17 +44,15 @@ var hierarchy =
     ] ],
     [ "IPhraseNodeBase", "classIPhraseNodeBase.html", null ],
     [ "ModuleRules", null, [
-      [ "OpenAccessibility", "classOpenAccessibility.html", null ],
-      [ "OpenAccessibilityAnalytics", "classOpenAccessibilityAnalytics.html", null ],
-      [ "OpenAccessibilityCommunication", "classOpenAccessibilityCommunication.html", null ]
+      [ "Accession", "classAccession.html", null ],
+      [ "AccessionAnalytics", "classAccessionAnalytics.html", null ],
+      [ "AccessionCommunication", "classAccessionCommunication.html", null ]
     ] ],
     [ "NumericParser", "classNumericParser.html", null ],
-    [ "OAEditorAccessibilityManager", "classOAEditorAccessibilityManager.html", null ],
-    [ "OpenAccessibilityPy.OpenAccessibilityPy", "classOpenAccessibilityPy_1_1OpenAccessibilityPy.html", null ],
     [ "SBox", null, [
-      [ "SAccessibilityTranscriptionVis", "classSAccessibilityTranscriptionVis.html", null ],
       [ "SContentIndexer", "classSContentIndexer.html", null ],
-      [ "SIndexer", "classSIndexer.html", null ]
+      [ "SIndexer", "classSIndexer.html", null ],
+      [ "STranscriptionVis", "classSTranscriptionVis.html", null ]
     ] ],
     [ "SGraphPanel", null, [
       [ "SOpenGraphPanel", "classSOpenGraphPanel.html", null ]
@@ -91,11 +90,7 @@ var hierarchy =
         [ "FPhraseTree", "classFPhraseTree.html", null ]
       ] ]
     ] ],
-    [ "UAudioCapture", null, [
-      [ "UBAudioCapture", "classUBAudioCapture.html", null ]
-    ] ],
     [ "UObject", null, [
-      [ "UAccessibilityWindowToolbar", "classUAccessibilityWindowToolbar.html", null ],
       [ "UAudioManager", "classUAudioManager.html", null ],
       [ "UParseInput", "classUParseInput.html", [
         [ "UParseFloatInput", "classUParseFloatInput.html", null ],
@@ -105,10 +100,10 @@ var hierarchy =
         [ "UParseStringInput", "classUParseStringInput.html", null ]
       ] ],
       [ "UPhraseTreeContextObject", "classUPhraseTreeContextObject.html", [
-        [ "UAccessibilityGraphLocomotionContext", "classUAccessibilityGraphLocomotionContext.html", null ],
+        [ "UGraphLocomotionContext", "classUGraphLocomotionContext.html", null ],
         [ "UPhraseTreeContextMenuObject", "classUPhraseTreeContextMenuObject.html", [
-          [ "UAccessibilityAddNodeContextMenu", "classUAccessibilityAddNodeContextMenu.html", null ],
-          [ "UAccessibilityGraphEditorContext", "classUAccessibilityGraphEditorContext.html", null ]
+          [ "UGraphAddNodeContextMenu", "classUGraphAddNodeContextMenu.html", null ],
+          [ "UGraphEditorContext", "classUGraphEditorContext.html", null ]
         ] ]
       ] ],
       [ "UPhraseTreeFunctionLibrary", "classUPhraseTreeFunctionLibrary.html", [
@@ -117,10 +112,11 @@ var hierarchy =
         [ "UViewInteractionLibrary", "classUViewInteractionLibrary.html", null ],
         [ "UWindowInteractionLibrary", "classUWindowInteractionLibrary.html", null ]
       ] ],
-      [ "UPhraseTreeUtils", "classUPhraseTreeUtils.html", null ]
+      [ "UPhraseTreeUtils", "classUPhraseTreeUtils.html", null ],
+      [ "UWindowToolbarIndex", "classUWindowToolbarIndex.html", null ]
     ] ],
-    [ "OpenAccessibilityPy.WhisperInterface.WhisperInterface", "classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface.html", null ],
+    [ "AccessionPy.WhisperInterface.WhisperInterface", "classAccessionPy_1_1WhisperInterface_1_1WhisperInterface.html", null ],
     [ "Enum", null, [
-      [ "OpenAccessibilityPy.Logging.LogLevel", "classOpenAccessibilityPy_1_1Logging_1_1LogLevel.html", null ]
+      [ "AccessionPy.Logging.LogLevel", "classAccessionPy_1_1Logging_1_1LogLevel.html", null ]
     ] ]
 ];

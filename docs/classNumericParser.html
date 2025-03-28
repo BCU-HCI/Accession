@@ -155,10 +155,10 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="Utils_8cpp_source.html#l00007">7</a> of file <a class="el" href="Utils_8cpp_source.html">Utils.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">    8</span>{</div>
-<div class="line"><span class="lineno">    9</span>    <span class="keywordflow">return</span> StringMappings.Contains(ConvertToUpper ? StringToCheck.ToUpper() : StringToCheck);</div>
-<div class="line"><span class="lineno">   10</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Utils_8cpp_source.html#l00006">6</a> of file <a class="el" href="Utils_8cpp_source.html">Utils.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">    7</span>{</div>
+<div class="line"><span class="lineno">    8</span>    <span class="keywordflow">return</span> StringMappings.Contains(ConvertToUpper ? StringToCheck.ToUpper() : StringToCheck);</div>
+<div class="line"><span class="lineno">    9</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -205,20 +205,21 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="Utils_8cpp_source.html#l00012">12</a> of file <a class="el" href="Utils_8cpp_source.html">Utils.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   13</span>{</div>
-<div class="line"><span class="lineno">   14</span>    <span class="keywordflow">if</span> (<span class="keyword">const</span> FString* FoundMapping = StringMappings.Find(NumericString))</div>
-<div class="line"><span class="lineno">   15</span>    {</div>
-<div class="line"><span class="lineno">   16</span>        NumericString = ConvertToUpper ? *FoundMapping-&gt;ToUpper() : *FoundMapping;</div>
-<div class="line"><span class="lineno">   17</span>    }</div>
-<div class="line"><span class="lineno">   18</span>    <span class="keywordflow">else</span> UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Numeric Parser || No Mapping Found for String: %s ||&quot;</span>), *NumericString);</div>
+<p class="definition">Definition at line <a class="el" href="Utils_8cpp_source.html#l00011">11</a> of file <a class="el" href="Utils_8cpp_source.html">Utils.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   12</span>{</div>
+<div class="line"><span class="lineno">   13</span>    <span class="keywordflow">if</span> (<span class="keyword">const</span> FString *FoundMapping = StringMappings.Find(NumericString))</div>
+<div class="line"><span class="lineno">   14</span>    {</div>
+<div class="line"><span class="lineno">   15</span>        NumericString = ConvertToUpper ? *FoundMapping-&gt;ToUpper() : *FoundMapping;</div>
+<div class="line"><span class="lineno">   16</span>    }</div>
+<div class="line"><span class="lineno">   17</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   18</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Numeric Parser || No Mapping Found for String: %s ||&quot;</span>), *NumericString);</div>
 <div class="line"><span class="lineno">   19</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Source/OpenAccessibilityCommunication/Public/PhraseTree/<a class="el" href="ommunication_2Public_2PhraseTree_2Utils_8h_source.html">Utils.h</a></li>
-<li>Source/OpenAccessibilityCommunication/Private/PhraseTree/<a class="el" href="Utils_8cpp_source.html">Utils.cpp</a></li>
+<li>Source/AccessionCommunication/Public/PhraseTree/<a class="el" href="ommunication_2Public_2PhraseTree_2Utils_8h_source.html">Utils.h</a></li>
+<li>Source/AccessionCommunication/Private/PhraseTree/<a class="el" href="Utils_8cpp_source.html">Utils.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

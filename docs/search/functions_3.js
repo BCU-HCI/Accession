@@ -1,7 +1,7 @@
 var searchData=
 [
   ['canbindchild_0',['CanBindChild',['../classFPhraseNode.html#afdf46d2c9022337855f2d8be5939ad06',1,'FPhraseNode']]],
-  ['close_1',['Close',['../classUAccessibilityAddNodeContextMenu.html#ae2b14cf07c1aadd020cd5f0bca2ac3ef',1,'UAccessibilityAddNodeContextMenu::Close()'],['../classUAccessibilityGraphEditorContext.html#a13701389121880f89b2a5a04b9920799',1,'UAccessibilityGraphEditorContext::Close()'],['../classUPhraseTreeContextMenuObject.html#a25e9ca57fe8f18a3f65bf30a5e72a0b8',1,'UPhraseTreeContextMenuObject::Close()']]],
+  ['close_1',['Close',['../classUGraphAddNodeContextMenu.html#afc1c72fb39aee59abfd8b8b20d0e8d5c',1,'UGraphAddNodeContextMenu::Close()'],['../classUGraphEditorContext.html#a230f7497a147c6e7f5df34087d4c4d00',1,'UGraphEditorContext::Close()'],['../classUPhraseTreeContextMenuObject.html#a25e9ca57fe8f18a3f65bf30a5e72a0b8',1,'UPhraseTreeContextMenuObject::Close()']]],
   ['closeactivewindow_2',['CloseActiveWindow',['../classUWindowInteractionLibrary.html#acfeba58b5649ef353f0fbb673542db29',1,'UWindowInteractionLibrary']]],
   ['collectmanagedtabs_3',['CollectManagedTabs',['../namespaceTabUtils.html#a88a8a1a7affb8ea877c96cfccc1b6a60',1,'TabUtils']]],
   ['constructbottomindexer_4',['ConstructBottomIndexer',['../classSContentIndexer.html#aa6d2017344d22d633db24fedfcac4768',1,'SContentIndexer']]],
@@ -19,8 +19,8 @@ var searchData=
   ['containsnoderect_16',['ContainsNodeRect',['../classFGraphQTNode.html#ae628248220fdaca82dde6361559cc0e7',1,'FGraphQTNode']]],
   ['containssegments_17',['ContainsSegments',['../classFGraphQTNode.html#a50c5da2e4c5df6a1211c6fd7dd1ce664',1,'FGraphQTNode']]],
   ['containsvalue_18',['ContainsValue',['../classFIndexer.html#ad25d80b2aef02d3935f9daf6b82e6437',1,'FIndexer']]],
-  ['createaccessibilitywrapper_19',['CreateAccessibilityWrapper',['../classUAccessibilityGraphEditorContext.html#a42cd73b7b2d1529e3e5eb8f625b00a72',1,'UAccessibilityGraphEditorContext']]],
-  ['createcontextobject_20',['CreateContextObject',['../classIPhraseContextNodeBase.html#ab76ed702f9c1f709f37976fd7e6c7067',1,'IPhraseContextNodeBase::CreateContextObject()'],['../classFPhraseContextMenuNode.html#a00d8705419e4ec7ddbe0d9a36e9456a4',1,'FPhraseContextMenuNode::CreateContextObject()'],['../classFPhraseContextNode.html#a039158a4a8ec7bf4496cf291126c2703',1,'FPhraseContextNode::CreateContextObject()']]],
-  ['createnodewidget_21',['CreateNodeWidget',['../classTGraphAccessibilityNodeFactory.html#aaa4127c42e735639bf22666f0b84117e',1,'TGraphAccessibilityNodeFactory']]],
-  ['createpinwidget_22',['CreatePinWidget',['../classTGraphAccessibilityNodeFactory.html#a4843598dcfba1ce770cdc9b07d523d5c',1,'TGraphAccessibilityNodeFactory']]]
+  ['createcontextobject_19',['CreateContextObject',['../classIPhraseContextNodeBase.html#ab76ed702f9c1f709f37976fd7e6c7067',1,'IPhraseContextNodeBase::CreateContextObject()'],['../classFPhraseContextMenuNode.html#a00d8705419e4ec7ddbe0d9a36e9456a4',1,'FPhraseContextMenuNode::CreateContextObject()'],['../classFPhraseContextNode.html#a039158a4a8ec7bf4496cf291126c2703',1,'FPhraseContextNode::CreateContextObject()']]],
+  ['createindexwrapper_20',['CreateIndexWrapper',['../classUGraphEditorContext.html#a905557731e0b208c0541fed1d8f889f4',1,'UGraphEditorContext']]],
+  ['createnodewidget_21',['CreateNodeWidget',['../classTAccessionNodeFactory.html#a5864bec098d90409ecc9a25bc0df9427',1,'TAccessionNodeFactory']]],
+  ['createpinwidget_22',['CreatePinWidget',['../classTAccessionNodeFactory.html#a2a9d18621add8bd15f985d6638b8fefd',1,'TAccessionNodeFactory']]]
 ];

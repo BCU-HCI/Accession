@@ -9,6 +9,6 @@ var classFTranscriptionVisualizer =
     [ "ReparentWindow", "classFTranscriptionVisualizer.html#a1061cef95b7680f3a510d5d635b29300", null ],
     [ "UnregisterTicker", "classFTranscriptionVisualizer.html#ad1b0c98eb10e0b7b384f03de104ca1c2", null ],
     [ "UpdateVisualizer", "classFTranscriptionVisualizer.html#a7819579176cdcd3ad6e57194291d05dd", null ],
-    [ "VisContent", "classFTranscriptionVisualizer.html#a83eef46dccee37dd5d79993e1100a745", null ],
+    [ "VisContent", "classFTranscriptionVisualizer.html#ad1077f74bf9d52658e199438651f4fb3", null ],
     [ "VisWindow", "classFTranscriptionVisualizer.html#abaa4d25cca264be329a0a364b13761f8", null ]
 ];

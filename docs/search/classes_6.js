@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['oaeditoraccessibilitymanager_0',['OAEditorAccessibilityManager',['../classOAEditorAccessibilityManager.html',1,'']]],
-  ['openaccessibility_1',['OpenAccessibility',['../classOpenAccessibility.html',1,'']]],
-  ['openaccessibilityanalytics_2',['OpenAccessibilityAnalytics',['../classOpenAccessibilityAnalytics.html',1,'']]],
-  ['openaccessibilitycommunication_3',['OpenAccessibilityCommunication',['../classOpenAccessibilityCommunication.html',1,'']]],
-  ['openaccessibilitypy_4',['OpenAccessibilityPy',['../classOpenAccessibilityPy_1_1OpenAccessibilityPy.html',1,'OpenAccessibilityPy']]]
+  ['scontentindexer_0',['SContentIndexer',['../classSContentIndexer.html',1,'']]],
+  ['sindexer_1',['SIndexer',['../classSIndexer.html',1,'']]],
+  ['sopengraphpanel_2',['SOpenGraphPanel',['../classSOpenGraphPanel.html',1,'']]],
+  ['stranscriptionvis_3',['STranscriptionVis',['../classSTranscriptionVis.html',1,'']]]
 ];

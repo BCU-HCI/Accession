@@ -21,7 +21,7 @@ var structFParseRecord =
     [ "PushContextObj", "structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d", null ],
     [ "RemoveContextObj", "structFParseRecord.html#a17e567608b13f2f1ebfaff91d1556095", null ],
     [ "RemovePhraseInput", "structFParseRecord.html#a0b49747164613e0dc522ec9f344c62d0", null ],
-    [ "ContextObjectStack", "structFParseRecord.html#a544da35b513a59458a69d83a25882fcf", null ],
-    [ "PhraseInputs", "structFParseRecord.html#a66b1f4a14bcdc10fea26b32e81a159cb", null ],
+    [ "ContextObjectStack", "structFParseRecord.html#a334089a6f0228a0d01396357b49c6340", null ],
+    [ "PhraseInputs", "structFParseRecord.html#a801b9e0494c603c3350d0252145e4fc5", null ],
     [ "PhraseRecord", "structFParseRecord.html#a86e4c1b97d0f8348e75d4bee95cacffb", null ]
 ];

@@ -233,28 +233,28 @@ Protected Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   11</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a> = <span class="keyword">new</span> zmq::context_t(1);</div>
 <div class="line"><span class="lineno">   12</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a> == <span class="keyword">nullptr</span>)</div>
 <div class="line"><span class="lineno">   13</span>    {</div>
-<div class="line"><span class="lineno">   14</span>        UE_LOG(LogOpenAccessibilityCom, Error, TEXT(<span class="stringliteral">&quot;Failed to create ZMQ context&quot;</span>));</div>
+<div class="line"><span class="lineno">   14</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;Failed to create ZMQ context&quot;</span>));</div>
 <div class="line"><span class="lineno">   15</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">   16</span>    }</div>
 <div class="line"><span class="lineno">   17</span> </div>
 <div class="line"><span class="lineno">   18</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a> = <span class="keyword">new</span> zmq::socket_t(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a>, ZMQ_PUSH);</div>
 <div class="line"><span class="lineno">   19</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a> == <span class="keyword">nullptr</span>)</div>
 <div class="line"><span class="lineno">   20</span>    {</div>
-<div class="line"><span class="lineno">   21</span>        UE_LOG(LogOpenAccessibilityCom, Error, TEXT(<span class="stringliteral">&quot;Failed to create ZMQ socket&quot;</span>));</div>
+<div class="line"><span class="lineno">   21</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;Failed to create ZMQ socket&quot;</span>));</div>
 <div class="line"><span class="lineno">   22</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">   23</span>    }</div>
 <div class="line"><span class="lineno">   24</span> </div>
 <div class="line"><span class="lineno">   25</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a> = <span class="keyword">new</span> zmq::socket_t(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a>, ZMQ_PULL);</div>
 <div class="line"><span class="lineno">   26</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a> == <span class="keyword">nullptr</span>)</div>
 <div class="line"><span class="lineno">   27</span>    {</div>
-<div class="line"><span class="lineno">   28</span>        UE_LOG(LogOpenAccessibilityCom, Error, TEXT(<span class="stringliteral">&quot;Failed to create ZMQ socket&quot;</span>));</div>
+<div class="line"><span class="lineno">   28</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;Failed to create ZMQ socket&quot;</span>));</div>
 <div class="line"><span class="lineno">   29</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">   30</span>    }</div>
-<div class="line"><span class="lineno">   31</span>    </div>
+<div class="line"><span class="lineno">   31</span> </div>
 <div class="line"><span class="lineno">   32</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">Poller</a> = <span class="keyword">new</span> zmq::poller_t&lt;int&gt;();</div>
 <div class="line"><span class="lineno">   33</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">Poller</a> == <span class="keyword">nullptr</span>)</div>
 <div class="line"><span class="lineno">   34</span>    {</div>
-<div class="line"><span class="lineno">   35</span>        UE_LOG(LogOpenAccessibilityCom, Error, TEXT(<span class="stringliteral">&quot;Failed to create ZMQ poller&quot;</span>));</div>
+<div class="line"><span class="lineno">   35</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;Failed to create ZMQ poller&quot;</span>));</div>
 <div class="line"><span class="lineno">   36</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">   37</span>    }</div>
 <div class="line"><span class="lineno">   38</span> </div>
@@ -263,11 +263,11 @@ Protected Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   41</span> </div>
 <div class="line"><span class="lineno">   42</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">Poller</a>-&gt;add(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>, zmq::event_flags::pollin);</div>
 <div class="line"><span class="lineno">   43</span>}</div>
-<div class="ttc" id="aclassFSocketCommunicationServer_html_a23f5f77a2d890c71565b5d185a8d81b4"><div class="ttname"><a href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">FSocketCommunicationServer::Context</a></div><div class="ttdeci">zmq::context_t * Context</div><div class="ttdoc">The Context Used for the Socket Communication.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8h_source.html#l00205">SocketCommunicationServer.h:205</a></div></div>
-<div class="ttc" id="aclassFSocketCommunicationServer_html_a385e5d5f91bc7a10e8f5793a69e367e2"><div class="ttname"><a href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">FSocketCommunicationServer::Poller</a></div><div class="ttdeci">zmq::poller_t&lt; int &gt; * Poller</div><div class="ttdoc">The Poller used for Polling for Events on the Receiving Socket.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8h_source.html#l00220">SocketCommunicationServer.h:220</a></div></div>
-<div class="ttc" id="aclassFSocketCommunicationServer_html_ab9503111a1c9160c44b27fa882b9d305"><div class="ttname"><a href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">FSocketCommunicationServer::RecvSocket</a></div><div class="ttdeci">zmq::socket_t * RecvSocket</div><div class="ttdoc">The Socket Used For Receiving Data.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8h_source.html#l00215">SocketCommunicationServer.h:215</a></div></div>
-<div class="ttc" id="aclassFSocketCommunicationServer_html_ac2ebfe366ace6e446099c9708f22c5bc"><div class="ttname"><a href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">FSocketCommunicationServer::SendSocket</a></div><div class="ttdeci">zmq::socket_t * SendSocket</div><div class="ttdoc">The Socket Used For Sending Data.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8h_source.html#l00210">SocketCommunicationServer.h:210</a></div></div>
-<div class="ttc" id="aclassFSocketCommunicationServer_html_ae9f25836d8763230c876eaef53e5ddfe"><div class="ttname"><a href="classFSocketCommunicationServer.html#ae9f25836d8763230c876eaef53e5ddfe">FSocketCommunicationServer::PollTimeout</a></div><div class="ttdeci">int PollTimeout</div><div class="ttdoc">The Time Taken By The Poller To Look For Events.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8h_source.html#l00228">SocketCommunicationServer.h:228</a></div></div>
+<div class="ttc" id="aclassFSocketCommunicationServer_html_a23f5f77a2d890c71565b5d185a8d81b4"><div class="ttname"><a href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">FSocketCommunicationServer::Context</a></div><div class="ttdeci">zmq::context_t * Context</div><div class="ttdoc">The Context Used for the Socket Communication.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8h_source.html#l00202">SocketCommunicationServer.h:202</a></div></div>
+<div class="ttc" id="aclassFSocketCommunicationServer_html_a385e5d5f91bc7a10e8f5793a69e367e2"><div class="ttname"><a href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">FSocketCommunicationServer::Poller</a></div><div class="ttdeci">zmq::poller_t&lt; int &gt; * Poller</div><div class="ttdoc">The Poller used for Polling for Events on the Receiving Socket.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8h_source.html#l00217">SocketCommunicationServer.h:217</a></div></div>
+<div class="ttc" id="aclassFSocketCommunicationServer_html_ab9503111a1c9160c44b27fa882b9d305"><div class="ttname"><a href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">FSocketCommunicationServer::RecvSocket</a></div><div class="ttdeci">zmq::socket_t * RecvSocket</div><div class="ttdoc">The Socket Used For Receiving Data.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8h_source.html#l00212">SocketCommunicationServer.h:212</a></div></div>
+<div class="ttc" id="aclassFSocketCommunicationServer_html_ac2ebfe366ace6e446099c9708f22c5bc"><div class="ttname"><a href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">FSocketCommunicationServer::SendSocket</a></div><div class="ttdeci">zmq::socket_t * SendSocket</div><div class="ttdoc">The Socket Used For Sending Data.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8h_source.html#l00207">SocketCommunicationServer.h:207</a></div></div>
+<div class="ttc" id="aclassFSocketCommunicationServer_html_ae9f25836d8763230c876eaef53e5ddfe"><div class="ttname"><a href="classFSocketCommunicationServer.html#ae9f25836d8763230c876eaef53e5ddfe">FSocketCommunicationServer::PollTimeout</a></div><div class="ttdeci">int PollTimeout</div><div class="ttdoc">The Time Taken By The Poller To Look For Events.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8h_source.html#l00225">SocketCommunicationServer.h:225</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -289,20 +289,24 @@ Protected Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00045">45</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   46</span>{</div>
 <div class="line"><span class="lineno">   47</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">Poller</a>-&gt;remove(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>);</div>
-<div class="line"><span class="lineno">   48</span>    <span class="keyword">delete</span> <a class="code hl_variable" href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">Poller</a>; <a class="code hl_variable" href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">Poller</a> = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">   49</span> </div>
-<div class="line"><span class="lineno">   50</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;disconnect(SendAddress);</div>
-<div class="line"><span class="lineno">   51</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;close();</div>
-<div class="line"><span class="lineno">   52</span>    <span class="keyword">delete</span> <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>; <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a> = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>-&gt;unbind(RecvAddress);</div>
-<div class="line"><span class="lineno">   55</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>-&gt;close();</div>
-<div class="line"><span class="lineno">   56</span>    <span class="keyword">delete</span> <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>; <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a> = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">   57</span> </div>
-<div class="line"><span class="lineno">   58</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a>-&gt;shutdown();</div>
-<div class="line"><span class="lineno">   59</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a>-&gt;close();</div>
-<div class="line"><span class="lineno">   60</span>    <span class="keyword">delete</span> <a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a>; <a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a> = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">   61</span>}</div>
+<div class="line"><span class="lineno">   48</span>    <span class="keyword">delete</span> <a class="code hl_variable" href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">Poller</a>;</div>
+<div class="line"><span class="lineno">   49</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">Poller</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;disconnect(SendAddress);</div>
+<div class="line"><span class="lineno">   52</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;close();</div>
+<div class="line"><span class="lineno">   53</span>    <span class="keyword">delete</span> <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>;</div>
+<div class="line"><span class="lineno">   54</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>-&gt;unbind(RecvAddress);</div>
+<div class="line"><span class="lineno">   57</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>-&gt;close();</div>
+<div class="line"><span class="lineno">   58</span>    <span class="keyword">delete</span> <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>;</div>
+<div class="line"><span class="lineno">   59</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   61</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a>-&gt;shutdown();</div>
+<div class="line"><span class="lineno">   62</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a>-&gt;close();</div>
+<div class="line"><span class="lineno">   63</span>    <span class="keyword">delete</span> <a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a>;</div>
+<div class="line"><span class="lineno">   64</span>    <a class="code hl_variable" href="classFSocketCommunicationServer.html#a23f5f77a2d890c71565b5d185a8d81b4">Context</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">   65</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -351,10 +355,10 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the JSON was Successfuly in Deserialization. Otherwise False.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00444">444</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  445</span>{</div>
-<div class="line"><span class="lineno">  446</span>    <span class="keywordflow">return</span> FJsonSerializer::Deserialize(TJsonReaderFactory&lt;TCHAR&gt;::Create(InJsonString), OutJsonObject);</div>
-<div class="line"><span class="lineno">  447</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00446">446</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  447</span>{</div>
+<div class="line"><span class="lineno">  448</span>    <span class="keywordflow">return</span> FJsonSerializer::Deserialize(TJsonReaderFactory&lt;TCHAR&gt;::Create(InJsonString), OutJsonObject);</div>
+<div class="line"><span class="lineno">  449</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -376,18 +380,18 @@ Protected Attributes</h2></td></tr>
 <p>Notifies when an Event Has Occured In the Socket.  </p>
 <dl class="section return"><dt>Returns</dt><dd>True, When an Event was Recived from the Socket. Otherwise False.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00063">63</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   64</span>{</div>
-<div class="line"><span class="lineno">   65</span>    std::vector&lt;zmq::poller_event&lt;int&gt;&gt; PollEvents(1);</div>
-<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">Poller</a>-&gt;wait_all(PollEvents, std::chrono::milliseconds(<a class="code hl_variable" href="classFSocketCommunicationServer.html#ae9f25836d8763230c876eaef53e5ddfe">PollTimeout</a>)) &gt; 0)</div>
-<div class="line"><span class="lineno">   67</span>    {</div>
-<div class="line"><span class="lineno">   68</span>        PollEvents.clear();</div>
-<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   70</span>    }</div>
-<div class="line"><span class="lineno">   71</span> </div>
-<div class="line"><span class="lineno">   72</span>    PollEvents.clear();</div>
-<div class="line"><span class="lineno">   73</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   74</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00067">67</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>{</div>
+<div class="line"><span class="lineno">   69</span>    std::vector&lt;zmq::poller_event&lt;int&gt;&gt; PollEvents(1);</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFSocketCommunicationServer.html#a385e5d5f91bc7a10e8f5793a69e367e2">Poller</a>-&gt;wait_all(PollEvents, std::chrono::milliseconds(<a class="code hl_variable" href="classFSocketCommunicationServer.html#ae9f25836d8763230c876eaef53e5ddfe">PollTimeout</a>)) &gt; 0)</div>
+<div class="line"><span class="lineno">   71</span>    {</div>
+<div class="line"><span class="lineno">   72</span>        PollEvents.clear();</div>
+<div class="line"><span class="lineno">   73</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   74</span>    }</div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>    PollEvents.clear();</div>
+<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   78</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -442,27 +446,27 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Data was Recived from the Socket Successfully. False, if an error occurs in receiving.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00303">303</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  304</span>{</div>
-<div class="line"><span class="lineno">  305</span>    zmq::message_t RecvMessage;</div>
-<div class="line"><span class="lineno">  306</span> </div>
-<div class="line"><span class="lineno">  307</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>-&gt;recv(RecvMessage, RecvFlags);</div>
-<div class="line"><span class="lineno">  308</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  309</span>    {</div>
-<div class="line"><span class="lineno">  310</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Array || Recv %d bytes&quot;</span>), Result.value());</div>
-<div class="line"><span class="lineno">  311</span> </div>
-<div class="line"><span class="lineno">  312</span>        OutArrayData.Append(RecvMessage.data&lt;T&gt;(), Result.value());</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00305">305</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  306</span>{</div>
+<div class="line"><span class="lineno">  307</span>    zmq::message_t RecvMessage;</div>
+<div class="line"><span class="lineno">  308</span> </div>
+<div class="line"><span class="lineno">  309</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>-&gt;recv(RecvMessage, RecvFlags);</div>
+<div class="line"><span class="lineno">  310</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  311</span>    {</div>
+<div class="line"><span class="lineno">  312</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Array || Recv %d bytes&quot;</span>), Result.value());</div>
 <div class="line"><span class="lineno">  313</span> </div>
-<div class="line"><span class="lineno">  314</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  315</span>    }</div>
-<div class="line"><span class="lineno">  316</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  317</span>    {</div>
-<div class="line"><span class="lineno">  318</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Array || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  319</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  320</span>    }</div>
-<div class="line"><span class="lineno">  321</span> </div>
-<div class="line"><span class="lineno">  322</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  323</span>}</div>
+<div class="line"><span class="lineno">  314</span>        OutArrayData.Append(RecvMessage.data&lt;T&gt;(), Result.value());</div>
+<div class="line"><span class="lineno">  315</span> </div>
+<div class="line"><span class="lineno">  316</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  317</span>    }</div>
+<div class="line"><span class="lineno">  318</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  319</span>    {</div>
+<div class="line"><span class="lineno">  320</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Array || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  321</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  322</span>    }</div>
+<div class="line"><span class="lineno">  323</span> </div>
+<div class="line"><span class="lineno">  324</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  325</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -502,27 +506,27 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Data was Recived from the Socket Successfully. False, if an error occurd in receiving.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00348">348</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  349</span>{</div>
-<div class="line"><span class="lineno">  350</span>    zmq::message_t RecvMessage;</div>
-<div class="line"><span class="lineno">  351</span> </div>
-<div class="line"><span class="lineno">  352</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>-&gt;recv(RecvMessage, RecvFlags);</div>
-<div class="line"><span class="lineno">  353</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  354</span>    {</div>
-<div class="line"><span class="lineno">  355</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv JSON || Recv %d bytes&quot;</span>), Result.value());</div>
-<div class="line"><span class="lineno">  356</span> </div>
-<div class="line"><span class="lineno">  357</span>        OutJsonMessage = FString(Result.value(), UTF8_TO_TCHAR(RecvMessage.data()));</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00350">350</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  351</span>{</div>
+<div class="line"><span class="lineno">  352</span>    zmq::message_t RecvMessage;</div>
+<div class="line"><span class="lineno">  353</span> </div>
+<div class="line"><span class="lineno">  354</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>-&gt;recv(RecvMessage, RecvFlags);</div>
+<div class="line"><span class="lineno">  355</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  356</span>    {</div>
+<div class="line"><span class="lineno">  357</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv JSON || Recv %d bytes&quot;</span>), Result.value());</div>
 <div class="line"><span class="lineno">  358</span> </div>
-<div class="line"><span class="lineno">  359</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  360</span>    }</div>
-<div class="line"><span class="lineno">  361</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  362</span>    {</div>
-<div class="line"><span class="lineno">  363</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv JSON || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  364</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  365</span>    }</div>
-<div class="line"><span class="lineno">  366</span> </div>
-<div class="line"><span class="lineno">  367</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  368</span>}</div>
+<div class="line"><span class="lineno">  359</span>        OutJsonMessage = FString(Result.value(), UTF8_TO_TCHAR(RecvMessage.data()));</div>
+<div class="line"><span class="lineno">  360</span> </div>
+<div class="line"><span class="lineno">  361</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  362</span>    }</div>
+<div class="line"><span class="lineno">  363</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  364</span>    {</div>
+<div class="line"><span class="lineno">  365</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv JSON || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  366</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  367</span>    }</div>
+<div class="line"><span class="lineno">  368</span> </div>
+<div class="line"><span class="lineno">  369</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  370</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -577,36 +581,36 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Multipart was Recieved Successfully. False, if an error occured in receiving.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00409">409</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  410</span>{</div>
-<div class="line"><span class="lineno">  411</span>    <span class="keyword">auto</span> Result = zmq::recv_multipart(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>, std::back_inserter(OutMultipartMessages), RecvFlags);</div>
-<div class="line"><span class="lineno">  412</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  413</span>    {</div>
-<div class="line"><span class="lineno">  414</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Multipart || Recv %d messages&quot;</span>), Result.value());</div>
-<div class="line"><span class="lineno">  415</span> </div>
-<div class="line"><span class="lineno">  416</span>        <span class="comment">// Pop Metadata Messages from the Front of Array.</span></div>
-<div class="line"><span class="lineno">  417</span>        zmq::message_t MetadataMessage = MoveTempIfPossible(OutMultipartMessages[0]);</div>
-<div class="line"><span class="lineno">  418</span>        OutMultipartMessages.erase(OutMultipartMessages.begin());</div>
-<div class="line"><span class="lineno">  419</span> </div>
-<div class="line"><span class="lineno">  420</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFSocketCommunicationServer.html#adc77da28c05c225cdd1c4723570229e7">DeserializeJSON</a>(FString(UTF8_TO_TCHAR(MetadataMessage.data()), MetadataMessage.size()), OutMetadata))</div>
-<div class="line"><span class="lineno">  421</span>        {</div>
-<div class="line"><span class="lineno">  422</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  423</span>        }</div>
-<div class="line"><span class="lineno">  424</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  425</span>        {</div>
-<div class="line"><span class="lineno">  426</span>            UE_LOG(LogOpenAccessibilityCom, Error, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Multipart || Failed to deserialize metadata ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  427</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  428</span>        }</div>
-<div class="line"><span class="lineno">  429</span>    }</div>
-<div class="line"><span class="lineno">  430</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  431</span>    {</div>
-<div class="line"><span class="lineno">  432</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Multipart || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  433</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  434</span>    }</div>
-<div class="line"><span class="lineno">  435</span>    </div>
-<div class="line"><span class="lineno">  436</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  437</span>}</div>
-<div class="ttc" id="aclassFSocketCommunicationServer_html_adc77da28c05c225cdd1c4723570229e7"><div class="ttname"><a href="classFSocketCommunicationServer.html#adc77da28c05c225cdd1c4723570229e7">FSocketCommunicationServer::DeserializeJSON</a></div><div class="ttdeci">bool DeserializeJSON(const FString &amp;InJsonString, TSharedPtr&lt; FJsonObject &gt; &amp;OutJsonObject)</div><div class="ttdoc">Deserializes the JSON String into a JSON Object.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8cpp_source.html#l00444">SocketCommunicationServer.cpp:444</a></div></div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00411">411</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  412</span>{</div>
+<div class="line"><span class="lineno">  413</span>    <span class="keyword">auto</span> Result = zmq::recv_multipart(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>, std::back_inserter(OutMultipartMessages), RecvFlags);</div>
+<div class="line"><span class="lineno">  414</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  415</span>    {</div>
+<div class="line"><span class="lineno">  416</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Multipart || Recv %d messages&quot;</span>), Result.value());</div>
+<div class="line"><span class="lineno">  417</span> </div>
+<div class="line"><span class="lineno">  418</span>        <span class="comment">// Pop Metadata Messages from the Front of Array.</span></div>
+<div class="line"><span class="lineno">  419</span>        zmq::message_t MetadataMessage = MoveTempIfPossible(OutMultipartMessages[0]);</div>
+<div class="line"><span class="lineno">  420</span>        OutMultipartMessages.erase(OutMultipartMessages.begin());</div>
+<div class="line"><span class="lineno">  421</span> </div>
+<div class="line"><span class="lineno">  422</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classFSocketCommunicationServer.html#adc77da28c05c225cdd1c4723570229e7">DeserializeJSON</a>(FString(UTF8_TO_TCHAR(MetadataMessage.data()), MetadataMessage.size()), OutMetadata))</div>
+<div class="line"><span class="lineno">  423</span>        {</div>
+<div class="line"><span class="lineno">  424</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  425</span>        }</div>
+<div class="line"><span class="lineno">  426</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  427</span>        {</div>
+<div class="line"><span class="lineno">  428</span>            UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Multipart || Failed to deserialize metadata ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  429</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  430</span>        }</div>
+<div class="line"><span class="lineno">  431</span>    }</div>
+<div class="line"><span class="lineno">  432</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  433</span>    {</div>
+<div class="line"><span class="lineno">  434</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Multipart || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  435</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  436</span>    }</div>
+<div class="line"><span class="lineno">  437</span> </div>
+<div class="line"><span class="lineno">  438</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  439</span>}</div>
+<div class="ttc" id="aclassFSocketCommunicationServer_html_adc77da28c05c225cdd1c4723570229e7"><div class="ttname"><a href="classFSocketCommunicationServer.html#adc77da28c05c225cdd1c4723570229e7">FSocketCommunicationServer::DeserializeJSON</a></div><div class="ttdeci">bool DeserializeJSON(const FString &amp;InJsonString, TSharedPtr&lt; FJsonObject &gt; &amp;OutJsonObject)</div><div class="ttdoc">Deserializes the JSON String into a JSON Object.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8cpp_source.html#l00446">SocketCommunicationServer.cpp:446</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -646,28 +650,28 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Data was Recived from the Socket Successfully. False, if an error occurs in receiving.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00325">325</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  326</span>{</div>
-<div class="line"><span class="lineno">  327</span>    zmq::message_t RecvMessage;</div>
-<div class="line"><span class="lineno">  328</span> </div>
-<div class="line"><span class="lineno">  329</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>-&gt;recv(RecvMessage, RecvFlags);</div>
-<div class="line"><span class="lineno">  330</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  331</span>    {</div>
-<div class="line"><span class="lineno">  332</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv String || Recv %d bytes&quot;</span>), Result.value());</div>
-<div class="line"><span class="lineno">  333</span> </div>
-<div class="line"><span class="lineno">  334</span>        OutStringMessage = FString(Result.value(), UTF8_TO_TCHAR(RecvMessage.data()));</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00327">327</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  328</span>{</div>
+<div class="line"><span class="lineno">  329</span>    zmq::message_t RecvMessage;</div>
+<div class="line"><span class="lineno">  330</span> </div>
+<div class="line"><span class="lineno">  331</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>-&gt;recv(RecvMessage, RecvFlags);</div>
+<div class="line"><span class="lineno">  332</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  333</span>    {</div>
+<div class="line"><span class="lineno">  334</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv String || Recv %d bytes&quot;</span>), Result.value());</div>
 <div class="line"><span class="lineno">  335</span> </div>
-<div class="line"><span class="lineno">  336</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  337</span>    }</div>
-<div class="line"><span class="lineno">  338</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  339</span>    {</div>
-<div class="line"><span class="lineno">  340</span> </div>
-<div class="line"><span class="lineno">  341</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv String || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  342</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  343</span>    }</div>
-<div class="line"><span class="lineno">  344</span> </div>
-<div class="line"><span class="lineno">  345</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  346</span>}</div>
+<div class="line"><span class="lineno">  336</span>        OutStringMessage = FString(Result.value(), UTF8_TO_TCHAR(RecvMessage.data()));</div>
+<div class="line"><span class="lineno">  337</span> </div>
+<div class="line"><span class="lineno">  338</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  339</span>    }</div>
+<div class="line"><span class="lineno">  340</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  341</span>    {</div>
+<div class="line"><span class="lineno">  342</span> </div>
+<div class="line"><span class="lineno">  343</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv String || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  344</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  345</span>    }</div>
+<div class="line"><span class="lineno">  346</span> </div>
+<div class="line"><span class="lineno">  347</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  348</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -707,30 +711,30 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Data was Received from the Socket Successfully. False, if an error occured in receiving.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00370">370</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  371</span>{</div>
-<div class="line"><span class="lineno">  372</span>    std::vector&lt;zmq::message_t&gt; RecvMessages;</div>
-<div class="line"><span class="lineno">  373</span> </div>
-<div class="line"><span class="lineno">  374</span>    <span class="keyword">auto</span> Result = zmq::recv_multipart(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>, std::back_inserter(RecvMessages), RecvFlags);</div>
-<div class="line"><span class="lineno">  375</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  376</span>    {</div>
-<div class="line"><span class="lineno">  377</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Multipart || Recv %d messages&quot;</span>), Result.value());</div>
-<div class="line"><span class="lineno">  378</span> </div>
-<div class="line"><span class="lineno">  379</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; Message : RecvMessages)</div>
-<div class="line"><span class="lineno">  380</span>        {</div>
-<div class="line"><span class="lineno">  381</span>            OutMessages.Add(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));</div>
-<div class="line"><span class="lineno">  382</span>        }</div>
-<div class="line"><span class="lineno">  383</span> </div>
-<div class="line"><span class="lineno">  384</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  385</span>    }</div>
-<div class="line"><span class="lineno">  386</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  387</span>    {</div>
-<div class="line"><span class="lineno">  388</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Multipart || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  389</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  390</span>    }</div>
-<div class="line"><span class="lineno">  391</span> </div>
-<div class="line"><span class="lineno">  392</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  393</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00372">372</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  373</span>{</div>
+<div class="line"><span class="lineno">  374</span>    std::vector&lt;zmq::message_t&gt; RecvMessages;</div>
+<div class="line"><span class="lineno">  375</span> </div>
+<div class="line"><span class="lineno">  376</span>    <span class="keyword">auto</span> Result = zmq::recv_multipart(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ab9503111a1c9160c44b27fa882b9d305">RecvSocket</a>, std::back_inserter(RecvMessages), RecvFlags);</div>
+<div class="line"><span class="lineno">  377</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  378</span>    {</div>
+<div class="line"><span class="lineno">  379</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Multipart || Recv %d messages&quot;</span>), Result.value());</div>
+<div class="line"><span class="lineno">  380</span> </div>
+<div class="line"><span class="lineno">  381</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;Message : RecvMessages)</div>
+<div class="line"><span class="lineno">  382</span>        {</div>
+<div class="line"><span class="lineno">  383</span>            OutMessages.Add(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));</div>
+<div class="line"><span class="lineno">  384</span>        }</div>
+<div class="line"><span class="lineno">  385</span> </div>
+<div class="line"><span class="lineno">  386</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  387</span>    }</div>
+<div class="line"><span class="lineno">  388</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  389</span>    {</div>
+<div class="line"><span class="lineno">  390</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Recv Multipart || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  391</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  392</span>    }</div>
+<div class="line"><span class="lineno">  393</span> </div>
+<div class="line"><span class="lineno">  394</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  395</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -777,20 +781,20 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Multipart was Received Successfully. False, if an error occured in receiving.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00395">395</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  396</span>{</div>
-<div class="line"><span class="lineno">  397</span>    std::vector&lt;zmq::message_t&gt; RecvMessages;</div>
-<div class="line"><span class="lineno">  398</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFSocketCommunicationServer.html#ae99c590dd6336e5b65be790fcb073cec">RecvMultipartWithMeta</a>(RecvMessages, OutMetadata, RecvFlag))</div>
-<div class="line"><span class="lineno">  399</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  400</span> </div>
-<div class="line"><span class="lineno">  401</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; Message : RecvMessages)</div>
-<div class="line"><span class="lineno">  402</span>    {</div>
-<div class="line"><span class="lineno">  403</span>        OutMessages.Add(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));</div>
-<div class="line"><span class="lineno">  404</span>    }</div>
-<div class="line"><span class="lineno">  405</span> </div>
-<div class="line"><span class="lineno">  406</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  407</span>}</div>
-<div class="ttc" id="aclassFSocketCommunicationServer_html_ae99c590dd6336e5b65be790fcb073cec"><div class="ttname"><a href="classFSocketCommunicationServer.html#ae99c590dd6336e5b65be790fcb073cec">FSocketCommunicationServer::RecvMultipartWithMeta</a></div><div class="ttdeci">bool RecvMultipartWithMeta(std::vector&lt; zmq::message_t &gt; &amp;OutMultipartMessages, TSharedPtr&lt; FJsonObject &gt; &amp;OutMetadata, ComRecvFlags RecvFlags)</div><div class="ttdoc">Recieves a Multipart Message From The Socket, and a Metadata Object.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8cpp_source.html#l00409">SocketCommunicationServer.cpp:409</a></div></div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00397">397</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  398</span>{</div>
+<div class="line"><span class="lineno">  399</span>    std::vector&lt;zmq::message_t&gt; RecvMessages;</div>
+<div class="line"><span class="lineno">  400</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFSocketCommunicationServer.html#ae99c590dd6336e5b65be790fcb073cec">RecvMultipartWithMeta</a>(RecvMessages, OutMetadata, RecvFlag))</div>
+<div class="line"><span class="lineno">  401</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  402</span> </div>
+<div class="line"><span class="lineno">  403</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;Message : RecvMessages)</div>
+<div class="line"><span class="lineno">  404</span>    {</div>
+<div class="line"><span class="lineno">  405</span>        OutMessages.Add(FString(Message.size(), UTF8_TO_TCHAR(Message.data())));</div>
+<div class="line"><span class="lineno">  406</span>    }</div>
+<div class="line"><span class="lineno">  407</span> </div>
+<div class="line"><span class="lineno">  408</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  409</span>}</div>
+<div class="ttc" id="aclassFSocketCommunicationServer_html_ae99c590dd6336e5b65be790fcb073cec"><div class="ttname"><a href="classFSocketCommunicationServer.html#ae99c590dd6336e5b65be790fcb073cec">FSocketCommunicationServer::RecvMultipartWithMeta</a></div><div class="ttdeci">bool RecvMultipartWithMeta(std::vector&lt; zmq::message_t &gt; &amp;OutMultipartMessages, TSharedPtr&lt; FJsonObject &gt; &amp;OutMetadata, ComRecvFlags RecvFlags)</div><div class="ttdoc">Recieves a Multipart Message From The Socket, and a Metadata Object.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8cpp_source.html#l00411">SocketCommunicationServer.cpp:411</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -837,22 +841,22 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Buffer was Sent Successfully. False, if an error occurs in sending.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00076">76</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   77</span>{</div>
-<div class="line"><span class="lineno">   78</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::const_buffer(MessageData, Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)), SendFlags);</div>
-<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">   80</span>    {</div>
-<div class="line"><span class="lineno">   81</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
-<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   83</span>    }</div>
-<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">   85</span>    {</div>
-<div class="line"><span class="lineno">   86</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">   87</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   88</span>    }</div>
-<div class="line"><span class="lineno">   89</span> </div>
-<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   91</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00080">80</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   81</span>{</div>
+<div class="line"><span class="lineno">   82</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::const_buffer(MessageData, Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)), SendFlags);</div>
+<div class="line"><span class="lineno">   83</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">   84</span>    {</div>
+<div class="line"><span class="lineno">   85</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
+<div class="line"><span class="lineno">   86</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   87</span>    }</div>
+<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">   89</span>    {</div>
+<div class="line"><span class="lineno">   90</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">   91</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   92</span>    }</div>
+<div class="line"><span class="lineno">   93</span> </div>
+<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   95</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -892,22 +896,22 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Buffer was Sent Successfully. False, if an error occurs in sending.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00093">93</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   94</span>{</div>
-<div class="line"><span class="lineno">   95</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::const_buffer(MessageData, <span class="keyword">sizeof</span> MessageData), SendFlags);</div>
-<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">   97</span>    {</div>
-<div class="line"><span class="lineno">   98</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), <span class="keywordtype">int</span>(<span class="keyword">sizeof</span> MessageData));</div>
-<div class="line"><span class="lineno">   99</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  100</span>    }</div>
-<div class="line"><span class="lineno">  101</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  102</span>    {</div>
-<div class="line"><span class="lineno">  103</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  104</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  105</span>    }</div>
-<div class="line"><span class="lineno">  106</span> </div>
-<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  108</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00097">97</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   98</span>{</div>
+<div class="line"><span class="lineno">   99</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::const_buffer(MessageData, <span class="keyword">sizeof</span> MessageData), SendFlags);</div>
+<div class="line"><span class="lineno">  100</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  101</span>    {</div>
+<div class="line"><span class="lineno">  102</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), <span class="keywordtype">int</span>(<span class="keyword">sizeof</span> MessageData));</div>
+<div class="line"><span class="lineno">  103</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  104</span>    }</div>
+<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  106</span>    {</div>
+<div class="line"><span class="lineno">  107</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  109</span>    }</div>
+<div class="line"><span class="lineno">  110</span> </div>
+<div class="line"><span class="lineno">  111</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  112</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -947,22 +951,22 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Buffer was Sent Successfully. False, if an error occurs in sending.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00110">110</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  111</span>{</div>
-<div class="line"><span class="lineno">  112</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::const_buffer(ArrayMessage.GetData(), ArrayMessage.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)), SendFlag);</div>
-<div class="line"><span class="lineno">  113</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  114</span>    {</div>
-<div class="line"><span class="lineno">  115</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), <span class="keywordtype">int</span>(ArrayMessage.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
-<div class="line"><span class="lineno">  116</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  117</span>    }</div>
-<div class="line"><span class="lineno">  118</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  119</span>    {</div>
-<div class="line"><span class="lineno">  120</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  121</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  122</span>    }</div>
-<div class="line"><span class="lineno">  123</span> </div>
-<div class="line"><span class="lineno">  124</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  125</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00114">114</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  115</span>{</div>
+<div class="line"><span class="lineno">  116</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::const_buffer(ArrayMessage.GetData(), ArrayMessage.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)), SendFlag);</div>
+<div class="line"><span class="lineno">  117</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  118</span>    {</div>
+<div class="line"><span class="lineno">  119</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), <span class="keywordtype">int</span>(ArrayMessage.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
+<div class="line"><span class="lineno">  120</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  121</span>    }</div>
+<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  123</span>    {</div>
+<div class="line"><span class="lineno">  124</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  125</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  126</span>    }</div>
+<div class="line"><span class="lineno">  127</span> </div>
+<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  129</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1009,22 +1013,22 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Message was Sent Successfully. False, if an error occurs in sending.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00127">127</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  128</span>{</div>
-<div class="line"><span class="lineno">  129</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::message_t(MessageData, Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)), SendFlags);</div>
-<div class="line"><span class="lineno">  130</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  131</span>    {</div>
-<div class="line"><span class="lineno">  132</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
-<div class="line"><span class="lineno">  133</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  134</span>    }</div>
-<div class="line"><span class="lineno">  135</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  136</span>    {</div>
-<div class="line"><span class="lineno">  137</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  138</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  139</span>    }</div>
-<div class="line"><span class="lineno">  140</span> </div>
-<div class="line"><span class="lineno">  141</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  142</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00131">131</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  132</span>{</div>
+<div class="line"><span class="lineno">  133</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::message_t(MessageData, Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)), SendFlags);</div>
+<div class="line"><span class="lineno">  134</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  135</span>    {</div>
+<div class="line"><span class="lineno">  136</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
+<div class="line"><span class="lineno">  137</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  138</span>    }</div>
+<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  140</span>    {</div>
+<div class="line"><span class="lineno">  141</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  142</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  143</span>    }</div>
+<div class="line"><span class="lineno">  144</span> </div>
+<div class="line"><span class="lineno">  145</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  146</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1064,22 +1068,22 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Message was Sent Successfully. False, if an error occurs in sending.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00144">144</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  145</span>{</div>
-<div class="line"><span class="lineno">  146</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::message_t(MessageData, <span class="keyword">sizeof</span> MessageData), SendFlags);</div>
-<div class="line"><span class="lineno">  147</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  148</span>    {</div>
-<div class="line"><span class="lineno">  149</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), <span class="keywordtype">int</span>(<span class="keyword">sizeof</span> MessageData));</div>
-<div class="line"><span class="lineno">  150</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  151</span>    }</div>
-<div class="line"><span class="lineno">  152</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  153</span>    {</div>
-<div class="line"><span class="lineno">  154</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  155</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  156</span>    }</div>
-<div class="line"><span class="lineno">  157</span> </div>
-<div class="line"><span class="lineno">  158</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  159</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00148">148</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  149</span>{</div>
+<div class="line"><span class="lineno">  150</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::message_t(MessageData, <span class="keyword">sizeof</span> MessageData), SendFlags);</div>
+<div class="line"><span class="lineno">  151</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  152</span>    {</div>
+<div class="line"><span class="lineno">  153</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), <span class="keywordtype">int</span>(<span class="keyword">sizeof</span> MessageData));</div>
+<div class="line"><span class="lineno">  154</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  155</span>    }</div>
+<div class="line"><span class="lineno">  156</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  157</span>    {</div>
+<div class="line"><span class="lineno">  158</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  159</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  160</span>    }</div>
+<div class="line"><span class="lineno">  161</span> </div>
+<div class="line"><span class="lineno">  162</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  163</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1119,22 +1123,22 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Message was Sent Successfully. False, if an error occurs in sending.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00161">161</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  162</span>{</div>
-<div class="line"><span class="lineno">  163</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::message_t(ArrayMessage.GetData(), ArrayMessage.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)), SendFlags);</div>
-<div class="line"><span class="lineno">  164</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  165</span>    {</div>
-<div class="line"><span class="lineno">  166</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), <span class="keywordtype">int</span>(ArrayMessage.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
-<div class="line"><span class="lineno">  167</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  168</span>    }</div>
-<div class="line"><span class="lineno">  169</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  170</span>    {</div>
-<div class="line"><span class="lineno">  171</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  172</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  173</span>    }</div>
-<div class="line"><span class="lineno">  174</span> </div>
-<div class="line"><span class="lineno">  175</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  176</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00165">165</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  166</span>{</div>
+<div class="line"><span class="lineno">  167</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::message_t(ArrayMessage.GetData(), ArrayMessage.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)), SendFlags);</div>
+<div class="line"><span class="lineno">  168</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  169</span>    {</div>
+<div class="line"><span class="lineno">  170</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), <span class="keywordtype">int</span>(ArrayMessage.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
+<div class="line"><span class="lineno">  171</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  172</span>    }</div>
+<div class="line"><span class="lineno">  173</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  174</span>    {</div>
+<div class="line"><span class="lineno">  175</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  176</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  177</span>    }</div>
+<div class="line"><span class="lineno">  178</span> </div>
+<div class="line"><span class="lineno">  179</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  180</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1188,35 +1192,35 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Message was Sent Successfully. False, if an error occurs in sending.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00178">178</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  179</span>{</div>
-<div class="line"><span class="lineno">  180</span>    FString MetaDataString;</div>
-<div class="line"><span class="lineno">  181</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFSocketCommunicationServer.html#ab2c64709e57e6b130c02c6a8147b70dd">SerializeJSON</a>(Metadata, MetaDataString))</div>
-<div class="line"><span class="lineno">  182</span>    {</div>
-<div class="line"><span class="lineno">  183</span>        UE_LOG(LogOpenAccessibilityCom, Error, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Failed to serialize metadata ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  184</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  185</span>    }</div>
-<div class="line"><span class="lineno">  186</span> </div>
-<div class="line"><span class="lineno">  187</span>    std::vector&lt;zmq::message_t&gt; Messages;</div>
-<div class="line"><span class="lineno">  188</span>    Messages.push_back(zmq::message_t(*MetaDataString, MetaDataString.Len() * <span class="keyword">sizeof</span>(TCHAR)));</div>
-<div class="line"><span class="lineno">  189</span>    Messages.push_back(zmq::message_t(MessageData, Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00182">182</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  183</span>{</div>
+<div class="line"><span class="lineno">  184</span>    FString MetaDataString;</div>
+<div class="line"><span class="lineno">  185</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFSocketCommunicationServer.html#ab2c64709e57e6b130c02c6a8147b70dd">SerializeJSON</a>(Metadata, MetaDataString))</div>
+<div class="line"><span class="lineno">  186</span>    {</div>
+<div class="line"><span class="lineno">  187</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Failed to serialize metadata ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  188</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  189</span>    }</div>
 <div class="line"><span class="lineno">  190</span> </div>
-<div class="line"><span class="lineno">  191</span>    <span class="keyword">auto</span> Result = zmq::send_multipart(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>, Messages, SendFlags);</div>
-<div class="line"><span class="lineno">  192</span> </div>
-<div class="line"><span class="lineno">  193</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  194</span>    {</div>
-<div class="line"><span class="lineno">  195</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
-<div class="line"><span class="lineno">  196</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  197</span>    }</div>
-<div class="line"><span class="lineno">  198</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  199</span>    {</div>
-<div class="line"><span class="lineno">  200</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  201</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  202</span>    }</div>
-<div class="line"><span class="lineno">  203</span> </div>
-<div class="line"><span class="lineno">  204</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  205</span>}</div>
-<div class="ttc" id="aclassFSocketCommunicationServer_html_ab2c64709e57e6b130c02c6a8147b70dd"><div class="ttname"><a href="classFSocketCommunicationServer.html#ab2c64709e57e6b130c02c6a8147b70dd">FSocketCommunicationServer::SerializeJSON</a></div><div class="ttdeci">bool SerializeJSON(const TSharedRef&lt; FJsonObject &gt; &amp;InJsonObject, FString &amp;OutJsonString)</div><div class="ttdoc">Serializes the JSON Object into a JSON String.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8cpp_source.html#l00439">SocketCommunicationServer.cpp:439</a></div></div>
+<div class="line"><span class="lineno">  191</span>    std::vector&lt;zmq::message_t&gt; Messages;</div>
+<div class="line"><span class="lineno">  192</span>    Messages.push_back(zmq::message_t(*MetaDataString, MetaDataString.Len() * <span class="keyword">sizeof</span>(TCHAR)));</div>
+<div class="line"><span class="lineno">  193</span>    Messages.push_back(zmq::message_t(MessageData, Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
+<div class="line"><span class="lineno">  194</span> </div>
+<div class="line"><span class="lineno">  195</span>    <span class="keyword">auto</span> Result = zmq::send_multipart(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>, Messages, SendFlags);</div>
+<div class="line"><span class="lineno">  196</span> </div>
+<div class="line"><span class="lineno">  197</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  198</span>    {</div>
+<div class="line"><span class="lineno">  199</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), Size * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>));</div>
+<div class="line"><span class="lineno">  200</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  201</span>    }</div>
+<div class="line"><span class="lineno">  202</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  203</span>    {</div>
+<div class="line"><span class="lineno">  204</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  205</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  206</span>    }</div>
+<div class="line"><span class="lineno">  207</span> </div>
+<div class="line"><span class="lineno">  208</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  209</span>}</div>
+<div class="ttc" id="aclassFSocketCommunicationServer_html_ab2c64709e57e6b130c02c6a8147b70dd"><div class="ttname"><a href="classFSocketCommunicationServer.html#ab2c64709e57e6b130c02c6a8147b70dd">FSocketCommunicationServer::SerializeJSON</a></div><div class="ttdeci">bool SerializeJSON(const TSharedRef&lt; FJsonObject &gt; &amp;InJsonObject, FString &amp;OutJsonString)</div><div class="ttdoc">Serializes the JSON Object into a JSON String.</div><div class="ttdef"><b>Definition:</b> <a href="SocketCommunicationServer_8cpp_source.html#l00441">SocketCommunicationServer.cpp:441</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1263,34 +1267,34 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Message was Sent Successfully. False, if an error occurs in sending.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00207">207</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  208</span>{</div>
-<div class="line"><span class="lineno">  209</span>    FString MetaDataString;</div>
-<div class="line"><span class="lineno">  210</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFSocketCommunicationServer.html#ab2c64709e57e6b130c02c6a8147b70dd">SerializeJSON</a>(Metadata, MetaDataString))</div>
-<div class="line"><span class="lineno">  211</span>    {</div>
-<div class="line"><span class="lineno">  212</span>        UE_LOG(LogOpenAccessibilityCom, Error, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Failed to serialize metadata ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  213</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  214</span>    }</div>
-<div class="line"><span class="lineno">  215</span> </div>
-<div class="line"><span class="lineno">  216</span>    std::vector&lt;zmq::message_t&gt; Messages;</div>
-<div class="line"><span class="lineno">  217</span>    Messages.push_back(zmq::message_t(*MetaDataString, MetaDataString.Len() * <span class="keyword">sizeof</span>(TCHAR)));</div>
-<div class="line"><span class="lineno">  218</span>    Messages.push_back(zmq::message_t(MessageData, <span class="keyword">sizeof</span> MessageData));</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00211">211</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  212</span>{</div>
+<div class="line"><span class="lineno">  213</span>    FString MetaDataString;</div>
+<div class="line"><span class="lineno">  214</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFSocketCommunicationServer.html#ab2c64709e57e6b130c02c6a8147b70dd">SerializeJSON</a>(Metadata, MetaDataString))</div>
+<div class="line"><span class="lineno">  215</span>    {</div>
+<div class="line"><span class="lineno">  216</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Failed to serialize metadata ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  217</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  218</span>    }</div>
 <div class="line"><span class="lineno">  219</span> </div>
-<div class="line"><span class="lineno">  220</span>    <span class="keyword">auto</span> Result = zmq::send_multipart(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>, Messages, SendFlags);</div>
-<div class="line"><span class="lineno">  221</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  222</span>    {</div>
-<div class="line"><span class="lineno">  223</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), <span class="keywordtype">int</span>(<span class="keyword">sizeof</span> MessageData));</div>
-<div class="line"><span class="lineno">  224</span> </div>
-<div class="line"><span class="lineno">  225</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  226</span>    }</div>
-<div class="line"><span class="lineno">  227</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  228</span>    {</div>
-<div class="line"><span class="lineno">  229</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  230</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  231</span>    }</div>
-<div class="line"><span class="lineno">  232</span> </div>
-<div class="line"><span class="lineno">  233</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  234</span>}</div>
+<div class="line"><span class="lineno">  220</span>    std::vector&lt;zmq::message_t&gt; Messages;</div>
+<div class="line"><span class="lineno">  221</span>    Messages.push_back(zmq::message_t(*MetaDataString, MetaDataString.Len() * <span class="keyword">sizeof</span>(TCHAR)));</div>
+<div class="line"><span class="lineno">  222</span>    Messages.push_back(zmq::message_t(MessageData, <span class="keyword">sizeof</span> MessageData));</div>
+<div class="line"><span class="lineno">  223</span> </div>
+<div class="line"><span class="lineno">  224</span>    <span class="keyword">auto</span> Result = zmq::send_multipart(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>, Messages, SendFlags);</div>
+<div class="line"><span class="lineno">  225</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  226</span>    {</div>
+<div class="line"><span class="lineno">  227</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d bytes&quot;</span>), Result.value(), <span class="keywordtype">int</span>(<span class="keyword">sizeof</span> MessageData));</div>
+<div class="line"><span class="lineno">  228</span> </div>
+<div class="line"><span class="lineno">  229</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  230</span>    }</div>
+<div class="line"><span class="lineno">  231</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  232</span>    {</div>
+<div class="line"><span class="lineno">  233</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  234</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  235</span>    }</div>
+<div class="line"><span class="lineno">  236</span> </div>
+<div class="line"><span class="lineno">  237</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  238</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1337,35 +1341,35 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Message was Sent Successfully. False, if an error occurs in sending.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00236">236</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  237</span>{</div>
-<div class="line"><span class="lineno">  238</span>    FString MetaDataString;</div>
-<div class="line"><span class="lineno">  239</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFSocketCommunicationServer.html#ab2c64709e57e6b130c02c6a8147b70dd">SerializeJSON</a>(Metadata, MetaDataString))</div>
-<div class="line"><span class="lineno">  240</span>    {</div>
-<div class="line"><span class="lineno">  241</span>        UE_LOG(LogOpenAccessibilityCom, Error, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Failed to serialize metadata ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  242</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  243</span>    }</div>
-<div class="line"><span class="lineno">  244</span> </div>
-<div class="line"><span class="lineno">  245</span>    std::vector&lt;zmq::message_t&gt; Messages;</div>
-<div class="line"><span class="lineno">  246</span>    Messages.push_back(zmq::message_t(*MetaDataString, MetaDataString.Len() * <span class="keyword">sizeof</span>(TCHAR)));</div>
-<div class="line"><span class="lineno">  247</span>    Messages.push_back(zmq::message_t(ArrayMessage.GetData(), ArrayMessage.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00240">240</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  241</span>{</div>
+<div class="line"><span class="lineno">  242</span>    FString MetaDataString;</div>
+<div class="line"><span class="lineno">  243</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFSocketCommunicationServer.html#ab2c64709e57e6b130c02c6a8147b70dd">SerializeJSON</a>(Metadata, MetaDataString))</div>
+<div class="line"><span class="lineno">  244</span>    {</div>
+<div class="line"><span class="lineno">  245</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Failed to serialize metadata ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  246</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  247</span>    }</div>
 <div class="line"><span class="lineno">  248</span> </div>
-<div class="line"><span class="lineno">  249</span>    <span class="keyword">auto</span> Result = zmq::send_multipart(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>, Messages, SendFlags);</div>
-<div class="line"><span class="lineno">  250</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  251</span>    {</div>
-<div class="line"><span class="lineno">  252</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d Messages&quot;</span>), Result.value(), Messages.size());</div>
-<div class="line"><span class="lineno">  253</span> </div>
-<div class="line"><span class="lineno">  254</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  255</span>    }</div>
-<div class="line"><span class="lineno">  256</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  257</span>    {</div>
-<div class="line"><span class="lineno">  258</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  259</span> </div>
-<div class="line"><span class="lineno">  260</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  261</span>    }</div>
-<div class="line"><span class="lineno">  262</span> </div>
-<div class="line"><span class="lineno">  263</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  264</span>}</div>
+<div class="line"><span class="lineno">  249</span>    std::vector&lt;zmq::message_t&gt; Messages;</div>
+<div class="line"><span class="lineno">  250</span>    Messages.push_back(zmq::message_t(*MetaDataString, MetaDataString.Len() * <span class="keyword">sizeof</span>(TCHAR)));</div>
+<div class="line"><span class="lineno">  251</span>    Messages.push_back(zmq::message_t(ArrayMessage.GetData(), ArrayMessage.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
+<div class="line"><span class="lineno">  252</span> </div>
+<div class="line"><span class="lineno">  253</span>    <span class="keyword">auto</span> Result = zmq::send_multipart(*<a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>, Messages, SendFlags);</div>
+<div class="line"><span class="lineno">  254</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  255</span>    {</div>
+<div class="line"><span class="lineno">  256</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || Sent %d of %d Messages&quot;</span>), Result.value(), Messages.size());</div>
+<div class="line"><span class="lineno">  257</span> </div>
+<div class="line"><span class="lineno">  258</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  259</span>    }</div>
+<div class="line"><span class="lineno">  260</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  261</span>    {</div>
+<div class="line"><span class="lineno">  262</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent Array || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  265</span>    }</div>
+<div class="line"><span class="lineno">  266</span> </div>
+<div class="line"><span class="lineno">  267</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  268</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1405,22 +1409,22 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Buffer was Sent Successfully. False, if an error occurs in sending.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00283">283</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  284</span>{</div>
-<div class="line"><span class="lineno">  285</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::const_buffer(JsonMessage.c_str(), JsonMessage.size()), SendFlags);</div>
-<div class="line"><span class="lineno">  286</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  287</span>    {</div>
-<div class="line"><span class="lineno">  288</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent JSON || Sent %d of %d bytes&quot;</span>), Result.value(), JsonMessage.size());</div>
-<div class="line"><span class="lineno">  289</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  290</span>    }</div>
-<div class="line"><span class="lineno">  291</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  292</span>    {</div>
-<div class="line"><span class="lineno">  293</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent JSON || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  294</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  295</span>    }</div>
-<div class="line"><span class="lineno">  296</span> </div>
-<div class="line"><span class="lineno">  297</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  298</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00287">287</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  288</span>{</div>
+<div class="line"><span class="lineno">  289</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::const_buffer(JsonMessage.c_str(), JsonMessage.size()), SendFlags);</div>
+<div class="line"><span class="lineno">  290</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  291</span>    {</div>
+<div class="line"><span class="lineno">  292</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent JSON || Sent %d of %d bytes&quot;</span>), Result.value(), JsonMessage.size());</div>
+<div class="line"><span class="lineno">  293</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  294</span>    }</div>
+<div class="line"><span class="lineno">  295</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  296</span>    {</div>
+<div class="line"><span class="lineno">  297</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent JSON || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  298</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  299</span>    }</div>
+<div class="line"><span class="lineno">  300</span> </div>
+<div class="line"><span class="lineno">  301</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  302</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1460,22 +1464,22 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Buffer was Sent Successfully. False, if an error occurs in sending.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00266">266</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  267</span>{</div>
-<div class="line"><span class="lineno">  268</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::const_buffer(StringMessage.c_str(), StringMessage.size()), SendFlags);</div>
-<div class="line"><span class="lineno">  269</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
-<div class="line"><span class="lineno">  270</span>    {</div>
-<div class="line"><span class="lineno">  271</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent String || Sent %d of %d bytes&quot;</span>), Result.value(), StringMessage.size());</div>
-<div class="line"><span class="lineno">  272</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  273</span>    }</div>
-<div class="line"><span class="lineno">  274</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
-<div class="line"><span class="lineno">  275</span>    {</div>
-<div class="line"><span class="lineno">  276</span>        UE_LOG(LogOpenAccessibilityCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent String || EAGAIN Error Occured ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  277</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  278</span>    }</div>
-<div class="line"><span class="lineno">  279</span> </div>
-<div class="line"><span class="lineno">  280</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  281</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00270">270</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  271</span>{</div>
+<div class="line"><span class="lineno">  272</span>    <span class="keyword">auto</span> Result = <a class="code hl_variable" href="classFSocketCommunicationServer.html#ac2ebfe366ace6e446099c9708f22c5bc">SendSocket</a>-&gt;send(zmq::const_buffer(StringMessage.c_str(), StringMessage.size()), SendFlags);</div>
+<div class="line"><span class="lineno">  273</span>    <span class="keywordflow">if</span> (Result.has_value())</div>
+<div class="line"><span class="lineno">  274</span>    {</div>
+<div class="line"><span class="lineno">  275</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent String || Sent %d of %d bytes&quot;</span>), Result.value(), StringMessage.size());</div>
+<div class="line"><span class="lineno">  276</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  277</span>    }</div>
+<div class="line"><span class="lineno">  278</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (zmq_errno() == EAGAIN)</div>
+<div class="line"><span class="lineno">  279</span>    {</div>
+<div class="line"><span class="lineno">  280</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Com Server: Sent String || EAGAIN Error Occured ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  281</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  282</span>    }</div>
+<div class="line"><span class="lineno">  283</span> </div>
+<div class="line"><span class="lineno">  284</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  285</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1523,10 +1527,10 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the JSON Object was Successful in Serialization. Otherwise False.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00439">439</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  440</span>{</div>
-<div class="line"><span class="lineno">  441</span>    <span class="keywordflow">return</span> FJsonSerializer::Serialize(InJsonObject, TJsonWriterFactory&lt;TCHAR&gt;::Create(&amp;OutJsonString));</div>
-<div class="line"><span class="lineno">  442</span>}</div>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8cpp_source.html#l00441">441</a> of file <a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  442</span>{</div>
+<div class="line"><span class="lineno">  443</span>    <span class="keywordflow">return</span> FJsonSerializer::Serialize(InJsonObject, TJsonWriterFactory&lt;TCHAR&gt;::Create(&amp;OutJsonString));</div>
+<div class="line"><span class="lineno">  444</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1553,7 +1557,7 @@ template&lt;typename T &gt; </div>
 
 <p>The Context Used for the Socket Communication.  </p>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00205">205</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00202">202</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
 
 </div>
 </div>
@@ -1579,7 +1583,7 @@ template&lt;typename T &gt; </div>
 
 <p>The Poller used for Polling for Events on the Receiving Socket.  </p>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00220">220</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00217">217</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
 
 </div>
 </div>
@@ -1605,7 +1609,7 @@ template&lt;typename T &gt; </div>
 
 <p>The Time Taken By The Poller To Look For Events.  </p>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00228">228</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00225">225</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
 
 </div>
 </div>
@@ -1629,7 +1633,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00223">223</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00220">220</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
 
 </div>
 </div>
@@ -1655,7 +1659,7 @@ template&lt;typename T &gt; </div>
 
 <p>The Socket Used For Receiving Data.  </p>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00215">215</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00212">212</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
 
 </div>
 </div>
@@ -1679,7 +1683,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00222">222</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00219">219</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
 
 </div>
 </div>
@@ -1705,13 +1709,13 @@ template&lt;typename T &gt; </div>
 
 <p>The Socket Used For Sending Data.  </p>
 
-<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00210">210</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="SocketCommunicationServer_8h_source.html#l00207">207</a> of file <a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Source/OpenAccessibilityCommunication/Public/<a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a></li>
-<li>Source/OpenAccessibilityCommunication/Private/<a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a></li>
+<li>Source/AccessionCommunication/Public/<a class="el" href="SocketCommunicationServer_8h_source.html">SocketCommunicationServer.h</a></li>
+<li>Source/AccessionCommunication/Private/<a class="el" href="SocketCommunicationServer_8cpp_source.html">SocketCommunicationServer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

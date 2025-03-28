@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Open Accessibility Unreal Plugin: Source/OpenAccessibilityCommunication/Private/PhraseTree/PhraseNode.cpp Source File</title>
+<title>Open Accessibility Unreal Plugin: Source/AccessionCommunication/Private/PhraseTree/PhraseNode.cpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -98,11 +98,11 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;PhraseTree/PhraseNode.h&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;PhraseTree.h&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;OpenAccessibilityComLogging.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;AccessionComLogging.h&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;Algo/LevenshteinDistance.h&quot;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>FPhraseNode::FPhraseNode(<span class="keyword">const</span> TCHAR* InBoundPhrase)</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>FPhraseNode::FPhraseNode(<span class="keyword">const</span> TCHAR *InBoundPhrase)</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>{</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a> = InBoundPhrase;</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>.ToUpperInline();</div>
@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a> = TArray&lt;TSharedPtr&lt;FPhraseNode&gt;&gt;();</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>}</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>FPhraseNode::FPhraseNode(<span class="keyword">const</span> TCHAR* InBoundPhrase, TDelegate&lt;<span class="keywordtype">void</span>(<a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; Record)&gt; InOnPhraseParsed)</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>FPhraseNode::FPhraseNode(<span class="keyword">const</span> TCHAR *InBoundPhrase, TDelegate&lt;<span class="keywordtype">void</span>(<a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a> &amp;Record)&gt; InOnPhraseParsed)</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a> = InBoundPhrase;</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>.ToUpperInline();</div>
@@ -119,7 +119,7 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a> = TArray&lt;TSharedPtr&lt;FPhraseNode&gt;&gt;();</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>FPhraseNode::FPhraseNode(<span class="keyword">const</span> TCHAR* InBoundPhrase, TPhraseNodeArray InChildNodes)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>FPhraseNode::FPhraseNode(<span class="keyword">const</span> TCHAR *InBoundPhrase, TPhraseNodeArray InChildNodes)</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a> = InBoundPhrase;</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>.ToUpperInline();</div>
@@ -127,7 +127,7 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a> = InChildNodes;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>FPhraseNode::FPhraseNode(<span class="keyword">const</span> TCHAR* InBoundPhrase, TDelegate&lt;<span class="keywordtype">void</span>(<a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; Record)&gt; InOnPhraseParsed, TPhraseNodeArray InChildNodes)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>FPhraseNode::FPhraseNode(<span class="keyword">const</span> TCHAR *InBoundPhrase, TDelegate&lt;<span class="keywordtype">void</span>(<a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a> &amp;Record)&gt; InOnPhraseParsed, TPhraseNodeArray InChildNodes)</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a> = InBoundPhrase;</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>.ToUpperInline();</div>
@@ -138,31 +138,31 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>FPhraseNode::~FPhraseNode()</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">bool</span> FPhraseNode::HasLeafChild()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classFPhraseNode.html#a3350020f1380ad08f2d9aa5d354137ec">bHasLeafChild</a>;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">   53</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">FPhraseNode::RequiresPhrase</a>(FString InPhrase)</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">return</span> InPhrase.Equals(<a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>, ESearchCase::IgnoreCase) || Algo::LevenshteinDistance(<a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>, InPhrase) &lt; 3;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a27bb33f57c44482793806a71fcd7baf1">   58</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">FPhraseNode::RequiresPhrase</a>(<span class="keyword">const</span> FString InPhrase, int32&amp; OutDistance) </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    OutDistance = Algo::LevenshteinDistance(<a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>, InPhrase);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">return</span> InPhrase.Equals(<a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>, ESearchCase::IgnoreCase) || OutDistance &lt; 3;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">   65</a></span><a class="code hl_struct" href="structFParseResult.html">FParseResult</a> <a class="code hl_function" href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode::ParsePhrase</a>(TArray&lt;FString&gt;&amp; InPhraseArray,</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                                      <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; InParseRecord) {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keywordtype">bool</span> FPhraseNode::HasLeafChild()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classFPhraseNode.html#a3350020f1380ad08f2d9aa5d354137ec">bHasLeafChild</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">   52</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">FPhraseNode::RequiresPhrase</a>(FString InPhrase)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">return</span> InPhrase.Equals(<a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>, ESearchCase::IgnoreCase) || Algo::LevenshteinDistance(<a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>, InPhrase) &lt; 3;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a27bb33f57c44482793806a71fcd7baf1">   57</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">FPhraseNode::RequiresPhrase</a>(<span class="keyword">const</span> FString InPhrase, int32 &amp;OutDistance)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    OutDistance = Algo::LevenshteinDistance(<a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>, InPhrase);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> InPhrase.Equals(<a class="code hl_variable" href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">BoundPhrase</a>, ESearchCase::IgnoreCase) || OutDistance &lt; 3;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">   64</a></span><a class="code hl_struct" href="structFParseResult.html">FParseResult</a> <a class="code hl_function" href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode::ParsePhrase</a>(TArray&lt;FString&gt; &amp;InPhraseArray,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                                      <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a> &amp;InParseRecord)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>{</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">if</span> (InPhraseArray.IsEmpty())</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Emptied Phrase Array ||&quot;</span>))</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Emptied Phrase Array ||&quot;</span>))</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_REQUIRES_MORE, AsShared());</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
@@ -170,23 +170,23 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// Pop the Phrase Linked to this Node.</span></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="comment">// Apply to the Record.</span></div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    FString LinkedPhrase = InPhraseArray.Pop();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// Append Removed Phrase To Record.</span></div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    InParseRecord.AddPhraseString(LinkedPhrase);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    OnPhraseParsed.ExecuteIfBound(InParseRecord);</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// Pass </span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// Pass</span></div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">ParseChildren</a>(InPhraseArray, InParseRecord);</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a3c3269f4a2bcacfe4f45a6993299827f">   87</a></span><a class="code hl_struct" href="structFParseResult.html">FParseResult</a> <a class="code hl_function" href="classFPhraseNode.html#a3c3269f4a2bcacfe4f45a6993299827f">FPhraseNode::ParsePhraseAsContext</a>(TArray&lt;FString&gt;&amp; InPhraseWordArray, <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; InParseRecord)</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a3c3269f4a2bcacfe4f45a6993299827f">   87</a></span><a class="code hl_struct" href="structFParseResult.html">FParseResult</a> <a class="code hl_function" href="classFPhraseNode.html#a3c3269f4a2bcacfe4f45a6993299827f">FPhraseNode::ParsePhraseAsContext</a>(TArray&lt;FString&gt; &amp;InPhraseWordArray, <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a> &amp;InParseRecord)</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>{</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">if</span> (InPhraseWordArray.IsEmpty())</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        UE_LOG(LogOpenAccessibilityCom, Log, TEXT(<span class="stringliteral">&quot;|| Emptied Phrase Array ||&quot;</span>))</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Emptied Phrase Array ||&quot;</span>))</div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_REQUIRES_MORE, AsShared());</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_REQUIRES_MORE, AsShared());</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    }</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    OnPhraseParsed.ExecuteIfBound(InParseRecord);</div>
@@ -194,7 +194,7 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">ParseChildren</a>(InPhraseWordArray, InParseRecord);</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>}</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#ad66d060073d2506e70cf8323c3e8f6e9">  101</a></span><a class="code hl_struct" href="structFParseResult.html">FParseResult</a> <a class="code hl_function" href="classFPhraseNode.html#ad66d060073d2506e70cf8323c3e8f6e9">FPhraseNode::ParsePhraseIfRequired</a>(TArray&lt;FString&gt;&amp; InPhraseWordArray, <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; InParseRecord)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#ad66d060073d2506e70cf8323c3e8f6e9">  101</a></span><a class="code hl_struct" href="structFParseResult.html">FParseResult</a> <a class="code hl_function" href="classFPhraseNode.html#ad66d060073d2506e70cf8323c3e8f6e9">FPhraseNode::ParsePhraseIfRequired</a>(TArray&lt;FString&gt; &amp;InPhraseWordArray, <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a> &amp;InParseRecord)</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>{</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">RequiresPhrase</a>(InPhraseWordArray.Last()))</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    {</div>
@@ -204,9 +204,9 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_UNABLE_TO_PARSE);</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>}</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#afdf46d2c9022337855f2d8be5939ad06">  111</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseNode.html#afdf46d2c9022337855f2d8be5939ad06">FPhraseNode::CanBindChild</a>(TPhraseNode&amp; InNode)</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#afdf46d2c9022337855f2d8be5939ad06">  111</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseNode.html#afdf46d2c9022337855f2d8be5939ad06">FPhraseNode::CanBindChild</a>(TPhraseNode &amp;InNode)</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>{</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; ChildNode : <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>)</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ChildNode : <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>)</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    {</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">if</span> (ChildNode-&gt;RequiresPhrase(InNode-&gt;BoundPhrase) || ChildNode-&gt;IsLeafNode())</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        {</div>
@@ -221,8 +221,8 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>{</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordflow">if</span> (!InNode.IsValid())</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; ChildNode : <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>)</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ChildNode : <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>)</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    {</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">if</span> (ChildNode-&gt;RequiresPhrase(InNode-&gt;BoundPhrase))</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        {</div>
@@ -247,9 +247,9 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a5a1f01926e39e8a917ce41d37990cc84">  152</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseNode.html#a5a1f01926e39e8a917ce41d37990cc84">FPhraseNode::BindChildrenNodes</a>(TPhraseNodeArray InNodes)</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>{</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; InNode : InNodes)</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;InNode : InNodes)</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    {</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; ChildNode : <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>)</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ChildNode : <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>)</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        {</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            <span class="keywordflow">if</span> (ChildNode-&gt;RequiresPhrase(InNode-&gt;BoundPhrase))</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            {</div>
@@ -268,7 +268,7 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a26cbdec222c5fc38d8bdf1a3859daca1">  173</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classFPhraseNode.html#a26cbdec222c5fc38d8bdf1a3859daca1">FPhraseNode::BindChildrenNodesForce</a>(TPhraseNodeArray InNodes)</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>{</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; InNode : InNodes)</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;InNode : InNodes)</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    {</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>        <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>.AddUnique(InNode);</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    }</div>
@@ -281,11 +281,11 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>.Num() == 1 &amp;&amp; <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>[0]-&gt;IsLeafNode();</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>}</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">  188</a></span><a class="code hl_struct" href="structFParseResult.html">FParseResult</a> <a class="code hl_function" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">FPhraseNode::ParseChildren</a>(TArray&lt;FString&gt;&amp; InPhraseArray, <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; InParseRecord)</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">  188</a></span><a class="code hl_struct" href="structFParseResult.html">FParseResult</a> <a class="code hl_function" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">FPhraseNode::ParseChildren</a>(TArray&lt;FString&gt; &amp;InPhraseArray, <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a> &amp;InParseRecord)</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>{</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    <span class="keywordflow">if</span> (HasLeafChild())</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>[0]-&gt;ParsePhrase(InPhraseArray, InParseRecord);</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keywordflow">if</span> (InPhraseArray.IsEmpty()) </div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    <span class="keywordflow">if</span> (InPhraseArray.IsEmpty())</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_REQUIRES_MORE, AsShared());</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    <span class="comment">// Below Can Be Optimized.</span></div>
@@ -321,27 +321,27 @@ $(document).ready(function(){initNavTree('PhraseNode_8cpp_source.html',''); init
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordflow">return</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_UNABLE_TO_PARSE, AsShared());</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>}</div>
-<div class="ttc" id="aclassFPhraseNode_html_a15b600afd86bb99477af360a5c169246"><div class="ttname"><a href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">FPhraseNode::RequiresPhrase</a></div><div class="ttdeci">virtual bool RequiresPhrase(const FString InPhrase)</div><div class="ttdoc">Checks if the Node Requires the Given Phrase.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00053">PhraseNode.cpp:53</a></div></div>
+<div class="ttc" id="aclassFPhraseNode_html_a15b600afd86bb99477af360a5c169246"><div class="ttname"><a href="classFPhraseNode.html#a15b600afd86bb99477af360a5c169246">FPhraseNode::RequiresPhrase</a></div><div class="ttdeci">virtual bool RequiresPhrase(const FString InPhrase)</div><div class="ttdoc">Checks if the Node Requires the Given Phrase.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00052">PhraseNode.cpp:52</a></div></div>
 <div class="ttc" id="aclassFPhraseNode_html_a26cbdec222c5fc38d8bdf1a3859daca1"><div class="ttname"><a href="classFPhraseNode.html#a26cbdec222c5fc38d8bdf1a3859daca1">FPhraseNode::BindChildrenNodesForce</a></div><div class="ttdeci">bool BindChildrenNodesForce(TPhraseNodeArray InNodes)</div><div class="ttdoc">Forcefully Binds an Array of Nodes as Children of this Node, performing no checks.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00173">PhraseNode.cpp:173</a></div></div>
-<div class="ttc" id="aclassFPhraseNode_html_a3350020f1380ad08f2d9aa5d354137ec"><div class="ttname"><a href="classFPhraseNode.html#a3350020f1380ad08f2d9aa5d354137ec">FPhraseNode::bHasLeafChild</a></div><div class="ttdeci">bool bHasLeafChild</div><div class="ttdoc">Records if the Node has a Leaf Child.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00185">PhraseNode.h:185</a></div></div>
+<div class="ttc" id="aclassFPhraseNode_html_a3350020f1380ad08f2d9aa5d354137ec"><div class="ttname"><a href="classFPhraseNode.html#a3350020f1380ad08f2d9aa5d354137ec">FPhraseNode::bHasLeafChild</a></div><div class="ttdeci">bool bHasLeafChild</div><div class="ttdoc">Records if the Node has a Leaf Child.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00180">PhraseNode.h:180</a></div></div>
 <div class="ttc" id="aclassFPhraseNode_html_a3c3269f4a2bcacfe4f45a6993299827f"><div class="ttname"><a href="classFPhraseNode.html#a3c3269f4a2bcacfe4f45a6993299827f">FPhraseNode::ParsePhraseAsContext</a></div><div class="ttdeci">virtual FParseResult ParsePhraseAsContext(TArray&lt; FString &gt; &amp;InPhraseWordArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses the Phrase Down This Node, Propagating Down Any Child Nodes If Required. Does not Pop the Phra...</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00087">PhraseNode.cpp:87</a></div></div>
 <div class="ttc" id="aclassFPhraseNode_html_a4a07a3c5fb70559b6c008fa565a6cfe0"><div class="ttname"><a href="classFPhraseNode.html#a4a07a3c5fb70559b6c008fa565a6cfe0">FPhraseNode::BindChildNodeForce</a></div><div class="ttdeci">bool BindChildNodeForce(TPhraseNode InNode)</div><div class="ttdoc">Forcefully Binds the Given Node as a Child, performing no checks.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00145">PhraseNode.cpp:145</a></div></div>
 <div class="ttc" id="aclassFPhraseNode_html_a5a1f01926e39e8a917ce41d37990cc84"><div class="ttname"><a href="classFPhraseNode.html#a5a1f01926e39e8a917ce41d37990cc84">FPhraseNode::BindChildrenNodes</a></div><div class="ttdeci">bool BindChildrenNodes(TPhraseNodeArray InNodes)</div><div class="ttdoc">Binds an Array of Nodes as Children of this Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00152">PhraseNode.cpp:152</a></div></div>
 <div class="ttc" id="aclassFPhraseNode_html_a671f4121e9df6769775bae880a845765"><div class="ttname"><a href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">FPhraseNode::ParseChildren</a></div><div class="ttdeci">virtual FParseResult ParseChildren(TArray&lt; FString &gt; &amp;InPhraseArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses The Children Node of this Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00188">PhraseNode.cpp:188</a></div></div>
 <div class="ttc" id="aclassFPhraseNode_html_a973a890061b08395184ec6f368e2def4"><div class="ttname"><a href="classFPhraseNode.html#a973a890061b08395184ec6f368e2def4">FPhraseNode::BindChildNode</a></div><div class="ttdeci">bool BindChildNode(TPhraseNode InNode)</div><div class="ttdoc">Binds the Given Node as a Child Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00124">PhraseNode.cpp:124</a></div></div>
-<div class="ttc" id="aclassFPhraseNode_html_a9e108bf1a2f579ed03277540c01a36da"><div class="ttname"><a href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode::ParsePhrase</a></div><div class="ttdeci">virtual FParseResult ParsePhrase(TArray&lt; FString &gt; &amp;InPhraseWordArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00065">PhraseNode.cpp:65</a></div></div>
-<div class="ttc" id="aclassFPhraseNode_html_aa7c9b4c7858aef32bee676639238bd3c"><div class="ttname"><a href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">FPhraseNode::ChildNodes</a></div><div class="ttdeci">TPhraseNodeArray ChildNodes</div><div class="ttdoc">The Child Nodes of the Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00170">PhraseNode.h:170</a></div></div>
-<div class="ttc" id="aclassFPhraseNode_html_aab82e92732204d8f0c712b7e68b3fbc5"><div class="ttname"><a href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">FPhraseNode::BoundPhrase</a></div><div class="ttdeci">FString BoundPhrase</div><div class="ttdoc">The Phrase Bound to this</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00175">PhraseNode.h:175</a></div></div>
+<div class="ttc" id="aclassFPhraseNode_html_a9e108bf1a2f579ed03277540c01a36da"><div class="ttname"><a href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode::ParsePhrase</a></div><div class="ttdeci">virtual FParseResult ParsePhrase(TArray&lt; FString &gt; &amp;InPhraseWordArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00064">PhraseNode.cpp:64</a></div></div>
+<div class="ttc" id="aclassFPhraseNode_html_aa7c9b4c7858aef32bee676639238bd3c"><div class="ttname"><a href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">FPhraseNode::ChildNodes</a></div><div class="ttdeci">TPhraseNodeArray ChildNodes</div><div class="ttdoc">The Child Nodes of the Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00166">PhraseNode.h:166</a></div></div>
+<div class="ttc" id="aclassFPhraseNode_html_aab82e92732204d8f0c712b7e68b3fbc5"><div class="ttname"><a href="classFPhraseNode.html#aab82e92732204d8f0c712b7e68b3fbc5">FPhraseNode::BoundPhrase</a></div><div class="ttdeci">FString BoundPhrase</div><div class="ttdoc">The Phrase Bound to this</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00171">PhraseNode.h:171</a></div></div>
 <div class="ttc" id="aclassFPhraseNode_html_ad66d060073d2506e70cf8323c3e8f6e9"><div class="ttname"><a href="classFPhraseNode.html#ad66d060073d2506e70cf8323c3e8f6e9">FPhraseNode::ParsePhraseIfRequired</a></div><div class="ttdeci">virtual FParseResult ParsePhraseIfRequired(TArray&lt; FString &gt; &amp;InPhraseWordArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">If the Phrase If Required, Parses the Phrase Down This Node, Propagating Down Any Child Nodes If Requ...</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00101">PhraseNode.cpp:101</a></div></div>
 <div class="ttc" id="aclassFPhraseNode_html_afdf46d2c9022337855f2d8be5939ad06"><div class="ttname"><a href="classFPhraseNode.html#afdf46d2c9022337855f2d8be5939ad06">FPhraseNode::CanBindChild</a></div><div class="ttdeci">bool CanBindChild(TPhraseNode &amp;InNode)</div><div class="ttdoc">Checks if the Given Node Can Be Bound as a Child Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00111">PhraseNode.cpp:111</a></div></div>
 <div class="ttc" id="astructFParseRecord_html"><div class="ttname"><a href="structFParseRecord.html">FParseRecord</a></div><div class="ttdoc">The Collected Information from the Propogation of the Phrase through the tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00016">ParseRecord.h:17</a></div></div>
-<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00055">ParseResult.h:56</a></div></div>
+<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00054">ParseResult.h:55</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_0be4fb7ae7139531592415badda1d85f.html">OpenAccessibilityCommunication</a></li><li class="navelem"><a class="el" href="dir_28b88bec44e639e8c83aaa9232732303.html">Private</a></li><li class="navelem"><a class="el" href="dir_c5a1e9e6f81f2ccc00bea1aafb16125b.html">PhraseTree</a></li><li class="navelem"><b>PhraseNode.cpp</b></li>
+    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_02a58dd24a7a3529d305a4e28a239d5e.html">AccessionCommunication</a></li><li class="navelem"><a class="el" href="dir_4e6fa18442b582efbf4f62bcdbbaf8cb.html">Private</a></li><li class="navelem"><a class="el" href="dir_5172dbbbcfdcf62103da5e48faee6066.html">PhraseTree</a></li><li class="navelem"><b>PhraseNode.cpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>

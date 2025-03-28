@@ -1,27 +1,33 @@
 var annotated_dup =
 [
-    [ "OpenAccessibilityPy", null, [
+    [ "AccessionPy", null, [
       [ "Audio", null, [
-        [ "AudioResampler", "classOpenAccessibilityPy_1_1Audio_1_1AudioResampler.html", "classOpenAccessibilityPy_1_1Audio_1_1AudioResampler" ]
+        [ "AudioResampler", "classAccessionPy_1_1Audio_1_1AudioResampler.html", "classAccessionPy_1_1Audio_1_1AudioResampler" ]
       ] ],
       [ "CommunicationServer", null, [
-        [ "CommunicationServer", "classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer.html", "classOpenAccessibilityPy_1_1CommunicationServer_1_1CommunicationServer" ]
+        [ "CommunicationServer", "classAccessionPy_1_1CommunicationServer_1_1CommunicationServer.html", "classAccessionPy_1_1CommunicationServer_1_1CommunicationServer" ]
       ] ],
       [ "Logging", null, [
-        [ "LogLevel", "classOpenAccessibilityPy_1_1Logging_1_1LogLevel.html", null ]
+        [ "LogLevel", "classAccessionPy_1_1Logging_1_1LogLevel.html", null ]
       ] ],
       [ "WhisperInterface", null, [
-        [ "WhisperInterface", "classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface.html", "classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface" ]
+        [ "WhisperInterface", "classAccessionPy_1_1WhisperInterface_1_1WhisperInterface.html", "classAccessionPy_1_1WhisperInterface_1_1WhisperInterface" ]
       ] ],
-      [ "OpenAccessibilityPy", "classOpenAccessibilityPy_1_1OpenAccessibilityPy.html", "classOpenAccessibilityPy_1_1OpenAccessibilityPy" ]
+      [ "AccessionPy", "classAccessionPy_1_1AccessionPy.html", "classAccessionPy_1_1AccessionPy" ]
     ] ],
     [ "TabUtils", "namespaceTabUtils.html", [
       [ "FOpenArea", "classTabUtils_1_1FOpenArea.html", "classTabUtils_1_1FOpenArea" ],
       [ "FOpenSplitter", "classTabUtils_1_1FOpenSplitter.html", "classTabUtils_1_1FOpenSplitter" ],
       [ "FOpenStack", "classTabUtils_1_1FOpenStack.html", "classTabUtils_1_1FOpenStack" ]
     ] ],
-    [ "FAccessibilityNodeFactory", "classFAccessibilityNodeFactory.html", "classFAccessibilityNodeFactory" ],
-    [ "FAssetAccessibilityRegistry", "classFAssetAccessibilityRegistry.html", "classFAssetAccessibilityRegistry" ],
+    [ "Accession", "classAccession.html", null ],
+    [ "AccessionAnalytics", "classAccessionAnalytics.html", null ],
+    [ "AccessionCommunication", "classAccessionCommunication.html", null ],
+    [ "FAccessionAnalyticsModule", "classFAccessionAnalyticsModule.html", "classFAccessionAnalyticsModule" ],
+    [ "FAccessionAssetRegistry", "classFAccessionAssetRegistry.html", "classFAccessionAssetRegistry" ],
+    [ "FAccessionCommunicationModule", "classFAccessionCommunicationModule.html", "classFAccessionCommunicationModule" ],
+    [ "FAccessionModule", "classFAccessionModule.html", "classFAccessionModule" ],
+    [ "FAccessionNodeFactory", "classFAccessionNodeFactory.html", "classFAccessionNodeFactory" ],
     [ "FAudioManagerSettings", "structFAudioManagerSettings.html", "structFAudioManagerSettings" ],
     [ "FGraphIndexer", "classFGraphIndexer.html", "classFGraphIndexer" ],
     [ "FGraphLocomotionChunk", "structFGraphLocomotionChunk.html", "structFGraphLocomotionChunk" ],
@@ -29,9 +35,6 @@ var annotated_dup =
     [ "FGraphQuadTree", "classFGraphQuadTree.html", "classFGraphQuadTree" ],
     [ "FIndexer", "classFIndexer.html", "classFIndexer" ],
     [ "FLoggedEvent", "structFLoggedEvent.html", null ],
-    [ "FOpenAccessibilityAnalyticsModule", "classFOpenAccessibilityAnalyticsModule.html", "classFOpenAccessibilityAnalyticsModule" ],
-    [ "FOpenAccessibilityCommunicationModule", "classFOpenAccessibilityCommunicationModule.html", "classFOpenAccessibilityCommunicationModule" ],
-    [ "FOpenAccessibilityModule", "classFOpenAccessibilityModule.html", "classFOpenAccessibilityModule" ],
     [ "FPanelViewPosition", "structFPanelViewPosition.html", null ],
     [ "FParseRecord", "structFParseRecord.html", "structFParseRecord" ],
     [ "FParseResult", "structFParseResult.html", "structFParseResult" ],
@@ -56,21 +59,15 @@ var annotated_dup =
     [ "IPhraseContextNodeBase", "classIPhraseContextNodeBase.html", "classIPhraseContextNodeBase" ],
     [ "IPhraseNodeBase", "classIPhraseNodeBase.html", "classIPhraseNodeBase" ],
     [ "NumericParser", "classNumericParser.html", null ],
-    [ "OAEditorAccessibilityManager", "classOAEditorAccessibilityManager.html", null ],
-    [ "OpenAccessibility", "classOpenAccessibility.html", null ],
-    [ "OpenAccessibilityAnalytics", "classOpenAccessibilityAnalytics.html", null ],
-    [ "OpenAccessibilityCommunication", "classOpenAccessibilityCommunication.html", null ],
-    [ "SAccessibilityTranscriptionVis", "classSAccessibilityTranscriptionVis.html", "classSAccessibilityTranscriptionVis" ],
     [ "SContentIndexer", "classSContentIndexer.html", "classSContentIndexer" ],
     [ "SIndexer", "classSIndexer.html", "classSIndexer" ],
     [ "SOpenGraphPanel", "classSOpenGraphPanel.html", null ],
-    [ "TGraphAccessibilityNodeFactory", "classTGraphAccessibilityNodeFactory.html", "classTGraphAccessibilityNodeFactory" ],
-    [ "UAccessibilityAddNodeContextMenu", "classUAccessibilityAddNodeContextMenu.html", "classUAccessibilityAddNodeContextMenu" ],
-    [ "UAccessibilityGraphEditorContext", "classUAccessibilityGraphEditorContext.html", "classUAccessibilityGraphEditorContext" ],
-    [ "UAccessibilityGraphLocomotionContext", "classUAccessibilityGraphLocomotionContext.html", null ],
-    [ "UAccessibilityWindowToolbar", "classUAccessibilityWindowToolbar.html", "classUAccessibilityWindowToolbar" ],
+    [ "STranscriptionVis", "classSTranscriptionVis.html", "classSTranscriptionVis" ],
+    [ "TAccessionNodeFactory", "classTAccessionNodeFactory.html", "classTAccessionNodeFactory" ],
     [ "UAudioManager", "classUAudioManager.html", "classUAudioManager" ],
-    [ "UBAudioCapture", "classUBAudioCapture.html", "classUBAudioCapture" ],
+    [ "UGraphAddNodeContextMenu", "classUGraphAddNodeContextMenu.html", "classUGraphAddNodeContextMenu" ],
+    [ "UGraphEditorContext", "classUGraphEditorContext.html", "classUGraphEditorContext" ],
+    [ "UGraphLocomotionContext", "classUGraphLocomotionContext.html", null ],
     [ "ULocalizedInputLibrary", "classULocalizedInputLibrary.html", "classULocalizedInputLibrary" ],
     [ "UNodeInteractionLibrary", "classUNodeInteractionLibrary.html", "classUNodeInteractionLibrary" ],
     [ "UParseEnumInput", "classUParseEnumInput.html", "classUParseEnumInput" ],
@@ -83,5 +80,6 @@ var annotated_dup =
     [ "UPhraseTreeFunctionLibrary", "classUPhraseTreeFunctionLibrary.html", null ],
     [ "UPhraseTreeUtils", "classUPhraseTreeUtils.html", "classUPhraseTreeUtils" ],
     [ "UViewInteractionLibrary", "classUViewInteractionLibrary.html", "classUViewInteractionLibrary" ],
-    [ "UWindowInteractionLibrary", "classUWindowInteractionLibrary.html", "classUWindowInteractionLibrary" ]
+    [ "UWindowInteractionLibrary", "classUWindowInteractionLibrary.html", "classUWindowInteractionLibrary" ],
+    [ "UWindowToolbarIndex", "classUWindowToolbarIndex.html", "classUWindowToolbarIndex" ]
 ];

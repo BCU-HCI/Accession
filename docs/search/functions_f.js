@@ -7,7 +7,7 @@ var searchData=
   ['parsetranscription_4',['ParseTranscription',['../classFPhraseTree.html#af915498384e11d4c9b1e9f0125e9a615',1,'FPhraseTree']]],
   ['partitionspace_5',['PartitionSpace',['../classFGraphQTNode.html#a1c7d52ed75d0a42ed809abe5dfe91b5e',1,'FGraphQTNode']]],
   ['peekcontextobject_6',['PeekContextObject',['../structFPhraseTreeContextManager.html#ab3b6a07081484c75f2c07087030bf63d',1,'FPhraseTreeContextManager::PeekContextObject()'],['../structFPhraseTreeContextManager.html#aa402440624f976fd50ad9008bd52017a',1,'FPhraseTreeContextManager::PeekContextObject(UPhraseTreeContextObject *OutContextObject)']]],
-  ['performgraphaction_7',['PerformGraphAction',['../classUAccessibilityAddNodeContextMenu.html#ae4aa0df581073425d134ffccd8d77329',1,'UAccessibilityAddNodeContextMenu']]],
+  ['performgraphaction_7',['PerformGraphAction',['../classUGraphAddNodeContextMenu.html#a352ec9916ceca318666a1d80b42d67f5',1,'UGraphAddNodeContextMenu']]],
   ['pinconnect_8',['PinConnect',['../classUNodeInteractionLibrary.html#a4e92dd11b9244d31747375e282da3025',1,'UNodeInteractionLibrary']]],
   ['pindisconnect_9',['PinDisconnect',['../classUNodeInteractionLibrary.html#a08ec552d13f1681e56166b06ae30f2d7',1,'UNodeInteractionLibrary']]],
   ['pinresetdefault_10',['PinResetDefault',['../classUNodeInteractionLibrary.html#aaa274f6c9a4be503a54df96214d89c5c',1,'UNodeInteractionLibrary']]],
@@ -15,8 +15,8 @@ var searchData=
   ['popcontextobj_12',['PopContextObj',['../structFParseRecord.html#af3912683ff8d26af1c0e5b45f6cc39c3',1,'FParseRecord::PopContextObj()'],['../structFParseRecord.html#a75eab9842a28610e3fec803ac98bc250',1,'FParseRecord::PopContextObj(UPhraseTreeContextObject *OutObject)']]],
   ['popcontextobject_13',['PopContextObject',['../structFPhraseTreeContextManager.html#a17d0496753af9c22498008f0083d89a5',1,'FPhraseTreeContextManager::PopContextObject()'],['../structFPhraseTreeContextManager.html#afcb3527179e192ff8a2e05d476430af7',1,'FPhraseTreeContextManager::PopContextObject(CastToContextType *OutContextObject)'],['../structFPhraseTreeContextManager.html#a46589cda83f7b4d12d5fd5d50eed8f4f',1,'FPhraseTreeContextManager::PopContextObject(UPhraseTreeContextObject *OutContextObject)']]],
   ['private_5fonaudiogenerate_14',['PRIVATE_OnAudioGenerate',['../classUAudioManager.html#a8fec78e6cbe60a5398600da81b47fbf7',1,'UAudioManager']]],
-  ['process_5faudio_5fbuffer_15',['process_audio_buffer',['../classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface.html#a8f73248120668faffa15af7e179f1704',1,'OpenAccessibilityPy::WhisperInterface::WhisperInterface']]],
-  ['process_5ffile_5ffrom_5fdir_16',['process_file_from_dir',['../classOpenAccessibilityPy_1_1WhisperInterface_1_1WhisperInterface.html#a31890d94170946f043c39b82fa023723',1,'OpenAccessibilityPy::WhisperInterface::WhisperInterface']]],
+  ['process_5faudio_5fbuffer_15',['process_audio_buffer',['../classAccessionPy_1_1WhisperInterface_1_1WhisperInterface.html#a1b67fd7f36d9fe796ca365bee8fb9b7a',1,'AccessionPy::WhisperInterface::WhisperInterface']]],
+  ['process_5ffile_5ffrom_5fdir_16',['process_file_from_dir',['../classAccessionPy_1_1WhisperInterface_1_1WhisperInterface.html#aedfa7850843bbe6c19a959c901e17f7a',1,'AccessionPy::WhisperInterface::WhisperInterface']]],
   ['pushcontextobj_17',['PushContextObj',['../structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d',1,'FParseRecord']]],
   ['pushcontextobject_18',['PushContextObject',['../structFPhraseTreeContextManager.html#a84e2af25be1ddba6ea3094ed983f2a41',1,'FPhraseTreeContextManager']]]
 ];

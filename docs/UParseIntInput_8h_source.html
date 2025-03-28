@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Open Accessibility Unreal Plugin: Source/OpenAccessibilityCommunication/Public/PhraseTree/Containers/Input/UParseIntInput.h Source File</title>
+<title>Open Accessibility Unreal Plugin: Source/AccessionCommunication/Public/PhraseTree/Containers/Input/UParseIntInput.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -104,49 +104,45 @@ $(document).ready(function(){initNavTree('UParseIntInput_8h_source.html',''); in
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;UParseIntInput.generated.h&quot;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>UCLASS()</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classUParseIntInput.html">   11</a></span>class OPENACCESSIBILITYCOMMUNICATION_API <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a> : public <a class="code hl_class" href="classUParseInput.html">UParseInput</a></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classUParseIntInput.html">   11</a></span>class ACCESSIONCOMMUNICATION_API <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a> : public <a class="code hl_class" href="classUParseInput.html">UParseInput</a></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    GENERATED_BODY()</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classUParseIntInput.html">~UParseIntInput</a>()</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="classUParseIntInput.html">UParseIntInput</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classUParseIntInput.html">~UParseIntInput</a>() {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    };</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    };</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classUParseIntInput.html#ad1ccd054356773be9dc42c685e0233ba">   27</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUParseIntInput.html#ad1ccd054356773be9dc42c685e0233ba">SetValue</a>(int32 InValue)</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        Value = InValue;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">   36</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">GetValue</a>(int32&amp; OutValue)</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    {</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        OutValue = Value;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    }</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classUParseIntInput.html#a7aa0c13dc04637eee83ec1149e652971">   45</a></span>    int32 <a class="code hl_function" href="classUParseIntInput.html#a7aa0c13dc04637eee83ec1149e652971">GetValue</a>()</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">return</span> Value;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    }</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    int32 Value;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classUParseIntInput.html#ad1ccd054356773be9dc42c685e0233ba">   25</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUParseIntInput.html#ad1ccd054356773be9dc42c685e0233ba">SetValue</a>(int32 InValue)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        Value = InValue;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">   34</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">GetValue</a>(int32 &amp;OutValue)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        OutValue = Value;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classUParseIntInput.html#a7aa0c13dc04637eee83ec1149e652971">   43</a></span>    int32 <a class="code hl_function" href="classUParseIntInput.html#a7aa0c13dc04637eee83ec1149e652971">GetValue</a>()</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">return</span> Value;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    int32 Value;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
 <div class="ttc" id="aclassUParseInput_html"><div class="ttname"><a href="classUParseInput.html">UParseInput</a></div><div class="ttdef"><b>Definition:</b> <a href="UParseInput_8h_source.html#l00011">UParseInput.h:12</a></div></div>
 <div class="ttc" id="aclassUParseIntInput_html"><div class="ttname"><a href="classUParseIntInput.html">UParseIntInput</a></div><div class="ttdef"><b>Definition:</b> <a href="UParseIntInput_8h_source.html#l00011">UParseIntInput.h:12</a></div></div>
-<div class="ttc" id="aclassUParseIntInput_html_a25393db97da6e72a5fc1f9efb127f0bf"><div class="ttname"><a href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">UParseIntInput::GetValue</a></div><div class="ttdeci">void GetValue(int32 &amp;OutValue)</div><div class="ttdoc">Gets the Current Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseIntInput_8h_source.html#l00036">UParseIntInput.h:36</a></div></div>
-<div class="ttc" id="aclassUParseIntInput_html_a7aa0c13dc04637eee83ec1149e652971"><div class="ttname"><a href="classUParseIntInput.html#a7aa0c13dc04637eee83ec1149e652971">UParseIntInput::GetValue</a></div><div class="ttdeci">int32 GetValue()</div><div class="ttdoc">Gets the Current Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseIntInput_8h_source.html#l00045">UParseIntInput.h:45</a></div></div>
-<div class="ttc" id="aclassUParseIntInput_html_ad1ccd054356773be9dc42c685e0233ba"><div class="ttname"><a href="classUParseIntInput.html#ad1ccd054356773be9dc42c685e0233ba">UParseIntInput::SetValue</a></div><div class="ttdeci">void SetValue(int32 InValue)</div><div class="ttdoc">Sets the Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseIntInput_8h_source.html#l00027">UParseIntInput.h:27</a></div></div>
+<div class="ttc" id="aclassUParseIntInput_html_a25393db97da6e72a5fc1f9efb127f0bf"><div class="ttname"><a href="classUParseIntInput.html#a25393db97da6e72a5fc1f9efb127f0bf">UParseIntInput::GetValue</a></div><div class="ttdeci">void GetValue(int32 &amp;OutValue)</div><div class="ttdoc">Gets the Current Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseIntInput_8h_source.html#l00034">UParseIntInput.h:34</a></div></div>
+<div class="ttc" id="aclassUParseIntInput_html_a7aa0c13dc04637eee83ec1149e652971"><div class="ttname"><a href="classUParseIntInput.html#a7aa0c13dc04637eee83ec1149e652971">UParseIntInput::GetValue</a></div><div class="ttdeci">int32 GetValue()</div><div class="ttdoc">Gets the Current Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseIntInput_8h_source.html#l00043">UParseIntInput.h:43</a></div></div>
+<div class="ttc" id="aclassUParseIntInput_html_ad1ccd054356773be9dc42c685e0233ba"><div class="ttname"><a href="classUParseIntInput.html#ad1ccd054356773be9dc42c685e0233ba">UParseIntInput::SetValue</a></div><div class="ttdeci">void SetValue(int32 InValue)</div><div class="ttdoc">Sets the Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseIntInput_8h_source.html#l00025">UParseIntInput.h:25</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_0be4fb7ae7139531592415badda1d85f.html">OpenAccessibilityCommunication</a></li><li class="navelem"><a class="el" href="dir_992faac7f20c8fd543390d48fec206cc.html">Public</a></li><li class="navelem"><a class="el" href="dir_6020ac7f9061057e390f335f34493b55.html">PhraseTree</a></li><li class="navelem"><a class="el" href="dir_aada4a6a452bd5c7af19d7131e20ae05.html">Containers</a></li><li class="navelem"><a class="el" href="dir_fd3598a0de296f689fc593403738c934.html">Input</a></li><li class="navelem"><b>UParseIntInput.h</b></li>
+    <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><a class="el" href="dir_02a58dd24a7a3529d305a4e28a239d5e.html">AccessionCommunication</a></li><li class="navelem"><a class="el" href="dir_58f3e0517e0721b33df2f217fd82f170.html">Public</a></li><li class="navelem"><a class="el" href="dir_4a2d3f87a1d2e2297645ae095032d3f8.html">PhraseTree</a></li><li class="navelem"><a class="el" href="dir_8a2e3aa5fbb21607a057c49c67d23319.html">Containers</a></li><li class="navelem"><a class="el" href="dir_c5c0ddc293f8f86224023b8e6bfc3d02.html">Input</a></li><li class="navelem"><b>UParseIntInput.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
   </ul>
 </div>
