@@ -18,7 +18,7 @@ jobs:
       image: docker://ghcr.io/epicgames/unreal-engine:dev-${{ matrix.ue_version }}
       credentials:
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.ACCESS_TOKEN }}
 
     steps:
       - name: Checkout Plugin
