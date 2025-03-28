@@ -1,5 +1,6 @@
 # Editor Specific Files
 .vs/
+.vscode/
 
 # Unreal-specific files
 Binaries/*
