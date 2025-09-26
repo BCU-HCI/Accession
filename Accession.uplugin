@@ -4,10 +4,10 @@
 	"VersionName": "0.3.4",
 	"FriendlyName": "Accession",
 	"Description": "",
-	"Category": "Other",
+	"Category": "Tools",
 	"CreatedBy": "HCI-BCU",
-	"CreatedByURL": "https://github.com/BCU-HCI",
-	"DocsURL": "",
+	"CreatedByURL": "https://github.com/BCU-HCI/Accession",
+	"DocsURL": "https://bcu-hci.github.io/Accession/",
 	"MarketplaceURL": "com.epicgames.launcher://ue/Fab/65ce7530-7d9f-4791-999d-201d2baa06d7",
 	"SupportURL": "https://github.com/BCU-HCI/Accession/issues",
 	"CanContainContent": true,
@@ -18,17 +18,26 @@
 		{
 			"Name": "AccessionCommunication",
 			"Type": "Editor",
-			"LoadingPhase": "PostEngineInit"
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Win64"
+			]
 		},
 		{
 			"Name": "Accession",
 			"Type": "Editor",
-			"LoadingPhase": "PostEngineInit"
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Win64"
+			]
 		},
 		{
 			"Name": "AccessionAnalytics",
 			"Type": "Editor",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			]
 		}
 	],
 	"Plugins": [
