@@ -70,9 +70,9 @@ public:
 	/// <summary>
 	/// Is the Context Stack Empty.
 	/// </summary>
-	void IsEmpty()
+	bool IsEmpty()
 	{
-		this->ContextObjectStack.IsEmpty();
+		return this->ContextObjectStack.IsEmpty();
 	}
 
 	/// <summary>

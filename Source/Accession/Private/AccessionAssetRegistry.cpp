@@ -207,7 +207,7 @@ void FAccessionAssetRegistry::RegisterBlueprintAsset(const UBlueprint *InBluepri
 
 void FAccessionAssetRegistry::RegisterMaterialAsset(const UMaterial *InMaterial)
 {
-	if (InMaterial->MaterialGraph.IsNull())
+	if (!InMaterial->MaterialGraph)
 		return;
 
 	TSharedPtr<FGraphIndexer> GraphIndexer = MakeShared<FGraphIndexer>(InMaterial->MaterialGraph.Get());
