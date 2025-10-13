@@ -1,4 +1,5 @@
-// Copyright F-Dudley. All Rights Reserved.
+// Copyright (C) HCI-BCU. All rights reserved.
+// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.
 
 #pragma once
 
@@ -69,9 +70,9 @@ public:
 	/// <summary>
 	/// Is the Context Stack Empty.
 	/// </summary>
-	void IsEmpty()
+	bool IsEmpty()
 	{
-		this->ContextObjectStack.IsEmpty();
+		return this->ContextObjectStack.IsEmpty();
 	}
 
 	/// <summary>

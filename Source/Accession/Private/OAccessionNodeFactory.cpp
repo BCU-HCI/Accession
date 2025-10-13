@@ -1,4 +1,5 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright (C) HCI-BCU. All rights reserved.
+// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.
 
 #include "OAccessionNodeFactory.h"
 #include "AccessionLogging.h"

@@ -1,3 +1,6 @@
+// Copyright (C) HCI-BCU. All rights reserved.
+// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.
+
 #include "PhraseEvents/NodeInteractionLibrary.h"
 #include "PhraseEvents/Utils.h"
 
@@ -1097,12 +1100,12 @@ void UNodeInteractionLibrary::MoveOnGrid(const SGraphPanel *Panel, UEdGraphNode 
 
 	GridAttributes GridAttr = GetGridAttributes(Panel);
 
-	FVector2D ScaledMovementDelta = FVector2D(
+	FVector2f ScaledMovementDelta = FVector2f(
 		FMath::RoundToInt(MovementDelta.X * GridAttr.VisualGridCellSize),
 		FMath::RoundToInt(MovementDelta.Y * GridAttr.VisualGridCellSize));
 
 	// Ensure Node Is Snapped to Grid
-	FVector2D SnappedPosition = FVector2D(
+	FVector2f SnappedPosition = FVector2f(
 		FMath::RoundToInt(Node->NodePosX / GridAttr.VisualGridCellSize) * GridAttr.VisualGridCellSize,
 		FMath::RoundToInt(Node->NodePosY / GridAttr.VisualGridCellSize) * GridAttr.VisualGridCellSize);
 
