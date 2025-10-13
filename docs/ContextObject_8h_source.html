@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Open Accessibility Unreal Plugin: Source/AccessionCommunication/Public/PhraseTree/Containers/ContextObject.h Source File</title>
+<title>Accession: Source/AccessionCommunication/Public/PhraseTree/Containers/ContextObject.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,9 +26,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Open Accessibility Unreal Plugin<span id="projectnumber">&#160;0.3</span>
+   <div id="projectname">Accession<span id="projectnumber">&#160;0.3</span>
    </div>
-   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Accessibility</div>
+   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Input through Voice.</div>
   </td>
  </tr>
  </tbody>
@@ -94,59 +94,60 @@ $(document).ready(function(){initNavTree('ContextObject_8h_source.html',''); ini
   <div class="headertitle"><div class="title">ContextObject.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright F-Dudley. All Rights Reserved.</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;ContextObject.generated.h&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">class </span><a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>UCLASS(Abstract)</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html">   12</a></span>class ACCESSIONCOMMUNICATION_API <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> : public UObject</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    GENERATED_BODY()</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a>()</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        : UObject()</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    }</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classUPhraseTreeContextObject.html">~UPhraseTreeContextObject</a>()</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    }</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> Close() { <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html#aa62dab197463606d9a9da4fbbe417a9c">   32</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUPhraseTreeContextObject.html#aa62dab197463606d9a9da4fbbe417a9c">SetContextRootNode</a>(TSharedRef&lt;FPhraseNode&gt; InRootNode)</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        ContextRoot = InRootNode;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    }</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html#a116232bfa7163d2f5617b3f3df4c577c">   41</a></span>    TSharedPtr&lt;FPhraseNode&gt; <a class="code hl_function" href="classUPhraseTreeContextObject.html#a116232bfa7163d2f5617b3f3df4c577c">GetContextRoot</a>()</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">return</span> ContextRoot.Pin();</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    }</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html#a0c5bdffc360dee90e3a8004e03a68dd2">   50</a></span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classUPhraseTreeContextObject.html#a0c5bdffc360dee90e3a8004e03a68dd2">GetIsActive</a>()</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    {</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">return</span> bIsActive;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    }</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">   59</a></span>    <span class="keywordtype">bool</span> bIsActive = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html#a8560a9dd89e00f081ec53acfe98e41bf">   65</a></span>    TWeakPtr&lt;FPhraseNode&gt; <a class="code hl_variable" href="classUPhraseTreeContextObject.html#a8560a9dd89e00f081ec53acfe98e41bf">ContextRoot</a>;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
-<div class="ttc" id="aclassFPhraseNode_html"><div class="ttname"><a href="classFPhraseNode.html">FPhraseNode</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00053">PhraseNode.h:54</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeContextObject_html"><div class="ttname"><a href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a></div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00012">ContextObject.h:13</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeContextObject_html_a0c5bdffc360dee90e3a8004e03a68dd2"><div class="ttname"><a href="classUPhraseTreeContextObject.html#a0c5bdffc360dee90e3a8004e03a68dd2">UPhraseTreeContextObject::GetIsActive</a></div><div class="ttdeci">const bool GetIsActive()</div><div class="ttdoc">Is the Context Still Active.</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00050">ContextObject.h:50</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeContextObject_html_a116232bfa7163d2f5617b3f3df4c577c"><div class="ttname"><a href="classUPhraseTreeContextObject.html#a116232bfa7163d2f5617b3f3df4c577c">UPhraseTreeContextObject::GetContextRoot</a></div><div class="ttdeci">TSharedPtr&lt; FPhraseNode &gt; GetContextRoot()</div><div class="ttdoc">Gets the Root Node For This Context.</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00041">ContextObject.h:41</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeContextObject_html_a8560a9dd89e00f081ec53acfe98e41bf"><div class="ttname"><a href="classUPhraseTreeContextObject.html#a8560a9dd89e00f081ec53acfe98e41bf">UPhraseTreeContextObject::ContextRoot</a></div><div class="ttdeci">TWeakPtr&lt; FPhraseNode &gt; ContextRoot</div><div class="ttdoc">The Root Node In The Phrase Tree (The Origin of the Context). Allowing for Propagation based on Conte...</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00065">ContextObject.h:65</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeContextObject_html_aa62dab197463606d9a9da4fbbe417a9c"><div class="ttname"><a href="classUPhraseTreeContextObject.html#aa62dab197463606d9a9da4fbbe417a9c">UPhraseTreeContextObject::SetContextRootNode</a></div><div class="ttdeci">void SetContextRootNode(TSharedRef&lt; FPhraseNode &gt; InRootNode)</div><div class="ttdoc">Sets the Root Node In The Phrase Tree For This Context Objects.</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00032">ContextObject.h:32</a></div></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) HCI-BCU. All rights reserved.</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;ContextObject.generated.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">class </span><a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>UCLASS(Abstract)</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html">   13</a></span>class ACCESSIONCOMMUNICATION_API <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> : public UObject</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a>()</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        : UObject()</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    }</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classUPhraseTreeContextObject.html">~UPhraseTreeContextObject</a>()</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    }</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> Close() { <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html#aa62dab197463606d9a9da4fbbe417a9c">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUPhraseTreeContextObject.html#aa62dab197463606d9a9da4fbbe417a9c">SetContextRootNode</a>(TSharedRef&lt;FPhraseNode&gt; InRootNode)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        ContextRoot = InRootNode;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html#a116232bfa7163d2f5617b3f3df4c577c">   42</a></span>    TSharedPtr&lt;FPhraseNode&gt; <a class="code hl_function" href="classUPhraseTreeContextObject.html#a116232bfa7163d2f5617b3f3df4c577c">GetContextRoot</a>()</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">return</span> ContextRoot.Pin();</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html#a0c5bdffc360dee90e3a8004e03a68dd2">   51</a></span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classUPhraseTreeContextObject.html#a0c5bdffc360dee90e3a8004e03a68dd2">GetIsActive</a>()</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    {</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordflow">return</span> bIsActive;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">   60</a></span>    <span class="keywordtype">bool</span> bIsActive = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classUPhraseTreeContextObject.html#a8560a9dd89e00f081ec53acfe98e41bf">   66</a></span>    TWeakPtr&lt;FPhraseNode&gt; <a class="code hl_variable" href="classUPhraseTreeContextObject.html#a8560a9dd89e00f081ec53acfe98e41bf">ContextRoot</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>};</div>
+<div class="ttc" id="aclassFPhraseNode_html"><div class="ttname"><a href="classFPhraseNode.html">FPhraseNode</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00054">PhraseNode.h:55</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeContextObject_html"><div class="ttname"><a href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a></div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00013">ContextObject.h:14</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeContextObject_html_a0c5bdffc360dee90e3a8004e03a68dd2"><div class="ttname"><a href="classUPhraseTreeContextObject.html#a0c5bdffc360dee90e3a8004e03a68dd2">UPhraseTreeContextObject::GetIsActive</a></div><div class="ttdeci">const bool GetIsActive()</div><div class="ttdoc">Is the Context Still Active.</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00051">ContextObject.h:51</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeContextObject_html_a116232bfa7163d2f5617b3f3df4c577c"><div class="ttname"><a href="classUPhraseTreeContextObject.html#a116232bfa7163d2f5617b3f3df4c577c">UPhraseTreeContextObject::GetContextRoot</a></div><div class="ttdeci">TSharedPtr&lt; FPhraseNode &gt; GetContextRoot()</div><div class="ttdoc">Gets the Root Node For This Context.</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00042">ContextObject.h:42</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeContextObject_html_a8560a9dd89e00f081ec53acfe98e41bf"><div class="ttname"><a href="classUPhraseTreeContextObject.html#a8560a9dd89e00f081ec53acfe98e41bf">UPhraseTreeContextObject::ContextRoot</a></div><div class="ttdeci">TWeakPtr&lt; FPhraseNode &gt; ContextRoot</div><div class="ttdoc">The Root Node In The Phrase Tree (The Origin of the Context). Allowing for Propagation based on Conte...</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00066">ContextObject.h:66</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeContextObject_html_aa62dab197463606d9a9da4fbbe417a9c"><div class="ttname"><a href="classUPhraseTreeContextObject.html#aa62dab197463606d9a9da4fbbe417a9c">UPhraseTreeContextObject::SetContextRootNode</a></div><div class="ttdeci">void SetContextRootNode(TSharedRef&lt; FPhraseNode &gt; InRootNode)</div><div class="ttdoc">Sets the Root Node In The Phrase Tree For This Context Objects.</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00033">ContextObject.h:33</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

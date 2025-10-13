@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Open Accessibility Unreal Plugin: FAccessionAssetRegistry Class Reference</title>
+<title>Accession: FAccessionAssetRegistry Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,9 +26,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Open Accessibility Unreal Plugin<span id="projectnumber">&#160;0.3</span>
+   <div id="projectname">Accession<span id="projectnumber">&#160;0.3</span>
    </div>
-   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Accessibility</div>
+   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Input through Voice.</div>
   </td>
  </tr>
  </tbody>
@@ -145,7 +145,7 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8h_source.html#l00014">14</a> of file <a class="el" href="AccessionAssetRegistry_8h_source.html">AccessionAssetRegistry.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8h_source.html#l00015">15</a> of file <a class="el" href="AccessionAssetRegistry_8h_source.html">AccessionAssetRegistry.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ab99aa8d1fec73f4e92b35569cf316068" name="ab99aa8d1fec73f4e92b35569cf316068"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab99aa8d1fec73f4e92b35569cf316068">&#9670;&#160;</a></span>FAccessionAssetRegistry()</h2>
@@ -162,16 +162,16 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00015">15</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   16</span>{</div>
-<div class="line"><span class="lineno">   17</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a> = TMap&lt;FGuid, TSharedPtr&lt;FGraphIndexer&gt;&gt;();</div>
-<div class="line"><span class="lineno">   18</span>    <span class="comment">// GameWorldAssetIndex = TMap&lt;FGuid, FGameWorldIndexer*&gt;();</span></div>
-<div class="line"><span class="lineno">   19</span> </div>
-<div class="line"><span class="lineno">   20</span>    AssetOpenedInEditorHandle = GEditor-&gt;GetEditorSubsystem&lt;UAssetEditorSubsystem&gt;()-&gt;OnAssetOpenedInEditor().AddRaw(<span class="keyword">this</span>, &amp;FAccessionAssetRegistry::OnAssetOpenedInEditor);</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>    AssetEditorRequestCloseHandle = GEditor-&gt;GetEditorSubsystem&lt;UAssetEditorSubsystem&gt;()-&gt;OnAssetEditorRequestClose().AddRaw(<span class="keyword">this</span>, &amp;FAccessionAssetRegistry::OnAssetEditorRequestClose);</div>
-<div class="line"><span class="lineno">   23</span>}</div>
-<div class="ttc" id="aclassFAccessionAssetRegistry_html_a91b70c1b70bd4eb8f24a7eb4879b86f2"><div class="ttname"><a href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">FAccessionAssetRegistry::GraphAssetIndex</a></div><div class="ttdeci">TMap&lt; FGuid, TSharedPtr&lt; FGraphIndexer &gt; &gt; GraphAssetIndex</div><div class="ttdoc">A Map containing all the Graph Indexers that have been created for the registered Graph Assets.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionAssetRegistry_8h_source.html#l00161">AccessionAssetRegistry.h:161</a></div></div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00016">16</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   17</span>{</div>
+<div class="line"><span class="lineno">   18</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a> = TMap&lt;FGuid, TSharedPtr&lt;FGraphIndexer&gt;&gt;();</div>
+<div class="line"><span class="lineno">   19</span>    <span class="comment">// GameWorldAssetIndex = TMap&lt;FGuid, FGameWorldIndexer*&gt;();</span></div>
+<div class="line"><span class="lineno">   20</span> </div>
+<div class="line"><span class="lineno">   21</span>    AssetOpenedInEditorHandle = GEditor-&gt;GetEditorSubsystem&lt;UAssetEditorSubsystem&gt;()-&gt;OnAssetOpenedInEditor().AddRaw(<span class="keyword">this</span>, &amp;FAccessionAssetRegistry::OnAssetOpenedInEditor);</div>
+<div class="line"><span class="lineno">   22</span> </div>
+<div class="line"><span class="lineno">   23</span>    AssetEditorRequestCloseHandle = GEditor-&gt;GetEditorSubsystem&lt;UAssetEditorSubsystem&gt;()-&gt;OnAssetEditorRequestClose().AddRaw(<span class="keyword">this</span>, &amp;FAccessionAssetRegistry::OnAssetEditorRequestClose);</div>
+<div class="line"><span class="lineno">   24</span>}</div>
+<div class="ttc" id="aclassFAccessionAssetRegistry_html_a91b70c1b70bd4eb8f24a7eb4879b86f2"><div class="ttname"><a href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">FAccessionAssetRegistry::GraphAssetIndex</a></div><div class="ttdeci">TMap&lt; FGuid, TSharedPtr&lt; FGraphIndexer &gt; &gt; GraphAssetIndex</div><div class="ttdoc">A Map containing all the Graph Indexers that have been created for the registered Graph Assets.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionAssetRegistry_8h_source.html#l00162">AccessionAssetRegistry.h:162</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -190,14 +190,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00025">25</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   26</span>{</div>
-<div class="line"><span class="lineno">   27</span>    GEditor-&gt;GetEditorSubsystem&lt;UAssetEditorSubsystem&gt;()-&gt;OnAssetOpenedInEditor().Remove(AssetOpenedInEditorHandle);</div>
-<div class="line"><span class="lineno">   28</span> </div>
-<div class="line"><span class="lineno">   29</span>    GEditor-&gt;GetEditorSubsystem&lt;UAssetEditorSubsystem&gt;()-&gt;OnAssetEditorRequestClose().Remove(AssetEditorRequestCloseHandle);</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>    EmptyGraphAssetIndex();</div>
-<div class="line"><span class="lineno">   32</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00026">26</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   27</span>{</div>
+<div class="line"><span class="lineno">   28</span>    GEditor-&gt;GetEditorSubsystem&lt;UAssetEditorSubsystem&gt;()-&gt;OnAssetOpenedInEditor().Remove(AssetOpenedInEditorHandle);</div>
+<div class="line"><span class="lineno">   29</span> </div>
+<div class="line"><span class="lineno">   30</span>    GEditor-&gt;GetEditorSubsystem&lt;UAssetEditorSubsystem&gt;()-&gt;OnAssetEditorRequestClose().Remove(AssetEditorRequestCloseHandle);</div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>    EmptyGraphAssetIndex();</div>
+<div class="line"><span class="lineno">   33</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -220,14 +220,14 @@ Public Attributes</h2></td></tr>
 <p>Gets all the Graph Indexers that have been registered with the registry.  </p>
 <dl class="section return"><dt>Returns</dt><dd>An Array of all the Found Graph Indexers registered with the registry.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00146">146</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  147</span>{</div>
-<div class="line"><span class="lineno">  148</span>    TArray&lt;TSharedPtr&lt;FGraphIndexer&gt;&gt; GraphIndexArray;</div>
-<div class="line"><span class="lineno">  149</span> </div>
-<div class="line"><span class="lineno">  150</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.GenerateValueArray(GraphIndexArray);</div>
-<div class="line"><span class="lineno">  151</span> </div>
-<div class="line"><span class="lineno">  152</span>    <span class="keywordflow">return</span> GraphIndexArray;</div>
-<div class="line"><span class="lineno">  153</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00147">147</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  148</span>{</div>
+<div class="line"><span class="lineno">  149</span>    TArray&lt;TSharedPtr&lt;FGraphIndexer&gt;&gt; GraphIndexArray;</div>
+<div class="line"><span class="lineno">  150</span> </div>
+<div class="line"><span class="lineno">  151</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.GenerateValueArray(GraphIndexArray);</div>
+<div class="line"><span class="lineno">  152</span> </div>
+<div class="line"><span class="lineno">  153</span>    <span class="keywordflow">return</span> GraphIndexArray;</div>
+<div class="line"><span class="lineno">  154</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -255,10 +255,10 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00141">141</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  142</span>{</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.GenerateValueArray(OutGraphIndexes);</div>
-<div class="line"><span class="lineno">  144</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00142">142</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  143</span>{</div>
+<div class="line"><span class="lineno">  144</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.GenerateValueArray(OutGraphIndexes);</div>
+<div class="line"><span class="lineno">  145</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -280,13 +280,13 @@ Public Attributes</h2></td></tr>
 <p>Gets the Guids of all the Graphs that have been registered with the registry.  </p>
 <dl class="section return"><dt>Returns</dt><dd>An Array of all Found Guids registered with the registry.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00133">133</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  134</span>{</div>
-<div class="line"><span class="lineno">  135</span>    TArray&lt;FGuid&gt; GraphKeys;</div>
-<div class="line"><span class="lineno">  136</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.GetKeys(GraphKeys);</div>
-<div class="line"><span class="lineno">  137</span> </div>
-<div class="line"><span class="lineno">  138</span>    <span class="keywordflow">return</span> GraphKeys;</div>
-<div class="line"><span class="lineno">  139</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00134">134</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  135</span>{</div>
+<div class="line"><span class="lineno">  136</span>    TArray&lt;FGuid&gt; GraphKeys;</div>
+<div class="line"><span class="lineno">  137</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.GetKeys(GraphKeys);</div>
+<div class="line"><span class="lineno">  138</span> </div>
+<div class="line"><span class="lineno">  139</span>    <span class="keywordflow">return</span> GraphKeys;</div>
+<div class="line"><span class="lineno">  140</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -314,10 +314,10 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00128">128</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  129</span>{</div>
-<div class="line"><span class="lineno">  130</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.GetKeys(OutGraphKeys);</div>
-<div class="line"><span class="lineno">  131</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00129">129</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  130</span>{</div>
+<div class="line"><span class="lineno">  131</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.GetKeys(OutGraphKeys);</div>
+<div class="line"><span class="lineno">  132</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -354,13 +354,13 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the Found SharedReference of the GraphIndexer when found successfully. Returns nullptr on fail.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8h_source.html#l00050">50</a> of file <a class="el" href="AccessionAssetRegistry_8h_source.html">AccessionAssetRegistry.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   51</span>    {</div>
-<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.Contains(InGraph-&gt;GraphGuid))</div>
-<div class="line"><span class="lineno">   53</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>[InGraph-&gt;GraphGuid].ToSharedRef();</div>
-<div class="line"><span class="lineno">   54</span> </div>
-<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">return</span> TSharedRef&lt;FGraphIndexer&gt;();</div>
-<div class="line"><span class="lineno">   56</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8h_source.html#l00051">51</a> of file <a class="el" href="AccessionAssetRegistry_8h_source.html">AccessionAssetRegistry.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   52</span>    {</div>
+<div class="line"><span class="lineno">   53</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.Contains(InGraph-&gt;GraphGuid))</div>
+<div class="line"><span class="lineno">   54</span>            <span class="keywordflow">return</span> <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>[InGraph-&gt;GraphGuid].ToSharedRef();</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>        <span class="keywordflow">return</span> TSharedRef&lt;FGraphIndexer&gt;();</div>
+<div class="line"><span class="lineno">   57</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -389,10 +389,10 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the UWorld Asset is Registered. False, if the UWorld Asset is not.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00155">155</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  156</span>{</div>
-<div class="line"><span class="lineno">  157</span>    <span class="keywordflow">throw</span> std::exception(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div>
-<div class="line"><span class="lineno">  158</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00156">156</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  157</span>{</div>
+<div class="line"><span class="lineno">  158</span>    <span class="keywordflow">throw</span> std::exception(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div>
+<div class="line"><span class="lineno">  159</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -421,10 +421,10 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the graph has been registered. False, if the graph has not.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00067">67</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   68</span>{</div>
-<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.Contains(InUEdGraph-&gt;GraphGuid);</div>
-<div class="line"><span class="lineno">   70</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00068">68</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   69</span>{</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.Contains(InUEdGraph-&gt;GraphGuid);</div>
+<div class="line"><span class="lineno">   71</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -453,10 +453,10 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Asset was Successfully Registered. False, if the asset could not be registered.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00160">160</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  161</span>{</div>
-<div class="line"><span class="lineno">  162</span>    <span class="keywordflow">throw</span> std::exception(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div>
-<div class="line"><span class="lineno">  163</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00161">161</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  162</span>{</div>
+<div class="line"><span class="lineno">  163</span>    <span class="keywordflow">throw</span> std::exception(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div>
+<div class="line"><span class="lineno">  164</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -485,26 +485,26 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Graph was Successfully Registered. False, if the Graph Could Not Be Registered.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00072">72</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   73</span>{</div>
-<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">if</span> (!InGraph-&gt;IsValidLowLevel())</div>
-<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   76</span> </div>
-<div class="line"><span class="lineno">   77</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.Add(InGraph-&gt;GraphGuid, MakeShared&lt;FGraphIndexer&gt;(InGraph));</div>
-<div class="line"><span class="lineno">   78</span> </div>
-<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ChildGraph : InGraph-&gt;SubGraphs)</div>
-<div class="line"><span class="lineno">   80</span>    {</div>
-<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFAccessionAssetRegistry.html#aa7a4c7b324c4d7e98b1de34e2bbd994a">RegisterGraphAsset</a>(ChildGraph))</div>
-<div class="line"><span class="lineno">   82</span>        {</div>
-<div class="line"><span class="lineno">   83</span>            UE_LOG(LogAccession, Error, TEXT(<span class="stringliteral">&quot;|| AssetRegistry || Error When Logging Child Graph: { %s } From Parent: { %s }||&quot;</span>), *ChildGraph-&gt;GetName(), *InGraph-&gt;GetName())</div>
-<div class="line"><span class="lineno">   84</span> </div>
-<div class="line"><span class="lineno">   85</span>            return false;</div>
-<div class="line"><span class="lineno">   86</span>        }</div>
-<div class="line"><span class="lineno">   87</span>    }</div>
-<div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>    return true;</div>
-<div class="line"><span class="lineno">   90</span>}</div>
-<div class="ttc" id="aclassFAccessionAssetRegistry_html_aa7a4c7b324c4d7e98b1de34e2bbd994a"><div class="ttname"><a href="classFAccessionAssetRegistry.html#aa7a4c7b324c4d7e98b1de34e2bbd994a">FAccessionAssetRegistry::RegisterGraphAsset</a></div><div class="ttdeci">bool RegisterGraphAsset(const UEdGraph *InGraph)</div><div class="ttdoc">Registers the provided graph asset with the registry.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionAssetRegistry_8cpp_source.html#l00072">AccessionAssetRegistry.cpp:72</a></div></div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00073">73</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   74</span>{</div>
+<div class="line"><span class="lineno">   75</span>    <span class="keywordflow">if</span> (!InGraph-&gt;IsValidLowLevel())</div>
+<div class="line"><span class="lineno">   76</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.Add(InGraph-&gt;GraphGuid, MakeShared&lt;FGraphIndexer&gt;(InGraph));</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ChildGraph : InGraph-&gt;SubGraphs)</div>
+<div class="line"><span class="lineno">   81</span>    {</div>
+<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFAccessionAssetRegistry.html#aa7a4c7b324c4d7e98b1de34e2bbd994a">RegisterGraphAsset</a>(ChildGraph))</div>
+<div class="line"><span class="lineno">   83</span>        {</div>
+<div class="line"><span class="lineno">   84</span>            UE_LOG(LogAccession, Error, TEXT(<span class="stringliteral">&quot;|| AssetRegistry || Error When Logging Child Graph: { %s } From Parent: { %s }||&quot;</span>), *ChildGraph-&gt;GetName(), *InGraph-&gt;GetName())</div>
+<div class="line"><span class="lineno">   85</span> </div>
+<div class="line"><span class="lineno">   86</span>            return false;</div>
+<div class="line"><span class="lineno">   87</span>        }</div>
+<div class="line"><span class="lineno">   88</span>    }</div>
+<div class="line"><span class="lineno">   89</span> </div>
+<div class="line"><span class="lineno">   90</span>    return true;</div>
+<div class="line"><span class="lineno">   91</span>}</div>
+<div class="ttc" id="aclassFAccessionAssetRegistry_html_aa7a4c7b324c4d7e98b1de34e2bbd994a"><div class="ttname"><a href="classFAccessionAssetRegistry.html#aa7a4c7b324c4d7e98b1de34e2bbd994a">FAccessionAssetRegistry::RegisterGraphAsset</a></div><div class="ttdeci">bool RegisterGraphAsset(const UEdGraph *InGraph)</div><div class="ttdoc">Registers the provided graph asset with the registry.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionAssetRegistry_8cpp_source.html#l00073">AccessionAssetRegistry.cpp:73</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -534,24 +534,24 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00092">92</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   93</span>{</div>
-<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">if</span> (!InGraph-&gt;IsValidLowLevel())</div>
-<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   96</span> </div>
-<div class="line"><span class="lineno">   97</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.Add(InGraph-&gt;GraphGuid, InGraphIndexer.ToSharedPtr());</div>
-<div class="line"><span class="lineno">   98</span> </div>
-<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ChildGraph : InGraph-&gt;SubGraphs)</div>
-<div class="line"><span class="lineno">  100</span>    {</div>
-<div class="line"><span class="lineno">  101</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFAccessionAssetRegistry.html#aa7a4c7b324c4d7e98b1de34e2bbd994a">RegisterGraphAsset</a>(ChildGraph))</div>
-<div class="line"><span class="lineno">  102</span>        {</div>
-<div class="line"><span class="lineno">  103</span>            UE_LOG(LogAccession, Error, TEXT(<span class="stringliteral">&quot;|| AssetRegistry || Error When Logging Child Graph: { %s } From Parent: { %s} ||&quot;</span>), *ChildGraph-&gt;GetName(), *InGraph-&gt;GetName());</div>
-<div class="line"><span class="lineno">  104</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  105</span>        }</div>
-<div class="line"><span class="lineno">  106</span>    }</div>
-<div class="line"><span class="lineno">  107</span> </div>
-<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  109</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00093">93</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   94</span>{</div>
+<div class="line"><span class="lineno">   95</span>    <span class="keywordflow">if</span> (!InGraph-&gt;IsValidLowLevel())</div>
+<div class="line"><span class="lineno">   96</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   97</span> </div>
+<div class="line"><span class="lineno">   98</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.Add(InGraph-&gt;GraphGuid, InGraphIndexer.ToSharedPtr());</div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ChildGraph : InGraph-&gt;SubGraphs)</div>
+<div class="line"><span class="lineno">  101</span>    {</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFAccessionAssetRegistry.html#aa7a4c7b324c4d7e98b1de34e2bbd994a">RegisterGraphAsset</a>(ChildGraph))</div>
+<div class="line"><span class="lineno">  103</span>        {</div>
+<div class="line"><span class="lineno">  104</span>            UE_LOG(LogAccession, Error, TEXT(<span class="stringliteral">&quot;|| AssetRegistry || Error When Logging Child Graph: { %s } From Parent: { %s} ||&quot;</span>), *ChildGraph-&gt;GetName(), *InGraph-&gt;GetName());</div>
+<div class="line"><span class="lineno">  105</span>            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  106</span>        }</div>
+<div class="line"><span class="lineno">  107</span>    }</div>
+<div class="line"><span class="lineno">  108</span> </div>
+<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  110</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -580,10 +580,10 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the Asset was Successfully Registered. False, if the asset could not be registered.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00165">165</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  166</span>{</div>
-<div class="line"><span class="lineno">  167</span>    <span class="keywordflow">throw</span> std::exception(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div>
-<div class="line"><span class="lineno">  168</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00166">166</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  167</span>{</div>
+<div class="line"><span class="lineno">  168</span>    <span class="keywordflow">throw</span> std::exception(<span class="stringliteral">&quot;The method or operation is not implemented.&quot;</span>);</div>
+<div class="line"><span class="lineno">  169</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -612,23 +612,23 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True, if the provided graph was unregistered successfully. False, if the Graph Could Not Be Unregistered.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00111">111</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  112</span>{</div>
-<div class="line"><span class="lineno">  113</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.Remove(UEdGraph-&gt;GraphGuid);</div>
-<div class="line"><span class="lineno">  114</span> </div>
-<div class="line"><span class="lineno">  115</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ChildGraph : UEdGraph-&gt;SubGraphs)</div>
-<div class="line"><span class="lineno">  116</span>    {</div>
-<div class="line"><span class="lineno">  117</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFAccessionAssetRegistry.html#a52f837691a2b2ce1b3cd045c234a0d2e">UnregisterGraphAsset</a>(ChildGraph))</div>
-<div class="line"><span class="lineno">  118</span>        {</div>
-<div class="line"><span class="lineno">  119</span>            UE_LOG(LogAccession, Error, TEXT(<span class="stringliteral">&quot;|| AssetRegistry || Error When Unregistering Child Graph: { %s } From Parent: { %s }||&quot;</span>), *ChildGraph-&gt;GetName(), *UEdGraph-&gt;GetName())</div>
-<div class="line"><span class="lineno">  120</span> </div>
-<div class="line"><span class="lineno">  121</span>            return false;</div>
-<div class="line"><span class="lineno">  122</span>        }</div>
-<div class="line"><span class="lineno">  123</span>    }</div>
-<div class="line"><span class="lineno">  124</span> </div>
-<div class="line"><span class="lineno">  125</span>    return true;</div>
-<div class="line"><span class="lineno">  126</span>}</div>
-<div class="ttc" id="aclassFAccessionAssetRegistry_html_a52f837691a2b2ce1b3cd045c234a0d2e"><div class="ttname"><a href="classFAccessionAssetRegistry.html#a52f837691a2b2ce1b3cd045c234a0d2e">FAccessionAssetRegistry::UnregisterGraphAsset</a></div><div class="ttdeci">bool UnregisterGraphAsset(const UEdGraph *InGraph)</div><div class="ttdoc">Unregisters the provided graph asset from the registry.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionAssetRegistry_8cpp_source.html#l00111">AccessionAssetRegistry.cpp:111</a></div></div>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8cpp_source.html#l00112">112</a> of file <a class="el" href="AccessionAssetRegistry_8cpp_source.html">AccessionAssetRegistry.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  113</span>{</div>
+<div class="line"><span class="lineno">  114</span>    <a class="code hl_variable" href="classFAccessionAssetRegistry.html#a91b70c1b70bd4eb8f24a7eb4879b86f2">GraphAssetIndex</a>.Remove(UEdGraph-&gt;GraphGuid);</div>
+<div class="line"><span class="lineno">  115</span> </div>
+<div class="line"><span class="lineno">  116</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ChildGraph : UEdGraph-&gt;SubGraphs)</div>
+<div class="line"><span class="lineno">  117</span>    {</div>
+<div class="line"><span class="lineno">  118</span>        <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFAccessionAssetRegistry.html#a52f837691a2b2ce1b3cd045c234a0d2e">UnregisterGraphAsset</a>(ChildGraph))</div>
+<div class="line"><span class="lineno">  119</span>        {</div>
+<div class="line"><span class="lineno">  120</span>            UE_LOG(LogAccession, Error, TEXT(<span class="stringliteral">&quot;|| AssetRegistry || Error When Unregistering Child Graph: { %s } From Parent: { %s }||&quot;</span>), *ChildGraph-&gt;GetName(), *UEdGraph-&gt;GetName())</div>
+<div class="line"><span class="lineno">  121</span> </div>
+<div class="line"><span class="lineno">  122</span>            return false;</div>
+<div class="line"><span class="lineno">  123</span>        }</div>
+<div class="line"><span class="lineno">  124</span>    }</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>    return true;</div>
+<div class="line"><span class="lineno">  127</span>}</div>
+<div class="ttc" id="aclassFAccessionAssetRegistry_html_a52f837691a2b2ce1b3cd045c234a0d2e"><div class="ttname"><a href="classFAccessionAssetRegistry.html#a52f837691a2b2ce1b3cd045c234a0d2e">FAccessionAssetRegistry::UnregisterGraphAsset</a></div><div class="ttdeci">bool UnregisterGraphAsset(const UEdGraph *InGraph)</div><div class="ttdoc">Unregisters the provided graph asset from the registry.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionAssetRegistry_8cpp_source.html#l00112">AccessionAssetRegistry.cpp:112</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -647,7 +647,7 @@ Public Attributes</h2></td></tr>
 
 <p>A Map containing all the Graph Indexers that have been created for the registered Graph Assets.  </p>
 
-<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8h_source.html#l00161">161</a> of file <a class="el" href="AccessionAssetRegistry_8h_source.html">AccessionAssetRegistry.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionAssetRegistry_8h_source.html#l00162">162</a> of file <a class="el" href="AccessionAssetRegistry_8h_source.html">AccessionAssetRegistry.h</a>.</p>
 
 </div>
 </div>

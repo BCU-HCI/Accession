@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Open Accessibility Unreal Plugin: UGraphEditorContext Class Reference</title>
+<title>Accession: UGraphEditorContext Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,9 +26,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Open Accessibility Unreal Plugin<span id="projectnumber">&#160;0.3</span>
+   <div id="projectname">Accession<span id="projectnumber">&#160;0.3</span>
    </div>
-   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Accessibility</div>
+   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Input through Voice.</div>
   </td>
  </tr>
  </tbody>
@@ -252,7 +252,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A Dynamic Phrase Tree Context Object for Most Node Editor Based Context Menus. </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00020">20</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00021">21</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a84f14653f0236fab3c0a989337fe3586" name="a84f14653f0236fab3c0a989337fe3586"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a84f14653f0236fab3c0a989337fe3586">&#9670;&#160;</a></span>UGraphEditorContext()</h2>
@@ -269,10 +269,10 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00013">13</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   14</span>    : Super()</div>
-<div class="line"><span class="lineno">   15</span>{</div>
-<div class="line"><span class="lineno">   16</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00014">14</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   15</span>    : Super()</div>
+<div class="line"><span class="lineno">   16</span>{</div>
+<div class="line"><span class="lineno">   17</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -299,21 +299,21 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00155">155</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  156</span>{</div>
-<div class="line"><span class="lineno">  157</span>    <span class="keywordflow">if</span> (!FilterTextBox.IsValid())</div>
-<div class="line"><span class="lineno">  158</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  159</span> </div>
-<div class="line"><span class="lineno">  160</span>    TSharedPtr&lt;SEditableTextBox&gt; FilterTextBoxPtr = FilterTextBox.Pin();</div>
-<div class="line"><span class="lineno">  161</span> </div>
-<div class="line"><span class="lineno">  162</span>    FString TextBoxString = FilterTextBoxPtr-&gt;GetText().ToString();</div>
-<div class="line"><span class="lineno">  163</span> </div>
-<div class="line"><span class="lineno">  164</span>    TextBoxString != TEXT(<span class="stringliteral">&quot;&quot;</span>)</div>
-<div class="line"><span class="lineno">  165</span>        ? FilterTextBoxPtr-&gt;SetText(</div>
-<div class="line"><span class="lineno">  166</span>              FText::FromString(TextBoxString + TEXT(<span class="stringliteral">&quot; &quot;</span>) + StringToAdd))</div>
-<div class="line"><span class="lineno">  167</span>        : FilterTextBoxPtr-&gt;SetText(</div>
-<div class="line"><span class="lineno">  168</span>              FText::FromString(StringToAdd));</div>
-<div class="line"><span class="lineno">  169</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00156">156</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  157</span>{</div>
+<div class="line"><span class="lineno">  158</span>    <span class="keywordflow">if</span> (!FilterTextBox.IsValid())</div>
+<div class="line"><span class="lineno">  159</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  160</span> </div>
+<div class="line"><span class="lineno">  161</span>    TSharedPtr&lt;SEditableTextBox&gt; FilterTextBoxPtr = FilterTextBox.Pin();</div>
+<div class="line"><span class="lineno">  162</span> </div>
+<div class="line"><span class="lineno">  163</span>    FString TextBoxString = FilterTextBoxPtr-&gt;GetText().ToString();</div>
+<div class="line"><span class="lineno">  164</span> </div>
+<div class="line"><span class="lineno">  165</span>    TextBoxString != TEXT(<span class="stringliteral">&quot;&quot;</span>)</div>
+<div class="line"><span class="lineno">  166</span>        ? FilterTextBoxPtr-&gt;SetText(</div>
+<div class="line"><span class="lineno">  167</span>              FText::FromString(TextBoxString + TEXT(<span class="stringliteral">&quot; &quot;</span>) + StringToAdd))</div>
+<div class="line"><span class="lineno">  168</span>        : FilterTextBoxPtr-&gt;SetText(</div>
+<div class="line"><span class="lineno">  169</span>              FText::FromString(StringToAdd));</div>
+<div class="line"><span class="lineno">  170</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -339,18 +339,18 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00179">179</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  180</span>{</div>
-<div class="line"><span class="lineno">  181</span>    <span class="keyword">auto</span> TreeViewPtr = TreeView.Pin();</div>
-<div class="line"><span class="lineno">  182</span> </div>
-<div class="line"><span class="lineno">  183</span>    <span class="keywordflow">if</span> (TreeViewPtr-&gt;GetScrollOffset() + DistanceToAdd &lt; 0.0f)</div>
-<div class="line"><span class="lineno">  184</span>    {</div>
-<div class="line"><span class="lineno">  185</span>        TreeViewPtr-&gt;SetScrollOffset(0.0f);</div>
-<div class="line"><span class="lineno">  186</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  187</span>    }</div>
-<div class="line"><span class="lineno">  188</span> </div>
-<div class="line"><span class="lineno">  189</span>    TreeViewPtr-&gt;AddScrollOffset(DistanceToAdd);</div>
-<div class="line"><span class="lineno">  190</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00180">180</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  181</span>{</div>
+<div class="line"><span class="lineno">  182</span>    <span class="keyword">auto</span> TreeViewPtr = TreeView.Pin();</div>
+<div class="line"><span class="lineno">  183</span> </div>
+<div class="line"><span class="lineno">  184</span>    <span class="keywordflow">if</span> (TreeViewPtr-&gt;GetScrollOffset() + DistanceToAdd &lt; 0.0f)</div>
+<div class="line"><span class="lineno">  185</span>    {</div>
+<div class="line"><span class="lineno">  186</span>        TreeViewPtr-&gt;SetScrollOffset(0.0f);</div>
+<div class="line"><span class="lineno">  187</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  188</span>    }</div>
+<div class="line"><span class="lineno">  189</span> </div>
+<div class="line"><span class="lineno">  190</span>    TreeViewPtr-&gt;AddScrollOffset(DistanceToAdd);</div>
+<div class="line"><span class="lineno">  191</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -380,12 +380,12 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classUPhraseTreeContextMenuObject.html#a25e9ca57fe8f18a3f65bf30a5e72a0b8">UPhraseTreeContextMenuObject</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00068">68</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   69</span>{</div>
-<div class="line"><span class="lineno">   70</span>    Super::Close();</div>
-<div class="line"><span class="lineno">   71</span> </div>
-<div class="line"><span class="lineno">   72</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   73</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00069">69</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   70</span>{</div>
+<div class="line"><span class="lineno">   71</span>    Super::Close();</div>
+<div class="line"><span class="lineno">   72</span> </div>
+<div class="line"><span class="lineno">   73</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   74</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -431,14 +431,14 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A Shared Reference of the created Content Indexer, wrapping the provided Content. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00346">346</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  347</span>{</div>
-<div class="line"><span class="lineno">  348</span>    <span class="keywordflow">return</span> SNew(<a class="code hl_class" href="classSContentIndexer.html">SContentIndexer</a>)</div>
-<div class="line"><span class="lineno">  349</span>        .IndexValue(Index)</div>
-<div class="line"><span class="lineno">  350</span>        .IndexPositionToContent(EIndexerPosition::Left)</div>
-<div class="line"><span class="lineno">  351</span>        .ContentToIndex(ContentToWrap);</div>
-<div class="line"><span class="lineno">  352</span>}</div>
-<div class="ttc" id="aclassSContentIndexer_html"><div class="ttname"><a href="classSContentIndexer.html">SContentIndexer</a></div><div class="ttdef"><b>Definition:</b> <a href="SContentIndexer_8h_source.html#l00016">SContentIndexer.h:17</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00347">347</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  348</span>{</div>
+<div class="line"><span class="lineno">  349</span>    <span class="keywordflow">return</span> SNew(<a class="code hl_class" href="classSContentIndexer.html">SContentIndexer</a>)</div>
+<div class="line"><span class="lineno">  350</span>        .IndexValue(Index)</div>
+<div class="line"><span class="lineno">  351</span>        .IndexPositionToContent(EIndexerPosition::Left)</div>
+<div class="line"><span class="lineno">  352</span>        .ContentToIndex(ContentToWrap);</div>
+<div class="line"><span class="lineno">  353</span>}</div>
+<div class="ttc" id="aclassSContentIndexer_html"><div class="ttname"><a href="classSContentIndexer.html">SContentIndexer</a></div><div class="ttdef"><b>Definition:</b> <a href="SContentIndexer_8h_source.html#l00017">SContentIndexer.h:18</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -473,19 +473,19 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if a GraphActionMenu Widget was Found, otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00207">207</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  208</span>{</div>
-<div class="line"><span class="lineno">  209</span>    TSharedPtr&lt;SGraphActionMenu&gt; GraphActionMenu = GetWidgetDescendant&lt;SGraphActionMenu&gt;(SearchRoot, TEXT(<span class="stringliteral">&quot;SGraphActionMenu&quot;</span>));</div>
-<div class="line"><span class="lineno">  210</span>    <span class="keywordflow">if</span> (GraphActionMenu.IsValid())</div>
-<div class="line"><span class="lineno">  211</span>    {</div>
-<div class="line"><span class="lineno">  212</span>        GraphMenu = GraphActionMenu;</div>
-<div class="line"><span class="lineno">  213</span>        FilterTextBox = GraphActionMenu-&gt;GetFilterTextBox();</div>
-<div class="line"><span class="lineno">  214</span> </div>
-<div class="line"><span class="lineno">  215</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  216</span>    }</div>
-<div class="line"><span class="lineno">  217</span> </div>
-<div class="line"><span class="lineno">  218</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  219</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00208">208</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  209</span>{</div>
+<div class="line"><span class="lineno">  210</span>    TSharedPtr&lt;SGraphActionMenu&gt; GraphActionMenu = GetWidgetDescendant&lt;SGraphActionMenu&gt;(SearchRoot, TEXT(<span class="stringliteral">&quot;SGraphActionMenu&quot;</span>));</div>
+<div class="line"><span class="lineno">  211</span>    <span class="keywordflow">if</span> (GraphActionMenu.IsValid())</div>
+<div class="line"><span class="lineno">  212</span>    {</div>
+<div class="line"><span class="lineno">  213</span>        GraphMenu = GraphActionMenu;</div>
+<div class="line"><span class="lineno">  214</span>        FilterTextBox = GraphActionMenu-&gt;GetFilterTextBox();</div>
+<div class="line"><span class="lineno">  215</span> </div>
+<div class="line"><span class="lineno">  216</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  217</span>    }</div>
+<div class="line"><span class="lineno">  218</span> </div>
+<div class="line"><span class="lineno">  219</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  220</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -520,45 +520,45 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if Static Components were Found, otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00236">236</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  237</span>{</div>
-<div class="line"><span class="lineno">  238</span>    TArray&lt;FSlotBase *&gt; FoundComponentSlots = GetWidgetSlotsByType(</div>
-<div class="line"><span class="lineno">  239</span>        SearchRoot,</div>
-<div class="line"><span class="lineno">  240</span>        TSet&lt;FString&gt;{</div>
-<div class="line"><span class="lineno">  241</span>            TEXT(<span class="stringliteral">&quot;SCheckBox&quot;</span>)});</div>
-<div class="line"><span class="lineno">  242</span> </div>
-<div class="line"><span class="lineno">  243</span>    <span class="keywordflow">if</span> (!FoundComponentSlots.IsEmpty())</div>
-<div class="line"><span class="lineno">  244</span>    {</div>
-<div class="line"><span class="lineno">  245</span>        <span class="comment">// Sort and Index the Static Components.</span></div>
-<div class="line"><span class="lineno">  246</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; FoundComponentSlots.Num(); i++)</div>
-<div class="line"><span class="lineno">  247</span>        {</div>
-<div class="line"><span class="lineno">  248</span>            FSlotBase *FoundComponentSlot = FoundComponentSlots[i];</div>
-<div class="line"><span class="lineno">  249</span> </div>
-<div class="line"><span class="lineno">  250</span>            TSharedPtr&lt;SWidget&gt; DetachedWidget = FoundComponentSlot-&gt;DetachWidget();</div>
-<div class="line"><span class="lineno">  251</span>            <span class="keywordflow">if</span> (!DetachedWidget.IsValid())</div>
-<div class="line"><span class="lineno">  252</span>                <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  253</span> </div>
-<div class="line"><span class="lineno">  254</span>            int32 ComponentIndex = -1;</div>
-<div class="line"><span class="lineno">  255</span>            FString ComponentType = DetachedWidget-&gt;GetTypeAsString();</div>
-<div class="line"><span class="lineno">  256</span> </div>
-<div class="line"><span class="lineno">  257</span>            <span class="keywordflow">if</span> (ComponentType == <span class="stringliteral">&quot;SCheckBox&quot;</span>)</div>
-<div class="line"><span class="lineno">  258</span>            {</div>
-<div class="line"><span class="lineno">  259</span>                ComponentIndex = CheckBoxes.Num();</div>
-<div class="line"><span class="lineno">  260</span>                CheckBoxes.Add(StaticCastSharedPtr&lt;SCheckBox&gt;(DetachedWidget));</div>
-<div class="line"><span class="lineno">  261</span>            }</div>
-<div class="line"><span class="lineno">  262</span> </div>
-<div class="line"><span class="lineno">  263</span>            FoundComponentSlot-&gt;AttachWidget(</div>
-<div class="line"><span class="lineno">  264</span>                SNew(<a class="code hl_class" href="classSContentIndexer.html">SContentIndexer</a>)</div>
-<div class="line"><span class="lineno">  265</span>                    .IndexValue(ComponentIndex)</div>
-<div class="line"><span class="lineno">  266</span>                    .IndexPositionToContent(EIndexerPosition::Left)</div>
-<div class="line"><span class="lineno">  267</span>                    .ContentToIndex(DetachedWidget));</div>
-<div class="line"><span class="lineno">  268</span>        }</div>
-<div class="line"><span class="lineno">  269</span> </div>
-<div class="line"><span class="lineno">  270</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  271</span>    }</div>
-<div class="line"><span class="lineno">  272</span> </div>
-<div class="line"><span class="lineno">  273</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  274</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00237">237</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  238</span>{</div>
+<div class="line"><span class="lineno">  239</span>    TArray&lt;FSlotBase *&gt; FoundComponentSlots = GetWidgetSlotsByType(</div>
+<div class="line"><span class="lineno">  240</span>        SearchRoot,</div>
+<div class="line"><span class="lineno">  241</span>        TSet&lt;FString&gt;{</div>
+<div class="line"><span class="lineno">  242</span>            TEXT(<span class="stringliteral">&quot;SCheckBox&quot;</span>)});</div>
+<div class="line"><span class="lineno">  243</span> </div>
+<div class="line"><span class="lineno">  244</span>    <span class="keywordflow">if</span> (!FoundComponentSlots.IsEmpty())</div>
+<div class="line"><span class="lineno">  245</span>    {</div>
+<div class="line"><span class="lineno">  246</span>        <span class="comment">// Sort and Index the Static Components.</span></div>
+<div class="line"><span class="lineno">  247</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; FoundComponentSlots.Num(); i++)</div>
+<div class="line"><span class="lineno">  248</span>        {</div>
+<div class="line"><span class="lineno">  249</span>            FSlotBase *FoundComponentSlot = FoundComponentSlots[i];</div>
+<div class="line"><span class="lineno">  250</span> </div>
+<div class="line"><span class="lineno">  251</span>            TSharedPtr&lt;SWidget&gt; DetachedWidget = FoundComponentSlot-&gt;DetachWidget();</div>
+<div class="line"><span class="lineno">  252</span>            <span class="keywordflow">if</span> (!DetachedWidget.IsValid())</div>
+<div class="line"><span class="lineno">  253</span>                <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  254</span> </div>
+<div class="line"><span class="lineno">  255</span>            int32 ComponentIndex = -1;</div>
+<div class="line"><span class="lineno">  256</span>            FString ComponentType = DetachedWidget-&gt;GetTypeAsString();</div>
+<div class="line"><span class="lineno">  257</span> </div>
+<div class="line"><span class="lineno">  258</span>            <span class="keywordflow">if</span> (ComponentType == <span class="stringliteral">&quot;SCheckBox&quot;</span>)</div>
+<div class="line"><span class="lineno">  259</span>            {</div>
+<div class="line"><span class="lineno">  260</span>                ComponentIndex = CheckBoxes.Num();</div>
+<div class="line"><span class="lineno">  261</span>                CheckBoxes.Add(StaticCastSharedPtr&lt;SCheckBox&gt;(DetachedWidget));</div>
+<div class="line"><span class="lineno">  262</span>            }</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>            FoundComponentSlot-&gt;AttachWidget(</div>
+<div class="line"><span class="lineno">  265</span>                SNew(<a class="code hl_class" href="classSContentIndexer.html">SContentIndexer</a>)</div>
+<div class="line"><span class="lineno">  266</span>                    .IndexValue(ComponentIndex)</div>
+<div class="line"><span class="lineno">  267</span>                    .IndexPositionToContent(EIndexerPosition::Left)</div>
+<div class="line"><span class="lineno">  268</span>                    .ContentToIndex(DetachedWidget));</div>
+<div class="line"><span class="lineno">  269</span>        }</div>
+<div class="line"><span class="lineno">  270</span> </div>
+<div class="line"><span class="lineno">  271</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  272</span>    }</div>
+<div class="line"><span class="lineno">  273</span> </div>
+<div class="line"><span class="lineno">  274</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  275</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -593,20 +593,20 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if a TreeView Widget was Found, otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00221">221</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  222</span>{</div>
-<div class="line"><span class="lineno">  223</span>    TSharedPtr&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; ContextTreeView = GetWidgetDescendant&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt;(</div>
-<div class="line"><span class="lineno">  224</span>        SearchRoot,</div>
-<div class="line"><span class="lineno">  225</span>        TEXT(<span class="stringliteral">&quot;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&quot;</span>));</div>
-<div class="line"><span class="lineno">  226</span>    <span class="keywordflow">if</span> (ContextTreeView.IsValid())</div>
-<div class="line"><span class="lineno">  227</span>    {</div>
-<div class="line"><span class="lineno">  228</span>        TreeView = ContextTreeView;</div>
-<div class="line"><span class="lineno">  229</span> </div>
-<div class="line"><span class="lineno">  230</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  231</span>    }</div>
-<div class="line"><span class="lineno">  232</span> </div>
-<div class="line"><span class="lineno">  233</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  234</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00222">222</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  223</span>{</div>
+<div class="line"><span class="lineno">  224</span>    TSharedPtr&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; ContextTreeView = GetWidgetDescendant&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt;(</div>
+<div class="line"><span class="lineno">  225</span>        SearchRoot,</div>
+<div class="line"><span class="lineno">  226</span>        TEXT(<span class="stringliteral">&quot;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&quot;</span>));</div>
+<div class="line"><span class="lineno">  227</span>    <span class="keywordflow">if</span> (ContextTreeView.IsValid())</div>
+<div class="line"><span class="lineno">  228</span>    {</div>
+<div class="line"><span class="lineno">  229</span>        TreeView = ContextTreeView;</div>
+<div class="line"><span class="lineno">  230</span> </div>
+<div class="line"><span class="lineno">  231</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  232</span>    }</div>
+<div class="line"><span class="lineno">  233</span> </div>
+<div class="line"><span class="lineno">  234</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  235</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -626,10 +626,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Gets Filter Text of the Context Menus SearchBar, if it contains one. </p><dl class="section return"><dt>Returns</dt><dd>The Current Filter Text of the Context Menus SearchBar, an Empty String on Failure. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00141">141</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  142</span>{</div>
-<div class="line"><span class="lineno">  143</span>    <span class="keywordflow">return</span> FilterTextBox.IsValid() ? FilterTextBox.Pin()-&gt;GetText().ToString() : FString();</div>
-<div class="line"><span class="lineno">  144</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00142">142</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  143</span>{</div>
+<div class="line"><span class="lineno">  144</span>    <span class="keywordflow">return</span> FilterTextBox.IsValid() ? FilterTextBox.Pin()-&gt;GetText().ToString() : FString();</div>
+<div class="line"><span class="lineno">  145</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -657,10 +657,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Gets the Offset in Indexes of Found Static Components of the Context Menu. </p><dl class="section return"><dt>Returns</dt><dd>The Offset of the Static Components Indexes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00202">202</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  203</span>{</div>
-<div class="line"><span class="lineno">  204</span>    <span class="keywordflow">return</span> CheckBoxes.Num();</div>
-<div class="line"><span class="lineno">  205</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00203">203</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  204</span>{</div>
+<div class="line"><span class="lineno">  205</span>    <span class="keywordflow">return</span> CheckBoxes.Num();</div>
+<div class="line"><span class="lineno">  206</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -687,15 +687,15 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A Valid Shared Pointer of the Found Action, an Invalid Shared Pointer on Failure. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00097">97</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   98</span>{</div>
-<div class="line"><span class="lineno">   99</span>    TArrayView&lt;const TSharedPtr&lt;FGraphActionNode&gt;&gt; Items = TreeView.Pin()-&gt;GetItems();</div>
-<div class="line"><span class="lineno">  100</span> </div>
-<div class="line"><span class="lineno">  101</span>    <span class="keywordflow">if</span> (TreeView.IsValid() &amp;&amp; Items.Num() &gt; InIndex &amp;&amp; InIndex &gt;= 0)</div>
-<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">return</span> TreeView.Pin()-&gt;GetItems()[InIndex];</div>
-<div class="line"><span class="lineno">  103</span> </div>
-<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">return</span> TSharedPtr&lt;FGraphActionNode&gt;();</div>
-<div class="line"><span class="lineno">  105</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00098">98</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   99</span>{</div>
+<div class="line"><span class="lineno">  100</span>    TArrayView&lt;const TSharedPtr&lt;FGraphActionNode&gt;&gt; Items = TreeView.Pin()-&gt;GetItems();</div>
+<div class="line"><span class="lineno">  101</span> </div>
+<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">if</span> (TreeView.IsValid() &amp;&amp; Items.Num() &gt; InIndex &amp;&amp; InIndex &gt;= 0)</div>
+<div class="line"><span class="lineno">  103</span>        <span class="keywordflow">return</span> TreeView.Pin()-&gt;GetItems()[InIndex];</div>
+<div class="line"><span class="lineno">  104</span> </div>
+<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">return</span> TSharedPtr&lt;FGraphActionNode&gt;();</div>
+<div class="line"><span class="lineno">  106</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -742,40 +742,40 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classUPhraseTreeContextMenuObject.html#a6de4857e042740e8273c20b3bdb03773">UPhraseTreeContextMenuObject</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00018">18</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   19</span>{</div>
-<div class="line"><span class="lineno">   20</span>    Super::Init(InMenu, InContextRoot);</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>    TSharedRef&lt;SWindow&gt; WindowRef = <a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#aed946d4b51e601cfc3bdb36c1ba373b5">Window</a>.Pin().ToSharedRef();</div>
-<div class="line"><span class="lineno">   23</span> </div>
-<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classUGraphEditorContext.html#a208be67bdeb89a9246732acb07699e8a">FindGraphActionMenu</a>(WindowRef))</div>
-<div class="line"><span class="lineno">   25</span>    {</div>
-<div class="line"><span class="lineno">   26</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphEditorContext: Cannot Find a SGraphActionMenu Widget&quot;</span>));</div>
-<div class="line"><span class="lineno">   27</span>    }</div>
-<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   29</span>    {</div>
-<div class="line"><span class="lineno">   30</span>        <span class="comment">// IDK why the voice command breaks if the text is not ensure if its empty</span></div>
-<div class="line"><span class="lineno">   31</span>        FilterTextBox.Pin()-&gt;SetText(FText::GetEmpty());</div>
-<div class="line"><span class="lineno">   32</span>    }</div>
-<div class="line"><span class="lineno">   33</span> </div>
-<div class="line"><span class="lineno">   34</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classUGraphEditorContext.html#a4ff321904df9f530538fddd510c75f80">FindStaticComponents</a>(WindowRef))</div>
-<div class="line"><span class="lineno">   35</span>    {</div>
-<div class="line"><span class="lineno">   36</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphEditorContext: Cannot Find Any Static Components&quot;</span>));</div>
-<div class="line"><span class="lineno">   37</span>    }</div>
-<div class="line"><span class="lineno">   38</span> </div>
-<div class="line"><span class="lineno">   39</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classUGraphEditorContext.html#a0337acc8cbbedb30dbd74817fbf6b5d1">FindTreeView</a>(WindowRef))</div>
-<div class="line"><span class="lineno">   40</span>    {</div>
-<div class="line"><span class="lineno">   41</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphEditorContext: Cannot Find a STreeView Widget&quot;</span>));</div>
-<div class="line"><span class="lineno">   42</span>    }</div>
-<div class="line"><span class="lineno">   43</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   44</span>    {</div>
-<div class="line"><span class="lineno">   45</span>        TreeViewTickRequirements = FTreeViewTickRequirements();</div>
-<div class="line"><span class="lineno">   46</span>    }</div>
-<div class="line"><span class="lineno">   47</span>}</div>
-<div class="ttc" id="aclassUGraphEditorContext_html_a0337acc8cbbedb30dbd74817fbf6b5d1"><div class="ttname"><a href="classUGraphEditorContext.html#a0337acc8cbbedb30dbd74817fbf6b5d1">UGraphEditorContext::FindTreeView</a></div><div class="ttdeci">bool FindTreeView(const TSharedRef&lt; SWidget &gt; &amp;SearchRoot)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00221">GraphEditorContext.cpp:221</a></div></div>
-<div class="ttc" id="aclassUGraphEditorContext_html_a208be67bdeb89a9246732acb07699e8a"><div class="ttname"><a href="classUGraphEditorContext.html#a208be67bdeb89a9246732acb07699e8a">UGraphEditorContext::FindGraphActionMenu</a></div><div class="ttdeci">bool FindGraphActionMenu(const TSharedRef&lt; SWidget &gt; &amp;SearchRoot)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00207">GraphEditorContext.cpp:207</a></div></div>
-<div class="ttc" id="aclassUGraphEditorContext_html_a4ff321904df9f530538fddd510c75f80"><div class="ttname"><a href="classUGraphEditorContext.html#a4ff321904df9f530538fddd510c75f80">UGraphEditorContext::FindStaticComponents</a></div><div class="ttdeci">bool FindStaticComponents(const TSharedRef&lt; SWidget &gt; &amp;SearchRoot)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00236">GraphEditorContext.cpp:236</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeContextMenuObject_html_aed946d4b51e601cfc3bdb36c1ba373b5"><div class="ttname"><a href="classUPhraseTreeContextMenuObject.html#aed946d4b51e601cfc3bdb36c1ba373b5">UPhraseTreeContextMenuObject::Window</a></div><div class="ttdeci">TWeakPtr&lt; SWindow &gt; Window</div><div class="ttdoc">The Menu's Window.</div><div class="ttdef"><b>Definition:</b> <a href="ContextMenuObject_8h_source.html#l00113">ContextMenuObject.h:113</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00019">19</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   20</span>{</div>
+<div class="line"><span class="lineno">   21</span>    Super::Init(InMenu, InContextRoot);</div>
+<div class="line"><span class="lineno">   22</span> </div>
+<div class="line"><span class="lineno">   23</span>    TSharedRef&lt;SWindow&gt; WindowRef = <a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#aed946d4b51e601cfc3bdb36c1ba373b5">Window</a>.Pin().ToSharedRef();</div>
+<div class="line"><span class="lineno">   24</span> </div>
+<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classUGraphEditorContext.html#a208be67bdeb89a9246732acb07699e8a">FindGraphActionMenu</a>(WindowRef))</div>
+<div class="line"><span class="lineno">   26</span>    {</div>
+<div class="line"><span class="lineno">   27</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphEditorContext: Cannot Find a SGraphActionMenu Widget&quot;</span>));</div>
+<div class="line"><span class="lineno">   28</span>    }</div>
+<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   30</span>    {</div>
+<div class="line"><span class="lineno">   31</span>        <span class="comment">// IDK why the voice command breaks if the text is not ensure if its empty</span></div>
+<div class="line"><span class="lineno">   32</span>        FilterTextBox.Pin()-&gt;SetText(FText::GetEmpty());</div>
+<div class="line"><span class="lineno">   33</span>    }</div>
+<div class="line"><span class="lineno">   34</span> </div>
+<div class="line"><span class="lineno">   35</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classUGraphEditorContext.html#a4ff321904df9f530538fddd510c75f80">FindStaticComponents</a>(WindowRef))</div>
+<div class="line"><span class="lineno">   36</span>    {</div>
+<div class="line"><span class="lineno">   37</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphEditorContext: Cannot Find Any Static Components&quot;</span>));</div>
+<div class="line"><span class="lineno">   38</span>    }</div>
+<div class="line"><span class="lineno">   39</span> </div>
+<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classUGraphEditorContext.html#a0337acc8cbbedb30dbd74817fbf6b5d1">FindTreeView</a>(WindowRef))</div>
+<div class="line"><span class="lineno">   41</span>    {</div>
+<div class="line"><span class="lineno">   42</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphEditorContext: Cannot Find a STreeView Widget&quot;</span>));</div>
+<div class="line"><span class="lineno">   43</span>    }</div>
+<div class="line"><span class="lineno">   44</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   45</span>    {</div>
+<div class="line"><span class="lineno">   46</span>        TreeViewTickRequirements = FTreeViewTickRequirements();</div>
+<div class="line"><span class="lineno">   47</span>    }</div>
+<div class="line"><span class="lineno">   48</span>}</div>
+<div class="ttc" id="aclassUGraphEditorContext_html_a0337acc8cbbedb30dbd74817fbf6b5d1"><div class="ttname"><a href="classUGraphEditorContext.html#a0337acc8cbbedb30dbd74817fbf6b5d1">UGraphEditorContext::FindTreeView</a></div><div class="ttdeci">bool FindTreeView(const TSharedRef&lt; SWidget &gt; &amp;SearchRoot)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00222">GraphEditorContext.cpp:222</a></div></div>
+<div class="ttc" id="aclassUGraphEditorContext_html_a208be67bdeb89a9246732acb07699e8a"><div class="ttname"><a href="classUGraphEditorContext.html#a208be67bdeb89a9246732acb07699e8a">UGraphEditorContext::FindGraphActionMenu</a></div><div class="ttdeci">bool FindGraphActionMenu(const TSharedRef&lt; SWidget &gt; &amp;SearchRoot)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00208">GraphEditorContext.cpp:208</a></div></div>
+<div class="ttc" id="aclassUGraphEditorContext_html_a4ff321904df9f530538fddd510c75f80"><div class="ttname"><a href="classUGraphEditorContext.html#a4ff321904df9f530538fddd510c75f80">UGraphEditorContext::FindStaticComponents</a></div><div class="ttdeci">bool FindStaticComponents(const TSharedRef&lt; SWidget &gt; &amp;SearchRoot)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00237">GraphEditorContext.cpp:237</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeContextMenuObject_html_aed946d4b51e601cfc3bdb36c1ba373b5"><div class="ttname"><a href="classUPhraseTreeContextMenuObject.html#aed946d4b51e601cfc3bdb36c1ba373b5">UPhraseTreeContextMenuObject::Window</a></div><div class="ttdeci">TWeakPtr&lt; SWindow &gt; Window</div><div class="ttdoc">The Menu's Window.</div><div class="ttdef"><b>Definition:</b> <a href="ContextMenuObject_8h_source.html#l00114">ContextMenuObject.h:114</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -811,27 +811,27 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classUPhraseTreeContextMenuObject.html#afbb3007cad503ab03c3bd987bd4abf0c">UPhraseTreeContextMenuObject</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00075">75</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   76</span>{</div>
-<div class="line"><span class="lineno">   77</span>    Super::ScaleMenu(ScaleFactor);</div>
-<div class="line"><span class="lineno">   78</span> </div>
-<div class="line"><span class="lineno">   79</span>    <span class="comment">// Scale TreeView</span></div>
-<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">if</span> (TreeView.IsValid())</div>
-<div class="line"><span class="lineno">   81</span>    {</div>
-<div class="line"><span class="lineno">   82</span>        TSharedPtr&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; TreeViewPtr = TreeView.Pin();</div>
-<div class="line"><span class="lineno">   83</span> </div>
-<div class="line"><span class="lineno">   84</span>        TreeViewPtr-&gt;SetItemHeight(16 * ScaleFactor);</div>
-<div class="line"><span class="lineno">   85</span>    }</div>
-<div class="line"><span class="lineno">   86</span> </div>
-<div class="line"><span class="lineno">   87</span>    <span class="comment">// Scale Window Element</span></div>
-<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#aed946d4b51e601cfc3bdb36c1ba373b5">Window</a>.IsValid())</div>
-<div class="line"><span class="lineno">   89</span>    {</div>
-<div class="line"><span class="lineno">   90</span>        TSharedPtr&lt;SWindow&gt; WindowPtr = <a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#aed946d4b51e601cfc3bdb36c1ba373b5">Window</a>.Pin();</div>
-<div class="line"><span class="lineno">   91</span> </div>
-<div class="line"><span class="lineno">   92</span>        WindowPtr-&gt;SetSizingRule(ESizingRule::UserSized);</div>
-<div class="line"><span class="lineno">   93</span>        WindowPtr-&gt;Resize(WindowPtr-&gt;GetSizeInScreen() * ScaleFactor);</div>
-<div class="line"><span class="lineno">   94</span>    }</div>
-<div class="line"><span class="lineno">   95</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00076">76</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>{</div>
+<div class="line"><span class="lineno">   78</span>    Super::ScaleMenu(ScaleFactor);</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>    <span class="comment">// Scale TreeView</span></div>
+<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">if</span> (TreeView.IsValid())</div>
+<div class="line"><span class="lineno">   82</span>    {</div>
+<div class="line"><span class="lineno">   83</span>        TSharedPtr&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; TreeViewPtr = TreeView.Pin();</div>
+<div class="line"><span class="lineno">   84</span> </div>
+<div class="line"><span class="lineno">   85</span>        TreeViewPtr-&gt;SetItemHeight(16 * ScaleFactor);</div>
+<div class="line"><span class="lineno">   86</span>    }</div>
+<div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>    <span class="comment">// Scale Window Element</span></div>
+<div class="line"><span class="lineno">   89</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#aed946d4b51e601cfc3bdb36c1ba373b5">Window</a>.IsValid())</div>
+<div class="line"><span class="lineno">   90</span>    {</div>
+<div class="line"><span class="lineno">   91</span>        TSharedPtr&lt;SWindow&gt; WindowPtr = <a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#aed946d4b51e601cfc3bdb36c1ba373b5">Window</a>.Pin();</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>        WindowPtr-&gt;SetSizingRule(ESizingRule::UserSized);</div>
+<div class="line"><span class="lineno">   94</span>        WindowPtr-&gt;Resize(WindowPtr-&gt;GetSizeInScreen() * ScaleFactor);</div>
+<div class="line"><span class="lineno">   95</span>    }</div>
+<div class="line"><span class="lineno">   96</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -857,41 +857,41 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00107">107</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  108</span>{</div>
-<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">if</span> (InIndex &lt; 0)</div>
-<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  111</span> </div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">if</span> (!CheckBoxes.IsEmpty() &amp;&amp; InIndex &lt; CheckBoxes.Num())</div>
-<div class="line"><span class="lineno">  113</span>    {</div>
-<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">if</span> (CheckBoxes[InIndex].IsValid())</div>
-<div class="line"><span class="lineno">  115</span>        {</div>
-<div class="line"><span class="lineno">  116</span>            CheckBoxes[InIndex].Pin()-&gt;ToggleCheckedState();</div>
-<div class="line"><span class="lineno">  117</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  118</span>        }</div>
-<div class="line"><span class="lineno">  119</span>    }</div>
-<div class="line"><span class="lineno">  120</span> </div>
-<div class="line"><span class="lineno">  121</span>    TSharedPtr&lt;FGraphActionNode&gt; ChosenTreeViewAction = <a class="code hl_function" href="classUGraphEditorContext.html#a11a87b7b4028bf68da14ded5e3e6f9ee">GetTreeViewAction</a>(InIndex - <a class="code hl_function" href="classUGraphEditorContext.html#a23905dbb573fdf6c4416a0aaf64832e5">GetStaticIndexOffset</a>());</div>
-<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">if</span> (!ChosenTreeViewAction.IsValid())</div>
-<div class="line"><span class="lineno">  123</span>    {</div>
-<div class="line"><span class="lineno">  124</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;SelectGraphAction: Provided TreeView Action is Invalid&quot;</span>))</div>
-<div class="line"><span class="lineno">  125</span>        return;</div>
-<div class="line"><span class="lineno">  126</span>    }</div>
-<div class="line"><span class="lineno">  127</span> </div>
-<div class="line"><span class="lineno">  128</span>    auto TreeViewPtr = TreeView.Pin();</div>
-<div class="line"><span class="lineno">  129</span>    if (ChosenTreeViewAction-&gt;IsActionNode())</div>
-<div class="line"><span class="lineno">  130</span>    {</div>
-<div class="line"><span class="lineno">  131</span>        TreeViewPtr-&gt;Private_ClearSelection();</div>
-<div class="line"><span class="lineno">  132</span>        TreeViewPtr-&gt;Private_SetItemSelection(ChosenTreeViewAction, <span class="keyword">true</span>, <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">  133</span>        TreeViewPtr-&gt;Private_SignalSelectionChanged(ESelectInfo::Type::OnMouseClick);</div>
-<div class="line"><span class="lineno">  134</span>    }</div>
-<div class="line"><span class="lineno">  135</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  136</span>    {</div>
-<div class="line"><span class="lineno">  137</span>        TreeViewPtr-&gt;Private_OnItemDoubleClicked(ChosenTreeViewAction);</div>
-<div class="line"><span class="lineno">  138</span>    }</div>
-<div class="line"><span class="lineno">  139</span>}</div>
-<div class="ttc" id="aclassUGraphEditorContext_html_a11a87b7b4028bf68da14ded5e3e6f9ee"><div class="ttname"><a href="classUGraphEditorContext.html#a11a87b7b4028bf68da14ded5e3e6f9ee">UGraphEditorContext::GetTreeViewAction</a></div><div class="ttdeci">TSharedPtr&lt; FGraphActionNode &gt; GetTreeViewAction(const int32 &amp;InIndex)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00097">GraphEditorContext.cpp:97</a></div></div>
-<div class="ttc" id="aclassUGraphEditorContext_html_a23905dbb573fdf6c4416a0aaf64832e5"><div class="ttname"><a href="classUGraphEditorContext.html#a23905dbb573fdf6c4416a0aaf64832e5">UGraphEditorContext::GetStaticIndexOffset</a></div><div class="ttdeci">const int32 GetStaticIndexOffset()</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00202">GraphEditorContext.cpp:202</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00108">108</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  109</span>{</div>
+<div class="line"><span class="lineno">  110</span>    <span class="keywordflow">if</span> (InIndex &lt; 0)</div>
+<div class="line"><span class="lineno">  111</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>    <span class="keywordflow">if</span> (!CheckBoxes.IsEmpty() &amp;&amp; InIndex &lt; CheckBoxes.Num())</div>
+<div class="line"><span class="lineno">  114</span>    {</div>
+<div class="line"><span class="lineno">  115</span>        <span class="keywordflow">if</span> (CheckBoxes[InIndex].IsValid())</div>
+<div class="line"><span class="lineno">  116</span>        {</div>
+<div class="line"><span class="lineno">  117</span>            CheckBoxes[InIndex].Pin()-&gt;ToggleCheckedState();</div>
+<div class="line"><span class="lineno">  118</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  119</span>        }</div>
+<div class="line"><span class="lineno">  120</span>    }</div>
+<div class="line"><span class="lineno">  121</span> </div>
+<div class="line"><span class="lineno">  122</span>    TSharedPtr&lt;FGraphActionNode&gt; ChosenTreeViewAction = <a class="code hl_function" href="classUGraphEditorContext.html#a11a87b7b4028bf68da14ded5e3e6f9ee">GetTreeViewAction</a>(InIndex - <a class="code hl_function" href="classUGraphEditorContext.html#a23905dbb573fdf6c4416a0aaf64832e5">GetStaticIndexOffset</a>());</div>
+<div class="line"><span class="lineno">  123</span>    <span class="keywordflow">if</span> (!ChosenTreeViewAction.IsValid())</div>
+<div class="line"><span class="lineno">  124</span>    {</div>
+<div class="line"><span class="lineno">  125</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;SelectGraphAction: Provided TreeView Action is Invalid&quot;</span>))</div>
+<div class="line"><span class="lineno">  126</span>        return;</div>
+<div class="line"><span class="lineno">  127</span>    }</div>
+<div class="line"><span class="lineno">  128</span> </div>
+<div class="line"><span class="lineno">  129</span>    auto TreeViewPtr = TreeView.Pin();</div>
+<div class="line"><span class="lineno">  130</span>    if (ChosenTreeViewAction-&gt;IsActionNode())</div>
+<div class="line"><span class="lineno">  131</span>    {</div>
+<div class="line"><span class="lineno">  132</span>        TreeViewPtr-&gt;Private_ClearSelection();</div>
+<div class="line"><span class="lineno">  133</span>        TreeViewPtr-&gt;Private_SetItemSelection(ChosenTreeViewAction, <span class="keyword">true</span>, <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  134</span>        TreeViewPtr-&gt;Private_SignalSelectionChanged(ESelectInfo::Type::OnMouseClick);</div>
+<div class="line"><span class="lineno">  135</span>    }</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  137</span>    {</div>
+<div class="line"><span class="lineno">  138</span>        TreeViewPtr-&gt;Private_OnItemDoubleClicked(ChosenTreeViewAction);</div>
+<div class="line"><span class="lineno">  139</span>    }</div>
+<div class="line"><span class="lineno">  140</span>}</div>
+<div class="ttc" id="aclassUGraphEditorContext_html_a11a87b7b4028bf68da14ded5e3e6f9ee"><div class="ttname"><a href="classUGraphEditorContext.html#a11a87b7b4028bf68da14ded5e3e6f9ee">UGraphEditorContext::GetTreeViewAction</a></div><div class="ttdeci">TSharedPtr&lt; FGraphActionNode &gt; GetTreeViewAction(const int32 &amp;InIndex)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00098">GraphEditorContext.cpp:98</a></div></div>
+<div class="ttc" id="aclassUGraphEditorContext_html_a23905dbb573fdf6c4416a0aaf64832e5"><div class="ttname"><a href="classUGraphEditorContext.html#a23905dbb573fdf6c4416a0aaf64832e5">UGraphEditorContext::GetStaticIndexOffset</a></div><div class="ttdeci">const int32 GetStaticIndexOffset()</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00203">GraphEditorContext.cpp:203</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -917,14 +917,14 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00146">146</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  147</span>{</div>
-<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">if</span> (!FilterTextBox.IsValid())</div>
-<div class="line"><span class="lineno">  149</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  150</span> </div>
-<div class="line"><span class="lineno">  151</span>    FilterTextBox.Pin()-&gt;SetText(</div>
-<div class="line"><span class="lineno">  152</span>        FText::FromString(NewString));</div>
-<div class="line"><span class="lineno">  153</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00147">147</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  148</span>{</div>
+<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">if</span> (!FilterTextBox.IsValid())</div>
+<div class="line"><span class="lineno">  150</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  151</span> </div>
+<div class="line"><span class="lineno">  152</span>    FilterTextBox.Pin()-&gt;SetText(</div>
+<div class="line"><span class="lineno">  153</span>        FText::FromString(NewString));</div>
+<div class="line"><span class="lineno">  154</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -950,13 +950,13 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00171">171</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  172</span>{</div>
-<div class="line"><span class="lineno">  173</span>    <span class="keywordflow">if</span> (TreeView.IsValid())</div>
-<div class="line"><span class="lineno">  174</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  175</span> </div>
-<div class="line"><span class="lineno">  176</span>    TreeView.Pin()-&gt;SetScrollOffset(NewDistance);</div>
-<div class="line"><span class="lineno">  177</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00172">172</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  173</span>{</div>
+<div class="line"><span class="lineno">  174</span>    <span class="keywordflow">if</span> (TreeView.IsValid())</div>
+<div class="line"><span class="lineno">  175</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  176</span> </div>
+<div class="line"><span class="lineno">  177</span>    TreeView.Pin()-&gt;SetScrollOffset(NewDistance);</div>
+<div class="line"><span class="lineno">  178</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -976,10 +976,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Sets the Scroll Distance of the Context Menus TreeView to the Bottom, if it contains one. </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00197">197</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  198</span>{</div>
-<div class="line"><span class="lineno">  199</span>    TreeView.Pin()-&gt;ScrollToBottom();</div>
-<div class="line"><span class="lineno">  200</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00198">198</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  199</span>{</div>
+<div class="line"><span class="lineno">  200</span>    TreeView.Pin()-&gt;ScrollToBottom();</div>
+<div class="line"><span class="lineno">  201</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -999,10 +999,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Sets the Scroll Distance of the Context Menus TreeView to the Top, if it contains one. </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00192">192</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  193</span>{</div>
-<div class="line"><span class="lineno">  194</span>    TreeView.Pin()-&gt;ScrollToTop();</div>
-<div class="line"><span class="lineno">  195</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00193">193</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  194</span>{</div>
+<div class="line"><span class="lineno">  195</span>    TreeView.Pin()-&gt;ScrollToTop();</div>
+<div class="line"><span class="lineno">  196</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1032,26 +1032,26 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classUPhraseTreeContextMenuObject.html">UPhraseTreeContextMenuObject</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00049">49</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   50</span>{</div>
-<div class="line"><span class="lineno">   51</span>    Super::Tick(DeltaTime);</div>
-<div class="line"><span class="lineno">   52</span> </div>
-<div class="line"><span class="lineno">   53</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="classUGraphEditorContext.html#a0439f3a1bb377416316c7c69d4bc2974">TreeViewCanTick</a>())</div>
-<div class="line"><span class="lineno">   54</span>    {</div>
-<div class="line"><span class="lineno">   55</span>        <a class="code hl_function" href="classUGraphEditorContext.html#a859f054a7a2e9b29a2ab959f6b9d14d7">TickTreeView</a>();</div>
-<div class="line"><span class="lineno">   56</span> </div>
-<div class="line"><span class="lineno">   57</span>        TSharedPtr&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; TreeViewPtr = TreeView.Pin();</div>
-<div class="line"><span class="lineno">   58</span> </div>
-<div class="line"><span class="lineno">   59</span>        TreeViewTickRequirements.PrevSearchText = FilterTextBox.Pin()-&gt;GetText().ToString();</div>
-<div class="line"><span class="lineno">   60</span>        TreeViewTickRequirements.PrevNumGeneratedChildren = TreeViewPtr-&gt;GetNumGeneratedChildren();</div>
-<div class="line"><span class="lineno">   61</span>        TreeViewTickRequirements.PrevNumItemsBeingObserved = TreeViewPtr-&gt;GetNumItemsBeingObserved();</div>
-<div class="line"><span class="lineno">   62</span>        TreeViewTickRequirements.PrevScrollDistance = TreeViewPtr-&gt;GetScrollDistance().Y;</div>
-<div class="line"><span class="lineno">   63</span>    }</div>
-<div class="line"><span class="lineno">   64</span> </div>
-<div class="line"><span class="lineno">   65</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   66</span>}</div>
-<div class="ttc" id="aclassUGraphEditorContext_html_a0439f3a1bb377416316c7c69d4bc2974"><div class="ttname"><a href="classUGraphEditorContext.html#a0439f3a1bb377416316c7c69d4bc2974">UGraphEditorContext::TreeViewCanTick</a></div><div class="ttdeci">bool TreeViewCanTick()</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00276">GraphEditorContext.cpp:276</a></div></div>
-<div class="ttc" id="aclassUGraphEditorContext_html_a859f054a7a2e9b29a2ab959f6b9d14d7"><div class="ttname"><a href="classUGraphEditorContext.html#a859f054a7a2e9b29a2ab959f6b9d14d7">UGraphEditorContext::TickTreeView</a></div><div class="ttdeci">void TickTreeView()</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00299">GraphEditorContext.cpp:299</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00050">50</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   51</span>{</div>
+<div class="line"><span class="lineno">   52</span>    Super::Tick(DeltaTime);</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="classUGraphEditorContext.html#a0439f3a1bb377416316c7c69d4bc2974">TreeViewCanTick</a>())</div>
+<div class="line"><span class="lineno">   55</span>    {</div>
+<div class="line"><span class="lineno">   56</span>        <a class="code hl_function" href="classUGraphEditorContext.html#a859f054a7a2e9b29a2ab959f6b9d14d7">TickTreeView</a>();</div>
+<div class="line"><span class="lineno">   57</span> </div>
+<div class="line"><span class="lineno">   58</span>        TSharedPtr&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; TreeViewPtr = TreeView.Pin();</div>
+<div class="line"><span class="lineno">   59</span> </div>
+<div class="line"><span class="lineno">   60</span>        TreeViewTickRequirements.PrevSearchText = FilterTextBox.Pin()-&gt;GetText().ToString();</div>
+<div class="line"><span class="lineno">   61</span>        TreeViewTickRequirements.PrevNumGeneratedChildren = TreeViewPtr-&gt;GetNumGeneratedChildren();</div>
+<div class="line"><span class="lineno">   62</span>        TreeViewTickRequirements.PrevNumItemsBeingObserved = TreeViewPtr-&gt;GetNumItemsBeingObserved();</div>
+<div class="line"><span class="lineno">   63</span>        TreeViewTickRequirements.PrevScrollDistance = TreeViewPtr-&gt;GetScrollDistance().Y;</div>
+<div class="line"><span class="lineno">   64</span>    }</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   67</span>}</div>
+<div class="ttc" id="aclassUGraphEditorContext_html_a0439f3a1bb377416316c7c69d4bc2974"><div class="ttname"><a href="classUGraphEditorContext.html#a0439f3a1bb377416316c7c69d4bc2974">UGraphEditorContext::TreeViewCanTick</a></div><div class="ttdeci">bool TreeViewCanTick()</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00277">GraphEditorContext.cpp:277</a></div></div>
+<div class="ttc" id="aclassUGraphEditorContext_html_a859f054a7a2e9b29a2ab959f6b9d14d7"><div class="ttname"><a href="classUGraphEditorContext.html#a859f054a7a2e9b29a2ab959f6b9d14d7">UGraphEditorContext::TickTreeView</a></div><div class="ttdeci">void TickTreeView()</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00300">GraphEditorContext.cpp:300</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1079,50 +1079,50 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Updates the TreeView Indexing Components. </p>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00299">299</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  300</span>{</div>
-<div class="line"><span class="lineno">  301</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classUGraphEditorContext.html#af5f7e54b2ae6eaec5298f550482a57b7">TreeViewRequiresTick</a>())</div>
-<div class="line"><span class="lineno">  302</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  303</span> </div>
-<div class="line"><span class="lineno">  304</span>    TSharedPtr&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; TreeViewPtr = TreeView.Pin();</div>
-<div class="line"><span class="lineno">  305</span> </div>
-<div class="line"><span class="lineno">  306</span>    TArray&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt; Items = TArray&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;(</div>
-<div class="line"><span class="lineno">  307</span>        TreeViewPtr-&gt;GetRootItems());</div>
-<div class="line"><span class="lineno">  308</span> </div>
-<div class="line"><span class="lineno">  309</span>    TSharedPtr&lt;STableRow&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; ItemWidget = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  310</span>    <span class="keyword">const</span> int32 IndexOffset = <a class="code hl_function" href="classUGraphEditorContext.html#a23905dbb573fdf6c4416a0aaf64832e5">GetStaticIndexOffset</a>();</div>
-<div class="line"><span class="lineno">  311</span> </div>
-<div class="line"><span class="lineno">  312</span>    <span class="keywordflow">while</span> (Items.Num() &gt; 0)</div>
-<div class="line"><span class="lineno">  313</span>    {</div>
-<div class="line"><span class="lineno">  314</span>        <span class="keyword">const</span> TSharedPtr&lt;FGraphActionNode&gt; Item = Items[0];</div>
-<div class="line"><span class="lineno">  315</span>        Items.RemoveAt(0);</div>
-<div class="line"><span class="lineno">  316</span> </div>
-<div class="line"><span class="lineno">  317</span>        <span class="keywordflow">if</span> (TreeViewPtr-&gt;IsItemExpanded(Item))</div>
-<div class="line"><span class="lineno">  318</span>            Items.Append(Item-&gt;Children);</div>
-<div class="line"><span class="lineno">  319</span> </div>
-<div class="line"><span class="lineno">  320</span>        ItemWidget = StaticCastSharedPtr&lt;STableRow&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt;(</div>
-<div class="line"><span class="lineno">  321</span>            TreeViewPtr-&gt;WidgetFromItem(Item));</div>
-<div class="line"><span class="lineno">  322</span>        <span class="keywordflow">if</span> (!ItemWidget.IsValid())</div>
-<div class="line"><span class="lineno">  323</span>            <span class="keywordflow">continue</span>;</div>
-<div class="line"><span class="lineno">  324</span> </div>
-<div class="line"><span class="lineno">  325</span>        TSharedPtr&lt;SWidget&gt; ItemContent = ItemWidget-&gt;GetContent();</div>
-<div class="line"><span class="lineno">  326</span> </div>
-<div class="line"><span class="lineno">  327</span>        <span class="keywordflow">if</span> (ItemContent-&gt;GetType() == <span class="stringliteral">&quot;SContentIndexer&quot;</span>)</div>
-<div class="line"><span class="lineno">  328</span>        {</div>
-<div class="line"><span class="lineno">  329</span>            <a class="code hl_function" href="classUGraphEditorContext.html#a2d5cfcf89443879c36499999ffbbab6a">UpdateIndexWidget</a>(</div>
-<div class="line"><span class="lineno">  330</span>                StaticCastSharedRef&lt;SContentIndexer&gt;(ItemContent.ToSharedRef()),</div>
-<div class="line"><span class="lineno">  331</span>                IndexOffset + ItemWidget-&gt;GetIndexInList());</div>
-<div class="line"><span class="lineno">  332</span>        }</div>
-<div class="line"><span class="lineno">  333</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  334</span>        {</div>
-<div class="line"><span class="lineno">  335</span>            ItemWidget-&gt;SetContent(</div>
-<div class="line"><span class="lineno">  336</span>                <a class="code hl_function" href="classUGraphEditorContext.html#a905557731e0b208c0541fed1d8f889f4">CreateIndexWrapper</a>(ItemContent.ToSharedRef(), IndexOffset + ItemWidget-&gt;GetIndexInList()));</div>
-<div class="line"><span class="lineno">  337</span>        }</div>
-<div class="line"><span class="lineno">  338</span>    }</div>
-<div class="line"><span class="lineno">  339</span>}</div>
-<div class="ttc" id="aclassUGraphEditorContext_html_a2d5cfcf89443879c36499999ffbbab6a"><div class="ttname"><a href="classUGraphEditorContext.html#a2d5cfcf89443879c36499999ffbbab6a">UGraphEditorContext::UpdateIndexWidget</a></div><div class="ttdeci">void UpdateIndexWidget(const TSharedRef&lt; SContentIndexer &gt; &amp;ContextIndexer, const int32 &amp;NewIndex)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00341">GraphEditorContext.cpp:341</a></div></div>
-<div class="ttc" id="aclassUGraphEditorContext_html_a905557731e0b208c0541fed1d8f889f4"><div class="ttname"><a href="classUGraphEditorContext.html#a905557731e0b208c0541fed1d8f889f4">UGraphEditorContext::CreateIndexWrapper</a></div><div class="ttdeci">const TSharedRef&lt; SContentIndexer &gt; CreateIndexWrapper(const TSharedRef&lt; SWidget &gt; &amp;ContentToWrap, const int32 &amp;Index)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00346">GraphEditorContext.cpp:346</a></div></div>
-<div class="ttc" id="aclassUGraphEditorContext_html_af5f7e54b2ae6eaec5298f550482a57b7"><div class="ttname"><a href="classUGraphEditorContext.html#af5f7e54b2ae6eaec5298f550482a57b7">UGraphEditorContext::TreeViewRequiresTick</a></div><div class="ttdeci">bool TreeViewRequiresTick()</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00281">GraphEditorContext.cpp:281</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00300">300</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  301</span>{</div>
+<div class="line"><span class="lineno">  302</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classUGraphEditorContext.html#af5f7e54b2ae6eaec5298f550482a57b7">TreeViewRequiresTick</a>())</div>
+<div class="line"><span class="lineno">  303</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  304</span> </div>
+<div class="line"><span class="lineno">  305</span>    TSharedPtr&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; TreeViewPtr = TreeView.Pin();</div>
+<div class="line"><span class="lineno">  306</span> </div>
+<div class="line"><span class="lineno">  307</span>    TArray&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt; Items = TArray&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;(</div>
+<div class="line"><span class="lineno">  308</span>        TreeViewPtr-&gt;GetRootItems());</div>
+<div class="line"><span class="lineno">  309</span> </div>
+<div class="line"><span class="lineno">  310</span>    TSharedPtr&lt;STableRow&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; ItemWidget = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  311</span>    <span class="keyword">const</span> int32 IndexOffset = <a class="code hl_function" href="classUGraphEditorContext.html#a23905dbb573fdf6c4416a0aaf64832e5">GetStaticIndexOffset</a>();</div>
+<div class="line"><span class="lineno">  312</span> </div>
+<div class="line"><span class="lineno">  313</span>    <span class="keywordflow">while</span> (Items.Num() &gt; 0)</div>
+<div class="line"><span class="lineno">  314</span>    {</div>
+<div class="line"><span class="lineno">  315</span>        <span class="keyword">const</span> TSharedPtr&lt;FGraphActionNode&gt; Item = Items[0];</div>
+<div class="line"><span class="lineno">  316</span>        Items.RemoveAt(0);</div>
+<div class="line"><span class="lineno">  317</span> </div>
+<div class="line"><span class="lineno">  318</span>        <span class="keywordflow">if</span> (TreeViewPtr-&gt;IsItemExpanded(Item))</div>
+<div class="line"><span class="lineno">  319</span>            Items.Append(Item-&gt;Children);</div>
+<div class="line"><span class="lineno">  320</span> </div>
+<div class="line"><span class="lineno">  321</span>        ItemWidget = StaticCastSharedPtr&lt;STableRow&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt;(</div>
+<div class="line"><span class="lineno">  322</span>            TreeViewPtr-&gt;WidgetFromItem(Item));</div>
+<div class="line"><span class="lineno">  323</span>        <span class="keywordflow">if</span> (!ItemWidget.IsValid())</div>
+<div class="line"><span class="lineno">  324</span>            <span class="keywordflow">continue</span>;</div>
+<div class="line"><span class="lineno">  325</span> </div>
+<div class="line"><span class="lineno">  326</span>        TSharedPtr&lt;SWidget&gt; ItemContent = ItemWidget-&gt;GetContent();</div>
+<div class="line"><span class="lineno">  327</span> </div>
+<div class="line"><span class="lineno">  328</span>        <span class="keywordflow">if</span> (ItemContent-&gt;GetType() == <span class="stringliteral">&quot;SContentIndexer&quot;</span>)</div>
+<div class="line"><span class="lineno">  329</span>        {</div>
+<div class="line"><span class="lineno">  330</span>            <a class="code hl_function" href="classUGraphEditorContext.html#a2d5cfcf89443879c36499999ffbbab6a">UpdateIndexWidget</a>(</div>
+<div class="line"><span class="lineno">  331</span>                StaticCastSharedRef&lt;SContentIndexer&gt;(ItemContent.ToSharedRef()),</div>
+<div class="line"><span class="lineno">  332</span>                IndexOffset + ItemWidget-&gt;GetIndexInList());</div>
+<div class="line"><span class="lineno">  333</span>        }</div>
+<div class="line"><span class="lineno">  334</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  335</span>        {</div>
+<div class="line"><span class="lineno">  336</span>            ItemWidget-&gt;SetContent(</div>
+<div class="line"><span class="lineno">  337</span>                <a class="code hl_function" href="classUGraphEditorContext.html#a905557731e0b208c0541fed1d8f889f4">CreateIndexWrapper</a>(ItemContent.ToSharedRef(), IndexOffset + ItemWidget-&gt;GetIndexInList()));</div>
+<div class="line"><span class="lineno">  338</span>        }</div>
+<div class="line"><span class="lineno">  339</span>    }</div>
+<div class="line"><span class="lineno">  340</span>}</div>
+<div class="ttc" id="aclassUGraphEditorContext_html_a2d5cfcf89443879c36499999ffbbab6a"><div class="ttname"><a href="classUGraphEditorContext.html#a2d5cfcf89443879c36499999ffbbab6a">UGraphEditorContext::UpdateIndexWidget</a></div><div class="ttdeci">void UpdateIndexWidget(const TSharedRef&lt; SContentIndexer &gt; &amp;ContextIndexer, const int32 &amp;NewIndex)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00342">GraphEditorContext.cpp:342</a></div></div>
+<div class="ttc" id="aclassUGraphEditorContext_html_a905557731e0b208c0541fed1d8f889f4"><div class="ttname"><a href="classUGraphEditorContext.html#a905557731e0b208c0541fed1d8f889f4">UGraphEditorContext::CreateIndexWrapper</a></div><div class="ttdeci">const TSharedRef&lt; SContentIndexer &gt; CreateIndexWrapper(const TSharedRef&lt; SWidget &gt; &amp;ContentToWrap, const int32 &amp;Index)</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00347">GraphEditorContext.cpp:347</a></div></div>
+<div class="ttc" id="aclassUGraphEditorContext_html_af5f7e54b2ae6eaec5298f550482a57b7"><div class="ttname"><a href="classUGraphEditorContext.html#af5f7e54b2ae6eaec5298f550482a57b7">UGraphEditorContext::TreeViewRequiresTick</a></div><div class="ttdeci">bool TreeViewRequiresTick()</div><div class="ttdef"><b>Definition:</b> <a href="GraphEditorContext_8cpp_source.html#l00282">GraphEditorContext.cpp:282</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1150,10 +1150,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Checks if all required components for ticking the TreeView are available. </p><dl class="section return"><dt>Returns</dt><dd>True if all required components are found for TreeView Ticking, otherwise False. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00276">276</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  277</span>{</div>
-<div class="line"><span class="lineno">  278</span>    <span class="keywordflow">return</span> TreeView.IsValid() &amp;&amp; GraphMenu.IsValid();</div>
-<div class="line"><span class="lineno">  279</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00277">277</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  278</span>{</div>
+<div class="line"><span class="lineno">  279</span>    <span class="keywordflow">return</span> TreeView.IsValid() &amp;&amp; GraphMenu.IsValid();</div>
+<div class="line"><span class="lineno">  280</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1181,23 +1181,23 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p >Checks if the Dynamic TreeView Indexing Components Require a Refresh. </p><dl class="section return"><dt>Returns</dt><dd>True if the TreeView Indexing Assets Require a Refresh. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00281">281</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  282</span>{</div>
-<div class="line"><span class="lineno">  283</span>    <span class="keywordflow">if</span> (!TreeView.IsValid() || !GraphMenu.IsValid())</div>
-<div class="line"><span class="lineno">  284</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  285</span> </div>
-<div class="line"><span class="lineno">  286</span>    <span class="keywordtype">bool</span> bFilterTextChange = FilterTextBox.IsValid()</div>
-<div class="line"><span class="lineno">  287</span>                                 ? FilterTextBox.Pin()-&gt;GetText().ToString() != TreeViewTickRequirements.PrevSearchText</div>
-<div class="line"><span class="lineno">  288</span>                                 : <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  289</span> </div>
-<div class="line"><span class="lineno">  290</span>    TSharedPtr&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; TreeViewPtr = TreeView.Pin();</div>
-<div class="line"><span class="lineno">  291</span> </div>
-<div class="line"><span class="lineno">  292</span>    <span class="keywordflow">return</span> (</div>
-<div class="line"><span class="lineno">  293</span>        bFilterTextChange ||</div>
-<div class="line"><span class="lineno">  294</span>        TreeViewPtr-&gt;GetNumItemsBeingObserved() != TreeViewTickRequirements.PrevNumItemsBeingObserved ||</div>
-<div class="line"><span class="lineno">  295</span>        TreeViewPtr-&gt;GetNumGeneratedChildren() != TreeViewTickRequirements.PrevNumGeneratedChildren ||</div>
-<div class="line"><span class="lineno">  296</span>        TreeViewPtr-&gt;GetScrollDistance().Y != TreeViewTickRequirements.PrevScrollDistance);</div>
-<div class="line"><span class="lineno">  297</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00282">282</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  283</span>{</div>
+<div class="line"><span class="lineno">  284</span>    <span class="keywordflow">if</span> (!TreeView.IsValid() || !GraphMenu.IsValid())</div>
+<div class="line"><span class="lineno">  285</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  286</span> </div>
+<div class="line"><span class="lineno">  287</span>    <span class="keywordtype">bool</span> bFilterTextChange = FilterTextBox.IsValid()</div>
+<div class="line"><span class="lineno">  288</span>                                 ? FilterTextBox.Pin()-&gt;GetText().ToString() != TreeViewTickRequirements.PrevSearchText</div>
+<div class="line"><span class="lineno">  289</span>                                 : <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  290</span> </div>
+<div class="line"><span class="lineno">  291</span>    TSharedPtr&lt;STreeView&lt;TSharedPtr&lt;FGraphActionNode&gt;&gt;&gt; TreeViewPtr = TreeView.Pin();</div>
+<div class="line"><span class="lineno">  292</span> </div>
+<div class="line"><span class="lineno">  293</span>    <span class="keywordflow">return</span> (</div>
+<div class="line"><span class="lineno">  294</span>        bFilterTextChange ||</div>
+<div class="line"><span class="lineno">  295</span>        TreeViewPtr-&gt;GetNumItemsBeingObserved() != TreeViewTickRequirements.PrevNumItemsBeingObserved ||</div>
+<div class="line"><span class="lineno">  296</span>        TreeViewPtr-&gt;GetNumGeneratedChildren() != TreeViewTickRequirements.PrevNumGeneratedChildren ||</div>
+<div class="line"><span class="lineno">  297</span>        TreeViewPtr-&gt;GetScrollDistance().Y != TreeViewTickRequirements.PrevScrollDistance);</div>
+<div class="line"><span class="lineno">  298</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1242,10 +1242,10 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00341">341</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  342</span>{</div>
-<div class="line"><span class="lineno">  343</span>    ContentIndexer-&gt;UpdateIndex(NewIndex);</div>
-<div class="line"><span class="lineno">  344</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8cpp_source.html#l00342">342</a> of file <a class="el" href="GraphEditorContext_8cpp_source.html">GraphEditorContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  343</span>{</div>
+<div class="line"><span class="lineno">  344</span>    ContentIndexer-&gt;UpdateIndex(NewIndex);</div>
+<div class="line"><span class="lineno">  345</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1270,7 +1270,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00197">197</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00198">198</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
 
 </div>
 </div>
@@ -1294,7 +1294,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00193">193</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00194">194</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
 
 </div>
 </div>
@@ -1318,7 +1318,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00192">192</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00193">193</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
 
 </div>
 </div>
@@ -1342,7 +1342,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00195">195</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00196">196</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
 
 </div>
 </div>
@@ -1366,7 +1366,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00190">190</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphEditorContext_8h_source.html#l00191">191</a> of file <a class="el" href="GraphEditorContext_8h_source.html">GraphEditorContext.h</a>.</p>
 
 </div>
 </div>

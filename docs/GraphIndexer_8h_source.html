@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Open Accessibility Unreal Plugin: Source/Accession/Public/GraphIndexer.h Source File</title>
+<title>Accession: Source/Accession/Public/GraphIndexer.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,9 +26,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Open Accessibility Unreal Plugin<span id="projectnumber">&#160;0.3</span>
+   <div id="projectname">Accession<span id="projectnumber">&#160;0.3</span>
    </div>
-   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Accessibility</div>
+   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Input through Voice.</div>
   </td>
  </tr>
  </tbody>
@@ -94,83 +94,84 @@ $(document).ready(function(){initNavTree('GraphIndexer_8h_source.html',''); init
   <div class="headertitle"><div class="title">GraphIndexer.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright F-Dudley. All Rights Reserved.</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">class </span>UEdGraph;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">class </span>UEdGraphNode;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">struct </span>FEdGraphEditAction;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="classFGraphIndexer.html">   14</a></span><span class="keyword">class </span>ACCESSION_API <a class="code hl_class" href="classFGraphIndexer.html">FGraphIndexer</a></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classFGraphIndexer.html">FGraphIndexer</a>();</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classFGraphIndexer.html">FGraphIndexer</a>(<span class="keyword">const</span> UEdGraph *GraphToIndex);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="classFGraphIndexer.html">~FGraphIndexer</a>();</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">bool</span> ContainsKey(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InKey);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">int</span> ContainsNode(UEdGraphNode *InNode);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> ContainsNode(UEdGraphNode *InNode, <span class="keywordtype">int</span> &amp;OutIndex);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">int</span> GetKey(<span class="keyword">const</span> UEdGraphNode *InNode);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">bool</span> GetKey(<span class="keyword">const</span> UEdGraphNode *InNode, <span class="keywordtype">int</span> &amp;OutKey);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> GetNode(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InIndex, UEdGraphNode *OutNode);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    UEdGraphNode *GetNode(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InIndex);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> GetPin(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InNodeIndex, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InPinIndex, UEdGraphPin *OutPin);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    UEdGraphPin *GetPin(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InNodeIndex, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InPinIndex);</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordtype">int</span> AddNode(<span class="keyword">const</span> UEdGraphNode *Node);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keywordtype">void</span> AddNode(<span class="keywordtype">int</span> &amp;OutIndex, <span class="keyword">const</span> UEdGraphNode &amp;InNode);</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    <span class="keywordtype">int</span> GetOrAddNode(<span class="keyword">const</span> UEdGraphNode *InNode);</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordtype">void</span> GetOrAddNode(<span class="keyword">const</span> UEdGraphNode *InNode, <span class="keywordtype">int</span> &amp;OutIndex);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordtype">void</span> RemoveNode(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InIndex);</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordtype">void</span> RemoveNode(<span class="keyword">const</span> UEdGraphNode *InNode);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">void</span> OnGraphEvent(<span class="keyword">const</span> FEdGraphEditAction &amp;InAction);</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    <span class="keywordtype">void</span> OnGraphRebuild();</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordtype">void</span> AddAvailableIndex(<span class="keyword">const</span> int32 &amp;NewIndex);</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordtype">int</span> GetAvailableIndex();</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordtype">void</span> GetAvailableIndex(<span class="keywordtype">int</span> &amp;OutIndex);</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordtype">void</span> BuildGraphIndex();</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">  163</a></span>    TMap&lt;int, UEdGraphNode *&gt; <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>;</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">  168</a></span>    TSet&lt;int32&gt; <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">  173</a></span>    TArray&lt;int32&gt; <a class="code hl_variable" href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">AvailableIndices</a>;</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">  178</a></span>    UEdGraph *<a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a>;</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    FDelegateHandle OnGraphChangedHandle;</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>};</div>
-<div class="ttc" id="aclassFGraphIndexer_html"><div class="ttname"><a href="classFGraphIndexer.html">FGraphIndexer</a></div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00014">GraphIndexer.h:15</a></div></div>
-<div class="ttc" id="aclassFGraphIndexer_html_a013ae80630b037849bd35a03bcae7be4"><div class="ttname"><a href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">FGraphIndexer::IndexMap</a></div><div class="ttdeci">TMap&lt; int, UEdGraphNode * &gt; IndexMap</div><div class="ttdoc">Map of the Index to the Node.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00163">GraphIndexer.h:163</a></div></div>
-<div class="ttc" id="aclassFGraphIndexer_html_a2c316f3ca2135b295bd5f7e6b2ebc392"><div class="ttname"><a href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">FGraphIndexer::LinkedGraph</a></div><div class="ttdeci">UEdGraph * LinkedGraph</div><div class="ttdoc">The Graph Being Indexed By This Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00178">GraphIndexer.h:178</a></div></div>
-<div class="ttc" id="aclassFGraphIndexer_html_ab24adb2b0079a4f94e6e7e622e0a648a"><div class="ttname"><a href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">FGraphIndexer::AvailableIndices</a></div><div class="ttdeci">TArray&lt; int32 &gt; AvailableIndices</div><div class="ttdoc">A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00173">GraphIndexer.h:173</a></div></div>
-<div class="ttc" id="aclassFGraphIndexer_html_af326872f3d3e372e90e3763302d47aba"><div class="ttname"><a href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">FGraphIndexer::NodeSet</a></div><div class="ttdeci">TSet&lt; int32 &gt; NodeSet</div><div class="ttdoc">Look-Up Set of the Nodes Contained in the Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00168">GraphIndexer.h:168</a></div></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) HCI-BCU. All rights reserved.</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">class </span>UEdGraph;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">class </span>UEdGraphNode;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">struct </span>FEdGraphEditAction;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classFGraphIndexer.html">   15</a></span><span class="keyword">class </span>ACCESSION_API <a class="code hl_class" href="classFGraphIndexer.html">FGraphIndexer</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classFGraphIndexer.html">FGraphIndexer</a>();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="classFGraphIndexer.html">FGraphIndexer</a>(<span class="keyword">const</span> UEdGraph *GraphToIndex);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="classFGraphIndexer.html">~FGraphIndexer</a>();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">bool</span> ContainsKey(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InKey);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">int</span> ContainsNode(UEdGraphNode *InNode);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> ContainsNode(UEdGraphNode *InNode, <span class="keywordtype">int</span> &amp;OutIndex);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">int</span> GetKey(<span class="keyword">const</span> UEdGraphNode *InNode);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">bool</span> GetKey(<span class="keyword">const</span> UEdGraphNode *InNode, <span class="keywordtype">int</span> &amp;OutKey);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> GetNode(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InIndex, UEdGraphNode *OutNode);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    UEdGraphNode *GetNode(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InIndex);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">void</span> GetPin(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InNodeIndex, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InPinIndex, UEdGraphPin *OutPin);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    UEdGraphPin *GetPin(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InNodeIndex, <span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InPinIndex);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="keywordtype">int</span> AddNode(<span class="keyword">const</span> UEdGraphNode *Node);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordtype">void</span> AddNode(<span class="keywordtype">int</span> &amp;OutIndex, <span class="keyword">const</span> UEdGraphNode &amp;InNode);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordtype">int</span> GetOrAddNode(<span class="keyword">const</span> UEdGraphNode *InNode);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    <span class="keywordtype">void</span> GetOrAddNode(<span class="keyword">const</span> UEdGraphNode *InNode, <span class="keywordtype">int</span> &amp;OutIndex);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordtype">void</span> RemoveNode(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;InIndex);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    <span class="keywordtype">void</span> RemoveNode(<span class="keyword">const</span> UEdGraphNode *InNode);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordtype">void</span> OnGraphEvent(<span class="keyword">const</span> FEdGraphEditAction &amp;InAction);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordtype">void</span> OnGraphRebuild();</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordtype">void</span> AddAvailableIndex(<span class="keyword">const</span> int32 &amp;NewIndex);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">int</span> GetAvailableIndex();</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    <span class="keywordtype">void</span> GetAvailableIndex(<span class="keywordtype">int</span> &amp;OutIndex);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordtype">void</span> BuildGraphIndex();</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">  164</a></span>    TMap&lt;int, UEdGraphNode *&gt; <a class="code hl_variable" href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">IndexMap</a>;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno"><a class="line" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">  169</a></span>    TSet&lt;int32&gt; <a class="code hl_variable" href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">NodeSet</a>;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">  174</a></span>    TArray&lt;int32&gt; <a class="code hl_variable" href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">AvailableIndices</a>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">  179</a></span>    UEdGraph *<a class="code hl_variable" href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">LinkedGraph</a>;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    FDelegateHandle OnGraphChangedHandle;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>};</div>
+<div class="ttc" id="aclassFGraphIndexer_html"><div class="ttname"><a href="classFGraphIndexer.html">FGraphIndexer</a></div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00015">GraphIndexer.h:16</a></div></div>
+<div class="ttc" id="aclassFGraphIndexer_html_a013ae80630b037849bd35a03bcae7be4"><div class="ttname"><a href="classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4">FGraphIndexer::IndexMap</a></div><div class="ttdeci">TMap&lt; int, UEdGraphNode * &gt; IndexMap</div><div class="ttdoc">Map of the Index to the Node.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00164">GraphIndexer.h:164</a></div></div>
+<div class="ttc" id="aclassFGraphIndexer_html_a2c316f3ca2135b295bd5f7e6b2ebc392"><div class="ttname"><a href="classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392">FGraphIndexer::LinkedGraph</a></div><div class="ttdeci">UEdGraph * LinkedGraph</div><div class="ttdoc">The Graph Being Indexed By This Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00179">GraphIndexer.h:179</a></div></div>
+<div class="ttc" id="aclassFGraphIndexer_html_ab24adb2b0079a4f94e6e7e622e0a648a"><div class="ttname"><a href="classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a">FGraphIndexer::AvailableIndices</a></div><div class="ttdeci">TArray&lt; int32 &gt; AvailableIndices</div><div class="ttdoc">A Queue of the Available Indicies for the Indexer, that was previously in use but made vacant.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00174">GraphIndexer.h:174</a></div></div>
+<div class="ttc" id="aclassFGraphIndexer_html_af326872f3d3e372e90e3763302d47aba"><div class="ttname"><a href="classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba">FGraphIndexer::NodeSet</a></div><div class="ttdeci">TSet&lt; int32 &gt; NodeSet</div><div class="ttdoc">Look-Up Set of the Nodes Contained in the Indexer.</div><div class="ttdef"><b>Definition:</b> <a href="GraphIndexer_8h_source.html#l00169">GraphIndexer.h:169</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

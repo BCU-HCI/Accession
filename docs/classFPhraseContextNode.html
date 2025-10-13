@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Open Accessibility Unreal Plugin: FPhraseContextNode&lt; ContextType &gt; Class Template Reference</title>
+<title>Accession: FPhraseContextNode&lt; ContextType &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,9 +26,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Open Accessibility Unreal Plugin<span id="projectnumber">&#160;0.3</span>
+   <div id="projectname">Accession<span id="projectnumber">&#160;0.3</span>
    </div>
-   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Accessibility</div>
+   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Input through Voice.</div>
   </td>
  </tr>
  </tbody>
@@ -218,7 +218,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class ContextType = UPhraseTreeContextObject&gt;<br />
 class FPhraseContextNode&lt; ContextType &gt;</div>
-<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00014">14</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00015">15</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2bc2acac19d23133de70bcd05039838c" name="a2bc2acac19d23133de70bcd05039838c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2bc2acac19d23133de70bcd05039838c">&#9670;&#160;</a></span>FPhraseContextNode() <span class="overload">[1/3]</span></h2>
@@ -246,15 +246,15 @@ template&lt;class ContextType  = UPhraseTreeContextObject&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00017">17</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   18</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString)</div>
-<div class="line"><span class="lineno">   19</span>    {</div>
-<div class="line"><span class="lineno">   20</span>        <span class="keyword">static_assert</span>(std::is_base_of&lt;UPhraseTreeContextObject, ContextType&gt;::value, <span class="stringliteral">&quot;ContextType must be a subclass of UPhraseTreeContextObject&quot;</span>);</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>        TPhraseNodeArray EmptyArray = TPhraseNodeArray();</div>
-<div class="line"><span class="lineno">   23</span>        ConstructContextChildren(EmptyArray);</div>
-<div class="line"><span class="lineno">   24</span>    }</div>
-<div class="ttc" id="aclassFPhraseNode_html"><div class="ttname"><a href="classFPhraseNode.html">FPhraseNode</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00053">PhraseNode.h:54</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00018">18</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   19</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString)</div>
+<div class="line"><span class="lineno">   20</span>    {</div>
+<div class="line"><span class="lineno">   21</span>        <span class="keyword">static_assert</span>(std::is_base_of&lt;UPhraseTreeContextObject, ContextType&gt;::value, <span class="stringliteral">&quot;ContextType must be a subclass of UPhraseTreeContextObject&quot;</span>);</div>
+<div class="line"><span class="lineno">   22</span> </div>
+<div class="line"><span class="lineno">   23</span>        TPhraseNodeArray EmptyArray = TPhraseNodeArray();</div>
+<div class="line"><span class="lineno">   24</span>        ConstructContextChildren(EmptyArray);</div>
+<div class="line"><span class="lineno">   25</span>    }</div>
+<div class="ttc" id="aclassFPhraseNode_html"><div class="ttname"><a href="classFPhraseNode.html">FPhraseNode</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00054">PhraseNode.h:55</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -294,13 +294,13 @@ template&lt;class ContextType  = UPhraseTreeContextObject&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00026">26</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   27</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InChildNodes)</div>
-<div class="line"><span class="lineno">   28</span>    {</div>
-<div class="line"><span class="lineno">   29</span>        <span class="keyword">static_assert</span>(std::is_base_of&lt;UPhraseTreeContextObject, ContextType&gt;::value, <span class="stringliteral">&quot;ContextType must be a subclass of UPhraseTreeContextObject&quot;</span>);</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>        ConstructContextChildren(InChildNodes);</div>
-<div class="line"><span class="lineno">   32</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00027">27</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InChildNodes)</div>
+<div class="line"><span class="lineno">   29</span>    {</div>
+<div class="line"><span class="lineno">   30</span>        <span class="keyword">static_assert</span>(std::is_base_of&lt;UPhraseTreeContextObject, ContextType&gt;::value, <span class="stringliteral">&quot;ContextType must be a subclass of UPhraseTreeContextObject&quot;</span>);</div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>        ConstructContextChildren(InChildNodes);</div>
+<div class="line"><span class="lineno">   33</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -346,13 +346,13 @@ template&lt;class ContextType  = UPhraseTreeContextObject&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00034">34</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   35</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InOnPhraseParsed)</div>
-<div class="line"><span class="lineno">   36</span>    {</div>
-<div class="line"><span class="lineno">   37</span>        <span class="keyword">static_assert</span>(std::is_base_of&lt;UPhraseTreeContextObject, ContextType&gt;::value, <span class="stringliteral">&quot;ContextType must be a subclass of UPhraseTreeContextObject&quot;</span>);</div>
-<div class="line"><span class="lineno">   38</span> </div>
-<div class="line"><span class="lineno">   39</span>        ConstructContextChildren(InChildNodes);</div>
-<div class="line"><span class="lineno">   40</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00035">35</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   36</span>        : <a class="code hl_class" href="classFPhraseNode.html">FPhraseNode</a>(InInputString, InOnPhraseParsed)</div>
+<div class="line"><span class="lineno">   37</span>    {</div>
+<div class="line"><span class="lineno">   38</span>        <span class="keyword">static_assert</span>(std::is_base_of&lt;UPhraseTreeContextObject, ContextType&gt;::value, <span class="stringliteral">&quot;ContextType must be a subclass of UPhraseTreeContextObject&quot;</span>);</div>
+<div class="line"><span class="lineno">   39</span> </div>
+<div class="line"><span class="lineno">   40</span>        ConstructContextChildren(InChildNodes);</div>
+<div class="line"><span class="lineno">   41</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -381,9 +381,9 @@ template&lt;class ContextType  = UPhraseTreeContextObject&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00042">42</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   43</span>    {</div>
-<div class="line"><span class="lineno">   44</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00043">43</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   44</span>    {</div>
+<div class="line"><span class="lineno">   45</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -414,34 +414,34 @@ template&lt;class ContextType &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00127">127</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  128</span>{</div>
-<div class="line"><span class="lineno">  129</span>    TSharedPtr&lt;FPhraseEventNode&gt; CloseContextNode = MakeShared&lt;FPhraseEventNode&gt;();</div>
-<div class="line"><span class="lineno">  130</span>    CloseContextNode-&gt;OnPhraseParsed.BindLambda(</div>
-<div class="line"><span class="lineno">  131</span>        [<span class="keyword">this</span>](<a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a> &amp;Record)</div>
-<div class="line"><span class="lineno">  132</span>        {</div>
-<div class="line"><span class="lineno">  133</span>            <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *ContextObject = Record.<a class="code hl_function" href="structFParseRecord.html#aefcadd27a097c7f866d751f077531194">GetContextObj</a>();</div>
-<div class="line"><span class="lineno">  134</span>            <span class="keywordflow">if</span> (ContextObject-&gt;<a class="code hl_function" href="classUPhraseTreeContextObject.html#a116232bfa7163d2f5617b3f3df4c577c">GetContextRoot</a>() == this-&gt;AsShared())</div>
-<div class="line"><span class="lineno">  135</span>            {</div>
-<div class="line"><span class="lineno">  136</span>                ContextObject-&gt;Close();</div>
-<div class="line"><span class="lineno">  137</span>                ContextObject-&gt;RemoveFromRoot();</div>
-<div class="line"><span class="lineno">  138</span> </div>
-<div class="line"><span class="lineno">  139</span>                Record.PopContextObj();</div>
-<div class="line"><span class="lineno">  140</span>            }</div>
-<div class="line"><span class="lineno">  141</span>        });</div>
-<div class="line"><span class="lineno">  142</span> </div>
-<div class="line"><span class="lineno">  143</span>    this-&gt;<a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a> = TPhraseNodeArray{</div>
-<div class="line"><span class="lineno">  144</span>        MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;CLOSE&quot;</span>),</div>
-<div class="line"><span class="lineno">  145</span>                                TPhraseNodeArray{</div>
-<div class="line"><span class="lineno">  146</span>                                    CloseContextNode})};</div>
-<div class="line"><span class="lineno">  147</span> </div>
-<div class="line"><span class="lineno">  148</span>    this-&gt;<a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>.Append(InChildNodes);</div>
-<div class="line"><span class="lineno">  149</span>}</div>
-<div class="ttc" id="aclassFPhraseNode_html_aa7c9b4c7858aef32bee676639238bd3c"><div class="ttname"><a href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">FPhraseNode::ChildNodes</a></div><div class="ttdeci">TPhraseNodeArray ChildNodes</div><div class="ttdoc">The Child Nodes of the Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00166">PhraseNode.h:166</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeContextObject_html"><div class="ttname"><a href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a></div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00012">ContextObject.h:13</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeContextObject_html_a116232bfa7163d2f5617b3f3df4c577c"><div class="ttname"><a href="classUPhraseTreeContextObject.html#a116232bfa7163d2f5617b3f3df4c577c">UPhraseTreeContextObject::GetContextRoot</a></div><div class="ttdeci">TSharedPtr&lt; FPhraseNode &gt; GetContextRoot()</div><div class="ttdoc">Gets the Root Node For This Context.</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00041">ContextObject.h:41</a></div></div>
-<div class="ttc" id="astructFParseRecord_html"><div class="ttname"><a href="structFParseRecord.html">FParseRecord</a></div><div class="ttdoc">The Collected Information from the Propogation of the Phrase through the tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00016">ParseRecord.h:17</a></div></div>
-<div class="ttc" id="astructFParseRecord_html_aefcadd27a097c7f866d751f077531194"><div class="ttname"><a href="structFParseRecord.html#aefcadd27a097c7f866d751f077531194">FParseRecord::GetContextObj</a></div><div class="ttdeci">UPhraseTreeContextObject * GetContextObj()</div><div class="ttdoc">Gets the Top Context Object On The Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00249">ParseRecord.h:249</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00128">128</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  129</span>{</div>
+<div class="line"><span class="lineno">  130</span>    TSharedPtr&lt;FPhraseEventNode&gt; CloseContextNode = MakeShared&lt;FPhraseEventNode&gt;();</div>
+<div class="line"><span class="lineno">  131</span>    CloseContextNode-&gt;OnPhraseParsed.BindLambda(</div>
+<div class="line"><span class="lineno">  132</span>        [<span class="keyword">this</span>](<a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a> &amp;Record)</div>
+<div class="line"><span class="lineno">  133</span>        {</div>
+<div class="line"><span class="lineno">  134</span>            <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *ContextObject = Record.<a class="code hl_function" href="structFParseRecord.html#aefcadd27a097c7f866d751f077531194">GetContextObj</a>();</div>
+<div class="line"><span class="lineno">  135</span>            <span class="keywordflow">if</span> (ContextObject-&gt;<a class="code hl_function" href="classUPhraseTreeContextObject.html#a116232bfa7163d2f5617b3f3df4c577c">GetContextRoot</a>() == this-&gt;AsShared())</div>
+<div class="line"><span class="lineno">  136</span>            {</div>
+<div class="line"><span class="lineno">  137</span>                ContextObject-&gt;Close();</div>
+<div class="line"><span class="lineno">  138</span>                ContextObject-&gt;RemoveFromRoot();</div>
+<div class="line"><span class="lineno">  139</span> </div>
+<div class="line"><span class="lineno">  140</span>                Record.PopContextObj();</div>
+<div class="line"><span class="lineno">  141</span>            }</div>
+<div class="line"><span class="lineno">  142</span>        });</div>
+<div class="line"><span class="lineno">  143</span> </div>
+<div class="line"><span class="lineno">  144</span>    this-&gt;<a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a> = TPhraseNodeArray{</div>
+<div class="line"><span class="lineno">  145</span>        MakeShared&lt;FPhraseNode&gt;(TEXT(<span class="stringliteral">&quot;CLOSE&quot;</span>),</div>
+<div class="line"><span class="lineno">  146</span>                                TPhraseNodeArray{</div>
+<div class="line"><span class="lineno">  147</span>                                    CloseContextNode})};</div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span>    this-&gt;<a class="code hl_variable" href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">ChildNodes</a>.Append(InChildNodes);</div>
+<div class="line"><span class="lineno">  150</span>}</div>
+<div class="ttc" id="aclassFPhraseNode_html_aa7c9b4c7858aef32bee676639238bd3c"><div class="ttname"><a href="classFPhraseNode.html#aa7c9b4c7858aef32bee676639238bd3c">FPhraseNode::ChildNodes</a></div><div class="ttdeci">TPhraseNodeArray ChildNodes</div><div class="ttdoc">The Child Nodes of the Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00167">PhraseNode.h:167</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeContextObject_html"><div class="ttname"><a href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a></div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00013">ContextObject.h:14</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeContextObject_html_a116232bfa7163d2f5617b3f3df4c577c"><div class="ttname"><a href="classUPhraseTreeContextObject.html#a116232bfa7163d2f5617b3f3df4c577c">UPhraseTreeContextObject::GetContextRoot</a></div><div class="ttdeci">TSharedPtr&lt; FPhraseNode &gt; GetContextRoot()</div><div class="ttdoc">Gets the Root Node For This Context.</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00042">ContextObject.h:42</a></div></div>
+<div class="ttc" id="astructFParseRecord_html"><div class="ttname"><a href="structFParseRecord.html">FParseRecord</a></div><div class="ttdoc">The Collected Information from the Propogation of the Phrase through the tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00017">ParseRecord.h:18</a></div></div>
+<div class="ttc" id="astructFParseRecord_html_aefcadd27a097c7f866d751f077531194"><div class="ttname"><a href="structFParseRecord.html#aefcadd27a097c7f866d751f077531194">FParseRecord::GetContextObj</a></div><div class="ttdeci">UPhraseTreeContextObject * GetContextObj()</div><div class="ttdoc">Gets the Top Context Object On The Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00250">ParseRecord.h:250</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -476,14 +476,14 @@ template&lt;class ContextType &gt; </div>
 
 <p>Implements <a class="el" href="classIPhraseContextNodeBase.html#ab76ed702f9c1f709f37976fd7e6c7067">IPhraseContextNodeBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00117">117</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  118</span>{</div>
-<div class="line"><span class="lineno">  119</span>    ContextType *NewContextObject = NewObject&lt;ContextType&gt;();</div>
-<div class="line"><span class="lineno">  120</span>    NewContextObject-&gt;Init();</div>
-<div class="line"><span class="lineno">  121</span>    NewContextObject-&gt;SetContextRootNode(AsShared());</div>
-<div class="line"><span class="lineno">  122</span> </div>
-<div class="line"><span class="lineno">  123</span>    <span class="keywordflow">return</span> NewContextObject;</div>
-<div class="line"><span class="lineno">  124</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00118">118</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  119</span>{</div>
+<div class="line"><span class="lineno">  120</span>    ContextType *NewContextObject = NewObject&lt;ContextType&gt;();</div>
+<div class="line"><span class="lineno">  121</span>    NewContextObject-&gt;Init();</div>
+<div class="line"><span class="lineno">  122</span>    NewContextObject-&gt;SetContextRootNode(AsShared());</div>
+<div class="line"><span class="lineno">  123</span> </div>
+<div class="line"><span class="lineno">  124</span>    <span class="keywordflow">return</span> NewContextObject;</div>
+<div class="line"><span class="lineno">  125</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -524,18 +524,18 @@ template&lt;class ContextType &gt; </div>
 
 <p>Implements <a class="el" href="classIPhraseContextNodeBase.html#a7cd16a514b9ae55a293078bccb3816a6">IPhraseContextNodeBase</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00103">103</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  104</span>{</div>
-<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ContextObject : InContextObjects)</div>
-<div class="line"><span class="lineno">  106</span>    {</div>
-<div class="line"><span class="lineno">  107</span>        <span class="keywordflow">if</span> (ContextObject-&gt;IsA(ContextType::StaticClass()) &amp;&amp; ContextObject-&gt;GetContextRoot() == AsShared())</div>
-<div class="line"><span class="lineno">  108</span>        {</div>
-<div class="line"><span class="lineno">  109</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  110</span>        }</div>
-<div class="line"><span class="lineno">  111</span>    }</div>
-<div class="line"><span class="lineno">  112</span> </div>
-<div class="line"><span class="lineno">  113</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  114</span>}</div>
+<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00104">104</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  105</span>{</div>
+<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;ContextObject : InContextObjects)</div>
+<div class="line"><span class="lineno">  107</span>    {</div>
+<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">if</span> (ContextObject-&gt;IsA(ContextType::StaticClass()) &amp;&amp; ContextObject-&gt;GetContextRoot() == AsShared())</div>
+<div class="line"><span class="lineno">  109</span>        {</div>
+<div class="line"><span class="lineno">  110</span>            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  111</span>        }</div>
+<div class="line"><span class="lineno">  112</span>    }</div>
+<div class="line"><span class="lineno">  113</span> </div>
+<div class="line"><span class="lineno">  114</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  115</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -587,22 +587,22 @@ template&lt;class ContextType &gt; </div>
 
 <p>Reimplemented from <a class="el" href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00067">67</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   68</span>{</div>
-<div class="line"><span class="lineno">   69</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFPhraseContextNode.html#ac625860d345fa58d4d9b1d3b2b0f268c">HasContextObject</a>(InParseRecord.<a class="code hl_function" href="structFParseRecord.html#a5d774b3ca0de6844931b79d2670fb3ce">GetContextStack</a>()))</div>
-<div class="line"><span class="lineno">   70</span>    {</div>
-<div class="line"><span class="lineno">   71</span>        <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *NewObject = <a class="code hl_function" href="classFPhraseContextNode.html#a039158a4a8ec7bf4496cf291126c2703">CreateContextObject</a>(InParseRecord);</div>
-<div class="line"><span class="lineno">   72</span> </div>
-<div class="line"><span class="lineno">   73</span>        InParseRecord.<a class="code hl_function" href="structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d">PushContextObj</a>(NewObject);</div>
-<div class="line"><span class="lineno">   74</span>    }</div>
-<div class="line"><span class="lineno">   75</span> </div>
-<div class="line"><span class="lineno">   76</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode::ParsePhrase</a>(InPhraseWordArray, InParseRecord);</div>
-<div class="line"><span class="lineno">   77</span>}</div>
-<div class="ttc" id="aclassFPhraseContextNode_html_a039158a4a8ec7bf4496cf291126c2703"><div class="ttname"><a href="classFPhraseContextNode.html#a039158a4a8ec7bf4496cf291126c2703">FPhraseContextNode::CreateContextObject</a></div><div class="ttdeci">virtual UPhraseTreeContextObject * CreateContextObject(FParseRecord &amp;Record) override</div><div class="ttdoc">Creates a Context Object, using Record Inputs.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseContextNode_8h_source.html#l00117">PhraseContextNode.h:117</a></div></div>
-<div class="ttc" id="aclassFPhraseContextNode_html_ac625860d345fa58d4d9b1d3b2b0f268c"><div class="ttname"><a href="classFPhraseContextNode.html#ac625860d345fa58d4d9b1d3b2b0f268c">FPhraseContextNode::HasContextObject</a></div><div class="ttdeci">virtual bool HasContextObject(TArray&lt; UPhraseTreeContextObject * &gt; InContextObjects) const override</div><div class="ttdoc">Checks if the Given Context Array Contains Context Objects.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseContextNode_8h_source.html#l00103">PhraseContextNode.h:103</a></div></div>
-<div class="ttc" id="aclassFPhraseNode_html_a9e108bf1a2f579ed03277540c01a36da"><div class="ttname"><a href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode::ParsePhrase</a></div><div class="ttdeci">virtual FParseResult ParsePhrase(TArray&lt; FString &gt; &amp;InPhraseWordArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00064">PhraseNode.cpp:64</a></div></div>
-<div class="ttc" id="astructFParseRecord_html_a5d774b3ca0de6844931b79d2670fb3ce"><div class="ttname"><a href="structFParseRecord.html#a5d774b3ca0de6844931b79d2670fb3ce">FParseRecord::GetContextStack</a></div><div class="ttdeci">void GetContextStack(TArray&lt; UPhraseTreeContextObject * &gt; OutContextStack)</div><div class="ttdoc">Gets the Entire Context Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00307">ParseRecord.h:307</a></div></div>
-<div class="ttc" id="astructFParseRecord_html_ac0ecc5d268763c231cb4be57faabaf6d"><div class="ttname"><a href="structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d">FParseRecord::PushContextObj</a></div><div class="ttdeci">void PushContextObj(UPhraseTreeContextObject *InObject)</div><div class="ttdoc">Pushes a Context Object onto the Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00182">ParseRecord.h:182</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00068">68</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   69</span>{</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFPhraseContextNode.html#ac625860d345fa58d4d9b1d3b2b0f268c">HasContextObject</a>(InParseRecord.<a class="code hl_function" href="structFParseRecord.html#a5d774b3ca0de6844931b79d2670fb3ce">GetContextStack</a>()))</div>
+<div class="line"><span class="lineno">   71</span>    {</div>
+<div class="line"><span class="lineno">   72</span>        <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *NewObject = <a class="code hl_function" href="classFPhraseContextNode.html#a039158a4a8ec7bf4496cf291126c2703">CreateContextObject</a>(InParseRecord);</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>        InParseRecord.<a class="code hl_function" href="structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d">PushContextObj</a>(NewObject);</div>
+<div class="line"><span class="lineno">   75</span>    }</div>
+<div class="line"><span class="lineno">   76</span> </div>
+<div class="line"><span class="lineno">   77</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode::ParsePhrase</a>(InPhraseWordArray, InParseRecord);</div>
+<div class="line"><span class="lineno">   78</span>}</div>
+<div class="ttc" id="aclassFPhraseContextNode_html_a039158a4a8ec7bf4496cf291126c2703"><div class="ttname"><a href="classFPhraseContextNode.html#a039158a4a8ec7bf4496cf291126c2703">FPhraseContextNode::CreateContextObject</a></div><div class="ttdeci">virtual UPhraseTreeContextObject * CreateContextObject(FParseRecord &amp;Record) override</div><div class="ttdoc">Creates a Context Object, using Record Inputs.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseContextNode_8h_source.html#l00118">PhraseContextNode.h:118</a></div></div>
+<div class="ttc" id="aclassFPhraseContextNode_html_ac625860d345fa58d4d9b1d3b2b0f268c"><div class="ttname"><a href="classFPhraseContextNode.html#ac625860d345fa58d4d9b1d3b2b0f268c">FPhraseContextNode::HasContextObject</a></div><div class="ttdeci">virtual bool HasContextObject(TArray&lt; UPhraseTreeContextObject * &gt; InContextObjects) const override</div><div class="ttdoc">Checks if the Given Context Array Contains Context Objects.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseContextNode_8h_source.html#l00104">PhraseContextNode.h:104</a></div></div>
+<div class="ttc" id="aclassFPhraseNode_html_a9e108bf1a2f579ed03277540c01a36da"><div class="ttname"><a href="classFPhraseNode.html#a9e108bf1a2f579ed03277540c01a36da">FPhraseNode::ParsePhrase</a></div><div class="ttdeci">virtual FParseResult ParsePhrase(TArray&lt; FString &gt; &amp;InPhraseWordArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses The Phrase Down This Node, Propagating Down Any Child Nodes If Required.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00065">PhraseNode.cpp:65</a></div></div>
+<div class="ttc" id="astructFParseRecord_html_a5d774b3ca0de6844931b79d2670fb3ce"><div class="ttname"><a href="structFParseRecord.html#a5d774b3ca0de6844931b79d2670fb3ce">FParseRecord::GetContextStack</a></div><div class="ttdeci">void GetContextStack(TArray&lt; UPhraseTreeContextObject * &gt; OutContextStack)</div><div class="ttdoc">Gets the Entire Context Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00308">ParseRecord.h:308</a></div></div>
+<div class="ttc" id="astructFParseRecord_html_ac0ecc5d268763c231cb4be57faabaf6d"><div class="ttname"><a href="structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d">FParseRecord::PushContextObj</a></div><div class="ttdeci">void PushContextObj(UPhraseTreeContextObject *InObject)</div><div class="ttdoc">Pushes a Context Object onto the Stack.</div><div class="ttdef"><b>Definition:</b> <a href="ParseRecord_8h_source.html#l00183">ParseRecord.h:183</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -654,29 +654,29 @@ template&lt;class ContextType &gt; </div>
 
 <p>Reimplemented from <a class="el" href="classFPhraseNode.html#a3c3269f4a2bcacfe4f45a6993299827f">FPhraseNode</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00080">80</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   81</span>{</div>
-<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFPhraseContextNode.html#ac625860d345fa58d4d9b1d3b2b0f268c">HasContextObject</a>(InParseRecord.<a class="code hl_function" href="structFParseRecord.html#a5d774b3ca0de6844931b79d2670fb3ce">GetContextStack</a>()))</div>
-<div class="line"><span class="lineno">   83</span>    {</div>
-<div class="line"><span class="lineno">   84</span>        <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *NewObject = <a class="code hl_function" href="classFPhraseContextNode.html#a039158a4a8ec7bf4496cf291126c2703">CreateContextObject</a>(InParseRecord);</div>
-<div class="line"><span class="lineno">   85</span> </div>
-<div class="line"><span class="lineno">   86</span>        InParseRecord.<a class="code hl_function" href="structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d">PushContextObj</a>(NewObject);</div>
-<div class="line"><span class="lineno">   87</span>    }</div>
-<div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>    <span class="keywordflow">if</span> (InPhraseWordArray.IsEmpty())</div>
-<div class="line"><span class="lineno">   90</span>    {</div>
-<div class="line"><span class="lineno">   91</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Emptied Phrase Array ||&quot;</span>))</div>
-<div class="line"><span class="lineno">   92</span> </div>
-<div class="line"><span class="lineno">   93</span>        return <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_REQUIRES_MORE, AsShared());</div>
-<div class="line"><span class="lineno">   94</span>    }</div>
-<div class="line"><span class="lineno">   95</span> </div>
-<div class="line"><span class="lineno">   96</span>    OnPhraseParsed.ExecuteIfBound(InParseRecord);</div>
-<div class="line"><span class="lineno">   97</span> </div>
-<div class="line"><span class="lineno">   98</span>    <span class="comment">// Pass</span></div>
-<div class="line"><span class="lineno">   99</span>    return <a class="code hl_function" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">ParseChildren</a>(InPhraseWordArray, InParseRecord);</div>
-<div class="line"><span class="lineno">  100</span>}</div>
-<div class="ttc" id="aclassFPhraseNode_html_a671f4121e9df6769775bae880a845765"><div class="ttname"><a href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">FPhraseNode::ParseChildren</a></div><div class="ttdeci">virtual FParseResult ParseChildren(TArray&lt; FString &gt; &amp;InPhraseArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses The Children Node of this Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00188">PhraseNode.cpp:188</a></div></div>
-<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00054">ParseResult.h:55</a></div></div>
+<p class="definition">Definition at line <a class="el" href="PhraseContextNode_8h_source.html#l00081">81</a> of file <a class="el" href="PhraseContextNode_8h_source.html">PhraseContextNode.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   82</span>{</div>
+<div class="line"><span class="lineno">   83</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classFPhraseContextNode.html#ac625860d345fa58d4d9b1d3b2b0f268c">HasContextObject</a>(InParseRecord.<a class="code hl_function" href="structFParseRecord.html#a5d774b3ca0de6844931b79d2670fb3ce">GetContextStack</a>()))</div>
+<div class="line"><span class="lineno">   84</span>    {</div>
+<div class="line"><span class="lineno">   85</span>        <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a> *NewObject = <a class="code hl_function" href="classFPhraseContextNode.html#a039158a4a8ec7bf4496cf291126c2703">CreateContextObject</a>(InParseRecord);</div>
+<div class="line"><span class="lineno">   86</span> </div>
+<div class="line"><span class="lineno">   87</span>        InParseRecord.<a class="code hl_function" href="structFParseRecord.html#ac0ecc5d268763c231cb4be57faabaf6d">PushContextObj</a>(NewObject);</div>
+<div class="line"><span class="lineno">   88</span>    }</div>
+<div class="line"><span class="lineno">   89</span> </div>
+<div class="line"><span class="lineno">   90</span>    <span class="keywordflow">if</span> (InPhraseWordArray.IsEmpty())</div>
+<div class="line"><span class="lineno">   91</span>    {</div>
+<div class="line"><span class="lineno">   92</span>        UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| Emptied Phrase Array ||&quot;</span>))</div>
+<div class="line"><span class="lineno">   93</span> </div>
+<div class="line"><span class="lineno">   94</span>        return <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>(PHRASE_REQUIRES_MORE, AsShared());</div>
+<div class="line"><span class="lineno">   95</span>    }</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>    OnPhraseParsed.ExecuteIfBound(InParseRecord);</div>
+<div class="line"><span class="lineno">   98</span> </div>
+<div class="line"><span class="lineno">   99</span>    <span class="comment">// Pass</span></div>
+<div class="line"><span class="lineno">  100</span>    return <a class="code hl_function" href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">ParseChildren</a>(InPhraseWordArray, InParseRecord);</div>
+<div class="line"><span class="lineno">  101</span>}</div>
+<div class="ttc" id="aclassFPhraseNode_html_a671f4121e9df6769775bae880a845765"><div class="ttname"><a href="classFPhraseNode.html#a671f4121e9df6769775bae880a845765">FPhraseNode::ParseChildren</a></div><div class="ttdeci">virtual FParseResult ParseChildren(TArray&lt; FString &gt; &amp;InPhraseArray, FParseRecord &amp;InParseRecord)</div><div class="ttdoc">Parses The Children Node of this Node.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8cpp_source.html#l00189">PhraseNode.cpp:189</a></div></div>
+<div class="ttc" id="astructFParseResult_html"><div class="ttname"><a href="structFParseResult.html">FParseResult</a></div><div class="ttdoc">Contains the Result of Propagation through the Phrase Tree.</div><div class="ttdef"><b>Definition:</b> <a href="ParseResult_8h_source.html#l00055">ParseResult.h:56</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

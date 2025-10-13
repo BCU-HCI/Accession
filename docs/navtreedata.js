@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Open Accessibility Unreal Plugin", "index.html", [
+  [ "Accession", "index.html", [
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [

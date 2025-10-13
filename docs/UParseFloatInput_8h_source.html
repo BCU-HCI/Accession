@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Open Accessibility Unreal Plugin: Source/AccessionCommunication/Public/PhraseTree/Containers/Input/UParseFloatInput.h Source File</title>
+<title>Accession: Source/AccessionCommunication/Public/PhraseTree/Containers/Input/UParseFloatInput.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -26,9 +26,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Open Accessibility Unreal Plugin<span id="projectnumber">&#160;0.3</span>
+   <div id="projectname">Accession<span id="projectnumber">&#160;0.3</span>
    </div>
-   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Accessibility</div>
+   <div id="projectbrief">Unreal Engine Editor Plugin for Multi-Modal Input through Voice.</div>
   </td>
  </tr>
  </tbody>
@@ -94,49 +94,50 @@ $(document).ready(function(){initNavTree('UParseFloatInput_8h_source.html',''); 
   <div class="headertitle"><div class="title">UParseFloatInput.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright F-Dudley. All Rights Reserved.</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;UParseInput.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;UParseFloatInput.generated.h&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>UCLASS()</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="classUParseFloatInput.html">   11</a></span>class ACCESSIONCOMMUNICATION_API <a class="code hl_class" href="classUParseFloatInput.html">UParseFloatInput</a> : public <a class="code hl_class" href="classUParseInput.html">UParseInput</a></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    GENERATED_BODY()</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="classUParseFloatInput.html">UParseFloatInput</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classUParseFloatInput.html">~UParseFloatInput</a>() {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    };</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="classUParseFloatInput.html#ad165822b791fa9ec98e0c9b96c6f7d60">   25</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUParseFloatInput.html#ad165822b791fa9ec98e0c9b96c6f7d60">SetValue</a>(<span class="keywordtype">float</span> InValue)</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        Value = InValue;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    }</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classUParseFloatInput.html#ae186268b0a5ec20968cd42b8f9bad70b">   34</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUParseFloatInput.html#ae186268b0a5ec20968cd42b8f9bad70b">GetValue</a>(<span class="keywordtype">float</span> &amp;OutValue)</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        OutValue = Value;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classUParseFloatInput.html#a88d59e57f3b5a55975b2808eda1216e2">   43</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classUParseFloatInput.html#a88d59e57f3b5a55975b2808eda1216e2">GetValue</a>()</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">return</span> Value;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">float</span> Value;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
-<div class="ttc" id="aclassUParseFloatInput_html"><div class="ttname"><a href="classUParseFloatInput.html">UParseFloatInput</a></div><div class="ttdef"><b>Definition:</b> <a href="UParseFloatInput_8h_source.html#l00011">UParseFloatInput.h:12</a></div></div>
-<div class="ttc" id="aclassUParseFloatInput_html_a88d59e57f3b5a55975b2808eda1216e2"><div class="ttname"><a href="classUParseFloatInput.html#a88d59e57f3b5a55975b2808eda1216e2">UParseFloatInput::GetValue</a></div><div class="ttdeci">float GetValue()</div><div class="ttdoc">Gets the Current Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseFloatInput_8h_source.html#l00043">UParseFloatInput.h:43</a></div></div>
-<div class="ttc" id="aclassUParseFloatInput_html_ad165822b791fa9ec98e0c9b96c6f7d60"><div class="ttname"><a href="classUParseFloatInput.html#ad165822b791fa9ec98e0c9b96c6f7d60">UParseFloatInput::SetValue</a></div><div class="ttdeci">void SetValue(float InValue)</div><div class="ttdoc">Sets the Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseFloatInput_8h_source.html#l00025">UParseFloatInput.h:25</a></div></div>
-<div class="ttc" id="aclassUParseFloatInput_html_ae186268b0a5ec20968cd42b8f9bad70b"><div class="ttname"><a href="classUParseFloatInput.html#ae186268b0a5ec20968cd42b8f9bad70b">UParseFloatInput::GetValue</a></div><div class="ttdeci">void GetValue(float &amp;OutValue)</div><div class="ttdoc">Gets the Current Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseFloatInput_8h_source.html#l00034">UParseFloatInput.h:34</a></div></div>
-<div class="ttc" id="aclassUParseInput_html"><div class="ttname"><a href="classUParseInput.html">UParseInput</a></div><div class="ttdef"><b>Definition:</b> <a href="UParseInput_8h_source.html#l00011">UParseInput.h:12</a></div></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) HCI-BCU. All rights reserved.</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;UParseInput.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;UParseFloatInput.generated.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>UCLASS()</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classUParseFloatInput.html">   12</a></span>class ACCESSIONCOMMUNICATION_API <a class="code hl_class" href="classUParseFloatInput.html">UParseFloatInput</a> : public <a class="code hl_class" href="classUParseInput.html">UParseInput</a></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classUParseFloatInput.html">UParseFloatInput</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classUParseFloatInput.html">~UParseFloatInput</a>() {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    };</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classUParseFloatInput.html#ad165822b791fa9ec98e0c9b96c6f7d60">   26</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUParseFloatInput.html#ad165822b791fa9ec98e0c9b96c6f7d60">SetValue</a>(<span class="keywordtype">float</span> InValue)</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        Value = InValue;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classUParseFloatInput.html#ae186268b0a5ec20968cd42b8f9bad70b">   35</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUParseFloatInput.html#ae186268b0a5ec20968cd42b8f9bad70b">GetValue</a>(<span class="keywordtype">float</span> &amp;OutValue)</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        OutValue = Value;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classUParseFloatInput.html#a88d59e57f3b5a55975b2808eda1216e2">   44</a></span>    <span class="keywordtype">float</span> <a class="code hl_function" href="classUParseFloatInput.html#a88d59e57f3b5a55975b2808eda1216e2">GetValue</a>()</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">return</span> Value;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">float</span> Value;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
+<div class="ttc" id="aclassUParseFloatInput_html"><div class="ttname"><a href="classUParseFloatInput.html">UParseFloatInput</a></div><div class="ttdef"><b>Definition:</b> <a href="UParseFloatInput_8h_source.html#l00012">UParseFloatInput.h:13</a></div></div>
+<div class="ttc" id="aclassUParseFloatInput_html_a88d59e57f3b5a55975b2808eda1216e2"><div class="ttname"><a href="classUParseFloatInput.html#a88d59e57f3b5a55975b2808eda1216e2">UParseFloatInput::GetValue</a></div><div class="ttdeci">float GetValue()</div><div class="ttdoc">Gets the Current Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseFloatInput_8h_source.html#l00044">UParseFloatInput.h:44</a></div></div>
+<div class="ttc" id="aclassUParseFloatInput_html_ad165822b791fa9ec98e0c9b96c6f7d60"><div class="ttname"><a href="classUParseFloatInput.html#ad165822b791fa9ec98e0c9b96c6f7d60">UParseFloatInput::SetValue</a></div><div class="ttdeci">void SetValue(float InValue)</div><div class="ttdoc">Sets the Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseFloatInput_8h_source.html#l00026">UParseFloatInput.h:26</a></div></div>
+<div class="ttc" id="aclassUParseFloatInput_html_ae186268b0a5ec20968cd42b8f9bad70b"><div class="ttname"><a href="classUParseFloatInput.html#ae186268b0a5ec20968cd42b8f9bad70b">UParseFloatInput::GetValue</a></div><div class="ttdeci">void GetValue(float &amp;OutValue)</div><div class="ttdoc">Gets the Current Value of the Input.</div><div class="ttdef"><b>Definition:</b> <a href="UParseFloatInput_8h_source.html#l00035">UParseFloatInput.h:35</a></div></div>
+<div class="ttc" id="aclassUParseInput_html"><div class="ttname"><a href="classUParseInput.html">UParseInput</a></div><div class="ttdef"><b>Definition:</b> <a href="UParseInput_8h_source.html#l00012">UParseInput.h:13</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
