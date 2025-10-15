@@ -2,6 +2,7 @@
 	"FileVersion": 3,
 	"Version": 1,
 	"VersionName": "0.3.4",
+	"EngineVersion":  "5",
 	"FriendlyName": "Accession",
 	"Description": "",
 	"Category": "Tools",
