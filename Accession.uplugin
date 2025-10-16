@@ -10,6 +10,7 @@
 	"CreatedByURL": "https://github.com/BCU-HCI/Accession",
 	"DocsURL": "https://bcu-hci.github.io/Accession/",
 	"MarketplaceURL": "com.epicgames.launcher://ue/Fab/65ce7530-7d9f-4791-999d-201d2baa06d7",
+	"FabURL": "com.epicgames.launcher://ue/Fab/65ce7530-7d9f-4791-999d-201d2baa06d7",
 	"SupportURL": "https://github.com/BCU-HCI/Accession/issues",
 	"CanContainContent": true,
 	"IsBetaVersion": true,
