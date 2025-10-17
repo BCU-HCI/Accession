@@ -94,56 +94,55 @@ $(document).ready(function(){initNavTree('SIndexer_8h_source.html',''); initResi
   <div class="headertitle"><div class="title">SIndexer.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) HCI-BCU. All rights reserved.</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="classSIndexer.html">    8</a></span><span class="keyword">class </span>ACCESSION_API <a class="code hl_class" href="classSIndexer.html">SIndexer</a> : <span class="keyword">public</span> SBox</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    SLATE_BEGIN_ARGS(<a class="code hl_class" href="classSIndexer.html">SIndexer</a>)</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        : _TextColor(FLinearColor::White), _BorderColor(FLinearColor::Black)</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    }</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    SLATE_ARGUMENT(FLinearColor, TextColor)</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    SLATE_ARGUMENT(FLinearColor, BorderColor)</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    SLATE_PRIVATE_ARGUMENT_VARIABLE(int32, IndexValue) = -1;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    SLATE_PRIVATE_ARGUMENT_FUNCTION(int32, IndexValue)</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    SLATE_PRIVATE_ATTRIBUTE_VARIABLE(EVisibility, IndexVisibility) = EVisibility::Visible;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    SLATE_PRIVATE_ATTRIBUTE_FUNCTION(EVisibility, IndexVisibility)</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    SLATE_END_ARGS()</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_class" href="classSIndexer.html">~SIndexer</a>();</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="comment">// SWidget Implementation</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Tick(<span class="keyword">const</span> FGeometry &amp;AllotedGeometry, <span class="keyword">const</span> <span class="keywordtype">double</span> InCurrentTime, <span class="keyword">const</span> <span class="keywordtype">float</span> InDeltaTime) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> FArguments &amp;InArgs);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="comment">// End SWidget Implementation</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> UpdateIndex(<span class="keyword">const</span> int32 NewIndex);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> UpdateIndex(<span class="keyword">const</span> FString &amp;NewIndex);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">void</span> UpdateIndex(<span class="keyword">const</span> FText &amp;NewIndex);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classSIndexer.html#a8609b26d46011de4ee48fc413b0554b1">   56</a></span>    TSharedPtr&lt;STextBlock&gt; <a class="code hl_function" href="classSIndexer.html#a8609b26d46011de4ee48fc413b0554b1">GetIndexText</a>()<span class="keyword"> const</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">return</span> IndexTextBlock.IsValid() ? IndexTextBlock.Pin() : TSharedPtr&lt;STextBlock&gt;();</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classSIndexer.html#ae1060a0a04a4383f01ff166d953212f8">   65</a></span>    TWeakPtr&lt;STextBlock&gt; <a class="code hl_variable" href="classSIndexer.html#ae1060a0a04a4383f01ff166d953212f8">IndexTextBlock</a>;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
-<div class="ttc" id="aclassSIndexer_html"><div class="ttname"><a href="classSIndexer.html">SIndexer</a></div><div class="ttdef"><b>Definition:</b> <a href="SIndexer_8h_source.html#l00008">SIndexer.h:9</a></div></div>
-<div class="ttc" id="aclassSIndexer_html_a8609b26d46011de4ee48fc413b0554b1"><div class="ttname"><a href="classSIndexer.html#a8609b26d46011de4ee48fc413b0554b1">SIndexer::GetIndexText</a></div><div class="ttdeci">TSharedPtr&lt; STextBlock &gt; GetIndexText() const</div><div class="ttdoc">Gets the Index TextBlock Widget.</div><div class="ttdef"><b>Definition:</b> <a href="SIndexer_8h_source.html#l00056">SIndexer.h:56</a></div></div>
-<div class="ttc" id="aclassSIndexer_html_ae1060a0a04a4383f01ff166d953212f8"><div class="ttname"><a href="classSIndexer.html#ae1060a0a04a4383f01ff166d953212f8">SIndexer::IndexTextBlock</a></div><div class="ttdeci">TWeakPtr&lt; STextBlock &gt; IndexTextBlock</div><div class="ttdoc">Weak Pointer to the Main TextBlock Widget.</div><div class="ttdef"><b>Definition:</b> <a href="SIndexer_8h_source.html#l00065">SIndexer.h:65</a></div></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) HCI-BCU 2025. All rights reserved.</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classSIndexer.html">    7</a></span><span class="keyword">class </span>ACCESSION_API <a class="code hl_class" href="classSIndexer.html">SIndexer</a> : <span class="keyword">public</span> SBox</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    SLATE_BEGIN_ARGS(<a class="code hl_class" href="classSIndexer.html">SIndexer</a>)</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        : _TextColor(FLinearColor::White), _BorderColor(FLinearColor::Black)</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    }</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    SLATE_ARGUMENT(FLinearColor, TextColor)</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    SLATE_ARGUMENT(FLinearColor, BorderColor)</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    SLATE_PRIVATE_ARGUMENT_VARIABLE(int32, IndexValue) = -1;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    SLATE_PRIVATE_ARGUMENT_FUNCTION(int32, IndexValue)</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    SLATE_PRIVATE_ATTRIBUTE_VARIABLE(EVisibility, IndexVisibility) = EVisibility::Visible;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    SLATE_PRIVATE_ATTRIBUTE_FUNCTION(EVisibility, IndexVisibility)</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    SLATE_END_ARGS()</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_class" href="classSIndexer.html">~SIndexer</a>();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// SWidget Implementation</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Tick(<span class="keyword">const</span> FGeometry &amp;AllotedGeometry, <span class="keyword">const</span> <span class="keywordtype">double</span> InCurrentTime, <span class="keyword">const</span> <span class="keywordtype">float</span> InDeltaTime) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> FArguments &amp;InArgs);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// End SWidget Implementation</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> UpdateIndex(<span class="keyword">const</span> int32 NewIndex);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> UpdateIndex(<span class="keyword">const</span> FString &amp;NewIndex);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">void</span> UpdateIndex(<span class="keyword">const</span> FText &amp;NewIndex);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classSIndexer.html#a8609b26d46011de4ee48fc413b0554b1">   55</a></span>    TSharedPtr&lt;STextBlock&gt; <a class="code hl_function" href="classSIndexer.html#a8609b26d46011de4ee48fc413b0554b1">GetIndexText</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">    </span>{</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span> IndexTextBlock.IsValid() ? IndexTextBlock.Pin() : TSharedPtr&lt;STextBlock&gt;();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classSIndexer.html#ae1060a0a04a4383f01ff166d953212f8">   64</a></span>    TWeakPtr&lt;STextBlock&gt; <a class="code hl_variable" href="classSIndexer.html#ae1060a0a04a4383f01ff166d953212f8">IndexTextBlock</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>};</div>
+<div class="ttc" id="aclassSIndexer_html"><div class="ttname"><a href="classSIndexer.html">SIndexer</a></div><div class="ttdef"><b>Definition:</b> <a href="SIndexer_8h_source.html#l00007">SIndexer.h:8</a></div></div>
+<div class="ttc" id="aclassSIndexer_html_a8609b26d46011de4ee48fc413b0554b1"><div class="ttname"><a href="classSIndexer.html#a8609b26d46011de4ee48fc413b0554b1">SIndexer::GetIndexText</a></div><div class="ttdeci">TSharedPtr&lt; STextBlock &gt; GetIndexText() const</div><div class="ttdoc">Gets the Index TextBlock Widget.</div><div class="ttdef"><b>Definition:</b> <a href="SIndexer_8h_source.html#l00055">SIndexer.h:55</a></div></div>
+<div class="ttc" id="aclassSIndexer_html_ae1060a0a04a4383f01ff166d953212f8"><div class="ttname"><a href="classSIndexer.html#ae1060a0a04a4383f01ff166d953212f8">SIndexer::IndexTextBlock</a></div><div class="ttdeci">TWeakPtr&lt; STextBlock &gt; IndexTextBlock</div><div class="ttdoc">Weak Pointer to the Main TextBlock Widget.</div><div class="ttdef"><b>Definition:</b> <a href="SIndexer_8h_source.html#l00064">SIndexer.h:64</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

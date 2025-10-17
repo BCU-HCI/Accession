@@ -197,7 +197,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00096">96</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00095">95</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a400f2d7623c00e6c45ff4a0dea9af018" name="a400f2d7623c00e6c45ff4a0dea9af018"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a400f2d7623c00e6c45ff4a0dea9af018">&#9670;&#160;</a></span>UGraphLocomotionContext()</h2>
@@ -215,12 +215,12 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00010">10</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   11</span>    : <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a>()</div>
-<div class="line"><span class="lineno">   12</span>{</div>
-<div class="line"><span class="lineno">   13</span>    LinkedEditor = TWeakPtr&lt;SGraphEditor&gt;();</div>
-<div class="line"><span class="lineno">   14</span>}</div>
-<div class="ttc" id="aclassUPhraseTreeContextObject_html"><div class="ttname"><a href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a></div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00013">ContextObject.h:14</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00009">9</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   10</span>    : <a class="code hl_class" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a>()</div>
+<div class="line"><span class="lineno">   11</span>{</div>
+<div class="line"><span class="lineno">   12</span>    LinkedEditor = TWeakPtr&lt;SGraphEditor&gt;();</div>
+<div class="line"><span class="lineno">   13</span>}</div>
+<div class="ttc" id="aclassUPhraseTreeContextObject_html"><div class="ttname"><a href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a></div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00012">ContextObject.h:13</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -247,12 +247,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00016">16</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   17</span>{</div>
-<div class="line"><span class="lineno">   18</span>    Close();</div>
-<div class="line"><span class="lineno">   19</span> </div>
-<div class="line"><span class="lineno">   20</span>    UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: CONTEXT DESTROYED.&quot;</span>));</div>
-<div class="line"><span class="lineno">   21</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00015">15</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   16</span>{</div>
+<div class="line"><span class="lineno">   17</span>    Close();</div>
+<div class="line"><span class="lineno">   18</span> </div>
+<div class="line"><span class="lineno">   19</span>    UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: CONTEXT DESTROYED.&quot;</span>));</div>
+<div class="line"><span class="lineno">   20</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -280,10 +280,10 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00354">354</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  355</span>{</div>
-<div class="line"><span class="lineno">  356</span>    FocusChangedHandle = FSlateApplication::Get().OnFocusChanging().AddUObject(<span class="keyword">this</span>, &amp;UGraphLocomotionContext::OnFocusChanged);</div>
-<div class="line"><span class="lineno">  357</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00353">353</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  354</span>{</div>
+<div class="line"><span class="lineno">  355</span>    FocusChangedHandle = FSlateApplication::Get().OnFocusChanging().AddUObject(<span class="keyword">this</span>, &amp;UGraphLocomotionContext::OnFocusChanged);</div>
+<div class="line"><span class="lineno">  356</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -310,41 +310,41 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00239">239</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  240</span>{</div>
-<div class="line"><span class="lineno">  241</span>    <span class="keywordflow">if</span> (!LinkedEditor.IsValid())</div>
-<div class="line"><span class="lineno">  242</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  243</span> </div>
-<div class="line"><span class="lineno">  244</span>    SGraphPanel *LinkedPanel = LinkedEditor.Pin()-&gt;GetGraphPanel();</div>
-<div class="line"><span class="lineno">  245</span>    FVector2D PanelGeoSize = LinkedPanel-&gt;GetTickSpaceGeometry().GetLocalSize();</div>
-<div class="line"><span class="lineno">  246</span> </div>
-<div class="line"><span class="lineno">  247</span>    <span class="keywordtype">double</span> ChunkWidgetSizeX = PanelGeoSize.X / ChunkSize.X;</div>
-<div class="line"><span class="lineno">  248</span>    <span class="keywordtype">double</span> ChunkWidgetSizeY = PanelGeoSize.Y / ChunkSize.Y;</div>
-<div class="line"><span class="lineno">  249</span> </div>
-<div class="line"><span class="lineno">  250</span>    <a class="code hl_struct" href="structFGraphLocomotionChunk.html">FGraphLocomotionChunk</a> Chunk;</div>
-<div class="line"><span class="lineno">  251</span>    <span class="keywordtype">double</span> ChunkX, ChunkY;</div>
-<div class="line"><span class="lineno">  252</span> </div>
-<div class="line"><span class="lineno">  253</span>    int32 ArrIndex;</div>
-<div class="line"><span class="lineno">  254</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> Y = 0; Y &lt; ChunkSize.Y; Y++)</div>
-<div class="line"><span class="lineno">  255</span>    {</div>
-<div class="line"><span class="lineno">  256</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> X = 0; X &lt; ChunkSize.X; X++)</div>
-<div class="line"><span class="lineno">  257</span>        {</div>
-<div class="line"><span class="lineno">  258</span>            ArrIndex = (Y * ChunkSize.X) + X;</div>
-<div class="line"><span class="lineno">  259</span> </div>
-<div class="line"><span class="lineno">  260</span>            Chunk = ChunkArray[ArrIndex];</div>
-<div class="line"><span class="lineno">  261</span> </div>
-<div class="line"><span class="lineno">  262</span>            ChunkX = X * ChunkWidgetSizeX;</div>
-<div class="line"><span class="lineno">  263</span>            ChunkY = Y * ChunkWidgetSizeY;</div>
-<div class="line"><span class="lineno">  264</span> </div>
-<div class="line"><span class="lineno">  265</span>            Chunk.SetChunkBounds(</div>
-<div class="line"><span class="lineno">  266</span>                FVector2D(ChunkX, ChunkY),</div>
-<div class="line"><span class="lineno">  267</span>                FVector2D(ChunkWidgetSizeX + ChunkX, ChunkWidgetSizeY + ChunkY));</div>
-<div class="line"><span class="lineno">  268</span> </div>
-<div class="line"><span class="lineno">  269</span>            ChunkArray[ArrIndex] = Chunk;</div>
-<div class="line"><span class="lineno">  270</span>        }</div>
-<div class="line"><span class="lineno">  271</span>    }</div>
-<div class="line"><span class="lineno">  272</span>}</div>
-<div class="ttc" id="astructFGraphLocomotionChunk_html"><div class="ttname"><a href="structFGraphLocomotionChunk.html">FGraphLocomotionChunk</a></div><div class="ttdef"><b>Definition:</b> <a href="GraphLocomotionContext_8h_source.html#l00014">GraphLocomotionContext.h:15</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00238">238</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  239</span>{</div>
+<div class="line"><span class="lineno">  240</span>    <span class="keywordflow">if</span> (!LinkedEditor.IsValid())</div>
+<div class="line"><span class="lineno">  241</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  242</span> </div>
+<div class="line"><span class="lineno">  243</span>    SGraphPanel *LinkedPanel = LinkedEditor.Pin()-&gt;GetGraphPanel();</div>
+<div class="line"><span class="lineno">  244</span>    FVector2D PanelGeoSize = LinkedPanel-&gt;GetTickSpaceGeometry().GetLocalSize();</div>
+<div class="line"><span class="lineno">  245</span> </div>
+<div class="line"><span class="lineno">  246</span>    <span class="keywordtype">double</span> ChunkWidgetSizeX = PanelGeoSize.X / ChunkSize.X;</div>
+<div class="line"><span class="lineno">  247</span>    <span class="keywordtype">double</span> ChunkWidgetSizeY = PanelGeoSize.Y / ChunkSize.Y;</div>
+<div class="line"><span class="lineno">  248</span> </div>
+<div class="line"><span class="lineno">  249</span>    <a class="code hl_struct" href="structFGraphLocomotionChunk.html">FGraphLocomotionChunk</a> Chunk;</div>
+<div class="line"><span class="lineno">  250</span>    <span class="keywordtype">double</span> ChunkX, ChunkY;</div>
+<div class="line"><span class="lineno">  251</span> </div>
+<div class="line"><span class="lineno">  252</span>    int32 ArrIndex;</div>
+<div class="line"><span class="lineno">  253</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> Y = 0; Y &lt; ChunkSize.Y; Y++)</div>
+<div class="line"><span class="lineno">  254</span>    {</div>
+<div class="line"><span class="lineno">  255</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> X = 0; X &lt; ChunkSize.X; X++)</div>
+<div class="line"><span class="lineno">  256</span>        {</div>
+<div class="line"><span class="lineno">  257</span>            ArrIndex = (Y * ChunkSize.X) + X;</div>
+<div class="line"><span class="lineno">  258</span> </div>
+<div class="line"><span class="lineno">  259</span>            Chunk = ChunkArray[ArrIndex];</div>
+<div class="line"><span class="lineno">  260</span> </div>
+<div class="line"><span class="lineno">  261</span>            ChunkX = X * ChunkWidgetSizeX;</div>
+<div class="line"><span class="lineno">  262</span>            ChunkY = Y * ChunkWidgetSizeY;</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>            Chunk.SetChunkBounds(</div>
+<div class="line"><span class="lineno">  265</span>                FVector2D(ChunkX, ChunkY),</div>
+<div class="line"><span class="lineno">  266</span>                FVector2D(ChunkWidgetSizeX + ChunkX, ChunkWidgetSizeY + ChunkY));</div>
+<div class="line"><span class="lineno">  267</span> </div>
+<div class="line"><span class="lineno">  268</span>            ChunkArray[ArrIndex] = Chunk;</div>
+<div class="line"><span class="lineno">  269</span>        }</div>
+<div class="line"><span class="lineno">  270</span>    }</div>
+<div class="line"><span class="lineno">  271</span>}</div>
+<div class="ttc" id="astructFGraphLocomotionChunk_html"><div class="ttname"><a href="structFGraphLocomotionChunk.html">FGraphLocomotionChunk</a></div><div class="ttdef"><b>Definition:</b> <a href="GraphLocomotionContext_8h_source.html#l00013">GraphLocomotionContext.h:14</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -363,15 +363,15 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00121">121</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  122</span>{</div>
-<div class="line"><span class="lineno">  123</span>    <span class="keywordflow">if</span> (LinkedEditor.IsValid())</div>
-<div class="line"><span class="lineno">  124</span>    {</div>
-<div class="line"><span class="lineno">  125</span>        LinkedEditor.Pin()-&gt;SetViewLocation(StartViewPosition, StartViewZoom);</div>
-<div class="line"><span class="lineno">  126</span> </div>
-<div class="line"><span class="lineno">  127</span>        Close();</div>
-<div class="line"><span class="lineno">  128</span>    }</div>
-<div class="line"><span class="lineno">  129</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00120">120</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  121</span>{</div>
+<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">if</span> (LinkedEditor.IsValid())</div>
+<div class="line"><span class="lineno">  123</span>    {</div>
+<div class="line"><span class="lineno">  124</span>        LinkedEditor.Pin()-&gt;SetViewLocation(StartViewPosition, StartViewZoom);</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>        Close();</div>
+<div class="line"><span class="lineno">  127</span>    }</div>
+<div class="line"><span class="lineno">  128</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -409,13 +409,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00172">172</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  173</span>{</div>
-<div class="line"><span class="lineno">  174</span>    check(Index &lt; ChunkArray.Num() &amp;&amp; Index &gt;= 0)</div>
-<div class="line"><span class="lineno">  175</span> </div>
-<div class="line"><span class="lineno">  176</span>        ChunkArray[Index]</div>
-<div class="line"><span class="lineno">  177</span>            .SetVisColor(NewColor);</div>
-<div class="line"><span class="lineno">  178</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00171">171</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  172</span>{</div>
+<div class="line"><span class="lineno">  173</span>    check(Index &lt; ChunkArray.Num() &amp;&amp; Index &gt;= 0)</div>
+<div class="line"><span class="lineno">  174</span> </div>
+<div class="line"><span class="lineno">  175</span>        ChunkArray[Index]</div>
+<div class="line"><span class="lineno">  176</span>            .SetVisColor(NewColor);</div>
+<div class="line"><span class="lineno">  177</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -444,26 +444,26 @@ Protected Attributes</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00131">131</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  132</span>{</div>
-<div class="line"><span class="lineno">  133</span>    UnbindFocusChangedEvent();</div>
-<div class="line"><span class="lineno">  134</span> </div>
-<div class="line"><span class="lineno">  135</span>    <span class="keywordflow">if</span> (SelectionTimerHandle.IsValid())</div>
-<div class="line"><span class="lineno">  136</span>        GEditor-&gt;GetTimerManager()-&gt;ClearTimer(SelectionTimerHandle);</div>
-<div class="line"><span class="lineno">  137</span> </div>
-<div class="line"><span class="lineno">  138</span>    RemoveVisualGrid();</div>
-<div class="line"><span class="lineno">  139</span>    UnHideNativeVisuals();</div>
-<div class="line"><span class="lineno">  140</span> </div>
-<div class="line"><span class="lineno">  141</span>    <a class="code hl_variable" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">bIsActive</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  142</span> </div>
-<div class="line"><span class="lineno">  143</span>    RemoveFromRoot();</div>
-<div class="line"><span class="lineno">  144</span>    MarkAsGarbage();</div>
-<div class="line"><span class="lineno">  145</span> </div>
-<div class="line"><span class="lineno">  146</span>    UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: CONTEXT CLOSED.&quot;</span>));</div>
-<div class="line"><span class="lineno">  147</span> </div>
-<div class="line"><span class="lineno">  148</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  149</span>}</div>
-<div class="ttc" id="aclassUPhraseTreeContextObject_html_a2cba304de4e6f40576d7f62d10a57472"><div class="ttname"><a href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">UPhraseTreeContextObject::bIsActive</a></div><div class="ttdeci">bool bIsActive</div><div class="ttdoc">Is the Context Object Still Active.</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00060">ContextObject.h:60</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00130">130</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  131</span>{</div>
+<div class="line"><span class="lineno">  132</span>    UnbindFocusChangedEvent();</div>
+<div class="line"><span class="lineno">  133</span> </div>
+<div class="line"><span class="lineno">  134</span>    <span class="keywordflow">if</span> (SelectionTimerHandle.IsValid())</div>
+<div class="line"><span class="lineno">  135</span>        GEditor-&gt;GetTimerManager()-&gt;ClearTimer(SelectionTimerHandle);</div>
+<div class="line"><span class="lineno">  136</span> </div>
+<div class="line"><span class="lineno">  137</span>    RemoveVisualGrid();</div>
+<div class="line"><span class="lineno">  138</span>    UnHideNativeVisuals();</div>
+<div class="line"><span class="lineno">  139</span> </div>
+<div class="line"><span class="lineno">  140</span>    <a class="code hl_variable" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">bIsActive</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  141</span> </div>
+<div class="line"><span class="lineno">  142</span>    RemoveFromRoot();</div>
+<div class="line"><span class="lineno">  143</span>    MarkAsGarbage();</div>
+<div class="line"><span class="lineno">  144</span> </div>
+<div class="line"><span class="lineno">  145</span>    UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: CONTEXT CLOSED.&quot;</span>));</div>
+<div class="line"><span class="lineno">  146</span> </div>
+<div class="line"><span class="lineno">  147</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  148</span>}</div>
+<div class="ttc" id="aclassUPhraseTreeContextObject_html_a2cba304de4e6f40576d7f62d10a57472"><div class="ttname"><a href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">UPhraseTreeContextObject::bIsActive</a></div><div class="ttdeci">bool bIsActive</div><div class="ttdoc">Is the Context Object Still Active.</div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00059">ContextObject.h:59</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -482,10 +482,10 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00116">116</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  117</span>{</div>
-<div class="line"><span class="lineno">  118</span>    Close();</div>
-<div class="line"><span class="lineno">  119</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00115">115</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  116</span>{</div>
+<div class="line"><span class="lineno">  117</span>    Close();</div>
+<div class="line"><span class="lineno">  118</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -513,23 +513,23 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00180">180</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  181</span>{</div>
-<div class="line"><span class="lineno">  182</span>    TSharedPtr&lt;SOverlay&gt; GraphViewport = StaticCastSharedPtr&lt;SOverlay&gt;(InGraphEditor-&gt;GetGraphPanel()-&gt;GetParentWidget());</div>
-<div class="line"><span class="lineno">  183</span>    <span class="keywordflow">if</span> (!GraphViewport.IsValid())</div>
-<div class="line"><span class="lineno">  184</span>    {</div>
-<div class="line"><span class="lineno">  185</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: NO GRAPH VIEWPORT FOUND.&quot;</span>));</div>
-<div class="line"><span class="lineno">  186</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  187</span>    }</div>
-<div class="line"><span class="lineno">  188</span> </div>
-<div class="line"><span class="lineno">  189</span>    GridParent = GraphViewport;</div>
-<div class="line"><span class="lineno">  190</span> </div>
-<div class="line"><span class="lineno">  191</span>    GraphViewport-&gt;AddSlot()</div>
-<div class="line"><span class="lineno">  192</span>        .ZOrder(1)</div>
-<div class="line"><span class="lineno">  193</span>        .VAlign(VAlign_Fill)</div>
-<div class="line"><span class="lineno">  194</span>        .HAlign(HAlign_Fill)</div>
-<div class="line"><span class="lineno">  195</span>            [SAssignNew(GridContainer, SUniformGridPanel)];</div>
-<div class="line"><span class="lineno">  196</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00179">179</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  180</span>{</div>
+<div class="line"><span class="lineno">  181</span>    TSharedPtr&lt;SOverlay&gt; GraphViewport = StaticCastSharedPtr&lt;SOverlay&gt;(InGraphEditor-&gt;GetGraphPanel()-&gt;GetParentWidget());</div>
+<div class="line"><span class="lineno">  182</span>    <span class="keywordflow">if</span> (!GraphViewport.IsValid())</div>
+<div class="line"><span class="lineno">  183</span>    {</div>
+<div class="line"><span class="lineno">  184</span>        UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: NO GRAPH VIEWPORT FOUND.&quot;</span>));</div>
+<div class="line"><span class="lineno">  185</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  186</span>    }</div>
+<div class="line"><span class="lineno">  187</span> </div>
+<div class="line"><span class="lineno">  188</span>    GridParent = GraphViewport;</div>
+<div class="line"><span class="lineno">  189</span> </div>
+<div class="line"><span class="lineno">  190</span>    GraphViewport-&gt;AddSlot()</div>
+<div class="line"><span class="lineno">  191</span>        .ZOrder(1)</div>
+<div class="line"><span class="lineno">  192</span>        .VAlign(VAlign_Fill)</div>
+<div class="line"><span class="lineno">  193</span>        .HAlign(HAlign_Fill)</div>
+<div class="line"><span class="lineno">  194</span>            [SAssignNew(GridContainer, SUniformGridPanel)];</div>
+<div class="line"><span class="lineno">  195</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -567,47 +567,47 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00198">198</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  199</span>{</div>
-<div class="line"><span class="lineno">  200</span>    ChunkArray.Reset(InVisualChunkSize.X * InVisualChunkSize.Y);</div>
-<div class="line"><span class="lineno">  201</span>    ChunkSize = InVisualChunkSize;</div>
-<div class="line"><span class="lineno">  202</span> </div>
-<div class="line"><span class="lineno">  203</span>    TSharedPtr&lt;SUniformGridPanel&gt; GridContainerPtr = GridContainer.Pin();</div>
-<div class="line"><span class="lineno">  204</span> </div>
-<div class="line"><span class="lineno">  205</span>    int32 ChunkIndex = -1;</div>
-<div class="line"><span class="lineno">  206</span>    TSharedPtr&lt;SBox&gt; ChunkWidget;</div>
-<div class="line"><span class="lineno">  207</span>    TSharedPtr&lt;SBorder&gt; ChunkVisWidget;</div>
-<div class="line"><span class="lineno">  208</span>    TSharedPtr&lt;SIndexer&gt; ChunkIndexer;</div>
-<div class="line"><span class="lineno">  209</span> </div>
-<div class="line"><span class="lineno">  210</span>    <span class="keywordflow">for</span> (int32 Y = 0; Y &lt; InVisualChunkSize.Y; Y++)</div>
-<div class="line"><span class="lineno">  211</span>    {</div>
-<div class="line"><span class="lineno">  212</span>        <span class="keywordflow">for</span> (int32 X = 0; X &lt; InVisualChunkSize.X; X++)</div>
-<div class="line"><span class="lineno">  213</span>        {</div>
-<div class="line"><span class="lineno">  214</span>            ChunkIndex = X + (Y * InVisualChunkSize.X);</div>
-<div class="line"><span class="lineno">  215</span>            <a class="code hl_struct" href="structFGraphLocomotionChunk.html">FGraphLocomotionChunk</a> &amp;GraphChunk = ChunkArray.EmplaceAt_GetRef(ChunkIndex);</div>
-<div class="line"><span class="lineno">  216</span> </div>
-<div class="line"><span class="lineno">  217</span>            GridContainerPtr-&gt;AddSlot(X, Y)</div>
-<div class="line"><span class="lineno">  218</span>                [SAssignNew(ChunkWidget, SBox)</div>
-<div class="line"><span class="lineno">  219</span>                     [SAssignNew(ChunkVisWidget, SBorder)</div>
-<div class="line"><span class="lineno">  220</span>                          .Padding(0.5f)</div>
-<div class="line"><span class="lineno">  221</span>                          .BorderBackgroundColor(FLinearColor::Yellow)</div>
-<div class="line"><span class="lineno">  222</span>                              [SNew(SBorder)</div>
-<div class="line"><span class="lineno">  223</span>                                   .HAlign(HAlign_Center)</div>
-<div class="line"><span class="lineno">  224</span>                                   .VAlign(VAlign_Center)</div>
-<div class="line"><span class="lineno">  225</span>                                   .BorderBackgroundColor(FLinearColor::Yellow)</div>
-<div class="line"><span class="lineno">  226</span>                                       [SAssignNew(ChunkIndexer, <a class="code hl_class" href="classSIndexer.html">SIndexer</a>)</div>
-<div class="line"><span class="lineno">  227</span>                                            .TextColor(FLinearColor::Yellow)</div>
-<div class="line"><span class="lineno">  228</span>                                            .IndexValue(ChunkIndex)]]]];</div>
-<div class="line"><span class="lineno">  229</span> </div>
-<div class="line"><span class="lineno">  230</span>            GraphChunk.ChunkWidget = ChunkWidget;</div>
-<div class="line"><span class="lineno">  231</span>            GraphChunk.ChunkVisWidget = ChunkVisWidget;</div>
-<div class="line"><span class="lineno">  232</span>            GraphChunk.ChunkIndexer = ChunkIndexer;</div>
-<div class="line"><span class="lineno">  233</span>        }</div>
-<div class="line"><span class="lineno">  234</span>    }</div>
-<div class="line"><span class="lineno">  235</span> </div>
-<div class="line"><span class="lineno">  236</span>    CalculateVisualChunksBounds();</div>
-<div class="line"><span class="lineno">  237</span>}</div>
-<div class="ttc" id="aclassSIndexer_html"><div class="ttname"><a href="classSIndexer.html">SIndexer</a></div><div class="ttdef"><b>Definition:</b> <a href="SIndexer_8h_source.html#l00008">SIndexer.h:9</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00197">197</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  198</span>{</div>
+<div class="line"><span class="lineno">  199</span>    ChunkArray.Reset(InVisualChunkSize.X * InVisualChunkSize.Y);</div>
+<div class="line"><span class="lineno">  200</span>    ChunkSize = InVisualChunkSize;</div>
+<div class="line"><span class="lineno">  201</span> </div>
+<div class="line"><span class="lineno">  202</span>    TSharedPtr&lt;SUniformGridPanel&gt; GridContainerPtr = GridContainer.Pin();</div>
+<div class="line"><span class="lineno">  203</span> </div>
+<div class="line"><span class="lineno">  204</span>    int32 ChunkIndex = -1;</div>
+<div class="line"><span class="lineno">  205</span>    TSharedPtr&lt;SBox&gt; ChunkWidget;</div>
+<div class="line"><span class="lineno">  206</span>    TSharedPtr&lt;SBorder&gt; ChunkVisWidget;</div>
+<div class="line"><span class="lineno">  207</span>    TSharedPtr&lt;SIndexer&gt; ChunkIndexer;</div>
+<div class="line"><span class="lineno">  208</span> </div>
+<div class="line"><span class="lineno">  209</span>    <span class="keywordflow">for</span> (int32 Y = 0; Y &lt; InVisualChunkSize.Y; Y++)</div>
+<div class="line"><span class="lineno">  210</span>    {</div>
+<div class="line"><span class="lineno">  211</span>        <span class="keywordflow">for</span> (int32 X = 0; X &lt; InVisualChunkSize.X; X++)</div>
+<div class="line"><span class="lineno">  212</span>        {</div>
+<div class="line"><span class="lineno">  213</span>            ChunkIndex = X + (Y * InVisualChunkSize.X);</div>
+<div class="line"><span class="lineno">  214</span>            <a class="code hl_struct" href="structFGraphLocomotionChunk.html">FGraphLocomotionChunk</a> &amp;GraphChunk = ChunkArray.EmplaceAt_GetRef(ChunkIndex);</div>
+<div class="line"><span class="lineno">  215</span> </div>
+<div class="line"><span class="lineno">  216</span>            GridContainerPtr-&gt;AddSlot(X, Y)</div>
+<div class="line"><span class="lineno">  217</span>                [SAssignNew(ChunkWidget, SBox)</div>
+<div class="line"><span class="lineno">  218</span>                     [SAssignNew(ChunkVisWidget, SBorder)</div>
+<div class="line"><span class="lineno">  219</span>                          .Padding(0.5f)</div>
+<div class="line"><span class="lineno">  220</span>                          .BorderBackgroundColor(FLinearColor::Yellow)</div>
+<div class="line"><span class="lineno">  221</span>                              [SNew(SBorder)</div>
+<div class="line"><span class="lineno">  222</span>                                   .HAlign(HAlign_Center)</div>
+<div class="line"><span class="lineno">  223</span>                                   .VAlign(VAlign_Center)</div>
+<div class="line"><span class="lineno">  224</span>                                   .BorderBackgroundColor(FLinearColor::Yellow)</div>
+<div class="line"><span class="lineno">  225</span>                                       [SAssignNew(ChunkIndexer, <a class="code hl_class" href="classSIndexer.html">SIndexer</a>)</div>
+<div class="line"><span class="lineno">  226</span>                                            .TextColor(FLinearColor::Yellow)</div>
+<div class="line"><span class="lineno">  227</span>                                            .IndexValue(ChunkIndex)]]]];</div>
+<div class="line"><span class="lineno">  228</span> </div>
+<div class="line"><span class="lineno">  229</span>            GraphChunk.ChunkWidget = ChunkWidget;</div>
+<div class="line"><span class="lineno">  230</span>            GraphChunk.ChunkVisWidget = ChunkVisWidget;</div>
+<div class="line"><span class="lineno">  231</span>            GraphChunk.ChunkIndexer = ChunkIndexer;</div>
+<div class="line"><span class="lineno">  232</span>        }</div>
+<div class="line"><span class="lineno">  233</span>    }</div>
+<div class="line"><span class="lineno">  234</span> </div>
+<div class="line"><span class="lineno">  235</span>    CalculateVisualChunksBounds();</div>
+<div class="line"><span class="lineno">  236</span>}</div>
+<div class="ttc" id="aclassSIndexer_html"><div class="ttname"><a href="classSIndexer.html">SIndexer</a></div><div class="ttdef"><b>Definition:</b> <a href="SIndexer_8h_source.html#l00007">SIndexer.h:8</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -634,29 +634,29 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00293">293</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  294</span>{</div>
-<div class="line"><span class="lineno">  295</span>    NativeWidgetVisibility.Empty();</div>
-<div class="line"><span class="lineno">  296</span> </div>
-<div class="line"><span class="lineno">  297</span>    TSharedPtr&lt;SOverlay&gt; GraphViewport = GridParent.Pin();</div>
-<div class="line"><span class="lineno">  298</span>    TSharedPtr&lt;SUniformGridPanel&gt; VisualGrid = GridContainer.Pin();</div>
-<div class="line"><span class="lineno">  299</span>    SGraphPanel *GraphPanel = LinkedEditor.Pin()-&gt;GetGraphPanel();</div>
-<div class="line"><span class="lineno">  300</span> </div>
-<div class="line"><span class="lineno">  301</span>    FChildren *ViewportChildren = GraphViewport-&gt;GetChildren();</div>
-<div class="line"><span class="lineno">  302</span> </div>
-<div class="line"><span class="lineno">  303</span>    TSharedPtr&lt;SWidget&gt; ChildWidget;</div>
-<div class="line"><span class="lineno">  304</span>    <span class="keywordflow">for</span> (int32 i = 0; i &lt; ViewportChildren-&gt;Num(); i++)</div>
-<div class="line"><span class="lineno">  305</span>    {</div>
-<div class="line"><span class="lineno">  306</span>        ChildWidget = ViewportChildren-&gt;GetChildAt(i);</div>
-<div class="line"><span class="lineno">  307</span> </div>
-<div class="line"><span class="lineno">  308</span>        <span class="keywordflow">if</span> (ChildWidget != VisualGrid &amp;&amp; ChildWidget.Get() != GraphPanel)</div>
-<div class="line"><span class="lineno">  309</span>        {</div>
-<div class="line"><span class="lineno">  310</span>            NativeWidgetVisibility.Add(ChildWidget.Get(), ChildWidget-&gt;GetVisibility());</div>
-<div class="line"><span class="lineno">  311</span> </div>
-<div class="line"><span class="lineno">  312</span>            ChildWidget-&gt;SetVisibility(EVisibility::Hidden);</div>
-<div class="line"><span class="lineno">  313</span>        }</div>
-<div class="line"><span class="lineno">  314</span>    }</div>
-<div class="line"><span class="lineno">  315</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00292">292</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  293</span>{</div>
+<div class="line"><span class="lineno">  294</span>    NativeWidgetVisibility.Empty();</div>
+<div class="line"><span class="lineno">  295</span> </div>
+<div class="line"><span class="lineno">  296</span>    TSharedPtr&lt;SOverlay&gt; GraphViewport = GridParent.Pin();</div>
+<div class="line"><span class="lineno">  297</span>    TSharedPtr&lt;SUniformGridPanel&gt; VisualGrid = GridContainer.Pin();</div>
+<div class="line"><span class="lineno">  298</span>    SGraphPanel *GraphPanel = LinkedEditor.Pin()-&gt;GetGraphPanel();</div>
+<div class="line"><span class="lineno">  299</span> </div>
+<div class="line"><span class="lineno">  300</span>    FChildren *ViewportChildren = GraphViewport-&gt;GetChildren();</div>
+<div class="line"><span class="lineno">  301</span> </div>
+<div class="line"><span class="lineno">  302</span>    TSharedPtr&lt;SWidget&gt; ChildWidget;</div>
+<div class="line"><span class="lineno">  303</span>    <span class="keywordflow">for</span> (int32 i = 0; i &lt; ViewportChildren-&gt;Num(); i++)</div>
+<div class="line"><span class="lineno">  304</span>    {</div>
+<div class="line"><span class="lineno">  305</span>        ChildWidget = ViewportChildren-&gt;GetChildAt(i);</div>
+<div class="line"><span class="lineno">  306</span> </div>
+<div class="line"><span class="lineno">  307</span>        <span class="keywordflow">if</span> (ChildWidget != VisualGrid &amp;&amp; ChildWidget.Get() != GraphPanel)</div>
+<div class="line"><span class="lineno">  308</span>        {</div>
+<div class="line"><span class="lineno">  309</span>            NativeWidgetVisibility.Add(ChildWidget.Get(), ChildWidget-&gt;GetVisibility());</div>
+<div class="line"><span class="lineno">  310</span> </div>
+<div class="line"><span class="lineno">  311</span>            ChildWidget-&gt;SetVisibility(EVisibility::Hidden);</div>
+<div class="line"><span class="lineno">  312</span>        }</div>
+<div class="line"><span class="lineno">  313</span>    }</div>
+<div class="line"><span class="lineno">  314</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -675,28 +675,28 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00023">23</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   24</span>{</div>
-<div class="line"><span class="lineno">   25</span>    {</div>
-<div class="line"><span class="lineno">   26</span>        TSharedPtr&lt;SDockTab&gt; ActiveTab = FGlobalTabmanager::Get()-&gt;GetActiveTab();</div>
-<div class="line"><span class="lineno">   27</span>        <span class="keywordflow">if</span> (!ActiveTab.IsValid())</div>
-<div class="line"><span class="lineno">   28</span>        {</div>
-<div class="line"><span class="lineno">   29</span>            UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: NO ACTIVE TAB FOUND.&quot;</span>));</div>
-<div class="line"><span class="lineno">   30</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   31</span>        }</div>
-<div class="line"><span class="lineno">   32</span> </div>
-<div class="line"><span class="lineno">   33</span>        LinkedEditor = StaticCastSharedRef&lt;SGraphEditor&gt;(ActiveTab-&gt;GetContent());</div>
-<div class="line"><span class="lineno">   34</span>        <span class="keywordflow">if</span> (!LinkedEditor.IsValid())</div>
-<div class="line"><span class="lineno">   35</span>        {</div>
-<div class="line"><span class="lineno">   36</span>            UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: CURRENT ACTIVE TAB IS NOT OF TYPE - SGraphEditor&quot;</span>));</div>
-<div class="line"><span class="lineno">   37</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   38</span>        }</div>
-<div class="line"><span class="lineno">   39</span>    }</div>
-<div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>    TSharedPtr&lt;SGraphEditor&gt; LinkedEditorPtr = LinkedEditor.Pin();</div>
-<div class="line"><span class="lineno">   42</span> </div>
-<div class="line"><span class="lineno">   43</span>    Init(LinkedEditorPtr.ToSharedRef());</div>
-<div class="line"><span class="lineno">   44</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00022">22</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   23</span>{</div>
+<div class="line"><span class="lineno">   24</span>    {</div>
+<div class="line"><span class="lineno">   25</span>        TSharedPtr&lt;SDockTab&gt; ActiveTab = FGlobalTabmanager::Get()-&gt;GetActiveTab();</div>
+<div class="line"><span class="lineno">   26</span>        <span class="keywordflow">if</span> (!ActiveTab.IsValid())</div>
+<div class="line"><span class="lineno">   27</span>        {</div>
+<div class="line"><span class="lineno">   28</span>            UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: NO ACTIVE TAB FOUND.&quot;</span>));</div>
+<div class="line"><span class="lineno">   29</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   30</span>        }</div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>        LinkedEditor = StaticCastSharedRef&lt;SGraphEditor&gt;(ActiveTab-&gt;GetContent());</div>
+<div class="line"><span class="lineno">   33</span>        <span class="keywordflow">if</span> (!LinkedEditor.IsValid())</div>
+<div class="line"><span class="lineno">   34</span>        {</div>
+<div class="line"><span class="lineno">   35</span>            UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: CURRENT ACTIVE TAB IS NOT OF TYPE - SGraphEditor&quot;</span>));</div>
+<div class="line"><span class="lineno">   36</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   37</span>        }</div>
+<div class="line"><span class="lineno">   38</span>    }</div>
+<div class="line"><span class="lineno">   39</span> </div>
+<div class="line"><span class="lineno">   40</span>    TSharedPtr&lt;SGraphEditor&gt; LinkedEditorPtr = LinkedEditor.Pin();</div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>    Init(LinkedEditorPtr.ToSharedRef());</div>
+<div class="line"><span class="lineno">   43</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -716,20 +716,20 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00046">46</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   47</span>{</div>
-<div class="line"><span class="lineno">   48</span>    LinkedEditor = InGraphEditor;</div>
-<div class="line"><span class="lineno">   49</span> </div>
-<div class="line"><span class="lineno">   50</span>    InGraphEditor-&gt;GetViewLocation(StartViewPosition, StartViewZoom);</div>
-<div class="line"><span class="lineno">   51</span>    InGraphEditor-&gt;ZoomToFit(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">   52</span> </div>
-<div class="line"><span class="lineno">   53</span>    CreateVisualGrid(InGraphEditor);</div>
-<div class="line"><span class="lineno">   54</span>    GenerateVisualChunks(InGraphEditor, FIntVector2(6, 4));</div>
-<div class="line"><span class="lineno">   55</span> </div>
-<div class="line"><span class="lineno">   56</span>    HideNativeVisuals();</div>
-<div class="line"><span class="lineno">   57</span> </div>
-<div class="line"><span class="lineno">   58</span>    BindFocusChangedEvent();</div>
-<div class="line"><span class="lineno">   59</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00045">45</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   46</span>{</div>
+<div class="line"><span class="lineno">   47</span>    LinkedEditor = InGraphEditor;</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>    InGraphEditor-&gt;GetViewLocation(StartViewPosition, StartViewZoom);</div>
+<div class="line"><span class="lineno">   50</span>    InGraphEditor-&gt;ZoomToFit(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">   51</span> </div>
+<div class="line"><span class="lineno">   52</span>    CreateVisualGrid(InGraphEditor);</div>
+<div class="line"><span class="lineno">   53</span>    GenerateVisualChunks(InGraphEditor, FIntVector2(6, 4));</div>
+<div class="line"><span class="lineno">   54</span> </div>
+<div class="line"><span class="lineno">   55</span>    HideNativeVisuals();</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>    BindFocusChangedEvent();</div>
+<div class="line"><span class="lineno">   58</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -757,15 +757,15 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00162">162</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  163</span>{</div>
-<div class="line"><span class="lineno">  164</span>    <span class="keywordflow">if</span> (!LinkedEditor.IsValid())</div>
-<div class="line"><span class="lineno">  165</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  166</span> </div>
-<div class="line"><span class="lineno">  167</span>    SGraphPanel *LinkedPanel = LinkedEditor.Pin()-&gt;GetGraphPanel();</div>
-<div class="line"><span class="lineno">  168</span> </div>
-<div class="line"><span class="lineno">  169</span>    <span class="keywordflow">return</span> LinkedPanel-&gt;JumpToRect(NewViewPosition.TopLeft, NewViewPosition.BotRight);</div>
-<div class="line"><span class="lineno">  170</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00161">161</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  162</span>{</div>
+<div class="line"><span class="lineno">  163</span>    <span class="keywordflow">if</span> (!LinkedEditor.IsValid())</div>
+<div class="line"><span class="lineno">  164</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  165</span> </div>
+<div class="line"><span class="lineno">  166</span>    SGraphPanel *LinkedPanel = LinkedEditor.Pin()-&gt;GetGraphPanel();</div>
+<div class="line"><span class="lineno">  167</span> </div>
+<div class="line"><span class="lineno">  168</span>    <span class="keywordflow">return</span> LinkedPanel-&gt;JumpToRect(NewViewPosition.TopLeft, NewViewPosition.BotRight);</div>
+<div class="line"><span class="lineno">  169</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -803,16 +803,16 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00151">151</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  152</span>{</div>
-<div class="line"><span class="lineno">  153</span>    <span class="keywordflow">if</span> (!LinkedEditor.IsValid())</div>
-<div class="line"><span class="lineno">  154</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  155</span> </div>
-<div class="line"><span class="lineno">  156</span>    TSharedPtr&lt;SGraphEditor&gt; LinkedEditorPtr = LinkedEditor.Pin();</div>
-<div class="line"><span class="lineno">  157</span>    SGraphPanel *LinkedPanel = LinkedEditorPtr-&gt;GetGraphPanel();</div>
-<div class="line"><span class="lineno">  158</span> </div>
-<div class="line"><span class="lineno">  159</span>    <span class="keywordflow">return</span> LinkedPanel-&gt;JumpToRect(InTopLeft, InBottomRight);</div>
-<div class="line"><span class="lineno">  160</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00150">150</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  151</span>{</div>
+<div class="line"><span class="lineno">  152</span>    <span class="keywordflow">if</span> (!LinkedEditor.IsValid())</div>
+<div class="line"><span class="lineno">  153</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  154</span> </div>
+<div class="line"><span class="lineno">  155</span>    TSharedPtr&lt;SGraphEditor&gt; LinkedEditorPtr = LinkedEditor.Pin();</div>
+<div class="line"><span class="lineno">  156</span>    SGraphPanel *LinkedPanel = LinkedEditorPtr-&gt;GetGraphPanel();</div>
+<div class="line"><span class="lineno">  157</span> </div>
+<div class="line"><span class="lineno">  158</span>    <span class="keywordflow">return</span> LinkedPanel-&gt;JumpToRect(InTopLeft, InBottomRight);</div>
+<div class="line"><span class="lineno">  159</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -868,21 +868,21 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00335">335</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  339</span>{</div>
-<div class="line"><span class="lineno">  340</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">bIsActive</a>)</div>
-<div class="line"><span class="lineno">  341</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  342</span> </div>
-<div class="line"><span class="lineno">  343</span>    UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: FOCUS CHANGED.&quot;</span>));</div>
-<div class="line"><span class="lineno">  344</span> </div>
-<div class="line"><span class="lineno">  345</span>    TSharedPtr&lt;SGraphEditor&gt; LinkedEditorPtr = LinkedEditor.Pin();</div>
-<div class="line"><span class="lineno">  346</span> </div>
-<div class="line"><span class="lineno">  347</span>    <span class="keywordflow">if</span> (!NewFocusedWidgetPath.ContainsWidget(LinkedEditorPtr.Get()))</div>
-<div class="line"><span class="lineno">  348</span>    {</div>
-<div class="line"><span class="lineno">  349</span>        <a class="code hl_variable" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">bIsActive</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  350</span>        Close();</div>
-<div class="line"><span class="lineno">  351</span>    }</div>
-<div class="line"><span class="lineno">  352</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00334">334</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  338</span>{</div>
+<div class="line"><span class="lineno">  339</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">bIsActive</a>)</div>
+<div class="line"><span class="lineno">  340</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  341</span> </div>
+<div class="line"><span class="lineno">  342</span>    UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: FOCUS CHANGED.&quot;</span>));</div>
+<div class="line"><span class="lineno">  343</span> </div>
+<div class="line"><span class="lineno">  344</span>    TSharedPtr&lt;SGraphEditor&gt; LinkedEditorPtr = LinkedEditor.Pin();</div>
+<div class="line"><span class="lineno">  345</span> </div>
+<div class="line"><span class="lineno">  346</span>    <span class="keywordflow">if</span> (!NewFocusedWidgetPath.ContainsWidget(LinkedEditorPtr.Get()))</div>
+<div class="line"><span class="lineno">  347</span>    {</div>
+<div class="line"><span class="lineno">  348</span>        <a class="code hl_variable" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">bIsActive</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  349</span>        Close();</div>
+<div class="line"><span class="lineno">  350</span>    }</div>
+<div class="line"><span class="lineno">  351</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -909,24 +909,24 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00274">274</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  275</span>{</div>
-<div class="line"><span class="lineno">  276</span>    TSharedPtr&lt;SUniformGridPanel&gt; GridContainerPtr = GridContainer.Pin();</div>
-<div class="line"><span class="lineno">  277</span>    <span class="keywordflow">if</span> (GridContainerPtr.IsValid())</div>
-<div class="line"><span class="lineno">  278</span>    {</div>
-<div class="line"><span class="lineno">  279</span>        TSharedPtr&lt;SOverlay&gt; ParentWidget = StaticCastSharedPtr&lt;SOverlay&gt;(</div>
-<div class="line"><span class="lineno">  280</span>            GridContainerPtr-&gt;GetParentWidget());</div>
-<div class="line"><span class="lineno">  281</span> </div>
-<div class="line"><span class="lineno">  282</span>        <span class="keywordflow">if</span> (ParentWidget.IsValid())</div>
-<div class="line"><span class="lineno">  283</span>        {</div>
-<div class="line"><span class="lineno">  284</span>            ParentWidget-&gt;RemoveSlot(GridContainerPtr.ToSharedRef());</div>
-<div class="line"><span class="lineno">  285</span> </div>
-<div class="line"><span class="lineno">  286</span>            GridParent = ParentWidget;</div>
-<div class="line"><span class="lineno">  287</span>        }</div>
-<div class="line"><span class="lineno">  288</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  289</span>            UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: PARENT WIDGET NOT FOUND, CANNOT REMOVE LOCOMOTION WIDGETS.&quot;</span>))</div>
-<div class="line"><span class="lineno">  290</span>    }</div>
-<div class="line"><span class="lineno">  291</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00273">273</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  274</span>{</div>
+<div class="line"><span class="lineno">  275</span>    TSharedPtr&lt;SUniformGridPanel&gt; GridContainerPtr = GridContainer.Pin();</div>
+<div class="line"><span class="lineno">  276</span>    <span class="keywordflow">if</span> (GridContainerPtr.IsValid())</div>
+<div class="line"><span class="lineno">  277</span>    {</div>
+<div class="line"><span class="lineno">  278</span>        TSharedPtr&lt;SOverlay&gt; ParentWidget = StaticCastSharedPtr&lt;SOverlay&gt;(</div>
+<div class="line"><span class="lineno">  279</span>            GridContainerPtr-&gt;GetParentWidget());</div>
+<div class="line"><span class="lineno">  280</span> </div>
+<div class="line"><span class="lineno">  281</span>        <span class="keywordflow">if</span> (ParentWidget.IsValid())</div>
+<div class="line"><span class="lineno">  282</span>        {</div>
+<div class="line"><span class="lineno">  283</span>            ParentWidget-&gt;RemoveSlot(GridContainerPtr.ToSharedRef());</div>
+<div class="line"><span class="lineno">  284</span> </div>
+<div class="line"><span class="lineno">  285</span>            GridParent = ParentWidget;</div>
+<div class="line"><span class="lineno">  286</span>        }</div>
+<div class="line"><span class="lineno">  287</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  288</span>            UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: PARENT WIDGET NOT FOUND, CANNOT REMOVE LOCOMOTION WIDGETS.&quot;</span>))</div>
+<div class="line"><span class="lineno">  289</span>    }</div>
+<div class="line"><span class="lineno">  290</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -945,21 +945,21 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00100">100</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  101</span>{</div>
-<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">if</span> (PreviousPositions.IsEmpty())</div>
-<div class="line"><span class="lineno">  103</span>    {</div>
-<div class="line"><span class="lineno">  104</span>        LinkedEditor.Pin()-&gt;ZoomToFit(<span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  105</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  106</span>    }</div>
-<div class="line"><span class="lineno">  107</span> </div>
-<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">if</span> (!MoveViewport(PreviousPositions.Pop()))</div>
-<div class="line"><span class="lineno">  109</span>    {</div>
-<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  111</span>    }</div>
-<div class="line"><span class="lineno">  112</span> </div>
-<div class="line"><span class="lineno">  113</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  114</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00099">99</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  100</span>{</div>
+<div class="line"><span class="lineno">  101</span>    <span class="keywordflow">if</span> (PreviousPositions.IsEmpty())</div>
+<div class="line"><span class="lineno">  102</span>    {</div>
+<div class="line"><span class="lineno">  103</span>        LinkedEditor.Pin()-&gt;ZoomToFit(<span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  104</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  105</span>    }</div>
+<div class="line"><span class="lineno">  106</span> </div>
+<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">if</span> (!MoveViewport(PreviousPositions.Pop()))</div>
+<div class="line"><span class="lineno">  108</span>    {</div>
+<div class="line"><span class="lineno">  109</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  110</span>    }</div>
+<div class="line"><span class="lineno">  111</span> </div>
+<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  113</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -979,45 +979,45 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00061">61</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   62</span>{</div>
-<div class="line"><span class="lineno">   63</span>    <span class="keywordflow">if</span> (Index &gt; ChunkArray.Num() || Index &lt; 0)</div>
-<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structFGraphLocomotionChunk.html">FGraphLocomotionChunk</a> SelectedChunk = ChunkArray[Index];</div>
-<div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>    <span class="keyword">const</span> SGraphPanel *LinkedPanel = LinkedEditor.Pin()-&gt;GetGraphPanel();</div>
-<div class="line"><span class="lineno">   69</span> </div>
-<div class="line"><span class="lineno">   70</span>    <span class="keyword">const</span> FVector2D GraphTopLeftCoord = LinkedPanel-&gt;PanelCoordToGraphCoord(SelectedChunk.GetChunkTopLeft());</div>
-<div class="line"><span class="lineno">   71</span>    <span class="keyword">const</span> FVector2D GraphBottomRightCoord = LinkedPanel-&gt;PanelCoordToGraphCoord(SelectedChunk.GetChunkBottomRight());</div>
-<div class="line"><span class="lineno">   72</span> </div>
-<div class="line"><span class="lineno">   73</span>    ChangeChunkVis(Index, FLinearColor::Red);</div>
-<div class="line"><span class="lineno">   74</span> </div>
-<div class="line"><span class="lineno">   75</span>    GEditor-&gt;GetTimerManager()-&gt;SetTimer(</div>
-<div class="line"><span class="lineno">   76</span>        SelectionTimerHandle,</div>
-<div class="line"><span class="lineno">   77</span>        [<span class="keyword">this</span>, Index, GraphTopLeftCoord, GraphBottomRightCoord]()</div>
-<div class="line"><span class="lineno">   78</span>        {</div>
-<div class="line"><span class="lineno">   79</span>            ChangeChunkVis(Index);</div>
-<div class="line"><span class="lineno">   80</span> </div>
-<div class="line"><span class="lineno">   81</span>            <span class="keywordflow">if</span> (MoveViewport(GraphTopLeftCoord, GraphBottomRightCoord))</div>
-<div class="line"><span class="lineno">   82</span>            {</div>
-<div class="line"><span class="lineno">   83</span>                <span class="keywordflow">if</span> (CurrentViewPosition != FVector2D::ZeroVector)</div>
-<div class="line"><span class="lineno">   84</span>                    PreviousPositions.Push(CurrentViewPosition);</div>
-<div class="line"><span class="lineno">   85</span> </div>
-<div class="line"><span class="lineno">   86</span>                CurrentViewPosition = <a class="code hl_struct" href="structFPanelViewPosition.html">FPanelViewPosition</a>(GraphTopLeftCoord, GraphBottomRightCoord);</div>
-<div class="line"><span class="lineno">   87</span>            }</div>
-<div class="line"><span class="lineno">   88</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   89</span>            {</div>
-<div class="line"><span class="lineno">   90</span>                UE_LOG(LogAccession, Log, TEXT(<span class="stringliteral">&quot;Failed To Jump To Viewport Coords (TopLeft: %s | BottomRight: %s)&quot;</span>),</div>
-<div class="line"><span class="lineno">   91</span>                       *GraphTopLeftCoord.ToString(), *GraphBottomRightCoord.ToString());</div>
-<div class="line"><span class="lineno">   92</span>            }</div>
-<div class="line"><span class="lineno">   93</span>        },</div>
-<div class="line"><span class="lineno">   94</span>        0.5f,</div>
-<div class="line"><span class="lineno">   95</span>        <span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">   96</span> </div>
-<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   98</span>}</div>
-<div class="ttc" id="astructFPanelViewPosition_html"><div class="ttname"><a href="structFPanelViewPosition.html">FPanelViewPosition</a></div><div class="ttdef"><b>Definition:</b> <a href="GraphLocomotionContext_8h_source.html#l00068">GraphLocomotionContext.h:69</a></div></div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00060">60</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   61</span>{</div>
+<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">if</span> (Index &gt; ChunkArray.Num() || Index &lt; 0)</div>
+<div class="line"><span class="lineno">   63</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>    <span class="keyword">const</span> <a class="code hl_struct" href="structFGraphLocomotionChunk.html">FGraphLocomotionChunk</a> SelectedChunk = ChunkArray[Index];</div>
+<div class="line"><span class="lineno">   66</span> </div>
+<div class="line"><span class="lineno">   67</span>    <span class="keyword">const</span> SGraphPanel *LinkedPanel = LinkedEditor.Pin()-&gt;GetGraphPanel();</div>
+<div class="line"><span class="lineno">   68</span> </div>
+<div class="line"><span class="lineno">   69</span>    <span class="keyword">const</span> FVector2D GraphTopLeftCoord = LinkedPanel-&gt;PanelCoordToGraphCoord(SelectedChunk.GetChunkTopLeft());</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keyword">const</span> FVector2D GraphBottomRightCoord = LinkedPanel-&gt;PanelCoordToGraphCoord(SelectedChunk.GetChunkBottomRight());</div>
+<div class="line"><span class="lineno">   71</span> </div>
+<div class="line"><span class="lineno">   72</span>    ChangeChunkVis(Index, FLinearColor::Red);</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>    GEditor-&gt;GetTimerManager()-&gt;SetTimer(</div>
+<div class="line"><span class="lineno">   75</span>        SelectionTimerHandle,</div>
+<div class="line"><span class="lineno">   76</span>        [<span class="keyword">this</span>, Index, GraphTopLeftCoord, GraphBottomRightCoord]()</div>
+<div class="line"><span class="lineno">   77</span>        {</div>
+<div class="line"><span class="lineno">   78</span>            ChangeChunkVis(Index);</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>            <span class="keywordflow">if</span> (MoveViewport(GraphTopLeftCoord, GraphBottomRightCoord))</div>
+<div class="line"><span class="lineno">   81</span>            {</div>
+<div class="line"><span class="lineno">   82</span>                <span class="keywordflow">if</span> (CurrentViewPosition != FVector2D::ZeroVector)</div>
+<div class="line"><span class="lineno">   83</span>                    PreviousPositions.Push(CurrentViewPosition);</div>
+<div class="line"><span class="lineno">   84</span> </div>
+<div class="line"><span class="lineno">   85</span>                CurrentViewPosition = <a class="code hl_struct" href="structFPanelViewPosition.html">FPanelViewPosition</a>(GraphTopLeftCoord, GraphBottomRightCoord);</div>
+<div class="line"><span class="lineno">   86</span>            }</div>
+<div class="line"><span class="lineno">   87</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   88</span>            {</div>
+<div class="line"><span class="lineno">   89</span>                UE_LOG(LogAccession, Log, TEXT(<span class="stringliteral">&quot;Failed To Jump To Viewport Coords (TopLeft: %s | BottomRight: %s)&quot;</span>),</div>
+<div class="line"><span class="lineno">   90</span>                       *GraphTopLeftCoord.ToString(), *GraphBottomRightCoord.ToString());</div>
+<div class="line"><span class="lineno">   91</span>            }</div>
+<div class="line"><span class="lineno">   92</span>        },</div>
+<div class="line"><span class="lineno">   93</span>        0.5f,</div>
+<div class="line"><span class="lineno">   94</span>        <span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">   95</span> </div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   97</span>}</div>
+<div class="ttc" id="astructFPanelViewPosition_html"><div class="ttname"><a href="structFPanelViewPosition.html">FPanelViewPosition</a></div><div class="ttdef"><b>Definition:</b> <a href="GraphLocomotionContext_8h_source.html#l00067">GraphLocomotionContext.h:68</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1044,13 +1044,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00359">359</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  360</span>{</div>
-<div class="line"><span class="lineno">  361</span>    <span class="keywordflow">if</span> (FocusChangedHandle.IsValid())</div>
-<div class="line"><span class="lineno">  362</span>    {</div>
-<div class="line"><span class="lineno">  363</span>        FSlateApplication::Get().OnFocusChanging().Remove(FocusChangedHandle);</div>
-<div class="line"><span class="lineno">  364</span>    }</div>
-<div class="line"><span class="lineno">  365</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00358">358</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  359</span>{</div>
+<div class="line"><span class="lineno">  360</span>    <span class="keywordflow">if</span> (FocusChangedHandle.IsValid())</div>
+<div class="line"><span class="lineno">  361</span>    {</div>
+<div class="line"><span class="lineno">  362</span>        FSlateApplication::Get().OnFocusChanging().Remove(FocusChangedHandle);</div>
+<div class="line"><span class="lineno">  363</span>    }</div>
+<div class="line"><span class="lineno">  364</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1077,23 +1077,23 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00317">317</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  318</span>{</div>
-<div class="line"><span class="lineno">  319</span>    FChildren *ViewportChildren = GridParent.Pin()-&gt;GetChildren();</div>
-<div class="line"><span class="lineno">  320</span> </div>
-<div class="line"><span class="lineno">  321</span>    TSharedPtr&lt;SWidget&gt; ChildWidget;</div>
-<div class="line"><span class="lineno">  322</span>    <span class="keywordflow">for</span> (int32 i = 0; i &lt; ViewportChildren-&gt;Num(); i++)</div>
-<div class="line"><span class="lineno">  323</span>    {</div>
-<div class="line"><span class="lineno">  324</span>        ChildWidget = ViewportChildren-&gt;GetChildAt(i);</div>
-<div class="line"><span class="lineno">  325</span> </div>
-<div class="line"><span class="lineno">  326</span>        <span class="keywordflow">if</span> (NativeWidgetVisibility.Contains(ChildWidget.Get()))</div>
-<div class="line"><span class="lineno">  327</span>        {</div>
-<div class="line"><span class="lineno">  328</span>            ChildWidget-&gt;SetVisibility(NativeWidgetVisibility[ChildWidget.Get()]);</div>
-<div class="line"><span class="lineno">  329</span>        }</div>
-<div class="line"><span class="lineno">  330</span>    }</div>
-<div class="line"><span class="lineno">  331</span> </div>
-<div class="line"><span class="lineno">  332</span>    NativeWidgetVisibility.Empty();</div>
-<div class="line"><span class="lineno">  333</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00316">316</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  317</span>{</div>
+<div class="line"><span class="lineno">  318</span>    FChildren *ViewportChildren = GridParent.Pin()-&gt;GetChildren();</div>
+<div class="line"><span class="lineno">  319</span> </div>
+<div class="line"><span class="lineno">  320</span>    TSharedPtr&lt;SWidget&gt; ChildWidget;</div>
+<div class="line"><span class="lineno">  321</span>    <span class="keywordflow">for</span> (int32 i = 0; i &lt; ViewportChildren-&gt;Num(); i++)</div>
+<div class="line"><span class="lineno">  322</span>    {</div>
+<div class="line"><span class="lineno">  323</span>        ChildWidget = ViewportChildren-&gt;GetChildAt(i);</div>
+<div class="line"><span class="lineno">  324</span> </div>
+<div class="line"><span class="lineno">  325</span>        <span class="keywordflow">if</span> (NativeWidgetVisibility.Contains(ChildWidget.Get()))</div>
+<div class="line"><span class="lineno">  326</span>        {</div>
+<div class="line"><span class="lineno">  327</span>            ChildWidget-&gt;SetVisibility(NativeWidgetVisibility[ChildWidget.Get()]);</div>
+<div class="line"><span class="lineno">  328</span>        }</div>
+<div class="line"><span class="lineno">  329</span>    }</div>
+<div class="line"><span class="lineno">  330</span> </div>
+<div class="line"><span class="lineno">  331</span>    NativeWidgetVisibility.Empty();</div>
+<div class="line"><span class="lineno">  332</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1118,7 +1118,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00154">154</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00153">153</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 
 </div>
 </div>
@@ -1142,7 +1142,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00156">156</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00155">155</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 
 </div>
 </div>
@@ -1166,7 +1166,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00149">149</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00148">148</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 
 </div>
 </div>
@@ -1190,7 +1190,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00160">160</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00159">159</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 
 </div>
 </div>
@@ -1214,7 +1214,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00162">162</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00161">161</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 
 </div>
 </div>
@@ -1238,7 +1238,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00164">164</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00163">163</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 
 </div>
 </div>
@@ -1262,7 +1262,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00150">150</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00149">149</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 
 </div>
 </div>
@@ -1286,7 +1286,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00146">146</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00145">145</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 
 </div>
 </div>
@@ -1310,7 +1310,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00147">147</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8h_source.html#l00146">146</a> of file <a class="el" href="GraphLocomotionContext_8h_source.html">GraphLocomotionContext.h</a>.</p>
 
 </div>
 </div>

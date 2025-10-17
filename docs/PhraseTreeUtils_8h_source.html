@@ -94,46 +94,45 @@ $(document).ready(function(){initNavTree('PhraseTreeUtils_8h_source.html',''); i
   <div class="headertitle"><div class="title">PhraseTreeUtils.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) HCI-BCU. All rights reserved.</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;PhraseTree/PhraseTreeFunctionLibrary.h&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;PhraseTreeUtils.generated.h&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>UCLASS()</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classUPhraseTreeUtils.html">   13</a></span>class ACCESSIONCOMMUNICATION_API <a class="code hl_class" href="classUPhraseTreeUtils.html">UPhraseTreeUtils</a> : public UObject</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    GENERATED_BODY()</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classUPhraseTreeUtils.html">UPhraseTreeUtils</a>();</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classUPhraseTreeUtils.html">~UPhraseTreeUtils</a>();</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// Function Library Methods</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> RegisterFunctionLibrary(<a class="code hl_class" href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a> *LibraryToRegister);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="classUPhraseTreeUtils.html#aa4a1e4c59b4b246304e52d93344874fa">   34</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUPhraseTreeUtils.html#aa4a1e4c59b4b246304e52d93344874fa">SetPhraseTree</a>(TSharedRef&lt;FPhraseTree&gt; NewPhraseTree)</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        this-&gt;PhraseTree = NewPhraseTree;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    }</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    UPROPERTY(EditAnywhere, Category = <span class="stringliteral">&quot;PhraseTreeUtils&quot;</span>)</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classUPhraseTreeUtils.html#aeb7a4d0c45650c67dc3d9b04ef58a166">   44</a></span>    TArray&lt;<a class="code hl_class" href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a> *&gt; RegisteredLibraries;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classUPhraseTreeUtils.html#afa8212de13b995b53ababd2c709f0aa8">   49</a></span>    TWeakPtr&lt;<a class="code hl_class" href="classFPhraseTree.html">FPhraseTree</a>&gt; PhraseTree;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
-<div class="ttc" id="aclassFPhraseTree_html"><div class="ttname"><a href="classFPhraseTree.html">FPhraseTree</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00221">PhraseTree.h:222</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeFunctionLibrary_html"><div class="ttname"><a href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTreeFunctionLibrary_8h_source.html#l00026">PhraseTreeFunctionLibrary.h:27</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeUtils_html"><div class="ttname"><a href="classUPhraseTreeUtils.html">UPhraseTreeUtils</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTreeUtils_8h_source.html#l00013">PhraseTreeUtils.h:14</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeUtils_html_aa4a1e4c59b4b246304e52d93344874fa"><div class="ttname"><a href="classUPhraseTreeUtils.html#aa4a1e4c59b4b246304e52d93344874fa">UPhraseTreeUtils::SetPhraseTree</a></div><div class="ttdeci">void SetPhraseTree(TSharedRef&lt; FPhraseTree &gt; NewPhraseTree)</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTreeUtils_8h_source.html#l00034">PhraseTreeUtils.h:34</a></div></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) HCI-BCU 2025. All rights reserved.</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;CoreMinimal.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;PhraseTree/PhraseTreeFunctionLibrary.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;PhraseTreeUtils.generated.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>UCLASS()</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="classUPhraseTreeUtils.html">   12</a></span>class ACCESSIONCOMMUNICATION_API <a class="code hl_class" href="classUPhraseTreeUtils.html">UPhraseTreeUtils</a> : public UObject</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    GENERATED_BODY()</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <a class="code hl_class" href="classUPhraseTreeUtils.html">UPhraseTreeUtils</a>();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classUPhraseTreeUtils.html">~UPhraseTreeUtils</a>();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// Function Library Methods</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> RegisterFunctionLibrary(<a class="code hl_class" href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a> *LibraryToRegister);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classUPhraseTreeUtils.html#aa4a1e4c59b4b246304e52d93344874fa">   33</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUPhraseTreeUtils.html#aa4a1e4c59b4b246304e52d93344874fa">SetPhraseTree</a>(TSharedRef&lt;FPhraseTree&gt; NewPhraseTree)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        this-&gt;PhraseTree = NewPhraseTree;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    UPROPERTY(EditAnywhere, Category = <span class="stringliteral">&quot;PhraseTreeUtils&quot;</span>)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classUPhraseTreeUtils.html#aeb7a4d0c45650c67dc3d9b04ef58a166">   43</a></span>    TArray&lt;<a class="code hl_class" href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a> *&gt; RegisteredLibraries;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classUPhraseTreeUtils.html#afa8212de13b995b53ababd2c709f0aa8">   48</a></span>    TWeakPtr&lt;<a class="code hl_class" href="classFPhraseTree.html">FPhraseTree</a>&gt; PhraseTree;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+<div class="ttc" id="aclassFPhraseTree_html"><div class="ttname"><a href="classFPhraseTree.html">FPhraseTree</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00220">PhraseTree.h:221</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeFunctionLibrary_html"><div class="ttname"><a href="classUPhraseTreeFunctionLibrary.html">UPhraseTreeFunctionLibrary</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTreeFunctionLibrary_8h_source.html#l00025">PhraseTreeFunctionLibrary.h:26</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeUtils_html"><div class="ttname"><a href="classUPhraseTreeUtils.html">UPhraseTreeUtils</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTreeUtils_8h_source.html#l00012">PhraseTreeUtils.h:13</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeUtils_html_aa4a1e4c59b4b246304e52d93344874fa"><div class="ttname"><a href="classUPhraseTreeUtils.html#aa4a1e4c59b4b246304e52d93344874fa">UPhraseTreeUtils::SetPhraseTree</a></div><div class="ttdeci">void SetPhraseTree(TSharedRef&lt; FPhraseTree &gt; NewPhraseTree)</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTreeUtils_8h_source.html#l00033">PhraseTreeUtils.h:33</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

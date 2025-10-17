@@ -147,7 +147,7 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00017">17</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00016">16</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="af36fbeddf99513d493c8574e5990acc7" name="af36fbeddf99513d493c8574e5990acc7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af36fbeddf99513d493c8574e5990acc7">&#9670;&#160;</a></span>Get()</h2>
@@ -173,10 +173,10 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p >End IModuleInterface Implementation </p>
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00031">31</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   32</span>    {</div>
-<div class="line"><span class="lineno">   33</span>        <span class="keywordflow">return</span> FModuleManager::GetModuleChecked&lt;FAccessionCommunicationModule&gt;(<span class="stringliteral">&quot;AccessionCommunication&quot;</span>);</div>
-<div class="line"><span class="lineno">   34</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00030">30</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   31</span>    {</div>
+<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">return</span> FModuleManager::GetModuleChecked&lt;FAccessionCommunicationModule&gt;(<span class="stringliteral">&quot;AccessionCommunication&quot;</span>);</div>
+<div class="line"><span class="lineno">   33</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -196,31 +196,31 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8cpp_source.html#l00097">97</a> of file <a class="el" href="AccessionCommunication_8cpp_source.html">AccessionCommunication.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   98</span>{</div>
-<div class="line"><span class="lineno">   99</span>    FKey EventKey = InKeyEvent.GetKey();</div>
-<div class="line"><span class="lineno">  100</span> </div>
-<div class="line"><span class="lineno">  101</span>    <span class="keywordtype">bool</span> isTargetKey = EventKey == EKeys::LeftAlt || EventKey == EKeys::RightAlt;</div>
-<div class="line"><span class="lineno">  102</span> </div>
-<div class="line"><span class="lineno">  103</span>    <span class="comment">// If the Voice Command Key is Pressed, Toggle Audio Capture.</span></div>
-<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">if</span> (isTargetKey &amp;&amp; !InKeyEvent.IsRepeat())</div>
-<div class="line"><span class="lineno">  105</span>    {</div>
-<div class="line"><span class="lineno">  106</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a19164195b0f4762910b909ba2dd15582">IsCapturingAudio</a>())</div>
-<div class="line"><span class="lineno">  107</span>        {</div>
-<div class="line"><span class="lineno">  108</span>            OA_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;AudioCapture Change&quot;</span>), TEXT(<span class="stringliteral">&quot;Starting Audio Capture&quot;</span>));</div>
-<div class="line"><span class="lineno">  109</span>            <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a7d1368be18287e1f8c288c81d571142d">StartCapturingAudio</a>();</div>
-<div class="line"><span class="lineno">  110</span>        }</div>
-<div class="line"><span class="lineno">  111</span>        <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  112</span>        {</div>
-<div class="line"><span class="lineno">  113</span>            OA_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;AudioCapture Change&quot;</span>), TEXT(<span class="stringliteral">&quot;Stopping Audio Capture&quot;</span>));</div>
-<div class="line"><span class="lineno">  114</span>            <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a0b9517bb36ae5a96308dd290f7b57f1f">StopCapturingAudio</a>();</div>
-<div class="line"><span class="lineno">  115</span>        }</div>
-<div class="line"><span class="lineno">  116</span>    }</div>
-<div class="line"><span class="lineno">  117</span>}</div>
-<div class="ttc" id="aclassFAccessionCommunicationModule_html_a694a4025863885977ef6a4c01ab9129c"><div class="ttname"><a href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">FAccessionCommunicationModule::AudioManager</a></div><div class="ttdeci">class UAudioManager * AudioManager</div><div class="ttdoc">The AudioManager, Managing any Audio Capture Component.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8h_source.html#l00081">AccessionCommunication.h:81</a></div></div>
-<div class="ttc" id="aclassUAudioManager_html_a0b9517bb36ae5a96308dd290f7b57f1f"><div class="ttname"><a href="classUAudioManager.html#a0b9517bb36ae5a96308dd290f7b57f1f">UAudioManager::StopCapturingAudio</a></div><div class="ttdeci">void StopCapturingAudio()</div><div class="ttdoc">Stops the Capturing of Audio onto the Buffer, and sends the audio to the transcription service.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00064">AudioManager.cpp:64</a></div></div>
-<div class="ttc" id="aclassUAudioManager_html_a19164195b0f4762910b909ba2dd15582"><div class="ttname"><a href="classUAudioManager.html#a19164195b0f4762910b909ba2dd15582">UAudioManager::IsCapturingAudio</a></div><div class="ttdeci">bool IsCapturingAudio() const</div><div class="ttdoc">Is the Audio Manager Currently Capturing Audio.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00042">AudioManager.cpp:42</a></div></div>
-<div class="ttc" id="aclassUAudioManager_html_a7d1368be18287e1f8c288c81d571142d"><div class="ttname"><a href="classUAudioManager.html#a7d1368be18287e1f8c288c81d571142d">UAudioManager::StartCapturingAudio</a></div><div class="ttdeci">void StartCapturingAudio()</div><div class="ttdoc">Starts The Capturing of Audio onto the Buffer.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00057">AudioManager.cpp:57</a></div></div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8cpp_source.html#l00096">96</a> of file <a class="el" href="AccessionCommunication_8cpp_source.html">AccessionCommunication.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   97</span>{</div>
+<div class="line"><span class="lineno">   98</span>    FKey EventKey = InKeyEvent.GetKey();</div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>    <span class="keywordtype">bool</span> isTargetKey = EventKey == EKeys::LeftAlt || EventKey == EKeys::RightAlt;</div>
+<div class="line"><span class="lineno">  101</span> </div>
+<div class="line"><span class="lineno">  102</span>    <span class="comment">// If the Voice Command Key is Pressed, Toggle Audio Capture.</span></div>
+<div class="line"><span class="lineno">  103</span>    <span class="keywordflow">if</span> (isTargetKey &amp;&amp; !InKeyEvent.IsRepeat())</div>
+<div class="line"><span class="lineno">  104</span>    {</div>
+<div class="line"><span class="lineno">  105</span>        <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a19164195b0f4762910b909ba2dd15582">IsCapturingAudio</a>())</div>
+<div class="line"><span class="lineno">  106</span>        {</div>
+<div class="line"><span class="lineno">  107</span>            OA_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;AudioCapture Change&quot;</span>), TEXT(<span class="stringliteral">&quot;Starting Audio Capture&quot;</span>));</div>
+<div class="line"><span class="lineno">  108</span>            <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a7d1368be18287e1f8c288c81d571142d">StartCapturingAudio</a>();</div>
+<div class="line"><span class="lineno">  109</span>        }</div>
+<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  111</span>        {</div>
+<div class="line"><span class="lineno">  112</span>            OA_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;AudioCapture Change&quot;</span>), TEXT(<span class="stringliteral">&quot;Stopping Audio Capture&quot;</span>));</div>
+<div class="line"><span class="lineno">  113</span>            <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a0b9517bb36ae5a96308dd290f7b57f1f">StopCapturingAudio</a>();</div>
+<div class="line"><span class="lineno">  114</span>        }</div>
+<div class="line"><span class="lineno">  115</span>    }</div>
+<div class="line"><span class="lineno">  116</span>}</div>
+<div class="ttc" id="aclassFAccessionCommunicationModule_html_a694a4025863885977ef6a4c01ab9129c"><div class="ttname"><a href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">FAccessionCommunicationModule::AudioManager</a></div><div class="ttdeci">class UAudioManager * AudioManager</div><div class="ttdoc">The AudioManager, Managing any Audio Capture Component.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8h_source.html#l00080">AccessionCommunication.h:80</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a0b9517bb36ae5a96308dd290f7b57f1f"><div class="ttname"><a href="classUAudioManager.html#a0b9517bb36ae5a96308dd290f7b57f1f">UAudioManager::StopCapturingAudio</a></div><div class="ttdeci">void StopCapturingAudio()</div><div class="ttdoc">Stops the Capturing of Audio onto the Buffer, and sends the audio to the transcription service.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00063">AudioManager.cpp:63</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a19164195b0f4762910b909ba2dd15582"><div class="ttname"><a href="classUAudioManager.html#a19164195b0f4762910b909ba2dd15582">UAudioManager::IsCapturingAudio</a></div><div class="ttdeci">bool IsCapturingAudio() const</div><div class="ttdoc">Is the Audio Manager Currently Capturing Audio.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00041">AudioManager.cpp:41</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a7d1368be18287e1f8c288c81d571142d"><div class="ttname"><a href="classUAudioManager.html#a7d1368be18287e1f8c288c81d571142d">UAudioManager::StartCapturingAudio</a></div><div class="ttdeci">void StartCapturingAudio()</div><div class="ttdoc">Starts The Capturing of Audio onto the Buffer.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00056">AudioManager.cpp:56</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -247,22 +247,22 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8cpp_source.html#l00056">56</a> of file <a class="el" href="AccessionCommunication_8cpp_source.html">AccessionCommunication.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   57</span>{</div>
-<div class="line"><span class="lineno">   58</span>    <span class="comment">// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,</span></div>
-<div class="line"><span class="lineno">   59</span>    <span class="comment">// we call this function before unloading the module.</span></div>
-<div class="line"><span class="lineno">   60</span>    UE_LOG(LogAccessionCom, Display, TEXT(<span class="stringliteral">&quot;AccessionComModule::ShutdownModule()&quot;</span>));</div>
-<div class="line"><span class="lineno">   61</span> </div>
-<div class="line"><span class="lineno">   62</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;RemoveFromRoot();</div>
-<div class="line"><span class="lineno">   63</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a0774e615b309dbf0a6a1f6c38b74cbe1">PhraseTreeUtils</a>-&gt;RemoveFromRoot();</div>
-<div class="line"><span class="lineno">   64</span> </div>
-<div class="line"><span class="lineno">   65</span>    FSlateApplication::Get().OnApplicationPreInputKeyDownListener().Remove(KeyDownEventHandle);</div>
-<div class="line"><span class="lineno">   66</span> </div>
-<div class="line"><span class="lineno">   67</span>    UnloadZMQDLL();</div>
-<div class="line"><span class="lineno">   68</span> </div>
-<div class="line"><span class="lineno">   69</span>    UnregisterConsoleCommands();</div>
-<div class="line"><span class="lineno">   70</span>}</div>
-<div class="ttc" id="aclassFAccessionCommunicationModule_html_a0774e615b309dbf0a6a1f6c38b74cbe1"><div class="ttname"><a href="classFAccessionCommunicationModule.html#a0774e615b309dbf0a6a1f6c38b74cbe1">FAccessionCommunicationModule::PhraseTreeUtils</a></div><div class="ttdeci">class UPhraseTreeUtils * PhraseTreeUtils</div><div class="ttdoc">Phrase Tree Utility Class, For Dealing With Phrase Tree Function Libraries.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8h_source.html#l00096">AccessionCommunication.h:96</a></div></div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8cpp_source.html#l00055">55</a> of file <a class="el" href="AccessionCommunication_8cpp_source.html">AccessionCommunication.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   56</span>{</div>
+<div class="line"><span class="lineno">   57</span>    <span class="comment">// This function may be called during shutdown to clean up your module.  For modules that support dynamic reloading,</span></div>
+<div class="line"><span class="lineno">   58</span>    <span class="comment">// we call this function before unloading the module.</span></div>
+<div class="line"><span class="lineno">   59</span>    UE_LOG(LogAccessionCom, Display, TEXT(<span class="stringliteral">&quot;AccessionComModule::ShutdownModule()&quot;</span>));</div>
+<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   61</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;RemoveFromRoot();</div>
+<div class="line"><span class="lineno">   62</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a0774e615b309dbf0a6a1f6c38b74cbe1">PhraseTreeUtils</a>-&gt;RemoveFromRoot();</div>
+<div class="line"><span class="lineno">   63</span> </div>
+<div class="line"><span class="lineno">   64</span>    FSlateApplication::Get().OnApplicationPreInputKeyDownListener().Remove(KeyDownEventHandle);</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>    UnloadZMQDLL();</div>
+<div class="line"><span class="lineno">   67</span> </div>
+<div class="line"><span class="lineno">   68</span>    UnregisterConsoleCommands();</div>
+<div class="line"><span class="lineno">   69</span>}</div>
+<div class="ttc" id="aclassFAccessionCommunicationModule_html_a0774e615b309dbf0a6a1f6c38b74cbe1"><div class="ttname"><a href="classFAccessionCommunicationModule.html#a0774e615b309dbf0a6a1f6c38b74cbe1">FAccessionCommunicationModule::PhraseTreeUtils</a></div><div class="ttdeci">class UPhraseTreeUtils * PhraseTreeUtils</div><div class="ttdoc">Phrase Tree Utility Class, For Dealing With Phrase Tree Function Libraries.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8h_source.html#l00095">AccessionCommunication.h:95</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -290,39 +290,39 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p >IModuleInterface Implementation </p>
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8cpp_source.html#l00025">25</a> of file <a class="el" href="AccessionCommunication_8cpp_source.html">AccessionCommunication.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   26</span>{</div>
-<div class="line"><span class="lineno">   27</span>    LoadZMQDLL();</div>
-<div class="line"><span class="lineno">   28</span> </div>
-<div class="line"><span class="lineno">   29</span>    <span class="comment">// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module</span></div>
-<div class="line"><span class="lineno">   30</span>    UE_LOG(LogAccessionCom, Display, TEXT(<span class="stringliteral">&quot;AccessionComModule::StartupModule()&quot;</span>));</div>
-<div class="line"><span class="lineno">   31</span> </div>
-<div class="line"><span class="lineno">   32</span>    <span class="comment">// Initialize AudioManager</span></div>
-<div class="line"><span class="lineno">   33</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a> = NewObject&lt;UAudioManager&gt;();</div>
-<div class="line"><span class="lineno">   34</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;AddToRoot();</div>
-<div class="line"><span class="lineno">   35</span> </div>
-<div class="line"><span class="lineno">   36</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_variable" href="classUAudioManager.html#a5eb5bc3ec0e84cb2f4b3a1c8666b0abe">OnAudioReadyForTranscription</a></div>
-<div class="line"><span class="lineno">   37</span>        .BindRaw(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classFAccessionCommunicationModule.html#afadc38d5d563088a693b21309fa61c92">FAccessionCommunicationModule::TranscribeWaveForm</a>);</div>
-<div class="line"><span class="lineno">   38</span> </div>
-<div class="line"><span class="lineno">   39</span>    <span class="comment">// Initialize Socket Server</span></div>
-<div class="line"><span class="lineno">   40</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#ad038c0bef488ce3270e25482219d808d">SocketServer</a> = MakeShared&lt;FSocketCommunicationServer&gt;();</div>
-<div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>    <span class="comment">// Build The Phrase Tree</span></div>
-<div class="line"><span class="lineno">   43</span>    BuildPhraseTree();</div>
-<div class="line"><span class="lineno">   44</span> </div>
-<div class="line"><span class="lineno">   45</span>    <span class="comment">// Bind Tick Event</span></div>
-<div class="line"><span class="lineno">   46</span>    TickDelegate = FTickerDelegate::CreateRaw(<span class="keyword">this</span>, &amp;FAccessionCommunicationModule::Tick);</div>
-<div class="line"><span class="lineno">   47</span>    TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);</div>
-<div class="line"><span class="lineno">   48</span> </div>
-<div class="line"><span class="lineno">   49</span>    <span class="comment">// Bind Input Events</span></div>
-<div class="line"><span class="lineno">   50</span>    KeyDownEventHandle = FSlateApplication::Get().OnApplicationPreInputKeyDownListener().AddRaw(<span class="keyword">this</span>, &amp;FAccessionCommunicationModule::HandleKeyDownEvent);</div>
-<div class="line"><span class="lineno">   51</span> </div>
-<div class="line"><span class="lineno">   52</span>    <span class="comment">// Register Console Commands</span></div>
-<div class="line"><span class="lineno">   53</span>    RegisterConsoleCommands();</div>
-<div class="line"><span class="lineno">   54</span>}</div>
-<div class="ttc" id="aclassFAccessionCommunicationModule_html_ad038c0bef488ce3270e25482219d808d"><div class="ttname"><a href="classFAccessionCommunicationModule.html#ad038c0bef488ce3270e25482219d808d">FAccessionCommunicationModule::SocketServer</a></div><div class="ttdeci">TSharedPtr&lt; class FSocketCommunicationServer &gt; SocketServer</div><div class="ttdoc">The Socket Communication Server, Managing Socket Communication for the Transcription Service.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8h_source.html#l00086">AccessionCommunication.h:86</a></div></div>
-<div class="ttc" id="aclassFAccessionCommunicationModule_html_afadc38d5d563088a693b21309fa61c92"><div class="ttname"><a href="classFAccessionCommunicationModule.html#afadc38d5d563088a693b21309fa61c92">FAccessionCommunicationModule::TranscribeWaveForm</a></div><div class="ttdeci">void TranscribeWaveForm(TArray&lt; float &gt; AudioBufferToTranscribe)</div><div class="ttdoc">Sends the Audio Buffer to the Transcription Service.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8cpp_source.html#l00119">AccessionCommunication.cpp:119</a></div></div>
-<div class="ttc" id="aclassUAudioManager_html_a5eb5bc3ec0e84cb2f4b3a1c8666b0abe"><div class="ttname"><a href="classUAudioManager.html#a5eb5bc3ec0e84cb2f4b3a1c8666b0abe">UAudioManager::OnAudioReadyForTranscription</a></div><div class="ttdeci">TDelegate&lt; void(const TArray&lt; float &gt;)&gt; OnAudioReadyForTranscription</div><div class="ttdoc">Delegate for when the AudioBuffer is Ready To Be Sent For Transcription.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8h_source.html#l00122">AudioManager.h:122</a></div></div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8cpp_source.html#l00024">24</a> of file <a class="el" href="AccessionCommunication_8cpp_source.html">AccessionCommunication.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   25</span>{</div>
+<div class="line"><span class="lineno">   26</span>    LoadZMQDLL();</div>
+<div class="line"><span class="lineno">   27</span> </div>
+<div class="line"><span class="lineno">   28</span>    <span class="comment">// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module</span></div>
+<div class="line"><span class="lineno">   29</span>    UE_LOG(LogAccessionCom, Display, TEXT(<span class="stringliteral">&quot;AccessionComModule::StartupModule()&quot;</span>));</div>
+<div class="line"><span class="lineno">   30</span> </div>
+<div class="line"><span class="lineno">   31</span>    <span class="comment">// Initialize AudioManager</span></div>
+<div class="line"><span class="lineno">   32</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a> = NewObject&lt;UAudioManager&gt;();</div>
+<div class="line"><span class="lineno">   33</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;AddToRoot();</div>
+<div class="line"><span class="lineno">   34</span> </div>
+<div class="line"><span class="lineno">   35</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_variable" href="classUAudioManager.html#a5eb5bc3ec0e84cb2f4b3a1c8666b0abe">OnAudioReadyForTranscription</a></div>
+<div class="line"><span class="lineno">   36</span>        .BindRaw(<span class="keyword">this</span>, &amp;<a class="code hl_function" href="classFAccessionCommunicationModule.html#afadc38d5d563088a693b21309fa61c92">FAccessionCommunicationModule::TranscribeWaveForm</a>);</div>
+<div class="line"><span class="lineno">   37</span> </div>
+<div class="line"><span class="lineno">   38</span>    <span class="comment">// Initialize Socket Server</span></div>
+<div class="line"><span class="lineno">   39</span>    <a class="code hl_variable" href="classFAccessionCommunicationModule.html#ad038c0bef488ce3270e25482219d808d">SocketServer</a> = MakeShared&lt;FSocketCommunicationServer&gt;();</div>
+<div class="line"><span class="lineno">   40</span> </div>
+<div class="line"><span class="lineno">   41</span>    <span class="comment">// Build The Phrase Tree</span></div>
+<div class="line"><span class="lineno">   42</span>    BuildPhraseTree();</div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>    <span class="comment">// Bind Tick Event</span></div>
+<div class="line"><span class="lineno">   45</span>    TickDelegate = FTickerDelegate::CreateRaw(<span class="keyword">this</span>, &amp;FAccessionCommunicationModule::Tick);</div>
+<div class="line"><span class="lineno">   46</span>    TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>    <span class="comment">// Bind Input Events</span></div>
+<div class="line"><span class="lineno">   49</span>    KeyDownEventHandle = FSlateApplication::Get().OnApplicationPreInputKeyDownListener().AddRaw(<span class="keyword">this</span>, &amp;FAccessionCommunicationModule::HandleKeyDownEvent);</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>    <span class="comment">// Register Console Commands</span></div>
+<div class="line"><span class="lineno">   52</span>    RegisterConsoleCommands();</div>
+<div class="line"><span class="lineno">   53</span>}</div>
+<div class="ttc" id="aclassFAccessionCommunicationModule_html_ad038c0bef488ce3270e25482219d808d"><div class="ttname"><a href="classFAccessionCommunicationModule.html#ad038c0bef488ce3270e25482219d808d">FAccessionCommunicationModule::SocketServer</a></div><div class="ttdeci">TSharedPtr&lt; class FSocketCommunicationServer &gt; SocketServer</div><div class="ttdoc">The Socket Communication Server, Managing Socket Communication for the Transcription Service.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8h_source.html#l00085">AccessionCommunication.h:85</a></div></div>
+<div class="ttc" id="aclassFAccessionCommunicationModule_html_afadc38d5d563088a693b21309fa61c92"><div class="ttname"><a href="classFAccessionCommunicationModule.html#afadc38d5d563088a693b21309fa61c92">FAccessionCommunicationModule::TranscribeWaveForm</a></div><div class="ttdeci">void TranscribeWaveForm(TArray&lt; float &gt; AudioBufferToTranscribe)</div><div class="ttdoc">Sends the Audio Buffer to the Transcription Service.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8cpp_source.html#l00118">AccessionCommunication.cpp:118</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a5eb5bc3ec0e84cb2f4b3a1c8666b0abe"><div class="ttname"><a href="classUAudioManager.html#a5eb5bc3ec0e84cb2f4b3a1c8666b0abe">UAudioManager::OnAudioReadyForTranscription</a></div><div class="ttdeci">TDelegate&lt; void(const TArray&lt; float &gt;)&gt; OnAudioReadyForTranscription</div><div class="ttdoc">Delegate for when the AudioBuffer is Ready To Be Sent For Transcription.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8h_source.html#l00121">AudioManager.h:121</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -349,10 +349,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00025">25</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   26</span>    {</div>
-<div class="line"><span class="lineno">   27</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   28</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00024">24</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   25</span>    {</div>
+<div class="line"><span class="lineno">   26</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   27</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -372,31 +372,31 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8cpp_source.html#l00072">72</a> of file <a class="el" href="AccessionCommunication_8cpp_source.html">AccessionCommunication.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   73</span>{</div>
-<div class="line"><span class="lineno">   74</span>    <span class="comment">// Detect if any events are ready to be received.</span></div>
-<div class="line"><span class="lineno">   75</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFAccessionCommunicationModule.html#ad038c0bef488ce3270e25482219d808d">SocketServer</a>-&gt;EventOccured())</div>
-<div class="line"><span class="lineno">   76</span>    {</div>
-<div class="line"><span class="lineno">   77</span>        TArray&lt;FString&gt; RecvStrings;</div>
-<div class="line"><span class="lineno">   78</span>        TSharedPtr&lt;FJsonObject&gt; RecvMetadata;</div>
-<div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>        <span class="comment">// Receive the Detected Event, with separate transcriptions and metadata.</span></div>
-<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFAccessionCommunicationModule.html#ad038c0bef488ce3270e25482219d808d">SocketServer</a>-&gt;RecvStringMultipartWithMeta(RecvStrings, RecvMetadata))</div>
-<div class="line"><span class="lineno">   82</span>        {</div>
-<div class="line"><span class="lineno">   83</span>            OA_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;TRANSCRIPTION RECEIVED&quot;</span>), TEXT(<span class="stringliteral">&quot;Received Multipart - Message Count: %d&quot;</span>), RecvStrings.Num());</div>
-<div class="line"><span class="lineno">   84</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; RecvStrings.Num(); i++)</div>
-<div class="line"><span class="lineno">   85</span>            {</div>
-<div class="line"><span class="lineno">   86</span>                OA_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;TRANSCRIPTION RECEIVED&quot;</span>), TEXT(<span class="stringliteral">&quot;Transcription - %d: { %s }&quot;</span>), i, *RecvStrings[i]);</div>
-<div class="line"><span class="lineno">   87</span>            }</div>
-<div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>            <span class="comment">// Send Received Transcriptions to any bound events.</span></div>
-<div class="line"><span class="lineno">   90</span>            <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a5e8f7f17ec7d45a808c7ae9e38b9bbfd">OnTranscriptionRecieved</a>.Broadcast(RecvStrings);</div>
-<div class="line"><span class="lineno">   91</span>        }</div>
-<div class="line"><span class="lineno">   92</span>    }</div>
-<div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   95</span>}</div>
-<div class="ttc" id="aclassFAccessionCommunicationModule_html_a5e8f7f17ec7d45a808c7ae9e38b9bbfd"><div class="ttname"><a href="classFAccessionCommunicationModule.html#a5e8f7f17ec7d45a808c7ae9e38b9bbfd">FAccessionCommunicationModule::OnTranscriptionRecieved</a></div><div class="ttdeci">TMulticastDelegate&lt; void(TArray&lt; FString &gt;)&gt; OnTranscriptionRecieved</div><div class="ttdoc">A Delegate for when Transcriptions are recived back from the Transcription Service.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8h_source.html#l00076">AccessionCommunication.h:76</a></div></div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8cpp_source.html#l00071">71</a> of file <a class="el" href="AccessionCommunication_8cpp_source.html">AccessionCommunication.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   72</span>{</div>
+<div class="line"><span class="lineno">   73</span>    <span class="comment">// Detect if any events are ready to be received.</span></div>
+<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFAccessionCommunicationModule.html#ad038c0bef488ce3270e25482219d808d">SocketServer</a>-&gt;EventOccured())</div>
+<div class="line"><span class="lineno">   75</span>    {</div>
+<div class="line"><span class="lineno">   76</span>        TArray&lt;FString&gt; RecvStrings;</div>
+<div class="line"><span class="lineno">   77</span>        TSharedPtr&lt;FJsonObject&gt; RecvMetadata;</div>
+<div class="line"><span class="lineno">   78</span> </div>
+<div class="line"><span class="lineno">   79</span>        <span class="comment">// Receive the Detected Event, with separate transcriptions and metadata.</span></div>
+<div class="line"><span class="lineno">   80</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classFAccessionCommunicationModule.html#ad038c0bef488ce3270e25482219d808d">SocketServer</a>-&gt;RecvStringMultipartWithMeta(RecvStrings, RecvMetadata))</div>
+<div class="line"><span class="lineno">   81</span>        {</div>
+<div class="line"><span class="lineno">   82</span>            OA_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;TRANSCRIPTION RECEIVED&quot;</span>), TEXT(<span class="stringliteral">&quot;Received Multipart - Message Count: %d&quot;</span>), RecvStrings.Num());</div>
+<div class="line"><span class="lineno">   83</span>            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; RecvStrings.Num(); i++)</div>
+<div class="line"><span class="lineno">   84</span>            {</div>
+<div class="line"><span class="lineno">   85</span>                OA_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;TRANSCRIPTION RECEIVED&quot;</span>), TEXT(<span class="stringliteral">&quot;Transcription - %d: { %s }&quot;</span>), i, *RecvStrings[i]);</div>
+<div class="line"><span class="lineno">   86</span>            }</div>
+<div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>            <span class="comment">// Send Received Transcriptions to any bound events.</span></div>
+<div class="line"><span class="lineno">   89</span>            <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a5e8f7f17ec7d45a808c7ae9e38b9bbfd">OnTranscriptionRecieved</a>.Broadcast(RecvStrings);</div>
+<div class="line"><span class="lineno">   90</span>        }</div>
+<div class="line"><span class="lineno">   91</span>    }</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   94</span>}</div>
+<div class="ttc" id="aclassFAccessionCommunicationModule_html_a5e8f7f17ec7d45a808c7ae9e38b9bbfd"><div class="ttname"><a href="classFAccessionCommunicationModule.html#a5e8f7f17ec7d45a808c7ae9e38b9bbfd">FAccessionCommunicationModule::OnTranscriptionRecieved</a></div><div class="ttdeci">TMulticastDelegate&lt; void(TArray&lt; FString &gt;)&gt; OnTranscriptionRecieved</div><div class="ttdoc">A Delegate for when Transcriptions are recived back from the Transcription Service.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8h_source.html#l00075">AccessionCommunication.h:75</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -424,31 +424,31 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8cpp_source.html#l00119">119</a> of file <a class="el" href="AccessionCommunication_8cpp_source.html">AccessionCommunication.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  120</span>{</div>
-<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">if</span> (AudioBufferToTranscribe.Num() == 0)</div>
-<div class="line"><span class="lineno">  122</span>    {</div>
-<div class="line"><span class="lineno">  123</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Transcription Ready || Audio Buffer is Empty ||&quot;</span>));</div>
-<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  125</span>    }</div>
-<div class="line"><span class="lineno">  126</span> </div>
-<div class="line"><span class="lineno">  127</span>    PrevAudioBuffer = TArray(AudioBufferToTranscribe);</div>
-<div class="line"><span class="lineno">  128</span> </div>
-<div class="line"><span class="lineno">  129</span>    UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||&quot;</span>), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
-<div class="line"><span class="lineno">  130</span> </div>
-<div class="line"><span class="lineno">  131</span>    <span class="comment">// Create Metadata of Audio Source.</span></div>
-<div class="line"><span class="lineno">  132</span>    TSharedPtr&lt;FJsonObject&gt; AudioBufferMetadata = MakeShared&lt;FJsonObject&gt;();</div>
-<div class="line"><span class="lineno">  133</span>    AudioBufferMetadata-&gt;SetNumberField(TEXT(<span class="stringliteral">&quot;sample_rate&quot;</span>), <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">GetAudioCaptureSampleRate</a>());</div>
-<div class="line"><span class="lineno">  134</span>    AudioBufferMetadata-&gt;SetNumberField(TEXT(<span class="stringliteral">&quot;num_channels&quot;</span>), <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">GetAudioCaptureNumChannels</a>());</div>
-<div class="line"><span class="lineno">  135</span> </div>
-<div class="line"><span class="lineno">  136</span>    <span class="keywordtype">bool</span> bArrayMessageSent = <a class="code hl_variable" href="classFAccessionCommunicationModule.html#ad038c0bef488ce3270e25482219d808d">SocketServer</a>-&gt;SendArrayMessageWithMeta(AudioBufferToTranscribe, AudioBufferMetadata.ToSharedRef(), ComSendFlags::none);</div>
-<div class="line"><span class="lineno">  137</span> </div>
-<div class="line"><span class="lineno">  138</span>    OA_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;TRANSCRIPTION SENT&quot;</span>), TEXT(<span class="stringliteral">&quot;{%s} Send Audiobuffer (float x %d / %d Hz / %d channels)&quot;</span>),</div>
-<div class="line"><span class="lineno">  139</span>           bArrayMessageSent ? TEXT(<span class="stringliteral">&quot;Success&quot;</span>) : TEXT(<span class="stringliteral">&quot;Failed&quot;</span>),</div>
-<div class="line"><span class="lineno">  140</span>           AudioBufferToTranscribe.Num(), <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">GetAudioCaptureSampleRate</a>(), <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">GetAudioCaptureNumChannels</a>());</div>
-<div class="line"><span class="lineno">  141</span>}</div>
-<div class="ttc" id="aclassUAudioManager_html_a34de19d6b8de9ef36b3e0fe35fa6ef7d"><div class="ttname"><a href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">UAudioManager::GetAudioCaptureSampleRate</a></div><div class="ttdeci">int32 GetAudioCaptureSampleRate() const</div><div class="ttdoc">Gets the Sample Rate of the Audio Capture.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00047">AudioManager.cpp:47</a></div></div>
-<div class="ttc" id="aclassUAudioManager_html_a4d89ab378b24febcf77253f2d903add9"><div class="ttname"><a href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">UAudioManager::GetAudioCaptureNumChannels</a></div><div class="ttdeci">int32 GetAudioCaptureNumChannels() const</div><div class="ttdoc">Gets the Number of Channels of the Audio Capture.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00052">AudioManager.cpp:52</a></div></div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8cpp_source.html#l00118">118</a> of file <a class="el" href="AccessionCommunication_8cpp_source.html">AccessionCommunication.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  119</span>{</div>
+<div class="line"><span class="lineno">  120</span>    <span class="keywordflow">if</span> (AudioBufferToTranscribe.Num() == 0)</div>
+<div class="line"><span class="lineno">  121</span>    {</div>
+<div class="line"><span class="lineno">  122</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Transcription Ready || Audio Buffer is Empty ||&quot;</span>));</div>
+<div class="line"><span class="lineno">  123</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  124</span>    }</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>    PrevAudioBuffer = TArray(AudioBufferToTranscribe);</div>
+<div class="line"><span class="lineno">  127</span> </div>
+<div class="line"><span class="lineno">  128</span>    UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;|| WaveForm Transcription || Array Size: %d || Byte Size: %s ||&quot;</span>), AudioBufferToTranscribe.Num(), *FString::FromInt(AudioBufferToTranscribe.Num() * <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>)));</div>
+<div class="line"><span class="lineno">  129</span> </div>
+<div class="line"><span class="lineno">  130</span>    <span class="comment">// Create Metadata of Audio Source.</span></div>
+<div class="line"><span class="lineno">  131</span>    TSharedPtr&lt;FJsonObject&gt; AudioBufferMetadata = MakeShared&lt;FJsonObject&gt;();</div>
+<div class="line"><span class="lineno">  132</span>    AudioBufferMetadata-&gt;SetNumberField(TEXT(<span class="stringliteral">&quot;sample_rate&quot;</span>), <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">GetAudioCaptureSampleRate</a>());</div>
+<div class="line"><span class="lineno">  133</span>    AudioBufferMetadata-&gt;SetNumberField(TEXT(<span class="stringliteral">&quot;num_channels&quot;</span>), <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">GetAudioCaptureNumChannels</a>());</div>
+<div class="line"><span class="lineno">  134</span> </div>
+<div class="line"><span class="lineno">  135</span>    <span class="keywordtype">bool</span> bArrayMessageSent = <a class="code hl_variable" href="classFAccessionCommunicationModule.html#ad038c0bef488ce3270e25482219d808d">SocketServer</a>-&gt;SendArrayMessageWithMeta(AudioBufferToTranscribe, AudioBufferMetadata.ToSharedRef(), ComSendFlags::none);</div>
+<div class="line"><span class="lineno">  136</span> </div>
+<div class="line"><span class="lineno">  137</span>    OA_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;TRANSCRIPTION SENT&quot;</span>), TEXT(<span class="stringliteral">&quot;{%s} Send Audiobuffer (float x %d / %d Hz / %d channels)&quot;</span>),</div>
+<div class="line"><span class="lineno">  138</span>           bArrayMessageSent ? TEXT(<span class="stringliteral">&quot;Success&quot;</span>) : TEXT(<span class="stringliteral">&quot;Failed&quot;</span>),</div>
+<div class="line"><span class="lineno">  139</span>           AudioBufferToTranscribe.Num(), <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">GetAudioCaptureSampleRate</a>(), <a class="code hl_variable" href="classFAccessionCommunicationModule.html#a694a4025863885977ef6a4c01ab9129c">AudioManager</a>-&gt;<a class="code hl_function" href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">GetAudioCaptureNumChannels</a>());</div>
+<div class="line"><span class="lineno">  140</span>}</div>
+<div class="ttc" id="aclassUAudioManager_html_a34de19d6b8de9ef36b3e0fe35fa6ef7d"><div class="ttname"><a href="classUAudioManager.html#a34de19d6b8de9ef36b3e0fe35fa6ef7d">UAudioManager::GetAudioCaptureSampleRate</a></div><div class="ttdeci">int32 GetAudioCaptureSampleRate() const</div><div class="ttdoc">Gets the Sample Rate of the Audio Capture.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00046">AudioManager.cpp:46</a></div></div>
+<div class="ttc" id="aclassUAudioManager_html_a4d89ab378b24febcf77253f2d903add9"><div class="ttname"><a href="classUAudioManager.html#a4d89ab378b24febcf77253f2d903add9">UAudioManager::GetAudioCaptureNumChannels</a></div><div class="ttdeci">int32 GetAudioCaptureNumChannels() const</div><div class="ttdoc">Gets the Number of Channels of the Audio Capture.</div><div class="ttdef"><b>Definition:</b> <a href="AudioManager_8cpp_source.html#l00051">AudioManager.cpp:51</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -467,7 +467,7 @@ Public Attributes</h2></td></tr>
 
 <p>The AudioManager, Managing any Audio Capture Component.  </p>
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00081">81</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00080">80</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
 
 </div>
 </div>
@@ -485,7 +485,7 @@ Public Attributes</h2></td></tr>
 
 <p>A Delegate for when Transcriptions are recived back from the Transcription Service.  </p>
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00076">76</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00075">75</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
 
 </div>
 </div>
@@ -503,7 +503,7 @@ Public Attributes</h2></td></tr>
 
 <p>The PhraseTree, Containing any Bound Phrase Nodes and Commands to Execute from Transcriptions.  </p>
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00091">91</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00090">90</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
 
 </div>
 </div>
@@ -521,7 +521,7 @@ Public Attributes</h2></td></tr>
 
 <p>Phrase Tree Utility Class, For Dealing With Phrase Tree Function Libraries.  </p>
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00096">96</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00095">95</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
 
 </div>
 </div>
@@ -539,7 +539,7 @@ Public Attributes</h2></td></tr>
 
 <p>The Socket Communication Server, Managing Socket Communication for the Transcription Service.  </p>
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00086">86</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunication_8h_source.html#l00085">85</a> of file <a class="el" href="AccessionCommunication_8h_source.html">AccessionCommunication.h</a>.</p>
 
 </div>
 </div>
