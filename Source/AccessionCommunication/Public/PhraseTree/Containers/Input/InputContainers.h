@@ -1,5 +1,4 @@
-// Copyright (C) HCI-BCU. All rights reserved.
-// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.
+// Copyright (C) HCI-BCU 2025. All rights reserved.
 
 #pragma once
 
@@ -39,8 +38,8 @@ enum class EPhrase2DDirectionalInput : int8
 UENUM()
 enum class EPhraseScrollInput : uint8
 {
-	UP, // 0
-	DOWN, // 1
-	TOP, // 2 
+	UP,	   // 0
+	DOWN,  // 1
+	TOP,   // 2
 	BOTTOM // 3
 };

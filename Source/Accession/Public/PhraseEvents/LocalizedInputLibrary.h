@@ -1,5 +1,4 @@
-// Copyright (C) HCI-BCU. All rights reserved.
-// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.
+// Copyright (C) HCI-BCU 2025. All rights reserved.
 
 #pragma once
 
@@ -10,13 +9,12 @@
 #include "LocalizedInputLibrary.generated.h"
 
 UCLASS()
-class ULocalizedInputLibrary : public UPhraseTreeFunctionLibrary 
+class ULocalizedInputLibrary : public UPhraseTreeFunctionLibrary
 {
 	GENERATED_BODY()
 
 public:
-
-	ULocalizedInputLibrary(const FObjectInitializer& ObjectInitializer);
+	ULocalizedInputLibrary(const FObjectInitializer &ObjectInitializer);
 
 	virtual ~ULocalizedInputLibrary();
 
@@ -30,7 +28,6 @@ public:
 
 	// End of UPhraseTreeFunctionLibrary Implementation
 
-
 	// Keyboard Input Implementation
 
 	/**
@@ -38,42 +35,39 @@ public:
 	 * @param Record The ParseRecord accumulated until this Event.
 	 */
 	UFUNCTION()
-	void KeyboardInputAdd(FParseRecord& Record);
+	void KeyboardInputAdd(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Removing String Chunks from the Active Keyboard Focus.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void KeyboardInputRemove(FParseRecord& Record);
+	void KeyboardInputRemove(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Resetting the Active Keyboard Focus.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void KeyboardInputReset(FParseRecord& Record);
+	void KeyboardInputReset(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Submitting the Keyboard Input on the Active Keyboard Focus.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void KeyboardInputConfirm(FParseRecord& Record);
+	void KeyboardInputConfirm(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Exiting the Active Keyboard Focus, with no changes.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void KeyboardInputExit(FParseRecord& Record);
+	void KeyboardInputExit(FParseRecord &Record);
 
 	// End of Keyboard Input Implementation
 
-
 	// Mouse Input Implementation
-
-
 
 	// End of Keyboard Input Implementation
 };

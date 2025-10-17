@@ -1,5 +1,4 @@
-// Copyright (C) HCI-BCU. All rights reserved.
-// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.
+// Copyright (C) HCI-BCU 2025. All rights reserved.
 
 #pragma once
 
@@ -13,24 +12,23 @@
 class IPhraseContextNodeBase
 {
 protected:
-
 	/// <summary>
 	/// Checks if the Given Context Array Contains Context Objects.
 	/// </summary>
 	/// <param name="InContextObjects">- The Array To Check For Context Objects.</param>
 	/// <returns>True, if their is Context Objects in the Given Array.</returns>
-	virtual bool HasContextObject(TArray<UPhraseTreeContextObject*> InContextObjects) const = 0;
+	virtual bool HasContextObject(TArray<UPhraseTreeContextObject *> InContextObjects) const = 0;
 
 	/// <summary>
 	/// Creates a Context Object, using Record Inputs.
 	/// </summary>
 	/// <returns>The Created Context Object, otherwise nullptr</returns>
-	virtual UPhraseTreeContextObject* CreateContextObject(FParseRecord& Record) = 0;
+	virtual UPhraseTreeContextObject *CreateContextObject(FParseRecord &Record) = 0;
 
 	/// <summary>
 	/// Constructs the Context Nodes Children, from Given Child Nodes.
 	/// Allowing for Inclusion of Utility Nodes in relation to the Context.
 	/// </summary>
 	/// <param name="InChildNodes">- An Array of the Nodes Children.</param>
-	virtual void ConstructContextChildren(TArray<TSharedPtr<class FPhraseNode>>& InChildNodes) = 0;
+	virtual void ConstructContextChildren(TArray<TSharedPtr<class FPhraseNode>> &InChildNodes) = 0;
 };

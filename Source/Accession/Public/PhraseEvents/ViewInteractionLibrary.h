@@ -1,5 +1,4 @@
-// Copyright (C) HCI-BCU. All rights reserved.
-// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.
+// Copyright (C) HCI-BCU 2025. All rights reserved.
 
 #pragma once
 
@@ -15,8 +14,7 @@ class UViewInteractionLibrary : public UPhraseTreeFunctionLibrary
 	GENERATED_BODY()
 
 public:
-
-	UViewInteractionLibrary(const FObjectInitializer& ObjectInitializer);
+	UViewInteractionLibrary(const FObjectInitializer &ObjectInitializer);
 
 	virtual ~UViewInteractionLibrary();
 
@@ -30,22 +28,21 @@ public:
 
 	// End of UPhraseTreeFunctionLibrary Implementation
 
-
 	/**
 	 * Phrase Event for Moving the Active Viewport.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void MoveViewport(FParseRecord& Record);
+	void MoveViewport(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Zooming the Active Viewport.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void ZoomViewport(FParseRecord& Record);
+	void ZoomViewport(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Focusing on the Active Viewports Indexed Item, if one is apparent.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void IndexFocus(FParseRecord& Record);
+	void IndexFocus(FParseRecord &Record);
 };

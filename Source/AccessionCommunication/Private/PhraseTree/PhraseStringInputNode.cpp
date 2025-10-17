@@ -1,52 +1,47 @@
-// Copyright (C) HCI-BCU. All rights reserved.
-// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.
+// Copyright (C) HCI-BCU 2025. All rights reserved.
 
 #include "PhraseTree/PhraseStringInputNode.h"
 
 #include "PhraseTree/Containers/Input/UParseStringInput.h"
 
-FPhraseStringInputNode::FPhraseStringInputNode(const TCHAR* InInputString)
-	: FPhraseInputNode(InInputString)
-{
+FPhraseStringInputNode::FPhraseStringInputNode(const TCHAR *InInputString)
+	: FPhraseInputNode(InInputString) {
 
-};
+	  };
 
-FPhraseStringInputNode::FPhraseStringInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes)
+FPhraseStringInputNode::FPhraseStringInputNode(const TCHAR *InInputString, TPhraseNodeArray InChildNodes)
 	: FPhraseInputNode(InInputString, InChildNodes)
 {
-
 }
 
-FPhraseStringInputNode::FPhraseStringInputNode(const TCHAR* InInputString, TDelegate<void(FParseRecord& Record)> InOnPhraseParse, TPhraseNodeArray InChildNodes)
+FPhraseStringInputNode::FPhraseStringInputNode(const TCHAR *InInputString, TDelegate<void(FParseRecord &Record)> InOnPhraseParse, TPhraseNodeArray InChildNodes)
 	: FPhraseInputNode(InInputString, InOnPhraseParse, InChildNodes)
 {
-
 }
 
-FPhraseStringInputNode::FPhraseStringInputNode(const TCHAR* InInputString, TPhraseNodeArray InChildNodes, TDelegate<void(FString Input)> InOnInputRecieved)
+FPhraseStringInputNode::FPhraseStringInputNode(const TCHAR *InInputString, TPhraseNodeArray InChildNodes, TDelegate<void(FString Input)> InOnInputRecieved)
 	: FPhraseInputNode(InInputString, InChildNodes, InOnInputRecieved)
 {
-
 }
 
 FPhraseStringInputNode::~FPhraseStringInputNode()
 {
-
 }
 
-bool FPhraseStringInputNode::MeetsInputRequirements(const FString& InPhrase)
+bool FPhraseStringInputNode::MeetsInputRequirements(const FString &InPhrase)
 {
 	if (InPhrase.IsEmpty())
 		return false;
-	else return true;
+	else
+		return true;
 }
 
-bool FPhraseStringInputNode::RecordInput(const FString& InInput, FParseRecord& OutParseRecord)
+bool FPhraseStringInputNode::RecordInput(const FString &InInput, FParseRecord &OutParseRecord)
 {
 	if (InInput.IsEmpty())
 		return false;
 
-	UParseStringInput* ParseInput = MakeParseInput<UParseStringInput>();
+	UParseStringInput *ParseInput = MakeParseInput<UParseStringInput>();
 	ParseInput->SetValue(InInput);
 
 	OutParseRecord.AddPhraseInput(BoundPhrase, ParseInput);
