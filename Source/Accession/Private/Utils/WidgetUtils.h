@@ -1,5 +1,4 @@
-// Copyright (C) HCI-BCU. All rights reserved.
-// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.
+// Copyright (C) HCI-BCU 2025. All rights reserved.
 
 #pragma once
 
@@ -12,8 +11,8 @@
  * @param TargetWidgetType The Target Widgets Type, in String Format.
  * @return A SharedPtr of a Found Target Descendant, on failure an invalid pointer is returned.
  */
-template<class T>
-[[nodiscard]] FORCEINLINE TSharedPtr<T> GetWidgetDescendant(const TSharedRef<SWidget>& SearchRoot, FString TargetWidgetType)
+template <class T>
+[[nodiscard]] FORCEINLINE TSharedPtr<T> GetWidgetDescendant(const TSharedRef<SWidget> &SearchRoot, FString TargetWidgetType)
 {
 	static_assert(TIsDerivedFrom<T, SWidget>::IsDerived, "Provided Type Is Not a Valid Widget Type.");
 
@@ -23,11 +22,10 @@ template<class T>
 		return StaticCastSharedRef<T>(SearchRoot);
 
 	{
-		TArray<FChildren*> ChildrenToSearch = TArray{
-			SearchRoot->GetChildren()
-		};
+		TArray<FChildren *> ChildrenToSearch = TArray{
+			SearchRoot->GetChildren()};
 
-		FChildren* CurrentChildren;
+		FChildren *CurrentChildren;
 		TSharedPtr<SWidget> CurrentChild;
 		FString CurrentChildString;
 
@@ -53,7 +51,6 @@ template<class T>
 	return TSharedPtr<T>();
 }
 
-
 /**
  * Finds all widgets of the Target Type descending from the Search Root.
  * @tparam T Target Widgets Type (Must be a Widget Type)
@@ -62,7 +59,7 @@ template<class T>
  * @return An Array of Shared Pointers of the Target Widget Type.
  */
 template <class T>
-[[nodiscard]] FORCEINLINE TArray<TSharedPtr<T>> GetWidgetDescendants(const TSharedRef<SWidget>& SearchRoot, FString TargetWidgetType)
+[[nodiscard]] FORCEINLINE TArray<TSharedPtr<T>> GetWidgetDescendants(const TSharedRef<SWidget> &SearchRoot, FString TargetWidgetType)
 {
 	static_assert(TIsDerivedFrom<T, SWidget>::IsDerived, "Provided Type Is Not a Valid Widget Type.");
 
@@ -74,13 +71,12 @@ template <class T>
 		FoundDescendants.Add(StaticCastSharedRef<T>(SearchRoot));
 
 	{
-		TArray<FChildren*> ChildrenToSearch = TArray {
-			SearchRoot->GetChildren()
-		};
+		TArray<FChildren *> ChildrenToSearch = TArray{
+			SearchRoot->GetChildren()};
 
 		while (ChildrenToSearch.Num() > 0)
 		{
-			FChildren* CurrentChildren = ChildrenToSearch.Pop();
+			FChildren *CurrentChildren = ChildrenToSearch.Pop();
 
 			for (int i = 0; i < CurrentChildren->Num(); i++)
 			{
@@ -106,16 +102,15 @@ template <class T>
  * @param TargetTypes A Set Containing The Target Widget Types To Find.
  * @return An Array of Widget Slots, Containing Widgets of a Target Type.
  */
-[[nodiscard]] FORCEINLINE TArray<FSlotBase*> GetWidgetSlotsByType(const TSharedRef<SWidget>& SearchRoot, const TSet<FString>& TargetTypes)
+[[nodiscard]] FORCEINLINE TArray<FSlotBase *> GetWidgetSlotsByType(const TSharedRef<SWidget> &SearchRoot, const TSet<FString> &TargetTypes)
 {
-	TArray<FSlotBase*> FoundDescendants = TArray<FSlotBase*>();
+	TArray<FSlotBase *> FoundDescendants = TArray<FSlotBase *>();
 
 	{
-		TArray<FChildren*> ChildrenToSearch = TArray{
-			SearchRoot->GetChildren()
-		};
+		TArray<FChildren *> ChildrenToSearch = TArray{
+			SearchRoot->GetChildren()};
 
-		FChildren* CurrentChildren;
+		FChildren *CurrentChildren;
 		FString CurrentWidgetString;
 
 		while (ChildrenToSearch.Num() > 0)
@@ -124,7 +119,7 @@ template <class T>
 
 			for (int i = 0; i < CurrentChildren->NumSlot(); i++)
 			{
-				FSlotBase& CurrentSlot = const_cast<FSlotBase&>(CurrentChildren->GetSlotAt(i));
+				FSlotBase &CurrentSlot = const_cast<FSlotBase &>(CurrentChildren->GetSlotAt(i));
 
 				const TSharedRef<SWidget> CurrentWidget = CurrentSlot.GetWidget();
 

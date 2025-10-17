@@ -1,5 +1,4 @@
-// Copyright (C) HCI-BCU. All rights reserved.
-// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.
+// Copyright (C) HCI-BCU 2025. All rights reserved.
 
 #pragma once
 
@@ -16,8 +15,7 @@ class UNodeInteractionLibrary : public UPhraseTreeFunctionLibrary
 	GENERATED_BODY()
 
 public:
-
-	UNodeInteractionLibrary(const FObjectInitializer& ObjectInitializer);
+	UNodeInteractionLibrary(const FObjectInitializer &ObjectInitializer);
 
 	virtual ~UNodeInteractionLibrary();
 
@@ -31,7 +29,6 @@ public:
 
 	// End of UPhraseTreeFunctionLibrary Implementation
 
-
 	// Node Implementation
 
 	/**
@@ -39,26 +36,25 @@ public:
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void MoveNode(FParseRecord& Record);
+	void MoveNode(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Deleting a Node, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void DeleteNode(FParseRecord& Record);
+	void DeleteNode(FParseRecord &Record);
 
-	void RequestRename(FParseRecord& Record);
+	void RequestRename(FParseRecord &Record);
 
 	/**
 	 * Input Event for Adding the specified Node Index to the Active Selection Set.
-	 * @param Index The Index Provided Through Voice Input. 
+	 * @param Index The Index Provided Through Voice Input.
 	 */
 	UFUNCTION()
 	void NodeIndexFocus(int32 Index);
 
 	// End of Node Implementation
-
 
 	// Pin Implementation
 
@@ -67,31 +63,30 @@ public:
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void PinConnect(FParseRecord& Record);
+	void PinConnect(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Disconnecting Two Provided Pins, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void PinDisconnect(FParseRecord& Record);
+	void PinDisconnect(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Setting the Default Value of an Editable Pin, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void PinSetDefault(FParseRecord& Record);
+	void PinSetDefault(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Resetting the Default Value of an Editable Pin, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void PinResetDefault(FParseRecord& Record);
+	void PinResetDefault(FParseRecord &Record);
 
 	// End of Pin Implementation
-
 
 	// Node Add Implementation
 
@@ -100,48 +95,46 @@ public:
 	 * @param Record The Parse Record accumulated until this Event.
 	 * @return A Shared Pointer to the Initialized Menu, otherwise an Invalid Shared Pointer.
 	 */
-	TSharedPtr<IMenu> NodeAddMenu(FParseRecord& Record);
+	TSharedPtr<IMenu> NodeAddMenu(FParseRecord &Record);
 
 	/**
-     * Menu Event for Initializing the Node Add Context Menu from a Pin Connection, on the Active Graph Editor.
-     * @param Record The Parse Record accumulated until this Event.
-     * @return A Shared Pointer to the Initialized Menu, otherwise an Invalid Shared Pointer.
-     */
-    TSharedPtr<IMenu> NodeAddPinMenu(FParseRecord& Record);
+	 * Menu Event for Initializing the Node Add Context Menu from a Pin Connection, on the Active Graph Editor.
+	 * @param Record The Parse Record accumulated until this Event.
+	 * @return A Shared Pointer to the Initialized Menu, otherwise an Invalid Shared Pointer.
+	 */
+	TSharedPtr<IMenu> NodeAddPinMenu(FParseRecord &Record);
 
-	
 	/**
 	 * Phrase Event for Selecting an Item on the Active Graph Editors Node Add Context Menu.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void NodeAddSelect(FParseRecord& Record);
+	void NodeAddSelect(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Appending Strings to the SearchBar on the Active Graph Editors Node Add Context Menu.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void NodeAddSearchAdd(FParseRecord& Record);
+	void NodeAddSearchAdd(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Removing String Chunks on the SearchBar of the Active Graph Editors Node Add Context Menu.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void NodeAddSearchRemove(FParseRecord& Record);
+	void NodeAddSearchRemove(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Resetting the SearchBar of the Active Graph Editors Node Add Context Menu.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void NodeAddSearchReset(FParseRecord& Record);
+	void NodeAddSearchReset(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Applying Movement to the Scrollbar of the Active Graph Editors Node Add Context Menu.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	void NodeAddScroll(FParseRecord& Record);
+	void NodeAddScroll(FParseRecord &Record);
 
 	// End of Node Add Implementation
-
 
 	// Selection Implementation
 
@@ -150,14 +143,14 @@ public:
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void SelectionNodeToggle(FParseRecord& Record);
+	void SelectionNodeToggle(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Toggling the Selection of All Nodes, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void SelectionNodeAll(FParseRecord& Record);
+	void SelectionNodeAll(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Resetting the Selection Set, on the Active Graph Editor.
@@ -196,7 +189,6 @@ public:
 
 	// End of Selection Implementation
 
-
 	// Locomotion Implementation
 
 	/**
@@ -204,31 +196,30 @@ public:
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void LocomotionSelect(FParseRecord& Record);
+	void LocomotionSelect(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Reverting the Viewport to the Previous Rect, on the Active Graph Editors Locomotion Mode.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void LocomotionRevert(FParseRecord& Record);
+	void LocomotionRevert(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Confirming the Current Viewport, on the Active Graph Editors Locomotion Mode.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void LocomotionConfirm(FParseRecord& Record);
+	void LocomotionConfirm(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Canceling the Active Graph Editors Locomotion Mode, reverting to viewport state before.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void LocomotionCancel(FParseRecord& Record);
+	void LocomotionCancel(FParseRecord &Record);
 
 	// End of Locomotion Implementations
-
 
 	// Blueprint Specifics
 
@@ -237,12 +228,11 @@ public:
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
 	UFUNCTION()
-	void BlueprintCompile(FParseRecord& Record);
+	void BlueprintCompile(FParseRecord &Record);
 
 	// End of Blueprint Specifics
 
 private:
-
 	// Editor Grid Utils
 
 	/**
@@ -262,14 +252,14 @@ private:
 	 * @param Panel The Panel containing the Visual Grid.
 	 * @return Found Grid Attributes, otherwise an Empty Grid Attributes on Failure.
 	 */
-	GridAttributes GetGridAttributes(const SGraphPanel* Panel);
+	GridAttributes GetGridAttributes(const SGraphPanel *Panel);
 
 	/**
 	 * Snaps a Graph Node to the Nearest Visual Grid Cell.
 	 * @param Panel The Panel containing the Visual Grid.
 	 * @param Node The Graph Node to Snap to the Visual Grid.
 	 */
-	void SnapToGrid(const SGraphPanel* Panel, UEdGraphNode* Node);
+	void SnapToGrid(const SGraphPanel *Panel, UEdGraphNode *Node);
 
 	/**
 	 * Moves a Graph Node Along the Visual Grid of a Graph Panel.
@@ -277,14 +267,14 @@ private:
 	 * @param Node Graph Node to Move along the Visual Grid.
 	 * @param MovementDelta Movement Amount to Apply to the Node.
 	 */
-	void MoveOnGrid(const SGraphPanel* Panel, UEdGraphNode* Node, const FVector2D& MovementDelta);
+	void MoveOnGrid(const SGraphPanel *Panel, UEdGraphNode *Node, const FVector2D &MovementDelta);
 
 	/**
 	 * Snaps a Graph Node to the Centre of the Nearest Visual Grid Cell.
 	 * @param Panel The Panel Containing the Visual Grid.
 	 * @param Node Graph Node to Snap to the Centre of the Nearest Visual Grid Cell.
 	 */
-	void SnapToGridCentre(const SGraphPanel* Panel, UEdGraphNode* Node);
+	void SnapToGridCentre(const SGraphPanel *Panel, UEdGraphNode *Node);
 
 	// Open Viewport for Node Placement
 
@@ -293,7 +283,7 @@ private:
 	 * @param GraphEditor The GraphEditor to Find Open View Space for.
 	 * @return The Found Optimal Space for Node Placement in the Current Viewport, otherwise Defaults to Paste Position.
 	 */
-	FVector2D GetFreeGraphViewportSpace(const SGraphEditor* GraphEditor);
+	FVector2D GetFreeGraphViewportSpace(const SGraphEditor *GraphEditor);
 
 	/**
 	 * Gets an Array of Nodes Currently in the Viewport of the Provided Graph Editor.
@@ -302,6 +292,5 @@ private:
 	 * @param GraphNodes Array to Populate with Visual Nodes in the Current Viewport.
 	 * @return Number of Nodes in the Current Viewport.
 	 */
-	int32 GetNodesInViewport(const SGraphEditor* GraphEditor, const SGraphPanel* GraphPanel, TArray<UEdGraphNode*>& GraphNodes);
-
+	int32 GetNodesInViewport(const SGraphEditor *GraphEditor, const SGraphPanel *GraphPanel, TArray<UEdGraphNode *> &GraphNodes);
 };

@@ -1,12 +1,10 @@
-// Copyright (C) HCI-BCU. All rights reserved.
-// Published under GPLv3 License, 2025. See LICENSE in the Plugin Root for more information.
+// Copyright (C) HCI-BCU 2025. All rights reserved.
 
 #pragma once
 
 #include "CoreMinimal.h"
 
 #include "Utils/GraphQuadTree.h"
-
 
 class FGraphQuadTree;
 
@@ -15,29 +13,24 @@ class FGraphQTNode : public TSharedFromThis<FGraphQTNode>
 	friend FGraphQuadTree;
 
 public:
-
 	FGraphQTNode()
-		:Owner(nullptr), TopLeft(FVector2D::ZeroVector), BotRight(FVector2D::ZeroVector),
-		LocalTopLeft(FVector2D::ZeroVector), LocalBotRight(FVector2D::ZeroVector), Depth(0)
+		: Owner(nullptr), TopLeft(FVector2D::ZeroVector), BotRight(FVector2D::ZeroVector),
+		  LocalTopLeft(FVector2D::ZeroVector), LocalBotRight(FVector2D::ZeroVector), Depth(0)
 	{
-		
 	}
 
-	FGraphQTNode(const FGraphQuadTree* Owner, int8 Depth = 0)
+	FGraphQTNode(const FGraphQuadTree *Owner, int8 Depth = 0)
 		: Owner(Owner), TopLeft(FVector2D::ZeroVector), BotRight(FVector2D::ZeroVector),
-		LocalTopLeft(FVector2D::ZeroVector), LocalBotRight(FVector2D::ZeroVector), Depth(Depth)
+		  LocalTopLeft(FVector2D::ZeroVector), LocalBotRight(FVector2D::ZeroVector), Depth(Depth)
 	{
-
 	}
 
 	FGraphQTNode(
-		const FGraphQuadTree* Owner, 
-		FVector2D TopLeft, FVector2D BotRight, 
-		FVector2D LocalTopLeft, FVector2D LocalBotRight, 
-		int8 Depth = 0
-	) : Owner(Owner), TopLeft(TopLeft), BotRight(BotRight), LocalTopLeft(LocalTopLeft), LocalBotRight(LocalBotRight), Depth(Depth)
+		const FGraphQuadTree *Owner,
+		FVector2D TopLeft, FVector2D BotRight,
+		FVector2D LocalTopLeft, FVector2D LocalBotRight,
+		int8 Depth = 0) : Owner(Owner), TopLeft(TopLeft), BotRight(BotRight), LocalTopLeft(LocalTopLeft), LocalBotRight(LocalBotRight), Depth(Depth)
 	{
-		
 	}
 
 	/**
@@ -58,7 +51,6 @@ public:
 		return ContainedNodes.Num() > 0;
 	}
 
-
 	/**
 	 * Gets the Child Segments of this Node.
 	 * @return Array of Child Segments.
@@ -68,17 +60,16 @@ public:
 		return Children;
 	}
 
-
 	/**
 	 * Checks if a Graph Node is Contained in this Quad Tree Segment.
 	 * @param NodeTopLeft Top-Left Graph Position of the Node.
 	 * @param NodeBotRight Bottom-Right Graph Position of the Node.
- 	 * @return 
+	 * @return
 	 */
 	bool ContainsNodeRect(const FVector2D NodeTopLeft, const FVector2D NodeBotRight) const
 	{
-		return (NodeTopLeft.ComponentwiseAllGreaterOrEqual(TopLeft) && NodeTopLeft.ComponentwiseAllLessOrEqual(BotRight)) || 
-			(NodeBotRight.ComponentwiseAllGreaterOrEqual(TopLeft) && NodeBotRight.ComponentwiseAllLessOrEqual(BotRight));
+		return (NodeTopLeft.ComponentwiseAllGreaterOrEqual(TopLeft) && NodeTopLeft.ComponentwiseAllLessOrEqual(BotRight)) ||
+			   (NodeBotRight.ComponentwiseAllGreaterOrEqual(TopLeft) && NodeBotRight.ComponentwiseAllLessOrEqual(BotRight));
 	}
 
 	/**
@@ -86,7 +77,7 @@ public:
 	 * @param MinSegmentSize Minimum Size of a Child Segment.
 	 * @return Array of Child Segments, otherwise an Empty Array if SegmentSize is too small.
 	 */
-	TArray<TSharedPtr<FGraphQTNode>>& PartitionSpace(FVector2D MinSegmentSize = FVector2D(300, 250))
+	TArray<TSharedPtr<FGraphQTNode>> &PartitionSpace(FVector2D MinSegmentSize = FVector2D(300, 250))
 	{
 		if (ContainsSegments())
 			return Children;
@@ -114,9 +105,7 @@ public:
 						TopLeft + SegmentOffset + SegmentSize,
 						LocalTopLeft + LocalSegmentOffset,
 						LocalTopLeft + LocalSegmentOffset + LocalSegmentSize,
-						Depth + 1
-					)
-				);
+						Depth + 1));
 			}
 		}
 
@@ -131,7 +120,7 @@ public:
 	 * @param LayerID LayerID of the Graph.
 	 * @param LineColor Color of the Line, when Drawn.
 	 */
-	void Visualize(FSlateWindowElementList& ElementList, TArray<FVector2D>& LinePoints, const FPaintGeometry& PaintGeometry, const int32& LayerID, const FLinearColor& LineColor = FLinearColor::Green)
+	void Visualize(FSlateWindowElementList &ElementList, TArray<FVector2D> &LinePoints, const FPaintGeometry &PaintGeometry, const int32 &LayerID, const FLinearColor &LineColor = FLinearColor::Green)
 	{
 		// Draw Children
 		if (Children.IsEmpty())
@@ -144,27 +133,24 @@ public:
 		FSlateDrawElement::MakeLines(ElementList, LayerID, PaintGeometry, LinePoints, ESlateDrawEffect::None, LineColor);
 
 		// Draw Horizontal Line
-		LinePoints[0] = LocalTopLeft + FVector2D(0, (LocalBotRight.Y - LocalTopLeft.Y ) / 2);
-		LinePoints[1] = LocalTopLeft + FVector2D(LocalBotRight.X - LocalTopLeft.X, (LocalBotRight.Y - LocalTopLeft.Y ) / 2);
+		LinePoints[0] = LocalTopLeft + FVector2D(0, (LocalBotRight.Y - LocalTopLeft.Y) / 2);
+		LinePoints[1] = LocalTopLeft + FVector2D(LocalBotRight.X - LocalTopLeft.X, (LocalBotRight.Y - LocalTopLeft.Y) / 2);
 
 		FSlateDrawElement::MakeLines(ElementList, LayerID, PaintGeometry, LinePoints, ESlateDrawEffect::None, LineColor);
 
 		// Draw Children
 
-		for (auto& Child : Children)
+		for (auto &Child : Children)
 		{
 			Child->Visualize(ElementList, LinePoints, PaintGeometry, LayerID, LineColor);
 		}
-
 	}
 
 protected:
-
 	/**
 	 * Quad Tree Segment Owner.
 	 */
-	const FGraphQuadTree* Owner;
-
+	const FGraphQuadTree *Owner;
 
 	/**
 	 * Top Left Position of this Segment, in Graph Space.
@@ -200,5 +186,5 @@ protected:
 	/**
 	 * GraphNodes Contained in this Segment.
 	 */
-	TArray<const UEdGraphNode*> ContainedNodes;
+	TArray<const UEdGraphNode *> ContainedNodes;
 };

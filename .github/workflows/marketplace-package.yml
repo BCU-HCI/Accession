@@ -1,0 +1,29 @@
+name: Marketplace Packaging
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  repackage-files:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Plugin
+        uses: actions/checkout@v4
+        with:
+          path: ${{ github.workspace }}/repo
+
+      - name: Repackage Plugin for Marketplace Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: marketplace-package
+          path: |
+            ${{ github.workspace }}/repo/README.md
+            ${{ github.workspace }}/repo/*.uplugin
+            ${{ github.workspace }}/repo/Source/
+            ${{ github.workspace }}/repo/Content/
+            ${{ github.workspace }}/repo/Resources/
+            ${{ github.workspace }}/repo/Config/
