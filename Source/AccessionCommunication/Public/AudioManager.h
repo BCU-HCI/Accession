@@ -118,7 +118,7 @@ public:
     /// <summary>
     /// Delegate for when the AudioBuffer is Ready To Be Sent For Transcription.
     /// </summary>
-    TDelegate<void(const TArray<float>)> OnAudioReadyForTranscription;
+    TDelegate<void(const TArray<float>, int32 SampleRate, int32 NumChannels)> OnAudioReadyForTranscription;
 
 private:
     // Audio Capture

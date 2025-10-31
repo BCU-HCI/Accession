@@ -69,7 +69,7 @@ void UAudioManager::StopCapturingAudio()
 
 	SaveAudioBufferToWAV(Settings.SavePath);
 
-	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer))
+	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer, AudioCapture->GetSampleRate(), AudioCapture->GetNumChannels()))
 	{
 		UE_LOG(LogAccessionCom, Log, TEXT("|| Executing Audio Ready For Transcription Delegate. ||"));
 	}

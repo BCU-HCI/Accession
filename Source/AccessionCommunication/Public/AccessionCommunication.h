@@ -58,15 +58,6 @@ private:
 	/// </summary>
 	void UnregisterConsoleCommands();
 
-	/// <summary>
-	/// Loads the ZMQ Dynamic Library, for the current platform.
-	/// </summary>
-	void LoadZMQDLL();
-
-	/// <summary>
-	/// Unloads the ZMQ Dynamic Library, for the current platform.
-	/// </summary>
-	void UnloadZMQDLL();
 
 public:
 	/// <summary>
@@ -74,10 +65,6 @@ public:
 	/// </summary>
 	TMulticastDelegate<void(TArray<FString>)> OnTranscriptionRecieved;
 
-	/// <summary>
-	/// The AudioManager, Managing any Audio Capture Component.
-	/// </summary>
-	class UAudioManager *AudioManager;
 
 	/// <summary>
 	/// The Socket Communication Server, Managing Socket Communication for the Transcription Service.
@@ -107,10 +94,6 @@ private:
 
 	FDelegateHandle KeyDownEventHandle;
 
-	/// <summary>
-	/// The Handle For The ZMQ Dynamic Library.
-	/// </summary>
-	void *ZMQDllHandle;
 
 	TArray<IConsoleCommand *> ConsoleCommands;
 };

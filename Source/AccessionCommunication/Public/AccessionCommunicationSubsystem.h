@@ -34,8 +34,11 @@ public:
 
 	// End USubsystem
 
+
+	// Transcription Pipeline
+
 	UFUNCTION(BlueprintCallable, Category = "Accession|Transcription")
-	void RequestTranscription(const TArray<float>& AudioData, int32 SampleRate, int32 NumChannels);
+	void RequestTranscription(const TArray<float> AudioData, int32 SampleRate, int32 NumChannels);
 
 	UFUNCTION(BlueprintCallable, Category="Accession|Transcription")
 	void TranscriptionComplete(FGuid UUID, const FString& Transcription);
@@ -46,12 +49,22 @@ public:
 	UPROPERTY()
 	FTranscriptionReceived OnTranscriptionReceived;
 
+	// -----
+
+	void HandleKeyDownEvent(const FKeyEvent& InKeyEvent);
+
 
 private:
 
 	void ProcessPendingTranscriptions();
 
 private:
+
+	FDelegateHandle KeyDownEventHandle;
+
+
+	UPROPERTY()
+	TObjectPtr<class UAudioManager> AudioManager;
 
 	TQueue<FGuid> PendingTranscriptions;
 	TSet<FGuid> ActiveTranscriptions;

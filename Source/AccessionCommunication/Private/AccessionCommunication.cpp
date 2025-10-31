@@ -23,17 +23,12 @@
 
 void FAccessionCommunicationModule::StartupModule()
 {
-	LoadZMQDLL();
 
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
 	UE_LOG(LogAccessionCom, Display, TEXT("AccessionComModule::StartupModule()"));
 
-	// Initialize AudioManager
-	AudioManager = NewObject<UAudioManager>();
-	AudioManager->AddToRoot();
-
-	AudioManager->OnAudioReadyForTranscription
-		.BindRaw(this, &FAccessionCommunicationModule::TranscribeWaveForm);
+	//AudioManager->OnAudioReadyForTranscription
+	//	.BindRaw(this, &FAccessionCommunicationModule::TranscribeWaveForm);
 
 	// Initialize Socket Server
 	SocketServer = MakeShared<FSocketCommunicationServer>();
@@ -45,9 +40,6 @@ void FAccessionCommunicationModule::StartupModule()
 	TickDelegate = FTickerDelegate::CreateRaw(this, &FAccessionCommunicationModule::Tick);
 	TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);
 
-	// Bind Input Events
-	KeyDownEventHandle = FSlateApplication::Get().OnApplicationPreInputKeyDownListener().AddRaw(this, &FAccessionCommunicationModule::HandleKeyDownEvent);
-
 	// Register Console Commands
 	RegisterConsoleCommands();
 }
@@ -58,12 +50,9 @@ void FAccessionCommunicationModule::ShutdownModule()
 	// we call this function before unloading the module.
 	UE_LOG(LogAccessionCom, Display, TEXT("AccessionComModule::ShutdownModule()"));
 
-	AudioManager->RemoveFromRoot();
 	PhraseTreeUtils->RemoveFromRoot();
-
+	
 	FSlateApplication::Get().OnApplicationPreInputKeyDownListener().Remove(KeyDownEventHandle);
-
-	UnloadZMQDLL();
 
 	UnregisterConsoleCommands();
 }
