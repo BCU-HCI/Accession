@@ -8,6 +8,7 @@
 #include "SGraphPanel.h"
 #include "Kismet2/KismetEditorUtilities.h"
 #include "Kismet2/BlueprintEditorUtils.h"
+#include "Misc/EngineVersionComparison.h"
 
 #include "PhraseTree/Containers/Input/InputContainers.h"
 #include "FunctionalityWrappers/GraphEditorContext.h"
@@ -1099,6 +1100,9 @@ void UNodeInteractionLibrary::MoveOnGrid(const SGraphPanel *Panel, UEdGraphNode 
 
 	GridAttributes GridAttr = GetGridAttributes(Panel);
 
+
+#if UE_VERSION_NEWER_THAN(5, 6, 0)
+
 	FVector2f ScaledMovementDelta = FVector2f(
 		FMath::RoundToInt(MovementDelta.X * GridAttr.VisualGridCellSize),
 		FMath::RoundToInt(MovementDelta.Y * GridAttr.VisualGridCellSize));
@@ -1107,6 +1111,22 @@ void UNodeInteractionLibrary::MoveOnGrid(const SGraphPanel *Panel, UEdGraphNode 
 	FVector2f SnappedPosition = FVector2f(
 		FMath::RoundToInt(Node->NodePosX / GridAttr.VisualGridCellSize) * GridAttr.VisualGridCellSize,
 		FMath::RoundToInt(Node->NodePosY / GridAttr.VisualGridCellSize) * GridAttr.VisualGridCellSize);
+
+#else
+
+	FVector2D ScaledMovementDelta = FVector2D(
+		FMath::RoundToInt(MovementDelta.X * GridAttr.VisualGridCellSize),
+		FMath::RoundToInt(MovementDelta.Y * GridAttr.VisualGridCellSize));
+
+	// Ensure Node Is Snapped to Grid
+	FVector2D SnappedPosition = FVector2D(
+		FMath::RoundToInt(Node->NodePosX / GridAttr.VisualGridCellSize) * GridAttr.VisualGridCellSize,
+		FMath::RoundToInt(Node->NodePosY / GridAttr.VisualGridCellSize) * GridAttr.VisualGridCellSize);
+
+#endif
+
+
+
 
 	TSharedPtr<SGraphNode> NodeWidget = Panel ? Panel->GetNodeWidgetFromGuid(Node->NodeGuid) : TSharedPtr<SGraphNode>();
 	if (NodeWidget.IsValid())

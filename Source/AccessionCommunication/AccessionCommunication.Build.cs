@@ -27,6 +27,7 @@ public class AccessionCommunication : ModuleRules
 			new string[]
 			{
 				"Core",
+				"EditorSubsystem"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
