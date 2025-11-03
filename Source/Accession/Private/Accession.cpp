@@ -2,6 +2,7 @@
 
 #include "Accession.h"
 #include "AccessionCommunication.h"
+#include "AccessionCommunicationSubsystem.h"
 #include "AccessionLogging.h"
 #include "AccessionAnalytics.h"
 
@@ -100,7 +101,13 @@ void FAccessionModule::CreateTranscriptionVisualization()
 {
 	TranscriptionVisualizer = MakeShared<FTranscriptionVisualizer, ESPMode::ThreadSafe>();
 
-	FAccessionCommunicationModule::Get().OnTranscriptionRecieved.AddSP(TranscriptionVisualizer.ToSharedRef(), &FTranscriptionVisualizer::OnTranscriptionRecieved);
+	UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>();
+	if (ACSubsystem == nullptr)
+	{
+		UE_LOG(LogAccession, Warning, TEXT("Accession - Transcription Visualiser Cannot Bind Transcript Delegate."))
+	}
+
+	// ACSubsystem->OnTranscriptionReceived.AddUniqueDynamic(TranscriptionVisualizer.Get(), &FTranscriptionVisualizer::OnTranscriptionRecieved);
 }
 
 void FAccessionModule::RegisterConsoleCommands()
@@ -122,8 +129,11 @@ void FAccessionModule::RegisterConsoleCommands()
 			ProvidedPhrase.TrimStartAndEndInline();
 			ProvidedPhrase.ToUpperInline();
 
-            FAccessionCommunicationModule::Get()
-				.OnTranscriptionRecieved.Broadcast(TArray<FString>{ ProvidedPhrase }); }),
+			UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>();
+			if (ACSubsystem == nullptr)
+				return;
+
+            ACSubsystem->OnTranscriptionReceived.Broadcast(TArray<FString>{ ProvidedPhrase }); }),
 
 		ECVF_Default));
 

@@ -8,10 +8,12 @@
 #include "AccessionCommunicationSubsystem.generated.h"
 
 
+class UAudioManager;
+
 DECLARE_DYNAMIC_DELEGATE_RetVal_ThreeParams(FGuid, FTranscribeRequestDelegate, const TArray<float>, AudioData, const int32, SampleRate, const int32, NumChannels);
 
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTranscriptionReceived, const FString&, RecvTranscription);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTranscriptionReceived, TArray<FString>, RecvTranscription);
 
 
 UCLASS()
@@ -37,16 +39,21 @@ public:
 
 	// Transcription Pipeline
 
+	UAudioManager* GetAudioManager() const
+	{
+		return AudioManager.Get();
+	}
+
 	UFUNCTION(BlueprintCallable, Category = "Accession|Transcription")
 	void RequestTranscription(const TArray<float> AudioData, int32 SampleRate, int32 NumChannels);
 
 	UFUNCTION(BlueprintCallable, Category="Accession|Transcription")
-	void TranscriptionComplete(FGuid UUID, const FString& Transcription);
+	void TranscriptionComplete(const FGuid UUID, const TArray<FString> Transcription);
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, Category = "Accession|Transcription")
 	FTranscribeRequestDelegate OnTranscriptionRequest;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Accession|Transcription")
 	FTranscriptionReceived OnTranscriptionReceived;
 
 	// -----
@@ -64,9 +71,15 @@ private:
 
 
 	UPROPERTY()
-	TObjectPtr<class UAudioManager> AudioManager;
+	TObjectPtr<UAudioManager> AudioManager;
 
 	TQueue<FGuid> PendingTranscriptions;
+
+	UPROPERTY()
 	TSet<FGuid> ActiveTranscriptions;
-	TMap<FGuid, FString> TranscriptionStore;
+
+	TMap<FGuid, TArray<FString>> TranscriptionStore;
+
+	UPROPERTY()
+	TArray<float> PrevAudioBuffer;
 };

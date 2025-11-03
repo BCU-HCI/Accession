@@ -32,16 +32,6 @@ public:
 		return FModuleManager::GetModuleChecked<FAccessionCommunicationModule>("AccessionCommunication");
 	}
 
-	bool Tick(const float DeltaTime);
-
-	void HandleKeyDownEvent(const FKeyEvent &InKeyEvent);
-
-	/// <summary>
-	/// Sends the Audio Buffer to the Transcription Service.
-	/// </summary>
-	/// <param name="AudioBufferToTranscribe">- The Audiobuffer To Send For Transcription.</param>
-	void TranscribeWaveForm(TArray<float> AudioBufferToTranscribe);
-
 private:
 	/// <summary>
 	/// Builds the Phrase Tree.
@@ -60,10 +50,6 @@ private:
 
 
 public:
-	/// <summary>
-	/// A Delegate for when Transcriptions are recived back from the Transcription Service.
-	/// </summary>
-	TMulticastDelegate<void(TArray<FString>)> OnTranscriptionRecieved;
 
 
 	/// <summary>
@@ -82,18 +68,8 @@ public:
 	class UPhraseTreeUtils *PhraseTreeUtils;
 
 private:
-	/// <summary>
-	/// The Previously Recorded Audio Buffer.
-	/// </summary>
-	TArray<float> PrevAudioBuffer;
-
-	FTickerDelegate TickDelegate;
-	FTSTicker::FDelegateHandle TickDelegateHandle;
 
 	FDelegateHandle PhraseTreePhraseRecievedHandle;
-
-	FDelegateHandle KeyDownEventHandle;
-
 
 	TArray<IConsoleCommand *> ConsoleCommands;
 };

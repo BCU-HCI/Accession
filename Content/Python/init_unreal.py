@@ -93,6 +93,7 @@ import AccessionPy as APy
 # OAPy.forward_CUDA_CUDNN_to_path()
 
 # Initialize the Runtime
+global AccessionPy
 AccessionPy = APy.AccessionPy()
 
 ## ------------------------------

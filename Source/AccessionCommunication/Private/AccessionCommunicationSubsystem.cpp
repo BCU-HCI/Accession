@@ -42,14 +42,16 @@ void UAccessionCommunicationSubsystem::RequestTranscription(const TArray<float> 
 	if (!TranscriptionUUID.IsValid())
 	{
 		UE_LOG(LogAccessionCom, Error, TEXT("Transcription Request Delegate Returned Invalid UUID. No Commands can be Performed."))
-			return;
+		return;
 	}
 
 	PendingTranscriptions.Enqueue(TranscriptionUUID);
 	ActiveTranscriptions.Add(TranscriptionUUID);
+
+	PrevAudioBuffer = AudioData;
 }
 
-void UAccessionCommunicationSubsystem::TranscriptionComplete(const FGuid id, const FString& Transcription)
+void UAccessionCommunicationSubsystem::TranscriptionComplete(const FGuid id, const TArray<FString> Transcription)
 {
 	if (!ActiveTranscriptions.Contains(id))
 	{
@@ -83,7 +85,7 @@ void UAccessionCommunicationSubsystem::ProcessPendingTranscriptions()
 		PendingTranscriptions.Pop();
 		ActiveTranscriptions.Remove(NextID);
 
-		FString Transcription = TranscriptionStore.FindAndRemoveChecked(NextID);
+		TArray<FString> Transcription = TranscriptionStore.FindAndRemoveChecked(NextID);
 
 		OnTranscriptionReceived.Broadcast(Transcription);
 	}

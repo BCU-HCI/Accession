@@ -2,7 +2,7 @@
 
 #include "Widgets/STranscriptionVis.h"
 
-#include "AccessionCommunication.h"
+#include "AccessionCommunicationSubsystem.h"
 #include "AudioManager.h"
 
 STranscriptionVis::~STranscriptionVis()
@@ -40,7 +40,8 @@ void STranscriptionVis::Construct(const FArguments &InArgs)
 
 	// Construct the Main Component
 
-	UAudioManager *AudioManager = FAccessionCommunicationModule::Get().AudioManager;
+	UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>();
+	UAudioManager* AudioManager = ACSubsystem->GetAudioManager();
 
 	ChildSlot
 		.Padding(FMargin(5.0f))
