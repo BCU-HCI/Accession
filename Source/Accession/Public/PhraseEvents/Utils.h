@@ -6,6 +6,7 @@
 
 #include "Accession.h"
 #include "AccessionCommunication.h"
+#include "AccessionCommunicationSubsystem.h"
 
 // Utility Macros
 
@@ -202,9 +203,8 @@
 FORCEINLINE TSharedRef<FPhraseTree> GetPhraseTree()
 {
   FAccessionCommunicationModule &OAComsModule = FAccessionCommunicationModule::Get();
-
-  if (OAComsModule.PhraseTree.IsValid())
-    return OAComsModule.PhraseTree.ToSharedRef();
+  if (UAccessionCommunicationSubsystem* ACSubsytem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>())
+	  return ACSubsytem->PhraseTree.ToSharedRef();
 
   return TSharedRef<FPhraseTree>();
 }

@@ -28,14 +28,6 @@ void FAccessionCommunicationModule::StartupModule()
 	// This code will execute after your module is loaded into memory; the exact timing is specified in the .uplugin file per-module
 	UE_LOG(LogAccessionCom, Display, TEXT("AccessionComModule::StartupModule()"));
 
-	//AudioManager->OnAudioReadyForTranscription
-	//	.BindRaw(this, &FAccessionCommunicationModule::TranscribeWaveForm);
-
-	// Initialize Socket Server
-	//SocketServer = MakeShared<FSocketCommunicationServer>();
-
-	// Build The Phrase Tree
-	BuildPhraseTree();
 
 	// Register Console Commands
 	RegisterConsoleCommands();
@@ -47,29 +39,7 @@ void FAccessionCommunicationModule::ShutdownModule()
 	// we call this function before unloading the module.
 	UE_LOG(LogAccessionCom, Display, TEXT("AccessionComModule::ShutdownModule()"));
 
-	PhraseTreeUtils->RemoveFromRoot();
-
 	UnregisterConsoleCommands();
-}
-
-void FAccessionCommunicationModule::BuildPhraseTree()
-{
-	
-
-	// Initialize the Phrase Tree
-	PhraseTree = MakeShared<FPhraseTree>();
-
-	UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>();
-	if (ACSubsystem != nullptr)
-	{
-		// Require Phrase Tree Rewrite towards UObject Incorporation.
-		// PhraseTreePhraseRecievedHandle = ACSubsystem->OnTranscriptionReceived.AddUnique(PhraseTree.Get(), &FPhraseTree::ParseTranscription);
-	}
-
-
-	PhraseTreeUtils = NewObject<UPhraseTreeUtils>();
-	PhraseTreeUtils->SetPhraseTree(PhraseTree.ToSharedRef());
-	PhraseTreeUtils->AddToRoot();
 }
 
 void FAccessionCommunicationModule::RegisterConsoleCommands()

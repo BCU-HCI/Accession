@@ -192,7 +192,7 @@ class AccessionPy:
             message_ndarray
         )
 
-        segments = [transcription.text for transcription in trans_segment]
+        segments = [transcription.text.strip() for transcription in trans_segment]
 
         Log(f"Segments: {segments}")
 

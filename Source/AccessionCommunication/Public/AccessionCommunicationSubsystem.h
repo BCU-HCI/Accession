@@ -13,7 +13,7 @@ class UAudioManager;
 DECLARE_DYNAMIC_DELEGATE_RetVal_ThreeParams(FGuid, FTranscribeRequestDelegate, const TArray<float>, AudioData, const int32, SampleRate, const int32, NumChannels);
 
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FTranscriptionReceived, TArray<FString>, RecvTranscription);
+DECLARE_MULTICAST_DELEGATE_OneParam(FTranscriptionReceived, TArray<FString> /* RecvTranscription*/ );
 
 
 UCLASS()
@@ -53,7 +53,7 @@ public:
 	UPROPERTY(BlueprintReadWrite, Category = "Accession|Transcription")
 	FTranscribeRequestDelegate OnTranscriptionRequest;
 
-	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Accession|Transcription")
+	//UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category = "Accession|Transcription")
 	FTranscriptionReceived OnTranscriptionReceived;
 
 	// -----
@@ -65,6 +65,13 @@ private:
 
 	void ProcessPendingTranscriptions();
 
+public:
+
+	TSharedPtr<class FPhraseTree> PhraseTree;
+	
+	UPROPERTY()
+	TObjectPtr<class UPhraseTreeUtils> PhraseTreeUtils;
+
 private:
 
 	FDelegateHandle KeyDownEventHandle;
@@ -73,12 +80,17 @@ private:
 	UPROPERTY()
 	TObjectPtr<UAudioManager> AudioManager;
 
+
+	// Transcription Buffering
+
 	TQueue<FGuid> PendingTranscriptions;
 
 	UPROPERTY()
 	TSet<FGuid> ActiveTranscriptions;
 
 	TMap<FGuid, TArray<FString>> TranscriptionStore;
+
+
 
 	UPROPERTY()
 	TArray<float> PrevAudioBuffer;

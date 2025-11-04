@@ -34,11 +34,6 @@ public:
 
 private:
 	/// <summary>
-	/// Builds the Phrase Tree.
-	/// </summary>
-	void BuildPhraseTree();
-
-	/// <summary>
 	/// Registers the Console Commands for This Module.
 	/// </summary>
 	void RegisterConsoleCommands();
@@ -48,28 +43,7 @@ private:
 	/// </summary>
 	void UnregisterConsoleCommands();
 
-
-public:
-
-
-	/// <summary>
-	/// The Socket Communication Server, Managing Socket Communication for the Transcription Service.
-	/// </summary>
-	TSharedPtr<class FSocketCommunicationServer> SocketServer;
-
-	/// <summary>
-	/// The PhraseTree, Containing any Bound Phrase Nodes and Commands to Execute from Transcriptions.
-	/// </summary>
-	TSharedPtr<FPhraseTree> PhraseTree;
-
-	/// <summary>
-	/// Phrase Tree Utility Class, For Dealing With Phrase Tree Function Libraries.
-	/// </summary>
-	class UPhraseTreeUtils *PhraseTreeUtils;
-
 private:
-
-	FDelegateHandle PhraseTreePhraseRecievedHandle;
 
 	TArray<IConsoleCommand *> ConsoleCommands;
 };

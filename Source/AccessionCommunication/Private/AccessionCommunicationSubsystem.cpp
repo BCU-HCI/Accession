@@ -5,6 +5,9 @@
 #include "AudioManager.h"
 #include "AccessionComLogging.h"
 
+#include "PhraseTree.h"
+#include "PhraseTreeUtils.h"
+
 #include "Containers/Queue.h"
 
 
@@ -12,6 +15,12 @@ UAccessionCommunicationSubsystem::UAccessionCommunicationSubsystem()
 {
 	AudioManager = NewObject<UAudioManager>();
 	AudioManager->OnAudioReadyForTranscription.BindUObject(this, &UAccessionCommunicationSubsystem::RequestTranscription);
+
+	PhraseTree = MakeShared<FPhraseTree>();
+	//OnTranscriptionReceived.AddSP(PhraseTree.ToSharedRef(), &FPhraseTree::ParseTranscription);
+
+	PhraseTreeUtils = NewObject<UPhraseTreeUtils>();
+	PhraseTreeUtils->SetPhraseTree(PhraseTree.ToSharedRef());
 
 	KeyDownEventHandle = FSlateApplication::Get().OnApplicationPreInputKeyDownListener().AddUObject(this, &UAccessionCommunicationSubsystem::HandleKeyDownEvent);
 }
