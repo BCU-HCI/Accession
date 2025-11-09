@@ -22,6 +22,10 @@ UAccessionCommunicationSubsystem::UAccessionCommunicationSubsystem()
 	PhraseTreeUtils = NewObject<UPhraseTreeUtils>();
 	PhraseTreeUtils->SetPhraseTree(PhraseTree.ToSharedRef());
 
+
+	const FTickerDelegate TickDelegate = FTickerDelegate::CreateUObject(this, &UAccessionCommunicationSubsystem::Tick);
+	TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);
+
 	KeyDownEventHandle = FSlateApplication::Get().OnApplicationPreInputKeyDownListener().AddUObject(this, &UAccessionCommunicationSubsystem::HandleKeyDownEvent);
 }
 
@@ -68,36 +72,34 @@ void UAccessionCommunicationSubsystem::TranscriptionComplete(const FGuid id, con
 		return;
 	}
 
-	if (*PendingTranscriptions.Peek() != id)
-	{
-		TranscriptionStore.Add(id, Transcription);
-		return;
-	}
-
-	PendingTranscriptions.Pop();
+	TranscriptionStore.Add(id, Transcription);
 	ActiveTranscriptions.Remove(id);
-
-	OnTranscriptionReceived.Broadcast(Transcription);
-
-	ProcessPendingTranscriptions();
 }
 
 void UAccessionCommunicationSubsystem::ProcessPendingTranscriptions()
 {
-	FGuid NextID;
+	if (PendingTranscriptions.IsEmpty())
+		return;
 
+	FGuid NextID;
 	while (PendingTranscriptions.Peek(NextID))
 	{
-		if (!TranscriptionStore.Contains(NextID))
+		if (ActiveTranscriptions.Contains(NextID))
 			break;
 
 		PendingTranscriptions.Pop();
-		ActiveTranscriptions.Remove(NextID);
 
 		TArray<FString> Transcription = TranscriptionStore.FindAndRemoveChecked(NextID);
 
 		OnTranscriptionReceived.Broadcast(Transcription);
 	}
+}
+
+bool UAccessionCommunicationSubsystem::Tick(float DeltaTime)
+{
+	ProcessPendingTranscriptions();
+
+	return true;
 }
 
 void UAccessionCommunicationSubsystem::HandleKeyDownEvent(const FKeyEvent& InKeyEvent)

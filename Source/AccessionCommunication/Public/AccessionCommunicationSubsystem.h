@@ -58,6 +58,8 @@ public:
 
 	// -----
 
+	virtual bool Tick(float DeltaTime);
+
 	void HandleKeyDownEvent(const FKeyEvent& InKeyEvent);
 
 
@@ -74,6 +76,7 @@ public:
 
 private:
 
+	FTSTicker::FDelegateHandle TickDelegateHandle;
 	FDelegateHandle KeyDownEventHandle;
 
 
