@@ -7,7 +7,6 @@
 #include "AccessionAnalytics.h"
 
 #include "AudioManager.h"
-#include "SocketCommunicationServer.h"
 
 #include "PhraseTree/PhraseNode.h"
 #include "PhraseTree/PhraseInputNode.h"

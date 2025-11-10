@@ -2,7 +2,6 @@
 
 #include "AudioManager.h"
 #include "AccessionComLogging.h"
-#include "SocketCommunicationServer.h"
 
 #include "AudioCapture.h"
 #include "AudioDeviceNotificationSubsystem.h"

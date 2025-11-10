@@ -38,9 +38,6 @@ public class AccessionCommunication : ModuleRules
 				// Internal Plugin Dependencies
 				"AccessionAnalytics",
 
-				// Internal ThirdParty Dependencies
-				"ZeroMQ",
-
 				// Core Modules
 				"CoreUObject",
 				"Engine",
