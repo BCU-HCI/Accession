@@ -17,7 +17,7 @@ UAccessionCommunicationSubsystem::UAccessionCommunicationSubsystem()
 	AudioManager->OnAudioReadyForTranscription.BindUObject(this, &UAccessionCommunicationSubsystem::RequestTranscription);
 
 	PhraseTree = MakeShared<FPhraseTree>();
-	//OnTranscriptionReceived.AddSP(PhraseTree.ToSharedRef(), &FPhraseTree::ParseTranscription);
+	OnTranscriptionReceived.AddSP(PhraseTree.ToSharedRef(), &FPhraseTree::ParseTranscription);
 
 	PhraseTreeUtils = NewObject<UPhraseTreeUtils>();
 	PhraseTreeUtils->SetPhraseTree(PhraseTree.ToSharedRef());
@@ -32,6 +32,7 @@ UAccessionCommunicationSubsystem::UAccessionCommunicationSubsystem()
 UAccessionCommunicationSubsystem::~UAccessionCommunicationSubsystem()
 {
 	FSlateApplication::Get().OnApplicationPreInputKeyDownListener().Remove(KeyDownEventHandle);
+	FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
 }
 
 void UAccessionCommunicationSubsystem::Initialize(FSubsystemCollectionBase& Collection)
@@ -84,7 +85,7 @@ void UAccessionCommunicationSubsystem::ProcessPendingTranscriptions()
 	FGuid NextID;
 	while (PendingTranscriptions.Peek(NextID))
 	{
-		if (ActiveTranscriptions.Contains(NextID))
+		if (!TranscriptionStore.Contains(NextID))
 			break;
 
 		PendingTranscriptions.Pop();
