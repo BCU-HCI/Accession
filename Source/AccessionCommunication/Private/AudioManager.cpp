@@ -2,6 +2,7 @@
 
 #include "AudioManager.h"
 #include "AccessionComLogging.h"
+#include "AccessionCommunicationSettings.h"
 
 #include "AudioCapture.h"
 #include "AudioDeviceNotificationSubsystem.h"
@@ -54,8 +55,6 @@ int32 UAudioManager::GetAudioCaptureNumChannels() const
 
 void UAudioManager::StartCapturingAudio()
 {
-	AudioBuffer.Empty();
-
 	bIsCapturingAudio = true;
 }
 
@@ -66,7 +65,10 @@ void UAudioManager::StopCapturingAudio()
 	if (AudioBuffer.Num() == 0)
 		return;
 
-	SaveAudioBufferToWAV(Settings.SavePath);
+	const UAccessionCommunicationSettings* ACSettings = GetDefault<UAccessionCommunicationSettings>();
+
+	if (ACSettings && ACSettings->bSaveTemporaryWAV)
+		SaveAudioBufferToWAV(Settings.SavePath);
 
 	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer, AudioCapture->GetSampleRate(), AudioCapture->GetNumChannels()))
 	{

@@ -4,6 +4,7 @@
 #include "AccessionAnalytics.h"
 #include "AudioManager.h"
 #include "AccessionComLogging.h"
+#include "AccessionCommunicationSettings.h"
 
 #include "PhraseTree.h"
 #include "PhraseTreeUtils.h"
@@ -105,6 +106,7 @@ bool UAccessionCommunicationSubsystem::Tick(float DeltaTime)
 
 void UAccessionCommunicationSubsystem::HandleKeyDownEvent(const FKeyEvent& InKeyEvent)
 {
+	/*
 	FKey EventKey = InKeyEvent.GetKey();
 
 	bool isTargetKey = EventKey == EKeys::LeftAlt || EventKey == EKeys::RightAlt;
@@ -122,5 +124,41 @@ void UAccessionCommunicationSubsystem::HandleKeyDownEvent(const FKeyEvent& InKey
 			OA_LOG(LogAccessionCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
 			AudioManager->StopCapturingAudio();
 		}
+	}
+	*/
+
+	const UAccessionCommunicationSettings* Settings = GetDefault<UAccessionCommunicationSettings>();
+	if (Settings == nullptr)
+		return;
+
+	if (Settings->ActivationKeys != InKeyEvent)
+		return;
+
+	switch (Settings->TranscriptionActivation)
+	{
+		case ETransctiptionActivation::PUSH_TO_TALK:
+		{
+			// Implementation Is Required.
+			unimplemented();
+		}
+
+		case ETransctiptionActivation::ENABLE_DISABLE:
+		{
+			if (InKeyEvent.IsRepeat())
+				return;
+
+			if (!AudioManager->IsCapturingAudio())
+			{
+				OA_LOG(LogAccessionCom, Log, TEXT("AudioCapture Change"), TEXT("Starting Audio Capture"));
+				AudioManager->EmptyBuffer();
+				AudioManager->StartCapturingAudio();
+			}
+			else
+			{
+				OA_LOG(LogAccessionCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
+				AudioManager->StopCapturingAudio();
+			}
+		}
+
 	}
 }

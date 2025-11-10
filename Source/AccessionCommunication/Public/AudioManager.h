@@ -103,6 +103,16 @@ public:
     /// <param name="DeviceID"></param>
     void OnDefaultDeviceChanged(EAudioDeviceChangedRole ChangedRole, FString DeviceID);
 
+    bool EmptyBuffer()
+    {
+        if (AudioBuffer.IsEmpty())
+            return false;
+
+    	AudioBuffer.Empty();
+
+        return false;
+    }
+
 private:
     void RegisterAudioGenerator();
 

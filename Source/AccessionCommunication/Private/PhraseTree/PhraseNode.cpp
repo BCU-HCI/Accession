@@ -3,6 +3,7 @@
 #include "PhraseTree/PhraseNode.h"
 #include "PhraseTree.h"
 #include "AccessionComLogging.h"
+#include "AccessionCommunicationSettings.h"
 
 #include "Algo/LevenshteinDistance.h"
 
@@ -56,9 +57,11 @@ bool FPhraseNode::RequiresPhrase(FString InPhrase)
 
 bool FPhraseNode::RequiresPhrase(const FString InPhrase, int32 &OutDistance)
 {
+	const UAccessionCommunicationSettings* ACSettings = GetDefault<UAccessionCommunicationSettings>();
+
     OutDistance = Algo::LevenshteinDistance(BoundPhrase, InPhrase);
 
-    return InPhrase.Equals(BoundPhrase, ESearchCase::IgnoreCase) || OutDistance < 3;
+    return InPhrase.Equals(BoundPhrase, ESearchCase::IgnoreCase) || OutDistance <= (ACSettings != nullptr ? ACSettings->CommandConfidenceThreshold : 2);
 }
 
 FParseResult FPhraseNode::ParsePhrase(TArray<FString> &InPhraseArray,
