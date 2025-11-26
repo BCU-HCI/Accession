@@ -49,19 +49,8 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 			continue;
 		}
 
-		// Filter the Transcription Segment, to remove any unwanted characters.
-		TranscriptionSegment.TrimStartAndEndInline();
-		TranscriptionSegment.ReplaceInline(TEXT("."), TEXT(""), ESearchCase::IgnoreCase);
-		TranscriptionSegment.ReplaceInline(TEXT(","), TEXT(""), ESearchCase::IgnoreCase);
-		TranscriptionSegment.ToUpperInline();
-
-		UE_LOG(LogAccessionCom, Log, TEXT("|| Phrase Tree || Filtered Transcription Segment: { %s } ||"), *TranscriptionSegment)
-
-		// Parse the Transcription Segment into an Array of Words, removing any white space.
-		TranscriptionSegment.ParseIntoArrayWS(SegmentWordArray);
-		if (SegmentWordArray.Num() == 0)
+		if (!PrepareTranscriptionSegment(TranscriptionSegment, SegmentWordArray))
 		{
-			UE_LOG(LogAccessionCom, Log, TEXT("|| Phrase Tree || Transcription Segment has no Word Content ||"))
 			continue;
 		}
 
@@ -78,63 +67,66 @@ void FPhraseTree::ParseTranscription(TArray<FString> InTranscriptionSegments)
 
 			UE_LOGFMT(LogAccessionCom, Log, "|| Phrase Tree || Segment: {0} | Result: {1} ||", SegmentCount, ParseResult.Result);
 
-			switch (ParseResult.Result)
-			{
-			case PHRASE_PARSED:
-			case PHRASE_PARSED_AND_EXECUTED:
-			{
-				OA_LOG(LogAccessionCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Success} Phrase Tree Parsed Correctly (%s)"),
-					   *ParseRecord.GetPhraseString())
-
-				LastVistedNode.Reset();
-				LastVistedParseRecord = FParseRecord();
-
-				break;
-			}
-
-			case PHRASE_REQUIRES_MORE:
-			{
-				OA_LOG(LogAccessionCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Requires More Segments. (%s)"),
-					   *ParseRecord.GetPhraseString());
-
-				// Store Reach Nodes, and the ParseRecord for future propagation attempts.
-				LastVistedNode = ParseResult.ReachedNode;
-				LastVistedParseRecord = ParseRecord;
-			}
-
-			case PHRASE_REQUIRES_MORE_CORRECT_PHRASES:
-			{
-				OA_LOG(LogAccessionCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Requires More Correct Segments. (%s)"),
-					   *ParseRecord.GetPhraseString())
-
-				LastVistedNode = ParseResult.ReachedNode;
-				LastVistedParseRecord = ParseRecord;
-
-				// Dirty Way of Ensuring all Segments in Transcription are Attempted.
-				if (!SegmentWordArray.IsEmpty())
-					SegmentWordArray.Pop();
-
-				break;
-			}
-
-			default:
-			case PHRASE_UNABLE_TO_PARSE:
-			{
-				OA_LOG(LogAccessionCom, Log, TEXT("PhraseTree Propagation"), TEXT("{Failed} Phrase Tree Propagation Failed. (%s)"),
-					   *ParseRecord.GetPhraseString())
-
-				// Dirty Way of Ensuring all Segments in Transcription are Attempted.
-				if (!SegmentWordArray.IsEmpty())
-					SegmentWordArray.Pop();
-
-				break;
-			}
-			}
+			HandleParseResult(ParseResult, ParseRecord, SegmentWordArray);
 		}
 
 		SegmentCount++;
 		SegmentWordArray.Reset();
 	}
+}
+
+bool FPhraseTree::PrepareTranscriptionSegment(FString InSegment, TArray<FString>& OutWordArray)
+{
+	InSegment.TrimStartAndEndInline();
+	InSegment.ReplaceInline(TEXT("."), TEXT(""), ESearchCase::IgnoreCase);
+	InSegment.ReplaceInline(TEXT(","), TEXT(""), ESearchCase::IgnoreCase);
+	InSegment.ToUpperInline();
+
+	UE_LOG(LogAccessionCom, Log, TEXT("|| Phrase Tree || Filtered Transcription Segment: { %s } ||"), *InSegment)
+
+	InSegment.ParseIntoArrayWS(OutWordArray);
+
+	return OutWordArray.Num() > 0;
+}
+
+bool FPhraseTree::HandleParseResult(const FParseResult& InParseResult, FParseRecord& ParseRecord, TArray<FString>& WordsArray)
+{
+	switch (InParseResult.Result)
+	{
+		case PHRASE_PARSED:
+		case PHRASE_PARSED_AND_EXECUTED:
+		{
+			OA_LOG(LogAccessionCom, Log, TEXT("PhraseTree"), TEXT("{Success} (%s)"), *ParseRecord.GetPhraseString());
+
+			LastVistedNode.Reset();
+			LastVistedParseRecord = FParseRecord();
+
+			return true;
+		}
+		case PHRASE_REQUIRES_MORE:
+		{
+			OA_LOG(LogAccessionCom, Log, TEXT("PhraseTree"), TEXT("{Need More Input} (%s)"), *ParseRecord.GetPhraseString());
+
+			LastVistedNode = InParseResult.ReachedNode;
+			LastVistedParseRecord = ParseRecord;
+
+			return false;
+		}
+
+		case PHRASE_REQUIRES_MORE_CORRECT_PHRASES:
+		case PHRASE_UNABLE_TO_PARSE:
+		default:
+		{
+			OA_LOG(LogAccessionCom, Log, TEXT("PhraseTree"), TEXT("{Failed} (%s)"), *ParseRecord.GetPhraseString());
+
+			if (!WordsArray.IsEmpty())
+				WordsArray.Pop();
+
+			return true;
+		}
+	}
+
+	return false;
 }
 
 FParseResult FPhraseTree::ParsePhrase(TArray<FString> &InPhraseWordArray, FParseRecord &InParseRecord)
@@ -153,20 +145,39 @@ FParseResult FPhraseTree::ParsePhrase(TArray<FString> &InPhraseWordArray, FParse
 		TArray<FString> PhraseWordArrayCopy = TArray(InPhraseWordArray);
 
 		FParseResult ParseResult = LastVistedNode->ParseChildren(PhraseWordArrayCopy, LastVistedParseRecord);
-		if (ParseResult.Result & PHRASE_PARSED | PHRASE_PARSED_AND_EXECUTED)
+		switch (ParseResult.Result)
 		{
-			LastVistedNode.Reset();
-			InParseRecord = LastVistedParseRecord;
-			LastVistedParseRecord = FParseRecord();
+			case PHRASE_UNABLE_TO_PARSE:
+			{
+				// Continue Normal Propagation from Root or Context.
+				break;
+			}
 
-			// Swap Potentially Modified PhraseWordArray.
-			InPhraseWordArray = PhraseWordArrayCopy;
+			case PHRASE_REQUIRES_MORE:
+			{
+				// Return Due to Success Propagation, but keep last visited node for future attempts.
+				InPhraseWordArray = PhraseWordArrayCopy;
+				InParseRecord = LastVistedParseRecord;
 
-			return ParseResult;
-		}
-		else if (ParseResult.Result != PHRASE_UNABLE_TO_PARSE)
-		{
-			return ParseResult;
+				return ParseResult;
+			}
+
+			case PHRASE_PARSED:
+			case PHRASE_PARSED_AND_EXECUTED:
+			{
+				InPhraseWordArray = PhraseWordArrayCopy;
+				InParseRecord = LastVistedParseRecord;
+
+				LastVistedNode.Reset();
+				LastVistedParseRecord = FParseRecord();
+
+				return ParseResult;
+			}
+
+			default:
+			{
+				return ParseResult;
+			}
 		}
 	}
 

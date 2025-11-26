@@ -2,7 +2,7 @@
 
 #include "AudioManager.h"
 #include "AccessionComLogging.h"
-#include "SocketCommunicationServer.h"
+#include "AccessionCommunicationSettings.h"
 
 #include "AudioCapture.h"
 #include "AudioDeviceNotificationSubsystem.h"
@@ -55,8 +55,6 @@ int32 UAudioManager::GetAudioCaptureNumChannels() const
 
 void UAudioManager::StartCapturingAudio()
 {
-	AudioBuffer.Empty();
-
 	bIsCapturingAudio = true;
 }
 
@@ -67,9 +65,12 @@ void UAudioManager::StopCapturingAudio()
 	if (AudioBuffer.Num() == 0)
 		return;
 
-	SaveAudioBufferToWAV(Settings.SavePath);
+	const UAccessionCommunicationSettings* ACSettings = GetDefault<UAccessionCommunicationSettings>();
 
-	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer))
+	if (ACSettings && ACSettings->bSaveTemporaryWAV)
+		SaveAudioBufferToWAV(Settings.SavePath);
+
+	if (OnAudioReadyForTranscription.ExecuteIfBound(AudioBuffer, AudioCapture->GetSampleRate(), AudioCapture->GetNumChannels()))
 	{
 		UE_LOG(LogAccessionCom, Log, TEXT("|| Executing Audio Ready For Transcription Delegate. ||"));
 	}

@@ -27,6 +27,7 @@ public class AccessionCommunication : ModuleRules
 			new string[]
 			{
 				"Core",
+				"EditorSubsystem"
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -36,9 +37,6 @@ public class AccessionCommunication : ModuleRules
 			{
 				// Internal Plugin Dependencies
 				"AccessionAnalytics",
-
-				// Internal ThirdParty Dependencies
-				"ZeroMQ",
 
 				// Core Modules
 				"CoreUObject",

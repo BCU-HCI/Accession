@@ -2,19 +2,22 @@
 
 #include "TranscriptionVisualizer.h"
 
+#include "AccessionLogging.h"
 #include "Widgets/STranscriptionVis.h"
 
-FTranscriptionVisualizer::FTranscriptionVisualizer()
+UTranscriptionVisualizer::UTranscriptionVisualizer()
 {
+	TranscriptionList.Reserve(MaxVisualisationAmount);
+
 	RegisterTicker();
 }
 
-FTranscriptionVisualizer::~FTranscriptionVisualizer()
+UTranscriptionVisualizer::~UTranscriptionVisualizer()
 {
 	UnregisterTicker();
 }
 
-bool FTranscriptionVisualizer::Tick(float DeltaTime)
+bool UTranscriptionVisualizer::Tick(float DeltaTime)
 {
 	if (VisWindow.IsValid())
 	{
@@ -28,10 +31,10 @@ bool FTranscriptionVisualizer::Tick(float DeltaTime)
 	return true;
 }
 
-void FTranscriptionVisualizer::ConstructVisualizer()
+void UTranscriptionVisualizer::ConstructVisualizer()
 {
 	TSharedPtr<STranscriptionVis> MenuContent = SNew(STranscriptionVis)
-													.VisAmount(2);
+													.VisAmount(MaxVisualisationAmount);
 
 	MenuContent->ForceVolatile(true);
 
@@ -68,21 +71,32 @@ void FTranscriptionVisualizer::ConstructVisualizer()
 	VisContent = MenuContent.ToWeakPtr();
 }
 
-void FTranscriptionVisualizer::UpdateVisualizer()
+void UTranscriptionVisualizer::UpdateVisualizer()
 {
 	if (FSlateApplication::Get().IsActive())
 	{
 		VisWindow.Pin()->ShowWindow();
 
-		// ReparentWindow();
-
 		MoveVisualizer();
 	}
 	else
 		VisWindow.Pin()->HideWindow();
+
+	if (bIsTranscriptionDirty)
+	{
+		FScopeLock Lock(&TranscriptionQueueMutex);
+
+		for (const auto& TransSlot : TranscriptionList)
+		{
+			VisContent.Pin()->UpdateTopTranscription(TransSlot);
+		}
+
+		bIsTranscriptionDirty = false;
+	}
+	
 }
 
-void FTranscriptionVisualizer::ReparentWindow()
+void UTranscriptionVisualizer::ReparentWindow()
 {
 	TSharedPtr<SWindow> TopLevelActiveWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
 	if (!TopLevelActiveWindow.IsValid())
@@ -104,7 +118,7 @@ void FTranscriptionVisualizer::ReparentWindow()
 	TopLevelActiveWindow->AddChildWindow(VisWindowPtr.ToSharedRef());
 }
 
-void FTranscriptionVisualizer::MoveVisualizer()
+void UTranscriptionVisualizer::MoveVisualizer()
 {
 	FVector2D NewPosition = FVector2D();
 
@@ -116,15 +130,25 @@ void FTranscriptionVisualizer::MoveVisualizer()
 	VisWindow.Pin()->MoveWindowTo(NewPosition);
 }
 
-void FTranscriptionVisualizer::OnTranscriptionRecieved(TArray<FString> InTranscription)
+void UTranscriptionVisualizer::OnTranscriptionRecieved(TArray<FString> InTranscription)
 {
+	FScopeLock Lock(&TranscriptionQueueMutex);
+
+	FString LastTopItem = FString();
 	for (int i = 0; i < InTranscription.Num(); i++)
 	{
-		VisContent.Pin()->UpdateTopTranscription(InTranscription[i]);
+		if (TranscriptionList.Num() >= MaxVisualisationAmount)
+		{
+			TranscriptionList.RemoveAt(0, 1, false);
+		}
+
+		TranscriptionList.Add(InTranscription[i]);
 	}
+
+	bIsTranscriptionDirty = true;
 }
 
-bool FTranscriptionVisualizer::GetTopScreenVisualizerPosition(FVector2D &OutPosition)
+bool UTranscriptionVisualizer::GetTopScreenVisualizerPosition(FVector2D &OutPosition)
 {
 	TSharedPtr<SWindow> TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
 	if (!TopLevelWindow.IsValid())
@@ -141,7 +165,7 @@ bool FTranscriptionVisualizer::GetTopScreenVisualizerPosition(FVector2D &OutPosi
 	return true;
 }
 
-bool FTranscriptionVisualizer::GetDisplayVisualizerPosition(FVector2D &OutPosition)
+bool UTranscriptionVisualizer::GetDisplayVisualizerPosition(FVector2D &OutPosition)
 {
 	FDisplayMetrics DisplayMetrics;
 	FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);
@@ -152,14 +176,14 @@ bool FTranscriptionVisualizer::GetDisplayVisualizerPosition(FVector2D &OutPositi
 	return true;
 }
 
-void FTranscriptionVisualizer::RegisterTicker()
+void UTranscriptionVisualizer::RegisterTicker()
 {
-	FTickerDelegate TickDelegate = FTickerDelegate::CreateRaw(this, &FTranscriptionVisualizer::Tick);
+	FTickerDelegate TickDelegate = FTickerDelegate::CreateUObject(this, &UTranscriptionVisualizer::Tick);
 
 	TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);
 }
 
-void FTranscriptionVisualizer::UnregisterTicker()
+void UTranscriptionVisualizer::UnregisterTicker()
 {
 	FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
 }

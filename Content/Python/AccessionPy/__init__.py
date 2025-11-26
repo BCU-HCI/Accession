@@ -1,4 +1,5 @@
 import unreal as ue
+from unreal import GuidLibrary
 import zmq
 import numpy as np
 from gc import collect as gc_collect
@@ -65,16 +66,25 @@ class AccessionPy:
             compute_type=compute_type,
             transcribe_workers=worker_count,
         )
-        self.com_server = CommunicationServer(
-            send_socket_type=zmq.PUSH,
-            recv_socket_type=zmq.PULL,
-            poll_timeout=poll_timeout,
-        )
+        # self.com_server = CommunicationServer(
+        #    send_socket_type=zmq.PUSH,
+        #    recv_socket_type=zmq.PULL,
+        #    poll_timeout=poll_timeout,
+        # )
         self.audio_resampler = AudioResampler(target_sample_rate=16000)
 
         self.tick_handle = ue.register_slate_post_tick_callback(self.Tick)
 
         self.pyshutdown_handle = ue.register_python_shutdown_callback(self.Shutdown)
+
+        self.acsubsystem = ue.get_editor_subsystem(ue.AccessionCommunicationSubsystem)
+        if not self.acsubsystem:
+            Log("Accession Communication Subsystem Not Found", LogLevel.ERROR)
+            exit(1)
+
+        self.acsubsystem.on_transcription_request.bind_callable(
+            self.HandleTranscriptionRequest_CB
+        )
 
     def __del__(self):
         """Destructor of Python Runtime Class for Accession Plugin"""
@@ -90,7 +100,7 @@ class AccessionPy:
             delta_time (float): Time since last tick
         """
 
-        if self.com_server.EventOccured():
+        if hasattr(self, "com_server") and self.com_server.EventOccured():
             Log("Event Occured")
 
             message, metadata = self.com_server.ReceiveNDArrayWithMeta(dtype=np.float32)
@@ -141,6 +151,57 @@ class AccessionPy:
 
         else:
             Log("No Transcription Segments Returned", LogLevel.WARNING)
+
+    def HandleTranscriptionRequest_CB(
+        self, recv_buffer: ue.Array[float], sample_rate: int, num_channels: int
+    ):
+
+        message_ndarray = np.array(recv_buffer, dtype=np.float32)
+
+        generated_id = GuidLibrary.new_guid()
+
+        self.worker_pool.submit(
+            self._handle_transcription_request,
+            generated_id,
+            message_ndarray,
+            sample_rate,
+            num_channels,
+        )
+
+        return generated_id
+
+    def _handle_transcription_request(
+        self,
+        id: ue.Guid,
+        recv_buffer: ue.Array[float],
+        sample_rate: int,
+        num_channels: int,
+    ):
+
+        Log(
+            f"Handling Transcription Request | Buffer Size: {len(recv_buffer)} | Sample Rate: {sample_rate} | Num Channels: {num_channels}"
+        )
+
+        recv_buffer = np.array(recv_buffer, dtype=np.float32).reshape(1, -1)
+
+        message_ndarray = self.audio_resampler.resample(
+            recv_buffer, sample_rate, num_channels
+        )
+
+        trans_segment, trans_metadata = self.whisper_interface.process_audio_buffer(
+            message_ndarray
+        )
+
+        segments = [transcription.text.strip() for transcription in trans_segment]
+
+        Log(f"Segments: {segments}")
+
+        if len(segments) > 0:
+            try:
+                self.acsubsystem.transcription_complete(id, segments)
+
+            except:
+                Log("Error Sending Transcription Segments", LogLevel.ERROR)
 
     def Shutdown(self):
         """Shutsdown the Python Runtime Components, and Forces a Garbage Collection."""

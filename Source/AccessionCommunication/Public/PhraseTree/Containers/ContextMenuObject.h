@@ -43,7 +43,9 @@ public:
 	virtual bool Close() override
 	{
 		RemoveTickDelegate();
-		Menu.Pin()->Dismiss();
+
+		if (Menu.IsValid())
+			Menu.Pin()->Dismiss();
 
 		return true;
 	};
