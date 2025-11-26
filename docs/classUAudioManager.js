@@ -8,6 +8,6 @@ var classUAudioManager =
     [ "SaveAudioBufferToWAV", "classUAudioManager.html#af6cdc7231287e412ecf89ee8f60c7300", null ],
     [ "StartCapturingAudio", "classUAudioManager.html#a7d1368be18287e1f8c288c81d571142d", null ],
     [ "StopCapturingAudio", "classUAudioManager.html#a0b9517bb36ae5a96308dd290f7b57f1f", null ],
-    [ "OnAudioReadyForTranscription", "classUAudioManager.html#a5eb5bc3ec0e84cb2f4b3a1c8666b0abe", null ],
+    [ "OnAudioReadyForTranscription", "classUAudioManager.html#a7adfcdbdff68680129eb4bded8d582a9", null ],
     [ "Settings", "classUAudioManager.html#addf856d032dedc5835e117f8f700fc79", null ]
 ];

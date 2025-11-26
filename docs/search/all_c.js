@@ -4,5 +4,5 @@ var searchData=
   ['menu_1',['Menu',['../classUPhraseTreeContextMenuObject.html#a0f3c5bd08fb8ec5b7d4fe36db763aab9',1,'UPhraseTreeContextMenuObject']]],
   ['movenode_2',['MoveNode',['../classUNodeInteractionLibrary.html#a11b47ab03e06a454483df3864e8f9aa0',1,'UNodeInteractionLibrary']]],
   ['moveviewport_3',['MoveViewport',['../classUViewInteractionLibrary.html#a4ef057b326b49e181f872220762db1d5',1,'UViewInteractionLibrary']]],
-  ['movevisualizer_4',['MoveVisualizer',['../classFTranscriptionVisualizer.html#aef576bc9c2423d9f0246ccc6b005c95d',1,'FTranscriptionVisualizer']]]
+  ['movevisualizer_4',['MoveVisualizer',['../classUTranscriptionVisualizer.html#ad307c1709d0f42c17d68671a98a2b43e',1,'UTranscriptionVisualizer']]]
 ];

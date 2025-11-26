@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['viscontent_0',['VisContent',['../classFTranscriptionVisualizer.html#ad1077f74bf9d52658e199438651f4fb3',1,'FTranscriptionVisualizer']]],
-  ['viswindow_1',['VisWindow',['../classFTranscriptionVisualizer.html#abaa4d25cca264be329a0a364b13761f8',1,'FTranscriptionVisualizer']]]
+  ['viscontent_0',['VisContent',['../classUTranscriptionVisualizer.html#a51f3da089793d356e5290f4dc6dff6e1',1,'UTranscriptionVisualizer']]],
+  ['viswindow_1',['VisWindow',['../classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab',1,'UTranscriptionVisualizer']]]
 ];

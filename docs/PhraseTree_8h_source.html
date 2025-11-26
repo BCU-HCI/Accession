@@ -275,14 +275,20 @@ $(document).ready(function(){initNavTree('PhraseTree_8h_source.html',''); initRe
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    <span class="keywordtype">void</span> ParseTranscription(TArray&lt;FString&gt; InTranscriptionSegments);</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    TSharedPtr&lt;FPhraseNode&gt; LastVistedNode;</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a> LastVistedParseRecord;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordtype">bool</span> PrepareTranscriptionSegment(FString InSegment, TArray&lt;FString&gt;&amp; OutWordArray);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    <span class="keywordtype">bool</span> HandleParseResult(<span class="keyword">const</span> <a class="code hl_struct" href="structFParseResult.html">FParseResult</a>&amp; InParseResult, <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a>&amp; InOutParseRecord, TArray&lt;FString&gt;&amp; InWordsArray);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    TSharedPtr&lt;FPhraseNode&gt; LastVistedNode;</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <a class="code hl_struct" href="structFPhraseTreeContextManager.html">FPhraseTreeContextManager</a> ContextManager;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    <a class="code hl_struct" href="structFParseRecord.html">FParseRecord</a> LastVistedParseRecord;</div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    FTSTicker::FDelegateHandle TickDelegateHandle;</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>};</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    <a class="code hl_struct" href="structFPhraseTreeContextManager.html">FPhraseTreeContextManager</a> ContextManager;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    FTSTicker::FDelegateHandle TickDelegateHandle;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>};</div>
 <div class="ttc" id="aclassFPhraseNode_html"><div class="ttname"><a href="classFPhraseNode.html">FPhraseNode</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseNode_8h_source.html#l00053">PhraseNode.h:54</a></div></div>
 <div class="ttc" id="aclassFPhraseTree_html"><div class="ttname"><a href="classFPhraseTree.html">FPhraseTree</a></div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8h_source.html#l00220">PhraseTree.h:221</a></div></div>
 <div class="ttc" id="aclassUPhraseTreeContextObject_html"><div class="ttname"><a href="classUPhraseTreeContextObject.html">UPhraseTreeContextObject</a></div><div class="ttdef"><b>Definition:</b> <a href="ContextObject_8h_source.html#l00012">ContextObject.h:13</a></div></div>

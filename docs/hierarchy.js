@@ -4,6 +4,7 @@ var hierarchy =
     [ "AccessionPy.Audio.AudioResampler", "classAccessionPy_1_1Audio_1_1AudioResampler.html", null ],
     [ "AccessionPy.CommunicationServer.CommunicationServer", "classAccessionPy_1_1CommunicationServer_1_1CommunicationServer.html", null ],
     [ "FAccessionAssetRegistry", "classFAccessionAssetRegistry.html", null ],
+    [ "FActivationKeys", "structFActivationKeys.html", null ],
     [ "FTabManager::FArea", null, [
       [ "TabUtils::FOpenArea", "classTabUtils_1_1FOpenArea.html", null ]
     ] ],
@@ -24,15 +25,16 @@ var hierarchy =
     [ "FParseResult", "structFParseResult.html", null ],
     [ "FPhraseTreeBranchBind", "structFPhraseTreeBranchBind.html", null ],
     [ "FPhraseTreeContextManager", "structFPhraseTreeContextManager.html", null ],
-    [ "FSocketCommunicationServer", "classFSocketCommunicationServer.html", null ],
     [ "FTabManager::FSplitter", null, [
       [ "TabUtils::FOpenSplitter", "classTabUtils_1_1FOpenSplitter.html", null ]
     ] ],
     [ "FTabManager::FStack", null, [
       [ "TabUtils::FOpenStack", "classTabUtils_1_1FOpenStack.html", null ]
     ] ],
-    [ "FTranscriptionVisualizer", "classFTranscriptionVisualizer.html", null ],
     [ "UGraphEditorContext::FTreeViewTickRequirements", "structUGraphEditorContext_1_1FTreeViewTickRequirements.html", null ],
+    [ "IInputProcessor", null, [
+      [ "FAccessionCommunicationInputProcessor", "classFAccessionCommunicationInputProcessor.html", null ]
+    ] ],
     [ "IModuleInterface", null, [
       [ "FAccessionAnalyticsModule", "classFAccessionAnalyticsModule.html", null ],
       [ "FAccessionCommunicationModule", "classFAccessionCommunicationModule.html", null ],
@@ -90,7 +92,11 @@ var hierarchy =
         [ "FPhraseTree", "classFPhraseTree.html", null ]
       ] ]
     ] ],
+    [ "UEditorSubsystem", null, [
+      [ "UAccessionCommunicationSubsystem", "classUAccessionCommunicationSubsystem.html", null ]
+    ] ],
     [ "UObject", null, [
+      [ "UAccessionCommunicationSettings", "classUAccessionCommunicationSettings.html", null ],
       [ "UAudioManager", "classUAudioManager.html", null ],
       [ "UParseInput", "classUParseInput.html", [
         [ "UParseFloatInput", "classUParseFloatInput.html", null ],
@@ -113,6 +119,7 @@ var hierarchy =
         [ "UWindowInteractionLibrary", "classUWindowInteractionLibrary.html", null ]
       ] ],
       [ "UPhraseTreeUtils", "classUPhraseTreeUtils.html", null ],
+      [ "UTranscriptionVisualizer", "classUTranscriptionVisualizer.html", null ],
       [ "UWindowToolbarIndex", "classUWindowToolbarIndex.html", null ]
     ] ],
     [ "AccessionPy.WhisperInterface.WhisperInterface", "classAccessionPy_1_1WhisperInterface_1_1WhisperInterface.html", null ],

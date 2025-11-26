@@ -268,7 +268,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><span class="lineno">   24</span> </div>
 <div class="line"><span class="lineno">   25</span>    UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;|| Context Menu || Destroyed ||&quot;</span>))</div>
 <div class="line"><span class="lineno">   26</span>}</div>
-<div class="ttc" id="aclassUPhraseTreeContextMenuObject_html_a0f3c5bd08fb8ec5b7d4fe36db763aab9"><div class="ttname"><a href="classUPhraseTreeContextMenuObject.html#a0f3c5bd08fb8ec5b7d4fe36db763aab9">UPhraseTreeContextMenuObject::Menu</a></div><div class="ttdeci">TWeakPtr&lt; IMenu &gt; Menu</div><div class="ttdoc">The Menu Object.</div><div class="ttdef"><b>Definition:</b> <a href="ContextMenuObject_8h_source.html#l00108">ContextMenuObject.h:108</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeContextMenuObject_html_a0f3c5bd08fb8ec5b7d4fe36db763aab9"><div class="ttname"><a href="classUPhraseTreeContextMenuObject.html#a0f3c5bd08fb8ec5b7d4fe36db763aab9">UPhraseTreeContextMenuObject::Menu</a></div><div class="ttdeci">TWeakPtr&lt; IMenu &gt; Menu</div><div class="ttdoc">The Menu Object.</div><div class="ttdef"><b>Definition:</b> <a href="ContextMenuObject_8h_source.html#l00110">ContextMenuObject.h:110</a></div></div>
 <div class="ttc" id="aclassUPhraseTreeContextMenuObject_html_a52b49d911f30a144c9aac2e148b1561d"><div class="ttname"><a href="classUPhraseTreeContextMenuObject.html#a52b49d911f30a144c9aac2e148b1561d">UPhraseTreeContextMenuObject::RemoveMenuDismissed</a></div><div class="ttdeci">void RemoveMenuDismissed(TSharedRef&lt; IMenu &gt; InMenu)</div><div class="ttdoc">UnBinds the Menu Dismissed Callback from the Menu.</div><div class="ttdef"><b>Definition:</b> <a href="ContextMenuObject_8cpp_source.html#l00068">ContextMenuObject.cpp:68</a></div></div>
 <div class="ttc" id="aclassUPhraseTreeContextMenuObject_html_ac645ce3426079466d4b934e78ee76f05"><div class="ttname"><a href="classUPhraseTreeContextMenuObject.html#ac645ce3426079466d4b934e78ee76f05">UPhraseTreeContextMenuObject::RemoveTickDelegate</a></div><div class="ttdeci">void RemoveTickDelegate()</div><div class="ttdoc">UnBinds the Tick Delegate from the Core Ticker.</div><div class="ttdef"><b>Definition:</b> <a href="ContextMenuObject_8cpp_source.html#l00056">ContextMenuObject.cpp:56</a></div></div>
 </div><!-- fragment -->
@@ -366,10 +366,12 @@ Additional Inherited Members</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="ContextMenuObject_8h_source.html#l00043">43</a> of file <a class="el" href="ContextMenuObject_8h_source.html">ContextMenuObject.h</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   44</span>    {</div>
 <div class="line"><span class="lineno">   45</span>        <a class="code hl_function" href="classUPhraseTreeContextMenuObject.html#ac645ce3426079466d4b934e78ee76f05">RemoveTickDelegate</a>();</div>
-<div class="line"><span class="lineno">   46</span>        <a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#a0f3c5bd08fb8ec5b7d4fe36db763aab9">Menu</a>.Pin()-&gt;Dismiss();</div>
-<div class="line"><span class="lineno">   47</span> </div>
-<div class="line"><span class="lineno">   48</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   49</span>    };</div>
+<div class="line"><span class="lineno">   46</span> </div>
+<div class="line"><span class="lineno">   47</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#a0f3c5bd08fb8ec5b7d4fe36db763aab9">Menu</a>.IsValid())</div>
+<div class="line"><span class="lineno">   48</span>            <a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#a0f3c5bd08fb8ec5b7d4fe36db763aab9">Menu</a>.Pin()-&gt;Dismiss();</div>
+<div class="line"><span class="lineno">   49</span> </div>
+<div class="line"><span class="lineno">   50</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   51</span>    };</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -399,10 +401,10 @@ Additional Inherited Members</h2></td></tr>
 <p>Gets the Window Object for this Context Menu.  </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ContextMenuObject_8h_source.html#l00093">93</a> of file <a class="el" href="ContextMenuObject_8h_source.html">ContextMenuObject.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   94</span>    {</div>
-<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#a0f3c5bd08fb8ec5b7d4fe36db763aab9">Menu</a>.Pin()-&gt;GetOwnedWindow();</div>
-<div class="line"><span class="lineno">   96</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="ContextMenuObject_8h_source.html#l00095">95</a> of file <a class="el" href="ContextMenuObject_8h_source.html">ContextMenuObject.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   96</span>    {</div>
+<div class="line"><span class="lineno">   97</span>        <span class="keywordflow">return</span> <a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#a0f3c5bd08fb8ec5b7d4fe36db763aab9">Menu</a>.Pin()-&gt;GetOwnedWindow();</div>
+<div class="line"><span class="lineno">   98</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -451,7 +453,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><span class="lineno">   36</span>}</div>
 <div class="ttc" id="aclassUPhraseTreeContextMenuObject_html_a0e148da93beca9bf1ccb55d2d8eba041"><div class="ttname"><a href="classUPhraseTreeContextMenuObject.html#a0e148da93beca9bf1ccb55d2d8eba041">UPhraseTreeContextMenuObject::BindMenuDismissed</a></div><div class="ttdeci">void BindMenuDismissed(TSharedRef&lt; IMenu &gt; InMenu)</div><div class="ttdoc">Binds the Menu Dismissed Callback to the Menu.</div><div class="ttdef"><b>Definition:</b> <a href="ContextMenuObject_8cpp_source.html#l00062">ContextMenuObject.cpp:62</a></div></div>
 <div class="ttc" id="aclassUPhraseTreeContextMenuObject_html_ad4ce5528f81985b8b615ca545f759ed9"><div class="ttname"><a href="classUPhraseTreeContextMenuObject.html#ad4ce5528f81985b8b615ca545f759ed9">UPhraseTreeContextMenuObject::BindTickDelegate</a></div><div class="ttdeci">void BindTickDelegate()</div><div class="ttdoc">Binds the Tick Delegate to the Core Ticker.</div><div class="ttdef"><b>Definition:</b> <a href="ContextMenuObject_8cpp_source.html#l00050">ContextMenuObject.cpp:50</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeContextMenuObject_html_aed946d4b51e601cfc3bdb36c1ba373b5"><div class="ttname"><a href="classUPhraseTreeContextMenuObject.html#aed946d4b51e601cfc3bdb36c1ba373b5">UPhraseTreeContextMenuObject::Window</a></div><div class="ttdeci">TWeakPtr&lt; SWindow &gt; Window</div><div class="ttdoc">The Menu's Window.</div><div class="ttdef"><b>Definition:</b> <a href="ContextMenuObject_8h_source.html#l00113">ContextMenuObject.h:113</a></div></div>
+<div class="ttc" id="aclassUPhraseTreeContextMenuObject_html_aed946d4b51e601cfc3bdb36c1ba373b5"><div class="ttname"><a href="classUPhraseTreeContextMenuObject.html#aed946d4b51e601cfc3bdb36c1ba373b5">UPhraseTreeContextMenuObject::Window</a></div><div class="ttdeci">TWeakPtr&lt; SWindow &gt; Window</div><div class="ttdoc">The Menu's Window.</div><div class="ttdef"><b>Definition:</b> <a href="ContextMenuObject_8h_source.html#l00115">ContextMenuObject.h:115</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -652,8 +654,8 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented in <a class="el" href="classUGraphAddNodeContextMenu.html#aa3aec757b77fd8bfeff392df55a798f3">UGraphAddNodeContextMenu</a>, and <a class="el" href="classUGraphEditorContext.html#ad89275a9b23f426290f50c7b4113d47e">UGraphEditorContext</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="ContextMenuObject_8h_source.html#l00086">86</a> of file <a class="el" href="ContextMenuObject_8h_source.html">ContextMenuObject.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   86</span>{};</div>
+<p class="definition">Definition at line <a class="el" href="ContextMenuObject_8h_source.html#l00088">88</a> of file <a class="el" href="ContextMenuObject_8h_source.html">ContextMenuObject.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   88</span>{};</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -689,10 +691,10 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="ContextMenuObject_8h_source.html#l00077">77</a> of file <a class="el" href="ContextMenuObject_8h_source.html">ContextMenuObject.h</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   78</span>    {</div>
-<div class="line"><span class="lineno">   79</span>        <a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#a0f3c5bd08fb8ec5b7d4fe36db763aab9">Menu</a> = InMenu;</div>
-<div class="line"><span class="lineno">   80</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="ContextMenuObject_8h_source.html#l00079">79</a> of file <a class="el" href="ContextMenuObject_8h_source.html">ContextMenuObject.h</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   80</span>    {</div>
+<div class="line"><span class="lineno">   81</span>        <a class="code hl_variable" href="classUPhraseTreeContextMenuObject.html#a0f3c5bd08fb8ec5b7d4fe36db763aab9">Menu</a> = InMenu;</div>
+<div class="line"><span class="lineno">   82</span>    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -740,7 +742,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>The Menu Object.  </p>
 
-<p class="definition">Definition at line <a class="el" href="ContextMenuObject_8h_source.html#l00108">108</a> of file <a class="el" href="ContextMenuObject_8h_source.html">ContextMenuObject.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ContextMenuObject_8h_source.html#l00110">110</a> of file <a class="el" href="ContextMenuObject_8h_source.html">ContextMenuObject.h</a>.</p>
 
 </div>
 </div>
@@ -758,7 +760,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>The Menu's Window.  </p>
 
-<p class="definition">Definition at line <a class="el" href="ContextMenuObject_8h_source.html#l00113">113</a> of file <a class="el" href="ContextMenuObject_8h_source.html">ContextMenuObject.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="ContextMenuObject_8h_source.html#l00115">115</a> of file <a class="el" href="ContextMenuObject_8h_source.html">ContextMenuObject.h</a>.</p>
 
 </div>
 </div>

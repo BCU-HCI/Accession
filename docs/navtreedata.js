@@ -51,9 +51,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AccessionAnalyticsLogging_8h_source.html",
-"classFPhraseFloatInputNode.html#a524ea5b47e54adea2fb9730056a8d513",
-"classUPhraseTreeContextMenuObject.html#a82aa4e1503c0df1d8e66f1795262f0c4"
+"AComInputProcessor_8h_source.html",
+"classFPhraseInputNode.html#a1bb27ed6d11dbabd6d5afbf9e7f12389",
+"classUWindowInteractionLibrary.html#a1f1dc79b355e41d75da5731cc451b58d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

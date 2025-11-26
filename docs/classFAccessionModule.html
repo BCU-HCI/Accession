@@ -187,12 +187,14 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Accession_8cpp_source.html#l00074">74</a> of file <a class="el" href="Accession_8cpp_source.html">Accession.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   75</span>{</div>
-<div class="line"><span class="lineno">   76</span>    UE_LOG(LogAccession, Display, TEXT(<span class="stringliteral">&quot;AccessionModule::ShutdownModule()&quot;</span>));</div>
-<div class="line"><span class="lineno">   77</span> </div>
-<div class="line"><span class="lineno">   78</span>    UnregisterConsoleCommands();</div>
-<div class="line"><span class="lineno">   79</span>}</div>
+<p class="definition">Definition at line <a class="el" href="Accession_8cpp_source.html#l00077">77</a> of file <a class="el" href="Accession_8cpp_source.html">Accession.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   78</span>{</div>
+<div class="line"><span class="lineno">   79</span>    UE_LOG(LogAccession, Display, TEXT(<span class="stringliteral">&quot;AccessionModule::ShutdownModule()&quot;</span>));</div>
+<div class="line"><span class="lineno">   80</span> </div>
+<div class="line"><span class="lineno">   81</span>    DestroyTranscriptionVisualization();</div>
+<div class="line"><span class="lineno">   82</span> </div>
+<div class="line"><span class="lineno">   83</span>    UnregisterConsoleCommands();</div>
+<div class="line"><span class="lineno">   84</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -220,46 +222,46 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p >IModuleInterface Implementation </p>
 
-<p class="definition">Definition at line <a class="el" href="Accession_8cpp_source.html#l00038">38</a> of file <a class="el" href="Accession_8cpp_source.html">Accession.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   39</span>{</div>
-<div class="line"><span class="lineno">   40</span>    UE_LOG(LogAccession, Display, TEXT(<span class="stringliteral">&quot;AccessionModule::StartupModule()&quot;</span>));</div>
-<div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>    <span class="comment">// Create the Asset Registry</span></div>
-<div class="line"><span class="lineno">   43</span>    <a class="code hl_variable" href="classFAccessionModule.html#a7adcde2bde2a798d10706b6686c1f2e3">AssetRegistry</a> = MakeShared&lt;FAccessionAssetRegistry, ESPMode::ThreadSafe&gt;();</div>
-<div class="line"><span class="lineno">   44</span> </div>
-<div class="line"><span class="lineno">   45</span>    <span class="comment">// Register the  Node Factory</span></div>
-<div class="line"><span class="lineno">   46</span>    <a class="code hl_variable" href="classFAccessionModule.html#a9a657c3aa30030a586d73ffcccd08adf">NodeFactory</a> = MakeShared&lt;FAccessionNodeFactory, ESPMode::ThreadSafe&gt;();</div>
-<div class="line"><span class="lineno">   47</span>    FEdGraphUtilities::RegisterVisualNodeFactory(<a class="code hl_variable" href="classFAccessionModule.html#a9a657c3aa30030a586d73ffcccd08adf">NodeFactory</a>);</div>
-<div class="line"><span class="lineno">   48</span> </div>
-<div class="line"><span class="lineno">   49</span>    <span class="comment">// Construct Base Phrase Tree Libraries</span></div>
-<div class="line"><span class="lineno">   50</span>    <a class="code hl_function" href="classFAccessionCommunicationModule.html#af36fbeddf99513d493c8574e5990acc7">FAccessionCommunicationModule::Get</a>()</div>
-<div class="line"><span class="lineno">   51</span>        .<a class="code hl_variable" href="classFAccessionCommunicationModule.html#a0774e615b309dbf0a6a1f6c38b74cbe1">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
-<div class="line"><span class="lineno">   52</span>            NewObject&lt;ULocalizedInputLibrary&gt;());</div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>    <a class="code hl_function" href="classFAccessionCommunicationModule.html#af36fbeddf99513d493c8574e5990acc7">FAccessionCommunicationModule::Get</a>()</div>
-<div class="line"><span class="lineno">   55</span>        .<a class="code hl_variable" href="classFAccessionCommunicationModule.html#a0774e615b309dbf0a6a1f6c38b74cbe1">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
-<div class="line"><span class="lineno">   56</span>            NewObject&lt;UWindowInteractionLibrary&gt;());</div>
-<div class="line"><span class="lineno">   57</span> </div>
-<div class="line"><span class="lineno">   58</span>    <a class="code hl_function" href="classFAccessionCommunicationModule.html#af36fbeddf99513d493c8574e5990acc7">FAccessionCommunicationModule::Get</a>()</div>
-<div class="line"><span class="lineno">   59</span>        .<a class="code hl_variable" href="classFAccessionCommunicationModule.html#a0774e615b309dbf0a6a1f6c38b74cbe1">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
-<div class="line"><span class="lineno">   60</span>            NewObject&lt;UViewInteractionLibrary&gt;());</div>
-<div class="line"><span class="lineno">   61</span> </div>
-<div class="line"><span class="lineno">   62</span>    <a class="code hl_function" href="classFAccessionCommunicationModule.html#af36fbeddf99513d493c8574e5990acc7">FAccessionCommunicationModule::Get</a>()</div>
-<div class="line"><span class="lineno">   63</span>        .<a class="code hl_variable" href="classFAccessionCommunicationModule.html#a0774e615b309dbf0a6a1f6c38b74cbe1">PhraseTreeUtils</a>-&gt;<a class="code hl_function" href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">RegisterFunctionLibrary</a>(</div>
-<div class="line"><span class="lineno">   64</span>            NewObject&lt;UNodeInteractionLibrary&gt;());</div>
-<div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>    CreateTranscriptionVisualization();</div>
+<p class="definition">Definition at line <a class="el" href="Accession_8cpp_source.html#l00039">39</a> of file <a class="el" href="Accession_8cpp_source.html">Accession.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   40</span>{</div>
+<div class="line"><span class="lineno">   41</span>    UE_LOG(LogAccession, Display, TEXT(<span class="stringliteral">&quot;AccessionModule::StartupModule()&quot;</span>));</div>
+<div class="line"><span class="lineno">   42</span> </div>
+<div class="line"><span class="lineno">   43</span>    <span class="comment">// Create the Asset Registry</span></div>
+<div class="line"><span class="lineno">   44</span>    <a class="code hl_variable" href="classFAccessionModule.html#a7adcde2bde2a798d10706b6686c1f2e3">AssetRegistry</a> = MakeShared&lt;FAccessionAssetRegistry, ESPMode::ThreadSafe&gt;();</div>
+<div class="line"><span class="lineno">   45</span> </div>
+<div class="line"><span class="lineno">   46</span>    <span class="comment">// Register the  Node Factory</span></div>
+<div class="line"><span class="lineno">   47</span>    <a class="code hl_variable" href="classFAccessionModule.html#a9a657c3aa30030a586d73ffcccd08adf">NodeFactory</a> = MakeShared&lt;FAccessionNodeFactory, ESPMode::ThreadSafe&gt;();</div>
+<div class="line"><span class="lineno">   48</span>    FEdGraphUtilities::RegisterVisualNodeFactory(<a class="code hl_variable" href="classFAccessionModule.html#a9a657c3aa30030a586d73ffcccd08adf">NodeFactory</a>);</div>
+<div class="line"><span class="lineno">   49</span> </div>
+<div class="line"><span class="lineno">   50</span>    </div>
+<div class="line"><span class="lineno">   51</span>    <span class="keywordflow">if</span> (<a class="code hl_class" href="classUAccessionCommunicationSubsystem.html">UAccessionCommunicationSubsystem</a>* ACSubsystem = GEditor-&gt;GetEditorSubsystem&lt;<a class="code hl_class" href="classUAccessionCommunicationSubsystem.html">UAccessionCommunicationSubsystem</a>&gt;())</div>
+<div class="line"><span class="lineno">   52</span>    {</div>
+<div class="line"><span class="lineno">   53</span>        <span class="comment">// Construct Base Phrase Tree Libraries</span></div>
+<div class="line"><span class="lineno">   54</span>        ACSubsystem-&gt;PhraseTreeUtils-&gt;RegisterFunctionLibrary(</div>
+<div class="line"><span class="lineno">   55</span>                NewObject&lt;ULocalizedInputLibrary&gt;());</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>        ACSubsystem-&gt;PhraseTreeUtils-&gt;RegisterFunctionLibrary(</div>
+<div class="line"><span class="lineno">   58</span>                NewObject&lt;UWindowInteractionLibrary&gt;());</div>
+<div class="line"><span class="lineno">   59</span> </div>
+<div class="line"><span class="lineno">   60</span>        ACSubsystem-&gt;PhraseTreeUtils-&gt;RegisterFunctionLibrary(</div>
+<div class="line"><span class="lineno">   61</span>                NewObject&lt;UViewInteractionLibrary&gt;());</div>
+<div class="line"><span class="lineno">   62</span> </div>
+<div class="line"><span class="lineno">   63</span>        ACSubsystem-&gt;PhraseTreeUtils-&gt;RegisterFunctionLibrary(</div>
+<div class="line"><span class="lineno">   64</span>                NewObject&lt;UNodeInteractionLibrary&gt;());      </div>
+<div class="line"><span class="lineno">   65</span>    }</div>
+<div class="line"><span class="lineno">   66</span> </div>
 <div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>    FSlateApplication::Get().OnFocusChanging().AddStatic(&amp;FAccessionModule::FocusChangeListener);</div>
-<div class="line"><span class="lineno">   69</span> </div>
-<div class="line"><span class="lineno">   70</span>    <span class="comment">// Register Console Commands</span></div>
-<div class="line"><span class="lineno">   71</span>    RegisterConsoleCommands();</div>
-<div class="line"><span class="lineno">   72</span>}</div>
-<div class="ttc" id="aclassFAccessionCommunicationModule_html_a0774e615b309dbf0a6a1f6c38b74cbe1"><div class="ttname"><a href="classFAccessionCommunicationModule.html#a0774e615b309dbf0a6a1f6c38b74cbe1">FAccessionCommunicationModule::PhraseTreeUtils</a></div><div class="ttdeci">class UPhraseTreeUtils * PhraseTreeUtils</div><div class="ttdoc">Phrase Tree Utility Class, For Dealing With Phrase Tree Function Libraries.</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8h_source.html#l00095">AccessionCommunication.h:95</a></div></div>
-<div class="ttc" id="aclassFAccessionCommunicationModule_html_af36fbeddf99513d493c8574e5990acc7"><div class="ttname"><a href="classFAccessionCommunicationModule.html#af36fbeddf99513d493c8574e5990acc7">FAccessionCommunicationModule::Get</a></div><div class="ttdeci">static FAccessionCommunicationModule &amp; Get()</div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunication_8h_source.html#l00030">AccessionCommunication.h:30</a></div></div>
-<div class="ttc" id="aclassFAccessionModule_html_a7adcde2bde2a798d10706b6686c1f2e3"><div class="ttname"><a href="classFAccessionModule.html#a7adcde2bde2a798d10706b6686c1f2e3">FAccessionModule::AssetRegistry</a></div><div class="ttdeci">TSharedPtr&lt; class FAccessionAssetRegistry &gt; AssetRegistry</div><div class="ttdoc">The Registry for Any Unreal Asset Information.</div><div class="ttdef"><b>Definition:</b> <a href="Accession_8h_source.html#l00083">Accession.h:83</a></div></div>
-<div class="ttc" id="aclassFAccessionModule_html_a9a657c3aa30030a586d73ffcccd08adf"><div class="ttname"><a href="classFAccessionModule.html#a9a657c3aa30030a586d73ffcccd08adf">FAccessionModule::NodeFactory</a></div><div class="ttdeci">TSharedPtr&lt; class FAccessionNodeFactory &gt; NodeFactory</div><div class="ttdoc">The Node Factory for Generating Indexed Graph Nodes.</div><div class="ttdef"><b>Definition:</b> <a href="Accession_8h_source.html#l00078">Accession.h:78</a></div></div>
-<div class="ttc" id="aclassUPhraseTreeUtils_html_a17f7ff31727a47fc27e67c57e93659bf"><div class="ttname"><a href="classUPhraseTreeUtils.html#a17f7ff31727a47fc27e67c57e93659bf">UPhraseTreeUtils::RegisterFunctionLibrary</a></div><div class="ttdeci">void RegisterFunctionLibrary(UPhraseTreeFunctionLibrary *LibraryToRegister)</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTreeUtils_8cpp_source.html#l00015">PhraseTreeUtils.cpp:15</a></div></div>
+<div class="line"><span class="lineno">   68</span> </div>
+<div class="line"><span class="lineno">   69</span>    CreateTranscriptionVisualization();</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>    FSlateApplication::Get().OnFocusChanging().AddStatic(&amp;FAccessionModule::FocusChangeListener);</div>
+<div class="line"><span class="lineno">   72</span> </div>
+<div class="line"><span class="lineno">   73</span>    <span class="comment">// Register Console Commands</span></div>
+<div class="line"><span class="lineno">   74</span>    RegisterConsoleCommands();</div>
+<div class="line"><span class="lineno">   75</span>}</div>
+<div class="ttc" id="aclassFAccessionModule_html_a7adcde2bde2a798d10706b6686c1f2e3"><div class="ttname"><a href="classFAccessionModule.html#a7adcde2bde2a798d10706b6686c1f2e3">FAccessionModule::AssetRegistry</a></div><div class="ttdeci">TSharedPtr&lt; class FAccessionAssetRegistry &gt; AssetRegistry</div><div class="ttdoc">The Registry for Any Unreal Asset Information.</div><div class="ttdef"><b>Definition:</b> <a href="Accession_8h_source.html#l00082">Accession.h:82</a></div></div>
+<div class="ttc" id="aclassFAccessionModule_html_a9a657c3aa30030a586d73ffcccd08adf"><div class="ttname"><a href="classFAccessionModule.html#a9a657c3aa30030a586d73ffcccd08adf">FAccessionModule::NodeFactory</a></div><div class="ttdeci">TSharedPtr&lt; class FAccessionNodeFactory &gt; NodeFactory</div><div class="ttdoc">The Node Factory for Generating Indexed Graph Nodes.</div><div class="ttdef"><b>Definition:</b> <a href="Accession_8h_source.html#l00077">Accession.h:77</a></div></div>
+<div class="ttc" id="aclassUAccessionCommunicationSubsystem_html"><div class="ttname"><a href="classUAccessionCommunicationSubsystem.html">UAccessionCommunicationSubsystem</a></div><div class="ttdef"><b>Definition:</b> <a href="AccessionCommunicationSubsystem_8h_source.html#l00022">AccessionCommunicationSubsystem.h:23</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -308,7 +310,7 @@ Public Attributes</h2></td></tr>
 
 <p>The Registry for Any Unreal Asset Information.  </p>
 
-<p class="definition">Definition at line <a class="el" href="Accession_8h_source.html#l00083">83</a> of file <a class="el" href="Accession_8h_source.html">Accession.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Accession_8h_source.html#l00082">82</a> of file <a class="el" href="Accession_8h_source.html">Accession.h</a>.</p>
 
 </div>
 </div>
@@ -326,7 +328,7 @@ Public Attributes</h2></td></tr>
 
 <p>The Node Factory for Generating Indexed Graph Nodes.  </p>
 
-<p class="definition">Definition at line <a class="el" href="Accession_8h_source.html#l00078">78</a> of file <a class="el" href="Accession_8h_source.html">Accession.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="Accession_8h_source.html#l00077">77</a> of file <a class="el" href="Accession_8h_source.html">Accession.h</a>.</p>
 
 </div>
 </div>
