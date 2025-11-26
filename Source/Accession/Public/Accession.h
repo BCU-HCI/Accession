@@ -41,7 +41,6 @@ private:
 	/// Binds the Graph Interaction Branch of Commands onto the Phrase Tree.
 	/// </summary>
 	void BindGraphInteractionBranch();
-
 	/// <summary>
 	/// Binds the Viewport Interaction Branch of Commands onto the Phrase Tree.
 	/// </summary>
@@ -83,7 +82,7 @@ public:
 	TSharedPtr<class FAccessionAssetRegistry> AssetRegistry;
 
 private:
-	TSharedPtr<class FTranscriptionVisualizer> TranscriptionVisualizer;
+	TObjectPtr<class UTranscriptionVisualizer> TranscriptionVisualizer;
 
 	TArray<IConsoleCommand *> ConsoleCommands;
 };

@@ -103,6 +103,16 @@ public:
     /// <param name="DeviceID"></param>
     void OnDefaultDeviceChanged(EAudioDeviceChangedRole ChangedRole, FString DeviceID);
 
+    bool EmptyBuffer()
+    {
+        if (AudioBuffer.IsEmpty())
+            return false;
+
+    	AudioBuffer.Empty();
+
+        return false;
+    }
+
 private:
     void RegisterAudioGenerator();
 
@@ -118,7 +128,7 @@ public:
     /// <summary>
     /// Delegate for when the AudioBuffer is Ready To Be Sent For Transcription.
     /// </summary>
-    TDelegate<void(const TArray<float>)> OnAudioReadyForTranscription;
+    TDelegate<void(const TArray<float>, int32 SampleRate, int32 NumChannels)> OnAudioReadyForTranscription;
 
 private:
     // Audio Capture

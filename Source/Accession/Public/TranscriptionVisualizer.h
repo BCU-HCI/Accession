@@ -3,12 +3,18 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Containers/CircularQueue.h"
 
-class ACCESSION_API FTranscriptionVisualizer
+#include "TranscriptionVisualizer.generated.h"
+
+UCLASS()
+class ACCESSION_API UTranscriptionVisualizer : public UObject
 {
+	GENERATED_BODY()
+
 public:
-	FTranscriptionVisualizer();
-	~FTranscriptionVisualizer();
+	UTranscriptionVisualizer();
+	virtual ~UTranscriptionVisualizer() override;
 
 	virtual bool Tick(float DeltaTime);
 
@@ -38,6 +44,7 @@ public:
 	/// Callback for when Transcriptions are Recieved From Transcribed Audio.
 	/// </summary>
 	/// <param name="InTranscription">Incoming Array of Transcription Strings.</param>
+	UFUNCTION()
 	void OnTranscriptionRecieved(TArray<FString> InTranscription);
 
 protected:
@@ -81,4 +88,10 @@ protected:
 	/// The Content of the Visualizer Window.
 	/// </summary>
 	TWeakPtr<class STranscriptionVis> VisContent;
+
+	const int32 MaxVisualisationAmount = 2;
+
+	TArray<FString> TranscriptionList;
+	FCriticalSection TranscriptionQueueMutex;
+	bool bIsTranscriptionDirty = false;
 };

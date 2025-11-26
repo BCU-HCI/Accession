@@ -216,7 +216,10 @@ void FPhraseContextMenuNode<ContextMenuType>::ConstructContextChildren(TPhraseNo
 	CloseContextNode->OnPhraseParsed.BindLambda(
 		[this](FParseRecord &Record)
 		{
-			UPhraseTreeContextMenuObject *ContextMenu = Record.GetContextObj<UPhraseTreeContextMenuObject>();
+			UPhraseTreeContextMenuObject* ContextMenu = Record.GetContextObj<UPhraseTreeContextMenuObject>();
+			if (ContextMenu == nullptr)
+				return;
+
 			if (ContextMenu->GetContextRoot() == this->AsShared())
 			{
 				ContextMenu->Close();

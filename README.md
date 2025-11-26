@@ -30,7 +30,6 @@ You can enable these plugins directly in the editor by navigating to Edit > Plug
 > Note: AudioCapture is a built-in Unreal Engine Plugin and is enabled by default.
 
 
-
 ### For GPU Support:
 Hardware Acceleration can be performed for CUDA Compatible GPUS by utilizing CUDA Toolkit.
 
@@ -40,6 +39,6 @@ With the following CUDA Library Requirements:
 
 
 ### Getting Started:
-Further details on getting started with the plugin can be found in on the Wiki: [Getting Started](https://github.com/BCU-HCI/Accession/wiki/Getting-Started).
+Further details on getting started and using  the plugin can be found in on the Wiki: [Getting Started](https://github.com/BCU-HCI/Accession/wiki/Getting-Started), [Usage](https://github.com/BCU-HCI/Accession/wiki/Usage).
 
 > Disclaimer: Please note this product requires two official Epic Games plugins (AudioCapture and Python Editor Scripting) to support its functionality. The Python Editor Scripting plugin is currently an experimental feature. Due to the research-oriented nature of this product and its experimental integrations, we cannot guarantee stable performance or provide a warranty against potential bugs, crashes, or other unintended errors. By using this product, you assume full responsibility for any issues that may arise.

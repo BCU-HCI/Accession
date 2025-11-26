@@ -2,6 +2,7 @@
 
 #include "Accession.h"
 #include "AccessionCommunication.h"
+#include "AccessionCommunicationSubsystem.h"
 #include "AccessionLogging.h"
 #include "AccessionAnalytics.h"
 
@@ -46,22 +47,24 @@ void FAccessionModule::StartupModule()
 	NodeFactory = MakeShared<FAccessionNodeFactory, ESPMode::ThreadSafe>();
 	FEdGraphUtilities::RegisterVisualNodeFactory(NodeFactory);
 
-	// Construct Base Phrase Tree Libraries
-	FAccessionCommunicationModule::Get()
-		.PhraseTreeUtils->RegisterFunctionLibrary(
-			NewObject<ULocalizedInputLibrary>());
+	
+	if (UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>())
+	{
+		// Construct Base Phrase Tree Libraries
+		ACSubsystem->PhraseTreeUtils->RegisterFunctionLibrary(
+				NewObject<ULocalizedInputLibrary>());
 
-	FAccessionCommunicationModule::Get()
-		.PhraseTreeUtils->RegisterFunctionLibrary(
-			NewObject<UWindowInteractionLibrary>());
+		ACSubsystem->PhraseTreeUtils->RegisterFunctionLibrary(
+				NewObject<UWindowInteractionLibrary>());
 
-	FAccessionCommunicationModule::Get()
-		.PhraseTreeUtils->RegisterFunctionLibrary(
-			NewObject<UViewInteractionLibrary>());
+		ACSubsystem->PhraseTreeUtils->RegisterFunctionLibrary(
+				NewObject<UViewInteractionLibrary>());
 
-	FAccessionCommunicationModule::Get()
-		.PhraseTreeUtils->RegisterFunctionLibrary(
-			NewObject<UNodeInteractionLibrary>());
+		ACSubsystem->PhraseTreeUtils->RegisterFunctionLibrary(
+				NewObject<UNodeInteractionLibrary>());		
+	}
+
+
 
 	CreateTranscriptionVisualization();
 
@@ -74,6 +77,8 @@ void FAccessionModule::StartupModule()
 void FAccessionModule::ShutdownModule()
 {
 	UE_LOG(LogAccession, Display, TEXT("AccessionModule::ShutdownModule()"));
+
+	DestroyTranscriptionVisualization();
 
 	UnregisterConsoleCommands();
 }
@@ -98,9 +103,22 @@ void FAccessionModule::FocusChangeListener(const FFocusEvent &FocusEvent, const 
 
 void FAccessionModule::CreateTranscriptionVisualization()
 {
-	TranscriptionVisualizer = MakeShared<FTranscriptionVisualizer, ESPMode::ThreadSafe>();
+	TranscriptionVisualizer = NewObject<UTranscriptionVisualizer>();
+	TranscriptionVisualizer->AddToRoot();
 
-	FAccessionCommunicationModule::Get().OnTranscriptionRecieved.AddSP(TranscriptionVisualizer.ToSharedRef(), &FTranscriptionVisualizer::OnTranscriptionRecieved);
+	UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>();
+	if (ACSubsystem == nullptr)
+	{
+		UE_LOG(LogAccession, Warning, TEXT("Accession - Transcription Visualiser Cannot Bind Transcript Delegate."))
+		return;
+	}
+
+	ACSubsystem->OnTranscriptionReceived.AddUObject(TranscriptionVisualizer, &UTranscriptionVisualizer::OnTranscriptionRecieved);
+}
+
+void FAccessionModule::DestroyTranscriptionVisualization()
+{
+	TranscriptionVisualizer->RemoveFromRoot();
 }
 
 void FAccessionModule::RegisterConsoleCommands()
@@ -122,8 +140,11 @@ void FAccessionModule::RegisterConsoleCommands()
 			ProvidedPhrase.TrimStartAndEndInline();
 			ProvidedPhrase.ToUpperInline();
 
-            FAccessionCommunicationModule::Get()
-				.OnTranscriptionRecieved.Broadcast(TArray<FString>{ ProvidedPhrase }); }),
+			UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>();
+			if (ACSubsystem == nullptr)
+				return;
+
+            ACSubsystem->OnTranscriptionReceived.Broadcast(TArray<FString>{ ProvidedPhrase }); }),
 
 		ECVF_Default));
 
@@ -225,20 +246,24 @@ void FAccessionModule::RegisterConsoleCommands()
 					MenuWindow = FSlateApplication::Get().FindWidgetWindow(KeyboardFocusedWidget.ToSharedRef());
 				}
 
-				UGraphAddNodeContextMenu *AddNodeContextMenu = NewObject<UGraphAddNodeContextMenu>();
-				AddNodeContextMenu->AddToRoot();
-				AddNodeContextMenu->Init(
-					Menu.ToSharedRef(),
-					FAccessionCommunicationModule::Get().PhraseTree->AsShared());
+				if (UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>())
+				{
+					UGraphAddNodeContextMenu *AddNodeContextMenu = NewObject<UGraphAddNodeContextMenu>();
+					AddNodeContextMenu->AddToRoot();
+					AddNodeContextMenu->Init(
+						Menu.ToSharedRef(),
+						ACSubsystem->PhraseTree->AsShared());
 
-				AddNodeContextMenu->ScaleMenu(1.5f);
+					AddNodeContextMenu->ScaleMenu(1.5f);
 
-				FSlateApplication::Get().SetKeyboardFocus(TreeView);
+					FSlateApplication::Get().SetKeyboardFocus(TreeView);
 
-				FPhraseTreeContextManager &ContextManager = FAccessionCommunicationModule::Get()
-																.PhraseTree->GetContextManager();
+					FPhraseTreeContextManager &ContextManager = ACSubsystem->PhraseTree->GetContextManager();
 
-				ContextManager.PushContextObject(AddNodeContextMenu);
+					ContextManager.PushContextObject(AddNodeContextMenu);
+				}
+
+
 			}),
 
 		ECVF_Default));
@@ -300,12 +325,16 @@ void FAccessionModule::RegisterConsoleCommands()
 				FWidgetPath ContextWidgetToFocusPath;
 				if (FSlateApplication::Get().FindPathToWidget(ContextWidgetToFocus.ToSharedRef(), ContextWidgetToFocusPath))
 				{
+					UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>();
+					if (ACSubsystem == nullptr)
+						return;
+
 					UGraphEditorContext *GraphContext = NewObject<UGraphEditorContext>();
 					GraphContext->AddToRoot();
 
 					GraphContext->Init(
 						FSlateApplication::Get().FindMenuInWidgetPath(ContextWidgetToFocusPath).ToSharedRef(),
-						FAccessionCommunicationModule::Get().PhraseTree->AsShared()
+						ACSubsystem->PhraseTree->AsShared()
 
 					);
 
@@ -374,12 +403,15 @@ void FAccessionModule::RegisterConsoleCommands()
 					}
 				}
 
+				UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>();
+				if (ACSubsystem == nullptr)
+					return;
+
 				UGraphLocomotionContext *LocomotionContext = NewObject<UGraphLocomotionContext>();
 				LocomotionContext->AddToRoot();
 				LocomotionContext->Init(ActiveGraphEditor.ToSharedRef());
 
-				FPhraseTreeContextManager &ContextManager = FAccessionCommunicationModule::Get()
-																.PhraseTree->GetContextManager();
+				FPhraseTreeContextManager &ContextManager = ACSubsystem->PhraseTree->GetContextManager();
 
 				ContextManager.PushContextObject(LocomotionContext);
 			}),
