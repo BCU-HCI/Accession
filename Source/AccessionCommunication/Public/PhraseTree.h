@@ -253,6 +253,12 @@ public:
 	void ParseTranscription(TArray<FString> InTranscriptionSegments);
 
 private:
+
+	bool PrepareTranscriptionSegment(FString InSegment, TArray<FString>& OutWordArray);
+
+	bool HandleParseResult(const FParseResult& InParseResult, FParseRecord& InOutParseRecord, TArray<FString>& InWordsArray);
+
+private:
 	/// <summary>
 	/// The Node that was last visited in the tree.
 	/// Allowing for quick entry, due to split phrases.

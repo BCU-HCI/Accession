@@ -2,6 +2,7 @@
 
 #include "AccessionCommunicationSubsystem.h"
 #include "AccessionAnalytics.h"
+#include "AComInputProcessor.h"
 #include "AudioManager.h"
 #include "AccessionComLogging.h"
 #include "AccessionCommunicationSettings.h"
@@ -27,13 +28,17 @@ UAccessionCommunicationSubsystem::UAccessionCommunicationSubsystem()
 	const FTickerDelegate TickDelegate = FTickerDelegate::CreateUObject(this, &UAccessionCommunicationSubsystem::Tick);
 	TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);
 
-	KeyDownEventHandle = FSlateApplication::Get().OnApplicationPreInputKeyDownListener().AddUObject(this, &UAccessionCommunicationSubsystem::HandleKeyDownEvent);
+	InputProcessor = MakeShared<FAccessionCommunicationInputProcessor>(this);
+	if (!FSlateApplication::Get().RegisterInputPreProcessor(InputProcessor, 0))
+	{
+		UE_LOG(LogAccessionCom, Error, TEXT("Failed to Register Input Processor. Commands will not be available."));
+	}
 }
 
 UAccessionCommunicationSubsystem::~UAccessionCommunicationSubsystem()
 {
-	FSlateApplication::Get().OnApplicationPreInputKeyDownListener().Remove(KeyDownEventHandle);
 	FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
+	FSlateApplication::Get().UnregisterInputPreProcessor(InputProcessor);
 }
 
 void UAccessionCommunicationSubsystem::Initialize(FSubsystemCollectionBase& Collection)
@@ -104,48 +109,33 @@ bool UAccessionCommunicationSubsystem::Tick(float DeltaTime)
 	return true;
 }
 
-void UAccessionCommunicationSubsystem::HandleKeyDownEvent(const FKeyEvent& InKeyEvent)
+bool UAccessionCommunicationSubsystem::HandleKeyDownEvent(const FKeyEvent& InKeyEvent) const
 {
-	/*
-	FKey EventKey = InKeyEvent.GetKey();
-
-	bool isTargetKey = EventKey == EKeys::LeftAlt || EventKey == EKeys::RightAlt;
-
-	// If the Voice Command Key is Pressed, Toggle Audio Capture.
-	if (isTargetKey && !InKeyEvent.IsRepeat())
-	{
-		if (!AudioManager->IsCapturingAudio())
-		{
-			OA_LOG(LogAccessionCom, Log, TEXT("AudioCapture Change"), TEXT("Starting Audio Capture"));
-			AudioManager->StartCapturingAudio();
-		}
-		else
-		{
-			OA_LOG(LogAccessionCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
-			AudioManager->StopCapturingAudio();
-		}
-	}
-	*/
-
 	const UAccessionCommunicationSettings* Settings = GetDefault<UAccessionCommunicationSettings>();
-	if (Settings == nullptr)
-		return;
+	if (!Settings || !AudioManager)
+		return false;
 
 	if (Settings->ActivationKeys != InKeyEvent)
-		return;
+		return false;
 
 	switch (Settings->TranscriptionActivation)
 	{
 		case ETransctiptionActivation::PUSH_TO_TALK:
 		{
-			// Implementation Is Required.
-			unimplemented();
+			if (!AudioManager->IsCapturingAudio())
+			{
+				OA_LOG(LogAccessionCom, Log, TEXT("AudioCapture Change"), TEXT("Starting Audio Capture"));
+				AudioManager->EmptyBuffer();
+				AudioManager->StartCapturingAudio();
+
+				return true;
+			}
 		}
 
 		case ETransctiptionActivation::ENABLE_DISABLE:
 		{
 			if (InKeyEvent.IsRepeat())
-				return;
+				return false;
 
 			if (!AudioManager->IsCapturingAudio())
 			{
@@ -158,7 +148,40 @@ void UAccessionCommunicationSubsystem::HandleKeyDownEvent(const FKeyEvent& InKey
 				OA_LOG(LogAccessionCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
 				AudioManager->StopCapturingAudio();
 			}
+
+			return true;
 		}
 
 	}
+
+	return false;
+}
+
+bool UAccessionCommunicationSubsystem::HandleKeyUpEvent(const FKeyEvent& InKeyEvent) const
+{
+	const UAccessionCommunicationSettings* Settings = GetDefault<UAccessionCommunicationSettings>();
+	if (!Settings || !AudioManager)
+		return false;
+
+	if (Settings->ActivationKeys != InKeyEvent)
+		return false;
+
+	switch (Settings->TranscriptionActivation)
+	{
+		case ETransctiptionActivation::PUSH_TO_TALK:
+		{
+			if (AudioManager->IsCapturingAudio())
+			{
+				OA_LOG(LogAccessionCom, Log, TEXT("AudioCapture Change"), TEXT("Stopping Audio Capture"));
+				AudioManager->StopCapturingAudio();
+			}
+		}
+
+		case ETransctiptionActivation::ENABLE_DISABLE:
+		{
+			// No Action Required.
+		}
+	}
+
+	return true;
 }

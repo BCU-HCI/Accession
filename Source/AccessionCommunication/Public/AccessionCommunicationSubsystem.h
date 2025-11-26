@@ -10,6 +10,8 @@
 
 class UAudioManager;
 
+class FAccessionCommunicationInputProcessor;
+
 DECLARE_DYNAMIC_DELEGATE_RetVal_ThreeParams(FGuid, FTranscribeRequestDelegate, const TArray<float>, AudioData, const int32, SampleRate, const int32, NumChannels);
 
 
@@ -20,6 +22,8 @@ UCLASS()
 class ACCESSIONCOMMUNICATION_API UAccessionCommunicationSubsystem : public UEditorSubsystem
 {
 	GENERATED_BODY()
+
+	friend FAccessionCommunicationInputProcessor;
 
 public:
 
@@ -60,12 +64,16 @@ public:
 
 	virtual bool Tick(float DeltaTime);
 
-	void HandleKeyDownEvent(const FKeyEvent& InKeyEvent);
 
 
 private:
 
 	void ProcessPendingTranscriptions();
+
+
+	bool HandleKeyDownEvent(const FKeyEvent& InKeyEvent) const;
+
+	bool HandleKeyUpEvent(const FKeyEvent& InKeyEvent) const;
 
 public:
 
@@ -77,7 +85,6 @@ public:
 private:
 
 	FTSTicker::FDelegateHandle TickDelegateHandle;
-	FDelegateHandle KeyDownEventHandle;
 
 
 	UPROPERTY()
@@ -97,4 +104,6 @@ private:
 
 	UPROPERTY()
 	TArray<float> PrevAudioBuffer;
+
+	TSharedPtr<FAccessionCommunicationInputProcessor> InputProcessor;
 };
