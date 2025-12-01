@@ -54,6 +54,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Accession|Transcription")
 	void TranscriptionComplete(const FGuid UUID, const TArray<FString> Transcription);
 
+
 	UPROPERTY(BlueprintReadWrite, Category = "Accession|Transcription")
 	FTranscribeRequestDelegate OnTranscriptionRequest;
 
@@ -62,14 +63,7 @@ public:
 
 	// -----
 
-	virtual bool Tick(float DeltaTime);
-
-
-
 private:
-
-	void ProcessPendingTranscriptions();
-
 
 	bool HandleKeyDownEvent(const FKeyEvent& InKeyEvent) const;
 
@@ -84,26 +78,18 @@ public:
 
 private:
 
-	FTSTicker::FDelegateHandle TickDelegateHandle;
-
-
 	UPROPERTY()
 	TObjectPtr<UAudioManager> AudioManager;
 
 
 	// Transcription Buffering
 
-	TQueue<FGuid> PendingTranscriptions;
-
 	UPROPERTY()
-	TSet<FGuid> ActiveTranscriptions;
-
-	TMap<FGuid, TArray<FString>> TranscriptionStore;
-
-
+	TSet<FGuid> PendingTranscriptions;
 
 	UPROPERTY()
 	TArray<float> PrevAudioBuffer;
 
+	// Input
 	TSharedPtr<FAccessionCommunicationInputProcessor> InputProcessor;
 };

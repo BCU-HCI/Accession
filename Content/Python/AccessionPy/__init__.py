@@ -1,14 +1,13 @@
 import unreal as ue
 from unreal import GuidLibrary
-import zmq
 import numpy as np
 from gc import collect as gc_collect
 
 from concurrent.futures import ThreadPoolExecutor as ThreadPool
 
-from .CommunicationServer import CommunicationServer
 from .WhisperInterface import WhisperInterface
 from .Audio import AudioResampler
+from .TranscriptionBuffer import TranscriptionBuffer
 from .Logging import Log, LogLevel
 
 from .LibUtils import (
@@ -43,8 +42,6 @@ class AccessionPy:
         whisper_model: str = "distil-small.en",
         device: str = "auto",
         compute_type: str = "default",
-        # Communication Specifics
-        poll_timeout: int = 10,
     ):
         """Constructor of Python Runtime Class for Accession Plugin
 
@@ -53,7 +50,6 @@ class AccessionPy:
             whisper_model (str, optional): Hugging-Face Model Specifier for CTranslate Compatible Models. Defaults to "distil-small.en".
             device (str, optional): Device host for the Whisper Model (Can be "auto", "cpu", "cuda"). Defaults to "auto".
             compute_type (str, optional): Data Structure for Whisper Compute. Defaults to "default".
-            poll_timeout (int, optional): Amount of time (ms) for event polling on the Transcription Socket. Defaults to 10.
         """
 
         self.worker_pool = ThreadPool(
@@ -66,12 +62,10 @@ class AccessionPy:
             compute_type=compute_type,
             transcribe_workers=worker_count,
         )
-        # self.com_server = CommunicationServer(
-        #    send_socket_type=zmq.PUSH,
-        #    recv_socket_type=zmq.PULL,
-        #    poll_timeout=poll_timeout,
-        # )
+
         self.audio_resampler = AudioResampler(target_sample_rate=16000)
+
+        self.store = TranscriptionBuffer()
 
         self.tick_handle = ue.register_slate_post_tick_callback(self.Tick)
 
@@ -83,7 +77,7 @@ class AccessionPy:
             exit(1)
 
         self.acsubsystem.on_transcription_request.bind_callable(
-            self.HandleTranscriptionRequest_CB
+            self.HandleTranscriptionRequest
         )
 
     def __del__(self):
@@ -94,65 +88,15 @@ class AccessionPy:
     def Tick(self, delta_time: float):
         """Tick Callback for Unreal Engine Slate Post Tick.
 
-        Detecting Incoming Transcription Requests and Handling them, through the Worker Pool.
+        Handling Completed Transcriptions, and Forwarding back to the Communication Subsystem.
 
         Args:
             delta_time (float): Time since last tick
         """
 
-        if hasattr(self, "com_server") and self.com_server.EventOccured():
-            Log("Event Occured")
-
-            message, metadata = self.com_server.ReceiveNDArrayWithMeta(dtype=np.float32)
-
-            self.worker_pool.submit(self.HandleTranscriptionRequest, message, metadata)
+        self.store.process_completed(self.acsubsystem.transcription_complete)
 
     def HandleTranscriptionRequest(
-        self, recv_message: np.ndarray, metadata: dict = None
-    ):
-        """Handles Incoming Transcription Requests
-
-        Takes the Incoming AudioBuffer, Resamples it to 16kHz and Transcribes it using Whisper.
-
-        Args:
-            recv_message (np.ndarray): ndarray of the incoming audio buffer.
-            metadata (dict, optional): metadata of the incoming audio buffer, if any is recieved. Defaults to None.
-        """
-
-        Log(
-            f"Handling Transcription Request | Message: {recv_message} | Size: {recv_message.size} | Shape: {recv_message.shape}"
-        )
-
-        sample_rate = metadata.get("sample_rate", 48000)
-        num_channels = metadata.get("num_channels", 2)
-
-        message_ndarray = self.audio_resampler.resample(
-            recv_message, sample_rate, num_channels
-        )
-
-        trans_segments, trans_metadata = self.whisper_interface.process_audio_buffer(
-            message_ndarray
-        )
-
-        encoded_segments = [
-            transcription.text.encode() for transcription in trans_segments
-        ]
-
-        Log(f"Encoded Segments: {encoded_segments}")
-
-        if len(encoded_segments) > 0:
-            try:
-                self.com_server.SendMultipartWithMeta(
-                    message=encoded_segments, meta=trans_metadata
-                )
-
-            except:
-                Log("Error Sending Encoded Transcription Segments", LogLevel.ERROR)
-
-        else:
-            Log("No Transcription Segments Returned", LogLevel.WARNING)
-
-    def HandleTranscriptionRequest_CB(
         self, recv_buffer: ue.Array[float], sample_rate: int, num_channels: int
     ):
 
@@ -167,6 +111,8 @@ class AccessionPy:
             sample_rate,
             num_channels,
         )
+
+        self.store.register_active(generated_id)
 
         return generated_id
 
@@ -196,12 +142,10 @@ class AccessionPy:
 
         Log(f"Segments: {segments}")
 
-        if len(segments) > 0:
-            try:
-                self.acsubsystem.transcription_complete(id, segments)
-
-            except:
-                Log("Error Sending Transcription Segments", LogLevel.ERROR)
+        try:
+            self.store.store_completed(id, segments)
+        except:
+            Log("Error With Transcription Segments", LogLevel.ERROR)
 
     def Shutdown(self):
         """Shutsdown the Python Runtime Components, and Forces a Garbage Collection."""
