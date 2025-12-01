@@ -24,10 +24,6 @@ UAccessionCommunicationSubsystem::UAccessionCommunicationSubsystem()
 	PhraseTreeUtils = NewObject<UPhraseTreeUtils>();
 	PhraseTreeUtils->SetPhraseTree(PhraseTree.ToSharedRef());
 
-
-	const FTickerDelegate TickDelegate = FTickerDelegate::CreateUObject(this, &UAccessionCommunicationSubsystem::Tick);
-	TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);
-
 	InputProcessor = MakeShared<FAccessionCommunicationInputProcessor>(this);
 	if (!FSlateApplication::Get().RegisterInputPreProcessor(InputProcessor, 0))
 	{
@@ -37,7 +33,6 @@ UAccessionCommunicationSubsystem::UAccessionCommunicationSubsystem()
 
 UAccessionCommunicationSubsystem::~UAccessionCommunicationSubsystem()
 {
-	FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
 	FSlateApplication::Get().UnregisterInputPreProcessor(InputProcessor);
 }
 
@@ -65,48 +60,31 @@ void UAccessionCommunicationSubsystem::RequestTranscription(const TArray<float> 
 		return;
 	}
 
-	PendingTranscriptions.Enqueue(TranscriptionUUID);
-	ActiveTranscriptions.Add(TranscriptionUUID);
+	PendingTranscriptions.Add(TranscriptionUUID);
 
 	PrevAudioBuffer = AudioData;
 }
 
 void UAccessionCommunicationSubsystem::TranscriptionComplete(const FGuid id, const TArray<FString> Transcription)
 {
-	if (!ActiveTranscriptions.Contains(id))
+	if (!PendingTranscriptions.Contains(id))
 	{
-		UE_LOG(LogAccessionCom, Warning, TEXT("Received Transcription Complete for Unknown UUID: %s"), *id.ToString());
+		UE_LOG(LogAccessionCom, Warning, TEXT("Received Transcription for Unknown Request ID: %s"), *id.ToString());
 		return;
 	}
 
-	TranscriptionStore.Add(id, Transcription);
-	ActiveTranscriptions.Remove(id);
-}
+	PendingTranscriptions.Remove(id);
 
-void UAccessionCommunicationSubsystem::ProcessPendingTranscriptions()
-{
-	if (PendingTranscriptions.IsEmpty())
-		return;
-
-	FGuid NextID;
-	while (PendingTranscriptions.Peek(NextID))
+	if (Transcription.Num() == 0)
 	{
-		if (!TranscriptionStore.Contains(NextID))
-			break;
-
-		PendingTranscriptions.Pop();
-
-		TArray<FString> Transcription = TranscriptionStore.FindAndRemoveChecked(NextID);
-
-		OnTranscriptionReceived.Broadcast(Transcription);
+		UE_LOG(LogAccessionCom, Warning, TEXT("Received Empty Transcription for Request ID: %s"), *id.ToString());
+		return;
 	}
-}
 
-bool UAccessionCommunicationSubsystem::Tick(float DeltaTime)
-{
-	ProcessPendingTranscriptions();
+	UE_LOG(LogAccessionCom, Log, TEXT("Received Transcription for Request: %s"), *id.ToString());
 
-	return true;
+	// Broadcast Transcriptions.
+	OnTranscriptionReceived.Broadcast(Transcription);
 }
 
 bool UAccessionCommunicationSubsystem::HandleKeyDownEvent(const FKeyEvent& InKeyEvent) const
