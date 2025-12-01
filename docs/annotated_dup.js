@@ -4,11 +4,12 @@ var annotated_dup =
       [ "Audio", null, [
         [ "AudioResampler", "classAccessionPy_1_1Audio_1_1AudioResampler.html", "classAccessionPy_1_1Audio_1_1AudioResampler" ]
       ] ],
-      [ "CommunicationServer", null, [
-        [ "CommunicationServer", "classAccessionPy_1_1CommunicationServer_1_1CommunicationServer.html", "classAccessionPy_1_1CommunicationServer_1_1CommunicationServer" ]
-      ] ],
       [ "Logging", null, [
         [ "LogLevel", "classAccessionPy_1_1Logging_1_1LogLevel.html", null ]
+      ] ],
+      [ "TranscriptionBuffer", null, [
+        [ "TranscriptionBuffer", "classAccessionPy_1_1TranscriptionBuffer_1_1TranscriptionBuffer.html", null ],
+        [ "TranscriptionState", "classAccessionPy_1_1TranscriptionBuffer_1_1TranscriptionState.html", null ]
       ] ],
       [ "WhisperInterface", null, [
         [ "WhisperInterface", "classAccessionPy_1_1WhisperInterface_1_1WhisperInterface.html", "classAccessionPy_1_1WhisperInterface_1_1WhisperInterface" ]

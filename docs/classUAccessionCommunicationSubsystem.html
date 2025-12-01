@@ -117,8 +117,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:abbf8240f8875418037b3c2bdc1147f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a997f20ef937f3f3007eb8c87d74a658c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUAccessionCommunicationSubsystem.html#a997f20ef937f3f3007eb8c87d74a658c">TranscriptionComplete</a> (const FGuid UUID, const TArray&lt; FString &gt; Transcription)</td></tr>
 <tr class="separator:a997f20ef937f3f3007eb8c87d74a658c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a228c9b5fa493ac808f198107209a09"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUAccessionCommunicationSubsystem.html#a2a228c9b5fa493ac808f198107209a09">Tick</a> (float DeltaTime)</td></tr>
-<tr class="separator:a2a228c9b5fa493ac808f198107209a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -161,16 +159,12 @@ Public Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   24</span>    PhraseTreeUtils = NewObject&lt;UPhraseTreeUtils&gt;();</div>
 <div class="line"><span class="lineno">   25</span>    PhraseTreeUtils-&gt;SetPhraseTree(PhraseTree.ToSharedRef());</div>
 <div class="line"><span class="lineno">   26</span> </div>
-<div class="line"><span class="lineno">   27</span> </div>
-<div class="line"><span class="lineno">   28</span>    <span class="keyword">const</span> FTickerDelegate TickDelegate = FTickerDelegate::CreateUObject(<span class="keyword">this</span>, &amp;UAccessionCommunicationSubsystem::Tick);</div>
-<div class="line"><span class="lineno">   29</span>    TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>    InputProcessor = MakeShared&lt;FAccessionCommunicationInputProcessor&gt;(<span class="keyword">this</span>);</div>
-<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">if</span> (!FSlateApplication::Get().RegisterInputPreProcessor(InputProcessor, 0))</div>
-<div class="line"><span class="lineno">   33</span>    {</div>
-<div class="line"><span class="lineno">   34</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;Failed to Register Input Processor. Commands will not be available.&quot;</span>));</div>
-<div class="line"><span class="lineno">   35</span>    }</div>
-<div class="line"><span class="lineno">   36</span>}</div>
+<div class="line"><span class="lineno">   27</span>    InputProcessor = MakeShared&lt;FAccessionCommunicationInputProcessor&gt;(<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">if</span> (!FSlateApplication::Get().RegisterInputPreProcessor(InputProcessor, 0))</div>
+<div class="line"><span class="lineno">   29</span>    {</div>
+<div class="line"><span class="lineno">   30</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;Failed to Register Input Processor. Commands will not be available.&quot;</span>));</div>
+<div class="line"><span class="lineno">   31</span>    }</div>
+<div class="line"><span class="lineno">   32</span>}</div>
 <div class="ttc" id="aclassFPhraseTree_html_af915498384e11d4c9b1e9f0125e9a615"><div class="ttname"><a href="classFPhraseTree.html#af915498384e11d4c9b1e9f0125e9a615">FPhraseTree::ParseTranscription</a></div><div class="ttdeci">void ParseTranscription(TArray&lt; FString &gt; InTranscriptionSegments)</div><div class="ttdoc">Parses and Propogates the given Transcription Segments down the tree.</div><div class="ttdef"><b>Definition:</b> <a href="PhraseTree_8cpp_source.html#l00032">PhraseTree.cpp:32</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -198,11 +192,10 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html#l00038">38</a> of file <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html">AccessionCommunicationSubsystem.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   39</span>{</div>
-<div class="line"><span class="lineno">   40</span>    FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);</div>
-<div class="line"><span class="lineno">   41</span>    FSlateApplication::Get().UnregisterInputPreProcessor(InputProcessor);</div>
-<div class="line"><span class="lineno">   42</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html#l00034">34</a> of file <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html">AccessionCommunicationSubsystem.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   35</span>{</div>
+<div class="line"><span class="lineno">   36</span>    FSlateApplication::Get().UnregisterInputPreProcessor(InputProcessor);</div>
+<div class="line"><span class="lineno">   37</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -231,10 +224,10 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p >Implement this for deinitialization of instances of the system </p>
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html#l00048">48</a> of file <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html">AccessionCommunicationSubsystem.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   49</span>{</div>
-<div class="line"><span class="lineno">   50</span>    </div>
-<div class="line"><span class="lineno">   51</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html#l00043">43</a> of file <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html">AccessionCommunicationSubsystem.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   44</span>{</div>
+<div class="line"><span class="lineno">   45</span>    </div>
+<div class="line"><span class="lineno">   46</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -293,9 +286,9 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p >Implement this for initialization of instances of the system </p>
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html#l00044">44</a> of file <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html">AccessionCommunicationSubsystem.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   45</span>{</div>
-<div class="line"><span class="lineno">   46</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html#l00039">39</a> of file <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html">AccessionCommunicationSubsystem.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   40</span>{</div>
+<div class="line"><span class="lineno">   41</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -331,59 +324,25 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html#l00053">53</a> of file <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html">AccessionCommunicationSubsystem.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   54</span>{</div>
-<div class="line"><span class="lineno">   55</span>    <span class="keywordflow">if</span> (!OnTranscriptionRequest.IsBound())</div>
-<div class="line"><span class="lineno">   56</span>    {</div>
-<div class="line"><span class="lineno">   57</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;Transcription Request Delegate Not Bound. No Commands can be Performed.&quot;</span>))</div>
-<div class="line"><span class="lineno">   58</span>        return;</div>
-<div class="line"><span class="lineno">   59</span>    }</div>
-<div class="line"><span class="lineno">   60</span> </div>
-<div class="line"><span class="lineno">   61</span>    FGuid TranscriptionUUID = OnTranscriptionRequest.Execute(AudioData, SampleRate, NumChannels);</div>
-<div class="line"><span class="lineno">   62</span>    if (!TranscriptionUUID.IsValid())</div>
-<div class="line"><span class="lineno">   63</span>    {</div>
-<div class="line"><span class="lineno">   64</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;Transcription Request Delegate Returned Invalid UUID. No Commands can be Performed.&quot;</span>))</div>
-<div class="line"><span class="lineno">   65</span>        return;</div>
-<div class="line"><span class="lineno">   66</span>    }</div>
-<div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>    PendingTranscriptions.Enqueue(TranscriptionUUID);</div>
-<div class="line"><span class="lineno">   69</span>    ActiveTranscriptions.Add(TranscriptionUUID);</div>
-<div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>    PrevAudioBuffer = AudioData;</div>
-<div class="line"><span class="lineno">   72</span>}</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a2a228c9b5fa493ac808f198107209a09" name="a2a228c9b5fa493ac808f198107209a09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a228c9b5fa493ac808f198107209a09">&#9670;&#160;</a></span>Tick()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool UAccessionCommunicationSubsystem::Tick </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>DeltaTime</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html#l00105">105</a> of file <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html">AccessionCommunicationSubsystem.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  106</span>{</div>
-<div class="line"><span class="lineno">  107</span>    ProcessPendingTranscriptions();</div>
-<div class="line"><span class="lineno">  108</span> </div>
-<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  110</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html#l00048">48</a> of file <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html">AccessionCommunicationSubsystem.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   49</span>{</div>
+<div class="line"><span class="lineno">   50</span>    <span class="keywordflow">if</span> (!OnTranscriptionRequest.IsBound())</div>
+<div class="line"><span class="lineno">   51</span>    {</div>
+<div class="line"><span class="lineno">   52</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;Transcription Request Delegate Not Bound. No Commands can be Performed.&quot;</span>))</div>
+<div class="line"><span class="lineno">   53</span>        return;</div>
+<div class="line"><span class="lineno">   54</span>    }</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>    FGuid TranscriptionUUID = OnTranscriptionRequest.Execute(AudioData, SampleRate, NumChannels);</div>
+<div class="line"><span class="lineno">   57</span>    if (!TranscriptionUUID.IsValid())</div>
+<div class="line"><span class="lineno">   58</span>    {</div>
+<div class="line"><span class="lineno">   59</span>        UE_LOG(LogAccessionCom, Error, TEXT(<span class="stringliteral">&quot;Transcription Request Delegate Returned Invalid UUID. No Commands can be Performed.&quot;</span>))</div>
+<div class="line"><span class="lineno">   60</span>        return;</div>
+<div class="line"><span class="lineno">   61</span>    }</div>
+<div class="line"><span class="lineno">   62</span> </div>
+<div class="line"><span class="lineno">   63</span>    PendingTranscriptions.Add(TranscriptionUUID);</div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>    PrevAudioBuffer = AudioData;</div>
+<div class="line"><span class="lineno">   66</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -413,17 +372,27 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html#l00074">74</a> of file <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html">AccessionCommunicationSubsystem.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   75</span>{</div>
-<div class="line"><span class="lineno">   76</span>    <span class="keywordflow">if</span> (!ActiveTranscriptions.Contains(<span class="keywordtype">id</span>))</div>
-<div class="line"><span class="lineno">   77</span>    {</div>
-<div class="line"><span class="lineno">   78</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;Received Transcription Complete for Unknown UUID: %s&quot;</span>), *<span class="keywordtype">id</span>.ToString());</div>
-<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   80</span>    }</div>
-<div class="line"><span class="lineno">   81</span> </div>
-<div class="line"><span class="lineno">   82</span>    TranscriptionStore.Add(<span class="keywordtype">id</span>, Transcription);</div>
-<div class="line"><span class="lineno">   83</span>    ActiveTranscriptions.Remove(<span class="keywordtype">id</span>);</div>
-<div class="line"><span class="lineno">   84</span>}</div>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html#l00068">68</a> of file <a class="el" href="AccessionCommunicationSubsystem_8cpp_source.html">AccessionCommunicationSubsystem.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   69</span>{</div>
+<div class="line"><span class="lineno">   70</span>    <span class="keywordflow">if</span> (!PendingTranscriptions.Contains(<span class="keywordtype">id</span>))</div>
+<div class="line"><span class="lineno">   71</span>    {</div>
+<div class="line"><span class="lineno">   72</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;Received Transcription for Unknown Request ID: %s&quot;</span>), *<span class="keywordtype">id</span>.ToString());</div>
+<div class="line"><span class="lineno">   73</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   74</span>    }</div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>    PendingTranscriptions.Remove(<span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>    <span class="keywordflow">if</span> (Transcription.Num() == 0)</div>
+<div class="line"><span class="lineno">   79</span>    {</div>
+<div class="line"><span class="lineno">   80</span>        UE_LOG(LogAccessionCom, Warning, TEXT(<span class="stringliteral">&quot;Received Empty Transcription for Request ID: %s&quot;</span>), *<span class="keywordtype">id</span>.ToString());</div>
+<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   82</span>    }</div>
+<div class="line"><span class="lineno">   83</span> </div>
+<div class="line"><span class="lineno">   84</span>    UE_LOG(LogAccessionCom, Log, TEXT(<span class="stringliteral">&quot;Received Transcription for Request: %s&quot;</span>), *<span class="keywordtype">id</span>.ToString());</div>
+<div class="line"><span class="lineno">   85</span> </div>
+<div class="line"><span class="lineno">   86</span>    <span class="comment">// Broadcast Transcriptions.</span></div>
+<div class="line"><span class="lineno">   87</span>    OnTranscriptionReceived.Broadcast(Transcription);</div>
+<div class="line"><span class="lineno">   88</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -440,7 +409,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8h_source.html#l00061">61</a> of file <a class="el" href="AccessionCommunicationSubsystem_8h_source.html">AccessionCommunicationSubsystem.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8h_source.html#l00062">62</a> of file <a class="el" href="AccessionCommunicationSubsystem_8h_source.html">AccessionCommunicationSubsystem.h</a>.</p>
 
 </div>
 </div>
@@ -456,7 +425,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8h_source.html#l00058">58</a> of file <a class="el" href="AccessionCommunicationSubsystem_8h_source.html">AccessionCommunicationSubsystem.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8h_source.html#l00059">59</a> of file <a class="el" href="AccessionCommunicationSubsystem_8h_source.html">AccessionCommunicationSubsystem.h</a>.</p>
 
 </div>
 </div>
@@ -472,7 +441,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8h_source.html#l00080">80</a> of file <a class="el" href="AccessionCommunicationSubsystem_8h_source.html">AccessionCommunicationSubsystem.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8h_source.html#l00074">74</a> of file <a class="el" href="AccessionCommunicationSubsystem_8h_source.html">AccessionCommunicationSubsystem.h</a>.</p>
 
 </div>
 </div>
@@ -488,7 +457,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8h_source.html#l00083">83</a> of file <a class="el" href="AccessionCommunicationSubsystem_8h_source.html">AccessionCommunicationSubsystem.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="AccessionCommunicationSubsystem_8h_source.html#l00077">77</a> of file <a class="el" href="AccessionCommunicationSubsystem_8h_source.html">AccessionCommunicationSubsystem.h</a>.</p>
 
 </div>
 </div>

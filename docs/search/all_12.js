@@ -6,9 +6,11 @@ var searchData=
   ['ticktreeview_3',['TickTreeView',['../classUGraphEditorContext.html#a859f054a7a2e9b29a2ab959f6b9d14d7',1,'UGraphEditorContext']]],
   ['togglecontextawareness_4',['ToggleContextAwareness',['../classUGraphAddNodeContextMenu.html#a3bd8d996991c9c67d43dbd9b94dcc1e8',1,'UGraphAddNodeContextMenu']]],
   ['topleft_5',['TopLeft',['../classFGraphQTNode.html#a36f482fb353e8db2929a1380deb62913',1,'FGraphQTNode::TopLeft()'],['../structFGraphLocomotionChunk.html#a8dc029954ce81fe0507c4bffa0975b69',1,'FGraphLocomotionChunk::TopLeft()']]],
-  ['transcriptioncontainer_6',['TranscriptionContainer',['../classSTranscriptionVis.html#a31b44cc767c4c6a2245fa5c779844865',1,'STranscriptionVis']]],
-  ['transcriptionslots_7',['TranscriptionSlots',['../classSTranscriptionVis.html#a3353022c70172f367a0546c653f3f943',1,'STranscriptionVis']]],
-  ['treeview_8',['TreeView',['../classUGraphAddNodeContextMenu.html#ae6cacee238ebac025ed213515122eb0f',1,'UGraphAddNodeContextMenu']]],
-  ['treeviewcantick_9',['TreeViewCanTick',['../classUGraphEditorContext.html#a0439f3a1bb377416316c7c69d4bc2974',1,'UGraphEditorContext']]],
-  ['treeviewrequirestick_10',['TreeViewRequiresTick',['../classUGraphEditorContext.html#af5f7e54b2ae6eaec5298f550482a57b7',1,'UGraphEditorContext']]]
+  ['transcriptionbuffer_6',['TranscriptionBuffer',['../classAccessionPy_1_1TranscriptionBuffer_1_1TranscriptionBuffer.html',1,'AccessionPy::TranscriptionBuffer']]],
+  ['transcriptioncontainer_7',['TranscriptionContainer',['../classSTranscriptionVis.html#a31b44cc767c4c6a2245fa5c779844865',1,'STranscriptionVis']]],
+  ['transcriptionslots_8',['TranscriptionSlots',['../classSTranscriptionVis.html#a3353022c70172f367a0546c653f3f943',1,'STranscriptionVis']]],
+  ['transcriptionstate_9',['TranscriptionState',['../classAccessionPy_1_1TranscriptionBuffer_1_1TranscriptionState.html',1,'AccessionPy::TranscriptionBuffer']]],
+  ['treeview_10',['TreeView',['../classUGraphAddNodeContextMenu.html#ae6cacee238ebac025ed213515122eb0f',1,'UGraphAddNodeContextMenu']]],
+  ['treeviewcantick_11',['TreeViewCanTick',['../classUGraphEditorContext.html#a0439f3a1bb377416316c7c69d4bc2974',1,'UGraphEditorContext']]],
+  ['treeviewrequirestick_12',['TreeViewRequiresTick',['../classUGraphEditorContext.html#af5f7e54b2ae6eaec5298f550482a57b7',1,'UGraphEditorContext']]]
 ];

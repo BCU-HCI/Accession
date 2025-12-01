@@ -2,7 +2,6 @@ var hierarchy =
 [
     [ "AccessionPy.AccessionPy", "classAccessionPy_1_1AccessionPy.html", null ],
     [ "AccessionPy.Audio.AudioResampler", "classAccessionPy_1_1Audio_1_1AudioResampler.html", null ],
-    [ "AccessionPy.CommunicationServer.CommunicationServer", "classAccessionPy_1_1CommunicationServer_1_1CommunicationServer.html", null ],
     [ "FAccessionAssetRegistry", "classFAccessionAssetRegistry.html", null ],
     [ "FActivationKeys", "structFActivationKeys.html", null ],
     [ "FTabManager::FArea", null, [
@@ -59,6 +58,8 @@ var hierarchy =
     [ "SGraphPanel", null, [
       [ "SOpenGraphPanel", "classSOpenGraphPanel.html", null ]
     ] ],
+    [ "AccessionPy.TranscriptionBuffer.TranscriptionBuffer", "classAccessionPy_1_1TranscriptionBuffer_1_1TranscriptionBuffer.html", null ],
+    [ "AccessionPy.TranscriptionBuffer.TranscriptionState", "classAccessionPy_1_1TranscriptionBuffer_1_1TranscriptionState.html", null ],
     [ "TSharedFromThis", null, [
       [ "FGraphQTNode", "classFGraphQTNode.html", null ],
       [ "FGraphQuadTree", "classFGraphQuadTree.html", null ],

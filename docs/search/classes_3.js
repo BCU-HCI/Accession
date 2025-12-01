@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['iphrasecontextnodebase_0',['IPhraseContextNodeBase',['../classIPhraseContextNodeBase.html',1,'']]],
-  ['iphrasenodebase_1',['IPhraseNodeBase',['../classIPhraseNodeBase.html',1,'']]]
+  ['loglevel_0',['LogLevel',['../classAccessionPy_1_1Logging_1_1LogLevel.html',1,'AccessionPy::Logging']]]
 ];
