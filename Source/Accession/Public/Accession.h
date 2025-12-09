@@ -28,35 +28,6 @@ public:
 	}
 
 private:
-	static void FocusChangeListener(const FFocusEvent &FocusEvent, const FWeakWidgetPath &PrevWidgetPath, const TSharedPtr<SWidget> &PrevFocusedWidget, const FWidgetPath &NewWidgetPath, const TSharedPtr<SWidget> &NewFocusedWidget);
-
-	// Phrase Branch Bindings
-
-	/// <summary>
-	/// Binds the Local Locomotion Branch of Commands onto the Phrase Tree.
-	/// </summary>
-	void BindLocalizedInteractionBranch();
-
-	/// <summary>
-	/// Binds the Graph Interaction Branch of Commands onto the Phrase Tree.
-	/// </summary>
-	void BindGraphInteractionBranch();
-	/// <summary>
-	/// Binds the Viewport Interaction Branch of Commands onto the Phrase Tree.
-	/// </summary>
-	void BindViewportInteractionBranch();
-
-	// Transcription Visualization
-
-	/// <summary>
-	/// Constructs the Transcription Visualizer.
-	/// </summary>
-	void CreateTranscriptionVisualization();
-
-	/// <summary>
-	/// Destroys the Transcription Visualizer, and Cleans Up any Allocations.
-	/// </summary>
-	void DestroyTranscriptionVisualization();
 
 	// Console Commands
 
@@ -82,7 +53,6 @@ public:
 	TSharedPtr<class FAccessionAssetRegistry> AssetRegistry;
 
 private:
-	TObjectPtr<class UTranscriptionVisualizer> TranscriptionVisualizer;
 
 	TArray<IConsoleCommand *> ConsoleCommands;
 };

@@ -1,6 +1,6 @@
 // Copyright (C) HCI-BCU 2025. All rights reserved.
 
-#include "Widgets/STranscriptionVis.h"
+#include "STranscriptionVis.h"
 
 #include "AccessionCommunicationSubsystem.h"
 #include "AudioManager.h"
