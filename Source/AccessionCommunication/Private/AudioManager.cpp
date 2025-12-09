@@ -8,34 +8,42 @@
 #include "AudioDeviceNotificationSubsystem.h"
 #include "Templates/Function.h"
 
-UAudioManager::UAudioManager(const FObjectInitializer &ObjectInitializer)
-	: Super(ObjectInitializer)
+UAudioManager::UAudioManager(const FObjectInitializer& ObjectInitializer)
 {
-	Settings = FAudioManagerSettings();
-
-	// Create Audio Capture Object and Initialize Audio Stream
-	bIsCapturingAudio = false;
 	AudioCapture = ObjectInitializer.CreateDefaultSubobject<UAudioCapture>(this, TEXT("AccessionAudioCapture"));
-	AudioCapture->OpenDefaultAudioStream();
-	AudioCapture->StartCapturingAudio();
 
-	RegisterAudioGenerator();
-
-	// Create FileIO Objects
-	FileWriter = new Audio::FSoundWavePCMWriter();
+	Settings = FAudioManagerSettings();
+	bIsCapturingAudio = false;
 }
 
 UAudioManager::~UAudioManager()
 {
-	UnregisterAudioGenerator();
+	if (AudioCapture->IsValidLowLevel())
+	{
+		AudioCapture->StopCapturingAudio();
+		AudioCapture->RemoveFromRoot();
 
-	AudioCapture->StopCapturingAudio();
-	AudioCapture->RemoveFromRoot();
+		
+		UnregisterAudioGenerator();
+	}
 
-	delete AudioCapture;
-	AudioCapture = nullptr;
-	delete FileWriter;
-	FileWriter = nullptr;
+	if (FileWriter != nullptr)
+	{
+		delete FileWriter;
+		FileWriter = nullptr;
+	}
+
+}
+
+void UAudioManager::Initialize()
+{
+	// Ensure Not Default Object.
+	if (HasAnyFlags(RF_ClassDefaultObject))
+		return;
+
+	FileWriter = new Audio::FSoundWavePCMWriter();
+
+	RegisterAudioGenerator();
 }
 
 bool UAudioManager::IsCapturingAudio() const

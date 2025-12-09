@@ -33,7 +33,12 @@ UAccessionCommunicationSubsystem::UAccessionCommunicationSubsystem()
 
 UAccessionCommunicationSubsystem::~UAccessionCommunicationSubsystem()
 {
-	FSlateApplication::Get().UnregisterInputPreProcessor(InputProcessor);
+	if (FSlateApplication::IsInitialized())
+	{
+		FSlateApplication& SlateApp = FSlateApplication::Get();
+
+		SlateApp.UnregisterInputPreProcessor(InputProcessor);
+	}
 }
 
 void UAccessionCommunicationSubsystem::Initialize(FSubsystemCollectionBase& Collection)

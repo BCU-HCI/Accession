@@ -47,7 +47,7 @@ void FAccessionModule::StartupModule()
 	NodeFactory = MakeShared<FAccessionNodeFactory, ESPMode::ThreadSafe>();
 	FEdGraphUtilities::RegisterVisualNodeFactory(NodeFactory);
 
-	
+	/*
 	if (UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>())
 	{
 		// Construct Base Phrase Tree Libraries
@@ -63,10 +63,10 @@ void FAccessionModule::StartupModule()
 		ACSubsystem->PhraseTreeUtils->RegisterFunctionLibrary(
 				NewObject<UNodeInteractionLibrary>());		
 	}
+	*/
 
 
-
-	CreateTranscriptionVisualization();
+	//CreateTranscriptionVisualization();
 
 	FSlateApplication::Get().OnFocusChanging().AddStatic(&FAccessionModule::FocusChangeListener);
 
@@ -118,7 +118,8 @@ void FAccessionModule::CreateTranscriptionVisualization()
 
 void FAccessionModule::DestroyTranscriptionVisualization()
 {
-	TranscriptionVisualizer->RemoveFromRoot();
+	if (TranscriptionVisualizer->IsValidLowLevel())
+		TranscriptionVisualizer->RemoveFromRoot();
 }
 
 void FAccessionModule::RegisterConsoleCommands()
@@ -454,10 +455,9 @@ void FAccessionModule::UnregisterConsoleCommands()
 		ConsoleCommand = ConsoleCommands.Pop();
 
 		IConsoleManager::Get().UnregisterConsoleObject(ConsoleCommand);
-
-		delete ConsoleCommand;
-		ConsoleCommand = nullptr;
 	}
+
+	ConsoleCommands.Empty();
 }
 
 #undef LOCTEXT_NAMESPACE

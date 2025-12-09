@@ -7,9 +7,9 @@
 
 UTranscriptionVisualizer::UTranscriptionVisualizer()
 {
-	TranscriptionList.Reserve(MaxVisualisationAmount);
+	//TranscriptionList.Reserve(MaxVisualisationAmount);
 
-	RegisterTicker();
+	//RegisterTicker();
 }
 
 UTranscriptionVisualizer::~UTranscriptionVisualizer()
