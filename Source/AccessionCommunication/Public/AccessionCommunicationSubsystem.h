@@ -92,4 +92,9 @@ private:
 
 	// Input
 	TSharedPtr<FAccessionCommunicationInputProcessor> InputProcessor;
+
+	// Transcription Visualizer
+	UPROPERTY()
+	TObjectPtr<class UTranscriptionVisualizer> TranscriptionVisualizer;
+
 };

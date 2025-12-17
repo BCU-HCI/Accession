@@ -315,6 +315,9 @@ void UGraphLocomotionContext::HideNativeVisuals()
 
 void UGraphLocomotionContext::UnHideNativeVisuals()
 {
+	if (!GridParent.IsValid())
+		return;
+
 	FChildren *ViewportChildren = GridParent.Pin()->GetChildren();
 
 	TSharedPtr<SWidget> ChildWidget;

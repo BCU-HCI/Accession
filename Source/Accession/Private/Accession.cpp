@@ -19,7 +19,6 @@
 #include "PhraseEvents/ViewInteractionLibrary.h"
 #include "PhraseEvents/NodeInteractionLibrary.h"
 
-#include "TranscriptionVisualizer.h"
 #include "FunctionalityWrappers/GraphAddNodeContextMenu.h"
 #include "FunctionalityWrappers/GraphLocomotionContext.h"
 
@@ -64,12 +63,6 @@ void FAccessionModule::StartupModule()
 				NewObject<UNodeInteractionLibrary>());		
 	}
 
-
-
-	CreateTranscriptionVisualization();
-
-	FSlateApplication::Get().OnFocusChanging().AddStatic(&FAccessionModule::FocusChangeListener);
-
 	// Register Console Commands
 	RegisterConsoleCommands();
 }
@@ -78,47 +71,21 @@ void FAccessionModule::ShutdownModule()
 {
 	UE_LOG(LogAccession, Display, TEXT("AccessionModule::ShutdownModule()"));
 
-	DestroyTranscriptionVisualization();
-
+	// Unregister Console Commands
 	UnregisterConsoleCommands();
-}
 
-void FAccessionModule::FocusChangeListener(const FFocusEvent &FocusEvent, const FWeakWidgetPath &PrevWidgetPath,
-										   const TSharedPtr<SWidget> &PrevFocusedWidget, const FWidgetPath &NewWidgetPath,
-										   const TSharedPtr<SWidget> &NewFocusedWidget)
-{
-	if (!NewFocusedWidget.IsValid())
-		return;
-
-	switch (FocusEvent.GetCause())
+	// Unregister the Node Factory
+	if (NodeFactory.IsValid())
 	{
-	case EFocusCause::Mouse:
-		OA_LOG(LogAccession, Log, TEXT("WIDGET_FOCUS_MOUSE"), TEXT("Mouse Widget Focus Changed: %s"), *NewFocusedWidget->GetTypeAsString());
-		break;
-
-	default:
-		break;
-	}
-}
-
-void FAccessionModule::CreateTranscriptionVisualization()
-{
-	TranscriptionVisualizer = NewObject<UTranscriptionVisualizer>();
-	TranscriptionVisualizer->AddToRoot();
-
-	UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>();
-	if (ACSubsystem == nullptr)
-	{
-		UE_LOG(LogAccession, Warning, TEXT("Accession - Transcription Visualiser Cannot Bind Transcript Delegate."))
-		return;
+		FEdGraphUtilities::UnregisterVisualNodeFactory(NodeFactory);
+		NodeFactory.Reset();
 	}
 
-	ACSubsystem->OnTranscriptionReceived.AddUObject(TranscriptionVisualizer, &UTranscriptionVisualizer::OnTranscriptionRecieved);
-}
-
-void FAccessionModule::DestroyTranscriptionVisualization()
-{
-	TranscriptionVisualizer->RemoveFromRoot();
+	// Clear the Asset Registry
+	if (AssetRegistry.IsValid())
+	{
+		AssetRegistry.Reset();
+	}
 }
 
 void FAccessionModule::RegisterConsoleCommands()
@@ -454,10 +421,9 @@ void FAccessionModule::UnregisterConsoleCommands()
 		ConsoleCommand = ConsoleCommands.Pop();
 
 		IConsoleManager::Get().UnregisterConsoleObject(ConsoleCommand);
-
-		delete ConsoleCommand;
-		ConsoleCommand = nullptr;
 	}
+
+	ConsoleCommands.Empty();
 }
 
 #undef LOCTEXT_NAMESPACE
