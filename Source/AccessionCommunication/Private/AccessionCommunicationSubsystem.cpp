@@ -10,19 +10,40 @@
 #include "PhraseTree.h"
 #include "PhraseTreeUtils.h"
 
+#include "TranscriptionVisualizer.h"
+
 #include "Containers/Queue.h"
 
 
 UAccessionCommunicationSubsystem::UAccessionCommunicationSubsystem()
 {
+
+}
+
+UAccessionCommunicationSubsystem::~UAccessionCommunicationSubsystem()
+{
+
+}
+
+void UAccessionCommunicationSubsystem::Initialize(FSubsystemCollectionBase& Collection)
+{
+	// AudioManager
 	AudioManager = NewObject<UAudioManager>();
 	AudioManager->OnAudioReadyForTranscription.BindUObject(this, &UAccessionCommunicationSubsystem::RequestTranscription);
 
+	// Phrase Tree
 	PhraseTree = MakeShared<FPhraseTree>();
 	OnTranscriptionReceived.AddSP(PhraseTree.ToSharedRef(), &FPhraseTree::ParseTranscription);
 
 	PhraseTreeUtils = NewObject<UPhraseTreeUtils>();
 	PhraseTreeUtils->SetPhraseTree(PhraseTree.ToSharedRef());
+
+
+	// Transcription Visualizer
+	TranscriptionVisualizer = NewObject<UTranscriptionVisualizer>();
+	TranscriptionVisualizer->Initialize();
+	OnTranscriptionReceived.AddUObject(TranscriptionVisualizer, &UTranscriptionVisualizer::OnTranscriptionRecieved);
+
 
 	InputProcessor = MakeShared<FAccessionCommunicationInputProcessor>(this);
 	if (!FSlateApplication::Get().RegisterInputPreProcessor(InputProcessor, 0))
@@ -31,18 +52,14 @@ UAccessionCommunicationSubsystem::UAccessionCommunicationSubsystem()
 	}
 }
 
-UAccessionCommunicationSubsystem::~UAccessionCommunicationSubsystem()
-{
-	FSlateApplication::Get().UnregisterInputPreProcessor(InputProcessor);
-}
-
-void UAccessionCommunicationSubsystem::Initialize(FSubsystemCollectionBase& Collection)
-{
-}
-
 void UAccessionCommunicationSubsystem::Deinitialize()
 {
-	
+	if (FSlateApplication::IsInitialized())
+	{
+		FSlateApplication& SlateApp = FSlateApplication::Get();
+
+		SlateApp.UnregisterInputPreProcessor(InputProcessor);
+	}
 }
 
 void UAccessionCommunicationSubsystem::RequestTranscription(const TArray<float> AudioData, const int32 SampleRate, const int32 NumChannels)

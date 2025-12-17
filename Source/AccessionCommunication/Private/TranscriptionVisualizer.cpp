@@ -2,19 +2,25 @@
 
 #include "TranscriptionVisualizer.h"
 
-#include "AccessionLogging.h"
-#include "Widgets/STranscriptionVis.h"
+#include "AccessionComLogging.h"
+#include "STranscriptionVis.h"
 
 UTranscriptionVisualizer::UTranscriptionVisualizer()
 {
-	TranscriptionList.Reserve(MaxVisualisationAmount);
 
-	RegisterTicker();
 }
 
 UTranscriptionVisualizer::~UTranscriptionVisualizer()
 {
 	UnregisterTicker();
+}
+
+void UTranscriptionVisualizer::Initialize()
+{
+	TranscriptionList.Empty();
+	TranscriptionList.Reserve(MaxVisualisationAmount);
+
+	RegisterTicker();
 }
 
 bool UTranscriptionVisualizer::Tick(float DeltaTime)

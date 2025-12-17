@@ -54,6 +54,8 @@ public:
     UAudioManager(const FObjectInitializer &ObjectInitializer);
     virtual ~UAudioManager();
 
+    void Initialize();
+
     /// <summary>
     /// Is the Audio Manager Currently Capturing Audio.
     /// </summary>
@@ -135,7 +137,7 @@ private:
     bool bIsCapturingAudio = false;
 
     UPROPERTY(EditDefaultsOnly, Category = "OpenAccessibility/Audio Capture")
-    class UAudioCapture *AudioCapture;
+    TObjectPtr<class UAudioCapture> AudioCapture;
 
     UPROPERTY(EditDefaultsOnly, Category = "OpenAccessibility/Audio Capture")
     TArray<float> AudioBuffer;

@@ -68,9 +68,6 @@ void FAccessionAnalyticsModule::RemoveConsoleCommands()
 		ConsoleCommand = ConsoleCommands.Pop();
 
 		IConsoleManager::Get().UnregisterConsoleObject(ConsoleCommand);
-
-		delete ConsoleCommand;
-		ConsoleCommand = nullptr;
 	}
 }
 

@@ -6,7 +6,7 @@
 #include "Styling/AppStyle.h"
 #include "Widgets/Layout/SBorder.h"
 
-class ACCESSION_API STranscriptionVis : public SBox
+class ACCESSIONCOMMUNICATION_API STranscriptionVis : public SBox
 {
 public:
 	SLATE_BEGIN_ARGS(STranscriptionVis)

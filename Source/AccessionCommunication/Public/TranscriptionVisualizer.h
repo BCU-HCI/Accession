@@ -3,18 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Containers/CircularQueue.h"
 
 #include "TranscriptionVisualizer.generated.h"
 
 UCLASS()
-class ACCESSION_API UTranscriptionVisualizer : public UObject
+class ACCESSIONCOMMUNICATION_API UTranscriptionVisualizer : public UObject
 {
 	GENERATED_BODY()
 
 public:
 	UTranscriptionVisualizer();
 	virtual ~UTranscriptionVisualizer() override;
+
+	void Initialize();
 
 	virtual bool Tick(float DeltaTime);
 

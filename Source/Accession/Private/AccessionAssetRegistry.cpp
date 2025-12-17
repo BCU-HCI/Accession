@@ -24,11 +24,18 @@ FAccessionAssetRegistry::FAccessionAssetRegistry()
 
 FAccessionAssetRegistry::~FAccessionAssetRegistry()
 {
-	GEditor->GetEditorSubsystem<UAssetEditorSubsystem>()->OnAssetOpenedInEditor().Remove(AssetOpenedInEditorHandle);
-
-	GEditor->GetEditorSubsystem<UAssetEditorSubsystem>()->OnAssetEditorRequestClose().Remove(AssetEditorRequestCloseHandle);
-
 	EmptyGraphAssetIndex();
+
+
+	if (GEditor == nullptr)
+		return;
+
+	UAssetEditorSubsystem* AESubsystem = GEditor->GetEditorSubsystem<UAssetEditorSubsystem>();
+	if (AESubsystem == nullptr)
+		return;
+
+	AESubsystem->OnAssetOpenedInEditor().Remove(AssetOpenedInEditorHandle);
+	AESubsystem->OnAssetEditorRequestClose().Remove(AssetEditorRequestCloseHandle);
 }
 
 void FAccessionAssetRegistry::OnAssetOpenedInEditor(UObject *OpenedAsset, IAssetEditorInstance *EditorInstance)
