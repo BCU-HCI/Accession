@@ -8,5 +8,7 @@ var dir_4e6fa18442b582efbf4f62bcdbbaf8cb =
     [ "AComInputProcessor.h", "AComInputProcessor_8h_source.html", null ],
     [ "AudioManager.cpp", "AudioManager_8cpp_source.html", null ],
     [ "PhraseTree.cpp", "PhraseTree_8cpp_source.html", null ],
-    [ "PhraseTreeUtils.cpp", "PhraseTreeUtils_8cpp_source.html", null ]
+    [ "PhraseTreeUtils.cpp", "PhraseTreeUtils_8cpp_source.html", null ],
+    [ "STranscriptionVis.cpp", "STranscriptionVis_8cpp_source.html", null ],
+    [ "TranscriptionVisualizer.cpp", "TranscriptionVisualizer_8cpp_source.html", null ]
 ];

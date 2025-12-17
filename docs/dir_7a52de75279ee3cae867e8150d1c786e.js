@@ -9,6 +9,5 @@ var dir_7a52de75279ee3cae867e8150d1c786e =
     [ "AccessionLogging.h", "AccessionLogging_8h_source.html", null ],
     [ "AccessionNodeFactory.h", "AccessionNodeFactory_8h_source.html", null ],
     [ "GraphIndexer.h", "GraphIndexer_8h_source.html", null ],
-    [ "OAccessionNodeFactory.h", "OAccessionNodeFactory_8h_source.html", null ],
-    [ "TranscriptionVisualizer.h", "TranscriptionVisualizer_8h_source.html", null ]
+    [ "OAccessionNodeFactory.h", "OAccessionNodeFactory_8h_source.html", null ]
 ];

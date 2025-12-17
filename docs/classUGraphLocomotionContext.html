@@ -280,10 +280,10 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00353">353</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  354</span>{</div>
-<div class="line"><span class="lineno">  355</span>    FocusChangedHandle = FSlateApplication::Get().OnFocusChanging().AddUObject(<span class="keyword">this</span>, &amp;UGraphLocomotionContext::OnFocusChanged);</div>
-<div class="line"><span class="lineno">  356</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00356">356</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  357</span>{</div>
+<div class="line"><span class="lineno">  358</span>    FocusChangedHandle = FSlateApplication::Get().OnFocusChanging().AddUObject(<span class="keyword">this</span>, &amp;UGraphLocomotionContext::OnFocusChanged);</div>
+<div class="line"><span class="lineno">  359</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -868,21 +868,21 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00334">334</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  338</span>{</div>
-<div class="line"><span class="lineno">  339</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">bIsActive</a>)</div>
-<div class="line"><span class="lineno">  340</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  341</span> </div>
-<div class="line"><span class="lineno">  342</span>    UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: FOCUS CHANGED.&quot;</span>));</div>
-<div class="line"><span class="lineno">  343</span> </div>
-<div class="line"><span class="lineno">  344</span>    TSharedPtr&lt;SGraphEditor&gt; LinkedEditorPtr = LinkedEditor.Pin();</div>
-<div class="line"><span class="lineno">  345</span> </div>
-<div class="line"><span class="lineno">  346</span>    <span class="keywordflow">if</span> (!NewFocusedWidgetPath.ContainsWidget(LinkedEditorPtr.Get()))</div>
-<div class="line"><span class="lineno">  347</span>    {</div>
-<div class="line"><span class="lineno">  348</span>        <a class="code hl_variable" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">bIsActive</a> = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  349</span>        Close();</div>
-<div class="line"><span class="lineno">  350</span>    }</div>
-<div class="line"><span class="lineno">  351</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00337">337</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  341</span>{</div>
+<div class="line"><span class="lineno">  342</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">bIsActive</a>)</div>
+<div class="line"><span class="lineno">  343</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  344</span> </div>
+<div class="line"><span class="lineno">  345</span>    UE_LOG(LogAccession, Warning, TEXT(<span class="stringliteral">&quot;GraphLocomotion: FOCUS CHANGED.&quot;</span>));</div>
+<div class="line"><span class="lineno">  346</span> </div>
+<div class="line"><span class="lineno">  347</span>    TSharedPtr&lt;SGraphEditor&gt; LinkedEditorPtr = LinkedEditor.Pin();</div>
+<div class="line"><span class="lineno">  348</span> </div>
+<div class="line"><span class="lineno">  349</span>    <span class="keywordflow">if</span> (!NewFocusedWidgetPath.ContainsWidget(LinkedEditorPtr.Get()))</div>
+<div class="line"><span class="lineno">  350</span>    {</div>
+<div class="line"><span class="lineno">  351</span>        <a class="code hl_variable" href="classUPhraseTreeContextObject.html#a2cba304de4e6f40576d7f62d10a57472">bIsActive</a> = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  352</span>        Close();</div>
+<div class="line"><span class="lineno">  353</span>    }</div>
+<div class="line"><span class="lineno">  354</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1044,13 +1044,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00358">358</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  359</span>{</div>
-<div class="line"><span class="lineno">  360</span>    <span class="keywordflow">if</span> (FocusChangedHandle.IsValid())</div>
-<div class="line"><span class="lineno">  361</span>    {</div>
-<div class="line"><span class="lineno">  362</span>        FSlateApplication::Get().OnFocusChanging().Remove(FocusChangedHandle);</div>
-<div class="line"><span class="lineno">  363</span>    }</div>
-<div class="line"><span class="lineno">  364</span>}</div>
+<p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00361">361</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  362</span>{</div>
+<div class="line"><span class="lineno">  363</span>    <span class="keywordflow">if</span> (FocusChangedHandle.IsValid())</div>
+<div class="line"><span class="lineno">  364</span>    {</div>
+<div class="line"><span class="lineno">  365</span>        FSlateApplication::Get().OnFocusChanging().Remove(FocusChangedHandle);</div>
+<div class="line"><span class="lineno">  366</span>    }</div>
+<div class="line"><span class="lineno">  367</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1079,21 +1079,24 @@ Protected Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="GraphLocomotionContext_8cpp_source.html#l00316">316</a> of file <a class="el" href="GraphLocomotionContext_8cpp_source.html">GraphLocomotionContext.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  317</span>{</div>
-<div class="line"><span class="lineno">  318</span>    FChildren *ViewportChildren = GridParent.Pin()-&gt;GetChildren();</div>
-<div class="line"><span class="lineno">  319</span> </div>
-<div class="line"><span class="lineno">  320</span>    TSharedPtr&lt;SWidget&gt; ChildWidget;</div>
-<div class="line"><span class="lineno">  321</span>    <span class="keywordflow">for</span> (int32 i = 0; i &lt; ViewportChildren-&gt;Num(); i++)</div>
-<div class="line"><span class="lineno">  322</span>    {</div>
-<div class="line"><span class="lineno">  323</span>        ChildWidget = ViewportChildren-&gt;GetChildAt(i);</div>
-<div class="line"><span class="lineno">  324</span> </div>
-<div class="line"><span class="lineno">  325</span>        <span class="keywordflow">if</span> (NativeWidgetVisibility.Contains(ChildWidget.Get()))</div>
-<div class="line"><span class="lineno">  326</span>        {</div>
-<div class="line"><span class="lineno">  327</span>            ChildWidget-&gt;SetVisibility(NativeWidgetVisibility[ChildWidget.Get()]);</div>
-<div class="line"><span class="lineno">  328</span>        }</div>
-<div class="line"><span class="lineno">  329</span>    }</div>
-<div class="line"><span class="lineno">  330</span> </div>
-<div class="line"><span class="lineno">  331</span>    NativeWidgetVisibility.Empty();</div>
-<div class="line"><span class="lineno">  332</span>}</div>
+<div class="line"><span class="lineno">  318</span>    <span class="keywordflow">if</span> (!GridParent.IsValid())</div>
+<div class="line"><span class="lineno">  319</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  320</span> </div>
+<div class="line"><span class="lineno">  321</span>    FChildren *ViewportChildren = GridParent.Pin()-&gt;GetChildren();</div>
+<div class="line"><span class="lineno">  322</span> </div>
+<div class="line"><span class="lineno">  323</span>    TSharedPtr&lt;SWidget&gt; ChildWidget;</div>
+<div class="line"><span class="lineno">  324</span>    <span class="keywordflow">for</span> (int32 i = 0; i &lt; ViewportChildren-&gt;Num(); i++)</div>
+<div class="line"><span class="lineno">  325</span>    {</div>
+<div class="line"><span class="lineno">  326</span>        ChildWidget = ViewportChildren-&gt;GetChildAt(i);</div>
+<div class="line"><span class="lineno">  327</span> </div>
+<div class="line"><span class="lineno">  328</span>        <span class="keywordflow">if</span> (NativeWidgetVisibility.Contains(ChildWidget.Get()))</div>
+<div class="line"><span class="lineno">  329</span>        {</div>
+<div class="line"><span class="lineno">  330</span>            ChildWidget-&gt;SetVisibility(NativeWidgetVisibility[ChildWidget.Get()]);</div>
+<div class="line"><span class="lineno">  331</span>        }</div>
+<div class="line"><span class="lineno">  332</span>    }</div>
+<div class="line"><span class="lineno">  333</span> </div>
+<div class="line"><span class="lineno">  334</span>    NativeWidgetVisibility.Empty();</div>
+<div class="line"><span class="lineno">  335</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

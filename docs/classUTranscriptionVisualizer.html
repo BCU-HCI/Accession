@@ -108,6 +108,8 @@ Inheritance diagram for UTranscriptionVisualizer:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a45dd20cbc25f3ad5ac832825f56b8457"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTranscriptionVisualizer.html#a45dd20cbc25f3ad5ac832825f56b8457">Initialize</a> ()</td></tr>
+<tr class="separator:a45dd20cbc25f3ad5ac832825f56b8457"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb03e8af70c90c2335182201328ed072"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTranscriptionVisualizer.html#aeb03e8af70c90c2335182201328ed072">Tick</a> (float DeltaTime)</td></tr>
 <tr class="separator:aeb03e8af70c90c2335182201328ed072"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa153fe326fa2a62394454e9fc5df115"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUTranscriptionVisualizer.html#aaa153fe326fa2a62394454e9fc5df115">ConstructVisualizer</a> ()</td></tr>
@@ -162,7 +164,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00011">11</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00010">10</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aa2834dcd8e331d7c2ce2c209c8b3ada5" name="aa2834dcd8e331d7c2ce2c209c8b3ada5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa2834dcd8e331d7c2ce2c209c8b3ada5">&#9670;&#160;</a></span>UTranscriptionVisualizer()</h2>
@@ -181,11 +183,8 @@ Protected Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00008">8</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">    9</span>{</div>
-<div class="line"><span class="lineno">   10</span>    TranscriptionList.Reserve(MaxVisualisationAmount);</div>
-<div class="line"><span class="lineno">   11</span> </div>
-<div class="line"><span class="lineno">   12</span>    <a class="code hl_function" href="classUTranscriptionVisualizer.html#aeb073d9cd806626013eb05f302fb28fc">RegisterTicker</a>();</div>
-<div class="line"><span class="lineno">   13</span>}</div>
-<div class="ttc" id="aclassUTranscriptionVisualizer_html_aeb073d9cd806626013eb05f302fb28fc"><div class="ttname"><a href="classUTranscriptionVisualizer.html#aeb073d9cd806626013eb05f302fb28fc">UTranscriptionVisualizer::RegisterTicker</a></div><div class="ttdeci">void RegisterTicker()</div><div class="ttdoc">Registers the Ticker for the Visualizer.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00179">TranscriptionVisualizer.cpp:179</a></div></div>
+<div class="line"><span class="lineno">   10</span> </div>
+<div class="line"><span class="lineno">   11</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -212,11 +211,11 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00015">15</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   16</span>{</div>
-<div class="line"><span class="lineno">   17</span>    <a class="code hl_function" href="classUTranscriptionVisualizer.html#a5f7736947c9cbb012cc6bb0eeee4c700">UnregisterTicker</a>();</div>
-<div class="line"><span class="lineno">   18</span>}</div>
-<div class="ttc" id="aclassUTranscriptionVisualizer_html_a5f7736947c9cbb012cc6bb0eeee4c700"><div class="ttname"><a href="classUTranscriptionVisualizer.html#a5f7736947c9cbb012cc6bb0eeee4c700">UTranscriptionVisualizer::UnregisterTicker</a></div><div class="ttdeci">void UnregisterTicker()</div><div class="ttdoc">Unregisters the Ticker for the Visualizer.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00186">TranscriptionVisualizer.cpp:186</a></div></div>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00013">13</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   14</span>{</div>
+<div class="line"><span class="lineno">   15</span>    <a class="code hl_function" href="classUTranscriptionVisualizer.html#a5f7736947c9cbb012cc6bb0eeee4c700">UnregisterTicker</a>();</div>
+<div class="line"><span class="lineno">   16</span>}</div>
+<div class="ttc" id="aclassUTranscriptionVisualizer_html_a5f7736947c9cbb012cc6bb0eeee4c700"><div class="ttname"><a href="classUTranscriptionVisualizer.html#a5f7736947c9cbb012cc6bb0eeee4c700">UTranscriptionVisualizer::UnregisterTicker</a></div><div class="ttdeci">void UnregisterTicker()</div><div class="ttdoc">Unregisters the Ticker for the Visualizer.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00192">TranscriptionVisualizer.cpp:192</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -238,48 +237,48 @@ Protected Attributes</h2></td></tr>
 
 <p>Constructs the Visualizer Window, and Its Content.  </p>
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00034">34</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   35</span>{</div>
-<div class="line"><span class="lineno">   36</span>    TSharedPtr&lt;STranscriptionVis&gt; MenuContent = SNew(<a class="code hl_class" href="classSTranscriptionVis.html">STranscriptionVis</a>)</div>
-<div class="line"><span class="lineno">   37</span>                                                    .VisAmount(MaxVisualisationAmount);</div>
-<div class="line"><span class="lineno">   38</span> </div>
-<div class="line"><span class="lineno">   39</span>    MenuContent-&gt;ForceVolatile(<span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>    FDisplayMetrics DisplayMetrics;</div>
-<div class="line"><span class="lineno">   42</span>    FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);</div>
-<div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>    FVector2D VisPosition = FVector2D();</div>
-<div class="line"><span class="lineno">   45</span> </div>
-<div class="line"><span class="lineno">   46</span>    <span class="keywordflow">if</span> (FSlateApplication::Get().GetActiveTopLevelRegularWindow().IsValid())</div>
-<div class="line"><span class="lineno">   47</span>    {</div>
-<div class="line"><span class="lineno">   48</span>        VisPosition = FSlateApplication::Get().GetActiveTopLevelRegularWindow()-&gt;GetPositionInScreen();</div>
-<div class="line"><span class="lineno">   49</span>    }</div>
-<div class="line"><span class="lineno">   50</span>    VisPosition.X = DisplayMetrics.PrimaryDisplayWidth;</div>
-<div class="line"><span class="lineno">   51</span>    VisPosition.Y = DisplayMetrics.PrimaryDisplayHeight;</div>
-<div class="line"><span class="lineno">   52</span> </div>
-<div class="line"><span class="lineno">   53</span>    TSharedRef&lt;SWindow&gt; MenuWindow = SNew(SWindow)</div>
-<div class="line"><span class="lineno">   54</span>                                         .Type(EWindowType::Normal)</div>
-<div class="line"><span class="lineno">   55</span>                                         .SizingRule(ESizingRule::Autosized)</div>
-<div class="line"><span class="lineno">   56</span>                                         .ScreenPosition(VisPosition)</div>
-<div class="line"><span class="lineno">   57</span>                                         .ClientSize(FVector2D(10, 10))</div>
-<div class="line"><span class="lineno">   58</span>                                         .IsPopupWindow(<span class="keyword">true</span>)</div>
-<div class="line"><span class="lineno">   59</span>                                         <span class="comment">//.InitialOpacity(0.5f)</span></div>
-<div class="line"><span class="lineno">   60</span>                                         .SupportsTransparency(EWindowTransparency::PerWindow)</div>
-<div class="line"><span class="lineno">   61</span>                                         .ActivationPolicy(EWindowActivationPolicy::Always)</div>
-<div class="line"><span class="lineno">   62</span>                                         .AdjustInitialSizeAndPositionForDPIScale(<span class="keyword">true</span>)</div>
-<div class="line"><span class="lineno">   63</span>                                             [MenuContent.ToSharedRef()];</div>
-<div class="line"><span class="lineno">   64</span> </div>
-<div class="line"><span class="lineno">   65</span>    TSharedPtr&lt;SWindow&gt; TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();</div>
-<div class="line"><span class="lineno">   66</span> </div>
-<div class="line"><span class="lineno">   67</span>    MenuWindow-&gt;AssignParentWidget(TopLevelWindow);</div>
-<div class="line"><span class="lineno">   68</span>    FSlateApplication::Get().AddWindowAsNativeChild(MenuWindow, TopLevelWindow.ToSharedRef(), <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   69</span> </div>
-<div class="line"><span class="lineno">   70</span>    <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a> = MenuWindow.ToWeakPtr();</div>
-<div class="line"><span class="lineno">   71</span>    <a class="code hl_variable" href="classUTranscriptionVisualizer.html#a51f3da089793d356e5290f4dc6dff6e1">VisContent</a> = MenuContent.ToWeakPtr();</div>
-<div class="line"><span class="lineno">   72</span>}</div>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00040">40</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   41</span>{</div>
+<div class="line"><span class="lineno">   42</span>    TSharedPtr&lt;STranscriptionVis&gt; MenuContent = SNew(<a class="code hl_class" href="classSTranscriptionVis.html">STranscriptionVis</a>)</div>
+<div class="line"><span class="lineno">   43</span>                                                    .VisAmount(MaxVisualisationAmount);</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>    MenuContent-&gt;ForceVolatile(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   46</span> </div>
+<div class="line"><span class="lineno">   47</span>    FDisplayMetrics DisplayMetrics;</div>
+<div class="line"><span class="lineno">   48</span>    FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);</div>
+<div class="line"><span class="lineno">   49</span> </div>
+<div class="line"><span class="lineno">   50</span>    FVector2D VisPosition = FVector2D();</div>
+<div class="line"><span class="lineno">   51</span> </div>
+<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">if</span> (FSlateApplication::Get().GetActiveTopLevelRegularWindow().IsValid())</div>
+<div class="line"><span class="lineno">   53</span>    {</div>
+<div class="line"><span class="lineno">   54</span>        VisPosition = FSlateApplication::Get().GetActiveTopLevelRegularWindow()-&gt;GetPositionInScreen();</div>
+<div class="line"><span class="lineno">   55</span>    }</div>
+<div class="line"><span class="lineno">   56</span>    VisPosition.X = DisplayMetrics.PrimaryDisplayWidth;</div>
+<div class="line"><span class="lineno">   57</span>    VisPosition.Y = DisplayMetrics.PrimaryDisplayHeight;</div>
+<div class="line"><span class="lineno">   58</span> </div>
+<div class="line"><span class="lineno">   59</span>    TSharedRef&lt;SWindow&gt; MenuWindow = SNew(SWindow)</div>
+<div class="line"><span class="lineno">   60</span>                                         .Type(EWindowType::Normal)</div>
+<div class="line"><span class="lineno">   61</span>                                         .SizingRule(ESizingRule::Autosized)</div>
+<div class="line"><span class="lineno">   62</span>                                         .ScreenPosition(VisPosition)</div>
+<div class="line"><span class="lineno">   63</span>                                         .ClientSize(FVector2D(10, 10))</div>
+<div class="line"><span class="lineno">   64</span>                                         .IsPopupWindow(<span class="keyword">true</span>)</div>
+<div class="line"><span class="lineno">   65</span>                                         <span class="comment">//.InitialOpacity(0.5f)</span></div>
+<div class="line"><span class="lineno">   66</span>                                         .SupportsTransparency(EWindowTransparency::PerWindow)</div>
+<div class="line"><span class="lineno">   67</span>                                         .ActivationPolicy(EWindowActivationPolicy::Always)</div>
+<div class="line"><span class="lineno">   68</span>                                         .AdjustInitialSizeAndPositionForDPIScale(<span class="keyword">true</span>)</div>
+<div class="line"><span class="lineno">   69</span>                                             [MenuContent.ToSharedRef()];</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>    TSharedPtr&lt;SWindow&gt; TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();</div>
+<div class="line"><span class="lineno">   72</span> </div>
+<div class="line"><span class="lineno">   73</span>    MenuWindow-&gt;AssignParentWidget(TopLevelWindow);</div>
+<div class="line"><span class="lineno">   74</span>    FSlateApplication::Get().AddWindowAsNativeChild(MenuWindow, TopLevelWindow.ToSharedRef(), <span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>    <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a> = MenuWindow.ToWeakPtr();</div>
+<div class="line"><span class="lineno">   77</span>    <a class="code hl_variable" href="classUTranscriptionVisualizer.html#a51f3da089793d356e5290f4dc6dff6e1">VisContent</a> = MenuContent.ToWeakPtr();</div>
+<div class="line"><span class="lineno">   78</span>}</div>
 <div class="ttc" id="aclassSTranscriptionVis_html"><div class="ttname"><a href="classSTranscriptionVis.html">STranscriptionVis</a></div><div class="ttdef"><b>Definition:</b> <a href="STranscriptionVis_8h_source.html#l00009">STranscriptionVis.h:10</a></div></div>
-<div class="ttc" id="aclassUTranscriptionVisualizer_html_a51f3da089793d356e5290f4dc6dff6e1"><div class="ttname"><a href="classUTranscriptionVisualizer.html#a51f3da089793d356e5290f4dc6dff6e1">UTranscriptionVisualizer::VisContent</a></div><div class="ttdeci">TWeakPtr&lt; class STranscriptionVis &gt; VisContent</div><div class="ttdoc">The Content of the Visualizer Window.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8h_source.html#l00090">TranscriptionVisualizer.h:90</a></div></div>
-<div class="ttc" id="aclassUTranscriptionVisualizer_html_ac21d3adc058168dee45554bfaaedf6ab"><div class="ttname"><a href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">UTranscriptionVisualizer::VisWindow</a></div><div class="ttdeci">TWeakPtr&lt; SWindow &gt; VisWindow</div><div class="ttdoc">The Visualizers Containing Window.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8h_source.html#l00085">TranscriptionVisualizer.h:85</a></div></div>
+<div class="ttc" id="aclassUTranscriptionVisualizer_html_a51f3da089793d356e5290f4dc6dff6e1"><div class="ttname"><a href="classUTranscriptionVisualizer.html#a51f3da089793d356e5290f4dc6dff6e1">UTranscriptionVisualizer::VisContent</a></div><div class="ttdeci">TWeakPtr&lt; class STranscriptionVis &gt; VisContent</div><div class="ttdoc">The Content of the Visualizer Window.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8h_source.html#l00091">TranscriptionVisualizer.h:91</a></div></div>
+<div class="ttc" id="aclassUTranscriptionVisualizer_html_ac21d3adc058168dee45554bfaaedf6ab"><div class="ttname"><a href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">UTranscriptionVisualizer::VisWindow</a></div><div class="ttdeci">TWeakPtr&lt; SWindow &gt; VisWindow</div><div class="ttdoc">The Visualizers Containing Window.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8h_source.html#l00086">TranscriptionVisualizer.h:86</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -315,16 +314,16 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00168">168</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  169</span>{</div>
-<div class="line"><span class="lineno">  170</span>    FDisplayMetrics DisplayMetrics;</div>
-<div class="line"><span class="lineno">  171</span>    FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);</div>
-<div class="line"><span class="lineno">  172</span> </div>
-<div class="line"><span class="lineno">  173</span>    OutPosition.X = DisplayMetrics.PrimaryDisplayWidth;</div>
-<div class="line"><span class="lineno">  174</span>    OutPosition.Y = DisplayMetrics.PrimaryDisplayHeight;</div>
-<div class="line"><span class="lineno">  175</span> </div>
-<div class="line"><span class="lineno">  176</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  177</span>}</div>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00174">174</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  175</span>{</div>
+<div class="line"><span class="lineno">  176</span>    FDisplayMetrics DisplayMetrics;</div>
+<div class="line"><span class="lineno">  177</span>    FSlateApplication::Get().GetDisplayMetrics(DisplayMetrics);</div>
+<div class="line"><span class="lineno">  178</span> </div>
+<div class="line"><span class="lineno">  179</span>    OutPosition.X = DisplayMetrics.PrimaryDisplayWidth;</div>
+<div class="line"><span class="lineno">  180</span>    OutPosition.Y = DisplayMetrics.PrimaryDisplayHeight;</div>
+<div class="line"><span class="lineno">  181</span> </div>
+<div class="line"><span class="lineno">  182</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  183</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -360,22 +359,48 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00151">151</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  152</span>{</div>
-<div class="line"><span class="lineno">  153</span>    TSharedPtr&lt;SWindow&gt; TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();</div>
-<div class="line"><span class="lineno">  154</span>    <span class="keywordflow">if</span> (!TopLevelWindow.IsValid())</div>
-<div class="line"><span class="lineno">  155</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  156</span> </div>
-<div class="line"><span class="lineno">  157</span>    FVector2D ActiveWindowPosition = TopLevelWindow-&gt;GetPositionInScreen();</div>
-<div class="line"><span class="lineno">  158</span>    FVector2D ActiveWindowBounds = TopLevelWindow-&gt;GetClientSizeInScreen();</div>
-<div class="line"><span class="lineno">  159</span> </div>
-<div class="line"><span class="lineno">  160</span>    TSharedPtr&lt;SWindow&gt; VisWindowPtr = <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin();</div>
-<div class="line"><span class="lineno">  161</span> </div>
-<div class="line"><span class="lineno">  162</span>    OutPosition.X = (ActiveWindowPosition.X + ActiveWindowBounds.X / 2) - (VisWindowPtr-&gt;GetClientSizeInScreen().X / 2);</div>
-<div class="line"><span class="lineno">  163</span>    OutPosition.Y = (ActiveWindowPosition.Y + ActiveWindowBounds.Y - 50) - VisWindowPtr-&gt;GetClientSizeInScreen().Y;</div>
-<div class="line"><span class="lineno">  164</span> </div>
-<div class="line"><span class="lineno">  165</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  166</span>}</div>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00157">157</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  158</span>{</div>
+<div class="line"><span class="lineno">  159</span>    TSharedPtr&lt;SWindow&gt; TopLevelWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();</div>
+<div class="line"><span class="lineno">  160</span>    <span class="keywordflow">if</span> (!TopLevelWindow.IsValid())</div>
+<div class="line"><span class="lineno">  161</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  162</span> </div>
+<div class="line"><span class="lineno">  163</span>    FVector2D ActiveWindowPosition = TopLevelWindow-&gt;GetPositionInScreen();</div>
+<div class="line"><span class="lineno">  164</span>    FVector2D ActiveWindowBounds = TopLevelWindow-&gt;GetClientSizeInScreen();</div>
+<div class="line"><span class="lineno">  165</span> </div>
+<div class="line"><span class="lineno">  166</span>    TSharedPtr&lt;SWindow&gt; VisWindowPtr = <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin();</div>
+<div class="line"><span class="lineno">  167</span> </div>
+<div class="line"><span class="lineno">  168</span>    OutPosition.X = (ActiveWindowPosition.X + ActiveWindowBounds.X / 2) - (VisWindowPtr-&gt;GetClientSizeInScreen().X / 2);</div>
+<div class="line"><span class="lineno">  169</span>    OutPosition.Y = (ActiveWindowPosition.Y + ActiveWindowBounds.Y - 50) - VisWindowPtr-&gt;GetClientSizeInScreen().Y;</div>
+<div class="line"><span class="lineno">  170</span> </div>
+<div class="line"><span class="lineno">  171</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  172</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a45dd20cbc25f3ad5ac832825f56b8457" name="a45dd20cbc25f3ad5ac832825f56b8457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45dd20cbc25f3ad5ac832825f56b8457">&#9670;&#160;</a></span>Initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UTranscriptionVisualizer::Initialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00018">18</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   19</span>{</div>
+<div class="line"><span class="lineno">   20</span>    TranscriptionList.Empty();</div>
+<div class="line"><span class="lineno">   21</span>    TranscriptionList.Reserve(MaxVisualisationAmount);</div>
+<div class="line"><span class="lineno">   22</span> </div>
+<div class="line"><span class="lineno">   23</span>    <a class="code hl_function" href="classUTranscriptionVisualizer.html#aeb073d9cd806626013eb05f302fb28fc">RegisterTicker</a>();</div>
+<div class="line"><span class="lineno">   24</span>}</div>
+<div class="ttc" id="aclassUTranscriptionVisualizer_html_aeb073d9cd806626013eb05f302fb28fc"><div class="ttname"><a href="classUTranscriptionVisualizer.html#aeb073d9cd806626013eb05f302fb28fc">UTranscriptionVisualizer::RegisterTicker</a></div><div class="ttdeci">void RegisterTicker()</div><div class="ttdoc">Registers the Ticker for the Visualizer.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00185">TranscriptionVisualizer.cpp:185</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -396,19 +421,19 @@ Protected Attributes</h2></td></tr>
 
 <p>Moves the Visualizer Window to the Active Window Position.  </p>
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00121">121</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  122</span>{</div>
-<div class="line"><span class="lineno">  123</span>    FVector2D NewPosition = FVector2D();</div>
-<div class="line"><span class="lineno">  124</span> </div>
-<div class="line"><span class="lineno">  125</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classUTranscriptionVisualizer.html#a24ad75688ad352931812a1adf15ec12b">GetTopScreenVisualizerPosition</a>(NewPosition))</div>
-<div class="line"><span class="lineno">  126</span>    {</div>
-<div class="line"><span class="lineno">  127</span>        <a class="code hl_function" href="classUTranscriptionVisualizer.html#a0666cf7f95de5a51425fb302f09a8de1">GetDisplayVisualizerPosition</a>(NewPosition);</div>
-<div class="line"><span class="lineno">  128</span>    }</div>
-<div class="line"><span class="lineno">  129</span> </div>
-<div class="line"><span class="lineno">  130</span>    <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin()-&gt;MoveWindowTo(NewPosition);</div>
-<div class="line"><span class="lineno">  131</span>}</div>
-<div class="ttc" id="aclassUTranscriptionVisualizer_html_a0666cf7f95de5a51425fb302f09a8de1"><div class="ttname"><a href="classUTranscriptionVisualizer.html#a0666cf7f95de5a51425fb302f09a8de1">UTranscriptionVisualizer::GetDisplayVisualizerPosition</a></div><div class="ttdeci">bool GetDisplayVisualizerPosition(FVector2D &amp;OutPosition)</div><div class="ttdoc">Gets the Position of the Visualizer for the Last Active Display.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00168">TranscriptionVisualizer.cpp:168</a></div></div>
-<div class="ttc" id="aclassUTranscriptionVisualizer_html_a24ad75688ad352931812a1adf15ec12b"><div class="ttname"><a href="classUTranscriptionVisualizer.html#a24ad75688ad352931812a1adf15ec12b">UTranscriptionVisualizer::GetTopScreenVisualizerPosition</a></div><div class="ttdeci">bool GetTopScreenVisualizerPosition(FVector2D &amp;OutPosition)</div><div class="ttdoc">Gets the Position of the Visualizer for the Top Active Screen.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00151">TranscriptionVisualizer.cpp:151</a></div></div>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00127">127</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  128</span>{</div>
+<div class="line"><span class="lineno">  129</span>    FVector2D NewPosition = FVector2D();</div>
+<div class="line"><span class="lineno">  130</span> </div>
+<div class="line"><span class="lineno">  131</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="classUTranscriptionVisualizer.html#a24ad75688ad352931812a1adf15ec12b">GetTopScreenVisualizerPosition</a>(NewPosition))</div>
+<div class="line"><span class="lineno">  132</span>    {</div>
+<div class="line"><span class="lineno">  133</span>        <a class="code hl_function" href="classUTranscriptionVisualizer.html#a0666cf7f95de5a51425fb302f09a8de1">GetDisplayVisualizerPosition</a>(NewPosition);</div>
+<div class="line"><span class="lineno">  134</span>    }</div>
+<div class="line"><span class="lineno">  135</span> </div>
+<div class="line"><span class="lineno">  136</span>    <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin()-&gt;MoveWindowTo(NewPosition);</div>
+<div class="line"><span class="lineno">  137</span>}</div>
+<div class="ttc" id="aclassUTranscriptionVisualizer_html_a0666cf7f95de5a51425fb302f09a8de1"><div class="ttname"><a href="classUTranscriptionVisualizer.html#a0666cf7f95de5a51425fb302f09a8de1">UTranscriptionVisualizer::GetDisplayVisualizerPosition</a></div><div class="ttdeci">bool GetDisplayVisualizerPosition(FVector2D &amp;OutPosition)</div><div class="ttdoc">Gets the Position of the Visualizer for the Last Active Display.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00174">TranscriptionVisualizer.cpp:174</a></div></div>
+<div class="ttc" id="aclassUTranscriptionVisualizer_html_a24ad75688ad352931812a1adf15ec12b"><div class="ttname"><a href="classUTranscriptionVisualizer.html#a24ad75688ad352931812a1adf15ec12b">UTranscriptionVisualizer::GetTopScreenVisualizerPosition</a></div><div class="ttdeci">bool GetTopScreenVisualizerPosition(FVector2D &amp;OutPosition)</div><div class="ttdoc">Gets the Position of the Visualizer for the Top Active Screen.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00157">TranscriptionVisualizer.cpp:157</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -436,23 +461,23 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00133">133</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  134</span>{</div>
-<div class="line"><span class="lineno">  135</span>    FScopeLock Lock(&amp;TranscriptionQueueMutex);</div>
-<div class="line"><span class="lineno">  136</span> </div>
-<div class="line"><span class="lineno">  137</span>    FString LastTopItem = FString();</div>
-<div class="line"><span class="lineno">  138</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; InTranscription.Num(); i++)</div>
-<div class="line"><span class="lineno">  139</span>    {</div>
-<div class="line"><span class="lineno">  140</span>        <span class="keywordflow">if</span> (TranscriptionList.Num() &gt;= MaxVisualisationAmount)</div>
-<div class="line"><span class="lineno">  141</span>        {</div>
-<div class="line"><span class="lineno">  142</span>            TranscriptionList.RemoveAt(0, 1, <span class="keyword">false</span>);</div>
-<div class="line"><span class="lineno">  143</span>        }</div>
-<div class="line"><span class="lineno">  144</span> </div>
-<div class="line"><span class="lineno">  145</span>        TranscriptionList.Add(InTranscription[i]);</div>
-<div class="line"><span class="lineno">  146</span>    }</div>
-<div class="line"><span class="lineno">  147</span> </div>
-<div class="line"><span class="lineno">  148</span>    bIsTranscriptionDirty = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  149</span>}</div>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00139">139</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  140</span>{</div>
+<div class="line"><span class="lineno">  141</span>    FScopeLock Lock(&amp;TranscriptionQueueMutex);</div>
+<div class="line"><span class="lineno">  142</span> </div>
+<div class="line"><span class="lineno">  143</span>    FString LastTopItem = FString();</div>
+<div class="line"><span class="lineno">  144</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; InTranscription.Num(); i++)</div>
+<div class="line"><span class="lineno">  145</span>    {</div>
+<div class="line"><span class="lineno">  146</span>        <span class="keywordflow">if</span> (TranscriptionList.Num() &gt;= MaxVisualisationAmount)</div>
+<div class="line"><span class="lineno">  147</span>        {</div>
+<div class="line"><span class="lineno">  148</span>            TranscriptionList.RemoveAt(0, 1, <span class="keyword">false</span>);</div>
+<div class="line"><span class="lineno">  149</span>        }</div>
+<div class="line"><span class="lineno">  150</span> </div>
+<div class="line"><span class="lineno">  151</span>        TranscriptionList.Add(InTranscription[i]);</div>
+<div class="line"><span class="lineno">  152</span>    }</div>
+<div class="line"><span class="lineno">  153</span> </div>
+<div class="line"><span class="lineno">  154</span>    bIsTranscriptionDirty = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  155</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -481,12 +506,12 @@ Protected Attributes</h2></td></tr>
 
 <p>Registers the Ticker for the Visualizer.  </p>
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00179">179</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  180</span>{</div>
-<div class="line"><span class="lineno">  181</span>    FTickerDelegate TickDelegate = FTickerDelegate::CreateUObject(<span class="keyword">this</span>, &amp;UTranscriptionVisualizer::Tick);</div>
-<div class="line"><span class="lineno">  182</span> </div>
-<div class="line"><span class="lineno">  183</span>    TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);</div>
-<div class="line"><span class="lineno">  184</span>}</div>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00185">185</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  186</span>{</div>
+<div class="line"><span class="lineno">  187</span>    FTickerDelegate TickDelegate = FTickerDelegate::CreateUObject(<span class="keyword">this</span>, &amp;UTranscriptionVisualizer::Tick);</div>
+<div class="line"><span class="lineno">  188</span> </div>
+<div class="line"><span class="lineno">  189</span>    TickDelegateHandle = FTSTicker::GetCoreTicker().AddTicker(TickDelegate);</div>
+<div class="line"><span class="lineno">  190</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -507,27 +532,27 @@ Protected Attributes</h2></td></tr>
 
 <p>Reparents the Visualizer Window to the Active Window.  </p>
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00099">99</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  100</span>{</div>
-<div class="line"><span class="lineno">  101</span>    TSharedPtr&lt;SWindow&gt; TopLevelActiveWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();</div>
-<div class="line"><span class="lineno">  102</span>    <span class="keywordflow">if</span> (!TopLevelActiveWindow.IsValid())</div>
-<div class="line"><span class="lineno">  103</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  104</span> </div>
-<div class="line"><span class="lineno">  105</span>    TSharedPtr&lt;SWindow&gt; VisWindowPtr = <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin();</div>
-<div class="line"><span class="lineno">  106</span> </div>
-<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">if</span> (TopLevelActiveWindow == <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin() ||</div>
-<div class="line"><span class="lineno">  108</span>        TopLevelActiveWindow-&gt;GetContent() == VisWindowPtr-&gt;GetParentWidget())</div>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00105">105</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  106</span>{</div>
+<div class="line"><span class="lineno">  107</span>    TSharedPtr&lt;SWindow&gt; TopLevelActiveWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();</div>
+<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">if</span> (!TopLevelActiveWindow.IsValid())</div>
 <div class="line"><span class="lineno">  109</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">  110</span> </div>
-<div class="line"><span class="lineno">  111</span>    TSharedPtr&lt;SWindow&gt; PrevParentWindow = VisWindowPtr-&gt;GetParentWindow();</div>
-<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">if</span> (PrevParentWindow.IsValid())</div>
-<div class="line"><span class="lineno">  113</span>    {</div>
-<div class="line"><span class="lineno">  114</span>        PrevParentWindow-&gt;RemoveDescendantWindow(VisWindowPtr.ToSharedRef());</div>
-<div class="line"><span class="lineno">  115</span>    }</div>
+<div class="line"><span class="lineno">  111</span>    TSharedPtr&lt;SWindow&gt; VisWindowPtr = <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin();</div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>    <span class="keywordflow">if</span> (TopLevelActiveWindow == <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin() ||</div>
+<div class="line"><span class="lineno">  114</span>        TopLevelActiveWindow-&gt;GetContent() == VisWindowPtr-&gt;GetParentWidget())</div>
+<div class="line"><span class="lineno">  115</span>        <span class="keywordflow">return</span>;</div>
 <div class="line"><span class="lineno">  116</span> </div>
-<div class="line"><span class="lineno">  117</span>    VisWindowPtr-&gt;AssignParentWidget(TopLevelActiveWindow);</div>
-<div class="line"><span class="lineno">  118</span>    TopLevelActiveWindow-&gt;AddChildWindow(VisWindowPtr.ToSharedRef());</div>
-<div class="line"><span class="lineno">  119</span>}</div>
+<div class="line"><span class="lineno">  117</span>    TSharedPtr&lt;SWindow&gt; PrevParentWindow = VisWindowPtr-&gt;GetParentWindow();</div>
+<div class="line"><span class="lineno">  118</span>    <span class="keywordflow">if</span> (PrevParentWindow.IsValid())</div>
+<div class="line"><span class="lineno">  119</span>    {</div>
+<div class="line"><span class="lineno">  120</span>        PrevParentWindow-&gt;RemoveDescendantWindow(VisWindowPtr.ToSharedRef());</div>
+<div class="line"><span class="lineno">  121</span>    }</div>
+<div class="line"><span class="lineno">  122</span> </div>
+<div class="line"><span class="lineno">  123</span>    VisWindowPtr-&gt;AssignParentWidget(TopLevelActiveWindow);</div>
+<div class="line"><span class="lineno">  124</span>    TopLevelActiveWindow-&gt;AddChildWindow(VisWindowPtr.ToSharedRef());</div>
+<div class="line"><span class="lineno">  125</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -555,21 +580,21 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00020">20</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   21</span>{</div>
-<div class="line"><span class="lineno">   22</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.IsValid())</div>
-<div class="line"><span class="lineno">   23</span>    {</div>
-<div class="line"><span class="lineno">   24</span>        <a class="code hl_function" href="classUTranscriptionVisualizer.html#a1876cadcd9abc596fc19c921a5021ee3">UpdateVisualizer</a>();</div>
-<div class="line"><span class="lineno">   25</span>    }</div>
-<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (FSlateApplication::Get().GetActiveTopLevelRegularWindow().IsValid() &amp;&amp; FSlateApplication::Get().IsActive())</div>
-<div class="line"><span class="lineno">   27</span>    {</div>
-<div class="line"><span class="lineno">   28</span>        <a class="code hl_function" href="classUTranscriptionVisualizer.html#aaa153fe326fa2a62394454e9fc5df115">ConstructVisualizer</a>();</div>
-<div class="line"><span class="lineno">   29</span>    }</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   32</span>}</div>
-<div class="ttc" id="aclassUTranscriptionVisualizer_html_a1876cadcd9abc596fc19c921a5021ee3"><div class="ttname"><a href="classUTranscriptionVisualizer.html#a1876cadcd9abc596fc19c921a5021ee3">UTranscriptionVisualizer::UpdateVisualizer</a></div><div class="ttdeci">void UpdateVisualizer()</div><div class="ttdoc">Updates the Visualizer Window, If Active.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00074">TranscriptionVisualizer.cpp:74</a></div></div>
-<div class="ttc" id="aclassUTranscriptionVisualizer_html_aaa153fe326fa2a62394454e9fc5df115"><div class="ttname"><a href="classUTranscriptionVisualizer.html#aaa153fe326fa2a62394454e9fc5df115">UTranscriptionVisualizer::ConstructVisualizer</a></div><div class="ttdeci">void ConstructVisualizer()</div><div class="ttdoc">Constructs the Visualizer Window, and Its Content.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00034">TranscriptionVisualizer.cpp:34</a></div></div>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00026">26</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   27</span>{</div>
+<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.IsValid())</div>
+<div class="line"><span class="lineno">   29</span>    {</div>
+<div class="line"><span class="lineno">   30</span>        <a class="code hl_function" href="classUTranscriptionVisualizer.html#a1876cadcd9abc596fc19c921a5021ee3">UpdateVisualizer</a>();</div>
+<div class="line"><span class="lineno">   31</span>    }</div>
+<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (FSlateApplication::Get().GetActiveTopLevelRegularWindow().IsValid() &amp;&amp; FSlateApplication::Get().IsActive())</div>
+<div class="line"><span class="lineno">   33</span>    {</div>
+<div class="line"><span class="lineno">   34</span>        <a class="code hl_function" href="classUTranscriptionVisualizer.html#aaa153fe326fa2a62394454e9fc5df115">ConstructVisualizer</a>();</div>
+<div class="line"><span class="lineno">   35</span>    }</div>
+<div class="line"><span class="lineno">   36</span> </div>
+<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   38</span>}</div>
+<div class="ttc" id="aclassUTranscriptionVisualizer_html_a1876cadcd9abc596fc19c921a5021ee3"><div class="ttname"><a href="classUTranscriptionVisualizer.html#a1876cadcd9abc596fc19c921a5021ee3">UTranscriptionVisualizer::UpdateVisualizer</a></div><div class="ttdeci">void UpdateVisualizer()</div><div class="ttdoc">Updates the Visualizer Window, If Active.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00080">TranscriptionVisualizer.cpp:80</a></div></div>
+<div class="ttc" id="aclassUTranscriptionVisualizer_html_aaa153fe326fa2a62394454e9fc5df115"><div class="ttname"><a href="classUTranscriptionVisualizer.html#aaa153fe326fa2a62394454e9fc5df115">UTranscriptionVisualizer::ConstructVisualizer</a></div><div class="ttdeci">void ConstructVisualizer()</div><div class="ttdoc">Constructs the Visualizer Window, and Its Content.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00040">TranscriptionVisualizer.cpp:40</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -598,10 +623,10 @@ Protected Attributes</h2></td></tr>
 
 <p>Unregisters the Ticker for the Visualizer.  </p>
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00186">186</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  187</span>{</div>
-<div class="line"><span class="lineno">  188</span>    FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);</div>
-<div class="line"><span class="lineno">  189</span>}</div>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00192">192</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  193</span>{</div>
+<div class="line"><span class="lineno">  194</span>    FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);</div>
+<div class="line"><span class="lineno">  195</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -622,31 +647,31 @@ Protected Attributes</h2></td></tr>
 
 <p>Updates the Visualizer Window, If Active.  </p>
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00074">74</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   75</span>{</div>
-<div class="line"><span class="lineno">   76</span>    <span class="keywordflow">if</span> (FSlateApplication::Get().IsActive())</div>
-<div class="line"><span class="lineno">   77</span>    {</div>
-<div class="line"><span class="lineno">   78</span>        <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin()-&gt;ShowWindow();</div>
-<div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>        <a class="code hl_function" href="classUTranscriptionVisualizer.html#ad307c1709d0f42c17d68671a98a2b43e">MoveVisualizer</a>();</div>
-<div class="line"><span class="lineno">   81</span>    }</div>
-<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   83</span>        <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin()-&gt;HideWindow();</div>
-<div class="line"><span class="lineno">   84</span> </div>
-<div class="line"><span class="lineno">   85</span>    <span class="keywordflow">if</span> (bIsTranscriptionDirty)</div>
-<div class="line"><span class="lineno">   86</span>    {</div>
-<div class="line"><span class="lineno">   87</span>        FScopeLock Lock(&amp;TranscriptionQueueMutex);</div>
-<div class="line"><span class="lineno">   88</span> </div>
-<div class="line"><span class="lineno">   89</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; TransSlot : TranscriptionList)</div>
-<div class="line"><span class="lineno">   90</span>        {</div>
-<div class="line"><span class="lineno">   91</span>            <a class="code hl_variable" href="classUTranscriptionVisualizer.html#a51f3da089793d356e5290f4dc6dff6e1">VisContent</a>.Pin()-&gt;UpdateTopTranscription(TransSlot);</div>
-<div class="line"><span class="lineno">   92</span>        }</div>
-<div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>        bIsTranscriptionDirty = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   95</span>    }</div>
-<div class="line"><span class="lineno">   96</span>    </div>
-<div class="line"><span class="lineno">   97</span>}</div>
-<div class="ttc" id="aclassUTranscriptionVisualizer_html_ad307c1709d0f42c17d68671a98a2b43e"><div class="ttname"><a href="classUTranscriptionVisualizer.html#ad307c1709d0f42c17d68671a98a2b43e">UTranscriptionVisualizer::MoveVisualizer</a></div><div class="ttdeci">void MoveVisualizer()</div><div class="ttdoc">Moves the Visualizer Window to the Active Window Position.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00121">TranscriptionVisualizer.cpp:121</a></div></div>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00080">80</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   81</span>{</div>
+<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">if</span> (FSlateApplication::Get().IsActive())</div>
+<div class="line"><span class="lineno">   83</span>    {</div>
+<div class="line"><span class="lineno">   84</span>        <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin()-&gt;ShowWindow();</div>
+<div class="line"><span class="lineno">   85</span> </div>
+<div class="line"><span class="lineno">   86</span>        <a class="code hl_function" href="classUTranscriptionVisualizer.html#ad307c1709d0f42c17d68671a98a2b43e">MoveVisualizer</a>();</div>
+<div class="line"><span class="lineno">   87</span>    }</div>
+<div class="line"><span class="lineno">   88</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   89</span>        <a class="code hl_variable" href="classUTranscriptionVisualizer.html#ac21d3adc058168dee45554bfaaedf6ab">VisWindow</a>.Pin()-&gt;HideWindow();</div>
+<div class="line"><span class="lineno">   90</span> </div>
+<div class="line"><span class="lineno">   91</span>    <span class="keywordflow">if</span> (bIsTranscriptionDirty)</div>
+<div class="line"><span class="lineno">   92</span>    {</div>
+<div class="line"><span class="lineno">   93</span>        FScopeLock Lock(&amp;TranscriptionQueueMutex);</div>
+<div class="line"><span class="lineno">   94</span> </div>
+<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; TransSlot : TranscriptionList)</div>
+<div class="line"><span class="lineno">   96</span>        {</div>
+<div class="line"><span class="lineno">   97</span>            <a class="code hl_variable" href="classUTranscriptionVisualizer.html#a51f3da089793d356e5290f4dc6dff6e1">VisContent</a>.Pin()-&gt;UpdateTopTranscription(TransSlot);</div>
+<div class="line"><span class="lineno">   98</span>        }</div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>        bIsTranscriptionDirty = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  101</span>    }</div>
+<div class="line"><span class="lineno">  102</span>    </div>
+<div class="line"><span class="lineno">  103</span>}</div>
+<div class="ttc" id="aclassUTranscriptionVisualizer_html_ad307c1709d0f42c17d68671a98a2b43e"><div class="ttname"><a href="classUTranscriptionVisualizer.html#ad307c1709d0f42c17d68671a98a2b43e">UTranscriptionVisualizer::MoveVisualizer</a></div><div class="ttdeci">void MoveVisualizer()</div><div class="ttdoc">Moves the Visualizer Window to the Active Window Position.</div><div class="ttdef"><b>Definition:</b> <a href="TranscriptionVisualizer_8cpp_source.html#l00127">TranscriptionVisualizer.cpp:127</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -671,7 +696,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00096">96</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00097">97</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
 
 </div>
 </div>
@@ -695,7 +720,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00092">92</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00093">93</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
 
 </div>
 </div>
@@ -719,7 +744,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00078">78</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00079">79</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
 
 </div>
 </div>
@@ -743,7 +768,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00094">94</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00095">95</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
 
 </div>
 </div>
@@ -767,7 +792,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00095">95</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00096">96</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
 
 </div>
 </div>
@@ -793,7 +818,7 @@ Protected Attributes</h2></td></tr>
 
 <p>The Content of the Visualizer Window.  </p>
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00090">90</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00091">91</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
 
 </div>
 </div>
@@ -819,13 +844,13 @@ Protected Attributes</h2></td></tr>
 
 <p>The Visualizers Containing Window.  </p>
 
-<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00085">85</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8h_source.html#l00086">86</a> of file <a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Source/Accession/Public/<a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a></li>
-<li>Source/Accession/Private/<a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a></li>
+<li>Source/AccessionCommunication/Public/<a class="el" href="TranscriptionVisualizer_8h_source.html">TranscriptionVisualizer.h</a></li>
+<li>Source/AccessionCommunication/Private/<a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -8,6 +8,5 @@ var dir_6ba375ac03129ee7205ecc38ccb186af =
     [ "AccessionAssetRegistry.cpp", "AccessionAssetRegistry_8cpp_source.html", null ],
     [ "AccessionLogging.cpp", "AccessionLogging_8cpp_source.html", null ],
     [ "GraphIndexer.cpp", "GraphIndexer_8cpp_source.html", null ],
-    [ "OAccessionNodeFactory.cpp", "OAccessionNodeFactory_8cpp_source.html", null ],
-    [ "TranscriptionVisualizer.cpp", "TranscriptionVisualizer_8cpp_source.html", null ]
+    [ "OAccessionNodeFactory.cpp", "OAccessionNodeFactory_8cpp_source.html", null ]
 ];

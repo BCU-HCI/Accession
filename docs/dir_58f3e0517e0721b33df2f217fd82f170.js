@@ -6,5 +6,7 @@ var dir_58f3e0517e0721b33df2f217fd82f170 =
     [ "AccessionCommunicationSubsystem.h", "AccessionCommunicationSubsystem_8h_source.html", null ],
     [ "AudioManager.h", "AudioManager_8h_source.html", null ],
     [ "PhraseTree.h", "PhraseTree_8h_source.html", null ],
-    [ "PhraseTreeUtils.h", "PhraseTreeUtils_8h_source.html", null ]
+    [ "PhraseTreeUtils.h", "PhraseTreeUtils_8h_source.html", null ],
+    [ "STranscriptionVis.h", "STranscriptionVis_8h_source.html", null ],
+    [ "TranscriptionVisualizer.h", "TranscriptionVisualizer_8h_source.html", null ]
 ];
