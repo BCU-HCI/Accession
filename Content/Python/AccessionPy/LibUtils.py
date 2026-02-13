@@ -1,15 +1,5 @@
-import sys
 import os
-
-
-def append_paths_to_library_path(paths: list[str]):
-    """Appends the given paths to the systems active library path.
-
-    Args:
-        paths (list[str]): List of Paths to Append.
-    """
-
-    sys.path.extend(paths)
+import re
 
 
 def get_path_list() -> list[str]:
@@ -19,7 +9,10 @@ def get_path_list() -> list[str]:
         list[str]: _description_
     """
 
-    return os.getenv("PATH").split(";")
+    path = os.getenv("PATH", "")
+    print(f"Current PATH Env: {path}")
+
+    return path.split(";")
 
 
 def get_filtered_path_list(filter_list: list[str]) -> list[str]:
@@ -32,24 +25,41 @@ def get_filtered_path_list(filter_list: list[str]) -> list[str]:
         list[str]: List of Found Paths.
     """
 
-    return [
-        path for path in get_path_list() for filter in filter_list if filter in path
-    ]
+    return [p for p in get_path_list() if any(k in p.upper() for k in filter_list)]
 
 
-def get_child_directories(path: str, depth: int = 0) -> list[str]:
-    """
-    Recursively searches the given directory, for any further child directories.
+def forward_target_files_to_path(
+    paths: list[str],
+    target_files=re.compile(".*", re.IGNORECASE),
+    depth: int = 0,
+):
+    print(f"Forward Base Paths: {paths}")
 
-    Args:
-        path (str): The path to the directory to search.
-        depth (int): The depth to search for child directories. Defaults to 0.
-    """
+    found_paths = set()
 
-    assert os.path.isdir(path), f"Path: {path} is not a directory."
+    for base_path in paths:
+        if not os.path.isdir(base_path):
+            continue
 
-    return [
-        root
-        for root, _, _ in os.walk(path, topdown=True)
-        if root[len(path) :].count(os.sep) < depth
-    ]
+        for root, dirs, files in os.walk(base_path, topdown=True):
+            # Limit depth
+            walk_depth = root[len(base_path) :].count(os.sep)
+            if walk_depth >= depth:
+                print(f"Skipping {root} due to depth limit.")
+                continue
+
+            for file in files:
+                if target_files.match(file):
+                    print(
+                        f"--- Found Target File: {file} at: {os.path.join(root, file)}"
+                    )
+
+                    found_paths.add(root)
+
+                    try:
+                        os.add_dll_directory(root)
+                        os.environ["PATH"] = root + os.pathsep + os.environ["PATH"]
+                    except Exception as e:
+                        print(f"Error registering {root}: {e}")
+
+    return found_paths

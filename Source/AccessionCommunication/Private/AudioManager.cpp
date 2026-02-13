@@ -104,8 +104,6 @@ void UAudioManager::PRIVATE_OnAudioGenerate(const float *InAudio, int32 NumSampl
 	if (bIsCapturingAudio == false)
 		return;
 
-	UE_LOG(LogAccessionCom, Log, TEXT("|| Audio Generated || NumSamples: %d ||"), NumSamples);
-
 	// Need to Check Samples are above threshold and ignore if their run length is too long.
 
 	AudioBuffer.Append(InAudio, NumSamples);
