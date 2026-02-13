@@ -41,22 +41,17 @@ def forward_target_files_to_path(
         for root, dirs, files in os.walk(base_path, topdown=True):
             # Limit depth
             walk_depth = root[len(base_path) :].count(os.sep)
-            if walk_depth >= depth:
+            if walk_depth > depth:
                 print(f"Skipping {root} due to depth limit.")
                 continue
 
-            for file in files:
-                if target_files.match(file):
-                    print(
-                        f"--- Found Target File: {file} at: {os.path.join(root, file)}"
-                    )
+            if any([target_files.match(f) for f in files]):
+                found_paths.add(root)
 
-                    found_paths.add(root)
-
-                    try:
-                        os.add_dll_directory(root)
-                        os.environ["PATH"] = root + os.pathsep + os.environ["PATH"]
-                    except Exception as e:
-                        print(f"Error registering {root}: {e}")
+                try:
+                    os.add_dll_directory(root)
+                    os.environ["PATH"] = root + os.pathsep + os.environ["PATH"]
+                except Exception as e:
+                    print(f"Error registering {root}: {e}")
 
     return found_paths
