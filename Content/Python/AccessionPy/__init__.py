@@ -24,6 +24,8 @@ def forward_CUDA_CUDNN_to_path():
 
     filtered_path = get_filtered_path_list(["CUDA", "CUDNN"])
 
+    Log(f"Found CUDA/CUDNN Candidate Paths: {filtered_path}", LogLevel.INFO)
+
     forwarded_paths = forward_target_files_to_path(
         filtered_path,
         re.compile(".*(cuda|cudnn|cudart).*64_.*\.dll", re.IGNORECASE),

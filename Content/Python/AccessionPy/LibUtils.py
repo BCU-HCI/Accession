@@ -10,7 +10,6 @@ def get_path_list() -> list[str]:
     """
 
     path = os.getenv("PATH", "")
-    print(f"Current PATH Env: {path}")
 
     return path.split(";")
 
@@ -33,8 +32,6 @@ def forward_target_files_to_path(
     target_files=re.compile(".*", re.IGNORECASE),
     depth: int = 0,
 ):
-    print(f"Forward Base Paths: {paths}")
-
     found_paths = set()
 
     for base_path in paths:
