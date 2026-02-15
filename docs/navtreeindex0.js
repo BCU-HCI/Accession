@@ -78,6 +78,7 @@ var NAVTREEINDEX0 =
 "SIndexer_8h_source.html":[3,0,1,0,1,3,1],
 "STranscriptionVis_8cpp_source.html":[3,0,1,2,0,9],
 "STranscriptionVis_8h_source.html":[3,0,1,2,1,7],
+"Test__Whisper_8py_source.html":[3,0,0,0,1,0],
 "TranscriptionBuffer_8py_source.html":[3,0,0,0,0,4],
 "TranscriptionVisualizer_8cpp_source.html":[3,0,1,2,0,10],
 "TranscriptionVisualizer_8h_source.html":[3,0,1,2,1,8],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classFPhraseNode.html#a26cbdec222c5fc38d8bdf1a3859daca1":[2,0,31,3],
 "classFPhraseNode.html#a27bb33f57c44482793806a71fcd7baf1":[2,0,31,12],
 "classFPhraseNode.html#a3350020f1380ad08f2d9aa5d354137ec":[2,0,31,13],
-"classFPhraseNode.html#a3c3269f4a2bcacfe4f45a6993299827f":[2,0,31,9],
-"classFPhraseNode.html#a4a07a3c5fb70559b6c008fa565a6cfe0":[2,0,31,1]
+"classFPhraseNode.html#a3c3269f4a2bcacfe4f45a6993299827f":[2,0,31,9]
 };
