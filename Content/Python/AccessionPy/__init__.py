@@ -1,6 +1,7 @@
 import unreal as ue
 from unreal import GuidLibrary
 import numpy as np
+import re
 from gc import collect as gc_collect
 
 from concurrent.futures import ThreadPoolExecutor as ThreadPool
@@ -10,11 +11,7 @@ from .Audio import AudioResampler
 from .TranscriptionBuffer import TranscriptionBuffer
 from .Logging import Log, LogLevel
 
-from .LibUtils import (
-    get_filtered_path_list,
-    get_child_directories,
-    append_paths_to_library_path,
-)
+from .LibUtils import get_filtered_path_list, forward_target_files_to_path
 
 
 def forward_CUDA_CUDNN_to_path():
@@ -25,10 +22,20 @@ def forward_CUDA_CUDNN_to_path():
     Not always needed, but useful for some systems.
     """
 
-    filtered_path_list = get_filtered_path_list(["CUDA", "CUDNN"])
+    filtered_path = get_filtered_path_list(["CUDA", "CUDNN"])
 
-    for path in filtered_path_list:
-        append_paths_to_library_path(get_child_directories(path, depth=1))
+    Log(f"Found CUDA/CUDNN Candidate Paths: {filtered_path}", LogLevel.INFO)
+
+    forwarded_paths = forward_target_files_to_path(
+        filtered_path,
+        re.compile(".*(cuda|cudnn|cudart).*64_.*\.dll", re.IGNORECASE),
+        depth=1,
+    )
+
+    Log(
+        f"Forwarded CUDA and CUDNN Paths to Sys Path ({len(forwarded_paths)} directories registered):\n{forwarded_paths}",
+        LogLevel.INFO,
+    )
 
 
 class AccessionPy:

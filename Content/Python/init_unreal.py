@@ -67,6 +67,7 @@ unreal.log("|| Accession Python || Initializing ||")
 
 ## ------------------------------
 
+
 # Verify Required Dependencies
 
 missing_deps = [
@@ -86,11 +87,9 @@ unreal.log("|| Accession Python || Starting Python Runtime ||")
 
 import AccessionPy as APy
 
-# Run Utilities for Better Project Runtime.
-
-# Helps Circumvent CUDA and CUDNN Issues
-# during the inference process with the Whisper Model.
-# OAPy.forward_CUDA_CUDNN_to_path()
+# Enforce CUDA / CUDNN Forwarding, to bypass possible issues with NVIDIA File Tree
+# (NOTE: Not Always Needed, but Newer NVIDIA CUDNN Installs Have an Additioanl dir past Bin.)
+APy.forward_CUDA_CUDNN_to_path()
 
 # Initialize the Runtime
 global AccessionPy
