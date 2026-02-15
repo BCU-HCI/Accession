@@ -29,6 +29,7 @@ void UAccessionCommunicationSubsystem::Initialize(FSubsystemCollectionBase& Coll
 {
 	// AudioManager
 	AudioManager = NewObject<UAudioManager>();
+	AudioManager->Initialize();
 	AudioManager->OnAudioReadyForTranscription.BindUObject(this, &UAccessionCommunicationSubsystem::RequestTranscription);
 
 	// Phrase Tree

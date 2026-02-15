@@ -10,7 +10,7 @@
 
 UAudioManager::UAudioManager(const FObjectInitializer& ObjectInitializer)
 {
-	AudioCapture = ObjectInitializer.CreateDefaultSubobject<UAudioCapture>(this, TEXT("AccessionAudioCapture"));
+	AudioCapture = ObjectInitializer.CreateDefaultSubobject<UAudioCapture>(this, TEXT("DefaultAccessionAudioCapture"));
 
 	Settings = FAudioManagerSettings();
 	bIsCapturingAudio = false;
@@ -21,8 +21,6 @@ UAudioManager::~UAudioManager()
 	if (AudioCapture->IsValidLowLevel())
 	{
 		AudioCapture->StopCapturingAudio();
-		AudioCapture->RemoveFromRoot();
-
 		
 		UnregisterAudioGenerator();
 	}
@@ -41,9 +39,20 @@ void UAudioManager::Initialize()
 	if (HasAnyFlags(RF_ClassDefaultObject))
 		return;
 
-	FileWriter = new Audio::FSoundWavePCMWriter();
+	AudioCapture = NewObject<UAudioCapture>(this, TEXT("AccessionAudioCapture"));
+	if (AudioCapture->OpenDefaultAudioStream())
+	{
+		UE_LOG(LogAccessionCom, Log, TEXT("|| Successfully Opened Default Audio Stream. ||"));
+		RegisterAudioGenerator();
 
-	RegisterAudioGenerator();
+		AudioCapture->StartCapturingAudio();
+	}
+	else 
+	{
+		UE_LOG(LogAccessionCom, Error, TEXT("|| Failed to Open Default Audio Stream. Audio Capture will not work. ||"));
+	}
+
+	FileWriter = new Audio::FSoundWavePCMWriter();
 }
 
 bool UAudioManager::IsCapturingAudio() const
@@ -122,9 +131,10 @@ void UAudioManager::RegisterAudioGenerator()
 {
 	// Add Audio Generator Delegate to get audio data from stream,
 	// and apply wrapper function due to wanting to reference class function.
-	OnAudioGenerateHandle = AudioCapture->AddGeneratorDelegate(FOnAudioGenerate([this](const float *InAudio, int32 NumSamples)
-																				{
-		if (this->IsCapturingAudio()) this->PRIVATE_OnAudioGenerate(InAudio, NumSamples); }));
+	OnAudioGenerateHandle = AudioCapture->AddGeneratorDelegate(FOnAudioGenerate([&](const float *InAudio, int32 NumSamples)
+	{
+		if (bIsCapturingAudio) PRIVATE_OnAudioGenerate(InAudio, NumSamples); 
+	}));
 }
 
 void UAudioManager::UnregisterAudioGenerator()
