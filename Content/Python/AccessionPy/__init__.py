@@ -157,21 +157,21 @@ class AccessionPy:
     def Shutdown(self):
         """Shutsdown the Python Runtime Components, and Forces a Garbage Collection."""
 
-        if self.tick_handle:
+        if hasattr(self, "tick_handle") and self.tick_handle:
             ue.unregister_slate_post_tick_callback(self.tick_handle)
             del self.tick_handle
 
-        if self.worker_pool:
+        if hasattr(self, "worker_pool") and self.worker_pool:
             self.worker_pool.shutdown(wait=False, cancel_futures=True)
             del self.worker_pool
 
-        if self.audio_resampler:
+        if hasattr(self, "audio_resampler") and self.audio_resampler:
             del self.audio_resampler
 
-        if self.com_server:
+        if hasattr(self, "com_server") and self.com_server:
             del self.com_server
 
-        if self.whisper_interface:
+        if hasattr(self, "whisper_interface") and self.whisper_interface:
             del self.whisper_interface
 
         # Force a Garbage Collection

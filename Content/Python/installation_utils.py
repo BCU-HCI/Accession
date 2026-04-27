@@ -47,8 +47,10 @@ def _is_dependency_satisfied(dependency: str) -> bool:
         # Validates the Version Specifier is Statisfied, if not it will
         has_required = _validate_version_packaging(installed_version, dependency)
 
+        satisfied_str = "Satisfied" if has_required else "Not Satisfied"
+
         unreal.log(
-            f"|| Accession Python || Dependency '{dependency}' is {"Satisfied" if has_required else "Not Satisfied"} ||"
+            f"|| Accession Python || Dependency '{dependency}' is {satisfied_str} ||"
         )
 
         return has_required
