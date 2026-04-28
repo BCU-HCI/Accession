@@ -27,9 +27,12 @@ FGraphIndexer::~FGraphIndexer()
 	NodeSet.Empty();
 	AvailableIndices.Empty();
 
-	LinkedGraph->RemoveOnGraphChangedHandler(OnGraphChangedHandle);
+	if (LinkedGraph.IsValid())
+	{
+		LinkedGraph->RemoveOnGraphChangedHandler(OnGraphChangedHandle);
+	}
 
-	LinkedGraph = nullptr;
+	LinkedGraph.Reset();
 }
 
 bool FGraphIndexer::ContainsKey(const int &InKey)
@@ -300,7 +303,7 @@ void FGraphIndexer::GetAvailableIndex(int &OutIndex)
 
 void FGraphIndexer::BuildGraphIndex()
 {
-	if (LinkedGraph == nullptr)
+	if (!LinkedGraph.IsValid())
 		return;
 
 	for (TObjectPtr<UEdGraphNode> Node : LinkedGraph->Nodes)

@@ -11,22 +11,29 @@ UWindowToolbarIndex::UWindowToolbarIndex() : UObject()
 	LastToolkit = TWeakPtr<SWidget>();
 	LastTopWindow = TWeakPtr<SWindow>();
 	LastToolkitParent = TWeakPtr<SBorder>();
-
-	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibiliy.ToolBar.ShowIndexerStats"),
-		TEXT("Displays the Indexer Stats for the Toolbar."),
-
-		FConsoleCommandDelegate::CreateLambda([this]()
-											  { UE_LOG(LogAccession, Display, TEXT("| ToolBar Indexer Stats | Indexed Amount: %d | "), ToolbarIndex.Num()) })));
-
-	BindTicker();
 }
+
+
 
 UWindowToolbarIndex::~UWindowToolbarIndex()
 {
 	UE_LOG(LogAccession, Log, TEXT("ToolBar: Destroyed."));
 
 	UnbindTicker();
+}
+
+bool UWindowToolbarIndex::Initialize()
+{
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibiliy.ToolBar.ShowIndexerStats"),
+		TEXT("Displays the Indexer Stats for the Toolbar."),
+
+		FConsoleCommandDelegate::CreateLambda([this]()
+			{ UE_LOG(LogAccession, Display, TEXT("| ToolBar Indexer Stats | Indexed Amount: %d | "), ToolbarIndex.Num()) })));
+
+	BindTicker();
+
+	return true;
 }
 
 bool UWindowToolbarIndex::Tick(float DeltaTime)

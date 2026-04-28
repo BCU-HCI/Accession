@@ -56,6 +56,8 @@ public:
 
     void Initialize();
 
+	void Deinitialize();
+
     /// <summary>
     /// Is the Audio Manager Currently Capturing Audio.
     /// </summary>

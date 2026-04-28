@@ -10,7 +10,8 @@
 
 UAudioManager::UAudioManager(const FObjectInitializer& ObjectInitializer)
 {
-	AudioCapture = ObjectInitializer.CreateDefaultSubobject<UAudioCapture>(this, TEXT("DefaultAccessionAudioCapture"));
+	AudioCapture = nullptr;
+	FileWriter = nullptr;
 
 	Settings = FAudioManagerSettings();
 	bIsCapturingAudio = false;
@@ -18,13 +19,6 @@ UAudioManager::UAudioManager(const FObjectInitializer& ObjectInitializer)
 
 UAudioManager::~UAudioManager()
 {
-	if (AudioCapture->IsValidLowLevel())
-	{
-		AudioCapture->StopCapturingAudio();
-		
-		UnregisterAudioGenerator();
-	}
-
 	if (FileWriter != nullptr)
 	{
 		delete FileWriter;
@@ -53,6 +47,16 @@ void UAudioManager::Initialize()
 	}
 
 	FileWriter = new Audio::FSoundWavePCMWriter();
+}
+
+void UAudioManager::Deinitialize()
+{
+	if (AudioCapture->IsValidLowLevel())
+	{
+		AudioCapture->StopCapturingAudio();
+
+		UnregisterAudioGenerator();
+	}
 }
 
 bool UAudioManager::IsCapturingAudio() const

@@ -21,6 +21,8 @@ public:
 
 	virtual ~UWindowToolbarIndex();
 
+	bool Initialize();
+
 	bool Tick(float DeltaTime);
 
 	// -- Parse Events --
