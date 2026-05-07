@@ -102,5 +102,5 @@ public:
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "WindowInteractionLibrary|ToolBar")
-	class UWindowToolbarIndex *WindowToolBar;
+	TObjectPtr<class UWindowToolbarIndex> WindowToolBar;
 };

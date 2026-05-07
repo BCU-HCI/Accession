@@ -74,6 +74,8 @@ private:
 	 */
 	bool GetToolKitToolBar(TSharedRef<SWidget> ToolKitWidget, TSharedPtr<SWidget> &OutToolBar);
 
+	void LogIndexerStats() const;
+
 	/**
 	 * Binds the Tick Method to the Applications Core Ticker.
 	 */
@@ -84,7 +86,16 @@ private:
 	 */
 	void UnbindTicker();
 
-public:
+	/**
+	 * Binds Console Commands for the Window Toolbar Indexer.
+	 */
+	void BindConsoleCommands();
+
+	/**
+	 * UnBinds Console Commands for the Window Toolbar Indexer.
+	 */
+	void UnbindConsoleCommands();
+
 private:
 	/**
 	 * Previously Found Top Active Window.

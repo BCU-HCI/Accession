@@ -13,23 +13,22 @@ UWindowToolbarIndex::UWindowToolbarIndex() : UObject()
 	LastToolkitParent = TWeakPtr<SBorder>();
 }
 
-
-
 UWindowToolbarIndex::~UWindowToolbarIndex()
 {
 	UE_LOG(LogAccession, Log, TEXT("ToolBar: Destroyed."));
 
+	ToolbarIndex.Reset();
+	LastToolkit.Reset();
+	LastTopWindow.Reset();
+	LastToolkitParent.Reset();
+
 	UnbindTicker();
+	UnbindConsoleCommands();
 }
 
 bool UWindowToolbarIndex::Initialize()
 {
-	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
-		TEXT("OpenAccessibiliy.ToolBar.ShowIndexerStats"),
-		TEXT("Displays the Indexer Stats for the Toolbar."),
-
-		FConsoleCommandDelegate::CreateLambda([this]()
-			{ UE_LOG(LogAccession, Display, TEXT("| ToolBar Indexer Stats | Indexed Amount: %d | "), ToolbarIndex.Num()) })));
+	BindConsoleCommands();
 
 	BindTicker();
 
@@ -38,6 +37,11 @@ bool UWindowToolbarIndex::Initialize()
 
 bool UWindowToolbarIndex::Tick(float DeltaTime)
 {
+	if (IsEngineExitRequested() || !FSlateApplication::IsInitialized())
+	{
+		return false;
+	}
+
 	TSharedPtr<SWindow> TopWindow = FSlateApplication::Get().GetActiveTopLevelRegularWindow();
 	if (!TopWindow.IsValid())
 	{
@@ -96,7 +100,8 @@ bool UWindowToolbarIndex::ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget
 		TEXT("SToolBarButtonBlock"),
 		TEXT("SToolBarComboButtonBlock"),
 		TEXT("SToolBarStackButtonBlock"),
-		TEXT("SUniformToolBarButtonBlock")};
+		TEXT("SUniformToolBarButtonBlock")
+	};
 
 	ToolbarIndex.Reset();
 
@@ -127,15 +132,26 @@ bool UWindowToolbarIndex::ApplyToolbarIndexing(TSharedRef<SWidget> ToolkitWidget
 					ToolBarButtonWidget.Get(),
 					Index);
 
+				TWeakObjectPtr<UWindowToolbarIndex> WeakThis(this);
+				TWeakPtr<SWidget> WeakToolkit(ToolkitWidget);
+
 				ChildSlot.AttachWidget(
 					SNew(SContentIndexer)
-						.IndexValue(Index)
-						.IndexPositionToContent(EIndexerPosition::Bottom)
-						.ContentToIndex(ToolBarButtonWidget)
-						.IndexVisibility_Lambda([this, ToolkitWidget]() -> EVisibility
-												{ return (this->IsActiveToolbar(ToolkitWidget))
-															 ? EVisibility::Visible
-															 : EVisibility::Hidden; }));
+					.IndexValue(Index)
+					.IndexPositionToContent(EIndexerPosition::Bottom)
+					.ContentToIndex(ToolBarButtonWidget)
+					.IndexVisibility_Lambda(
+						[WeakThis, WeakToolkit]() -> EVisibility
+						{
+							if (WeakThis.IsValid() && WeakToolkit.IsValid())
+							{
+								return (WeakThis.Pin()->IsActiveToolbar(WeakToolkit.Pin().ToSharedRef()))
+									? EVisibility::Visible
+									: EVisibility::Hidden;
+							}
+							return EVisibility::Collapsed;
+						}
+					));
 			}
 			else if (ChildWidget.IsValid() && WidgetType == "SContentIndexer")
 			{
@@ -285,6 +301,11 @@ bool UWindowToolbarIndex::GetToolKitToolBar(TSharedRef<SWidget> ToolKitWidget, T
 	return true;
 }
 
+void UWindowToolbarIndex::LogIndexerStats() const
+{
+	UE_LOG(LogAccession, Display, TEXT("| ToolBar Indexer Stats | Indexed Amount: %d | "), ToolbarIndex.Num())
+}
+
 void UWindowToolbarIndex::BindTicker()
 {
 	FTickerDelegate TickDelegate = FTickerDelegate::CreateUObject(this, &UWindowToolbarIndex::Tick);
@@ -297,4 +318,23 @@ void UWindowToolbarIndex::UnbindTicker()
 {
 	FTSTicker::GetCoreTicker()
 		.RemoveTicker(TickDelegateHandle);
+}
+
+void UWindowToolbarIndex::BindConsoleCommands()
+{
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("OpenAccessibiliy.ToolBar.ShowIndexerStats"),
+		TEXT("Displays the Indexer Stats for the Toolbar."),
+
+		FConsoleCommandDelegate::CreateUObject(this, &UWindowToolbarIndex::LogIndexerStats)
+	));
+}
+
+void UWindowToolbarIndex::UnbindConsoleCommands()
+{
+	for (const auto &Command : ConsoleCommands)
+	{
+		IConsoleManager::Get().UnregisterConsoleObject(Command);
+	}
+	ConsoleCommands.Empty();
 }
