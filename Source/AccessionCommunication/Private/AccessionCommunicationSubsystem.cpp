@@ -55,6 +55,9 @@ void UAccessionCommunicationSubsystem::Initialize(FSubsystemCollectionBase& Coll
 
 void UAccessionCommunicationSubsystem::Deinitialize()
 {
+	AudioManager->OnAudioReadyForTranscription.Unbind();
+	AudioManager->Deinitialize();
+
 	if (FSlateApplication::IsInitialized())
 	{
 		FSlateApplication& SlateApp = FSlateApplication::Get();

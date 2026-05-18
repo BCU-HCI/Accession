@@ -33,6 +33,8 @@ void UPhraseTreeContextMenuObject::Init(TSharedRef<IMenu> InMenu)
 
 	BindMenuDismissed(InMenu);
 	BindTickDelegate();
+
+	bIsActive = true;
 }
 
 void UPhraseTreeContextMenuObject::Init(TSharedRef<IMenu> InMenu, TSharedRef<FPhraseNode> InContextRoot)

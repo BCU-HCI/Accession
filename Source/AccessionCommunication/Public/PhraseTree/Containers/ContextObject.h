@@ -56,7 +56,7 @@ protected:
 	/// <summary>
 	/// Is the Context Object Still Active.
 	/// </summary>
-	bool bIsActive = true;
+	bool bIsActive = false;
 
 	/// <summary>
 	/// The Root Node In The Phrase Tree (The Origin of the Context).

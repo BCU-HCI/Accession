@@ -19,11 +19,19 @@
 UWindowInteractionLibrary::UWindowInteractionLibrary(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	WindowToolBar = NewObject<UWindowToolbarIndex>();
+	WindowToolBar = nullptr;
 }
 
 UWindowInteractionLibrary::~UWindowInteractionLibrary()
 {
+}
+
+bool UWindowInteractionLibrary::Initialize()
+{
+	WindowToolBar = NewObject<UWindowToolbarIndex>(this, TEXT("AccessionToorBarFuncWrapper"));
+	WindowToolBar->Initialize();
+
+	return true;
 }
 
 void UWindowInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)

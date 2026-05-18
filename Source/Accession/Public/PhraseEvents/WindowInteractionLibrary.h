@@ -20,6 +20,8 @@ public:
 
 	// UPhraseTreeFunctionLibrary Implementation
 
+	bool Initialize() override;
+
 	/**
 	 * Binds Branches originating from this Library onto the provided Phrase Tree.
 	 * @param PhraseTree Reference to the PhraseTree to Bind this Library to.
@@ -100,5 +102,5 @@ public:
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = "WindowInteractionLibrary|ToolBar")
-	class UWindowToolbarIndex *WindowToolBar;
+	TObjectPtr<class UWindowToolbarIndex> WindowToolBar;
 };
