@@ -625,8 +625,9 @@ Protected Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="TranscriptionVisualizer_8cpp_source.html#l00192">192</a> of file <a class="el" href="TranscriptionVisualizer_8cpp_source.html">TranscriptionVisualizer.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  193</span>{</div>
-<div class="line"><span class="lineno">  194</span>    FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);</div>
-<div class="line"><span class="lineno">  195</span>}</div>
+<div class="line"><span class="lineno">  194</span>    <span class="keywordflow">if</span> (TickDelegateHandle != NULL)</div>
+<div class="line"><span class="lineno">  195</span>        FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);</div>
+<div class="line"><span class="lineno">  196</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

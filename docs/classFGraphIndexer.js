@@ -19,6 +19,6 @@ var classFGraphIndexer =
     [ "RemoveNode", "classFGraphIndexer.html#aee509f79de6ecec47c9a5ae939e770f7", null ],
     [ "AvailableIndices", "classFGraphIndexer.html#ab24adb2b0079a4f94e6e7e622e0a648a", null ],
     [ "IndexMap", "classFGraphIndexer.html#a013ae80630b037849bd35a03bcae7be4", null ],
-    [ "LinkedGraph", "classFGraphIndexer.html#a2c316f3ca2135b295bd5f7e6b2ebc392", null ],
+    [ "LinkedGraph", "classFGraphIndexer.html#ae1f146849a3c08df5aa2e2e012df5c68", null ],
     [ "NodeSet", "classFGraphIndexer.html#af326872f3d3e372e90e3763302d47aba", null ]
 ];

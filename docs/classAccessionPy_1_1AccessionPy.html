@@ -333,21 +333,21 @@ Args:
 <div class="fragment"><div class="line"><span class="lineno">  157</span>    <span class="keyword">def </span>Shutdown(self):</div>
 <div class="line"><span class="lineno">  158</span>        <span class="stringliteral">&quot;&quot;&quot;Shutsdown the Python Runtime Components, and Forces a Garbage Collection.&quot;&quot;&quot;</span></div>
 <div class="line"><span class="lineno">  159</span> </div>
-<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">if</span> self.tick_handle:</div>
+<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">if</span> hasattr(self, <span class="stringliteral">&quot;tick_handle&quot;</span>) <span class="keywordflow">and</span> self.tick_handle:</div>
 <div class="line"><span class="lineno">  161</span>            ue.unregister_slate_post_tick_callback(self.tick_handle)</div>
 <div class="line"><span class="lineno">  162</span>            del self.tick_handle</div>
 <div class="line"><span class="lineno">  163</span> </div>
-<div class="line"><span class="lineno">  164</span>        <span class="keywordflow">if</span> self.worker_pool:</div>
+<div class="line"><span class="lineno">  164</span>        <span class="keywordflow">if</span> hasattr(self, <span class="stringliteral">&quot;worker_pool&quot;</span>) <span class="keywordflow">and</span> self.worker_pool:</div>
 <div class="line"><span class="lineno">  165</span>            self.worker_pool.shutdown(wait=<span class="keyword">False</span>, cancel_futures=<span class="keyword">True</span>)</div>
 <div class="line"><span class="lineno">  166</span>            del self.worker_pool</div>
 <div class="line"><span class="lineno">  167</span> </div>
-<div class="line"><span class="lineno">  168</span>        <span class="keywordflow">if</span> self.audio_resampler:</div>
+<div class="line"><span class="lineno">  168</span>        <span class="keywordflow">if</span> hasattr(self, <span class="stringliteral">&quot;audio_resampler&quot;</span>) <span class="keywordflow">and</span> self.audio_resampler:</div>
 <div class="line"><span class="lineno">  169</span>            del self.audio_resampler</div>
 <div class="line"><span class="lineno">  170</span> </div>
-<div class="line"><span class="lineno">  171</span>        <span class="keywordflow">if</span> self.com_server:</div>
+<div class="line"><span class="lineno">  171</span>        <span class="keywordflow">if</span> hasattr(self, <span class="stringliteral">&quot;com_server&quot;</span>) <span class="keywordflow">and</span> self.com_server:</div>
 <div class="line"><span class="lineno">  172</span>            del self.com_server</div>
 <div class="line"><span class="lineno">  173</span> </div>
-<div class="line"><span class="lineno">  174</span>        <span class="keywordflow">if</span> self.whisper_interface:</div>
+<div class="line"><span class="lineno">  174</span>        <span class="keywordflow">if</span> hasattr(self, <span class="stringliteral">&quot;whisper_interface&quot;</span>) <span class="keywordflow">and</span> self.whisper_interface:</div>
 <div class="line"><span class="lineno">  175</span>            del self.whisper_interface</div>
 <div class="line"><span class="lineno">  176</span> </div>
 <div class="line"><span class="lineno">  177</span>        <span class="comment"># Force a Garbage Collection</span></div>
