@@ -175,7 +175,7 @@ protected:
 	/// <summary>
 	/// The Graph Being Indexed By This Indexer.
 	/// </summary>
-	UEdGraph *LinkedGraph;
+	TWeakObjectPtr<UEdGraph> LinkedGraph;
 
 	FDelegateHandle OnGraphChangedHandle;
 };

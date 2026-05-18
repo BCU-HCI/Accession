@@ -191,5 +191,6 @@ void UTranscriptionVisualizer::RegisterTicker()
 
 void UTranscriptionVisualizer::UnregisterTicker()
 {
-	FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
+	if (TickDelegateHandle != NULL)
+		FTSTicker::GetCoreTicker().RemoveTicker(TickDelegateHandle);
 }

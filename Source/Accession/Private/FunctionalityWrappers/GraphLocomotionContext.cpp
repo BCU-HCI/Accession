@@ -10,6 +10,7 @@ UGraphLocomotionContext::UGraphLocomotionContext(const FObjectInitializer &Objec
 	: UPhraseTreeContextObject()
 {
 	LinkedEditor = TWeakPtr<SGraphEditor>();
+	bIsActive = false;
 }
 
 UGraphLocomotionContext::~UGraphLocomotionContext()
@@ -55,6 +56,8 @@ void UGraphLocomotionContext::Init(const TSharedRef<SGraphEditor> InGraphEditor)
 	HideNativeVisuals();
 
 	BindFocusChangedEvent();
+
+	bIsActive = true;
 }
 
 bool UGraphLocomotionContext::SelectChunk(const int32 &Index)
@@ -129,6 +132,9 @@ void UGraphLocomotionContext::CancelLocomotion()
 
 bool UGraphLocomotionContext::Close()
 {
+	if (!bIsActive)
+		return true;
+
 	UnbindFocusChangedEvent();
 
 	if (SelectionTimerHandle.IsValid())

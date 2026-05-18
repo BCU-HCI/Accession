@@ -1,23 +1,9 @@
 import unreal
 
 import subprocess
-import pkg_resources
 from os import path
 
-
-def get_requirements(requirements_dir: str) -> list[str]:
-    with open(
-        path.join(requirements_dir, "requirements.txt"), "r"
-    ) as requirements_file:
-        return [line.strip() for line in requirements_file.readlines()]
-
-
-def is_dependency_satisfied(dependency: str) -> bool:
-    try:
-        pkg_resources.require(dependency)
-        return True
-    except:
-        return False
+from installation_utils import get_requirements, is_dependency_satisfied
 
 
 def install_dependencies(deps_to_install: list[str]):

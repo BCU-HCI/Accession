@@ -27,5 +27,18 @@ class ACCESSIONCOMMUNICATION_API UPhraseTreeFunctionLibrary : public UObject
     GENERATED_BODY()
 
 public:
+
+    virtual bool Initialize() 
+    { 
+        bIsInitialized = true; 
+        return true; 
+    };
+
     virtual void BindBranches(TSharedRef<FPhraseTree> PhraseTree) {};
+
+	bool IsInitialized() const { return bIsInitialized; }
+
+protected:
+
+	bool bIsInitialized = false;
 };
