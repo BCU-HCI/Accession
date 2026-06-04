@@ -4,4 +4,12 @@
 
 #include "PhraseTree/PhraseTreeFunctionLibrary.h"
 
+
+
 DEFINE_LOG_CATEGORY(LogAccessionPhraseEvent);
+
+UPhraseTreeFunctionLibrary::UPhraseTreeFunctionLibrary(const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer)
+{
+	
+}

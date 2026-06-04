@@ -28,6 +28,8 @@ class ACCESSIONCOMMUNICATION_API UPhraseTreeFunctionLibrary : public UObject
 
 public:
 
+    UPhraseTreeFunctionLibrary(const FObjectInitializer& ObjectInitializer);
+
     virtual bool Initialize() 
     { 
         bIsInitialized = true; 
