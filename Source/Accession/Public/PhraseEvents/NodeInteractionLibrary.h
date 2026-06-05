@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 
 #include "PhraseTree/PhraseTreeFunctionLibrary.h"
+#include "PhraseEventMacros.h"
+
 #include "Utils/GraphQuadTree.h"
 
 #include "NodeInteractionLibrary.generated.h"
@@ -35,23 +37,24 @@ public:
 	 * Phrase Event for Moving a Node, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.MoveNode", "Node {int} Mode {2DDirection} {int}")
 	void MoveNode(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Deleting a Node, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.DeleteNode", "Node {int} Remove")
 	void DeleteNode(FParseRecord &Record);
 
+	UPHRASE_EVENT("NodeInteraction.RenameNode", "Node {int} Rename")
 	void RequestRename(FParseRecord &Record);
 
 	/**
 	 * Input Event for Adding the specified Node Index to the Active Selection Set.
 	 * @param Index The Index Provided Through Voice Input.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.FocusNode", "Node {int} Focus")
 	void NodeIndexFocus(int32 Index);
 
 	// End of Node Implementation
@@ -62,28 +65,28 @@ public:
 	 * Phrase Event for Connecting Two Provided Pins, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.ConnectPin", "Node {int} Pin {int} Connect Node {int} Pin {int}")
 	void PinConnect(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Disconnecting Two Provided Pins, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.DisconnectPin", "Node {int} Pin {int} Disconnect Node {int} Pin {int}")
 	void PinDisconnect(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Setting the Default Value of an Editable Pin, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.SetPinDefault", "Node {int} Pin {int} Set {string}")
 	void PinSetDefault(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Resetting the Default Value of an Editable Pin, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.ResetPinDefault", "Node {int} Pin {int} Reset")
 	void PinResetDefault(FParseRecord &Record);
 
 	// End of Pin Implementation
@@ -108,30 +111,35 @@ public:
 	 * Phrase Event for Selecting an Item on the Active Graph Editors Node Add Context Menu.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
+	UPHRASE_EVENT_CONTEXT("NodeInteraction.NodeAdd.Select", "Select {int}", "NodeAddMenu")
 	void NodeAddSelect(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Appending Strings to the SearchBar on the Active Graph Editors Node Add Context Menu.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
+	UPHRASE_EVENT_CONTEXT("NodeInteraction.NodeAdd.SearchAdd", "Search Add {string}", "NodeAddMenu")
 	void NodeAddSearchAdd(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Removing String Chunks on the SearchBar of the Active Graph Editors Node Add Context Menu.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
+	 UPHRASE_EVENT_CONTEXT("NodeInteraction.NodeAdd.SearchRemove", "Search Remove {int}", "NodeAddMenu")
 	void NodeAddSearchRemove(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Resetting the SearchBar of the Active Graph Editors Node Add Context Menu.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
+	 UPHRASE_EVENT_CONTEXT("NodeInteraction.NodeAdd.SearchReset", "Search Reset", "NodeAddMenu")
 	void NodeAddSearchReset(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Applying Movement to the Scrollbar of the Active Graph Editors Node Add Context Menu.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
+	UPHRASE_EVENT_CONTEXT("NodeInteraction.NodeAdd.Scroll", "Scroll {2DDirection} {int}", "NodeAddMenu")
 	void NodeAddScroll(FParseRecord &Record);
 
 	// End of Node Add Implementation
@@ -142,49 +150,49 @@ public:
 	 * Phrase Event for Toggling the specified Nodes Selection State, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.SelectNode", "Node Select {int}")
 	void SelectionNodeToggle(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Toggling the Selection of All Nodes, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.SelectAll", "Node Select All")
 	void SelectionNodeAll(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Resetting the Selection Set, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.SelectReset", "Node Select Reset")
 	void SelectionReset(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Moving the Selection Set, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.SelectMove", "Node Select Move {2DDirection} {int}")
 	void SelectionMove(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Aligning the Selection Sets Nodes, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.SelectAlign", "Node Select Alignment {2DPositional}")
 	void SelectionAlignment(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Straightening the Selection Sets Connections, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.SelectStraighten", "Node Select Straighten")
 	void SelectionStraighten(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Applying a Comment Node Around the Selection Set, on the Active Graph Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.SelectComment", "Node Select Comment")
 	void SelectionComment(FParseRecord &Record);
 
 	// End of Selection Implementation
@@ -195,28 +203,28 @@ public:
 	 * Phrase Event for Selecting a Viewport Rect for Movement, on the Active Graph Editors Locomotion Mode.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT_CONTEXT("NodeInteraction.GraphMove.Select", "Select {int}", "GraphMove")
 	void LocomotionSelect(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Reverting the Viewport to the Previous Rect, on the Active Graph Editors Locomotion Mode.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT_CONTEXT("NodeInteraction.GraphMove.Revert", "Revert", "GraphMove")
 	void LocomotionRevert(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Confirming the Current Viewport, on the Active Graph Editors Locomotion Mode.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT_CONTEXT("NodeInteraction.GraphMove.Confirm", "Confirm", "GraphMove")
 	void LocomotionConfirm(FParseRecord &Record);
 
 	/**
 	 * Phrase Event for Canceling the Active Graph Editors Locomotion Mode, reverting to viewport state before.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT_CONTEXT("NodeInteraction.GraphMove.Cancel", "Cancel", "GraphMove"))
 	void LocomotionCancel(FParseRecord &Record);
 
 	// End of Locomotion Implementations
@@ -227,7 +235,7 @@ public:
 	 * Phrase Event for Compiling Blueprint Linked to the Active Blueprint Editor.
 	 * @param Record The Parse Record accumulated until this Event.
 	 */
-	UFUNCTION()
+	UPHRASE_EVENT("NodeInteraction.GraphCompile", "Graph Compile")
 	void BlueprintCompile(FParseRecord &Record);
 
 	// End of Blueprint Specifics

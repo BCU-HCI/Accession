@@ -13,7 +13,7 @@
 #include "PhraseTree/Containers/Input/UParseIntInput.h"
 #include "Widgets/Text/SMultiLineEditableText.h"
 
-ULocalizedInputLibrary::ULocalizedInputLibrary(const FObjectInitializer &ObjectInitializer)
+ULocalizedInputLibrary::ULocalizedInputLibrary(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
 }
 

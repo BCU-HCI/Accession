@@ -1,23 +1,22 @@
-// Copyright (C) HCI-BCU 2025. All rights reserved.
+// Copyright (C) HCI-BCU 2026. All rights reserved.
 
 using System.IO;
 using UnrealBuildTool;
+using UnrealBuildTool.Rules;
 
-public class Accession : ModuleRules
+public class AccessionPhraseCore : ModuleRules
 {
-	public Accession(ReadOnlyTargetRules Target) : base(Target)
+	public AccessionPhraseCore(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
 		PublicIncludePaths.AddRange(
 			new string[] {
-				// ... add public include paths required here ...
 			}
 			);
 
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				// ... add other private include paths required here ...
 			}
 			);
 
@@ -26,18 +25,16 @@ public class Accession : ModuleRules
 			new string[]
 			{
 				"Core",
-				// ... add other public dependencies that you statically link with here ...
+				"EditorSubsystem"
 			}
 			);
-
 
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
-				// Internal Plugin Modules
+				// Internal Plugin Dependencies
 				"AccessionAnalytics",
-				"AccessionCommunication",
-				"AccessionPhraseCore",
+				"AccessionCommunication", // THIS IS TEMPORARY, REMOVE ONCE REQUIRED FUNCTIONALITY IS MOVED TO THIS MODULE
 
 				// Core Modules
 				"CoreUObject",
@@ -46,14 +43,7 @@ public class Accession : ModuleRules
 
 				// Editor Modules
 				"UnrealEd",
-				"GraphEditor",
-				"Kismet",
-				"AIModule",
-
-				// Slate UI
-                "Slate",
-				"SlateCore",
-				"EditorStyle",
+				"Projects",
 			}
 			);
 
@@ -61,7 +51,6 @@ public class Accession : ModuleRules
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
 			{
-				// ... add any modules that your module loads dynamically here ...
 			}
 			);
 

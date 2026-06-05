@@ -26,6 +26,14 @@
 			]
 		},
 		{
+			"Name": "AccessionPhraseCore",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		},
+		{
 			"Name": "Accession",
 			"Type": "Editor",
 			"LoadingPhase": "PostEngineInit",
