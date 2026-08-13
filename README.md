@@ -44,6 +44,6 @@ Further details on getting started and using  the plugin can be found in on the 
 > Disclaimer: Please note this product requires two official Epic Games plugins (AudioCapture and Python Editor Scripting) to support its functionality. The Python Editor Scripting plugin is currently an experimental feature. Due to the research-oriented nature of this product and its experimental integrations, we cannot guarantee stable performance or provide a warranty against potential bugs, crashes, or other unintended errors. By using this product, you assume full responsibility for any issues that may arise.
 
 ### Contributors:
-Project Lead - Chris Creed
-Finn Dudley
-Chukwuemeka Eze
+- Chris Creed (Project Lead)
+- Finn Dudley
+- Chukwuemeka Eze
