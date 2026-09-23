@@ -221,6 +221,28 @@ public:
 
 	// End of Locomotion Implementations
 
+	// Graph Specifics
+
+	/**
+	 * Phrase Event for Moving the Active Viewport.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	void MoveViewport(FParseRecord& Record);
+
+	/**
+	 * Phrase Event for Zooming the Active Viewport.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	void ZoomViewport(FParseRecord& Record);
+
+	/**
+	 * Phrase Event for Focusing on the Active Viewports Indexed Item, if one is apparent.
+	 * @param Record The Parse Record accumulated until this Event.
+	 */
+	void IndexFocus(FParseRecord& Record);
+
+	// End of Graph Specifics
+
 	// Blueprint Specifics
 
 	/**

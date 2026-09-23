@@ -306,53 +306,74 @@ void UNodeInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 									}),
 
 			MakeShared<FPhraseNode>(TEXT("GRAPH"),
-									TPhraseNodeArray{
+				TPhraseNodeArray{
 
-										MakeShared<FPhraseNode>(TEXT("COMPILE"),
-																TPhraseNodeArray{
+					MakeShared<FPhraseNode>(TEXT("COMPILE"),
+											TPhraseNodeArray{
 
-																	MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::BlueprintCompile))
+												MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::BlueprintCompile))
 
-																}),
+											}),
 
-										MakeShared<FPhraseContextNode<UGraphLocomotionContext>>(TEXT("MOVE"),
-																								TPhraseNodeArray{
+					MakeShared<FPhraseContextNode<UGraphLocomotionContext>>(TEXT("MOVE"),
+																			TPhraseNodeArray{
 
-																									MakeShared<FPhraseNode>(TEXT("SELECT"),
-																															TPhraseNodeArray{
+																				MakeShared<FPhraseNode>(TEXT("SELECT"),
+																										TPhraseNodeArray{
 
-																																MakeShared<FPhraseIntInputNode>(TEXT("INDEX"),
-																																								TPhraseNodeArray{
+																											MakeShared<FPhraseIntInputNode>(TEXT("INDEX"),
+																																			TPhraseNodeArray{
 
-																																									MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionSelect))
+																																				MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionSelect))
 
-																																								})
+																																			})
 
-																															}),
+																										}),
 
-																									MakeShared<FPhraseNode>(TEXT("REVERT"),
-																															TPhraseNodeArray{
+																				MakeShared<FPhraseNode>(TEXT("REVERT"),
+																										TPhraseNodeArray{
 
-																																MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionRevert))
+																											MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionRevert))
 
-																															}),
+																										}),
 
-																									MakeShared<FPhraseNode>(TEXT("CONFIRM"),
-																															TPhraseNodeArray{
+																				MakeShared<FPhraseNode>(TEXT("CONFIRM"),
+																										TPhraseNodeArray{
 
-																																MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionConfirm))
+																											MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionConfirm))
 
-																															}),
+																										}),
 
-																									MakeShared<FPhraseNode>(TEXT("CANCEL"),
-																															TPhraseNodeArray{
+																				MakeShared<FPhraseNode>(TEXT("CANCEL"),
+																					TPhraseNodeArray{
 
-																																MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionCancel))
+																						MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::LocomotionCancel))
 
-																															})
+																					})
 
-																								}),
-									})});
+																			}),
+
+					MakeShared<FPhrase2DDirectionalInputNode>(TEXT("DIRECTION"),
+						TPhraseNodeArray{
+								MakeShared<FPhraseIntInputNode>(TEXT("AMOUNT"),
+									TPhraseNodeArray{ MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::MoveViewport)) }
+								)
+						}),
+
+					MakeShared<FPhraseNode>(TEXT("ZOOM"),
+						TPhraseNodeArray {
+							MakeShared<FPhraseFloatInputNode>(TEXT("AMOUNT"),
+								TPhraseNodeArray{ MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::ZoomViewport)) }
+							)
+						}),
+
+					MakeShared<FPhraseNode>(TEXT("FOCUS"), TPhraseNodeArray {
+						MakeShared<FPhraseIntInputNode>(TEXT("INDEX"),
+							TPhraseNodeArray{ MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UNodeInteractionLibrary::IndexFocus)) })
+					})
+				})
+
+		});
 };
 
 void UNodeInteractionLibrary::MoveNode(FParseRecord &Record)
@@ -1010,6 +1031,158 @@ void UNodeInteractionLibrary::LocomotionCancel(FParseRecord &Record)
 	GET_TOP_CONTEXT(Record, LocomotionContext, UGraphLocomotionContext);
 
 	LocomotionContext->CancelLocomotion();
+}
+
+void UNodeInteractionLibrary::MoveViewport(FParseRecord& Record)
+{
+	GET_ACTIVE_TAB_CONTENT(ActiveTab)
+
+		FString TabType = ActiveTab->GetTypeAsString();
+
+	UParseEnumInput* DirectionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
+	UParseIntInput* AmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+	if (DirectionInput == nullptr || AmountInput == nullptr)
+		return;
+
+
+		TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);
+
+		FVector2D ViewLocation;
+		float ZoomAmount;
+		GraphEditor->GetViewLocation(ViewLocation, ZoomAmount);
+
+		switch (EPhrase2DDirectionalInput(DirectionInput->GetValue()))
+		{
+		case EPhrase2DDirectionalInput::UP:
+			ViewLocation.Y -= AmountInput->GetValue();
+			break;
+
+		case EPhrase2DDirectionalInput::DOWN:
+			ViewLocation.Y += AmountInput->GetValue();
+			break;
+
+		case EPhrase2DDirectionalInput::LEFT:
+			ViewLocation.X -= AmountInput->GetValue();
+			break;
+
+		case EPhrase2DDirectionalInput::RIGHT:
+			ViewLocation.X += AmountInput->GetValue();
+			break;
+
+		default:
+			UE_LOG(LogAccessionPhraseEvent, Display, TEXT("MoveViewport: INVALID DIRECTION INPUT"));
+			return;
+		}
+
+		GraphEditor->SetViewLocation(ViewLocation, ZoomAmount);
+
+}
+
+class SOpenGraphPanel : public SGraphPanel
+{
+public:
+	FZoomLevelsContainer* GetZoomLevels()
+	{
+		return ZoomLevels.Get();
+	}
+};
+
+void UNodeInteractionLibrary::ZoomViewport(FParseRecord& Record)
+{
+	GET_ACTIVE_TAB_CONTENT(ActiveTab)
+
+		FString TabType = ActiveTab->GetTypeAsString();
+
+	UParseEnumInput* DirectionInput = Record.GetPhraseInput<UParseEnumInput>(TEXT("DIRECTION"));
+	UParseIntInput* AmountInput = Record.GetPhraseInput<UParseIntInput>(TEXT("AMOUNT"));
+	if (DirectionInput == nullptr || AmountInput == nullptr)
+		return;
+
+	if (TabType == "SGraphEditor")
+	{
+		TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);
+		FZoomLevelsContainer* ZoomLevels;
+
+		// Another Hack because its protected, which is good.
+		// But the derived ZoomLevelsContainer is in a .cpp file :(
+		{
+			SOpenGraphPanel* GraphPanel = static_cast<SOpenGraphPanel*>(GraphEditor->GetGraphPanel());
+			ZoomLevels = GraphPanel->GetZoomLevels();
+
+			if (ZoomLevels == nullptr)
+				return;
+		}
+
+		FVector2D ViewLocation;
+		float ZoomAmount;
+		GraphEditor->GetViewLocation(ViewLocation, ZoomAmount);
+
+		// Find Index for Current Zoom Level
+		int32 ZoomIndex;
+		for (ZoomIndex = 0; ZoomIndex < ZoomLevels->GetNumZoomLevels(); ZoomIndex++)
+		{
+			if (ZoomAmount <= ZoomLevels->GetZoomAmount(ZoomIndex))
+			{
+				break;
+			}
+		}
+
+		switch (EPhrase2DDirectionalInput(DirectionInput->GetValue()))
+		{
+		case EPhrase2DDirectionalInput::UP:
+			ZoomIndex += AmountInput->GetValue();
+			break;
+
+		case EPhrase2DDirectionalInput::DOWN:
+			ZoomIndex -= AmountInput->GetValue();
+			break;
+
+		default:
+			UE_LOG(LogAccessionPhraseEvent, Display, TEXT("ZoomViewport: INVALID DIRECTION INPUT"));
+			return;
+		}
+
+		if (ZoomIndex < 0 || ZoomIndex >= ZoomLevels->GetNumZoomLevels())
+			ZoomAmount = ZoomLevels->GetDefaultZoomLevel();
+		else
+			ZoomAmount = ZoomLevels->GetZoomAmount(ZoomIndex);
+
+		GraphEditor->SetViewLocation(ViewLocation, ZoomAmount);
+	}
+
+	// Further Viewport Specific Implementation Here
+}
+
+void UNodeInteractionLibrary::IndexFocus(FParseRecord& Record)
+{
+	GET_ACTIVE_TAB_CONTENT(ActiveTab)
+
+		FString TabType = ActiveTab->GetTypeAsString();
+
+	UParseIntInput* IndexInput = Record.GetPhraseInput<UParseIntInput>(TEXT("INDEX"));
+	if (IndexInput == nullptr)
+		return;
+
+	if (TabType == "SGraphEditor")
+	{
+		TSharedPtr<SGraphEditor> GraphEditor = StaticCastSharedPtr<SGraphEditor>(ActiveTab);
+		if (!GraphEditor.IsValid())
+			return;
+
+		TSharedRef<FAccessionAssetRegistry> AssetRegistry = GetAssetRegistry();
+
+		TSharedRef<FGraphIndexer> GraphIndexer = AssetRegistry->GetGraphIndexer(GraphEditor->GetCurrentGraph());
+
+		UEdGraphNode* Node = GraphIndexer->GetNode(IndexInput->GetValue());
+		if (Node == nullptr)
+		{
+			UE_LOG(LogAccessionPhraseEvent, Display, TEXT("IndexFocus: INVALID INDEX INPUT"))
+				return;
+		}
+
+		GraphEditor->JumpToNode(Node);
+	}
+
 }
 
 void UNodeInteractionLibrary::BlueprintCompile(FParseRecord &Record)
