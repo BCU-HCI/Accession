@@ -18,11 +18,10 @@ public:
 	void BindBranches(TSharedRef<FPhraseTree> PhraseTree) override;
 
 	void MoveViewport(FParseRecord& Record);
-	void ZoomViewport(FParseRecord& Record);
 
 private:
 
-	void PanCamera(FEditorViewportClient* ViewportClient, const FVector2D& Direction, float Amount);
+	void PanCamera(FEditorViewportClient* ViewportClient, const FVector& Direction, float Amount);
 
 	static FEditorViewportClient* GetViewportClient(const TSharedPtr<SWidget>& Widget);
 };

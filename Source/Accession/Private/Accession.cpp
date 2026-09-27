@@ -16,7 +16,7 @@
 
 #include "PhraseEvents/LocalizedInputLibrary.h"
 #include "PhraseEvents/WindowInteractionLibrary.h"
-#include "PhraseEvents/ViewInteractionLibrary.h"
+#include "PhraseEvents/ViewportInteractionLibrary.h"
 #include "PhraseEvents/NodeInteractionLibrary.h"
 
 #include "FunctionalityWrappers/GraphAddNodeContextMenu.h"
@@ -57,7 +57,7 @@ void FAccessionModule::StartupModule()
 				NewObject<UWindowInteractionLibrary>());
 
 		ACSubsystem->PhraseTreeUtils->RegisterFunctionLibrary(
-				NewObject<UViewInteractionLibrary>());
+				NewObject<UViewportInteractionLibrary>());
 
 		ACSubsystem->PhraseTreeUtils->RegisterFunctionLibrary(
 				NewObject<UNodeInteractionLibrary>());		
