@@ -23,6 +23,7 @@
 #include "PhraseTree/PhraseEventNode.h"
 
 #include "Utils/GraphQuadTree.h"
+#include "Viewport/ViewportNavigator.h"
 
 UNodeInteractionLibrary::UNodeInteractionLibrary(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer)
@@ -1181,8 +1182,14 @@ void UNodeInteractionLibrary::IndexFocus(FParseRecord& Record)
 		}
 
 		GraphEditor->JumpToNode(Node);
+		return;
 	}
 
+	// Not a graph: the same "VIEW FOCUS <n>" phrase targets the numbered items of the active 3D viewport.
+	if (TSharedPtr<FAccessionViewportNavigator> Navigator = FAccessionModule::Get().ViewportNavigator)
+	{
+		Navigator->FocusIndex(IndexInput->GetValue());
+	}
 }
 
 void UNodeInteractionLibrary::BlueprintCompile(FParseRecord &Record)

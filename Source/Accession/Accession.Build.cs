@@ -42,6 +42,7 @@ public class Accession : ModuleRules
 				"CoreUObject",
 				"Engine",
 				"Json",
+				"DeveloperSettings",
 
 				// Editor Modules
 				"UnrealEd",

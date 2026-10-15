@@ -52,6 +52,11 @@ public:
 	/// </summary>
 	TSharedPtr<class FAccessionAssetRegistry> AssetRegistry;
 
+	/// <summary>
+	/// Voice Navigation for 3D Editor Viewports (Item Numbering, Focus, Orbit, Camera History).
+	/// </summary>
+	TSharedPtr<class FAccessionViewportNavigator> ViewportNavigator;
+
 private:
 
 	TArray<IConsoleCommand *> ConsoleCommands;

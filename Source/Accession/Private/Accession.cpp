@@ -19,6 +19,8 @@
 #include "PhraseEvents/ViewportInteractionLibrary.h"
 #include "PhraseEvents/NodeInteractionLibrary.h"
 
+#include "Viewport/ViewportNavigator.h"
+
 #include "FunctionalityWrappers/GraphAddNodeContextMenu.h"
 #include "FunctionalityWrappers/GraphLocomotionContext.h"
 
@@ -45,6 +47,10 @@ void FAccessionModule::StartupModule()
 	// Register the  Node Factory
 	NodeFactory = MakeShared<FAccessionNodeFactory, ESPMode::ThreadSafe>();
 	FEdGraphUtilities::RegisterVisualNodeFactory(NodeFactory);
+
+	// Create the 3D Viewport Navigator
+	ViewportNavigator = MakeShared<FAccessionViewportNavigator>();
+	ViewportNavigator->Initialize();
 
 	
 	if (UAccessionCommunicationSubsystem* ACSubsystem = GEditor->GetEditorSubsystem<UAccessionCommunicationSubsystem>())
@@ -79,6 +85,13 @@ void FAccessionModule::ShutdownModule()
 	{
 		FEdGraphUtilities::UnregisterVisualNodeFactory(NodeFactory);
 		NodeFactory.Reset();
+	}
+
+	// Shutdown the Viewport Navigator
+	if (ViewportNavigator.IsValid())
+	{
+		ViewportNavigator->Shutdown();
+		ViewportNavigator.Reset();
 	}
 
 	// Clear the Asset Registry
