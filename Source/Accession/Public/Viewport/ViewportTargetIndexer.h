@@ -30,36 +30,42 @@ struct ACCESSION_API FViewportTarget
 };
 
 /**
- * Assigns small, stable numbers to the visible items of one editor viewport.
+ * Gives each item in a world a number that it keeps for the editor session, like the graph indexer does for nodes.
  *
- * Stability rules (so a number does not change between the user reading it and saying it):
- *  - Numbers are only re-assigned on Refresh(), which the navigator calls once the camera has settled.
- *  - An item that stays visible keeps its number.
- *  - New items take the smallest free number, keeping spoken numbers short.
- *  - Items that leave the view release their number.
+ *  - An item is numbered the first time it is seen, and keeps that number when it leaves the view and comes back.
+ *  - Only deleting the item releases its number; the smallest free number is reused for the next new item.
+ *  - Refresh() only changes which numbers are visible (labelled) right now, never which item a number points to.
+ *
+ * One indexer is shared by every viewport showing the same world, so all panes agree on the numbers.
  */
 class ACCESSION_API FViewportTargetIndexer
 {
 public:
 	/**
-	 * Re-gathers the visible items for the provided viewport and updates the index.
+	 * Updates which items are visible in the provided viewport, numbering any seen for the first time.
 	 * @param Client A valid viewport client (validated by the caller).
 	 */
-	void Refresh(FEditorViewportClient *Client);
+	void Refresh(FEditorViewportClient* Client);
 
-	/** Removes all indexes. */
+	/** Forgets every number, so numbering starts again from 0. */
 	void Reset();
 
-	/** @return The target for the index, or nullptr if the index is unused or the target has gone. */
-	const FViewportTarget *Find(int32 Index) const;
+	/** @return The target for the index (visible or not), or nullptr if the index is unused or the target has gone. */
+	const FViewportTarget* Find(int32 Index) const;
 
 	/** @return The index of the target, or INDEX_NONE. */
-	int32 FindIndex(const FObjectKey &TargetKey) const;
+	int32 FindIndex(const FObjectKey& TargetKey) const;
 
-	/** @return All indexes in ascending order. */
+	/** @return All indexes in ascending order, including items not currently in view. */
 	TArray<int32> GetSortedIndexes() const;
 
-	const TMap<int32, FViewportTarget> &GetEntries() const { return IndexToTarget; }
+	/** @return Indexes visible (and labelled) in the last refreshed viewport, in ascending order. */
+	const TArray<int32>& GetVisibleIndexes() const { return VisibleIndexes; }
+
+	/** @return A readable table of every index, for logging. */
+	FString Describe() const;
+
+	const TMap<int32, FViewportTarget>& GetEntries() const { return IndexToTarget; }
 
 	int32 Num() const { return IndexToTarget.Num(); }
 
@@ -71,13 +77,23 @@ private:
 	{
 		FViewportTarget Target;
 		float ScreenCoverage = 0.f;
-		bool bPreviouslyIndexed = false;
 	};
 
-	void GatherCandidates(FEditorViewportClient *Client, TArray<FCandidate> &OutCandidates) const;
+	void GatherCandidates(FEditorViewportClient* Client, TArray<FCandidate>& OutCandidates) const;
 
-	int32 TakeSmallestFreeIndex() const;
+	void PruneDestroyed();
+
+	/** Pops the smallest freed index if there is one, otherwise climbs to the next unused index. */
+	int32 TakeIndex();
 
 	TMap<int32, FViewportTarget> IndexToTarget;
+
+	/** Indexes released by deleted items, kept as a min-heap so the smallest is reused first. */
+	TArray<int32> FreedIndexes;
+
+	/** The next never-used index, once FreedIndexes is empty. */
+	int32 NextIndex = FirstIndex;
+
 	TMap<FObjectKey, int32> TargetToIndex;
+	TArray<int32> VisibleIndexes;
 };

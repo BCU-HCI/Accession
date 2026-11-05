@@ -28,6 +28,9 @@ public:
 	/** VIEW MOVE <direction> <amount> - Pans the camera relative to its facing. */
 	void MoveViewport(FParseRecord& Record);
 
+	/** VIEW FOCUS <index> - Frames the provided index */
+	void FocusIndex(FParseRecord& Record);
+
 	/** VIEW NEXT - Frames the next numbered item. */
 	void FocusNext(FParseRecord& Record);
 

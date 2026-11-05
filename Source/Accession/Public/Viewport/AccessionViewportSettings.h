@@ -25,7 +25,7 @@ public:
 	UPROPERTY(config, EditAnywhere, Category = "Labels")
 	bool bShowLabels = true;
 
-	/** Maximum number of items indexed at once. Fewer labels means less clutter and shorter numbers to say. */
+	/** Maximum number of labels shown at once (largest items first). Numbers themselves are kept for the session. */
 	UPROPERTY(config, EditAnywhere, Category = "Labels", meta = (ClampMin = "1", ClampMax = "99"))
 	int32 MaxLabels = 24;
 
@@ -59,9 +59,32 @@ public:
 	UPROPERTY(config, EditAnywhere, Category = "Camera", meta = (ClampMin = "0.05", ClampMax = "3.0"))
 	float TransitionSeconds = 0.6f;
 
-	/** Multiplier on the tight framing distance; above 1 leaves space around the focused item. */
+	/** Space around a focused item: 1 fits its bounding box exactly to the view edges, 1.3 leaves roughly a 15% margin each side. */
 	UPROPERTY(config, EditAnywhere, Category = "Camera", meta = (ClampMin = "1.0", ClampMax = "5.0"))
 	float FramingPadding = 1.3f;
+
+	/**
+	 * When focusing, raycast between the item and the planned camera position (both directions, Visibility channel),
+	 * and if something is in the way move round to the nearest clear angle, or in front of the blocker.
+	 */
+	UPROPERTY(config, EditAnywhere, Category = "Camera")
+	bool bEnsureLineOfSight = true;
+
+	/** Also treat meshes without Visibility collision (e.g. foliage) as blocking, using their bounds. */
+	UPROPERTY(config, EditAnywhere, Category = "Camera", meta = (EditCondition = "bEnsureLineOfSight"))
+	bool bMeshBoundsOcclusion = true;
+
+	/** Pitch, in degrees, a focus starts from (negative looks down). Keeps repeated focuses at a steady eye level. */
+	UPROPERTY(config, EditAnywhere, Category = "Camera", meta = (ClampMin = "-60.0", ClampMax = "20.0"))
+	float FocusPitch = -20.f;
+
+	/** How far, in degrees, the current camera pitch may differ from Focus Pitch before a focus brings it back. */
+	UPROPERTY(config, EditAnywhere, Category = "Camera", meta = (ClampMin = "0.0", ClampMax = "45.0"))
+	float FocusPitchTolerance = 15.f;
+
+	/** Select the focused item in the level (selection outline and Details panel), so it is highlighted as well as framed. */
+	UPROPERTY(config, EditAnywhere, Category = "Camera")
+	bool bSelectOnFocus = true;
 
 	/** Number of camera poses kept for "VIEW BACK". */
 	UPROPERTY(config, EditAnywhere, Category = "Camera", meta = (ClampMin = "1", ClampMax = "100"))

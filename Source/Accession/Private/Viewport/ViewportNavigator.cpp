@@ -16,9 +16,11 @@
 #include "CanvasTypes.h"
 #include "SceneView.h"
 #include "Debug/DebugDrawService.h"
+#include "HAL/IConsoleManager.h"
 #include "Framework/Application/SlateApplication.h"
 #include "Framework/Docking/TabManager.h"
 #include "Widgets/Docking/SDockTab.h"
+#include "ScopedTransaction.h"
 
 namespace ViewportNavigatorConstants
 {
@@ -48,6 +50,18 @@ void FAccessionViewportNavigator::Initialize()
 	DrawHandle = UDebugDrawService::Register(
 		TEXT("Editor"),
 		FDebugDrawDelegate::CreateRaw(this, &FAccessionViewportNavigator::DrawLabels));
+
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("Accession.Viewport.LogIndexes"),
+		TEXT("Logs every viewport item number in the active viewport's world, and what it points to."),
+		FConsoleCommandDelegate::CreateRaw(this, &FAccessionViewportNavigator::LogIndexes),
+		ECVF_Default));
+
+	ConsoleCommands.Add(IConsoleManager::Get().RegisterConsoleCommand(
+		TEXT("Accession.Viewport.ResetIndexes"),
+		TEXT("Forgets every viewport item number in the active viewport's world, so numbering restarts from 0."),
+		FConsoleCommandDelegate::CreateRaw(this, &FAccessionViewportNavigator::ResetIndexes),
+		ECVF_Default));
 }
 
 void FAccessionViewportNavigator::Shutdown()
@@ -64,18 +78,25 @@ void FAccessionViewportNavigator::Shutdown()
 		DrawHandle.Reset();
 	}
 
+	for (IConsoleObject* Command : ConsoleCommands)
+	{
+		IConsoleManager::Get().UnregisterConsoleObject(Command);
+	}
+	ConsoleCommands.Reset();
+
 	States.Reset();
+	WorldIndexers.Reset();
 	LabelledClient = nullptr;
 }
 
 // Viewport Resolution
 
-bool FAccessionViewportNavigator::IsClientAlive(const FEditorViewportClient *Client)
+bool FAccessionViewportNavigator::IsClientAlive(const FEditorViewportClient* Client)
 {
-	return Client && GEditor && GEditor->GetAllViewportClients().Contains(const_cast<FEditorViewportClient *>(Client));
+	return Client && GEditor && GEditor->GetAllViewportClients().Contains(const_cast<FEditorViewportClient*>(Client));
 }
 
-FEditorViewportClient *FAccessionViewportNavigator::ResolveActiveViewportClient()
+FEditorViewportClient* FAccessionViewportNavigator::ResolveActiveViewportClient()
 {
 	if (!GEditor || !FSlateApplication::IsInitialized())
 		return nullptr;
@@ -91,10 +112,10 @@ FEditorViewportClient *FAccessionViewportNavigator::ResolveActiveViewportClient(
 		return nullptr;
 
 	// Every viewport inside the active tab (several in a multi-pane layout).
-	TArray<FEditorViewportClient *> Candidates;
+	TArray<FEditorViewportClient*> Candidates;
 	if (ActiveContent.IsValid())
 	{
-		for (FEditorViewportClient *Client : GEditor->GetAllViewportClients())
+		for (FEditorViewportClient* Client : GEditor->GetAllViewportClients())
 		{
 			if (!Client)
 				continue;
@@ -103,7 +124,7 @@ FEditorViewportClient *FAccessionViewportNavigator::ResolveActiveViewportClient(
 			if (!EditorViewport.IsValid())
 				continue;
 
-			if (static_cast<SWidget *>(EditorViewport.Get()) == ActiveContent.Get())
+			if (static_cast<SWidget*>(EditorViewport.Get()) == ActiveContent.Get())
 			{
 				Candidates.Add(Client);
 				continue;
@@ -118,9 +139,9 @@ FEditorViewportClient *FAccessionViewportNavigator::ResolveActiveViewportClient(
 		}
 	}
 
-	FEditorViewportClient *LastLevelClient = IsClientAlive(GCurrentLevelEditingViewportClient)
-												 ? GCurrentLevelEditingViewportClient
-												 : nullptr;
+	FEditorViewportClient* LastLevelClient = IsClientAlive(GCurrentLevelEditingViewportClient)
+		? GCurrentLevelEditingViewportClient
+		: nullptr;
 
 	if (Candidates.Num() == 1)
 		return Candidates[0];
@@ -128,8 +149,8 @@ FEditorViewportClient *FAccessionViewportNavigator::ResolveActiveViewportClient(
 	if (Candidates.Num() > 1)
 	{
 		// Prefer the pane the user last interacted with.
-		const FViewport *ActiveViewport = GEditor->GetActiveViewport();
-		for (FEditorViewportClient *Client : Candidates)
+		const FViewport* ActiveViewport = GEditor->GetActiveViewport();
+		for (FEditorViewportClient* Client : Candidates)
 		{
 			if (Client->Viewport == ActiveViewport)
 				return Client;
@@ -145,19 +166,33 @@ FEditorViewportClient *FAccessionViewportNavigator::ResolveActiveViewportClient(
 	return LastLevelClient;
 }
 
-FAccessionViewportNavigator::FViewportState &FAccessionViewportNavigator::GetOrAddState(FEditorViewportClient *Client)
+FAccessionViewportNavigator::FViewportState& FAccessionViewportNavigator::GetOrAddState(FEditorViewportClient* Client)
 {
-	if (TUniquePtr<FViewportState> *Existing = States.Find(Client))
+	if (TUniquePtr<FViewportState>* Existing = States.Find(Client))
 		return **Existing;
 
 	return *States.Add(Client, MakeUnique<FViewportState>());
 }
 
-FEditorViewportClient *FAccessionViewportNavigator::GetCommandClient(FViewportState *&OutState)
+FViewportTargetIndexer* FAccessionViewportNavigator::GetIndexer(FEditorViewportClient* Client)
+{
+	UWorld* World = Client ? Client->GetWorld() : nullptr;
+	if (!World)
+		return nullptr;
+
+	const FObjectKey WorldKey(World);
+	if (TUniquePtr<FViewportTargetIndexer>* Existing = WorldIndexers.Find(WorldKey))
+		return Existing->Get();
+
+	return WorldIndexers.Add(WorldKey, MakeUnique<FViewportTargetIndexer>()).Get();
+}
+
+FEditorViewportClient* FAccessionViewportNavigator::GetCommandClient(FViewportState*& OutState, FViewportTargetIndexer*& OutIndexer)
 {
 	OutState = nullptr;
+	OutIndexer = nullptr;
 
-	FEditorViewportClient *Client = ResolveActiveViewportClient();
+	FEditorViewportClient* Client = ResolveActiveViewportClient();
 	if (!Client)
 	{
 		UE_LOG(LogAccession, Display, TEXT("ViewportNavigator: No Active Viewport For Command."));
@@ -168,10 +203,13 @@ FEditorViewportClient *FAccessionViewportNavigator::GetCommandClient(FViewportSt
 	SetLabelledClient(Client);
 
 	OutState = &GetOrAddState(Client);
+	OutIndexer = GetIndexer(Client);
+	if (!OutIndexer)
+		return nullptr;
 
-	if (OutState->Indexer.Num() == 0)
+	if (OutIndexer->Num() == 0)
 	{
-		OutState->Indexer.Refresh(Client);
+		OutIndexer->Refresh(Client);
 		OutState->bNeedsRefresh = false;
 		OutState->LastRefreshTime = FPlatformTime::Seconds();
 	}
@@ -183,12 +221,14 @@ FEditorViewportClient *FAccessionViewportNavigator::GetCommandClient(FViewportSt
 
 bool FAccessionViewportNavigator::FocusIndex(int32 Index)
 {
-	FViewportState *State;
-	FEditorViewportClient *Client = GetCommandClient(State);
+	FViewportState* State;
+	FViewportTargetIndexer* Indexer;
+	FEditorViewportClient* Client = GetCommandClient(State, Indexer);
 	if (!Client)
 		return false;
 
-	const FViewportTarget *Target = State->Indexer.Find(Index);
+	// Any numbered item can be focused, including ones seen earlier but out of view now.
+	const FViewportTarget* Target = Indexer->Find(Index);
 	if (!Target)
 	{
 		UE_LOG(LogAccession, Display, TEXT("ViewportNavigator: No Item Numbered %d."), Index);
@@ -197,21 +237,53 @@ bool FAccessionViewportNavigator::FocusIndex(int32 Index)
 
 	UE_LOG(LogAccession, Log, TEXT("ViewportNavigator: Focusing %d (%s)."), Index, *Target->GetLabel());
 
-	State->Camera.FocusOnBox(Client, Target->GetBounds());
+	State->Camera.FocusOnBox(Client, Target->GetBounds(), { Target->Actor.Get() });
 	State->FocusedIndex = Index;
+	SelectTarget(Client, *Target);
 	Client->Invalidate();
+
+
 
 	return true;
 }
 
+void FAccessionViewportNavigator::SelectTarget(FEditorViewportClient* Client, const FViewportTarget& Target)
+{
+	if (!GEditor || !Client || !GetDefault<UAccessionViewportSettings>()->bSelectOnFocus)
+		return;
+
+	AActor* Actor = Target.Actor.Get();
+	if (!Actor)
+		return;
+
+	// The editor selection only covers the level being edited; asset editor previews are left alone.
+	if (Client->GetWorld() != GEditor->GetEditorWorldContext().World())
+		return;
+
+	if (!GEditor->CanSelectActor(Actor, /*bInSelected*/ true, /*bSelectEvenIfHidden*/ true))
+		return;
+
+	// Already the only selected actor: skip, so repeated focuses don't fill the undo history.
+	USelection* Selection = GEditor->GetSelectedActors();
+	if (Selection && Selection->Num() == 1 && Selection->IsSelected(Actor))
+		return;
+
+	const FScopedTransaction Transaction(NSLOCTEXT("Accession", "VoiceFocusSelect", "Voice Focus Select"));
+
+	GEditor->SelectNone(/*bNoteSelectionChange*/ false, /*bDeselectBSPSurfs*/ true);
+	GEditor->SelectActor(Actor, /*bInSelected*/ true, /*bNotify*/ true, /*bSelectEvenIfHidden*/ true);
+}
+
 bool FAccessionViewportNavigator::FocusStep(int32 Step)
 {
-	FViewportState *State;
-	FEditorViewportClient *Client = GetCommandClient(State);
+	FViewportState* State;
+	FViewportTargetIndexer* Indexer;
+	FEditorViewportClient* Client = GetCommandClient(State, Indexer);
 	if (!Client)
 		return false;
 
-	const TArray<int32> Indexes = State->Indexer.GetSortedIndexes();
+	// Step through what is on screen; fall back to everything numbered if nothing is.
+	const TArray<int32> Indexes = Indexer->GetVisibleIndexes().IsEmpty() ? Indexer->GetSortedIndexes() : Indexer->GetVisibleIndexes();
 	if (Indexes.IsEmpty())
 	{
 		UE_LOG(LogAccession, Display, TEXT("ViewportNavigator: No Items To Step Through."));
@@ -232,8 +304,9 @@ bool FAccessionViewportNavigator::FocusStep(int32 Step)
 
 bool FAccessionViewportNavigator::Back()
 {
-	FViewportState *State;
-	FEditorViewportClient *Client = GetCommandClient(State);
+	FViewportState* State;
+	FViewportTargetIndexer* Indexer;
+	FEditorViewportClient* Client = GetCommandClient(State, Indexer);
 	if (!Client)
 		return false;
 
@@ -249,8 +322,9 @@ bool FAccessionViewportNavigator::Back()
 
 bool FAccessionViewportNavigator::Orbit(float YawDegrees, float PitchDegrees)
 {
-	FViewportState *State;
-	FEditorViewportClient *Client = GetCommandClient(State);
+	FViewportState* State;
+	FViewportTargetIndexer* Indexer;
+	FEditorViewportClient* Client = GetCommandClient(State, Indexer);
 	if (!Client)
 		return false;
 
@@ -260,34 +334,38 @@ bool FAccessionViewportNavigator::Orbit(float YawDegrees, float PitchDegrees)
 
 bool FAccessionViewportNavigator::FrameSelection()
 {
-	FViewportState *State;
-	FEditorViewportClient *Client = GetCommandClient(State);
+	FViewportState* State;
+	FViewportTargetIndexer* Indexer;
+	FEditorViewportClient* Client = GetCommandClient(State, Indexer);
 	if (!Client)
 		return false;
 
 	FBox Bounds(ForceInit);
+	TArray<const AActor*> FramedActors;
 
 	// The editor selection lives in the level world; only use it when this viewport shows that world.
 	if (GEditor && Client->GetWorld() == GEditor->GetEditorWorldContext().World())
 	{
 		for (FSelectionIterator It(*GEditor->GetSelectedActors()); It; ++It)
 		{
-			if (AActor *Actor = Cast<AActor>(*It))
+			if (AActor* Actor = Cast<AActor>(*It))
 			{
 				FViewportTarget Target;
 				Target.Actor = Actor;
 				Bounds += Target.GetBounds();
+				FramedActors.Add(Actor);
 			}
 		}
 	}
 
 	if (!Bounds.IsValid)
 	{
-		for (const TPair<int32, FViewportTarget> &Entry : State->Indexer.GetEntries())
+		for (const int32 Index : Indexer->GetVisibleIndexes())
 		{
-			if (Entry.Value.IsValid())
+			if (const FViewportTarget* Target = Indexer->Find(Index))
 			{
-				Bounds += Entry.Value.GetBounds();
+				Bounds += Target->GetBounds();
+				FramedActors.Add(Target->Actor.Get());
 			}
 		}
 	}
@@ -298,7 +376,7 @@ bool FAccessionViewportNavigator::FrameSelection()
 		return false;
 	}
 
-	State->Camera.FocusOnBox(Client, Bounds);
+	State->Camera.FocusOnBox(Client, Bounds, FramedActors);
 	State->FocusedIndex = INDEX_NONE;
 	return true;
 }
@@ -313,12 +391,40 @@ void FAccessionViewportNavigator::ToggleLabels()
 	}
 }
 
-void FAccessionViewportNavigator::CancelTransition(FEditorViewportClient *Client)
+void FAccessionViewportNavigator::CancelTransition(FEditorViewportClient* Client)
 {
-	if (TUniquePtr<FViewportState> *State = States.Find(Client))
+	if (TUniquePtr<FViewportState>* State = States.Find(Client))
 	{
 		(*State)->Camera.CancelTransition();
 	}
+}
+
+void FAccessionViewportNavigator::LogIndexes()
+{
+	FViewportState* State;
+	FViewportTargetIndexer* Indexer;
+	FEditorViewportClient* Client = GetCommandClient(State, Indexer);
+	if (!Client)
+		return;
+
+	UE_LOG(LogAccession, Display, TEXT("ViewportNavigator: %d Numbered Items In %s\n%s"),
+		Indexer->Num(), *GetNameSafe(Client->GetWorld()), *Indexer->Describe());
+}
+
+void FAccessionViewportNavigator::ResetIndexes()
+{
+	FEditorViewportClient* Client = ResolveActiveViewportClient();
+	FViewportTargetIndexer* Indexer = GetIndexer(Client);
+	if (!Indexer)
+		return;
+
+	Indexer->Reset();
+
+	FViewportState& State = GetOrAddState(Client);
+	State.FocusedIndex = INDEX_NONE;
+	State.bNeedsRefresh = true;
+
+	UE_LOG(LogAccession, Display, TEXT("ViewportNavigator: Numbering Reset For %s."), *GetNameSafe(Client->GetWorld()));
 }
 
 // Tick
@@ -334,7 +440,7 @@ bool FAccessionViewportNavigator::Tick(float DeltaTime)
 		SetLabelledClient(ResolveActiveViewportClient());
 	}
 
-	for (TPair<FEditorViewportClient *, TUniquePtr<FViewportState>> &Pair : States)
+	for (TPair<FEditorViewportClient*, TUniquePtr<FViewportState>>& Pair : States)
 	{
 		Pair.Value->Camera.Tick(Pair.Key, DeltaTime);
 	}
@@ -347,7 +453,7 @@ bool FAccessionViewportNavigator::Tick(float DeltaTime)
 	return true;
 }
 
-void FAccessionViewportNavigator::UpdateIndexing(FEditorViewportClient *Client, FViewportState &State)
+void FAccessionViewportNavigator::UpdateIndexing(FEditorViewportClient* Client, FViewportState& State)
 {
 	const double Now = FPlatformTime::Seconds();
 	const FViewportCameraPose Pose = FViewportCameraPose::Capture(Client);
@@ -369,7 +475,10 @@ void FAccessionViewportNavigator::UpdateIndexing(FEditorViewportClient *Client, 
 
 	if (bSettled && (State.bNeedsRefresh || bIdleRefreshDue))
 	{
-		State.Indexer.Refresh(Client);
+		if (FViewportTargetIndexer* Indexer = GetIndexer(Client))
+		{
+			Indexer->Refresh(Client);
+		}
 		State.bNeedsRefresh = false;
 		State.LastRefreshTime = Now;
 
@@ -390,13 +499,21 @@ void FAccessionViewportNavigator::PruneDeadClients()
 		}
 	}
 
+	for (auto It = WorldIndexers.CreateIterator(); It; ++It)
+	{
+		if (!It.Key().ResolveObjectPtr())
+		{
+			It.RemoveCurrent();
+		}
+	}
+
 	if (LabelledClient && !IsClientAlive(LabelledClient))
 	{
 		LabelledClient = nullptr;
 	}
 }
 
-void FAccessionViewportNavigator::SetLabelledClient(FEditorViewportClient *NewClient)
+void FAccessionViewportNavigator::SetLabelledClient(FEditorViewportClient* NewClient)
 {
 	if (NewClient == LabelledClient)
 		return;
@@ -418,23 +535,27 @@ void FAccessionViewportNavigator::SetLabelledClient(FEditorViewportClient *NewCl
 
 // Labels
 
-void FAccessionViewportNavigator::DrawLabels(UCanvas *Canvas, APlayerController *PlayerController)
+void FAccessionViewportNavigator::DrawLabels(UCanvas* Canvas, APlayerController* PlayerController)
 {
 	if (!bLabelsVisible || !Canvas || !Canvas->SceneView || !Canvas->SceneView->Family || !GEngine)
 		return;
 
 	if (!IsClientAlive(LabelledClient) ||
-		Canvas->SceneView->Family->RenderTarget != static_cast<const FRenderTarget *>(LabelledClient->Viewport))
+		Canvas->SceneView->Family->RenderTarget != static_cast<const FRenderTarget*>(LabelledClient->Viewport))
 		return;
 
-	const TUniquePtr<FViewportState> *StatePtr = States.Find(LabelledClient);
+	const TUniquePtr<FViewportState>* StatePtr = States.Find(LabelledClient);
 	if (!StatePtr)
 		return;
 
-	const FViewportState &State = **StatePtr;
-	const FSceneView &View = *Canvas->SceneView;
+	const FViewportState& State = **StatePtr;
+	const FSceneView& View = *Canvas->SceneView;
 
-	UFont *Font = GEngine->GetLargeFont();
+	const FViewportTargetIndexer* Indexer = GetIndexer(LabelledClient);
+	if (!Indexer)
+		return;
+
+	UFont* Font = GEngine->GetLargeFont();
 	if (!Font)
 		return;
 
@@ -444,9 +565,9 @@ void FAccessionViewportNavigator::DrawLabels(UCanvas *Canvas, APlayerController 
 
 	TArray<FBox2D> PlacedLabels;
 
-	for (const int32 Index : State.Indexer.GetSortedIndexes())
+	for (const int32 Index : Indexer->GetVisibleIndexes())
 	{
-		const FViewportTarget *Target = State.Indexer.Find(Index);
+		const FViewportTarget* Target = Indexer->Find(Index);
 		if (!Target)
 			continue;
 
@@ -477,8 +598,8 @@ void FAccessionViewportNavigator::DrawLabels(UCanvas *Canvas, APlayerController 
 		for (int32 Attempt = 0; Attempt < 6; ++Attempt)
 		{
 			const FBox2D Candidate(BoxPos, BoxPos + BoxSize);
-			const bool bOverlaps = PlacedLabels.ContainsByPredicate([&Candidate](const FBox2D &Placed)
-																	{ return Placed.Intersect(Candidate); });
+			const bool bOverlaps = PlacedLabels.ContainsByPredicate([&Candidate](const FBox2D& Placed)
+				{ return Placed.Intersect(Candidate); });
 			if (!bOverlaps)
 				break;
 

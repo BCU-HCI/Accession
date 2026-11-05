@@ -22,8 +22,6 @@ namespace
 
 void UViewportInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTree)
 {
-	// Command words under VIEW are kept at least 3 edits apart from each other (and from MOVE / ZOOM / FOCUS),
-	// as the Phrase Tree fuzzy matches with a Levenshtein threshold of 2.
 	PhraseTree->BindBranch(
 		MakeShared<FPhraseNode>(TEXT("VIEW"),
 			TPhraseNodeArray{
@@ -40,6 +38,15 @@ void UViewportInteractionLibrary::BindBranches(TSharedRef<FPhraseTree> PhraseTre
 							})
 
 					}),
+
+				MakeShared<FPhraseNode>(TEXT("FOCUS"), 
+					TPhraseNodeArray {
+						MakeShared<FPhraseIntInputNode>(TEXT("INDEX"),
+							TPhraseNodeArray{
+								MakeShared<FPhraseEventNode>(CreateParseDelegate(this, &UViewportInteractionLibrary::FocusIndex))
+						})
+					}),
+
 
 				MakeShared<FPhraseNode>(TEXT("NEXT"),
 					TPhraseNodeArray{
@@ -148,6 +155,26 @@ void UViewportInteractionLibrary::MoveViewport(FParseRecord& Record)
 
 	PanCamera(ViewportClient, Direction, Amount);
 };
+
+void UViewportInteractionLibrary::FocusIndex(FParseRecord& Record)
+{
+	UParseIntInput* FocusInput = Record.GetPhraseInput<UParseIntInput>(TEXT("INDEX"));
+
+	if (!FocusInput)
+	{
+		UE_LOG(LogAccessionPhraseEvent, Warning, TEXT("MoveViewport: Cannot Find Direction or Amount Input."))
+			return;
+	}
+
+	// ----
+
+	int32 FocusIndex = FocusInput->GetValue();
+
+	if (TSharedPtr<FAccessionViewportNavigator> Navigator = GetViewportNavigator())
+	{
+		Navigator->FocusIndex(FocusIndex);
+	}
+}
 
 void UViewportInteractionLibrary::FocusNext(FParseRecord& Record)
 {
